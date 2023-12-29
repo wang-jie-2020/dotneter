@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31919.166
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NanoService.Ocelot", "NanoService.Ocelot\NanoService.Ocelot.csproj", "{6683A0FC-70D5-4CDA-ABB6-B1225ACD3F2C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NanoService.Service.Product", "NanoService.Service.Product\NanoService.Service.Product.csproj", "{FA0B2382-C497-4393-B757-75F8EBA3BECD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NanoService.Service.Customer", "NanoService.Service.Customer\NanoService.Service.Customer.csproj", "{EC3BAE87-65F7-4D4D-AEB3-36C487BC7364}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NanoService.IdentityServer", "NanoService.IdentityServer\NanoService.IdentityServer.csproj", "{60BC7889-DCA9-481B-A6C3-7BC43510A2B8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NanoService.Infrastructure", "NanoService.Infrastructure\NanoService.Infrastructure.csproj", "{03E3DE0D-8EF6-4E1F-AAA4-739CCCCE1465}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NanoService.Consumer", "NanoService.Consumer\NanoService.Consumer.csproj", "{D116CF20-07E1-4271-994C-4A88B0EDBB3A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6683A0FC-70D5-4CDA-ABB6-B1225ACD3F2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6683A0FC-70D5-4CDA-ABB6-B1225ACD3F2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6683A0FC-70D5-4CDA-ABB6-B1225ACD3F2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6683A0FC-70D5-4CDA-ABB6-B1225ACD3F2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA0B2382-C497-4393-B757-75F8EBA3BECD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA0B2382-C497-4393-B757-75F8EBA3BECD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA0B2382-C497-4393-B757-75F8EBA3BECD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA0B2382-C497-4393-B757-75F8EBA3BECD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC3BAE87-65F7-4D4D-AEB3-36C487BC7364}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC3BAE87-65F7-4D4D-AEB3-36C487BC7364}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC3BAE87-65F7-4D4D-AEB3-36C487BC7364}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC3BAE87-65F7-4D4D-AEB3-36C487BC7364}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60BC7889-DCA9-481B-A6C3-7BC43510A2B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60BC7889-DCA9-481B-A6C3-7BC43510A2B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60BC7889-DCA9-481B-A6C3-7BC43510A2B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60BC7889-DCA9-481B-A6C3-7BC43510A2B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03E3DE0D-8EF6-4E1F-AAA4-739CCCCE1465}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03E3DE0D-8EF6-4E1F-AAA4-739CCCCE1465}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03E3DE0D-8EF6-4E1F-AAA4-739CCCCE1465}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03E3DE0D-8EF6-4E1F-AAA4-739CCCCE1465}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D116CF20-07E1-4271-994C-4A88B0EDBB3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D116CF20-07E1-4271-994C-4A88B0EDBB3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D116CF20-07E1-4271-994C-4A88B0EDBB3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D116CF20-07E1-4271-994C-4A88B0EDBB3A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EDF0EBA2-7935-440C-98B6-1A6709C9B415}
+	EndGlobalSection
+EndGlobal

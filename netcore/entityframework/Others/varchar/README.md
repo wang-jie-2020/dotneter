@@ -1,0 +1,2 @@
+﻿1.MSSQL与MYSQL中的varchar不是一回事,前者的nvarchar与后者的varchar近似
+2.MSSQL的varchar在操作系统支持中文时可以正常保存显示中文,否则,比如在docker中运行,就不能支持中文,显示的都是问号

@@ -1,0 +1,15 @@
+{
+  "consul": {
+    "Services": [
+      {
+        "ip": "192.168.0.6",
+        "port": "8002",
+        "name": "OrderService"
+      }
+    ],
+    "Server": {
+      "ip": "192.168.0.9",
+      "port": "8500"
+    }
+  }
+}

@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30711.63
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer", "IdentityServer\IdentityServer.csproj", "{ECA41A4E-9973-4938-8D05-0ED767B36983}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Apis", "Apis\Apis.csproj", "{66CBEBF9-09F0-4FA6-836A-F7C2D3390FF2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MvcClient", "MvcClient\MvcClient.csproj", "{6289363D-A75F-48B6-94C6-0E8C069F0A0A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ECA41A4E-9973-4938-8D05-0ED767B36983}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECA41A4E-9973-4938-8D05-0ED767B36983}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECA41A4E-9973-4938-8D05-0ED767B36983}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECA41A4E-9973-4938-8D05-0ED767B36983}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66CBEBF9-09F0-4FA6-836A-F7C2D3390FF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66CBEBF9-09F0-4FA6-836A-F7C2D3390FF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66CBEBF9-09F0-4FA6-836A-F7C2D3390FF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66CBEBF9-09F0-4FA6-836A-F7C2D3390FF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6289363D-A75F-48B6-94C6-0E8C069F0A0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6289363D-A75F-48B6-94C6-0E8C069F0A0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6289363D-A75F-48B6-94C6-0E8C069F0A0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6289363D-A75F-48B6-94C6-0E8C069F0A0A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {98BC7487-14F3-42FF-AB43-CD8307E034A2}
+	EndGlobalSection
+EndGlobal

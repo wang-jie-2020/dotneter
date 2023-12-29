@@ -1,0 +1,30 @@
+﻿syntax = "proto3";
+package WebApi.Grpc;
+
+service WebApiServer {
+  rpc Say (DataRequest) returns (DataReply) {}
+}
+
+message DataRequest {
+  string name = 1;
+}
+
+message DataReply {
+  string message = 1;
+}
+
+//在.net core 3.x后VS可自动根据proto文件生成项目中的cs文件
+//提供Grpc服务的项目，打开项目.csproj文件,添加项目如下（首先项目需要使用nuget安装包Grpc.AspNetCore）
+//<ItemGroup>
+//	<Protobuf Include="..\Protos\webapi.proto" CompileOutputs="false" OutputDir="Grpc\" GrpcServices="Server" Link="Protos\%(RecursiveDir)%(Filename)%(Extension)" />
+//</ItemGroup>
+//调用Grpc服务的项目，打开项目.csproj文件,添加项目如下（首先项目需要使用nuget安装包Grpc.AspNetCore）
+//<ItemGroup>
+//	<Protobuf Include="..\Protos\webapi.proto" CompileOutputs="false" OutputDir="Grpc\" GrpcServices="Client" Link="Protos\%(RecursiveDir)%(Filename)%(Extension)" />
+//</ItemGroup>
+
+//Include：proto文件的目录地址，相对于.csproj文件
+//CompileOutputs：这个配置属性意思就是不要编译进程序集
+//OutputDir：生成的cs文件的输出目录，相对于.csproj文件
+//GrpcServices：生成模式，可以是：Server、Client、Both
+//Link：proto文件在项目下的软链接

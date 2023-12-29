@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<DocumentationFile>bin\AspNetCore.WebApi.Client.xml</DocumentationFile>
+		<NoWarn>1701;1702;1591</NoWarn>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<DocumentationFile>E:\resources\git\dotnetcore-demo\Consul\AspNetCore.WebApi.Client\AspNetCore.WebApi.Client.xml</DocumentationFile>
+		<NoWarn>1701;1702;1591</NoWarn>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Grpc.AspNetCore" Version="2.38.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.5" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\AspNetCore.Consul\AspNetCore.Consul.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Protobuf Include="..\Protos\webapi.proto" CompileOutputs="false" OutputDir="Grpc\" GrpcServices="Client" Link="Protos\%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+
+</Project>

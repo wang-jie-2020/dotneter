@@ -1,0 +1,128 @@
+﻿{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/swagger/{url}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "vm.local.cn",
+          "Port": 5510
+        }
+      ],
+      "UpstreamPathTemplate": "/customer/swagger/{url}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
+    },
+    {
+      "DownstreamPathTemplate": "/{url}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "vm.local.cn",
+          "Port": 5510
+        }
+      ],
+      "UpstreamPathTemplate": "/customer/{url}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "CustomerAuthentication",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/{url}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "vm.local.cn",
+          "Port": 5511
+        }
+      ],
+      "UpstreamPathTemplate": "/product/{url}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
+    },
+    {
+      "DownstreamPathTemplate": "/{url}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "vm.local.cn",
+          "Port": 5501
+        }
+      ],
+      "UpstreamPathTemplate": "/auth/{url}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
+    },
+    /*
+     *
+     *  -----------------------------------------------------------------------------
+     *  -----------------------------------------------------------------------------
+     *  -----------------------------------------------------------------------------
+     *
+     */
+    {
+      "DownstreamPathTemplate": "/swagger/{url}",
+      "DownstreamScheme": "http",
+      "UpstreamPathTemplate": "/CustomerService/swagger/{url}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      "ServiceName": "CustomerService"
+    },
+    {
+      "DownstreamPathTemplate": "/CustomerService/{url}",
+      "DownstreamScheme": "http",
+      "UpstreamPathTemplate": "/CustomerService/{url}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      "ServiceName": "CustomerService",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "CustomerAuthentication",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/{url}",
+      "DownstreamScheme": "http",
+      "UpstreamPathTemplate": "/ProductService/{url}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      "ServiceName": "ProductService"
+    }
+  ],
+  "Aggregates": [],
+  "GlobalConfiguration": {
+    "BaseUrl": null,
+    "ServiceDiscoveryProvider": {
+      "Scheme": "http",
+      "Host": "vm.server.cn",
+      "Port": 8500,
+      "Type": "Consul",
+      "Token": null,
+      "ConfigurationKey": null
+    },
+    "DownstreamScheme": "http",
+    "HttpHandlerOptions": {
+      "AllowAutoRedirect": false,
+      "UseCookieContainer": false,
+      "UseTracing": false
+    },
+    //"RateLimitOptions": {
+    //  "ClientIdHeader": "ClientId", // 用来识别客户端的请求头，默认是 ClientId
+    //  "QuotaExceededMessage": "Too many requests, are you OK?", // 当请求过载被截断时返回的消息
+    //  "RateLimitCounterPrefix": "ocelot",
+    //  "DisableRateLimitHeaders": false, // Http头  X-Rate-Limit 和 Retry-After 是否禁用
+    //  "HttpStatusCode": 429, // 当请求过载被截断时返回的http status
+
+    //  //写在具体路由中的
+    //  "ClientWhitelist": [ "admin" ], // 白名单
+    //  "EnableRateLimiting": true, // 是否启用限流
+    //  "Period": "1m", // 统计时间段：1s, 5m, 1h, 1d
+    //  "PeriodTimespan": 15, // 多少秒之后客户端可以重试
+    //  "Limit": 5 // 在统计时间段内允许的最大请求数量
+    //},
+    //"QoSOptions": {
+    //  "ExceptionsAllowedBeforeBreaking": 0, // 允许多少个异常请求
+    //  "DurationOfBreak": 0, // 熔断的时间，单位为毫秒
+    //  "TimeoutValue": 0 // 如果下游请求的处理时间超过多少则视如该请求超时
+    //},
+    "LoadBalancerOptions": {
+      "Type": "RoundRobin"
+    }
+  }
+}

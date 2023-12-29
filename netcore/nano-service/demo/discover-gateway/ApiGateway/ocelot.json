@@ -1,0 +1,72 @@
+{
+  //"Routes": [
+  //  {
+  //    "DownstreamPathTemplate": "/api/{url}",
+  //    "DownstreamScheme": "http",
+  //    "DownstreamHostAndPorts": [
+  //      {
+  //        "Host": "192.168.0.6",
+  //        "Port": 8001
+  //      }
+  //    ],
+  //    "UpstreamPathTemplate": "/api/CustomService/{url}",
+  //    "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
+  //  },
+  //  {
+  //    "DownstreamPathTemplate": "/api/{url}",
+  //    "DownstreamScheme": "http",
+  //    "DownstreamHostAndPorts": [
+  //      {
+  //        "Host": "192.168.0.6",
+  //        "Port": 8002
+  //      }
+  //    ],
+  //    "UpstreamPathTemplate": "/api/OrderService/{url}",
+  //    "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
+  //  },
+  //  {
+  //    "DownstreamPathTemplate": "/api/{url}",
+  //    "DownstreamScheme": "http",
+  //    "UpstreamPathTemplate": "/api/ProductService/{url}",
+  //    "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+  //    "ServiceName": "ProductService"
+  //  }
+  //],
+  "Routes": [], //不能支持动态路由的同时再指定其他特殊路由,见文档即可
+  "Aggregates": [],
+  "GlobalConfiguration": {
+    "RequestIdKey": null,
+    "BaseUrl": null,
+    "ServiceDiscoveryProvider": {
+      "Scheme": "http",
+      "Host": "192.168.0.9",
+      "Port": 8500,
+      "Type": "Consul",
+      "Token": null,
+      "ConfigurationKey": null
+    },
+    "DownstreamScheme": "http",
+    "HttpHandlerOptions": {
+      "AllowAutoRedirect": false,
+      "UseCookieContainer": false,
+      "UseTracing": false
+    },
+    //"RateLimitOptions": {
+    //  "ClientIdHeader": "ClientId", // 用来识别客户端的请求头，默认是 ClientId
+    //  "QuotaExceededMessage": "Too many requests, are you OK?", // 当请求过载被截断时返回的消息
+    //  "RateLimitCounterPrefix": "ocelot",
+    //  "DisableRateLimitHeaders": false, // Http头  X-Rate-Limit 和 Retry-After 是否禁用
+    //  "HttpStatusCode": 429 // 当请求过载被截断时返回的http status
+    //},
+    //"QoSOptions": {
+    //  "ExceptionsAllowedBeforeBreaking": 0,
+    //  "DurationOfBreak": 0,
+    //  "TimeoutValue": 0
+    //},
+    "LoadBalancerOptions": {
+      "Type": "LeastConnection",
+      "Key": null,
+      "Expiry": 0
+    }
+  }
+}
