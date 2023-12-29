@@ -1,0 +1,9 @@
+using LG.NetCore.Application.Dtos;
+
+namespace @{@Model.FullNameSpace}.Dtos
+{
+    public class @{@Model.EntityName}QueryInput : @(@Model.HasStop ? "StopFilterPagedAndSortedResultRequestDto" :"FilterPagedAndSortedResultRequestDto")
+    {
+
+    }
+}

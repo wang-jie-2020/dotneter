@@ -1,0 +1,64 @@
+version: '3.1'
+
+#customise this with options from https://www.consul.io/docs/agent/options.html
+
+services:
+  consul_server1:
+    image: consul
+    container_name: consul_server1
+    restart: always
+    environment:
+        - CONSUL_BIND_INTERFACE=eth0
+    command: agent -server -client=0.0.0.0 -bootstrap-expect=2 -node=consul_server1 -ui -datacenter=jiangyin
+    networks:
+      - consul
+        
+  consul_server2:
+    image: consul
+    depends_on:
+      - consul_server1
+    container_name: consul_server2
+    restart: always
+    environment:
+        - CONSUL_BIND_INTERFACE=eth0
+    command: agent -server -client=0.0.0.0 -join=consul_server1 -node=consul_server2 -ui -datacenter=jiangyin
+    networks:
+      - consul
+        
+  consul_server3:
+    image: consul
+    depends_on:
+      - consul_server1
+    container_name: consul_server3
+    restart: always
+    environment:
+        - CONSUL_BIND_INTERFACE=eth0
+    command: agent -server -client=0.0.0.0 -join=consul_server1 -node=consul_server3 -ui -datacenter=jiangyin
+    networks:
+      - consul
+        
+  consul_client:
+    image: consul
+    depends_on:
+      - consul_server1
+      - consul_server2
+      - consul_server3
+    container_name: consul_client
+    restart: always
+    environment:
+        - CONSUL_BIND_INTERFACE=eth0
+    command: agent -client=0.0.0.0 -join=consul_server1 -node=consul_client -ui -datacenter=jiangyin
+    networks:
+      - consul
+    ports:
+      - 8500:8500
+
+networks:
+  consul:
+    driver: bridge
+    name: consul
+    ipam:
+      driver: default
+      config:
+      - subnet: 192.8.0.0/16
+        gateway: 192.8.0.1

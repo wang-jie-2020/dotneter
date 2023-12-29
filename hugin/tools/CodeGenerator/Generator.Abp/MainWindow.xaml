@@ -1,0 +1,281 @@
+﻿<Window
+	x:Class="AbpGenerator.MainWindow" 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ctrl="clr-namespace:AbpGenerator.Controls"
+    Title=""
+	Height="405"
+	Width="1024"
+	Visibility="Visible"
+	WindowStyle="None">
+    <FrameworkElement.Resources>
+        <ResourceDictionary>
+            <BitmapImage UriSource="Images\button.png" x:Key="button" />
+            <Style TargetType="{x:Type Hyperlink}" x:Key="hyberlinkEffect">
+                <Setter
+					Property="Foreground"
+					Value="#0085E1" />
+                <Setter
+					Property="TextDecorations"
+					Value="{x:Null}" />
+            </Style>
+            <Style
+				TargetType="{x:Type ctrl:ImgButton}" x:Key="{x:Type ctrl:ImgButton}">
+                <Setter
+					Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate
+							TargetType="{x:Type ctrl:ImgButton}">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition
+										Height="*" />
+                                    <RowDefinition
+										Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Border
+									Name="border"
+									Grid.RowSpan="2"
+									BorderBrush="{TemplateBinding BorderBrush}"
+									BorderThickness="{TemplateBinding BorderThickness}"
+									Background="{TemplateBinding Background}"
+									SnapsToDevicePixels="True"
+									CornerRadius="3,3,3,3" />
+                                <Image
+									Grid.Row="0"
+									Source="{TemplateBinding ctrl:ImgButton.Image}"
+									Width="{TemplateBinding ctrl:ImgButton.ImageWidth}"
+									Height="{TemplateBinding ctrl:ImgButton.ImageHeight}"
+									VerticalAlignment="{TemplateBinding VerticalAlignment}" />
+                                <ContentPresenter
+									Grid.Row="1"
+									HorizontalAlignment="Center"
+									Margin="{TemplateBinding Padding}"
+									VerticalAlignment="Center"
+									RecognizesAccessKey="True" />
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger
+									Property="IsPressed"
+									Value="True">
+                                    <Setter
+										Property="Foreground"
+										Value="#999999" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </FrameworkElement.Resources>
+    <Grid Background="#fff">
+        <Grid.RowDefinitions>
+            <RowDefinition
+				Height="50" />
+            <RowDefinition
+				Height="105" />
+            <RowDefinition
+				Height="auto" />
+            <RowDefinition
+				Height="50" />
+            <RowDefinition
+				Height="auto" />
+        </Grid.RowDefinitions>
+        <Border
+            BorderBrush="#898989"
+			Padding="0 0 0 0"
+			Background="#FFFFAD36">
+            <Grid>
+                <TextBlock
+					Text="ABP代码生成器"
+					VerticalAlignment="Center"
+					HorizontalAlignment="Center"
+					FontSize="14"
+					FontWeight="Bold"
+					Foreground="#fff"/>
+            </Grid>
+        </Border>
+        <Border
+			Grid.Row="1"
+			BorderThickness="0,0,0,1"
+			BorderBrush="#898989"
+			Margin="10,0"
+			Padding="0,10,0,15">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition
+						Height="auto" />
+                    <RowDefinition
+						Height="auto" />
+                    <RowDefinition
+						Height="auto" />
+                </Grid.RowDefinitions>
+                <StackPanel
+					Orientation="Horizontal">
+                    <TextBlock
+						Text="扩展功能"
+						FontSize="22"
+						Margin="10 5 0 5" />
+                    <TextBlock
+						Text="针对项目特性提供的功能"
+						Margin="5 15 0 0"
+						Foreground="#898989" />
+                </StackPanel>
+                <StackPanel
+					Grid.Row="1"
+					Orientation="Horizontal">
+                    <CheckBox
+						Content="v1"
+						Margin="10 10 10 0"
+						Foreground="#FF000000"
+						FontSize="14" 
+                        IsChecked="{Binding Features.V1, Mode=TwoWay}" />
+                    <CheckBox
+                        Content="todo"
+                        Margin="10 10 10 0"
+                        Foreground="#FF000000"
+                        FontSize="14"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+        <Border
+			Grid.Row="2"
+			BorderThickness="0,0,0,1"
+			BorderBrush="#898989"
+			Margin="10,0"
+			Padding="0,10,0,15">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition
+						Height="auto" />
+                    <RowDefinition
+						Height="auto" />
+                </Grid.RowDefinitions>
+                <StackPanel
+					Orientation="Horizontal">
+                    <TextBlock
+						Text="实体生成选项"
+						FontSize="22"
+						Margin="10 5 0 5" />
+                    <TextBlock
+						Text="配置代码生成"
+						Margin="5 15 0 0"
+						Foreground="#898989" />
+                </StackPanel>
+                <Grid
+					Row="1"
+					Margin="0 10 0 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition
+							Width="70*" />
+                        <ColumnDefinition
+							Width="83*" />
+                        <ColumnDefinition
+							Width="83*" />
+                        <ColumnDefinition
+							Width="83*" />
+                        <ColumnDefinition
+							Width="83*" />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel
+						Grid.Column="0">
+                        <TextBlock
+							Text="选项"
+							HorizontalAlignment="Center"
+							FontSize="13"
+							FontWeight="Bold" />
+                        <CheckBox
+							Content="全选"
+							Margin="20 10 0 0"
+							Foreground="#898989"
+							IsChecked="{Binding Options.IsChooseAll, Mode=TwoWay}" />
+                        <CheckBox
+							Content="覆盖文件"
+							Margin="20 5 0 0"
+							Foreground="#898989"
+							IsChecked="{Binding Options.IsOverride, Mode=TwoWay}" />
+                    </StackPanel>
+                    <StackPanel
+						Grid.Column="1">
+                        <TextBlock
+							Text="Orm配置"
+							HorizontalAlignment="Center"
+							FontSize="13"
+							FontWeight="Bold" />
+                        <CheckBox
+							Content="EntityFramework"
+							Margin="0 10 0 0"
+							Foreground="#898989"
+                            IsChecked="{Binding Options.UseEntityFramework, Mode=TwoWay}" />
+                    </StackPanel>
+                    <StackPanel
+                        Grid.Column="2">
+                        <TextBlock
+                            Text="应用服务层"
+                            HorizontalAlignment="Center"
+                            FontSize="13"
+                            FontWeight="Bold" />
+                        <CheckBox
+                            Content="应用服务"
+                            Margin="20 10 0 0"
+                            Foreground="#898989"
+                            IsChecked="{Binding Options.UseApplication, Mode=TwoWay}" />
+                    </StackPanel>
+                    <StackPanel
+						Grid.Column="3">
+                        <TextBlock
+							Text="领域层"
+							HorizontalAlignment="Center"
+							FontSize="13"
+							FontWeight="Bold" />
+                        <CheckBox
+							Content="生成领域层服务"
+							Margin="20 10 0 0"
+							Foreground="#898989"
+							IsChecked="{Binding Options.UseDomain, Mode=TwoWay}" />
+                    </StackPanel>
+                    <StackPanel
+						Grid.Column="4">
+                        <TextBlock
+							Text="基础设施层"
+							HorizontalAlignment="Center"
+							FontSize="13"
+							FontWeight="Bold" />
+                        <CheckBox
+							Content="单元测试"
+							Margin="20 5 0 0"
+							Foreground="#898989"
+                            IsChecked="{Binding Options.UseXUnitTests, Mode=TwoWay}" />
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </Border>
+        <Border
+			Grid.Row="3"
+			BorderThickness="0,0,0,1"
+			BorderBrush="#898989"
+			Margin="10,0,10,0"
+			Padding="0,10,0,10">
+            <StackPanel
+				Orientation="Horizontal"
+				HorizontalAlignment="Right">
+                <Button
+					Padding="5 2"
+					Margin="2 0"
+					Click="Next_Click">下一步</Button>
+                <Button
+					Padding="10 2"
+					Margin="2 0"
+					Click="Cancel_Click">取消</Button>
+            </StackPanel>
+        </Border>
+        <Grid
+			Row="4"
+			Margin="0 5 0 5">
+            <ctrl:Copyright />
+        </Grid>
+    </Grid>
+</Window>

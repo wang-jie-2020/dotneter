@@ -1,0 +1,23 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using LG.NetCore.Application.Dtos;
+using LG.NetCore.Application.Filters;
+using LG.NetCore.Infrastructure.Extensions;
+
+namespace @{@Model.FullNameSpace}.Dtos
+{
+    public class @{@Model.EntityName}Dto : @(@Model.HasStop ? "DefaultStopDto<Guid>" :"DefaultDto<Guid>")
+    {
+@foreach(var item in Model.Properties)
+{
+    foreach(var annotation in @item.Annotations)
+    {
+        <pre>@annotation</pre>
+    }
+        <pre>[DisplayName("@item.DisplayName")]</pre>
+        <pre>public @item.Type @item.Name { get; set; }</pre>
+        <pre></pre>
+}
+    }
+}

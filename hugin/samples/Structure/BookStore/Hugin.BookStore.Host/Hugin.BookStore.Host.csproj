@@ -1,0 +1,62 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<Import Project="..\..\common.props" />
+
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<RootNamespace>Hugin.BookStore</RootNamespace>
+		<PreserveCompilationReferences>true</PreserveCompilationReferences>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Hugin.BookStore.Application\Hugin.BookStore.Application.csproj" />
+		<ProjectReference Include="..\Hugin.BookStore.EntityFrameworkCore\Hugin.BookStore.EntityFrameworkCore.csproj" />
+		<ProjectReference Include="..\Hugin.BookStore.HttpApi\Hugin.BookStore.HttpApi.csproj" />
+		<ProjectReference Include="..\..\HostShard\HostShard.csproj" />
+		<ProjectReference Include="..\..\identity\Hugin.Identity.HttpApi.Client\Hugin.Identity.HttpApi.Client.csproj" />
+		<ProjectReference Include="..\..\_infrastructure\Hugin.Infrastructure.Cap\Hugin.Infrastructure.Cap.csproj" />
+		<ProjectReference Include="..\..\_extensions\Hugin.Abp.Mvc\Hugin.Abp.Mvc.csproj" />
+		<ProjectReference Include="..\..\_extensions\Volo.Abp.AspNetCore.MultiStadium\Volo.Abp.AspNetCore.MultiStadium.csproj" />
+		<PackageReference Include="MiniProfiler.AspNetCore.Mvc" Version="4.2.22" />
+		<PackageReference Include="MiniProfiler.EntityFrameworkCore" Version="4.2.22" />
+		<PackageReference Include="Serilog.AspNetCore" Version="3.2.0" />
+		<PackageReference Include="Serilog.Sinks.Async" Version="1.4.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="5.6.3" />
+		<PackageReference Include="IdentityModel" Version="4.5.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.*" />
+		<PackageReference Include="Microsoft.AspNetCore.DataProtection.StackExchangeRedis" Version="5.0.*" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.*" />
+		<PackageReference Include="DotNetCore.CAP" Version="3.1.2" />
+		<PackageReference Include="DotNetCore.CAP.Dashboard" Version="3.1.2" />
+		<PackageReference Include="DotNetCore.CAP.MySql" Version="3.1.2" />
+		<PackageReference Include="DotNetCore.CAP.RabbitMQ" Version="3.1.2" />
+		<PackageReference Include="Hangfire.AspNetCore" Version="1.7.*" />
+		<PackageReference Include="Hangfire.MySqlStorage" Version="2.0.3" />
+		<ProjectReference Include="D:\Code\dotnet\repository\abp-bookstore\framework\src\Volo.Abp.Autofac\Volo.Abp.Autofac.csproj" />
+		<ProjectReference Include="D:\Code\dotnet\repository\abp-bookstore\framework\src\Volo.Abp.Caching.StackExchangeRedis\Volo.Abp.Caching.StackExchangeRedis.csproj" />
+		<ProjectReference Include="D:\Code\dotnet\repository\abp-bookstore\framework\src\Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy\Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy.csproj" />
+		<ProjectReference Include="D:\Code\dotnet\repository\abp-bookstore\framework\src\Volo.Abp.EntityFrameworkCore.MySQL\Volo.Abp.EntityFrameworkCore.MySQL.csproj" />
+		<ProjectReference Include="D:\Code\dotnet\repository\abp-bookstore\framework\src\Volo.Abp.AspNetCore.Serilog\Volo.Abp.AspNetCore.Serilog.csproj" />
+		<ProjectReference Include="D:\Code\dotnet\repository\abp-bookstore\framework\src\Volo.Abp.Swashbuckle\Volo.Abp.Swashbuckle.csproj" />
+		<ProjectReference Include="D:\Code\dotnet\repository\abp-bookstore\modules\audit-logging\src\Volo.Abp.AuditLogging.EntityFrameworkCore\Volo.Abp.AuditLogging.EntityFrameworkCore.csproj" />
+		<!--db 和 mvc-client 选择一种即可-->
+		<!--db begin-->
+		<!--<ProjectReference Include="D:\Code\dotnet\repository\abp-bookstore\modules\permission-management\src\Volo.Abp.PermissionManagement.EntityFrameworkCore\Volo.Abp.PermissionManagement.EntityFrameworkCore.csproj" />-->
+		<!--<ProjectReference Include="D:\Code\dotnet\repository\abp-bookstore\modules\setting-management\src\Volo.Abp.SettingManagement.EntityFrameworkCore\Volo.Abp.SettingManagement.EntityFrameworkCore.csproj" />-->
+		<!--<ProjectReference Include="D:\Code\dotnet\repository\abp-bookstore\modules\tenant-management\src\Volo.Abp.TenantManagement.EntityFrameworkCore\Volo.Abp.TenantManagement.EntityFrameworkCore.csproj" />-->
+		<!--db end-->
+		<!--mvc-client begin-->
+		<ProjectReference Include="D:\Code\dotnet\repository\abp-bookstore\framework\src\Volo.Abp.AspNetCore.Mvc.Client\Volo.Abp.AspNetCore.Mvc.Client.csproj" />
+		<ProjectReference Include="D:\Code\dotnet\repository\abp-bookstore\framework\src\Volo.Abp.Http.Client.IdentityModel.Web\Volo.Abp.Http.Client.IdentityModel.Web.csproj" />
+		<ProjectReference Include="D:\Code\dotnet\repository\abp-bookstore\modules\identity\src\Volo.Abp.Identity.HttpApi.Client\Volo.Abp.Identity.HttpApi.Client.csproj" />
+		<ProjectReference Include="D:\Code\dotnet\repository\abp-bookstore\modules\tenant-management\src\Volo.Abp.TenantManagement.HttpApi.Client\Volo.Abp.TenantManagement.HttpApi.Client.csproj" />
+		<!--mvc-client end-->
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Remove="Logs\**" />
+		<Content Remove="Logs\**" />
+		<EmbeddedResource Remove="Logs\**" />
+		<None Remove="Logs\**" />
+	</ItemGroup>
+</Project>

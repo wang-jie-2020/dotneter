@@ -1,0 +1,11 @@
+{
+  "culture": "en",
+  "texts": {
+    "Permission:Create": "Creating",
+    "Permission:Edit": "Editing",
+    "Permission:Delete": "Deleting",
+    "Permission:Stop": "Stopping",
+
+    "Permission:Platform": "Platform Management"
+  }
+}

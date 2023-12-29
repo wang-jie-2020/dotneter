@@ -1,0 +1,26 @@
+version: '3.4'
+
+services:
+  identity-server:
+    image: "registry.cn-hangzhou.aliyuncs.com/wxlgzh/identity"
+    volumes:
+      - ./logs/ids4:/app/logs
+      - ./configs/ids4.json:/app/appsettings.Production.json
+    ports:
+      - "51600:80"
+
+  platform:
+    image: "registry.cn-hangzhou.aliyuncs.com/wxlgzh/platform"
+    volumes:
+      - ./logs/platform:/app/logs
+      - ./configs/platform.json:/app/appsettings.Production.json
+    ports:
+      - "51601:80"
+
+  terminal:
+    image: "registry.cn-hangzhou.aliyuncs.com/wxlgzh/terminal"
+    volumes:
+      - ./logs/terminal:/app/logs
+      - ./configs/terminal.json:/app/appsettings.Production.json
+    ports:
+      - "51602:80"

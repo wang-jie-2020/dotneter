@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<Import Project="..\..\common.props" />
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.1</TargetFramework>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<OutputPath>bin\$(Configuration)\</OutputPath>
+		<DocumentationFile>bin\$(Configuration)\Hugin.Identity.Application.Contracts.xml</DocumentationFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="D:\Code\dotnet\repository\abp-bookstore\framework\src\Volo.Abp.Ddd.Application.Contracts\Volo.Abp.Ddd.Application.Contracts.csproj" />
+		<ProjectReference Include="D:\Code\dotnet\repository\abp-bookstore\framework\src\Volo.Abp.Authorization\Volo.Abp.Authorization.csproj" />
+		<ProjectReference Include="D:\Code\dotnet\repository\abp-bookstore\modules\identity\src\Volo.Abp.Identity.Application.Contracts\Volo.Abp.Identity.Application.Contracts.csproj" />
+	</ItemGroup>
+
+</Project>

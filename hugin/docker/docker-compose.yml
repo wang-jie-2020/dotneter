@@ -1,0 +1,28 @@
+version: '3.4'
+
+services:
+  identity-server:
+    image: 'lg.identity'
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Staging
+      - RemoteServices__Default__BaseUrl=http://192.168.0.9:51600
+      - AuthServer__Authority=http://192.168.0.9:51600
+    ports:
+      - "51600:80"    
+  
+  platform:
+    image: 'lg.platform'
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Staging
+      - RemoteServices__Default__BaseUrl=http://192.168.0.9:51600
+      - AuthServer__Authority=http://192.168.0.9:51600
+    ports:
+      - "51601:80"
+  
+  terminal:
+    image: "lg.terminal"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Staging
+      - AuthServer__Authority=http://192.168.0.9:51600
+    ports:
+      - "51602:80"

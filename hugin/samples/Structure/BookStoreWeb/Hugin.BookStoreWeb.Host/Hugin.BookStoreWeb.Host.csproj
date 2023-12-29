@@ -1,0 +1,54 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<Import Project="..\..\common.props" />
+
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<RootNamespace>Hugin.BookStoreWeb</RootNamespace>
+		<PreserveCompilationReferences>true</PreserveCompilationReferences>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Hugin.BookStoreWeb.Web\Hugin.BookStoreWeb.Web.csproj" />
+		<ProjectReference Include="..\..\HostShard\HostShard.csproj" />
+		<ProjectReference Include="..\..\BookStore\Hugin.BookStore.HttpApi.Client\Hugin.BookStore.HttpApi.Client.csproj" />
+		<PackageReference Include="MiniProfiler.AspNetCore.Mvc" Version="4.2.22" />
+		<PackageReference Include="MiniProfiler.EntityFrameworkCore" Version="4.2.22" />
+		<PackageReference Include="Serilog.AspNetCore" Version="3.2.0" />
+		<PackageReference Include="Serilog.Sinks.Async" Version="1.4.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="5.6.3" />
+		<PackageReference Include="Microsoft.AspNetCore.DataProtection.StackExchangeRedis" Version="5.0.*" />
+		<ProjectReference Include="D:\Code\dotnet\repository\abp-bookstore\framework\src\Volo.Abp.AspNetCore.Serilog\Volo.Abp.AspNetCore.Serilog.csproj" />
+		<ProjectReference Include="D:\Code\dotnet\repository\abp-bookstore\framework\src\Volo.Abp.Autofac\Volo.Abp.Autofac.csproj" />
+		<ProjectReference Include="D:\Code\dotnet\repository\abp-bookstore\framework\src\Volo.Abp.Caching.StackExchangeRedis\Volo.Abp.Caching.StackExchangeRedis.csproj" />
+		<ProjectReference Include="D:\Code\dotnet\repository\abp-bookstore\framework\src\Volo.Abp.AspNetCore.Mvc.Client\Volo.Abp.AspNetCore.Mvc.Client.csproj" />
+		<ProjectReference Include="D:\Code\dotnet\repository\abp-bookstore\framework\src\Volo.Abp.AspNetCore.Authentication.OpenIdConnect\Volo.Abp.AspNetCore.Authentication.OpenIdConnect.csproj" />
+		<ProjectReference Include="D:\Code\dotnet\repository\abp-bookstore\framework\src\Volo.Abp.Http.Client.IdentityModel.Web\Volo.Abp.Http.Client.IdentityModel.Web.csproj" />
+		<ProjectReference Include="D:\Code\dotnet\repository\abp-bookstore\framework\src\Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic\Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic.csproj" />
+		<ProjectReference Include="D:\Code\dotnet\repository\abp-bookstore\framework\src\Volo.Abp.Swashbuckle\Volo.Abp.Swashbuckle.csproj" />
+		<ProjectReference Include="D:\Code\dotnet\repository\abp-bookstore\modules\identity\src\Volo.Abp.Identity.Web\Volo.Abp.Identity.Web.csproj" />
+		<ProjectReference Include="D:\Code\dotnet\repository\abp-bookstore\modules\identity\src\Volo.Abp.Identity.HttpApi.Client\Volo.Abp.Identity.HttpApi.Client.csproj" />
+		<ProjectReference Include="D:\Code\dotnet\repository\abp-bookstore\modules\feature-management\src\Volo.Abp.FeatureManagement.Web\Volo.Abp.FeatureManagement.Web.csproj" />
+		<ProjectReference Include="D:\Code\dotnet\repository\abp-bookstore\modules\feature-management\src\Volo.Abp.FeatureManagement.HttpApi.Client\Volo.Abp.FeatureManagement.HttpApi.Client.csproj" />
+		<ProjectReference Include="D:\Code\dotnet\repository\abp-bookstore\modules\tenant-management\src\Volo.Abp.TenantManagement.Web\Volo.Abp.TenantManagement.Web.csproj" />
+		<ProjectReference Include="D:\Code\dotnet\repository\abp-bookstore\modules\tenant-management\src\Volo.Abp.TenantManagement.HttpApi.Client\Volo.Abp.TenantManagement.HttpApi.Client.csproj" />
+		<ProjectReference Include="D:\Code\dotnet\repository\abp-bookstore\modules\permission-management\src\Volo.Abp.PermissionManagement.HttpApi.Client\Volo.Abp.PermissionManagement.HttpApi.Client.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Remove="Logs\**" />
+		<Content Remove="Logs\**" />
+		<EmbeddedResource Remove="Logs\**" />
+		<None Remove="Logs\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="Pages\**\*.js">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="Pages\**\*.css">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
+</Project>

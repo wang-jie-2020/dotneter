@@ -1,0 +1,35 @@
+using LG.NetCore.Application.Dtos;
+using System;
+using System.ComponentModel.DataAnnotations;
+
+namespace @{@Model.FullNameSpace}.Dtos
+{
+    public class @{@Model.EntityName}EditOutput : IHoused<@{@Model.EntityName}EditDto>
+    {
+        public @{@Model.EntityName}EditDto Item { get; set; }
+    }
+
+    public class @{@Model.EntityName}EditInput : IHoused<@{@Model.EntityName}EditDto>
+    {
+        [Required]
+        public @{@Model.EntityName}EditDto Item { get; set; }
+    }
+
+    public class @{@Model.EntityName}EditDto
+    {
+@foreach(var item in Model.Properties)
+{
+    foreach(var annotation in @item.Annotations)
+    {
+        <pre>@annotation</pre>
+    }
+    foreach(var attribute in @item.ValidateAttributes)
+    {
+        <pre>[@attribute]</pre>
+    }
+        <pre>[DisplayName("@item.DisplayName")]</pre>
+        <pre>public @item.Type @item.Name { get; set; }</pre>
+        <pre></pre>
+}
+    }
+}

@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<Import Project="..\..\common.props" />
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.1</TargetFramework>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Volo.Abp.MultiStadium\Volo.Abp.MultiStadium.csproj" />
+		<ProjectReference Include="..\..\_infrastructure\Hugin.Infrastructure.Common\Hugin.Infrastructure.Common.csproj" />
+		<ProjectReference Include="D:\Code\dotnet\repository\abp-bookstore\framework\src\Volo.Abp.Ddd.Domain\Volo.Abp.Ddd.Domain.csproj" />
+		<ProjectReference Include="D:\Code\dotnet\repository\abp-bookstore\framework\src\Volo.Abp.AutoMapper\Volo.Abp.AutoMapper.csproj" />
+	</ItemGroup>
+
+</Project>

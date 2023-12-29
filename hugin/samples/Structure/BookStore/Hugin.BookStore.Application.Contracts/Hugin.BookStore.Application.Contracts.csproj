@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<Import Project="..\..\common.props" />
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.1</TargetFramework>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<OutputPath>bin\$(Configuration)\</OutputPath>
+		<DocumentationFile>bin\$(Configuration)\Hugin.BookStore.Application.Contracts.xml</DocumentationFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Hugin.BookStore.Domain.Shared\Hugin.BookStore.Domain.Shared.csproj" />
+		<ProjectReference Include="..\..\_extensions\Hugin.Abp.Application\Hugin.Abp.Application.csproj" />
+	</ItemGroup>
+
+</Project>

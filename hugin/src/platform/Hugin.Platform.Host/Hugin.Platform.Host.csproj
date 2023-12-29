@@ -1,0 +1,50 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<RootNamespace>Hugin.Platform</RootNamespace>
+		<PreserveCompilationReferences>true</PreserveCompilationReferences>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\platform\Hugin.Platform.HttpApi\Hugin.Platform.HttpApi.csproj" />
+		<ProjectReference Include="..\..\platform\Hugin.Platform.Application\Hugin.Platform.Application.csproj" />
+		<ProjectReference Include="..\..\platform\Hugin.Platform.EntityFrameworkCore\Hugin.Platform.EntityFrameworkCore.csproj" />
+		<ProjectReference Include="..\..\HostShared\HostShared.csproj" />
+		<ProjectReference Include="..\..\identity\Hugin.Identity.HttpApi.Client\Hugin.Identity.HttpApi.Client.csproj" />
+		<ProjectReference Include="..\..\_infrastructure\Hugin.Infrastructure.Cap\Hugin.Infrastructure.Cap.csproj" />
+		<ProjectReference Include="..\..\_extensions\Hugin.Abp.Mvc\Hugin.Abp.Mvc.csproj" />
+		<ProjectReference Include="..\..\_extensions\Volo.Abp.AspNetCore.MultiStadium\Volo.Abp.AspNetCore.MultiStadium.csproj" />
+		<PackageReference Include="MiniProfiler.AspNetCore.Mvc" Version="4.2.22" />
+		<PackageReference Include="MiniProfiler.EntityFrameworkCore" Version="4.2.22" />
+		<PackageReference Include="Serilog.AspNetCore" Version="3.2.0" />
+		<PackageReference Include="Serilog.Sinks.Async" Version="1.4.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="5.6.3" />
+		<PackageReference Include="IdentityModel" Version="4.5.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.*" />
+		<PackageReference Include="Microsoft.AspNetCore.DataProtection.StackExchangeRedis" Version="5.0.*" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.*" />
+		<PackageReference Include="DotNetCore.CAP" Version="3.1.2" />
+		<PackageReference Include="DotNetCore.CAP.Dashboard" Version="3.1.2" />
+		<PackageReference Include="DotNetCore.CAP.MySql" Version="3.1.2" />
+		<PackageReference Include="DotNetCore.CAP.RabbitMQ" Version="3.1.2" />
+		<PackageReference Include="Hangfire.AspNetCore" Version="1.7.*" />
+		<PackageReference Include="Hangfire.MySqlStorage" Version="2.0.3" />
+		<PackageReference Include="Volo.Abp.Autofac" Version="4.1.2" />
+		<PackageReference Include="Volo.Abp.AspNetCore.Mvc.Client" Version="4.1.2" />
+		<PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy" Version="4.1.2" />
+		<PackageReference Include="Volo.Abp.AspNetCore.Serilog" Version="4.1.2" />
+		<PackageReference Include="Volo.Abp.AuditLogging.EntityFrameworkCore" Version="4.1.2" />
+		<PackageReference Include="Volo.Abp.Caching.StackExchangeRedis" Version="4.1.2" />
+		<PackageReference Include="Volo.Abp.EntityFrameworkCore.MySQL" Version="4.1.2" />
+		<PackageReference Include="Volo.Abp.Http.Client.IdentityModel.Web" Version="4.1.2" />
+		<PackageReference Include="Volo.Abp.Swashbuckle" Version="4.1.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Remove="Logs\**" />
+		<Content Remove="Logs\**" />
+		<EmbeddedResource Remove="Logs\**" />
+		<None Remove="Logs\**" />
+	</ItemGroup>
+
+</Project>

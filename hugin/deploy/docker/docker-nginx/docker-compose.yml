@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  nginx:
+    image: nginx
+    container_name: nginx
+    restart: always
+    ports:
+      - 80:80
+    volumes:
+      - ./conf:/etc/nginx
+      - ./logs:/var/log/nginx
+      - ./share:/usr/share/nginx

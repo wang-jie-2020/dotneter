@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<Import Project="..\..\common.props" />
+
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Hugin.Platform.Domain.Tests\Hugin.Platform.Domain.Tests.csproj" />
+		<ProjectReference Include="..\..\platform\Hugin.Platform.Application\Hugin.Platform.Application.csproj" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.6.1" />
+	</ItemGroup>
+
+</Project>

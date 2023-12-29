@@ -1,0 +1,10 @@
+﻿using System;
+using System.Threading.Tasks;
+
+namespace @{@Model.FullNameSpace}.impl
+{
+    public class @{@Model.GroupName}Manager : BaseDomainManager, I@{@Model.GroupName}Manager
+    {
+
+    }
+}

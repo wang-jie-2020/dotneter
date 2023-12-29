@@ -1,0 +1,16 @@
+﻿using LG.NetCore.Application.Permissions;
+using @{@Model.AssemblyNameSpace}.@{@Model.ModuleName}.Permissions;
+using Volo.Abp.MultiTenancy;
+
+namespace @{@Model.FullNameSpace}.Permissions
+{
+    public partial class @{@Model.GroupName}Permissions : IPermissionDefine
+    {
+        public static class Group
+        {
+            public const string Default = @{@Model.ModuleName}Permissions.RootName + ".@{@Model.GroupName}";
+        }
+
+        public MultiTenancySides MultiTenancySide { get; } = MultiTenancySides.Tenant;
+    }
+}

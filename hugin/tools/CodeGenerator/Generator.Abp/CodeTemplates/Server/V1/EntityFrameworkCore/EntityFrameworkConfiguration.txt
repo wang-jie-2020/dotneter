@@ -1,0 +1,16 @@
+using @{@Model.FullNameSpace};
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Volo.Abp.EntityFrameworkCore.Modeling;
+
+namespace @{@Model.AssemblyNameSpace}.@{@Model.ModuleName}.EntityFrameworkCore.EntityTypeConfigurations.@{@Model.OtherNameSpace}
+{
+    public class @{@Model.EntityName}Configuration : IEntityTypeConfiguration<@{@Model.EntityName}>
+    {
+        public void Configure(EntityTypeBuilder<@{@Model.EntityName}> builder)
+        {
+            builder.ToTable(@{@Model.ModuleName}Consts.DbProperties.DbTablePrefix + nameof(@{@Model.EntityName}));
+            builder.ConfigureByConvention();
+        }
+    }
+}

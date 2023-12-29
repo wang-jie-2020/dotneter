@@ -1,0 +1,9 @@
+{
+  "culture": "en",
+  "texts": {
+    "Menu:Home": "Home",
+    "Menu:Sample": "Sample",
+    "Menu:BookStore": "Book Store",
+    "Menu:Books": "Books"
+  }
+}

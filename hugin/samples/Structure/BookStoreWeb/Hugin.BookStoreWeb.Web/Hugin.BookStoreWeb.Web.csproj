@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<Import Project="..\..\common.props" />
+
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
+		<IsPackable>true</IsPackable>
+		<OutputType>Library</OutputType>
+		<RootNamespace>Hugin.BookStoreWeb.Web</RootNamespace>
+		<GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\BookStore\Hugin.BookStore.HttpApi\Hugin.BookStore.HttpApi.csproj" />
+		<PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="5.0.*" />
+		<ProjectReference Include="D:\Code\dotnet\repository\abp-bookstore\framework\src\Volo.Abp.AutoMapper\Volo.Abp.AutoMapper.csproj" />
+		<ProjectReference Include="D:\Code\dotnet\repository\abp-bookstore\framework\src\Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared\Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared.csproj" />
+	</ItemGroup>
+	
+	<ItemGroup>
+		<EmbeddedResource Include="Localization\Json\*.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include="Pages\**\*.cshtml" />
+		<EmbeddedResource Include="Pages\**\*.css" />
+		<EmbeddedResource Include="Pages\**\*.js" />
+		<EmbeddedResource Include="wwwroot\**\*.*" />
+		<Content Remove="Pages\**\*.cshtml" />
+		<Content Remove="Pages\**\*.css" />
+		<Content Remove="Pages\**\*.js" />
+		<Content Remove="wwwroot\**\*.*" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="wwwroot\" />
+	</ItemGroup>
+</Project>

@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RedisGEO.Core", "src\RedisGEO.Core\RedisGEO.Core.csproj", "{C22F3D09-5B17-447E-B795-3DDCC55F6F88}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RedisGEO.Abp", "src\RedisGEO.Core.Abp\RedisGEO.Abp.csproj", "{65C84209-B51D-4827-B76A-461FD1277085}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{CEDE7CB5-1063-45B4-93C5-C139F97D3285}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{1848036E-DCC0-4EF9-9E7A-A5621D5C328F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleSample", "samples\ConsoleSample\ConsoleSample.csproj", "{7AF418D8-6C61-453E-A2AE-B178D155AF32}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbpConsoleSample", "samples\AbpConsoleSample\AbpConsoleSample.csproj", "{CC2A4CBC-74A2-45F5-B277-72EE5D695817}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C22F3D09-5B17-447E-B795-3DDCC55F6F88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C22F3D09-5B17-447E-B795-3DDCC55F6F88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C22F3D09-5B17-447E-B795-3DDCC55F6F88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C22F3D09-5B17-447E-B795-3DDCC55F6F88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65C84209-B51D-4827-B76A-461FD1277085}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65C84209-B51D-4827-B76A-461FD1277085}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65C84209-B51D-4827-B76A-461FD1277085}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65C84209-B51D-4827-B76A-461FD1277085}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AF418D8-6C61-453E-A2AE-B178D155AF32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AF418D8-6C61-453E-A2AE-B178D155AF32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AF418D8-6C61-453E-A2AE-B178D155AF32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AF418D8-6C61-453E-A2AE-B178D155AF32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC2A4CBC-74A2-45F5-B277-72EE5D695817}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC2A4CBC-74A2-45F5-B277-72EE5D695817}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC2A4CBC-74A2-45F5-B277-72EE5D695817}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC2A4CBC-74A2-45F5-B277-72EE5D695817}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C22F3D09-5B17-447E-B795-3DDCC55F6F88} = {CEDE7CB5-1063-45B4-93C5-C139F97D3285}
+		{65C84209-B51D-4827-B76A-461FD1277085} = {CEDE7CB5-1063-45B4-93C5-C139F97D3285}
+		{7AF418D8-6C61-453E-A2AE-B178D155AF32} = {1848036E-DCC0-4EF9-9E7A-A5621D5C328F}
+		{CC2A4CBC-74A2-45F5-B277-72EE5D695817} = {1848036E-DCC0-4EF9-9E7A-A5621D5C328F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F8718D47-6A31-4345-BDCD-B57744213DB6}
+	EndGlobalSection
+EndGlobal

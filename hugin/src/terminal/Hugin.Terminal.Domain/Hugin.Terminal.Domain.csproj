@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<Import Project="..\..\common.props" />
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.1</TargetFramework>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Hugin.Terminal.Domain.Shared\Hugin.Terminal.Domain.Shared.csproj" />
+		<ProjectReference Include="..\..\_extensions\Hugin.Cache.CsRedis\Hugin.Cache.CsRedis.csproj" />
+		<ProjectReference Include="..\..\_extensions\Hugin.Abp.Domain\Hugin.Abp.Domain.csproj" />
+	</ItemGroup>
+
+</Project>

@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<Import Project="..\..\common.props" />
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.1</TargetFramework>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="CSRedisCore" Version="3.6.5" />
+		<PackageReference Include="Caching.CsRedis" Version="3.6.5" />
+		<ProjectReference Include="D:\Code\dotnet\repository\abp-bookstore\framework\src\Volo.Abp.Caching\Volo.Abp.Caching.csproj" />
+	</ItemGroup>
+
+</Project>

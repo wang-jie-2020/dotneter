@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<Import Project="..\..\common.props" />
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.1</TargetFramework>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Hugin.Platform.Domain\Hugin.Platform.Domain.csproj" />
+		<ProjectReference Include="..\..\_extensions\Hugin.Abp.EntityFrameworkCore\Hugin.Abp.EntityFrameworkCore.csproj" />
+	</ItemGroup>
+
+</Project>

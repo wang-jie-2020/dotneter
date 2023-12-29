@@ -1,0 +1,14 @@
+﻿using AutoMapper;
+
+namespace @{@Model.FullNameSpace}.Mappers
+{
+    public class @{@Model.EntityName}Mapper : Profile
+    {
+        public @{@Model.EntityName}Mapper()
+        {
+            CreateMap<@{@Model.EntityName}, @{@Model.EntityName}Dto>();
+            CreateMap<@{@Model.EntityName}, @{@Model.EntityName}EditDto>();
+            CreateMap<@{@Model.EntityName}EditDto, @{@Model.EntityName}>();
+        }
+    }
+}

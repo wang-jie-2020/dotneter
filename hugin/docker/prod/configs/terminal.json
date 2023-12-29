@@ -1,0 +1,10 @@
+{
+  "RemoteServices": {
+    "Default": {
+      "BaseUrl": "http://192.168.0.9:44344/"
+    }
+  },
+  "AuthServer": {
+    "Authority": "http://192.168.0.9:44344/"
+  }
+}

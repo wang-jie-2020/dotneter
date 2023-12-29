@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<RootNamespace>Hugin</RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.Options" Version="3.1.9" />
+		<PackageReference Include="aliyun-net-sdk-core" Version="1.5.6" />
+		<PackageReference Include="aliyun-net-sdk-dysmsapi20200427" Version="2.1.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Hugin.Sms.Core\Hugin.Sms.Core.csproj" />
+	</ItemGroup>
+
+</Project>

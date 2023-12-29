@@ -1,0 +1,16 @@
+{
+  "culture": "en",
+  "texts": {
+    "Permission:Create": "Creating",
+    "Permission:Edit": "Editing",
+    "Permission:Delete": "Deleting",
+    "Permission:Stop": "Stopping",
+
+    "Permission:Sample": "Sample Management",
+    "Permission:BookStore": "Book Store Management",
+    "Permission:Books": "Book Management",
+    "Permission:Authors": "Author Management",
+
+    "BookStore:AuthorAlreadyExists": "There is already an author with the same name: {name}"
+  }
+}

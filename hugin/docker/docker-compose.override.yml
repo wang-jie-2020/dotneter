@@ -1,0 +1,40 @@
+version: '3.4'
+
+networks:
+  appback:
+    driver: bridge
+    name: netcore-back
+    ipam:
+      driver: default
+      config:
+      - subnet: 192.9.0.0/16
+        gateway: 192.9.0.1
+
+services:
+  identity-server:
+    restart: unless-stopped
+    container_name: 'lg.identity'
+    environment:
+      - ASPNETCORE_URLS=http://0.0.0.0:80
+    networks:
+      - appback
+
+  platform:
+    restart: unless-stopped
+    container_name: 'lg.platform'
+    depends_on:
+      - identity-server
+    environment:
+      - ASPNETCORE_URLS=http://0.0.0.0:80
+    networks:
+      - appback
+
+  terminal:
+    restart: unless-stopped
+    container_name: 'lg.terminal'
+    depends_on:
+      - identity-server
+    environment:
+      - ASPNETCORE_URLS=http://0.0.0.0:80
+    networks:
+      - appback

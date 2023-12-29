@@ -1,0 +1,8 @@
+﻿using Volo.Abp.Application.Services;
+
+namespace @{@Model.FullNameSpace}
+{
+    public interface I@{@Model.EntityName}AppService : IApplicationService
+    {
+    }
+}

@@ -1,0 +1,9 @@
+﻿using Volo.Abp.Domain.Services;
+
+namespace @{@Model.FullNameSpace}
+{
+    public interface I@{@Model.GroupName}Manager : IDomainService
+    {
+
+    }
+}

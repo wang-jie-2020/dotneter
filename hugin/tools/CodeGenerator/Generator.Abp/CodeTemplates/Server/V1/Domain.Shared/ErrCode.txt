@@ -1,0 +1,10 @@
+﻿namespace @{@Model.FullNameSpace}
+{
+    public static partial class @{@Model.GroupName}Consts
+    {
+        public static class ErrorCodes
+        {
+            
+        }
+    }
+}
