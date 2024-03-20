@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <RootNamespace>AESC.Starter</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\AESC.Starter.Application.Contracts\AESC.Starter.Application.Contracts.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Lion.AbpPro.BasicManagement.HttpApi.Client"/>
+        <PackageReference Include="Lion.AbpPro.NotificationManagement.HttpApi.Client"/>
+        <PackageReference Include="Lion.AbpPro.DataDictionaryManagement.HttpApi.Client"/>
+        <PackageReference Include="Lion.AbpPro.LanguageManagement.HttpApi.Client"/>
+    </ItemGroup>
+</Project>

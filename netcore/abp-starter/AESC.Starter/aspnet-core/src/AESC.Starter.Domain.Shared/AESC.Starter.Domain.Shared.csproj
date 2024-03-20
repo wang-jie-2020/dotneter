@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <RootNamespace>AESC.Starter</RootNamespace>
+        <GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <EmbeddedResource Include="Localization\Starter\*.json"/>
+        <Content Remove="Localization\Starter\*.json"/>
+    </ItemGroup>
+
+
+    <ItemGroup>
+        <PackageReference Include="Lion.AbpPro.Core"/>
+        <PackageReference Include="Lion.AbpPro.BasicManagement.Domain.Shared"/>
+        <PackageReference Include="Lion.AbpPro.NotificationManagement.Domain.Shared"/>
+        <PackageReference Include="Lion.AbpPro.DataDictionaryManagement.Domain.Shared"/>
+        <PackageReference Include="Lion.AbpPro.LanguageManagement.Domain.Shared"/>
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,8 @@
+<Project>
+    <!--    Lion.AbpPro包-->
+    <ItemGroup>
+        <PackageReference Update="Lion.AbpPro.Core" Version="8.0.4.2"/>
+        <PackageReference Update="Lion.AbpPro.Shared.Hosting.Microservices" Version="8.0.4.2"/>
+        <PackageReference Update="Lion.AbpPro.Shared.Hosting.Gateways" Version="8.0.4.2"/>
+    </ItemGroup>
+</Project>
