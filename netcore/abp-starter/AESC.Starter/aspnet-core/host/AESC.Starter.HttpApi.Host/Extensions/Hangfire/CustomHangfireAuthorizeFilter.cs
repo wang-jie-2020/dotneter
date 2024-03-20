@@ -4,8 +4,8 @@ namespace AESC.Starter.Extensions.Hangfire
     {
         public bool Authorize(DashboardContext context)
         {
-            var _currentUser = context.GetHttpContext().RequestServices.GetRequiredService<ICurrentUser>();
-            return _currentUser.IsAuthenticated;
+            var currentUser = context.GetHttpContext().RequestServices.GetRequiredService<ICurrentUser>();
+            return currentUser.IsAuthenticated;
         }
     }
 }

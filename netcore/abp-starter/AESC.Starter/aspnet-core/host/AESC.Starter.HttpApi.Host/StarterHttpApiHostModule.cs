@@ -14,7 +14,6 @@ namespace AESC.Starter;
 )]
 public class StarterHttpApiHostModule : AbpModule
 {
-        
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
         var configuration = context.Services.GetConfiguration();
@@ -58,8 +57,9 @@ public class StarterHttpApiHostModule : AbpModule
 
         app.UseUnitOfWork();
         app.UseConfiguredEndpoints(endpoints => { endpoints.MapHealthChecks("/health"); });
-         
+
     }
+
     private void ConfigurationSignalR(ServiceConfigurationContext context)
     {
         var redisConnection = context.Services.GetConfiguration().GetValue<string>("Redis:Configuration");
@@ -71,6 +71,7 @@ public class StarterHttpApiHostModule : AbpModule
 
         context.Services.AddSignalR().AddStackExchangeRedis(redisConnection, options => { options.Configuration.ChannelPrefix = "Lion.AbpPro"; });
     }
+
     /// <summary>
     /// 配置MiniProfiler
     /// </summary>
@@ -147,8 +148,6 @@ public class StarterHttpApiHostModule : AbpModule
             });
     }
 
-   
-
     /// <summary>
     /// Redis缓存
     /// </summary>
@@ -162,8 +161,6 @@ public class StarterHttpApiHostModule : AbpModule
             .AddDataProtection()
             .PersistKeysToStackExchangeRedis(redis, "Starter-Protection-Keys");
     }
-
-
 
     /// <summary>
     /// 配置Identity
@@ -240,8 +237,6 @@ public class StarterHttpApiHostModule : AbpModule
             });
     }
 
-
-    
     /// <summary>
     /// 审计日志
     /// </summary>
@@ -265,7 +260,7 @@ public class StarterHttpApiHostModule : AbpModule
                 options.IgnoredUrls.Add("/cap");
             });
     }
-        
+
     private void ConfigurationMultiTenancy()
     {
         Configure<AbpMultiTenancyOptions>(options => { options.IsEnabled = MultiTenancyConsts.IsEnabled; });

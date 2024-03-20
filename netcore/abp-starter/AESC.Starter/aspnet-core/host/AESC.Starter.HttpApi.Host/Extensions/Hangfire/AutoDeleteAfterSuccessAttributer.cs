@@ -1,10 +1,10 @@
 namespace AESC.Starter.Extensions.Hangfire;
 
-public class AutoDeleteAfterSuccessAttributer : JobFilterAttribute, IApplyStateFilter
+public class AutoDeleteAfterSuccessAttribute : JobFilterAttribute, IApplyStateFilter
 {
     private readonly TimeSpan _deleteAfter;
 
-    public AutoDeleteAfterSuccessAttributer(TimeSpan timeSpan)
+    public AutoDeleteAfterSuccessAttribute(TimeSpan timeSpan)
     {
         _deleteAfter = timeSpan;
     }
@@ -16,6 +16,6 @@ public class AutoDeleteAfterSuccessAttributer : JobFilterAttribute, IApplyStateF
 
     public void OnStateUnapplied(ApplyStateContext context, IWriteOnlyTransaction transaction)
     {
-     
+
     }
 }

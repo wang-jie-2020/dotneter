@@ -12,7 +12,6 @@ public class JobRetryLastFilter : JobFilterAttribute, IElectStateFilter
         RetryCount = retryCount;
     }
 
-
     public void OnStateElection(ElectStateContext context)
     {
         var retryAttempt = context.GetJobParameter<int>("RetryCount");
