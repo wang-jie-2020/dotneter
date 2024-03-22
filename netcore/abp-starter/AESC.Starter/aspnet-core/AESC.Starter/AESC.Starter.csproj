@@ -23,6 +23,53 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<EmbeddedResource Include="Localization\Sample\*.json" />
+		<PackageReference Include="Lion.AbpPro.BasicManagement.Application" />
+		<PackageReference Include="Lion.AbpPro.BasicManagement.Application.Contracts" />
+		<PackageReference Include="Lion.AbpPro.BasicManagement.Domain" />
+		<PackageReference Include="Lion.AbpPro.BasicManagement.Domain.Shared" />
+		<PackageReference Include="Lion.AbpPro.BasicManagement.EntityFrameworkCore" />
+		<PackageReference Include="Lion.AbpPro.BasicManagement.HttpApi" />
+		<PackageReference Include="Lion.AbpPro.NotificationManagement.Application" />
+		<PackageReference Include="Lion.AbpPro.NotificationManagement.Application.Contracts" />
+		<PackageReference Include="Lion.AbpPro.NotificationManagement.Domain" />
+		<PackageReference Include="Lion.AbpPro.NotificationManagement.Domain.Shared" />
+		<PackageReference Include="Lion.AbpPro.NotificationManagement.EntityFrameworkCore" />
+		<PackageReference Include="Lion.AbpPro.NotificationManagement.HttpApi" />
+		<PackageReference Include="Lion.AbpPro.DataDictionaryManagement.Application" />
+		<PackageReference Include="Lion.AbpPro.DataDictionaryManagement.Application.Contracts" />
+		<PackageReference Include="Lion.AbpPro.DataDictionaryManagement.Domain" />
+		<PackageReference Include="Lion.AbpPro.DataDictionaryManagement.Domain.Shared" />
+		<PackageReference Include="Lion.AbpPro.DataDictionaryManagement.EntityFrameworkCore" />
+		<PackageReference Include="Lion.AbpPro.DataDictionaryManagement.HttpApi" />
+		<PackageReference Include="Lion.AbpPro.LanguageManagement.Application" />
+		<PackageReference Include="Lion.AbpPro.LanguageManagement.Application.Contracts" />
+		<PackageReference Include="Lion.AbpPro.LanguageManagement.Domain" />
+		<PackageReference Include="Lion.AbpPro.LanguageManagement.Domain.Shared" />
+		<PackageReference Include="Lion.AbpPro.LanguageManagement.EntityFrameworkCore" />
+		<PackageReference Include="Lion.AbpPro.LanguageManagement.HttpApi" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include="Localization\Starter\*.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Localization\Starter\ar.json" />
+	  <None Remove="Localization\Starter\cs.json" />
+	  <None Remove="Localization\Starter\de-DE.json" />
+	  <None Remove="Localization\Starter\en-GB.json" />
+	  <None Remove="Localization\Starter\en.json" />
+	  <None Remove="Localization\Starter\es.json" />
+	  <None Remove="Localization\Starter\fr.json" />
+	  <None Remove="Localization\Starter\hu.json" />
+	  <None Remove="Localization\Starter\nl.json" />
+	  <None Remove="Localization\Starter\pl-PL.json" />
+	  <None Remove="Localization\Starter\pt-BR.json" />
+	  <None Remove="Localization\Starter\ru.json" />
+	  <None Remove="Localization\Starter\sl.json" />
+	  <None Remove="Localization\Starter\tr.json" />
+	  <None Remove="Localization\Starter\vi.json" />
+	  <None Remove="Localization\Starter\zh-Hans.json" />
+	  <None Remove="Localization\Starter\zh-Hant.json" />
 	</ItemGroup>
 </Project>
