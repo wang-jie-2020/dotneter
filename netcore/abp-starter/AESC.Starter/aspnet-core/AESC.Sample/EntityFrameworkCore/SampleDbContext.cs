@@ -12,7 +12,6 @@ namespace AESC.Sample.EntityFrameworkCore
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-
             builder.ConfigureOrder();
         }
     }
