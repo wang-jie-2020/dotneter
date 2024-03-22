@@ -49,7 +49,7 @@ namespace AESC.Sample
                     .Add<SampleLocalizationResource>(SampleConsts.DefaultCultureName)
                     .AddBaseTypes(typeof(AbpValidationResource))
                     .AddBaseTypes(typeof(AbpUiResource))
-                    .AddVirtualJson("/Localization/Json");
+                    .AddVirtualJson("/Localization/Sample");
             });
 
             Configure<AbpExceptionLocalizationOptions>(options =>
