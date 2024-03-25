@@ -1,27 +1,18 @@
-using Lion.AbpPro.DataDictionaryManagement;
+using Lion.AbpPro.BasicManagement.EntityFrameworkCore;
 using Lion.AbpPro.DataDictionaryManagement.DataDictionaries.Aggregates;
+using Lion.AbpPro.DataDictionaryManagement.EntityFrameworkCore;
+using Lion.AbpPro.LanguageManagement.EntityFrameworkCore;
 using Lion.AbpPro.LanguageManagement.Languages.Aggregates;
 using Lion.AbpPro.LanguageManagement.LanguageTexts.Aggregates;
-using Lion.AbpPro.NotificationManagement;
+using Lion.AbpPro.NotificationManagement.EntityFrameworkCore;
 using Lion.AbpPro.NotificationManagement.Notifications.Aggregates;
+using Volo.Abp.BackgroundJobs;
+using Volo.Abp.FeatureManagement;
 
 namespace AESC.Starter.EntityFrameworkCore
 {
-    /* This is your actual DbContext used on runtime.
-     * It includes only your entities.
-     * It does not include entities of the used modules, because each module has already
-     * its own DbContext class. If you want to share some database tables with the used modules,
-     * just create a structure like done for AppUser.
-     *
-     * Don't use this DbContext for database migrations since it does not contain tables of the
-     * used modules (as explained above). See StarterMigrationsDbContext for migrations.
-     */
     [ConnectionStringName("Default")]
-    public class StarterDbContext : AbpDbContext<StarterDbContext>, IStarterDbContext,
-        IBasicManagementDbContext,
-        INotificationManagementDbContext,
-        IDataDictionaryManagementDbContext,
-        ILanguageManagementDbContext
+    public class StarterDbContext : AbpDbContext<StarterDbContext>
     {
         public DbSet<IdentityUser> Users { get; set; }
         public DbSet<IdentityRole> Roles { get; set; }
@@ -46,7 +37,7 @@ namespace AESC.Starter.EntityFrameworkCore
         public DbSet<DataDictionary> DataDictionaries { get; set; }
         public DbSet<Language> Languages { get; set; }
         public DbSet<LanguageText> LanguageTexts { get; set; }
-        
+
         public StarterDbContext(DbContextOptions<StarterDbContext> options)
             : base(options)
         {
@@ -54,23 +45,13 @@ namespace AESC.Starter.EntityFrameworkCore
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-
             base.OnModelCreating(builder);
-            
             builder.ConfigureStarter();
 
-            // 基础模块
             builder.ConfigureBasicManagement();
-            
-            // 消息通知
             builder.ConfigureNotificationManagement();
-            
-            //数据字典
             builder.ConfigureDataDictionaryManagement();
-            
-            // 多语言
             builder.ConfigureLanguageManagement();
         }
-
     }
 }

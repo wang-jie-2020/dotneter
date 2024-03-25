@@ -1,3 +1,5 @@
+using AESC.Starter.Localization;
+
 namespace AESC.Starter
 {
     public abstract class StarterAppService : ApplicationService

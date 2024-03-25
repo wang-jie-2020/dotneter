@@ -1,4 +1,5 @@
-﻿using AESC.Starter.MultiTenancy;
+﻿using AESC.Starter.EntityFrameworkCore;
+using AESC.Starter.Localization;
 using Lion.AbpPro.BasicManagement;
 using Lion.AbpPro.BasicManagement.Localization;
 using Lion.AbpPro.DataDictionaryManagement;
@@ -19,7 +20,6 @@ namespace AESC.Starter
         typeof(AbpDddApplicationModule),
         typeof(AbpDddDomainModule),
         typeof(AbpEntityFrameworkCoreModule),
-        typeof(AbpObjectExtendingModule),   //todo
         typeof(AbpValidationModule),
         typeof(BasicManagementApplicationModule),
         typeof(BasicManagementApplicationContractsModule),
@@ -51,19 +51,21 @@ namespace AESC.Starter
             {
                 mvcBuilder.AddApplicationPartIfNotExists(typeof(StarterModule).Assembly);
             });
-
-            StarterDtoExtensions.Configure();
-            StarterModuleExtensionConfigurator.Configure();
         }
 
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
-            Configure<AbpMultiTenancyOptions>(options => { options.IsEnabled = MultiTenancyConsts.IsEnabled; });
+            Configure<AbpMultiTenancyOptions>(options => { options.IsEnabled = true; });
 
             context.Services.AddAutoMapperObjectMapper<StarterModule>();
             Configure<AbpAutoMapperOptions>(options =>
             {
                 options.AddMaps<StarterModule>();
+            });
+
+            context.Services.AddAbpDbContext<StarterDbContext>(options =>
+            {
+                options.AddDefaultRepositories(includeAllEntities: true);
             });
 
             Configure<AbpVirtualFileSystemOptions>(options =>

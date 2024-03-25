@@ -51,25 +51,6 @@
 
 	<ItemGroup>
 		<EmbeddedResource Include="Localization\Starter\*.json" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <None Remove="Localization\Starter\ar.json" />
-	  <None Remove="Localization\Starter\cs.json" />
-	  <None Remove="Localization\Starter\de-DE.json" />
-	  <None Remove="Localization\Starter\en-GB.json" />
-	  <None Remove="Localization\Starter\en.json" />
-	  <None Remove="Localization\Starter\es.json" />
-	  <None Remove="Localization\Starter\fr.json" />
-	  <None Remove="Localization\Starter\hu.json" />
-	  <None Remove="Localization\Starter\nl.json" />
-	  <None Remove="Localization\Starter\pl-PL.json" />
-	  <None Remove="Localization\Starter\pt-BR.json" />
-	  <None Remove="Localization\Starter\ru.json" />
-	  <None Remove="Localization\Starter\sl.json" />
-	  <None Remove="Localization\Starter\tr.json" />
-	  <None Remove="Localization\Starter\vi.json" />
-	  <None Remove="Localization\Starter\zh-Hans.json" />
-	  <None Remove="Localization\Starter\zh-Hant.json" />
+		<None Remove="Localization\Starter\*.json" />
 	</ItemGroup>
 </Project>
