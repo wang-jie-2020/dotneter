@@ -1,5 +1,7 @@
 using AESC.Sample;
+using Volo.Abp.Data;
 using Volo.Abp.EntityFrameworkCore;
+using Volo.Abp.Threading;
 
 namespace AESC.Starter.Host;
 
@@ -62,6 +64,15 @@ public class StarterHostModule : AbpModule
         app.UseUnitOfWork();
         app.UseConfiguredEndpoints(endpoints => { endpoints.MapHealthChecks("/health"); });
 
+        AsyncHelper.RunSync(async () =>
+        {
+            using (var scope = context.ServiceProvider.CreateScope())
+            {
+                await scope.ServiceProvider
+                    .GetRequiredService<IDataSeeder>()
+                    .SeedAsync();
+            }
+        });
     }
 
     /// <summary>
