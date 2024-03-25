@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "AESC.Starter.HttpApi.Host": {
+    "AESC.Starter.Host": {
       "commandName": "Project",
       "launchBrowser": true,
       "applicationUrl": "http://localhost:44315",

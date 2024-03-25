@@ -23,25 +23,18 @@ namespace AESC.Starter
         typeof(AbpValidationModule),
         typeof(BasicManagementApplicationModule),
         typeof(BasicManagementApplicationContractsModule),
-        typeof(BasicManagementDomainModule),
-        typeof(BasicManagementDomainSharedModule),
         typeof(BasicManagementHttpApiModule),
         typeof(NotificationManagementApplicationModule),
         typeof(NotificationManagementApplicationContractsModule),
-        typeof(NotificationManagementDomainModule),
-        typeof(NotificationManagementDomainSharedModule),
         typeof(NotificationManagementHttpApiModule),
         typeof(DataDictionaryManagementApplicationModule),
         typeof(DataDictionaryManagementApplicationContractsModule),
-        typeof(DataDictionaryManagementDomainModule),
-        typeof(DataDictionaryManagementDomainSharedModule),
         typeof(DataDictionaryManagementHttpApiModule),
         typeof(LanguageManagementApplicationContractsModule),
         typeof(LanguageManagementApplicationModule),
-        typeof(LanguageManagementDomainModule),
-        typeof(LanguageManagementDomainSharedModule),
         typeof(LanguageManagementHttpApiModule),
-        typeof(AbpProCoreModule)
+        typeof(AbpProCoreModule),
+        typeof(StarterDomainModule)
     )]
     public class StarterAppModule : AbpModule
     {

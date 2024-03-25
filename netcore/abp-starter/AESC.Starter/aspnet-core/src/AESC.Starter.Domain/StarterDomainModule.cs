@@ -1,12 +1,16 @@
 ﻿using AESC.Starter.EntityFrameworkCore;
 using AESC.Starter.Localization;
 using Lion.AbpPro.BasicManagement;
+using Lion.AbpPro.BasicManagement.EntityFrameworkCore;
 using Lion.AbpPro.BasicManagement.Localization;
 using Lion.AbpPro.DataDictionaryManagement;
+using Lion.AbpPro.DataDictionaryManagement.EntityFrameworkCore;
 using Lion.AbpPro.DataDictionaryManagement.Localization;
 using Lion.AbpPro.LanguageManagement;
+using Lion.AbpPro.LanguageManagement.EntityFrameworkCore;
 using Lion.AbpPro.LanguageManagement.Localization;
 using Lion.AbpPro.NotificationManagement;
+using Lion.AbpPro.NotificationManagement.EntityFrameworkCore;
 using Lion.AbpPro.NotificationManagement.Localization;
 using Localization.Resources.AbpUi;
 
@@ -23,12 +27,16 @@ namespace AESC.Starter
         typeof(AbpValidationModule),
         typeof(BasicManagementDomainModule),
         typeof(BasicManagementDomainSharedModule),
+        typeof(BasicManagementEntityFrameworkCoreModule),
         typeof(NotificationManagementDomainModule),
         typeof(NotificationManagementDomainSharedModule),
+        typeof(DataDictionaryManagementEntityFrameworkCoreModule),
         typeof(DataDictionaryManagementDomainModule),
         typeof(DataDictionaryManagementDomainSharedModule),
+        typeof(NotificationManagementEntityFrameworkCoreModule),
         typeof(LanguageManagementDomainModule),
         typeof(LanguageManagementDomainSharedModule),
+        typeof(LanguageManagementEntityFrameworkCoreModule),
         typeof(AbpProCoreModule)
     )]
     public class StarterDomainModule : AbpModule

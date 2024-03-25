@@ -1,4 +1,5 @@
 using AESC.Sample;
+using Volo.Abp.EntityFrameworkCore;
 
 namespace AESC.Starter.Host;
 
@@ -18,6 +19,11 @@ public class StarterHostModule : AbpModule
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
         Configure<AbpMultiTenancyOptions>(options => { options.IsEnabled = true; });
+
+        Configure<AbpDbContextOptions>(options =>
+        {
+            options.UseMySQL();
+        });
 
         var configuration = context.Services.GetConfiguration();
         ConfigureCache(context);

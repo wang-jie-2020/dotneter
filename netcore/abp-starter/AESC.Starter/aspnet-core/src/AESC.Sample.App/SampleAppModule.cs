@@ -13,7 +13,8 @@ namespace AESC.Sample
         typeof(AbpDddDomainModule),
         typeof(AbpEntityFrameworkCoreModule),
         typeof(AbpValidationModule),
-        typeof(AbpProCoreModule)
+        typeof(AbpProCoreModule),
+        typeof(SampleDomainModule)
     )]
     public class SampleAppModule : AbpModule
     {
