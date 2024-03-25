@@ -18,6 +18,6 @@ ENV TZ=Asia/Shanghai
 # 设置环境变量
 ENV ASPNETCORE_ENVIRONMENT=Production
 
-ENTRYPOINT ["dotnet", "AESC.Starter.HttpApi.Host.dll"]
+ENTRYPOINT ["dotnet", "AESC.Starter.Host.dll"]
 
 

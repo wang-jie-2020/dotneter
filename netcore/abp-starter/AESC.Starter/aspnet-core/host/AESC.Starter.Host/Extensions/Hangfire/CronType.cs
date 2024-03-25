@@ -1,4 +1,4 @@
-namespace AESC.Starter.Extensions.Hangfire
+namespace AESC.Starter.Host.Extensions.Hangfire
 {
     /// <summary>
     /// Cron类型

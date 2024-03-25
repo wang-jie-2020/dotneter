@@ -1,4 +1,4 @@
-namespace AESC.Starter
+namespace AESC.Starter.Host
 {
     public class Program
     {
@@ -9,7 +9,7 @@ namespace AESC.Starter
         }
 
         private static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
+            Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.ConfigureKestrel((context, options) => { options.Limits.MaxRequestBodySize = 1024 * 50; });

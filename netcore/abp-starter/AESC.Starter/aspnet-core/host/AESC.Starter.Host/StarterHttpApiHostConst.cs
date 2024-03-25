@@ -1,4 +1,4 @@
-namespace AESC.Starter
+namespace AESC.Starter.Host
 {
     public static class StarterHttpApiHostConst
     {
@@ -10,7 +10,7 @@ namespace AESC.Starter
         /// <summary>
         /// Cookies名称
         /// </summary>
-        public const string DefaultCookieName = "AESC.Starter.Http.Api";
+        public const string DefaultCookieName = "AESC.Starter";
 
         /// <summary>
         /// SwaggerUi 端点

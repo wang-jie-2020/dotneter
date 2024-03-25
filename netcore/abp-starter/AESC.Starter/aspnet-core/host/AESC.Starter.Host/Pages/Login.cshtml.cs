@@ -1,11 +1,9 @@
-
 using Lion.AbpPro.BasicManagement.ConfigurationOptions;
 using Lion.AbpPro.BasicManagement.Users;
 using Lion.AbpPro.BasicManagement.Users.Dtos;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-
-namespace AESC.Starter.Pages
+namespace AESC.Starter.Host.Pages
 {
     public class Login : PageModel
     {

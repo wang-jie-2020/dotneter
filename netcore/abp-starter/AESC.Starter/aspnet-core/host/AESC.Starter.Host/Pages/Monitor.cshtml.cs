@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace AESC.Starter.Pages
+namespace AESC.Starter.Host.Pages
 {
     public class Monitor : PageModel
     {

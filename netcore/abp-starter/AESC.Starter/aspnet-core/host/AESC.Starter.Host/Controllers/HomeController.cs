@@ -1,4 +1,4 @@
-namespace AESC.Starter.Controllers
+namespace AESC.Starter.Host.Controllers
 {
     public class HomeController : AbpController
     {

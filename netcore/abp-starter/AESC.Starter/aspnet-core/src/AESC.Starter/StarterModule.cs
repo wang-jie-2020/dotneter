@@ -55,8 +55,6 @@ namespace AESC.Starter
 
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
-            Configure<AbpMultiTenancyOptions>(options => { options.IsEnabled = true; });
-
             context.Services.AddAutoMapperObjectMapper<StarterModule>();
             Configure<AbpAutoMapperOptions>(options =>
             {

@@ -1,4 +1,4 @@
-namespace AESC.Starter
+namespace AESC.Starter.Host
 {
     public class Startup
     {
