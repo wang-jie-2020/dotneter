@@ -43,52 +43,22 @@ namespace AESC.Starter
         typeof(LanguageManagementHttpApiModule),
         typeof(AbpProCoreModule)
     )]
-    public class StarterModule : AbpModule
+    public class StarterAppModule : AbpModule
     {
         public override void PreConfigureServices(ServiceConfigurationContext context)
         {
             PreConfigure<IMvcBuilder>(mvcBuilder =>
             {
-                mvcBuilder.AddApplicationPartIfNotExists(typeof(StarterModule).Assembly);
+                mvcBuilder.AddApplicationPartIfNotExists(typeof(StarterAppModule).Assembly);
             });
         }
 
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
-            context.Services.AddAutoMapperObjectMapper<StarterModule>();
+            context.Services.AddAutoMapperObjectMapper<StarterAppModule>();
             Configure<AbpAutoMapperOptions>(options =>
             {
-                options.AddMaps<StarterModule>();
-            });
-
-            context.Services.AddAbpDbContext<StarterDbContext>(options =>
-            {
-                options.AddDefaultRepositories(includeAllEntities: true);
-            });
-
-            Configure<AbpVirtualFileSystemOptions>(options =>
-            {
-                options.FileSets.AddEmbedded<StarterModule>(StarterConsts.NameSpace);
-            });
-
-            Configure<AbpLocalizationOptions>(options =>
-            {
-                options.Resources
-                    .Add<StarterResource>(StarterConsts.DefaultCultureName)
-                    .AddVirtualJson("/Localization/Starter")
-                    .AddBaseTypes(typeof(BasicManagementResource))
-                    .AddBaseTypes(typeof(NotificationManagementResource))
-                    .AddBaseTypes(typeof(DataDictionaryManagementResource))
-                    .AddBaseTypes(typeof(LanguageManagementResource))
-                    .AddBaseTypes(typeof(AbpUiResource))
-                    .AddBaseTypes(typeof(AbpTimingResource));
-
-                options.DefaultResourceType = typeof(StarterResource);
-            });
-
-            Configure<AbpExceptionLocalizationOptions>(options =>
-            {
-                options.MapCodeNamespace(StarterConsts.NameSpace, typeof(StarterResource));
+                options.AddMaps<StarterAppModule>();
             });
         }
     }

@@ -1,0 +1,80 @@
+﻿using AESC.Starter.EntityFrameworkCore;
+using AESC.Starter.Localization;
+using Lion.AbpPro.BasicManagement;
+using Lion.AbpPro.BasicManagement.Localization;
+using Lion.AbpPro.DataDictionaryManagement;
+using Lion.AbpPro.DataDictionaryManagement.Localization;
+using Lion.AbpPro.LanguageManagement;
+using Lion.AbpPro.LanguageManagement.Localization;
+using Lion.AbpPro.NotificationManagement;
+using Lion.AbpPro.NotificationManagement.Localization;
+using Localization.Resources.AbpUi;
+
+namespace AESC.Starter
+{
+    [DependsOn(
+        typeof(AbpAspNetCoreMvcModule),
+        typeof(AbpAuthorizationModule),
+        typeof(AbpAutoMapperModule),
+        typeof(AbpCachingModule),
+        typeof(AbpDddApplicationModule),
+        typeof(AbpDddDomainModule),
+        typeof(AbpEntityFrameworkCoreModule),
+        typeof(AbpValidationModule),
+        typeof(BasicManagementDomainModule),
+        typeof(BasicManagementDomainSharedModule),
+        typeof(NotificationManagementDomainModule),
+        typeof(NotificationManagementDomainSharedModule),
+        typeof(DataDictionaryManagementDomainModule),
+        typeof(DataDictionaryManagementDomainSharedModule),
+        typeof(LanguageManagementDomainModule),
+        typeof(LanguageManagementDomainSharedModule),
+        typeof(AbpProCoreModule)
+    )]
+    public class StarterDomainModule : AbpModule
+    {
+        public override void PreConfigureServices(ServiceConfigurationContext context)
+        {
+
+        }
+
+        public override void ConfigureServices(ServiceConfigurationContext context)
+        {
+            context.Services.AddAutoMapperObjectMapper<StarterDomainModule>();
+            Configure<AbpAutoMapperOptions>(options =>
+            {
+                options.AddMaps<StarterDomainModule>();
+            });
+
+            context.Services.AddAbpDbContext<StarterDbContext>(options =>
+            {
+                options.AddDefaultRepositories(includeAllEntities: true);
+            });
+
+            Configure<AbpVirtualFileSystemOptions>(options =>
+            {
+                options.FileSets.AddEmbedded<StarterDomainModule>(StarterConsts.NameSpace);
+            });
+
+            Configure<AbpLocalizationOptions>(options =>
+            {
+                options.Resources
+                    .Add<StarterResource>(StarterConsts.DefaultCultureName)
+                    .AddVirtualJson("/Localization/Starter")
+                    .AddBaseTypes(typeof(BasicManagementResource))
+                    .AddBaseTypes(typeof(NotificationManagementResource))
+                    .AddBaseTypes(typeof(DataDictionaryManagementResource))
+                    .AddBaseTypes(typeof(LanguageManagementResource))
+                    .AddBaseTypes(typeof(AbpUiResource))
+                    .AddBaseTypes(typeof(AbpTimingResource));
+
+                options.DefaultResourceType = typeof(StarterResource);
+            });
+
+            Configure<AbpExceptionLocalizationOptions>(options =>
+            {
+                options.MapCodeNamespace(StarterConsts.NameSpace, typeof(StarterResource));
+            });
+        }
+    }
+}

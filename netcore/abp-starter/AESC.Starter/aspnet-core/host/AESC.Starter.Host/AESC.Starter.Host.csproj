@@ -59,7 +59,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\src\AESC.Sample\AESC.Sample.csproj" />
-	  <ProjectReference Include="..\..\src\AESC.Starter\AESC.Starter.csproj" />
+	  <ProjectReference Include="..\..\src\AESC.Sample.App\AESC.Sample.App.csproj" />
+	  <ProjectReference Include="..\..\src\AESC.Starter.App\AESC.Starter.App.csproj" />
 	</ItemGroup>
 </Project>

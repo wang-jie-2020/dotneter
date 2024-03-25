@@ -15,22 +15,19 @@ namespace AESC.Sample
         typeof(AbpValidationModule),
         typeof(AbpProCoreModule)
     )]
-    public class SampleModule : AbpModule
+    public class SampleDomainModule : AbpModule
     {
         public override void PreConfigureServices(ServiceConfigurationContext context)
         {
-            PreConfigure<IMvcBuilder>(mvcBuilder =>
-            {
-                mvcBuilder.AddApplicationPartIfNotExists(typeof(SampleModule).Assembly);
-            });
+
         }
 
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
-            context.Services.AddAutoMapperObjectMapper<SampleModule>();
+            context.Services.AddAutoMapperObjectMapper<SampleDomainModule>();
             Configure<AbpAutoMapperOptions>(options =>
             {
-                options.AddMaps<SampleModule>(validate: true);
+                options.AddMaps<SampleDomainModule>(validate: true);
             });
 
             context.Services.AddAbpDbContext<SampleDbContext>(options =>
@@ -40,7 +37,7 @@ namespace AESC.Sample
 
             Configure<AbpVirtualFileSystemOptions>(options =>
             {
-                options.FileSets.AddEmbedded<SampleModule>();
+                options.FileSets.AddEmbedded<SampleDomainModule>();
             });
 
             Configure<AbpLocalizationOptions>(options =>

@@ -7,7 +7,7 @@ namespace AESC.Sample
         protected SampleAppService()
         {
             LocalizationResource = typeof(SampleLocalizationResource);
-            ObjectMapperContext = typeof(SampleModule);
+            ObjectMapperContext = typeof(SampleAppModule);
         }
     }
 }

@@ -2,6 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
+		<RootNameSpace>AESC.Sample</RootNameSpace>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -23,10 +24,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<EmbeddedResource Include="Localization\Sample\*.json" />
+		<Content Remove="$(UserProfile)\.nuget\packages\*\*\contentFiles\any\*\*.abppkg*.json" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<Content Remove="$(UserProfile)\.nuget\packages\*\*\contentFiles\any\*\*.abppkg*.json" />
+	  <ProjectReference Include="..\AESC.Sample.Domain\AESC.Sample.Domain.csproj" />
 	</ItemGroup>
 </Project>

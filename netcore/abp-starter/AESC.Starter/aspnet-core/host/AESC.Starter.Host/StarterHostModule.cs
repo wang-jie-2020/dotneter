@@ -10,8 +10,8 @@ namespace AESC.Starter.Host;
     typeof(AbpAspNetCoreSerilogModule),
     typeof(AbpCachingStackExchangeRedisModule),
     typeof(AbpProSharedHostingMicroserviceModule),
-    typeof(StarterModule),
-    typeof(SampleModule)
+    typeof(StarterAppModule),
+    typeof(SampleAppModule)
 )]
 public class StarterHostModule : AbpModule
 {
