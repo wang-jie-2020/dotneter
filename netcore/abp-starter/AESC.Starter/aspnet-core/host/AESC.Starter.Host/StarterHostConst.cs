@@ -1,6 +1,6 @@
 namespace AESC.Starter.Host
 {
-    public static class StarterHttpApiHostConst
+    public static class StarterHostConst
     {
         /// <summary>
         /// 跨域策略名

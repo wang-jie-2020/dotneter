@@ -13,7 +13,7 @@ namespace AESC.Starter.Host;
     typeof(StarterModule),
     typeof(SampleModule)
 )]
-public class StarterHttpApiHostModule : AbpModule
+public class StarterHostModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
@@ -37,7 +37,7 @@ public class StarterHttpApiHostModule : AbpModule
         app.UseStaticFiles();
         app.UseMiniProfiler();
         app.UseRouting();
-        app.UseCors(StarterHttpApiHostConst.DefaultCorsPolicyName);
+        app.UseCors(StarterHostConst.DefaultCorsPolicyName);
         app.UseAuthentication();
 
         app.UseMultiTenancy();
@@ -194,7 +194,7 @@ public class StarterHttpApiHostModule : AbpModule
 
                     if (accessToken.IsNullOrWhiteSpace())
                     {
-                        accessToken = currentContext.Request.Cookies[StarterHttpApiHostConst.DefaultCookieName];
+                        accessToken = currentContext.Request.Cookies[StarterHostConst.DefaultCookieName];
                     }
 
                     currentContext.Token = accessToken;

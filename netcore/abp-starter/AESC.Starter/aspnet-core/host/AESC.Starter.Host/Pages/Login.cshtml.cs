@@ -51,7 +51,7 @@ namespace AESC.Starter.Host.Pages
 
                 var result = await _accountAppService.LoginAsync(new LoginInput()
                 { Name = userName, Password = password });
-                Response.Cookies.Append(StarterHttpApiHostConst.DefaultCookieName,
+                Response.Cookies.Append(StarterHostConst.DefaultCookieName,
                     result.Token, options);
             }
             catch (Exception e)

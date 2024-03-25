@@ -4,7 +4,7 @@ namespace AESC.Starter.Host
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddApplication<StarterHttpApiHostModule>();
+            services.AddApplication<StarterHostModule>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
