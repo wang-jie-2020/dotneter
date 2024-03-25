@@ -1,5 +1,6 @@
 namespace AESC.Starter
 {
+    //todo
     public static class StarterModuleExtensionConfigurator
     {
         private static readonly OneTimeRunner OneTimeRunner = new OneTimeRunner();

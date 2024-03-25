@@ -1,7 +1,5 @@
-namespace AESC.Starter.Controllers
+namespace AESC.Starter
 {
-    /* Inherit your controllers from this class.
-     */
     public abstract class StarterController : AbpController
     {
         protected StarterController()

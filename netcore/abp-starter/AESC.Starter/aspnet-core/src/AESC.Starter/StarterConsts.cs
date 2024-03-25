@@ -2,8 +2,10 @@ namespace AESC.Starter
 {
     public static class StarterConsts
     {
-        public const string DbTablePrefix = "App";
+        /// <summary>Ãû³Æ¿Õ¼ä</summary>
+        public const string NameSpace = "AESC.Starter";
 
-        public const string DbSchema = null;
+        /// <summary>Ä¬ÈÏÓïÑÔ</summary>
+        public const string DefaultCultureName = "zh-Hans";
     }
 }
