@@ -3,8 +3,12 @@
 global using System;
 global using System.Collections.Generic;
 global using System.ComponentModel.DataAnnotations;
+global using System.Diagnostics;
+global using System.IO;
 global using System.Linq;
+global using System.Runtime.InteropServices;
 global using System.Runtime.Serialization;
+global using System.Reflection;
 global using System.Text;
 global using System.Threading;
 global using System.Threading.Tasks;
@@ -13,7 +17,10 @@ global using Microsoft.AspNetCore.Authorization;
 global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.Configuration;
+global using Microsoft.Extensions.Localization;
 global using Microsoft.Extensions.Logging;
+global using Microsoft.Extensions.Logging.Abstractions;
 
 global using Volo.Abp;
 global using Volo.Abp.Application;
@@ -41,9 +48,13 @@ global using Volo.Abp.Modularity;
 global using Volo.Abp.MultiTenancy;
 global using Volo.Abp.Localization;
 global using Volo.Abp.Localization.ExceptionHandling;
+global using Volo.Abp.Localization.Resources.AbpLocalization;
+global using Volo.Abp.ObjectExtending;
 global using Volo.Abp.ObjectMapping;
 global using Volo.Abp.Reflection;
 global using Volo.Abp.Settings;
+global using Volo.Abp.Threading;
+global using Volo.Abp.Timing.Localization.Resources.AbpTiming;
 global using Volo.Abp.Uow;
 global using Volo.Abp.Validation;
 global using Volo.Abp.Validation.Localization;
@@ -54,3 +65,10 @@ global using JetBrains.Annotations;
 global using Swashbuckle.AspNetCore.Annotations;
 
 global using Lion.AbpPro.Core;
+
+
+
+
+
+
+
