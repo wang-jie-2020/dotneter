@@ -47,11 +47,6 @@ namespace AESC.Starter.EntityFrameworkCore
         {
             base.OnModelCreating(builder);
             builder.ConfigureStarter();
-
-            builder.ConfigureBasicManagement();
-            builder.ConfigureNotificationManagement();
-            builder.ConfigureDataDictionaryManagement();
-            builder.ConfigureLanguageManagement();
         }
     }
 }
