@@ -13,21 +13,30 @@ namespace AESC.Utils.AbpExtensions.EntityFrameworkCore
 {
     public static class EntityFrameworkCoreRepositoriesUtils
     {
-        public static void AddDefaultRepositoriesOfFluentSyntax<TDbContext>(
-            IAbpCommonDbContextRegistrationOptionsBuilder options) where TDbContext : AbpDbContext<TDbContext>
+        /// <summary>
+        ///  register fluent-api repository
+        /// </summary>
+        /// <typeparam name="TDbContext"></typeparam>
+        /// <param name="options"></param>
+        public static void AddConfiguredTypeRepository<TDbContext>(IAbpCommonDbContextRegistrationOptionsBuilder options)
+            where TDbContext : AbpDbContext<TDbContext>
         {
             var dbContextType = typeof(TDbContext);
 
-            var fluentTypes = dbContextType.Assembly.GetTypes().Where(type =>
-                    !type.IsInterface && !type.IsAbstract && !type.IsGenericType
-                    && ReflectionHelper.IsAssignableToGenericType(type, typeof(IEntityTypeConfiguration<>))
-                    && type.GetInterfaces()[0].IsGenericType
-                    && typeof(IEntity).IsAssignableFrom(type.GetInterfaces()[0].GenericTypeArguments[0]))
-                .Select(t => t.GetInterfaces()[0].GenericTypeArguments[0]);
+            var configuredGenericTypes = dbContextType.Assembly.GetTypes().Where(type =>
+                !type.IsInterface &&
+                !type.IsAbstract &&
+                !type.IsGenericType
+                && ReflectionHelper.IsAssignableToGenericType(type, typeof(IEntityTypeConfiguration<>)));
 
-            foreach (var type in fluentTypes)
+            foreach (var configuredGenericType in configuredGenericTypes)
             {
-                options.AddDefaultRepository(type);
+                var type = configuredGenericType.GetInterfaces()[0].GenericTypeArguments[0];
+
+                if (type.IsAssignableTo(typeof(IEntity)))
+                {
+                    options.AddDefaultRepository(type);
+                }
             }
         }
     }
