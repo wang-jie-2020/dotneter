@@ -1,5 +1,6 @@
 ﻿using AESC.Sample.EntityFrameworkCore;
 using AESC.Sample.Localization;
+using AESC.Utils.AbpExtensions.EntityFrameworkCore;
 using Localization.Resources.AbpUi;
 
 namespace AESC.Sample
@@ -32,7 +33,7 @@ namespace AESC.Sample
 
             context.Services.AddAbpDbContext<SampleDbContext>(options =>
             {
-
+                EntityFrameworkCoreRepositoriesUtils.AddConfiguredTypeRepository<SampleDbContext>(options);
             });
 
             Configure<AbpVirtualFileSystemOptions>(options =>

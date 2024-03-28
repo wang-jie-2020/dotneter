@@ -27,6 +27,12 @@ public class StarterHostModule : AbpModule
             options.UseMySQL();
         });
 
+        context.Services.AddRouting(options =>
+        {
+            options.LowercaseUrls = true;
+            options.LowercaseQueryStrings = true;
+        });
+
         var configuration = context.Services.GetConfiguration();
         ConfigureCache(context);
         ConfigureSwaggerServices(context);
