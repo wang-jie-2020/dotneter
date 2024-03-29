@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using AESC.Sample.Entities;
 using AESC.Sample.Permissions;
 using AESC.Utils.AbpExtensions;
+using Lion.AbpPro.DataDictionaryManagement.DataDictionaries;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.Identity;
 
@@ -20,6 +21,9 @@ namespace AESC.Sample.Controllers
         private readonly IRepository<Book> _repository;
 
         protected DbContext Context => _repository.GetDbContext();
+
+        protected IDataDictionaryManager dictionaryManager =>
+            LazyServiceProvider.LazyGetRequiredService<IDataDictionaryManager>();
 
         public BookController(IRepository<Book> repository)
         {
@@ -57,7 +61,14 @@ namespace AESC.Sample.Controllers
                             User = userJoined
                         };
 
-            return await query.PageBy(0, 10).ToListAsync();
+            var list = await query.PageBy(0, 10).ToListAsync();
+            var data = await dictionaryManager.FindByCodeAsync("Enabled");
+
+            return new
+            {
+                list,
+                data
+            };
         }
     }
 }
