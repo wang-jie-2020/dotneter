@@ -44,20 +44,20 @@ namespace AESC.Sample.Controllers
             return await _repository.GetListAsync();
         }
 
-        //[HttpGet("page")]
-        //public async Task<object> Page()
-        //{
-        //    var query = from book in Context.Set<Book>()
-        //                join user in Context.Set<IdentityUser>()
-        //                    on book.UserId equals user.Id into g
-        //                from userJoined in g.DefaultIfEmpty()
-        //                select new
-        //                {
-        //                    Book = book,
-        //                    User = userJoined
-        //                };
+        [HttpGet("page")]
+        public async Task<object> Page()
+        {
+            var query = from book in Context.Set<Book>()
+                        join user in Context.Set<AppUser>()
+                            on book.UserId equals user.Id into g
+                        from userJoined in g.DefaultIfEmpty()
+                        select new
+                        {
+                            Book = book,
+                            User = userJoined
+                        };
 
-        //    return await query.PageBy(0, 10).ToListAsync();
-        //}
+            return await query.PageBy(0, 10).ToListAsync();
+        }
     }
 }

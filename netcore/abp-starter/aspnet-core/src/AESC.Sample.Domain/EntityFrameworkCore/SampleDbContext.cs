@@ -8,6 +8,8 @@ namespace AESC.Sample.EntityFrameworkCore
     {
         public DbSet<Book> Books { get; set; }
 
+        public DbSet<AppUser> Users { get; set; }
+
         public SampleDbContext(DbContextOptions<SampleDbContext> options)
             : base(options)
         {

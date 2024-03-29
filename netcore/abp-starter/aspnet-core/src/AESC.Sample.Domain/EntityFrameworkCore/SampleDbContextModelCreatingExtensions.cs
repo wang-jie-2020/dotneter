@@ -1,3 +1,5 @@
+using Volo.Abp.Users.EntityFrameworkCore;
+
 namespace AESC.Sample.EntityFrameworkCore
 {
     public static class SampleDbContextModelCreatingExtensions
@@ -6,7 +8,14 @@ namespace AESC.Sample.EntityFrameworkCore
         {
             Check.NotNull(builder, nameof(builder));
 
-            //builder.ApplyConfigurationsFromAssembly(typeof(SampleDbContext).Assembly);
+            builder.Entity<AppUser>(b =>
+            {
+                b.ToTable("AbpUsers");
+                b.ConfigureByConvention();
+                b.ConfigureAbpUser();
+            });
+
+            builder.ApplyConfigurationsFromAssembly(typeof(SampleDbContext).Assembly);
         }
     }
 }
