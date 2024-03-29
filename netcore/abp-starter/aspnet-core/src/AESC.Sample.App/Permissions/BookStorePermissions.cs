@@ -15,14 +15,14 @@ namespace AESC.Sample.Permissions
 
         public const string Default = "BookStore";
 
-        public static class Book
+        public static class BookPermissions
         {
             public const string Default = $"{BookStorePermissions.Default}.Book";
             public const string Create = $"{Default}.Create";
             public const string Update = $"{Default}.Update";
         }
 
-        public static class Author
+        public static class AuthorPermissions
         {
             public const string Default = $"{BookStorePermissions.Default}.Author";
             public const string Create = $"{Default}.Create";

@@ -33,7 +33,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\AESC.Utils.AbpExtensions\AESC.Utils.AbpExtensions.csproj" />
-	  <ProjectReference Include="..\AESC.Utils.Common\AESC.Utils.Common.csproj" />
+	  <ProjectReference Include="..\AESC.Starter.Domain\AESC.Starter.Domain.csproj" />
 	</ItemGroup>
 </Project>

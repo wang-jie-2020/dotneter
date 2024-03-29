@@ -6,7 +6,7 @@ namespace AESC.Sample.EntityFrameworkCore
         {
             Check.NotNull(builder, nameof(builder));
 
-            builder.ApplyConfigurationsFromAssembly(typeof(SampleDbContext).Assembly);
+            //builder.ApplyConfigurationsFromAssembly(typeof(SampleDbContext).Assembly);
         }
     }
 }

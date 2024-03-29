@@ -13,31 +13,32 @@ namespace AESC.Utils.AbpExtensions.EntityFrameworkCore
 {
     public static class EntityFrameworkCoreRepositoriesUtils
     {
-        /// <summary>
-        ///  register fluent-api repository
-        /// </summary>
-        /// <typeparam name="TDbContext"></typeparam>
-        /// <param name="options"></param>
-        public static void AddConfiguredTypeRepository<TDbContext>(IAbpCommonDbContextRegistrationOptionsBuilder options)
-            where TDbContext : AbpDbContext<TDbContext>
-        {
-            var dbContextType = typeof(TDbContext);
+        ///// <summary>
+        /////  register fluent-api repository
+        /////     不能替换Abp中基于DbSet的仓储注册过程，因为AbpContext其他基于DbSet
+        ///// </summary>
+        ///// <typeparam name="TDbContext"></typeparam>
+        ///// <param name="options"></param>
+        //public static void AddConfiguredTypeRepository<TDbContext>(IAbpCommonDbContextRegistrationOptionsBuilder options)
+        //    where TDbContext : AbpDbContext<TDbContext>
+        //{
+        //    var dbContextType = typeof(TDbContext);
 
-            var configuredGenericTypes = dbContextType.Assembly.GetTypes().Where(type =>
-                !type.IsInterface &&
-                !type.IsAbstract &&
-                !type.IsGenericType
-                && ReflectionHelper.IsAssignableToGenericType(type, typeof(IEntityTypeConfiguration<>)));
+        //    var configuredGenericTypes = dbContextType.Assembly.GetTypes().Where(type =>
+        //        !type.IsInterface &&
+        //        !type.IsAbstract &&
+        //        !type.IsGenericType
+        //        && ReflectionHelper.IsAssignableToGenericType(type, typeof(IEntityTypeConfiguration<>)));
 
-            foreach (var configuredGenericType in configuredGenericTypes)
-            {
-                var type = configuredGenericType.GetInterfaces()[0].GenericTypeArguments[0];
+        //    foreach (var configuredGenericType in configuredGenericTypes)
+        //    {
+        //        var type = configuredGenericType.GetInterfaces()[0].GenericTypeArguments[0];
 
-                if (type.IsAssignableTo(typeof(IEntity)))
-                {
-                    options.AddDefaultRepository(type);
-                }
-            }
-        }
+        //        if (type.IsAssignableTo(typeof(IEntity)))
+        //        {
+        //            options.AddDefaultRepository(type);
+        //        }
+        //    }
+        //}
     }
 }

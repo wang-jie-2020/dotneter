@@ -44,4 +44,8 @@
 		<Content Remove="$(UserProfile)\.nuget\packages\*\*\contentFiles\any\*\*.abppkg*.json" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\AESC.Utils.AbpExtensions\AESC.Utils.AbpExtensions.csproj" />
+	</ItemGroup>
+
 </Project>

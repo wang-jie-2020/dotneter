@@ -10,7 +10,6 @@ namespace AESC.Sample.Permissions
         {
             var group = context.AddGroup(SamplePermissions.GroupName, L(Ps(SamplePermissions.GroupName)));
 
-
             //标准格式
             var order = group.AddPermission(SamplePermissions.Order.Default, L(Ps(SamplePermissions.Order.Default)));
             order.AddChild(SamplePermissions.Order.Create, L(CREATE));
@@ -46,8 +45,8 @@ namespace AESC.Sample.Permissions
 
                 }
 
-                var finder = bookStore.Children.FirstOrDefault(o => o.Name == BookStorePermissions.Book.Default);
-                finder?.AddChild($"{BookStorePermissions.Book.Default}.Stop", L(Ps("Stop")));
+                var finder = bookStore.Children.FirstOrDefault(o => o.Name == BookStorePermissions.BookPermissions.Default);
+                finder?.AddChild($"{BookStorePermissions.BookPermissions.Default}.Stop", L(Ps("Stop")));
             }
         }
 

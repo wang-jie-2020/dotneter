@@ -33,7 +33,7 @@ namespace AESC.Sample
 
             context.Services.AddAbpDbContext<SampleDbContext>(options =>
             {
-                EntityFrameworkCoreRepositoriesUtils.AddConfiguredTypeRepository<SampleDbContext>(options);
+                options.AddDefaultRepositories();
             });
 
             Configure<AbpVirtualFileSystemOptions>(options =>
