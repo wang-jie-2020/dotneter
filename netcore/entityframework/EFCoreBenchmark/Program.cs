@@ -11,8 +11,8 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        //BenchmarkRunner.Run<NavigatorBenchmark>();
-        BenchmarkRunner.Run<PerformanceBenchmark>();
+        BenchmarkRunner.Run<NavigatorBenchmark>();
+        //BenchmarkRunner.Run<PerformanceBenchmark>();
         Console.ReadLine();
     }
 

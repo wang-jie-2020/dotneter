@@ -8,7 +8,7 @@ using Microsoft.Extensions.Options;
 
 namespace EFCoreBenchmark
 {
-    [SimpleJob(RuntimeMoniker.Net80, warmupCount: 5, iterationCount: 1)]
+    [SimpleJob(RuntimeMoniker.Net80, warmupCount: 5, iterationCount: 5)]
     public class NavigatorBenchmark
     {
         public NavigatorBenchmark()
