@@ -8,13 +8,6 @@ namespace AESC.Sample.EntityFrameworkCore
         {
             Check.NotNull(builder, nameof(builder));
 
-            builder.Entity<AppUser>(b =>
-            {
-                b.ToTable("AbpUsers");
-                b.ConfigureByConvention();
-                b.ConfigureAbpUser();
-            });
-
             builder.ApplyConfigurationsFromAssembly(typeof(SampleDbContext).Assembly);
         }
     }

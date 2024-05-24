@@ -1,8 +1,10 @@
-﻿using Volo.Abp.Auditing;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using Volo.Abp.Auditing;
 using Volo.Abp.Users;
 
 namespace AESC.Sample
 {
+    [Table("AbpUsers")]
     public class AppUser : FullAuditedAggregateRoot<Guid>, IUser
     {
         public virtual Guid? TenantId { get; }
