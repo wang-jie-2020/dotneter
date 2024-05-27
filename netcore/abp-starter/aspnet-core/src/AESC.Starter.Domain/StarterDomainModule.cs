@@ -1,5 +1,6 @@
 ﻿using AESC.Starter.EntityFrameworkCore;
 using AESC.Starter.Localization;
+using AESC.Utils.AbpExtensions.EntityFrameworkCore;
 using Lion.AbpPro.BasicManagement;
 using Lion.AbpPro.BasicManagement.EntityFrameworkCore;
 using Lion.AbpPro.BasicManagement.Localization;
@@ -43,7 +44,6 @@ namespace AESC.Starter
     {
         public override void PreConfigureServices(ServiceConfigurationContext context)
         {
-
         }
 
         public override void ConfigureServices(ServiceConfigurationContext context)
@@ -54,7 +54,13 @@ namespace AESC.Starter
                 options.AddMaps<StarterDomainModule>();
             });
 
-            context.Services.AddAbpDbContext<StarterDbContext>(options =>
+            // 如此注册时IRepository<Entity>中的DbContext不会指向StarterDbContext(TryAdd方法不会覆盖已有类型注册)
+            // context.Services.AddAbpDbContext<StarterDbContext>(options =>
+            // {
+            //     options.AddDefaultRepositories(includeAllEntities: true);
+            // });
+
+            context.Services.AddAbpDbContextHybrid<StarterDbContext>(options =>
             {
                 options.AddDefaultRepositories(includeAllEntities: true);
             });
