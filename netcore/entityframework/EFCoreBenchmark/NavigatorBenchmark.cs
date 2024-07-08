@@ -277,6 +277,17 @@ namespace EFCoreBenchmark
         }
 
         [Benchmark]
+        public void LeftOuterJoinOrderBy()
+        {
+            var blogs = context.Blogs
+                .Include(blog => blog.Posts)
+                .ThenInclude(post => post.Tags)
+                .ThenInclude(tags => tags.Tag)
+                .OrderBy(a => a.BlogId)
+                .ToList();
+        }
+
+        [Benchmark]
         public void LeftOuterJoinWithLinQ()
         {
             var query = from blog in context.Blogs
