@@ -44,7 +44,7 @@ namespace AESC.Shared.EntityFrameworkCore
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            builder.ConfigureStarter();
+            builder.ConfigureShared();
         }
     }
 }

@@ -16,7 +16,7 @@ namespace AESC.Starter.Host.EntityFrameworkCore
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.ConfigureStarter();
+            modelBuilder.ConfigureShared();
         }
     }
 }
