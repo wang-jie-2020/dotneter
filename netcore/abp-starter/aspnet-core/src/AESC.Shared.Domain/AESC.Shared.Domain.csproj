@@ -45,7 +45,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\AESC.Utils.AbpExtensions\AESC.Utils.AbpExtensions.csproj" />
+		<ProjectReference Include="..\AESC.Utils.AbpExtensions\AESC.Utils.AbpExtensions.csproj" />
 	</ItemGroup>
 
 </Project>

@@ -54,12 +54,6 @@ namespace AESC.Starter
                 options.AddMaps<StarterDomainModule>();
             });
 
-            // 如此注册时IRepository<Entity>中的DbContext不会指向StarterDbContext(TryAdd方法不会覆盖已有类型注册)
-            // context.Services.AddAbpDbContext<StarterDbContext>(options =>
-            // {
-            //     options.AddDefaultRepositories(includeAllEntities: true);
-            // });
-
             context.Services.AddAbpDbContextHybrid<StarterDbContext>(options =>
             {
                 options.AddDefaultRepositories(includeAllEntities: true);

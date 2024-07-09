@@ -40,6 +40,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\AESC.Starter.Domain\AESC.Starter.Domain.csproj" />
+	  <ProjectReference Include="..\AESC.Shared.Domain\AESC.Shared.Domain.csproj" />
 	</ItemGroup>
 </Project>
