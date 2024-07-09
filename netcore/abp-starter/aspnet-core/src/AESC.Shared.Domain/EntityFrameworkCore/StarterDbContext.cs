@@ -1,3 +1,4 @@
+using AESC.Starter.Entities;
 using Lion.AbpPro.BasicManagement.EntityFrameworkCore;
 using Lion.AbpPro.DataDictionaryManagement.DataDictionaries.Aggregates;
 using Lion.AbpPro.DataDictionaryManagement.EntityFrameworkCore;
@@ -37,6 +38,7 @@ namespace AESC.Starter.EntityFrameworkCore
         public DbSet<DataDictionary> DataDictionaries { get; set; }
         public DbSet<Language> Languages { get; set; }
         public DbSet<LanguageText> LanguageTexts { get; set; }
+        public DbSet<Book> Books { get; set; }
 
         public StarterDbContext(DbContextOptions<StarterDbContext> options)
             : base(options)

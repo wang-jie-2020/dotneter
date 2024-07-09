@@ -5,8 +5,8 @@ using System.Linq;
 using System.Linq.Dynamic.Core;
 using System.Text;
 using System.Threading.Tasks;
-using AESC.Sample.Entities;
 using AESC.Sample.Permissions;
+using AESC.Starter.Entities;
 using AESC.Utils.AbpExtensions;
 using Lion.AbpPro.DataDictionaryManagement.DataDictionaries;
 using Volo.Abp.Domain.Repositories;
@@ -52,7 +52,7 @@ namespace AESC.Sample.Controllers
         public async Task<object> Page()
         {
             var query = from book in Context.Set<Book>()
-                        join user in Context.Set<AppUser>()
+                        join user in Context.Set<IdentityUser>()
                             on book.UserId equals user.Id into g
                         from userJoined in g.DefaultIfEmpty()
                         select new

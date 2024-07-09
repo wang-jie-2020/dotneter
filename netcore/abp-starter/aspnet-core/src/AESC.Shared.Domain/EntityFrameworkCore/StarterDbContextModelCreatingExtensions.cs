@@ -15,6 +15,7 @@ namespace AESC.Starter.EntityFrameworkCore
             builder.ConfigureNotificationManagement();
             builder.ConfigureDataDictionaryManagement();
             builder.ConfigureLanguageManagement();
+            builder.ApplyConfigurationsFromAssembly(typeof(StarterDbContext).Assembly);
         }
     }
 }

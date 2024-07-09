@@ -28,6 +28,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\AESC.Sample.Domain\AESC.Sample.Domain.csproj" />
+	  <ProjectReference Include="..\AESC.Shared.Domain\AESC.Shared.Domain.csproj" />
 	</ItemGroup>
 </Project>

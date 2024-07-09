@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AESC.Sample.Entities
+namespace AESC.Starter.Entities
 {
     public class Book : FullAuditedAggregateRoot<long>
     {

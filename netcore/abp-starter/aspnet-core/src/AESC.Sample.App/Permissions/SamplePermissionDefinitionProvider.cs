@@ -1,4 +1,4 @@
-using AESC.Sample.Localization;
+using AESC.Starter.Localization;
 using System;
 using System.Text.RegularExpressions;
 
@@ -52,7 +52,7 @@ namespace AESC.Sample.Permissions
 
         private static LocalizableString L(string name)
         {
-            return LocalizableString.Create<SampleLocalizationResource>(name);
+            return LocalizableString.Create<StarterResource>(name);
         }
 
         private static string Ps(string name)
