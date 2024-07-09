@@ -9,7 +9,7 @@ using Volo.Abp.FeatureManagement;
 namespace AESC.Shared.EntityFrameworkCore
 {
     [ConnectionStringName("Default")]
-    public class StarterDbContext : AbpDbContext<StarterDbContext>
+    public class SharedDbContext : AbpDbContext<SharedDbContext>
     {
         public DbSet<IdentityUser> Users { get; set; }
         public DbSet<IdentityRole> Roles { get; set; }
@@ -36,7 +36,7 @@ namespace AESC.Shared.EntityFrameworkCore
         public DbSet<LanguageText> LanguageTexts { get; set; }
         public DbSet<Book> Books { get; set; }
 
-        public StarterDbContext(DbContextOptions<StarterDbContext> options)
+        public SharedDbContext(DbContextOptions<SharedDbContext> options)
             : base(options)
         {
         }

@@ -5,7 +5,7 @@ using Lion.AbpPro.NotificationManagement.EntityFrameworkCore;
 
 namespace AESC.Shared.EntityFrameworkCore
 {
-    public static class StarterDbContextModelCreatingExtensions
+    public static class SharedDbContextModelCreatingExtensions
     {
         public static void ConfigureStarter(this ModelBuilder builder)
         {
@@ -15,7 +15,7 @@ namespace AESC.Shared.EntityFrameworkCore
             builder.ConfigureNotificationManagement();
             builder.ConfigureDataDictionaryManagement();
             builder.ConfigureLanguageManagement();
-            builder.ApplyConfigurationsFromAssembly(typeof(StarterDbContext).Assembly);
+            builder.ApplyConfigurationsFromAssembly(typeof(SharedDbContext).Assembly);
         }
     }
 }

@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
-		<RootNameSpace>AESC.Starter</RootNameSpace>
+		<RootNameSpace>AESC.Shared</RootNameSpace>
 	</PropertyGroup>
 
 	<ItemGroup>

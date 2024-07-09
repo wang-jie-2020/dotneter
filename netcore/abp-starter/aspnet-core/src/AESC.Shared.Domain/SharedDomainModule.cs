@@ -54,7 +54,7 @@ namespace AESC.Shared
                 options.AddMaps<SharedDomainModule>();
             });
 
-            context.Services.AddAbpDbContextHybrid<StarterDbContext>(options =>
+            context.Services.AddAbpDbContextHybrid<SharedDbContext>(options =>
             {
                 options.AddDefaultRepositories(includeAllEntities: true);
             });

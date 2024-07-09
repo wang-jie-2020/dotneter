@@ -1,10 +1,10 @@
 using AESC.Shared.Localization;
 
-namespace AESC.Starter
+namespace AESC.Shared
 {
-    public abstract class StarterAppService : ApplicationService
+    public abstract class SharedController : AbpController
     {
-        protected StarterAppService()
+        protected SharedController()
         {
             LocalizationResource = typeof(SharedLocalizationResource);
         }

@@ -1,15 +1,9 @@
-﻿using AESC.Shared;
-using Lion.AbpPro.BasicManagement;
-using Lion.AbpPro.BasicManagement.Localization;
+﻿using Lion.AbpPro.BasicManagement;
 using Lion.AbpPro.DataDictionaryManagement;
-using Lion.AbpPro.DataDictionaryManagement.Localization;
 using Lion.AbpPro.LanguageManagement;
-using Lion.AbpPro.LanguageManagement.Localization;
 using Lion.AbpPro.NotificationManagement;
-using Lion.AbpPro.NotificationManagement.Localization;
-using Localization.Resources.AbpUi;
 
-namespace AESC.Starter
+namespace AESC.Shared
 {
     [DependsOn(
         typeof(AbpAspNetCoreMvcModule),
@@ -35,22 +29,22 @@ namespace AESC.Starter
         typeof(AbpProCoreModule),
         typeof(SharedDomainModule)
     )]
-    public class StarterAppModule : AbpModule
+    public class SharedAppModule : AbpModule
     {
         public override void PreConfigureServices(ServiceConfigurationContext context)
         {
             PreConfigure<IMvcBuilder>(mvcBuilder =>
             {
-                mvcBuilder.AddApplicationPartIfNotExists(typeof(StarterAppModule).Assembly);
+                mvcBuilder.AddApplicationPartIfNotExists(typeof(SharedAppModule).Assembly);
             });
         }
 
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
-            context.Services.AddAutoMapperObjectMapper<StarterAppModule>();
+            context.Services.AddAutoMapperObjectMapper<SharedAppModule>();
             Configure<AbpAutoMapperOptions>(options =>
             {
-                options.AddMaps<StarterAppModule>();
+                options.AddMaps<SharedAppModule>();
             });
         }
     }
