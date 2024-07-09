@@ -7,7 +7,7 @@ namespace AESC.Shared.EntityFrameworkCore
 {
     public static class SharedDbContextModelCreatingExtensions
     {
-        public static void ConfigureStarter(this ModelBuilder builder)
+        public static void ConfigureShared(this ModelBuilder builder)
         {
             Check.NotNull(builder, nameof(builder));
 
