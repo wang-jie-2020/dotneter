@@ -1,5 +1,4 @@
-using AESC.Sample.EntityFrameworkCore;
-using AESC.Starter.EntityFrameworkCore;
+using AESC.Shared.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore;
 
@@ -18,7 +17,6 @@ namespace AESC.Starter.Host.EntityFrameworkCore
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.ConfigureStarter();
-            modelBuilder.ConfigureSample();
         }
     }
 }

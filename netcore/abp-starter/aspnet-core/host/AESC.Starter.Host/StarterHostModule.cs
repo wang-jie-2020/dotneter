@@ -1,4 +1,5 @@
 using AESC.Sample;
+using AESC.Shared;
 using Volo.Abp.Data;
 using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.Threading;
@@ -13,7 +14,7 @@ namespace AESC.Starter.Host;
     typeof(AbpAspNetCoreSerilogModule),
     typeof(AbpCachingStackExchangeRedisModule),
     typeof(AbpProSharedHostingMicroserviceModule),
-    typeof(StarterAppModule),
+    typeof(SharedAppModule),
     typeof(SampleAppModule)
 )]
 public class StarterHostModule : AbpModule
