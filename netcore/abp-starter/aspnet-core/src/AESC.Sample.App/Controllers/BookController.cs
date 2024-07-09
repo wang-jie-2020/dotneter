@@ -6,6 +6,7 @@ using System.Linq.Dynamic.Core;
 using System.Text;
 using System.Threading.Tasks;
 using AESC.Sample.Permissions;
+using AESC.Shared;
 using AESC.Shared.Entities;
 using AESC.Utils.AbpExtensions;
 using Lion.AbpPro.DataDictionaryManagement.DataDictionaries;
@@ -16,7 +17,7 @@ namespace AESC.Sample.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class BookController : SampleController
+    public class BookController : SharedController
     {
         private readonly IRepository<Book> _repository;
 

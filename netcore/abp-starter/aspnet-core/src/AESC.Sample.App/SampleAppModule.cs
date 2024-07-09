@@ -4,15 +4,6 @@ using Localization.Resources.AbpUi;
 namespace AESC.Sample
 {
     [DependsOn(
-        typeof(AbpAspNetCoreMvcModule),
-        typeof(AbpAuthorizationModule),
-        typeof(AbpAutoMapperModule),
-        typeof(AbpCachingModule),
-        typeof(AbpDddApplicationModule),
-        typeof(AbpDddDomainModule),
-        typeof(AbpEntityFrameworkCoreModule),
-        typeof(AbpValidationModule),
-        typeof(AbpProCoreModule),
         typeof(SharedDomainModule)
     )]
     public class SampleAppModule : AbpModule

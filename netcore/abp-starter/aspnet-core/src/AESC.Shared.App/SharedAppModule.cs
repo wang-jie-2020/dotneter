@@ -6,14 +6,6 @@ using Lion.AbpPro.NotificationManagement;
 namespace AESC.Shared
 {
     [DependsOn(
-        typeof(AbpAspNetCoreMvcModule),
-        typeof(AbpAuthorizationModule),
-        typeof(AbpAutoMapperModule),
-        typeof(AbpCachingModule),
-        typeof(AbpDddApplicationModule),
-        typeof(AbpDddDomainModule),
-        typeof(AbpEntityFrameworkCoreModule),
-        typeof(AbpValidationModule),
         typeof(BasicManagementApplicationModule),
         typeof(BasicManagementApplicationContractsModule),
         typeof(BasicManagementHttpApiModule),
@@ -26,7 +18,6 @@ namespace AESC.Shared
         typeof(LanguageManagementApplicationContractsModule),
         typeof(LanguageManagementApplicationModule),
         typeof(LanguageManagementHttpApiModule),
-        typeof(AbpProCoreModule),
         typeof(SharedDomainModule)
     )]
     public class SharedAppModule : AbpModule
