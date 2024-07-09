@@ -1,4 +1,4 @@
-using AESC.Starter.Localization;
+using AESC.Shared.Localization;
 
 namespace AESC.Sample
 {
@@ -6,7 +6,7 @@ namespace AESC.Sample
     {
         protected SampleAppService()
         {
-            LocalizationResource = typeof(StarterResource);
+            LocalizationResource = typeof(SharedLocalizationResource);
             ObjectMapperContext = typeof(SampleAppModule);
         }
     }

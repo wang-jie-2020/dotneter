@@ -1,4 +1,4 @@
-using AESC.Starter.Localization;
+using AESC.Shared.Localization;
 
 namespace AESC.Starter
 {
@@ -6,7 +6,7 @@ namespace AESC.Starter
     {
         protected StarterAppService()
         {
-            LocalizationResource = typeof(StarterResource);
+            LocalizationResource = typeof(SharedLocalizationResource);
         }
     }
 }

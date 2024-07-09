@@ -1,6 +1,6 @@
-using AESC.Starter.Localization;
 using System;
 using System.Text.RegularExpressions;
+using AESC.Shared.Localization;
 
 namespace AESC.Sample.Permissions
 {
@@ -52,7 +52,7 @@ namespace AESC.Sample.Permissions
 
         private static LocalizableString L(string name)
         {
-            return LocalizableString.Create<StarterResource>(name);
+            return LocalizableString.Create<SharedLocalizationResource>(name);
         }
 
         private static string Ps(string name)

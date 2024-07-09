@@ -1,5 +1,5 @@
-﻿using AESC.Starter.EntityFrameworkCore;
-using AESC.Starter.Localization;
+﻿using AESC.Shared.EntityFrameworkCore;
+using AESC.Shared.Localization;
 using AESC.Utils.AbpExtensions.EntityFrameworkCore;
 using Lion.AbpPro.BasicManagement;
 using Lion.AbpPro.BasicManagement.EntityFrameworkCore;
@@ -15,7 +15,7 @@ using Lion.AbpPro.NotificationManagement.EntityFrameworkCore;
 using Lion.AbpPro.NotificationManagement.Localization;
 using Localization.Resources.AbpUi;
 
-namespace AESC.Starter
+namespace AESC.Shared
 {
     [DependsOn(
         typeof(AbpAspNetCoreMvcModule),
@@ -40,7 +40,7 @@ namespace AESC.Starter
         typeof(LanguageManagementEntityFrameworkCoreModule),
         typeof(AbpProCoreModule)
     )]
-    public class StarterDomainModule : AbpModule
+    public class SharedDomainModule : AbpModule
     {
         public override void PreConfigureServices(ServiceConfigurationContext context)
         {
@@ -48,10 +48,10 @@ namespace AESC.Starter
 
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
-            context.Services.AddAutoMapperObjectMapper<StarterDomainModule>();
+            context.Services.AddAutoMapperObjectMapper<SharedDomainModule>();
             Configure<AbpAutoMapperOptions>(options =>
             {
-                options.AddMaps<StarterDomainModule>();
+                options.AddMaps<SharedDomainModule>();
             });
 
             context.Services.AddAbpDbContextHybrid<StarterDbContext>(options =>
@@ -61,13 +61,13 @@ namespace AESC.Starter
 
             Configure<AbpVirtualFileSystemOptions>(options =>
             {
-                options.FileSets.AddEmbedded<StarterDomainModule>(StarterConsts.NameSpace);
+                options.FileSets.AddEmbedded<SharedDomainModule>(SharedConsts.NameSpace);
             });
 
             Configure<AbpLocalizationOptions>(options =>
             {
                 options.Resources
-                    .Add<StarterResource>(StarterConsts.DefaultCultureName)
+                    .Add<SharedLocalizationResource>(SharedConsts.DefaultCultureName)
                     .AddVirtualJson("/Localization/Starter")
                     .AddBaseTypes(typeof(BasicManagementResource))
                     .AddBaseTypes(typeof(NotificationManagementResource))
@@ -76,12 +76,12 @@ namespace AESC.Starter
                     .AddBaseTypes(typeof(AbpUiResource))
                     .AddBaseTypes(typeof(AbpTimingResource));
 
-                options.DefaultResourceType = typeof(StarterResource);
+                options.DefaultResourceType = typeof(SharedLocalizationResource);
             });
 
             Configure<AbpExceptionLocalizationOptions>(options =>
             {
-                options.MapCodeNamespace(StarterConsts.NameSpace, typeof(StarterResource));
+                options.MapCodeNamespace(SharedConsts.NameSpace, typeof(SharedLocalizationResource));
             });
         }
     }

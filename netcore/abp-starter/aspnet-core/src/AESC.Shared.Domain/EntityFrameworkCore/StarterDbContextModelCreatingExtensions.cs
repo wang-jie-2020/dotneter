@@ -3,7 +3,7 @@ using Lion.AbpPro.DataDictionaryManagement.EntityFrameworkCore;
 using Lion.AbpPro.LanguageManagement.EntityFrameworkCore;
 using Lion.AbpPro.NotificationManagement.EntityFrameworkCore;
 
-namespace AESC.Starter.EntityFrameworkCore
+namespace AESC.Shared.EntityFrameworkCore
 {
     public static class StarterDbContextModelCreatingExtensions
     {

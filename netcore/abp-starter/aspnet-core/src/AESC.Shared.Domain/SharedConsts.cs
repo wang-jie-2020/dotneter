@@ -1,9 +1,9 @@
-namespace AESC.Starter
+namespace AESC.Shared
 {
-    public static class StarterConsts
+    public static class SharedConsts
     {
         /// <summary>Ãû³Æ¿Õ¼ä</summary>
-        public const string NameSpace = "AESC.Starter";
+        public const string NameSpace = "AESC.Shared";
 
         /// <summary>Ä¬ÈÏÓïÑÔ</summary>
         public const string DefaultCultureName = "zh-Hans";

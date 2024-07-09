@@ -6,7 +6,7 @@ using System.Linq.Dynamic.Core;
 using System.Text;
 using System.Threading.Tasks;
 using AESC.Sample.Permissions;
-using AESC.Starter.Entities;
+using AESC.Shared.Entities;
 using AESC.Utils.AbpExtensions;
 using Lion.AbpPro.DataDictionaryManagement.DataDictionaries;
 using Volo.Abp.Domain.Repositories;

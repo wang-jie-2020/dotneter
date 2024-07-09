@@ -1,4 +1,4 @@
-using AESC.Starter.Localization;
+using AESC.Shared.Localization;
 
 namespace AESC.Starter.Permissions
 {
@@ -11,7 +11,7 @@ namespace AESC.Starter.Permissions
 
         private static LocalizableString L(string name)
         {
-            return LocalizableString.Create<StarterResource>(name);
+            return LocalizableString.Create<SharedLocalizationResource>(name);
         }
     }
 }

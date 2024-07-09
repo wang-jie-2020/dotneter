@@ -1,16 +1,12 @@
-using AESC.Starter.Entities;
-using Lion.AbpPro.BasicManagement.EntityFrameworkCore;
+using AESC.Shared.Entities;
 using Lion.AbpPro.DataDictionaryManagement.DataDictionaries.Aggregates;
-using Lion.AbpPro.DataDictionaryManagement.EntityFrameworkCore;
-using Lion.AbpPro.LanguageManagement.EntityFrameworkCore;
 using Lion.AbpPro.LanguageManagement.Languages.Aggregates;
 using Lion.AbpPro.LanguageManagement.LanguageTexts.Aggregates;
-using Lion.AbpPro.NotificationManagement.EntityFrameworkCore;
 using Lion.AbpPro.NotificationManagement.Notifications.Aggregates;
 using Volo.Abp.BackgroundJobs;
 using Volo.Abp.FeatureManagement;
 
-namespace AESC.Starter.EntityFrameworkCore
+namespace AESC.Shared.EntityFrameworkCore
 {
     [ConnectionStringName("Default")]
     public class StarterDbContext : AbpDbContext<StarterDbContext>

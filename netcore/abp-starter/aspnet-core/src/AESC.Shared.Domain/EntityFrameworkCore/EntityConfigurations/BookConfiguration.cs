@@ -1,13 +1,7 @@
-﻿using Autofac.Features.OwnedInstances;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AESC.Starter.Entities;
+﻿using AESC.Shared.Entities;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace AESC.Starter.EntityFrameworkCore.EntityConfigurations
+namespace AESC.Shared.EntityFrameworkCore.EntityConfigurations
 {
     internal class BookConfiguration : IEntityTypeConfiguration<Book>
     {

@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
-		<RootNameSpace>AESC.Starter</RootNameSpace>
+		<RootNameSpace>AESC.Shared</RootNameSpace>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -36,8 +36,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<EmbeddedResource Include="Localization\Starter\*.json" />
-		<None Remove="Localization\Starter\*.json" />
+		<EmbeddedResource Include="Localization\Shared\*.json" />
+		<None Remove="Localization\Shared\*.json" />
 	</ItemGroup>
 
 	<ItemGroup>

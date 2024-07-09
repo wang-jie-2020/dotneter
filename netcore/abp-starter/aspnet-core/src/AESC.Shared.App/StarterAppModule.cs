@@ -1,5 +1,4 @@
-﻿using AESC.Starter.EntityFrameworkCore;
-using AESC.Starter.Localization;
+﻿using AESC.Shared;
 using Lion.AbpPro.BasicManagement;
 using Lion.AbpPro.BasicManagement.Localization;
 using Lion.AbpPro.DataDictionaryManagement;
@@ -34,7 +33,7 @@ namespace AESC.Starter
         typeof(LanguageManagementApplicationModule),
         typeof(LanguageManagementHttpApiModule),
         typeof(AbpProCoreModule),
-        typeof(StarterDomainModule)
+        typeof(SharedDomainModule)
     )]
     public class StarterAppModule : AbpModule
     {

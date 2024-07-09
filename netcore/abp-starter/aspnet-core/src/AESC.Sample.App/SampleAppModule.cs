@@ -1,4 +1,4 @@
-﻿using AESC.Starter;
+﻿using AESC.Shared;
 using Localization.Resources.AbpUi;
 
 namespace AESC.Sample
@@ -13,7 +13,7 @@ namespace AESC.Sample
         typeof(AbpEntityFrameworkCoreModule),
         typeof(AbpValidationModule),
         typeof(AbpProCoreModule),
-        typeof(StarterDomainModule)
+        typeof(SharedDomainModule)
     )]
     public class SampleAppModule : AbpModule
     {
