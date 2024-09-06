@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+    <Import Project="..\..\common.props" />
+
+    <ItemGroup>
+        <PackageReference Include="AlibabaCloud.SDK.Dysmsapi20170525" Version="2.0.24" />
+        <PackageReference Include="Lazy.Captcha.Core" Version="2.0.7" />
+        <PackageReference Include="IPTools.China" Version="1.6.0" />
+        <PackageReference Include="SkiaSharp.NativeAssets.Linux.NoDependencies" Version="2.88.7" />
+        <PackageReference Include="TencentCloudSDK" Version="3.0.966" />
+        <PackageReference Include="UAParser" Version="3.1.47" />
+    </ItemGroup>
+    
+    <ItemGroup>
+        <PackageReference Include="Volo.Abp.AspNetCore.SignalR" Version="$(AbpVersion)" />
+        <PackageReference Include="Volo.Abp.Auditing" Version="$(AbpVersion)" />
+        <PackageReference Include="Volo.Abp.BackgroundWorkers.Quartz" Version="$(AbpVersion)" />
+        <PackageReference Include="Volo.Abp.Caching" Version="$(AbpVersion)" />
+        <PackageReference Include="Volo.Abp.Ddd.Domain" Version="$(AbpVersion)" />
+        <PackageReference Include="Volo.Abp.Ddd.Domain.Shared" Version="$(AbpVersion)" />
+        <PackageReference Include="Volo.Abp.TenantManagement.Domain.Shared" Version="$(AbpVersion)" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\framework\Yi.Framework.AspNetCore.Authentication.OAuth\Yi.Framework.AspNetCore.Authentication.OAuth.csproj" />
+        <ProjectReference Include="..\..\framework\Yi.Framework.AspNetCore\Yi.Framework.AspNetCore.csproj" />
+        <ProjectReference Include="..\..\framework\Yi.Framework.Caching.FreeRedis\Yi.Framework.Caching.FreeRedis.csproj" />
+        <ProjectReference Include="..\..\framework\Yi.Framework.Ddd.Application\Yi.Framework.Ddd.Application.csproj" />
+        <ProjectReference Include="..\..\framework\Yi.Framework.Ddd.Application.Contracts\Yi.Framework.Ddd.Application.Contracts.csproj" />
+        <ProjectReference Include="..\..\framework\Yi.Framework.Mapster\Yi.Framework.Mapster.csproj" />
+        <ProjectReference Include="..\..\framework\Yi.Framework.SqlSugarCore\Yi.Framework.SqlSugarCore.csproj" />
+        <ProjectReference Include="..\..\framework\Yi.Framework.SqlSugarCore.Abstractions\Yi.Framework.SqlSugarCore.Abstractions.csproj" />
+    </ItemGroup>
+</Project>
