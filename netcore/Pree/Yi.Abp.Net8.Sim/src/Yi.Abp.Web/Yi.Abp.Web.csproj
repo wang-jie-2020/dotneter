@@ -4,94 +4,71 @@
 	  <DockerfileContext>..\..</DockerfileContext>
 	</PropertyGroup>
 	<Import Project="..\..\common.props" />
-
-
-
+  
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.3" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.6" />
     <PackageReference Include="Serilog.AspNetCore" Version="8.0.1" />
     <PackageReference Include="Serilog.Sinks.Async" Version="1.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Volo.Abp.AspNetCore.Authentication.JwtBearer" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.AspNetCore.MultiTenancy" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.AspNetCore.Mvc" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.AspNetCore.Serilog" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.Autofac" Version="$(AbpVersion)" />
+    <PackageReference Include="Volo.Abp.Ddd.Domain.Shared" Version="$(AbpVersion)" />
+    <PackageReference Include="Volo.Abp.Ddd.Domain" Version="$(AbpVersion)" />
+    <PackageReference Include="Volo.Abp.Caching" Version="$(AbpVersion)" />
+    <PackageReference Include="Volo.Abp.SettingManagement.Application.Contracts" Version="$(AbpVersion)" />
+    <PackageReference Include="Volo.Abp.SettingManagement.Domain.Shared" Version="$(AbpVersion)" />
   </ItemGroup>
-
+  
   <ItemGroup>
     <ProjectReference Include="..\..\framework\Yi.Framework.AspNetCore.Authentication.OAuth\Yi.Framework.AspNetCore.Authentication.OAuth.csproj" />
     <ProjectReference Include="..\..\framework\Yi.Framework.AspNetCore\Yi.Framework.AspNetCore.csproj" />
-    <ProjectReference Include="..\Yi.Abp.Application\Yi.Abp.Application.csproj" />
-    <ProjectReference Include="..\Yi.Abp.SqlSugarCore\Yi.Abp.SqlSugarCore.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Volo.Abp.Ddd.Domain.Shared" Version="$(AbpVersion)" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\module\audit-logging\Yi.Framework.AuditLogging.Domain.Shared\Yi.Framework.AuditLogging.Domain.Shared.csproj" />
-    <ProjectReference Include="..\..\module\bbs\Yi.Framework.Bbs.Domain.Shared\Yi.Framework.Bbs.Domain.Shared.csproj" />
-    <ProjectReference Include="..\..\module\chat-hub\Yi.Framework.ChatHub.Domain.Shared\Yi.Framework.ChatHub.Domain.Shared.csproj" />
-    <ProjectReference Include="..\..\module\rbac\Yi.Framework.Rbac.Domain.Shared\Yi.Framework.Rbac.Domain.Shared.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Volo.Abp.SettingManagement.Domain.Shared" Version="$(AbpVersion)" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Volo.Abp.Ddd.Domain" Version="$(AbpVersion)" />
-    <PackageReference Include="Volo.Abp.Caching" Version="$(AbpVersion)" />
-
-  </ItemGroup>
-
-  <ItemGroup>
+    <ProjectReference Include="..\..\framework\Yi.Framework.Ddd.Application\Yi.Framework.Ddd.Application.csproj" />
+    <ProjectReference Include="..\..\framework\Yi.Framework.Ddd.Application.Contracts\Yi.Framework.Ddd.Application.Contracts.csproj" />
     <ProjectReference Include="..\..\framework\Yi.Framework.Mapster\Yi.Framework.Mapster.csproj" />
     <ProjectReference Include="..\..\framework\Yi.Framework.SqlSugarCore.Abstractions\Yi.Framework.SqlSugarCore.Abstractions.csproj" />
-    <ProjectReference Include="..\..\module\audit-logging\Yi.Framework.AuditLogging.Domain\Yi.Framework.AuditLogging.Domain.csproj" />
-    <ProjectReference Include="..\..\module\bbs\Yi.Framework.Bbs.Domain\Yi.Framework.Bbs.Domain.csproj" />
-    <ProjectReference Include="..\..\module\chat-hub\Yi.Framework.ChatHub.Domain\Yi.Framework.ChatHub.Domain.csproj" />
-    <ProjectReference Include="..\..\module\rbac\Yi.Framework.Rbac.Domain\Yi.Framework.Rbac.Domain.csproj" />
-    <ProjectReference Include="..\..\module\setting-management\Yi.Framework.SettingManagement.Domain\Yi.Framework.SettingManagement.Domain.csproj" />
-    <ProjectReference Include="..\..\module\tenant-management\Yi.Framework.TenantManagement.Domain\Yi.Framework.TenantManagement.Domain.csproj" />
-    <ProjectReference Include="..\Yi.Abp.Domain.Shared\Yi.Abp.Domain.Shared.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\framework\Yi.Framework.Ddd.Application.Contracts\Yi.Framework.Ddd.Application.Contracts.csproj" />
-    <ProjectReference Include="..\..\module\bbs\Yi.Framework.Bbs.Application.Contracts\Yi.Framework.Bbs.Application.Contracts.csproj" />
-    <ProjectReference Include="..\..\module\chat-hub\Yi.Framework.ChatHub.Application.Contracts\Yi.Framework.ChatHub.Application.Contracts.csproj" />
-    <ProjectReference Include="..\..\module\rbac\Yi.Framework.Rbac.Application.Contracts\Yi.Framework.Rbac.Application.Contracts.csproj" />
-    <ProjectReference Include="..\..\module\tenant-management\Yi.Framework.TenantManagement.Application.Contracts\Yi.Framework.TenantManagement.Application.Contracts.csproj" />
-    <ProjectReference Include="..\Yi.Abp.Domain.Shared\Yi.Abp.Domain.Shared.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Volo.Abp.SettingManagement.Application.Contracts" Version="$(AbpVersion)" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\framework\Yi.Framework.Ddd.Application\Yi.Framework.Ddd.Application.csproj" />
-    <ProjectReference Include="..\..\module\bbs\Yi.Framework.Bbs.Application\Yi.Framework.Bbs.Application.csproj" />
-    <ProjectReference Include="..\..\module\chat-hub\Yi.Framework.ChatHub.Application\Yi.Framework.ChatHub.Application.csproj" />
-    <ProjectReference Include="..\..\module\code-gen\Yi.Framework.CodeGen.Application\Yi.Framework.CodeGen.Application.csproj" />
-    <ProjectReference Include="..\..\module\rbac\Yi.Framework.Rbac.Application\Yi.Framework.Rbac.Application.csproj" />
-    <ProjectReference Include="..\..\module\setting-management\Yi.Framework.SettingManagement.Application\Yi.Framework.SettingManagement.Application.csproj" />
-    <ProjectReference Include="..\..\module\tenant-management\Yi.Framework.TenantManagement.Application\Yi.Framework.TenantManagement.Application.csproj" />
+    
+    <ProjectReference Include="..\Yi.Abp.Application\Yi.Abp.Application.csproj" />
     <ProjectReference Include="..\Yi.Abp.Application.Contracts\Yi.Abp.Application.Contracts.csproj" />
     <ProjectReference Include="..\Yi.Abp.Domain\Yi.Abp.Domain.csproj" />
+    <ProjectReference Include="..\Yi.Abp.Domain.Shared\Yi.Abp.Domain.Shared.csproj" />
+    <ProjectReference Include="..\Yi.Abp.SqlSugarCore\Yi.Abp.SqlSugarCore.csproj" />
+
+    <ProjectReference Include="..\..\module\audit-logging\Yi.Framework.AuditLogging.Domain\Yi.Framework.AuditLogging.Domain.csproj" />
+    <ProjectReference Include="..\..\module\audit-logging\Yi.Framework.AuditLogging.Domain.Shared\Yi.Framework.AuditLogging.Domain.Shared.csproj" />
+
+    <ProjectReference Include="..\..\module\bbs\Yi.Framework.Bbs.Application\Yi.Framework.Bbs.Application.csproj" />
+    <ProjectReference Include="..\..\module\bbs\Yi.Framework.Bbs.Application.Contracts\Yi.Framework.Bbs.Application.Contracts.csproj" />
+    <ProjectReference Include="..\..\module\bbs\Yi.Framework.Bbs.Domain\Yi.Framework.Bbs.Domain.csproj" />
+    <ProjectReference Include="..\..\module\bbs\Yi.Framework.Bbs.Domain.Shared\Yi.Framework.Bbs.Domain.Shared.csproj" />
+
+    <ProjectReference Include="..\..\module\chat-hub\Yi.Framework.ChatHub.Application\Yi.Framework.ChatHub.Application.csproj" />
+    <ProjectReference Include="..\..\module\chat-hub\Yi.Framework.ChatHub.Application.Contracts\Yi.Framework.ChatHub.Application.Contracts.csproj" />
+    <ProjectReference Include="..\..\module\chat-hub\Yi.Framework.ChatHub.Domain\Yi.Framework.ChatHub.Domain.csproj" />
+    <ProjectReference Include="..\..\module\chat-hub\Yi.Framework.ChatHub.Domain.Shared\Yi.Framework.ChatHub.Domain.Shared.csproj" />
+
+    <ProjectReference Include="..\..\module\rbac\Yi.Framework.Rbac.Application\Yi.Framework.Rbac.Application.csproj" />
+    <ProjectReference Include="..\..\module\rbac\Yi.Framework.Rbac.Application.Contracts\Yi.Framework.Rbac.Application.Contracts.csproj" />
+    <ProjectReference Include="..\..\module\rbac\Yi.Framework.Rbac.Domain\Yi.Framework.Rbac.Domain.csproj" />
+    <ProjectReference Include="..\..\module\rbac\Yi.Framework.Rbac.Domain.Shared\Yi.Framework.Rbac.Domain.Shared.csproj" />
+
+    <ProjectReference Include="..\..\module\setting-management\Yi.Framework.SettingManagement.Application\Yi.Framework.SettingManagement.Application.csproj" />
+    <ProjectReference Include="..\..\module\setting-management\Yi.Framework.SettingManagement.Domain\Yi.Framework.SettingManagement.Domain.csproj" />
+    <ProjectReference Include="..\..\module\tenant-management\Yi.Framework.TenantManagement.Application\Yi.Framework.TenantManagement.Application.csproj" />
+    <ProjectReference Include="..\..\module\tenant-management\Yi.Framework.TenantManagement.Application.Contracts\Yi.Framework.TenantManagement.Application.Contracts.csproj" />
+    <ProjectReference Include="..\..\module\tenant-management\Yi.Framework.TenantManagement.Domain\Yi.Framework.TenantManagement.Domain.csproj" />
+    
+    <ProjectReference Include="..\..\module\code-gen\Yi.Framework.CodeGen.Application\Yi.Framework.CodeGen.Application.csproj" />
   </ItemGroup>
   
   <ItemGroup>
     <Content Update="appsettings.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Update="wwwroot\File\c4e579ee-9e5d-8a60-5540-3a138a0fb467">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Update="wwwroot\icon\**">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Update="appsettings.Development.json">
