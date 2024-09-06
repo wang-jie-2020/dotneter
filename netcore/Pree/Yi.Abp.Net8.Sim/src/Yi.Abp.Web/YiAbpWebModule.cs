@@ -14,32 +14,54 @@ using Volo.Abp.AspNetCore.Serilog;
 using Volo.Abp.Auditing;
 using Volo.Abp.Autofac;
 using Volo.Abp.Caching;
+using Volo.Abp.Domain;
 using Volo.Abp.MultiTenancy;
+using Volo.Abp.SettingManagement;
 using Volo.Abp.Swashbuckle;
-using Yi.Abp.Application;
-using Yi.Abp.SqlsugarCore;
 using Yi.Framework.AspNetCore;
 using Yi.Framework.AspNetCore.Authentication.OAuth;
 using Yi.Framework.AspNetCore.Authentication.OAuth.Gitee;
 using Yi.Framework.AspNetCore.Authentication.OAuth.QQ;
 using Yi.Framework.AspNetCore.Microsoft.AspNetCore.Builder;
 using Yi.Framework.AspNetCore.Microsoft.Extensions.DependencyInjection;
+using Yi.Framework.AuditLogging.Domain;
+using Yi.Framework.AuditLogging.Domain.Shared;
+using Yi.Framework.AuditLogging.SqlSugarCore;
 using Yi.Framework.Bbs.Application;
+using Yi.Framework.Bbs.Application.Contracts;
+using Yi.Framework.Bbs.Domain;
+using Yi.Framework.Bbs.Domain.Shared;
+using Yi.Framework.Bbs.SqlSugarCore;
 using Yi.Framework.ChatHub.Application;
+using Yi.Framework.ChatHub.Application.Contracts;
+using Yi.Framework.ChatHub.Domain;
+using Yi.Framework.ChatHub.Domain.Shared;
+using Yi.Framework.ChatHub.SqlSugarCore;
 using Yi.Framework.CodeGen.Application;
+using Yi.Framework.CodeGen.SqlSugarCore;
+using Yi.Framework.Ddd.Application;
+using Yi.Framework.Ddd.Application.Contracts;
+using Yi.Framework.Mapster;
 using Yi.Framework.Rbac.Application;
+using Yi.Framework.Rbac.Application.Contracts;
+using Yi.Framework.Rbac.Domain;
 using Yi.Framework.Rbac.Domain.Authorization;
+using Yi.Framework.Rbac.Domain.Shared;
 using Yi.Framework.Rbac.Domain.Shared.Consts;
 using Yi.Framework.Rbac.Domain.Shared.Options;
+using Yi.Framework.Rbac.SqlSugarCore;
+using Yi.Framework.SettingManagement.Application;
+using Yi.Framework.SettingManagement.Domain;
+using Yi.Framework.SettingManagement.SqlSugarCore;
+using Yi.Framework.SqlSugarCore;
 using Yi.Framework.TenantManagement.Application;
+using Yi.Framework.TenantManagement.Application.Contracts;
+using Yi.Framework.TenantManagement.Domain;
+using Yi.Framework.TenantManagement.SqlSugarCore;
 
 namespace Yi.Abp.Web
 {
     [DependsOn(
-        typeof(YiAbpSqlSugarCoreModule),
-        typeof(YiAbpApplicationModule),
-
-
         typeof(AbpAspNetCoreMultiTenancyModule),
         typeof(AbpAspNetCoreMvcModule),
         typeof(AbpAutofacModule),
@@ -48,12 +70,56 @@ namespace Yi.Abp.Web
         typeof(AbpAuditingModule),
         typeof(AbpAspNetCoreAuthenticationJwtBearerModule),
         typeof(YiFrameworkAspNetCoreModule),
-        typeof(YiFrameworkAspNetCoreAuthenticationOAuthModule)
+        typeof(YiFrameworkAspNetCoreAuthenticationOAuthModule),
+        
+        typeof(YiFrameworkRbacApplicationContractsModule),
+        typeof(YiFrameworkBbsApplicationContractsModule),
+        typeof(YiFrameworkChatHubApplicationContractsModule),
+        typeof(AbpSettingManagementApplicationContractsModule),
+        typeof(YiFrameworkTenantManagementApplicationContractsModule),
+        typeof(YiFrameworkDddApplicationContractsModule),
+        typeof(YiFrameworkRbacApplicationModule),
+        typeof(YiFrameworkBbsApplicationModule),
+        typeof(YiFrameworkChatHubApplicationModule),
+        typeof(YiFrameworkTenantManagementApplicationModule),
+        typeof(YiFrameworkCodeGenApplicationModule),
+        typeof(YiFrameworkSettingManagementApplicationModule),
+        typeof(YiFrameworkDddApplicationModule),
 
-        )]
+        typeof(YiFrameworkTenantManagementDomainModule),
+        typeof(YiFrameworkRbacDomainModule),
+        typeof(YiFrameworkBbsDomainModule),
+        typeof(YiFrameworkChatHubDomainModule),
+        typeof(YiFrameworkAuditLoggingDomainModule),
+        typeof(YiFrameworkSettingManagementDomainModule),
+
+        typeof(YiFrameworkMapsterModule),
+        typeof(AbpDddDomainModule),
+        typeof(AbpCachingModule),
+        typeof(YiFrameworkRbacDomainSharedModule),
+        typeof(YiFrameworkBbsDomainSharedModule),
+        typeof(YiFrameworkChatHubDomainSharedModule),
+        typeof(YiFrameworkAuditLoggingDomainSharedModule),
+
+        typeof(AbpSettingManagementDomainSharedModule),
+        typeof(AbpDddDomainSharedModule),
+
+        typeof(YiFrameworkRbacSqlSugarCoreModule),
+        typeof(YiFrameworkBbsSqlSugarCoreModule),
+        typeof(YiFrameworkCodeGenSqlSugarCoreModule),
+        typeof(YiFrameworkChatHubSqlSugarCoreModule),
+
+        typeof(YiFrameworkSettingManagementSqlSugarCoreModule),
+        typeof(YiFrameworkAuditLoggingSqlSugarCoreModule),
+        typeof(YiFrameworkTenantManagementSqlSugarCoreModule),
+        typeof(YiFrameworkMapsterModule),
+        typeof(YiFrameworkSqlSugarCoreModule)
+        
+    )]
     public class YiAbpWebModule : AbpModule
     {
         private const string DefaultCorsPolicyName = "Default";
+
         public override Task ConfigureServicesAsync(ServiceConfigurationContext context)
         {
             var configuration = context.Services.GetConfiguration();
@@ -71,12 +137,16 @@ namespace Yi.Abp.Web
             //动态Api
             Configure<AbpAspNetCoreMvcOptions>(options =>
             {
-                options.ConventionalControllers.Create(typeof(YiAbpApplicationModule).Assembly, options => options.RemoteServiceName = "default");
-                options.ConventionalControllers.Create(typeof(YiFrameworkRbacApplicationModule).Assembly, options => options.RemoteServiceName = "rbac");
-                options.ConventionalControllers.Create(typeof(YiFrameworkBbsApplicationModule).Assembly, options => options.RemoteServiceName = "bbs");
-                options.ConventionalControllers.Create(typeof(YiFrameworkChatHubApplicationModule).Assembly, options => options.RemoteServiceName = "chat-hub");
-                options.ConventionalControllers.Create(typeof(YiFrameworkTenantManagementApplicationModule).Assembly, options => options.RemoteServiceName = "tenant-management");
-                options.ConventionalControllers.Create(typeof(YiFrameworkCodeGenApplicationModule).Assembly, options => options.RemoteServiceName = "code-gen");
+                options.ConventionalControllers.Create(typeof(YiFrameworkRbacApplicationModule).Assembly,
+                    options => options.RemoteServiceName = "rbac");
+                options.ConventionalControllers.Create(typeof(YiFrameworkBbsApplicationModule).Assembly,
+                    options => options.RemoteServiceName = "bbs");
+                options.ConventionalControllers.Create(typeof(YiFrameworkChatHubApplicationModule).Assembly,
+                    options => options.RemoteServiceName = "chat-hub");
+                options.ConventionalControllers.Create(typeof(YiFrameworkTenantManagementApplicationModule).Assembly,
+                    options => options.RemoteServiceName = "tenant-management");
+                options.ConventionalControllers.Create(typeof(YiFrameworkCodeGenApplicationModule).Assembly,
+                    options => options.RemoteServiceName = "code-gen");
 
                 //统一前缀
                 options.ConventionalControllers.ConventionalControllerSettings.ForEach(x => x.RootPath = "api/app");
@@ -91,22 +161,20 @@ namespace Yi.Abp.Web
 
             //设置缓存不要过期，默认滑动20分钟
             Configure<AbpDistributedCacheOptions>(cacheOptions =>
-             {
-                 cacheOptions.GlobalCacheEntryOptions.SlidingExpiration = null;
-                 //缓存key前缀
-                 cacheOptions.KeyPrefix = "Yi:";
-             });
-
-
-            Configure<AbpAntiForgeryOptions>(options =>
             {
-                options.AutoValidate = false;
+                cacheOptions.GlobalCacheEntryOptions.SlidingExpiration = null;
+                //缓存key前缀
+                cacheOptions.KeyPrefix = "Yi:";
             });
+
+
+            Configure<AbpAntiForgeryOptions>(options => { options.AutoValidate = false; });
 
             //Swagger
             context.Services.AddYiSwaggerGen<YiAbpWebModule>(options =>
             {
-                options.SwaggerDoc("default", new OpenApiInfo { Title = "Yi.Framework.Abp", Version = "v1", Description = "集大成者" });
+                options.SwaggerDoc("default",
+                    new OpenApiInfo { Title = "Yi.Framework.Abp", Version = "v1", Description = "集大成者" });
             });
 
             //跨域
@@ -145,7 +213,7 @@ namespace Yi.Abp.Web
             //每60秒限制100个请求，滑块添加，分6段
             service.AddRateLimiter(_ =>
             {
-                _.RejectionStatusCode = StatusCodes.Status429TooManyRequests; 
+                _.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
                 _.OnRejected = (context, _) =>
                 {
                     if (context.Lease.TryGetMetadata(MetadataName.RetryAfter, out var retryAfter))
@@ -153,6 +221,7 @@ namespace Yi.Abp.Web
                         context.HttpContext.Response.Headers.RetryAfter =
                             ((int)retryAfter.TotalSeconds).ToString(NumberFormatInfo.InvariantInfo);
                     }
+
                     context.HttpContext.Response.StatusCode = StatusCodes.Status429TooManyRequests;
                     context.HttpContext.Response.WriteAsync("Too many requests. Please try again later.");
 
@@ -161,20 +230,20 @@ namespace Yi.Abp.Web
 
                 //全局使用，链式表达式
                 _.GlobalLimiter = PartitionedRateLimiter.CreateChained(
-                   PartitionedRateLimiter.Create<HttpContext, string>(httpContext =>
-                   {
-                       var userAgent = httpContext.Request.Headers.UserAgent.ToString();
+                    PartitionedRateLimiter.Create<HttpContext, string>(httpContext =>
+                    {
+                        var userAgent = httpContext.Request.Headers.UserAgent.ToString();
 
-                       return RateLimitPartition.GetSlidingWindowLimiter
-                       (userAgent, _ =>
-                           new SlidingWindowRateLimiterOptions
-                           {
-                               PermitLimit = 1000,
-                               Window = TimeSpan.FromSeconds(60),
-                               SegmentsPerWindow = 6,
-                               QueueProcessingOrder = QueueProcessingOrder.OldestFirst
-                           });
-                   }));
+                        return RateLimitPartition.GetSlidingWindowLimiter
+                        (userAgent, _ =>
+                            new SlidingWindowRateLimiterOptions
+                            {
+                                PermitLimit = 1000,
+                                Window = TimeSpan.FromSeconds(60),
+                                SegmentsPerWindow = 6,
+                                QueueProcessingOrder = QueueProcessingOrder.OldestFirst
+                            });
+                    }));
             });
 
 
@@ -196,14 +265,15 @@ namespace Yi.Abp.Web
                     options.Events = new JwtBearerEvents
                     {
                         OnMessageReceived = context =>
-                    {
-                        var accessToken = context.Request.Query["access_token"];
-                        if (!string.IsNullOrEmpty(accessToken))
                         {
-                            context.Token = accessToken;
+                            var accessToken = context.Request.Query["access_token"];
+                            if (!string.IsNullOrEmpty(accessToken))
+                            {
+                                context.Token = accessToken;
+                            }
+
+                            return Task.CompletedTask;
                         }
-                        return Task.CompletedTask;
-                    }
                     };
                 })
                 .AddJwtBearer(TokenTypeConst.Refresh, options =>
@@ -214,37 +284,32 @@ namespace Yi.Abp.Web
                         ValidateIssuerSigningKey = true,
                         ValidIssuer = refreshJwtOptions.Issuer,
                         ValidAudience = refreshJwtOptions.Audience,
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(refreshJwtOptions.SecurityKey))
+                        IssuerSigningKey =
+                            new SymmetricSecurityKey(Encoding.UTF8.GetBytes(refreshJwtOptions.SecurityKey))
                     };
                     options.Events = new JwtBearerEvents
                     {
                         OnMessageReceived = context =>
-                    {
-                        var refresh_token = context.Request.Headers["refresh_token"];
-                        if (!string.IsNullOrEmpty(refresh_token))
                         {
-                            context.Token = refresh_token;
+                            var refresh_token = context.Request.Headers["refresh_token"];
+                            if (!string.IsNullOrEmpty(refresh_token))
+                            {
+                                context.Token = refresh_token;
+                                return Task.CompletedTask;
+                            }
+
+                            var refreshToken = context.Request.Query["refresh_token"];
+                            if (!string.IsNullOrEmpty(refreshToken))
+                            {
+                                context.Token = refreshToken;
+                            }
+
                             return Task.CompletedTask;
                         }
-                        var refreshToken = context.Request.Query["refresh_token"];
-                        if (!string.IsNullOrEmpty(refreshToken))
-                        {
-                            context.Token = refreshToken;
-                        }
-
-                        return Task.CompletedTask;
-                    }
                     };
-
                 })
-                .AddQQ(options =>
-                {
-                    configuration.GetSection("OAuth:QQ").Bind(options);
-                })
-                .AddGitee(options =>
-                {
-                    configuration.GetSection("OAuth:Gitee").Bind(options);
-                });
+                .AddQQ(options => { configuration.GetSection("OAuth:QQ").Bind(options); })
+                .AddGitee(options => { configuration.GetSection("OAuth:Gitee").Bind(options); });
 
             //授权
             context.Services.AddAuthorization();
