@@ -19,6 +19,8 @@ namespace MinioStorage
 
         Task SaveAsync(string name, Stream stream, bool overrideExisting = false);
 
+        Task<string> PublishAsync(string name, Stream stream, bool overrideExisting = false);
+
         Task<bool> ExistsAsync(string name);
 
         Task<Stream> GetAsync(string name);

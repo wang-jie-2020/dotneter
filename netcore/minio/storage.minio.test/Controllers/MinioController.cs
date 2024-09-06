@@ -6,7 +6,6 @@ using Newtonsoft.Json;
 namespace Demo.Controllers
 {
     [ApiController]
-    [ApiExplorerSettings(IgnoreApi = true)]
     [Route("minio")]
     public class MinioController : ControllerBase
     {

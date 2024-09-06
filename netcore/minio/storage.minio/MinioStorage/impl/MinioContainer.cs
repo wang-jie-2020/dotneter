@@ -32,6 +32,11 @@ namespace MinioStorage.impl
             return _container.SaveAsync(name, stream, overrideExisting);
         }
 
+        public Task<string> PublishAsync(string name, Stream stream, bool overrideExisting = false)
+        {
+            return _container.PublishAsync(name, stream, overrideExisting);
+        }
+
         public Task<bool> ExistsAsync(string name)
         {
             return _container.ExistsAsync(name);
@@ -143,6 +148,15 @@ namespace MinioStorage.impl
                 .WithObject(objectName)
                 .WithStreamData(stream)
                 .WithObjectSize(stream.Length));
+        }
+
+        public async Task<string> PublishAsync(string name, Stream stream, bool overrideExisting = false)
+        {
+            await SaveAsync(name, stream, overrideExisting);
+
+            var bucketName = GetBucketName(_containerName);
+            var objectName = GetObjectName(name);
+            return $"{(_providerConfiguration.WithSSL ? "https" : "http")}://{_providerConfiguration.EndPoint}/{bucketName}/{objectName}";
         }
 
         public async Task<bool> ExistsAsync(string name)
