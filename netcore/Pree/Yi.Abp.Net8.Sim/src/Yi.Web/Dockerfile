@@ -12,14 +12,14 @@ COPY ["src/Yi.Web/Yi.Web.csproj", "src/Yi.Web/"]
 COPY ["framework/Yi.Framework/Yi.Framework.csproj", "framework/Yi.Framework/"]
 COPY ["framework/Yi.Infra/Yi.Infra.csproj", "framework/Yi.Infra/"]
 
-RUN dotnet restore "./src/Yi.Web/./Yi.Web.csproj"
+RUN dotnet restore "./src/Yi.Web/Yi.Web.csproj"
 COPY . .
-WORKDIR "/src/src/Yi.Web"
-RUN dotnet build "./Yi.Web.csproj" -c $BUILD_CONFIGURATION -o /app/build
+
+RUN dotnet build "./src/Yi.Web/Yi.Web.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./Yi.Web.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./src/Yi.Web/Yi.Web.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app

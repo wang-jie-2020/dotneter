@@ -75,7 +75,7 @@ namespace Yi.Infra.Rbac.Services.Monitor
         {
             if (!EnableRedisCache)
             {
-                throw new UserFriendlyException("后端程序未使用Redis缓存，无法对Redis进行监控，可切换使用Redis");
+                 throw new UserFriendlyException("后端程序未使用Redis缓存，无法对Redis进行监控，可切换使用Redis");
             }
 
         }
