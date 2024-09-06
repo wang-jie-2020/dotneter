@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "Yi.Abp.Web": {
+    "Yi.Web": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",
