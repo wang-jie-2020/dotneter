@@ -1,7 +1,7 @@
-using Yi.Abp.Infra.Rbac.Dtos.Post;
 using Yi.Framework.Ddd.Application.Contracts;
+using Yi.Infra.Rbac.Dtos.Post;
 
-namespace Yi.Abp.Infra.Rbac.IServices
+namespace Yi.Infra.Rbac.IServices
 {
     /// <summary>
     /// Post服务抽象

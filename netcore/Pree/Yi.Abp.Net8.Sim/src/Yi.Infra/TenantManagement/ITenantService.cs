@@ -1,7 +1,7 @@
-﻿using Yi.Abp.Infra.TenantManagement.Dtos;
-using Yi.Framework.Ddd.Application.Contracts;
+﻿using Yi.Framework.Ddd.Application.Contracts;
+using Yi.Infra.TenantManagement.Dtos;
 
-namespace Yi.Abp.Infra.TenantManagement
+namespace Yi.Infra.TenantManagement
 {
     public interface ITenantService:IYiCrudAppService< TenantGetOutputDto, TenantGetListOutputDto, Guid, TenantGetListInput, TenantCreateInput, TenantUpdateInput>
     {

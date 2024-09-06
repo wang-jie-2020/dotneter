@@ -1,6 +1,6 @@
 ﻿using Yi.Framework.Core.Helper;
 
-namespace Yi.Abp.Infra.Rbac.Dtos
+namespace Yi.Infra.Rbac.Dtos
 {
     public class Vue3RouterDto : TreeHelper.ITreeModel<Vue3RouterDto>
     {

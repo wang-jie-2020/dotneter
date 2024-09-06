@@ -6,7 +6,7 @@ using Volo.Abp.Domain.Entities.Auditing;
 using Volo.Abp.TenantManagement;
 using Yi.Framework.SqlSugarCore.Abstractions;
 
-namespace Yi.Abp.Infra.TenantManagement
+namespace Yi.Infra.TenantManagement
 {
     [SugarTable("YiTenant")]
     [DefaultTenantTable]

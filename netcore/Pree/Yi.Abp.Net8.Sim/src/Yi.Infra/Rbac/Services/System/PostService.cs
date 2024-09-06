@@ -1,12 +1,12 @@
 using SqlSugar;
 using Volo.Abp.Application.Dtos;
-using Yi.Abp.Infra.Rbac.Dtos.Post;
-using Yi.Abp.Infra.Rbac.Entities;
-using Yi.Abp.Infra.Rbac.IServices;
 using Yi.Framework.Ddd.Application;
 using Yi.Framework.SqlSugarCore.Abstractions;
+using Yi.Infra.Rbac.Dtos.Post;
+using Yi.Infra.Rbac.Entities;
+using Yi.Infra.Rbac.IServices;
 
-namespace Yi.Abp.Infra.Rbac.Services.System
+namespace Yi.Infra.Rbac.Services.System
 {
     /// <summary>
     /// Post服务实现

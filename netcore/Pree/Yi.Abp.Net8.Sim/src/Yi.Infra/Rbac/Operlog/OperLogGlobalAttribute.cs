@@ -9,7 +9,7 @@ using Volo.Abp.Users;
 using Yi.Framework.Core.Extensions;
 using Yi.Framework.Core.Helper;
 
-namespace Yi.Abp.Infra.Rbac.Operlog
+namespace Yi.Infra.Rbac.Operlog
 {
     public class OperLogGlobalAttribute : ActionFilterAttribute, ITransientDependency
     {

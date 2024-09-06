@@ -1,4 +1,4 @@
-﻿namespace Yi.Abp.Infra.Rbac.Dtos.MonitorCache
+﻿namespace Yi.Infra.Rbac.Dtos.MonitorCache
 {
     public class MonitorCacheGetListOutputDto
     {

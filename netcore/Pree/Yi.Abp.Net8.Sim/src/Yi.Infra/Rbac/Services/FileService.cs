@@ -4,13 +4,13 @@ using Microsoft.AspNetCore.Mvc;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.Guids;
-using Yi.Abp.Infra.Rbac.Dtos.FileManager;
-using Yi.Abp.Infra.Rbac.Entities;
-using Yi.Abp.Infra.Rbac.IServices;
 using Yi.Framework.Core.Enums;
 using Yi.Framework.Core.Helper;
+using Yi.Infra.Rbac.Dtos.FileManager;
+using Yi.Infra.Rbac.Entities;
+using Yi.Infra.Rbac.IServices;
 
-namespace Yi.Abp.Infra.Rbac.Services
+namespace Yi.Infra.Rbac.Services
 {
     public class FileService : ApplicationService, IFileService
     {

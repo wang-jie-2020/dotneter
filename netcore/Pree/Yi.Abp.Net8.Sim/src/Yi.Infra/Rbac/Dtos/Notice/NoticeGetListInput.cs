@@ -1,7 +1,7 @@
-using Yi.Abp.Infra.Rbac.Enums;
 using Yi.Framework.Ddd.Application.Contracts;
+using Yi.Infra.Rbac.Enums;
 
-namespace Yi.Abp.Infra.Rbac.Dtos.Notice
+namespace Yi.Infra.Rbac.Dtos.Notice
 {
     /// <summary>
     /// 查询参数

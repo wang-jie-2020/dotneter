@@ -4,7 +4,7 @@ using Volo.Abp.Data;
 using Volo.Abp.Domain.Entities;
 using Yi.Framework.Core.Data;
 
-namespace Yi.Abp.Infra.Rbac.Entities
+namespace Yi.Infra.Rbac.Entities
 {
     [SugarTable("DictionaryType")]
     public class DictionaryTypeAggregateRoot : AggregateRoot<Guid>, IAuditedObject, ISoftDelete, IOrderNum

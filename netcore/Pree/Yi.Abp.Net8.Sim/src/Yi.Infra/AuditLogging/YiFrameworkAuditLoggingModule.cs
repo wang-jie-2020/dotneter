@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.Auditing;
 using Volo.Abp.Domain;
-using Yi.Abp.Infra.AuditLogging.Repositories;
 using Yi.Framework.SqlSugarCore;
+using Yi.Infra.AuditLogging.Repositories;
 
-namespace Yi.Abp.Infra.AuditLogging;
+namespace Yi.Infra.AuditLogging;
 
 [DependsOn(
     typeof(AbpDddDomainModule),

@@ -1,7 +1,7 @@
 ﻿using Volo.Abp.Data;
 using Volo.Abp.MultiTenancy;
 
-namespace Yi.Abp.Infra.TenantManagement
+namespace Yi.Infra.TenantManagement
 {
     public static class TenantManagementExtensions
     {

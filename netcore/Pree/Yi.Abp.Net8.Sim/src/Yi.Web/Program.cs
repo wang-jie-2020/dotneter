@@ -1,6 +1,6 @@
 using Serilog;
 using Serilog.Events;
-using Yi.Abp.Web;
+using Yi.Web;
 
 //创建日志,可使用{SourceContext}记录
 Log.Logger = new LoggerConfiguration()

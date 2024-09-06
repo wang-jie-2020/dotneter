@@ -1,6 +1,6 @@
 ﻿using Yi.Framework.Ddd.Application.Contracts;
 
-namespace Yi.Abp.Infra.Rbac.Dtos.Task
+namespace Yi.Infra.Rbac.Dtos.Task
 {
     public class TaskGetListInput : PagedAllResultRequestDto
     {

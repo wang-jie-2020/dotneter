@@ -18,10 +18,6 @@ using Volo.Abp.Domain;
 using Volo.Abp.MultiTenancy;
 using Volo.Abp.SettingManagement;
 using Volo.Abp.Swashbuckle;
-using Yi.Abp.Infra;
-using Yi.Abp.Infra.Rbac.Authorization;
-using Yi.Abp.Infra.Rbac.Consts;
-using Yi.Abp.Infra.Rbac.Options;
 using Yi.Framework.AspNetCore;
 using Yi.Framework.AspNetCore.Authentication.OAuth;
 using Yi.Framework.AspNetCore.Authentication.OAuth.Gitee;
@@ -32,8 +28,12 @@ using Yi.Framework.Ddd.Application;
 using Yi.Framework.Ddd.Application.Contracts;
 using Yi.Framework.Mapster;
 using Yi.Framework.SqlSugarCore;
+using Yi.Infra;
+using Yi.Infra.Rbac.Authorization;
+using Yi.Infra.Rbac.Consts;
+using Yi.Infra.Rbac.Options;
 
-namespace Yi.Abp.Web
+namespace Yi.Web
 {
     [DependsOn(
         typeof(AbpAspNetCoreMultiTenancyModule),
@@ -55,7 +55,7 @@ namespace Yi.Abp.Web
         typeof(AbpDddDomainSharedModule),
         typeof(YiFrameworkMapsterModule),
         typeof(YiFrameworkSqlSugarCoreModule),
-        typeof(YiFrameworkInfraModule)
+        typeof(YiInfraModule)
         
     )]
     public class YiAbpWebModule : AbpModule
@@ -79,7 +79,7 @@ namespace Yi.Abp.Web
             //动态Api todo
             Configure<AbpAspNetCoreMvcOptions>(options =>
             {
-                options.ConventionalControllers.Create(typeof(YiFrameworkInfraModule).Assembly,
+                options.ConventionalControllers.Create(typeof(YiInfraModule).Assembly,
                     options => options.RemoteServiceName = "infra");
                 //统一前缀
                 options.ConventionalControllers.ConventionalControllerSettings.ForEach(x => x.RootPath = "api/app");

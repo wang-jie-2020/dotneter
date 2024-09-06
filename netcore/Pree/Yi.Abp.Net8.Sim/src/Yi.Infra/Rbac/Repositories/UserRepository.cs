@@ -1,9 +1,9 @@
 ﻿using Volo.Abp.DependencyInjection;
-using Yi.Abp.Infra.Rbac.Entities;
 using Yi.Framework.SqlSugarCore.Abstractions;
 using Yi.Framework.SqlSugarCore.Repositories;
+using Yi.Infra.Rbac.Entities;
 
-namespace Yi.Abp.Infra.Rbac.Repositories
+namespace Yi.Infra.Rbac.Repositories
 {
     public class UserRepository : SqlSugarRepository<UserAggregateRoot>, IUserRepository, ITransientDependency
     {

@@ -1,8 +1,8 @@
 ﻿using Volo.Abp.Domain.Services;
-using Yi.Abp.Infra.Rbac.Entities;
 using Yi.Framework.SqlSugarCore.Abstractions;
+using Yi.Infra.Rbac.Entities;
 
-namespace Yi.Abp.Infra.Rbac.Managers
+namespace Yi.Infra.Rbac.Managers
 {
     public class RoleManager : DomainService
     {

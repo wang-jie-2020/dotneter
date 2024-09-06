@@ -1,4 +1,4 @@
-namespace Yi.Abp.Infra.Rbac.Dtos.Dept
+namespace Yi.Infra.Rbac.Dtos.Dept
 {
     /// <summary>
     /// Dept输入创建对象

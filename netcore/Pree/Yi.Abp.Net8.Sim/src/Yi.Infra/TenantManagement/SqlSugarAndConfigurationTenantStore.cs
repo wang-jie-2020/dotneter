@@ -5,7 +5,7 @@ using Volo.Abp.Data;
 using Volo.Abp.MultiTenancy;
 using Volo.Abp.MultiTenancy.ConfigurationStore;
 
-namespace Yi.Abp.Infra.TenantManagement
+namespace Yi.Infra.TenantManagement
 {
     public class SqlSugarAndConfigurationTenantStore : DefaultTenantStore, ITenantStore
     {

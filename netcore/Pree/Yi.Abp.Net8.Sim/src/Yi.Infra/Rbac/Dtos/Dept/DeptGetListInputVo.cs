@@ -1,6 +1,6 @@
 using Yi.Framework.Ddd.Application.Contracts;
 
-namespace Yi.Abp.Infra.Rbac.Dtos.Dept
+namespace Yi.Infra.Rbac.Dtos.Dept
 {
     public class DeptGetListInputVo : PagedAllResultRequestDto
     {

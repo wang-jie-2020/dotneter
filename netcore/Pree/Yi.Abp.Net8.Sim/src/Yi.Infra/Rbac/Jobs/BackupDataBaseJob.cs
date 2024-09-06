@@ -2,10 +2,10 @@
 using Microsoft.Extensions.Options;
 using Quartz;
 using Volo.Abp.BackgroundWorkers.Quartz;
-using Yi.Abp.Infra.Rbac.Options;
 using Yi.Framework.SqlSugarCore.Abstractions;
+using Yi.Infra.Rbac.Options;
 
-namespace Yi.Abp.Infra.Rbac.Jobs
+namespace Yi.Infra.Rbac.Jobs
 {
     public class BackupDataBaseJob : QuartzBackgroundWorkerBase
     {

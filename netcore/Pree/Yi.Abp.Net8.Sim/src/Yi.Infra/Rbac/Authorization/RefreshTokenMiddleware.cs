@@ -5,10 +5,10 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Security.Claims;
-using Yi.Abp.Infra.Rbac.Consts;
-using Yi.Abp.Infra.Rbac.Managers;
+using Yi.Infra.Rbac.Consts;
+using Yi.Infra.Rbac.Managers;
 
-namespace Yi.Abp.Infra.Rbac.Authorization
+namespace Yi.Infra.Rbac.Authorization
 {
     [DebuggerStepThrough]
     public class RefreshTokenMiddleware : IMiddleware, ITransientDependency

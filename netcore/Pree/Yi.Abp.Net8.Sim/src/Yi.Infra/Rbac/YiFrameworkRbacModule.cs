@@ -3,16 +3,16 @@ using Volo.Abp.AspNetCore.SignalR;
 using Volo.Abp.BackgroundWorkers.Quartz;
 using Volo.Abp.Caching;
 using Volo.Abp.Domain;
-using Yi.Abp.Infra.Rbac.Authorization;
-using Yi.Abp.Infra.Rbac.Operlog;
-using Yi.Abp.Infra.Rbac.Options;
 using Yi.Framework.Caching.FreeRedis;
 using Yi.Framework.Ddd.Application;
 using Yi.Framework.Ddd.Application.Contracts;
 using Yi.Framework.Mapster;
 using Yi.Framework.SqlSugarCore;
+using Yi.Infra.Rbac.Authorization;
+using Yi.Infra.Rbac.Operlog;
+using Yi.Infra.Rbac.Options;
 
-namespace Yi.Abp.Infra.Rbac;
+namespace Yi.Infra.Rbac;
 
 [DependsOn(
     typeof(YiFrameworkCachingFreeRedisModule),

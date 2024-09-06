@@ -1,6 +1,6 @@
-using Yi.Abp.Infra.Rbac.Enums;
+using Yi.Infra.Rbac.Enums;
 
-namespace Yi.Abp.Infra.Rbac.Dtos.Menu
+namespace Yi.Infra.Rbac.Dtos.Menu
 {
     /// <summary>
     /// Menu输入创建对象

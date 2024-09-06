@@ -5,11 +5,11 @@ using SqlSugar;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Data;
 using Volo.Abp.Uow;
-using Yi.Abp.Infra.TenantManagement.Dtos;
 using Yi.Framework.Ddd.Application;
 using Yi.Framework.SqlSugarCore.Abstractions;
+using Yi.Infra.TenantManagement.Dtos;
 
-namespace Yi.Abp.Infra.TenantManagement
+namespace Yi.Infra.TenantManagement
 {
     /// <summary>
     /// 租户管理

@@ -1,13 +1,13 @@
 ﻿using Microsoft.Extensions.Options;
 using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
-using Yi.Abp.Infra.Rbac.Entities;
-using Yi.Abp.Infra.Rbac.Entities.ValueObjects;
-using Yi.Abp.Infra.Rbac.Enums;
-using Yi.Abp.Infra.Rbac.Options;
 using Yi.Framework.SqlSugarCore.Abstractions;
+using Yi.Infra.Rbac.Entities;
+using Yi.Infra.Rbac.Entities.ValueObjects;
+using Yi.Infra.Rbac.Enums;
+using Yi.Infra.Rbac.Options;
 
-namespace Yi.Abp.Infra.Rbac.DataSeeds
+namespace Yi.Infra.Rbac.DataSeeds
 {
     public class UserDataSeed : IDataSeedContributor, ITransientDependency
     {

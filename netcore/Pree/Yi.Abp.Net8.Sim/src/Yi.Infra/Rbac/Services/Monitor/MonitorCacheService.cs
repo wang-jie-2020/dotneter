@@ -5,10 +5,10 @@ using Microsoft.Extensions.Options;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Caching;
 using Volo.Abp.DependencyInjection;
-using Yi.Abp.Infra.Rbac.Dtos.MonitorCache;
-using Yi.Abp.Infra.Rbac.IServices;
+using Yi.Infra.Rbac.Dtos.MonitorCache;
+using Yi.Infra.Rbac.IServices;
 
-namespace Yi.Abp.Infra.Rbac.Services.Monitor
+namespace Yi.Infra.Rbac.Services.Monitor
 {
     public class MonitorCacheService : ApplicationService, IMonitorCacheService
     {

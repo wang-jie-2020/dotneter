@@ -1,6 +1,6 @@
 ﻿using Volo.Abp.AspNetCore.SignalR;
 
-namespace Yi.Abp.Infra.Rbac.SignalRHubs
+namespace Yi.Infra.Rbac.SignalRHubs
 {
     [HubRoute("/hub/notice")]
     public class NoticeHub : AbpHub

@@ -1,6 +1,6 @@
 using Yi.Framework.Ddd.Application.Contracts;
 
-namespace Yi.Abp.Infra.Rbac.Dtos.Role
+namespace Yi.Infra.Rbac.Dtos.Role
 {
     public class RoleGetListInputVo : PagedAllResultRequestDto
     {

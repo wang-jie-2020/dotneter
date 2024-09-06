@@ -1,7 +1,7 @@
-using Yi.Abp.Infra.Rbac.Dtos.Menu;
 using Yi.Framework.Ddd.Application.Contracts;
+using Yi.Infra.Rbac.Dtos.Menu;
 
-namespace Yi.Abp.Infra.Rbac.IServices
+namespace Yi.Infra.Rbac.IServices
 {
     /// <summary>
     /// Menu服务抽象

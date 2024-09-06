@@ -1,9 +1,9 @@
 ﻿using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
-using Yi.Abp.Infra.Rbac.Entities;
 using Yi.Framework.SqlSugarCore.Abstractions;
+using Yi.Infra.Rbac.Entities;
 
-namespace Yi.Abp.Infra.Rbac.DataSeeds
+namespace Yi.Infra.Rbac.DataSeeds
 {
     public class PostDataSeed : IDataSeedContributor, ITransientDependency
     {

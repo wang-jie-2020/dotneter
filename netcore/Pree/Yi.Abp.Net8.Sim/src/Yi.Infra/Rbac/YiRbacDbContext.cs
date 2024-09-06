@@ -1,14 +1,14 @@
 ﻿using SqlSugar;
 using Volo.Abp.DependencyInjection;
-using Yi.Abp.Infra.Rbac.Authorization;
-using Yi.Abp.Infra.Rbac.Consts;
-using Yi.Abp.Infra.Rbac.Entities;
-using Yi.Abp.Infra.Rbac.Enums;
-using Yi.Abp.Infra.Rbac.Extensions;
-using Yi.Abp.Infra.Rbac.Model;
 using Yi.Framework.SqlSugarCore;
+using Yi.Infra.Rbac.Authorization;
+using Yi.Infra.Rbac.Consts;
+using Yi.Infra.Rbac.Entities;
+using Yi.Infra.Rbac.Enums;
+using Yi.Infra.Rbac.Extensions;
+using Yi.Infra.Rbac.Model;
 
-namespace Yi.Abp.Infra.Rbac
+namespace Yi.Infra.Rbac
 {
     public class YiRbacDbContext : SqlSugarDbContext
     {

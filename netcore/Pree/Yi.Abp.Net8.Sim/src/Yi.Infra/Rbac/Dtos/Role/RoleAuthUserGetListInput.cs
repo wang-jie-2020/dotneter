@@ -1,6 +1,6 @@
 ﻿using Volo.Abp.Application.Dtos;
 
-namespace Yi.Abp.Infra.Rbac.Dtos.Role
+namespace Yi.Infra.Rbac.Dtos.Role
 {
     public class RoleAuthUserGetListInput : PagedAndSortedResultRequestDto
     {

@@ -1,6 +1,6 @@
-using Yi.Abp.Infra.Rbac.Enums;
+using Yi.Infra.Rbac.Enums;
 
-namespace Yi.Abp.Infra.Rbac.Dtos.Notice
+namespace Yi.Infra.Rbac.Dtos.Notice
 {
     /// <summary>
     /// Notice输入创建对象

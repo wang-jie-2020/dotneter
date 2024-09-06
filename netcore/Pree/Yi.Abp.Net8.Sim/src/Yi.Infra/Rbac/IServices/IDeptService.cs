@@ -1,7 +1,7 @@
-using Yi.Abp.Infra.Rbac.Dtos.Dept;
 using Yi.Framework.Ddd.Application.Contracts;
+using Yi.Infra.Rbac.Dtos.Dept;
 
-namespace Yi.Abp.Infra.Rbac.IServices
+namespace Yi.Infra.Rbac.IServices
 {
     /// <summary>
     /// Dept服务抽象

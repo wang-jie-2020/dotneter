@@ -1,6 +1,6 @@
-using Yi.Abp.Infra.Rbac.Enums;
+using Yi.Infra.Rbac.Enums;
 
-namespace Yi.Abp.Infra.Rbac.Dtos.User
+namespace Yi.Infra.Rbac.Dtos.User
 {
     /// <summary>
     /// User输入创建对象

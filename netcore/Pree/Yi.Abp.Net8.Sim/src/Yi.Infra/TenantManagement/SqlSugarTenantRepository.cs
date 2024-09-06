@@ -2,7 +2,7 @@
 using Yi.Framework.SqlSugarCore.Abstractions;
 using Yi.Framework.SqlSugarCore.Repositories;
 
-namespace Yi.Abp.Infra.TenantManagement
+namespace Yi.Infra.TenantManagement
 {
     public class SqlSugarTenantRepository : SqlSugarRepository<TenantAggregateRoot, Guid>, ISqlSugarTenantRepository,ITransientDependency
     {

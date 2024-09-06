@@ -1,4 +1,4 @@
-﻿namespace Yi.Abp.Infra.Rbac.Caches
+﻿namespace Yi.Infra.Rbac.Caches
 {
     public class CaptchaPhoneCacheItem
     {

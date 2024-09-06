@@ -1,7 +1,7 @@
-using Yi.Abp.Infra.Rbac.Dtos.User;
 using Yi.Framework.Ddd.Application.Contracts;
+using Yi.Infra.Rbac.Dtos.User;
 
-namespace Yi.Abp.Infra.Rbac.IServices
+namespace Yi.Infra.Rbac.IServices
 {
     /// <summary>
     /// User服务抽象

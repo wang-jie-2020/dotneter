@@ -1,7 +1,7 @@
 using Volo.Abp.Application.Dtos;
-using Yi.Abp.Infra.Rbac.Operlog;
+using Yi.Infra.Rbac.Operlog;
 
-namespace Yi.Abp.Infra.Rbac.Dtos.OperLog
+namespace Yi.Infra.Rbac.Dtos.OperLog
 {
     public class OperationLogGetListOutputDto : EntityDto<Guid>
     {

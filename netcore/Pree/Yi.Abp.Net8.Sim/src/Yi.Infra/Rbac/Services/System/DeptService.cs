@@ -1,12 +1,12 @@
 using SqlSugar;
 using Volo.Abp.Application.Dtos;
-using Yi.Abp.Infra.Rbac.Dtos.Dept;
-using Yi.Abp.Infra.Rbac.Entities;
-using Yi.Abp.Infra.Rbac.IServices;
-using Yi.Abp.Infra.Rbac.Repositories;
 using Yi.Framework.Ddd.Application;
+using Yi.Infra.Rbac.Dtos.Dept;
+using Yi.Infra.Rbac.Entities;
+using Yi.Infra.Rbac.IServices;
+using Yi.Infra.Rbac.Repositories;
 
-namespace Yi.Abp.Infra.Rbac.Services.System
+namespace Yi.Infra.Rbac.Services.System
 {
     /// <summary>
     /// Dept服务实现

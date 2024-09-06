@@ -6,7 +6,7 @@ using Volo.Abp.MultiTenancy;
 using Volo.Abp.TenantManagement;
 using Yi.Framework.Ddd.Application.Contracts;
 
-namespace Yi.Abp.Infra.TenantManagement;
+namespace Yi.Infra.TenantManagement;
 
 [DependsOn(
     typeof(AbpTenantManagementDomainSharedModule),

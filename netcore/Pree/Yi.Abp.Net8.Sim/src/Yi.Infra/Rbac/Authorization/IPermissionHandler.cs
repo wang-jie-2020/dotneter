@@ -1,4 +1,4 @@
-﻿namespace Yi.Abp.Infra.Rbac.Authorization
+﻿namespace Yi.Infra.Rbac.Authorization
 {
     public interface IPermissionHandler
     {

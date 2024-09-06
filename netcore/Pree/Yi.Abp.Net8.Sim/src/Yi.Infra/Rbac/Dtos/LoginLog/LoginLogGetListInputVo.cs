@@ -1,6 +1,6 @@
 ﻿using Yi.Framework.Ddd.Application.Contracts;
 
-namespace Yi.Abp.Infra.Rbac.Dtos.LoginLog
+namespace Yi.Infra.Rbac.Dtos.LoginLog
 {
     public class LoginLogGetListInputVo : PagedAllResultRequestDto
     {

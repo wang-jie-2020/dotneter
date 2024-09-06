@@ -1,6 +1,6 @@
 using Volo.Abp.Application.Dtos;
 
-namespace Yi.Abp.Infra.Rbac.Dtos.Dictionary
+namespace Yi.Infra.Rbac.Dtos.Dictionary
 {
     public class DictionaryGetListOutputDto : EntityDto<Guid>
     {

@@ -1,6 +1,6 @@
-﻿using Yi.Abp.Infra.Rbac.Dtos;
+﻿using Yi.Infra.Rbac.Dtos;
 
-namespace Yi.Abp.Infra.Rbac.Caches
+namespace Yi.Infra.Rbac.Caches
 {
     public class UserInfoCacheItem
     {

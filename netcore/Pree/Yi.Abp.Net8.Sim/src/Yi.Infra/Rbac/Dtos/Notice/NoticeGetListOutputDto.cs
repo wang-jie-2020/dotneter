@@ -1,7 +1,7 @@
 using Volo.Abp.Application.Dtos;
-using Yi.Abp.Infra.Rbac.Enums;
+using Yi.Infra.Rbac.Enums;
 
-namespace Yi.Abp.Infra.Rbac.Dtos.Notice
+namespace Yi.Infra.Rbac.Dtos.Notice
 {
     public class NoticeGetListOutputDto : EntityDto<Guid>
     {

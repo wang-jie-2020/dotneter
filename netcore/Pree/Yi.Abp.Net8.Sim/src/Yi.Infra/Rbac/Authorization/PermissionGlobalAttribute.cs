@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Http;
 
-namespace Yi.Abp.Infra.Rbac.Authorization
+namespace Yi.Infra.Rbac.Authorization
 {
     internal class PermissionGlobalAttribute : ActionFilterAttribute, ITransientDependency
     {

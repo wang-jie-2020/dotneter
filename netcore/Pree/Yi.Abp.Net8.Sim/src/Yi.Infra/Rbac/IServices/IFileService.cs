@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Volo.Abp.Application.Services;
-using Yi.Abp.Infra.Rbac.Dtos.FileManager;
+using Yi.Infra.Rbac.Dtos.FileManager;
 
-namespace Yi.Abp.Infra.Rbac.IServices
+namespace Yi.Infra.Rbac.IServices
 {
     public interface IFileService : IApplicationService
     {

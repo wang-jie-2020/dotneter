@@ -1,6 +1,6 @@
 ﻿using Yi.Framework.SqlSugarCore.Abstractions;
 
-namespace Yi.Abp.Infra.TenantManagement
+namespace Yi.Infra.TenantManagement
 {
     public interface ISqlSugarTenantRepository : ISqlSugarRepository<TenantAggregateRoot, Guid>
     {

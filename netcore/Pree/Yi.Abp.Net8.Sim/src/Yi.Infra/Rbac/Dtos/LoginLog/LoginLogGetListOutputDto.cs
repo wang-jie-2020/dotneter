@@ -1,6 +1,6 @@
 ﻿using Volo.Abp.Application.Dtos;
 
-namespace Yi.Abp.Infra.Rbac.Dtos.LoginLog
+namespace Yi.Infra.Rbac.Dtos.LoginLog
 {
     public class LoginLogGetListOutputDto : EntityDto<Guid>
     {

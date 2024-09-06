@@ -3,16 +3,16 @@ using Microsoft.AspNetCore.Mvc;
 using SqlSugar;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Domain.Entities;
-using Yi.Abp.Infra.Rbac.Dtos.Role;
-using Yi.Abp.Infra.Rbac.Dtos.User;
-using Yi.Abp.Infra.Rbac.Entities;
-using Yi.Abp.Infra.Rbac.Enums;
-using Yi.Abp.Infra.Rbac.IServices;
-using Yi.Abp.Infra.Rbac.Managers;
 using Yi.Framework.Ddd.Application;
 using Yi.Framework.SqlSugarCore.Abstractions;
+using Yi.Infra.Rbac.Dtos.Role;
+using Yi.Infra.Rbac.Dtos.User;
+using Yi.Infra.Rbac.Entities;
+using Yi.Infra.Rbac.Enums;
+using Yi.Infra.Rbac.IServices;
+using Yi.Infra.Rbac.Managers;
 
-namespace Yi.Abp.Infra.Rbac.Services.System
+namespace Yi.Infra.Rbac.Services.System
 {
     /// <summary>
     /// Role服务实现

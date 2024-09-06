@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Users;
-using Yi.Abp.Infra.Rbac.Consts;
 using Yi.Framework.Core.Extensions;
+using Yi.Infra.Rbac.Consts;
 
-namespace Yi.Abp.Infra.Rbac.Authorization
+namespace Yi.Infra.Rbac.Authorization
 {
     public class DefaultPermissionHandler : IPermissionHandler, ITransientDependency
     {

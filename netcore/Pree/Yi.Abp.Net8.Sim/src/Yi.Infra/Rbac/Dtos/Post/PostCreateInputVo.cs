@@ -1,4 +1,4 @@
-namespace Yi.Abp.Infra.Rbac.Dtos.Post
+namespace Yi.Infra.Rbac.Dtos.Post
 {
     /// <summary>
     /// Post输入创建对象

@@ -1,6 +1,6 @@
 ﻿using Volo.Abp.Application.Dtos;
 
-namespace Yi.Abp.Infra.TenantManagement.Dtos
+namespace Yi.Infra.TenantManagement.Dtos
 {
     public class TenantSelectOutputDto : EntityDto<Guid>
     {

@@ -1,6 +1,6 @@
 ﻿using Yi.Framework.Ddd.Application.Contracts;
 
-namespace Yi.Abp.Infra.Rbac.Dtos.Account
+namespace Yi.Infra.Rbac.Dtos.Account
 {
     public class AuthGetListInput:PagedAllResultRequestDto
     {

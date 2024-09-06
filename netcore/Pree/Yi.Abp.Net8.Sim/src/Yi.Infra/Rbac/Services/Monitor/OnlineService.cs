@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Logging;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
-using Yi.Abp.Infra.Rbac.IServices;
-using Yi.Abp.Infra.Rbac.Model;
-using Yi.Abp.Infra.Rbac.SignalRHubs;
+using Yi.Infra.Rbac.IServices;
+using Yi.Infra.Rbac.Model;
+using Yi.Infra.Rbac.SignalRHubs;
 
-namespace Yi.Abp.Infra.Rbac.Services.Monitor
+namespace Yi.Infra.Rbac.Services.Monitor
 {
     public class OnlineService : ApplicationService, IOnlineService
     {

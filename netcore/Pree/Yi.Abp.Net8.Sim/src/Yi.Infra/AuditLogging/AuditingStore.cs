@@ -4,10 +4,10 @@ using Microsoft.Extensions.Options;
 using Volo.Abp.Auditing;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Uow;
-using Yi.Abp.Infra.AuditLogging.Repositories;
 using Yi.Framework.Core.Helper;
+using Yi.Infra.AuditLogging.Repositories;
 
-namespace Yi.Abp.Infra.AuditLogging;
+namespace Yi.Infra.AuditLogging;
 
 public class AuditingStore : IAuditingStore, ITransientDependency
 {

@@ -1,4 +1,4 @@
-﻿namespace Yi.Abp.Infra.Rbac.Enums
+﻿namespace Yi.Infra.Rbac.Enums
 {
     public enum DataScopeEnum
     {

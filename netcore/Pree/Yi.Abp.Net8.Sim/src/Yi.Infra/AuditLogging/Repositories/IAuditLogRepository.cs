@@ -1,9 +1,9 @@
 ﻿using System.Net;
 using Volo.Abp.Auditing;
-using Yi.Abp.Infra.AuditLogging.Entities;
 using Yi.Framework.SqlSugarCore.Abstractions;
+using Yi.Infra.AuditLogging.Entities;
 
-namespace Yi.Abp.Infra.AuditLogging.Repositories
+namespace Yi.Infra.AuditLogging.Repositories
 {
     public interface IAuditLogRepository : ISqlSugarRepository<AuditLogAggregateRoot, Guid>
     {

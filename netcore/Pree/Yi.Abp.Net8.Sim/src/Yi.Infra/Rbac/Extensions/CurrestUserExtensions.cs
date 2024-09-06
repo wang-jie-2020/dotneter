@@ -1,9 +1,9 @@
 ﻿using Newtonsoft.Json;
 using Volo.Abp.Users;
-using Yi.Abp.Infra.Rbac.Consts;
-using Yi.Abp.Infra.Rbac.Model;
+using Yi.Infra.Rbac.Consts;
+using Yi.Infra.Rbac.Model;
 
-namespace Yi.Abp.Infra.Rbac.Extensions
+namespace Yi.Infra.Rbac.Extensions
 {
     public static class CurrestUserExtensions
     {

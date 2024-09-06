@@ -1,4 +1,4 @@
-﻿namespace Yi.Abp.Infra.Rbac.Dtos.Task
+﻿namespace Yi.Infra.Rbac.Dtos.Task
 {
     public class TaskGetListOutput
     {

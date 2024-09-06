@@ -1,6 +1,6 @@
-﻿using Yi.Abp.Infra.AuditLogging.Entities;
+﻿using Yi.Infra.AuditLogging.Entities;
 
-namespace Yi.Abp.Infra.AuditLogging;
+namespace Yi.Infra.AuditLogging;
 
 public class EntityChangeWithUsername
 {

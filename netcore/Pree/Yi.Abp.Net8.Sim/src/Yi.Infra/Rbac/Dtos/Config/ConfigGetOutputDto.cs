@@ -1,6 +1,6 @@
 using Volo.Abp.Application.Dtos;
 
-namespace Yi.Abp.Infra.Rbac.Dtos.Config
+namespace Yi.Infra.Rbac.Dtos.Config
 {
     public class ConfigGetOutputDto : EntityDto<Guid>
     {

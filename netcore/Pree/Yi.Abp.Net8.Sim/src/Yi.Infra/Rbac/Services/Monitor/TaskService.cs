@@ -6,11 +6,11 @@ using Quartz.Impl.Matchers;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Timing;
-using Yi.Abp.Infra.Rbac.Dtos.Task;
-using Yi.Abp.Infra.Rbac.Enums;
-using Yi.Abp.Infra.Rbac.IServices;
+using Yi.Infra.Rbac.Dtos.Task;
+using Yi.Infra.Rbac.Enums;
+using Yi.Infra.Rbac.IServices;
 
-namespace Yi.Abp.Infra.Rbac.Services.Monitor
+namespace Yi.Infra.Rbac.Services.Monitor
 {
     public class TaskService : ApplicationService, ITaskService
     {

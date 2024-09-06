@@ -4,20 +4,20 @@ using Volo.Abp.Application.Dtos;
 using Volo.Abp.Caching;
 using Volo.Abp.EventBus.Local;
 using Volo.Abp.Users;
-using Yi.Abp.Infra.Rbac.Authorization;
-using Yi.Abp.Infra.Rbac.Caches;
-using Yi.Abp.Infra.Rbac.Consts;
-using Yi.Abp.Infra.Rbac.Dtos.User;
-using Yi.Abp.Infra.Rbac.Entities;
-using Yi.Abp.Infra.Rbac.Entities.ValueObjects;
-using Yi.Abp.Infra.Rbac.IServices;
-using Yi.Abp.Infra.Rbac.Managers;
-using Yi.Abp.Infra.Rbac.Operlog;
-using Yi.Abp.Infra.Rbac.Repositories;
 using Yi.Framework.Ddd.Application;
 using Yi.Framework.SqlSugarCore.Abstractions;
+using Yi.Infra.Rbac.Authorization;
+using Yi.Infra.Rbac.Caches;
+using Yi.Infra.Rbac.Consts;
+using Yi.Infra.Rbac.Dtos.User;
+using Yi.Infra.Rbac.Entities;
+using Yi.Infra.Rbac.Entities.ValueObjects;
+using Yi.Infra.Rbac.IServices;
+using Yi.Infra.Rbac.Managers;
+using Yi.Infra.Rbac.Operlog;
+using Yi.Infra.Rbac.Repositories;
 
-namespace Yi.Abp.Infra.Rbac.Services.System
+namespace Yi.Infra.Rbac.Services.System
 {
     /// <summary>
     /// User服务实现

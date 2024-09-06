@@ -1,7 +1,7 @@
-using Yi.Abp.Infra.Rbac.Dtos.DictionaryType;
 using Yi.Framework.Ddd.Application.Contracts;
+using Yi.Infra.Rbac.Dtos.DictionaryType;
 
-namespace Yi.Abp.Infra.Rbac.IServices
+namespace Yi.Infra.Rbac.IServices
 {
     /// <summary>
     /// DictionaryType服务抽象

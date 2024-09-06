@@ -6,7 +6,7 @@ using Volo.Abp.Auditing;
 using Volo.Abp.Domain.Entities;
 using Yi.Framework.Core.Extensions;
 
-namespace Yi.Abp.Infra.Rbac.Entities
+namespace Yi.Infra.Rbac.Entities
 {
     [SugarTable("LoginLog")]
     [SugarIndex($"index_{nameof(LoginUser)}", nameof(LoginUser), OrderByType.Asc)]

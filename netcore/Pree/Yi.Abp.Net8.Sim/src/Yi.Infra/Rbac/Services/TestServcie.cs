@@ -7,11 +7,11 @@ using Microsoft.IdentityModel.Tokens;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.Uow;
-using Yi.Abp.Infra.Rbac.Entities;
-using Yi.Abp.Infra.Rbac.Options;
 using Yi.Framework.SqlSugarCore.Abstractions;
+using Yi.Infra.Rbac.Entities;
+using Yi.Infra.Rbac.Options;
 
-namespace Yi.Abp.Infra.Rbac.Services
+namespace Yi.Infra.Rbac.Services
 {
     /// <summary>
     /// 测试文档控制器

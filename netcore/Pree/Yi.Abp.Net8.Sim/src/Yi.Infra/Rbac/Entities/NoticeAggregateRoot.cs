@@ -1,10 +1,10 @@
 ﻿using SqlSugar;
 using Volo.Abp.Auditing;
 using Volo.Abp.Domain.Entities;
-using Yi.Abp.Infra.Rbac.Enums;
 using Yi.Framework.Core.Data;
+using Yi.Infra.Rbac.Enums;
 
-namespace Yi.Abp.Infra.Rbac.Entities
+namespace Yi.Infra.Rbac.Entities
 {
     [SugarTable("Notice")]
     public class NoticeAggregateRoot : AggregateRoot<Guid>, ISoftDelete, IAuditedObject, IOrderNum, IState

@@ -1,4 +1,4 @@
-﻿namespace Yi.Abp.Infra.Rbac.Model
+﻿namespace Yi.Infra.Rbac.Model
 {
     public class OnlineUserModel
     {

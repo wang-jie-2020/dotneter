@@ -3,9 +3,9 @@ using Volo.Abp.Auditing;
 using Volo.Abp.Domain.Entities;
 using Volo.Abp.Guids;
 using Volo.Abp.MultiTenancy;
-using Yi.Abp.Infra.AuditLogging.Consts;
+using Yi.Infra.AuditLogging.Consts;
 
-namespace Yi.Abp.Infra.AuditLogging.Entities
+namespace Yi.Infra.AuditLogging.Entities
 {
     [SugarTable("YiEntityChange")]
     [SugarIndex($"index_{nameof(AuditLogId)}", nameof(AuditLogId), OrderByType.Asc)]

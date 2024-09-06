@@ -8,16 +8,16 @@ using Volo.Abp.Caching;
 using Volo.Abp.Domain.Services;
 using Volo.Abp.EventBus.Local;
 using Volo.Abp.Guids;
-using Yi.Abp.Infra.Rbac.Caches;
-using Yi.Abp.Infra.Rbac.Consts;
-using Yi.Abp.Infra.Rbac.Dtos;
-using Yi.Abp.Infra.Rbac.Entities;
-using Yi.Abp.Infra.Rbac.Etos;
-using Yi.Abp.Infra.Rbac.Options;
-using Yi.Abp.Infra.Rbac.Repositories;
 using Yi.Framework.SqlSugarCore.Abstractions;
+using Yi.Infra.Rbac.Caches;
+using Yi.Infra.Rbac.Consts;
+using Yi.Infra.Rbac.Dtos;
+using Yi.Infra.Rbac.Entities;
+using Yi.Infra.Rbac.Etos;
+using Yi.Infra.Rbac.Options;
+using Yi.Infra.Rbac.Repositories;
 
-namespace Yi.Abp.Infra.Rbac.Managers
+namespace Yi.Infra.Rbac.Managers
 {
     public class UserManager : DomainService
     {

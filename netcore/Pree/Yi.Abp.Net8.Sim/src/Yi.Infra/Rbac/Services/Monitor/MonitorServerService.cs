@@ -4,10 +4,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Volo.Abp.Application.Services;
-using Yi.Abp.Infra.Rbac.IServices;
 using Yi.Framework.Core.Helper;
+using Yi.Infra.Rbac.IServices;
 
-namespace Yi.Abp.Infra.Rbac.Services.Monitor
+namespace Yi.Infra.Rbac.Services.Monitor
 {
     public class MonitorServerService : ApplicationService, IMonitorServerService
     {

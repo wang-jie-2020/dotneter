@@ -1,6 +1,6 @@
 ﻿using Volo.Abp.Domain.Values;
 
-namespace Yi.Abp.Infra.Rbac.Entities.ValueObjects
+namespace Yi.Infra.Rbac.Entities.ValueObjects
 {
     public class EncryPasswordValueObject : ValueObject
     {

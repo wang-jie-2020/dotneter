@@ -2,7 +2,7 @@
 using Volo.Abp.Auditing;
 using Volo.Abp.Domain.Entities;
 
-namespace Yi.Abp.Infra.Rbac.Operlog
+namespace Yi.Infra.Rbac.Operlog
 {
     /// <summary>
     /// 操作日志表

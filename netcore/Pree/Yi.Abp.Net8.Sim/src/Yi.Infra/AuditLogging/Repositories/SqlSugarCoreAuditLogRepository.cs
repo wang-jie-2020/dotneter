@@ -2,11 +2,11 @@
 using SqlSugar;
 using Volo.Abp.Auditing;
 using Volo.Abp.Domain.Entities;
-using Yi.Abp.Infra.AuditLogging.Entities;
 using Yi.Framework.SqlSugarCore.Abstractions;
 using Yi.Framework.SqlSugarCore.Repositories;
+using Yi.Infra.AuditLogging.Entities;
 
-namespace Yi.Abp.Infra.AuditLogging.Repositories;
+namespace Yi.Infra.AuditLogging.Repositories;
 
 public class SqlSugarCoreAuditLogRepository : SqlSugarRepository<AuditLogAggregateRoot, Guid>, IAuditLogRepository
 {

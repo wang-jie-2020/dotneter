@@ -3,7 +3,7 @@ using Volo.Abp.DependencyInjection;
 using Volo.Abp.MultiTenancy;
 using Volo.Abp.MultiTenancy.Localization;
 
-namespace Yi.Abp.Infra.TenantManagement;
+namespace Yi.Infra.TenantManagement;
 
 [Dependency(ReplaceServices =true)]
 public class YiTenantConfigurationProvider : ITenantConfigurationProvider, ITransientDependency

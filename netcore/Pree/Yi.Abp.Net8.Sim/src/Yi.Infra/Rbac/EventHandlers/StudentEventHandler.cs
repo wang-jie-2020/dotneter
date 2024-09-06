@@ -1,9 +1,9 @@
 ﻿using Volo.Abp.DependencyInjection;
 using Volo.Abp.Domain.Entities.Events;
 using Volo.Abp.EventBus;
-using Yi.Abp.Infra.Rbac.Entities;
+using Yi.Infra.Rbac.Entities;
 
-namespace Yi.Abp.Infra.Rbac.EventHandlers
+namespace Yi.Infra.Rbac.EventHandlers
 {
     public class StudentEventHandler : ILocalEventHandler<EntityCreatedEventData<StudentEntity>>, ITransientDependency
     {

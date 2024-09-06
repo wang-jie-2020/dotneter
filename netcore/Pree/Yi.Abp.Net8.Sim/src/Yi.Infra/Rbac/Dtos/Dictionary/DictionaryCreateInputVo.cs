@@ -1,4 +1,4 @@
-namespace Yi.Abp.Infra.Rbac.Dtos.Dictionary
+namespace Yi.Infra.Rbac.Dtos.Dictionary
 {
     /// <summary>
     /// Dictionary输入创建对象

@@ -1,7 +1,7 @@
 ﻿using Volo.Abp.Application.Dtos;
-using Yi.Abp.Infra.Rbac.Model;
+using Yi.Infra.Rbac.Model;
 
-namespace Yi.Abp.Infra.Rbac.IServices
+namespace Yi.Infra.Rbac.IServices
 {
     public interface IOnlineService
     {

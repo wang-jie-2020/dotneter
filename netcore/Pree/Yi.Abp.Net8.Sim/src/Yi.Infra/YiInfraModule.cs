@@ -1,14 +1,14 @@
-﻿using Yi.Abp.Infra.AuditLogging;
-using Yi.Abp.Infra.Rbac;
-using Yi.Abp.Infra.TenantManagement;
+﻿using Yi.Infra.AuditLogging;
+using Yi.Infra.Rbac;
+using Yi.Infra.TenantManagement;
 
-namespace Yi.Abp.Infra;
+namespace Yi.Infra;
 
 [DependsOn(
     typeof(YiFrameworkAuditLoggingModule),
     typeof(YiFrameworkRbacModule),
     typeof(YiFrameworkTenantManagementModule)
 )]
-public class YiFrameworkInfraModule : AbpModule
+public class YiInfraModule : AbpModule
 {
 }

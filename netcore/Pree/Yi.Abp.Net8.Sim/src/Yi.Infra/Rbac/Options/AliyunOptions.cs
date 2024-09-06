@@ -1,4 +1,4 @@
-﻿namespace Yi.Abp.Infra.Rbac.Options
+﻿namespace Yi.Infra.Rbac.Options
 {
     public class AliyunOptions
     {

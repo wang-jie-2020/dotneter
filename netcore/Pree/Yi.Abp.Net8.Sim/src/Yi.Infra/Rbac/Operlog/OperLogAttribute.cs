@@ -1,4 +1,4 @@
-﻿namespace Yi.Abp.Infra.Rbac.Operlog
+﻿namespace Yi.Infra.Rbac.Operlog
 {
     [AttributeUsage(AttributeTargets.Method)]
     public class OperLogAttribute : Attribute

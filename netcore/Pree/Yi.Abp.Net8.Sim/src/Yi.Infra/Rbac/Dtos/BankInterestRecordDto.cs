@@ -1,4 +1,4 @@
-﻿namespace Yi.Abp.Infra.Rbac.Dtos
+﻿namespace Yi.Infra.Rbac.Dtos
 {
     /// <summary>
     /// 当前银行记录

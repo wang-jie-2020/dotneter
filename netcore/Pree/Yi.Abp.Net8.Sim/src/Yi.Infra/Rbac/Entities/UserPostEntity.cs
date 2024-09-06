@@ -1,7 +1,7 @@
 ﻿using SqlSugar;
 using Volo.Abp.Domain.Entities;
 
-namespace Yi.Abp.Infra.Rbac.Entities;
+namespace Yi.Infra.Rbac.Entities;
 /// <summary>
 /// 用户岗位表
 ///</summary>

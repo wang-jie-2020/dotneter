@@ -1,7 +1,7 @@
-using Yi.Abp.Infra.Rbac.Dtos.Role;
 using Yi.Framework.Ddd.Application.Contracts;
+using Yi.Infra.Rbac.Dtos.Role;
 
-namespace Yi.Abp.Infra.Rbac.IServices
+namespace Yi.Infra.Rbac.IServices
 {
     /// <summary>
     /// Role服务抽象

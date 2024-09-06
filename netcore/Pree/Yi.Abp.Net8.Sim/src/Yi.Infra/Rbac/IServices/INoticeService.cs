@@ -1,7 +1,7 @@
-using Yi.Abp.Infra.Rbac.Dtos.Notice;
 using Yi.Framework.Ddd.Application.Contracts;
+using Yi.Infra.Rbac.Dtos.Notice;
 
-namespace Yi.Abp.Infra.Rbac.IServices
+namespace Yi.Infra.Rbac.IServices
 {
     /// <summary>
     /// Notice服务抽象

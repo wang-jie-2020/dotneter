@@ -1,6 +1,6 @@
 using Yi.Framework.Ddd.Application.Contracts;
 
-namespace Yi.Abp.Infra.Rbac.Dtos.Config
+namespace Yi.Infra.Rbac.Dtos.Config
 {
     /// <summary>
     /// 配置查询参数

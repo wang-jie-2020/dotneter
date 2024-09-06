@@ -1,4 +1,4 @@
-namespace Yi.Abp.Infra.Rbac.Dtos.Config
+namespace Yi.Infra.Rbac.Dtos.Config
 {
     /// <summary>
     /// Config输入创建对象

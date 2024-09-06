@@ -2,10 +2,10 @@
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Logging;
 using Volo.Abp.AspNetCore.SignalR;
-using Yi.Abp.Infra.Rbac.Entities;
-using Yi.Abp.Infra.Rbac.Model;
+using Yi.Infra.Rbac.Entities;
+using Yi.Infra.Rbac.Model;
 
-namespace Yi.Abp.Infra.Rbac.SignalRHubs
+namespace Yi.Infra.Rbac.SignalRHubs
 {
     [HubRoute("/hub/main")]
     //开放不需要授权

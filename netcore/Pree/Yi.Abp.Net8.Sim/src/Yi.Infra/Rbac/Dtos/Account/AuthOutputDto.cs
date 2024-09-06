@@ -1,6 +1,6 @@
 ﻿using Volo.Abp.Application.Dtos;
 
-namespace Yi.Abp.Infra.Rbac.Dtos.Account
+namespace Yi.Infra.Rbac.Dtos.Account
 {
     public class AuthOutputDto:EntityDto<Guid>
     {

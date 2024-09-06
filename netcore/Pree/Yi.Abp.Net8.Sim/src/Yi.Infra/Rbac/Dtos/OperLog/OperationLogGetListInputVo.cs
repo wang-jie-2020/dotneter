@@ -1,7 +1,7 @@
-using Yi.Abp.Infra.Rbac.Operlog;
 using Yi.Framework.Ddd.Application.Contracts;
+using Yi.Infra.Rbac.Operlog;
 
-namespace Yi.Abp.Infra.Rbac.Dtos.OperLog
+namespace Yi.Infra.Rbac.Dtos.OperLog
 {
     public class OperationLogGetListInputVo : PagedAllResultRequestDto
     {

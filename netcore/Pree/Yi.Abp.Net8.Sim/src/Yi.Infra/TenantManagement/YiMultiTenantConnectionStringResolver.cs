@@ -4,7 +4,7 @@ using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.MultiTenancy;
 
-namespace Yi.Abp.Infra.TenantManagement;
+namespace Yi.Infra.TenantManagement;
 
 [Dependency(ReplaceServices = true)]
 public class YiMultiTenantConnectionStringResolver : DefaultConnectionStringResolver

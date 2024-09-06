@@ -1,4 +1,4 @@
-namespace Yi.Abp.Infra.Rbac.Dtos.DictionaryType
+namespace Yi.Infra.Rbac.Dtos.DictionaryType
 {
     public class DictionaryTypeUpdateInputVo
     {

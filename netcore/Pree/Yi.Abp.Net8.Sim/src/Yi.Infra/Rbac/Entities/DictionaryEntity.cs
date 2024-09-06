@@ -3,7 +3,7 @@ using Volo.Abp.Auditing;
 using Volo.Abp.Domain.Entities;
 using Yi.Framework.Core.Data;
 
-namespace Yi.Abp.Infra.Rbac.Entities
+namespace Yi.Infra.Rbac.Entities
 {
     [SugarTable("Dictionary")]
     public class DictionaryEntity : Entity<Guid>, IAuditedObject, ISoftDelete, IOrderNum, IState

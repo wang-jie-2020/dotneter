@@ -1,4 +1,4 @@
-﻿namespace Yi.Abp.Infra.AuditLogging.Consts;
+﻿namespace Yi.Infra.AuditLogging.Consts;
 
 public class AuditLogActionConsts
 {

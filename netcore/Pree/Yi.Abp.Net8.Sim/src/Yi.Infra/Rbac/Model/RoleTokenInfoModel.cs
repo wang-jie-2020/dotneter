@@ -1,6 +1,6 @@
-﻿using Yi.Abp.Infra.Rbac.Enums;
+﻿using Yi.Infra.Rbac.Enums;
 
-namespace Yi.Abp.Infra.Rbac.Model
+namespace Yi.Infra.Rbac.Model
 {
     public class RoleTokenInfoModel
     {
