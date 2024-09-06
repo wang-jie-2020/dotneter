@@ -135,6 +135,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yi.Framework.ChatHub.Applic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yi.Framework.SettingManagement.Application", "module\setting-management\Yi.Framework.SettingManagement.Application\Yi.Framework.SettingManagement.Application.csproj", "{2A31D7CB-BDCC-4253-BA73-273B6B5E1956}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yi.Abp.Infra", "src\Yi.Abp.Infra\Yi.Abp.Infra.csproj", "{BB008985-0099-47C8-9C1C-07DCAE4DE8F2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -345,6 +347,10 @@ Global
 		{2A31D7CB-BDCC-4253-BA73-273B6B5E1956}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A31D7CB-BDCC-4253-BA73-273B6B5E1956}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A31D7CB-BDCC-4253-BA73-273B6B5E1956}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB008985-0099-47C8-9C1C-07DCAE4DE8F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB008985-0099-47C8-9C1C-07DCAE4DE8F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB008985-0099-47C8-9C1C-07DCAE4DE8F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB008985-0099-47C8-9C1C-07DCAE4DE8F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -408,6 +414,7 @@ Global
 		{C2DCA2FD-BFB4-4E76-967B-0AF8CC4F4D47} = {D8CDDE99-3684-4EED-A5E5-87F2AF4C78AB}
 		{B7A1A8F3-CFA6-4ECF-A707-0F33FE0A6F1D} = {D8CDDE99-3684-4EED-A5E5-87F2AF4C78AB}
 		{2A31D7CB-BDCC-4253-BA73-273B6B5E1956} = {8C68059E-F3B1-4D28-A1C9-A5830F53E5D3}
+		{BB008985-0099-47C8-9C1C-07DCAE4DE8F2} = {B782C78B-6C17-49E6-A237-3383BA720766}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {23D6FBC9-C970-4641-BC1E-2AEA59F51C18}
