@@ -27,8 +27,8 @@
   </ItemGroup>
   
   <ItemGroup>
-    <ProjectReference Include="..\Yi.Infra\Yi.Infra.csproj" />
-    <ProjectReference Include="..\Yi.Framework\Yi.Framework.csproj" />
+    <ProjectReference Include="..\..\framework\Yi.Framework\Yi.Framework.csproj" />
+    <ProjectReference Include="..\..\framework\Yi.Infra\Yi.Infra.csproj" />
   </ItemGroup>
   
   <ItemGroup>
