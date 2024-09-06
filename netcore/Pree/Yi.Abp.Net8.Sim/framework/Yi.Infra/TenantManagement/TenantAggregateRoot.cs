@@ -3,7 +3,6 @@ using SqlSugar;
 using Volo.Abp.Auditing;
 using Volo.Abp.Data;
 using Volo.Abp.Domain.Entities.Auditing;
-using Volo.Abp.TenantManagement;
 using Yi.Framework.SqlSugarCore.Abstractions;
 
 namespace Yi.Infra.TenantManagement
@@ -41,7 +40,7 @@ namespace Yi.Infra.TenantManagement
 
         protected internal virtual void SetName([NotNull] string name)
         {
-            Name = Volo.Abp.Check.NotNullOrWhiteSpace(name, nameof(name), TenantConsts.MaxNameLength);
+            Name = Volo.Abp.Check.NotNullOrWhiteSpace(name, nameof(name), 64);
         }
 
     }

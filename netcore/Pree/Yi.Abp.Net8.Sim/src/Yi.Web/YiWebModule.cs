@@ -16,7 +16,6 @@ using Volo.Abp.Autofac;
 using Volo.Abp.Caching;
 using Volo.Abp.Domain;
 using Volo.Abp.MultiTenancy;
-using Volo.Abp.SettingManagement;
 using Volo.Abp.Swashbuckle;
 using Yi.Framework.AspNetCore;
 using Yi.Framework.AspNetCore.Authentication.OAuth;
@@ -45,13 +44,11 @@ namespace Yi.Web
         typeof(AbpAspNetCoreAuthenticationJwtBearerModule),
         typeof(YiFrameworkAspNetCoreModule),
         typeof(YiFrameworkAspNetCoreAuthenticationOAuthModule),
-        typeof(AbpSettingManagementApplicationContractsModule),
         typeof(YiFrameworkDddApplicationContractsModule),
         typeof(YiFrameworkDddApplicationModule),
         typeof(YiFrameworkMapsterModule),
         typeof(AbpDddDomainModule),
         typeof(AbpCachingModule),
-        typeof(AbpSettingManagementDomainSharedModule),
         typeof(AbpDddDomainSharedModule),
         typeof(YiFrameworkMapsterModule),
         typeof(YiFrameworkSqlSugarCoreModule),

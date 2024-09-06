@@ -11,7 +11,6 @@
 		<PackageReference Include="FreeRedis.DistributedCache" Version="1.2.5" />
 		<PackageReference Include="Mapster" Version="7.4.0" />
 		<PackageReference Include="MiniExcel" Version="1.31.3" />
-		<PackageReference Include="MySqlBackup.NET.MySqlConnector" Version="2.3.8" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageReference Include="SqlSugarCore" Version="$(SqlSugarVersion)" />
 		<PackageReference Include="SqlSugarCoreNoDrive" Version="$(SqlSugarVersion)" />

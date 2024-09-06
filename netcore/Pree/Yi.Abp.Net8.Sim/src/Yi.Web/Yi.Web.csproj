@@ -16,16 +16,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Volo.Abp.AspNetCore.Authentication.JwtBearer" Version="$(AbpVersion)" />
-        <PackageReference Include="Volo.Abp.AspNetCore.MultiTenancy" Version="$(AbpVersion)" />
-        <PackageReference Include="Volo.Abp.AspNetCore.Mvc" Version="$(AbpVersion)" />
         <PackageReference Include="Volo.Abp.AspNetCore.Serilog" Version="$(AbpVersion)" />
         <PackageReference Include="Volo.Abp.Autofac" Version="$(AbpVersion)" />
-        <PackageReference Include="Volo.Abp.Ddd.Domain.Shared" Version="$(AbpVersion)" />
-        <PackageReference Include="Volo.Abp.Ddd.Domain" Version="$(AbpVersion)" />
-        <PackageReference Include="Volo.Abp.Caching" Version="$(AbpVersion)" />
-        <PackageReference Include="Volo.Abp.SettingManagement.Application.Contracts" Version="$(AbpVersion)" />
-        <PackageReference Include="Volo.Abp.SettingManagement.Domain.Shared" Version="$(AbpVersion)" />
     </ItemGroup>
 
     <ItemGroup>
