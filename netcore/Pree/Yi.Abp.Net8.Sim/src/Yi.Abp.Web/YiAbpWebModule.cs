@@ -18,31 +18,20 @@ using Volo.Abp.Domain;
 using Volo.Abp.MultiTenancy;
 using Volo.Abp.SettingManagement;
 using Volo.Abp.Swashbuckle;
+using Yi.Abp.Infra;
+using Yi.Abp.Infra.Rbac.Authorization;
+using Yi.Abp.Infra.Rbac.Consts;
+using Yi.Abp.Infra.Rbac.Options;
 using Yi.Framework.AspNetCore;
 using Yi.Framework.AspNetCore.Authentication.OAuth;
 using Yi.Framework.AspNetCore.Authentication.OAuth.Gitee;
 using Yi.Framework.AspNetCore.Authentication.OAuth.QQ;
 using Yi.Framework.AspNetCore.Microsoft.AspNetCore.Builder;
 using Yi.Framework.AspNetCore.Microsoft.Extensions.DependencyInjection;
-using Yi.Framework.AuditLogging.Domain;
-using Yi.Framework.AuditLogging.Domain.Shared;
-using Yi.Framework.AuditLogging.SqlSugarCore;
 using Yi.Framework.Ddd.Application;
 using Yi.Framework.Ddd.Application.Contracts;
 using Yi.Framework.Mapster;
-using Yi.Framework.Rbac.Application;
-using Yi.Framework.Rbac.Application.Contracts;
-using Yi.Framework.Rbac.Domain;
-using Yi.Framework.Rbac.Domain.Authorization;
-using Yi.Framework.Rbac.Domain.Shared;
-using Yi.Framework.Rbac.Domain.Shared.Consts;
-using Yi.Framework.Rbac.Domain.Shared.Options;
-using Yi.Framework.Rbac.SqlSugarCore;
 using Yi.Framework.SqlSugarCore;
-using Yi.Framework.TenantManagement.Application;
-using Yi.Framework.TenantManagement.Application.Contracts;
-using Yi.Framework.TenantManagement.Domain;
-using Yi.Framework.TenantManagement.SqlSugarCore;
 
 namespace Yi.Abp.Web
 {
@@ -56,34 +45,17 @@ namespace Yi.Abp.Web
         typeof(AbpAspNetCoreAuthenticationJwtBearerModule),
         typeof(YiFrameworkAspNetCoreModule),
         typeof(YiFrameworkAspNetCoreAuthenticationOAuthModule),
-        
-        typeof(YiFrameworkRbacApplicationContractsModule),
         typeof(AbpSettingManagementApplicationContractsModule),
-        typeof(YiFrameworkTenantManagementApplicationContractsModule),
         typeof(YiFrameworkDddApplicationContractsModule),
-        typeof(YiFrameworkRbacApplicationModule),
-        typeof(YiFrameworkTenantManagementApplicationModule),
         typeof(YiFrameworkDddApplicationModule),
-
-        typeof(YiFrameworkTenantManagementDomainModule),
-        typeof(YiFrameworkRbacDomainModule),
-        typeof(YiFrameworkAuditLoggingDomainModule),
-        
         typeof(YiFrameworkMapsterModule),
         typeof(AbpDddDomainModule),
         typeof(AbpCachingModule),
-        typeof(YiFrameworkRbacDomainSharedModule),
-        typeof(YiFrameworkAuditLoggingDomainSharedModule),
-
         typeof(AbpSettingManagementDomainSharedModule),
         typeof(AbpDddDomainSharedModule),
-
-        typeof(YiFrameworkRbacSqlSugarCoreModule),
-        
-        typeof(YiFrameworkAuditLoggingSqlSugarCoreModule),
-        typeof(YiFrameworkTenantManagementSqlSugarCoreModule),
         typeof(YiFrameworkMapsterModule),
-        typeof(YiFrameworkSqlSugarCoreModule)
+        typeof(YiFrameworkSqlSugarCoreModule),
+        typeof(YiFrameworkInfraModule)
         
     )]
     public class YiAbpWebModule : AbpModule
@@ -104,13 +76,11 @@ namespace Yi.Abp.Web
                 optios.AlwaysLogSelectors.Add(x => Task.FromResult(true));
             });
 
-            //动态Api
+            //动态Api todo
             Configure<AbpAspNetCoreMvcOptions>(options =>
             {
-                options.ConventionalControllers.Create(typeof(YiFrameworkRbacApplicationModule).Assembly,
-                    options => options.RemoteServiceName = "rbac");
-                options.ConventionalControllers.Create(typeof(YiFrameworkTenantManagementApplicationModule).Assembly,
-                    options => options.RemoteServiceName = "tenant-management");
+                options.ConventionalControllers.Create(typeof(YiFrameworkInfraModule).Assembly,
+                    options => options.RemoteServiceName = "infra");
                 //统一前缀
                 options.ConventionalControllers.ConventionalControllerSettings.ForEach(x => x.RootPath = "api/app");
             });
