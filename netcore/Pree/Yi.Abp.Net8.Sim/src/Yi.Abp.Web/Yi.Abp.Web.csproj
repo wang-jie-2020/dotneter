@@ -39,35 +39,16 @@
     <ProjectReference Include="..\..\module\audit-logging\Yi.Framework.AuditLogging.Domain.Shared\Yi.Framework.AuditLogging.Domain.Shared.csproj" />
     <ProjectReference Include="..\..\module\audit-logging\Yi.Framework.AuditLogging.SqlSugarCore\Yi.Framework.AuditLogging.SqlSugarCore.csproj" />
     
-    <ProjectReference Include="..\..\module\bbs\Yi.Framework.Bbs.Application\Yi.Framework.Bbs.Application.csproj" />
-    <ProjectReference Include="..\..\module\bbs\Yi.Framework.Bbs.Application.Contracts\Yi.Framework.Bbs.Application.Contracts.csproj" />
-    <ProjectReference Include="..\..\module\bbs\Yi.Framework.Bbs.Domain\Yi.Framework.Bbs.Domain.csproj" />
-    <ProjectReference Include="..\..\module\bbs\Yi.Framework.Bbs.Domain.Shared\Yi.Framework.Bbs.Domain.Shared.csproj" />
-    <ProjectReference Include="..\..\module\bbs\Yi.Framework.Bbs.SqlSugarCore\Yi.Framework.Bbs.SqlSugarCore.csproj" />
-    
-    <ProjectReference Include="..\..\module\chat-hub\Yi.Framework.ChatHub.Application\Yi.Framework.ChatHub.Application.csproj" />
-    <ProjectReference Include="..\..\module\chat-hub\Yi.Framework.ChatHub.Application.Contracts\Yi.Framework.ChatHub.Application.Contracts.csproj" />
-    <ProjectReference Include="..\..\module\chat-hub\Yi.Framework.ChatHub.Domain\Yi.Framework.ChatHub.Domain.csproj" />
-    <ProjectReference Include="..\..\module\chat-hub\Yi.Framework.ChatHub.Domain.Shared\Yi.Framework.ChatHub.Domain.Shared.csproj" />
-    <ProjectReference Include="..\..\module\chat-hub\Yi.Framework.ChatHub.SqlSugarCore\Yi.Framework.ChatHub.SqlSugarCore.csproj" />
-    
     <ProjectReference Include="..\..\module\rbac\Yi.Framework.Rbac.Application\Yi.Framework.Rbac.Application.csproj" />
     <ProjectReference Include="..\..\module\rbac\Yi.Framework.Rbac.Application.Contracts\Yi.Framework.Rbac.Application.Contracts.csproj" />
     <ProjectReference Include="..\..\module\rbac\Yi.Framework.Rbac.Domain\Yi.Framework.Rbac.Domain.csproj" />
     <ProjectReference Include="..\..\module\rbac\Yi.Framework.Rbac.Domain.Shared\Yi.Framework.Rbac.Domain.Shared.csproj" />
     <ProjectReference Include="..\..\module\rbac\Yi.Framework.Rbac.SqlSugarCore\Yi.Framework.Rbac.SqlSugarCore.csproj" />
     
-    <ProjectReference Include="..\..\module\setting-management\Yi.Framework.SettingManagement.Application\Yi.Framework.SettingManagement.Application.csproj" />
-    <ProjectReference Include="..\..\module\setting-management\Yi.Framework.SettingManagement.Domain\Yi.Framework.SettingManagement.Domain.csproj" />
-    <ProjectReference Include="..\..\module\setting-management\Yi.Framework.SettingManagement.SqlSugarCore\Yi.Framework.SettingManagement.SqlSugarCore.csproj" />
-    
     <ProjectReference Include="..\..\module\tenant-management\Yi.Framework.TenantManagement.Application\Yi.Framework.TenantManagement.Application.csproj" />
     <ProjectReference Include="..\..\module\tenant-management\Yi.Framework.TenantManagement.Application.Contracts\Yi.Framework.TenantManagement.Application.Contracts.csproj" />
     <ProjectReference Include="..\..\module\tenant-management\Yi.Framework.TenantManagement.Domain\Yi.Framework.TenantManagement.Domain.csproj" />
     <ProjectReference Include="..\..\module\tenant-management\Yi.Framework.TenantManagement.SqlSugarCore\Yi.Framework.TenantManagement.SqlSugarCore.csproj" />
-    
-    <ProjectReference Include="..\..\module\code-gen\Yi.Framework.CodeGen.Application\Yi.Framework.CodeGen.Application.csproj" />
-    <ProjectReference Include="..\..\module\code-gen\Yi.Framework.CodeGen.SqlSugarCore\Yi.Framework.CodeGen.SqlSugarCore.csproj" />
   </ItemGroup>
   
   <ItemGroup>

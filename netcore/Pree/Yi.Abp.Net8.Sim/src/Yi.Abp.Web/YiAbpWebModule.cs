@@ -27,18 +27,6 @@ using Yi.Framework.AspNetCore.Microsoft.Extensions.DependencyInjection;
 using Yi.Framework.AuditLogging.Domain;
 using Yi.Framework.AuditLogging.Domain.Shared;
 using Yi.Framework.AuditLogging.SqlSugarCore;
-using Yi.Framework.Bbs.Application;
-using Yi.Framework.Bbs.Application.Contracts;
-using Yi.Framework.Bbs.Domain;
-using Yi.Framework.Bbs.Domain.Shared;
-using Yi.Framework.Bbs.SqlSugarCore;
-using Yi.Framework.ChatHub.Application;
-using Yi.Framework.ChatHub.Application.Contracts;
-using Yi.Framework.ChatHub.Domain;
-using Yi.Framework.ChatHub.Domain.Shared;
-using Yi.Framework.ChatHub.SqlSugarCore;
-using Yi.Framework.CodeGen.Application;
-using Yi.Framework.CodeGen.SqlSugarCore;
 using Yi.Framework.Ddd.Application;
 using Yi.Framework.Ddd.Application.Contracts;
 using Yi.Framework.Mapster;
@@ -50,9 +38,6 @@ using Yi.Framework.Rbac.Domain.Shared;
 using Yi.Framework.Rbac.Domain.Shared.Consts;
 using Yi.Framework.Rbac.Domain.Shared.Options;
 using Yi.Framework.Rbac.SqlSugarCore;
-using Yi.Framework.SettingManagement.Application;
-using Yi.Framework.SettingManagement.Domain;
-using Yi.Framework.SettingManagement.SqlSugarCore;
 using Yi.Framework.SqlSugarCore;
 using Yi.Framework.TenantManagement.Application;
 using Yi.Framework.TenantManagement.Application.Contracts;
@@ -73,43 +58,28 @@ namespace Yi.Abp.Web
         typeof(YiFrameworkAspNetCoreAuthenticationOAuthModule),
         
         typeof(YiFrameworkRbacApplicationContractsModule),
-        typeof(YiFrameworkBbsApplicationContractsModule),
-        typeof(YiFrameworkChatHubApplicationContractsModule),
         typeof(AbpSettingManagementApplicationContractsModule),
         typeof(YiFrameworkTenantManagementApplicationContractsModule),
         typeof(YiFrameworkDddApplicationContractsModule),
         typeof(YiFrameworkRbacApplicationModule),
-        typeof(YiFrameworkBbsApplicationModule),
-        typeof(YiFrameworkChatHubApplicationModule),
         typeof(YiFrameworkTenantManagementApplicationModule),
-        typeof(YiFrameworkCodeGenApplicationModule),
-        typeof(YiFrameworkSettingManagementApplicationModule),
         typeof(YiFrameworkDddApplicationModule),
 
         typeof(YiFrameworkTenantManagementDomainModule),
         typeof(YiFrameworkRbacDomainModule),
-        typeof(YiFrameworkBbsDomainModule),
-        typeof(YiFrameworkChatHubDomainModule),
         typeof(YiFrameworkAuditLoggingDomainModule),
-        typeof(YiFrameworkSettingManagementDomainModule),
-
+        
         typeof(YiFrameworkMapsterModule),
         typeof(AbpDddDomainModule),
         typeof(AbpCachingModule),
         typeof(YiFrameworkRbacDomainSharedModule),
-        typeof(YiFrameworkBbsDomainSharedModule),
-        typeof(YiFrameworkChatHubDomainSharedModule),
         typeof(YiFrameworkAuditLoggingDomainSharedModule),
 
         typeof(AbpSettingManagementDomainSharedModule),
         typeof(AbpDddDomainSharedModule),
 
         typeof(YiFrameworkRbacSqlSugarCoreModule),
-        typeof(YiFrameworkBbsSqlSugarCoreModule),
-        typeof(YiFrameworkCodeGenSqlSugarCoreModule),
-        typeof(YiFrameworkChatHubSqlSugarCoreModule),
-
-        typeof(YiFrameworkSettingManagementSqlSugarCoreModule),
+        
         typeof(YiFrameworkAuditLoggingSqlSugarCoreModule),
         typeof(YiFrameworkTenantManagementSqlSugarCoreModule),
         typeof(YiFrameworkMapsterModule),
@@ -139,15 +109,8 @@ namespace Yi.Abp.Web
             {
                 options.ConventionalControllers.Create(typeof(YiFrameworkRbacApplicationModule).Assembly,
                     options => options.RemoteServiceName = "rbac");
-                options.ConventionalControllers.Create(typeof(YiFrameworkBbsApplicationModule).Assembly,
-                    options => options.RemoteServiceName = "bbs");
-                options.ConventionalControllers.Create(typeof(YiFrameworkChatHubApplicationModule).Assembly,
-                    options => options.RemoteServiceName = "chat-hub");
                 options.ConventionalControllers.Create(typeof(YiFrameworkTenantManagementApplicationModule).Assembly,
                     options => options.RemoteServiceName = "tenant-management");
-                options.ConventionalControllers.Create(typeof(YiFrameworkCodeGenApplicationModule).Assembly,
-                    options => options.RemoteServiceName = "code-gen");
-
                 //统一前缀
                 options.ConventionalControllers.ConventionalControllerSettings.ForEach(x => x.RootPath = "api/app");
             });
