@@ -1,4 +1,4 @@
-﻿namespace Yi.Infra.Rbac.Enums;
+﻿namespace Yi.Infra.Rbac.Consts;
 
 public enum JobTypeEnum
 {

@@ -1,8 +1,8 @@
 using Volo.Abp.Application.Dtos;
+using Yi.Infra.Rbac.Consts;
 using Yi.Infra.Rbac.Dtos.Dept;
 using Yi.Infra.Rbac.Dtos.Post;
 using Yi.Infra.Rbac.Dtos.Role;
-using Yi.Infra.Rbac.Enums;
 
 namespace Yi.Infra.Rbac.Dtos.User;
 

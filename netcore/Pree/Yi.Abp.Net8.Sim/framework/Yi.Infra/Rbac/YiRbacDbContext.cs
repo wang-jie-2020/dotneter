@@ -4,7 +4,6 @@ using Yi.Framework.SqlSugarCore;
 using Yi.Infra.Rbac.Authorization;
 using Yi.Infra.Rbac.Consts;
 using Yi.Infra.Rbac.Entities;
-using Yi.Infra.Rbac.Enums;
 using Yi.Infra.Rbac.Extensions;
 
 namespace Yi.Infra.Rbac;

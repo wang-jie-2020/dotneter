@@ -9,6 +9,7 @@ using Yi.Framework.Ddd.Application;
 using Yi.Framework.SqlSugarCore;
 using Yi.Infra.Rbac.Authorization;
 using Yi.Infra.Rbac.Dtos.Account;
+using Yi.Infra.Rbac.Entities;
 using Yi.Infra.Rbac.Managers;
 
 namespace Yi.Infra.Rbac.Services.Authentication;

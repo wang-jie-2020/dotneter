@@ -2,8 +2,8 @@
 using Volo.Abp.Auditing;
 using Volo.Abp.Domain.Entities;
 using Yi.Framework.Core.Helper;
+using Yi.Infra.Rbac.Consts;
 using Yi.Infra.Rbac.Entities.ValueObjects;
-using Yi.Infra.Rbac.Enums;
 
 namespace Yi.Infra.Rbac.Entities;
 

@@ -1,7 +1,7 @@
 ﻿using SqlSugar;
 using Volo.Abp.Auditing;
 using Volo.Abp.Domain.Entities;
-using Yi.Infra.Rbac.Enums;
+using Yi.Infra.Rbac.Consts;
 
 namespace Yi.Infra.Rbac.Entities;
 
