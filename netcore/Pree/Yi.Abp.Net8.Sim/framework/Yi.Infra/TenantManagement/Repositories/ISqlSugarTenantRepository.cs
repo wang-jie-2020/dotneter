@@ -1,6 +1,7 @@
 ﻿using Yi.Framework.SqlSugarCore;
+using Yi.Infra.TenantManagement.Entities;
 
-namespace Yi.Infra.TenantManagement;
+namespace Yi.Infra.TenantManagement.Repositories;
 
 public interface ISqlSugarTenantRepository : ISqlSugarRepository<TenantAggregateRoot, Guid>
 {

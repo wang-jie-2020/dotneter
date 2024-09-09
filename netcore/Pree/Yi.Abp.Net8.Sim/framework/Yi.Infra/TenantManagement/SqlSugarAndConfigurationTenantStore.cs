@@ -4,6 +4,8 @@ using Volo.Abp.Caching;
 using Volo.Abp.Data;
 using Volo.Abp.MultiTenancy;
 using Volo.Abp.MultiTenancy.ConfigurationStore;
+using Yi.Infra.TenantManagement.Entities;
+using Yi.Infra.TenantManagement.Repositories;
 
 namespace Yi.Infra.TenantManagement;
 
@@ -92,12 +94,12 @@ public class SqlSugarAndConfigurationTenantStore : DefaultTenantStore, ITenantSt
         var tenantConfiguration = new TenantConfiguration();
         tenantConfiguration.Id = tenantAggregateRoot.Id;
         tenantConfiguration.Name = tenantAggregateRoot.Name;
-        tenantConfiguration.ConnectionStrings = MaptoString(tenantAggregateRoot.TenantConnectionString);
+        tenantConfiguration.ConnectionStrings = MapToString(tenantAggregateRoot.TenantConnectionString);
         tenantConfiguration.IsActive = true;
         return tenantConfiguration;
     }
 
-    private ConnectionStrings? MaptoString(string tenantConnectionString)
+    private ConnectionStrings? MapToString(string tenantConnectionString)
     {
         var connectionStrings = new ConnectionStrings();
         connectionStrings[ConnectionStrings.DefaultConnectionStringName] = tenantConnectionString;

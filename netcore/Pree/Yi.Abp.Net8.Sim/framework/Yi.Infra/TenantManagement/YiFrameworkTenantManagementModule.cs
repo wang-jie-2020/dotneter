@@ -6,9 +6,7 @@ using Volo.Abp.MultiTenancy;
 
 namespace Yi.Infra.TenantManagement;
 
-[DependsOn(
-    typeof(AbpDddDomainModule)
-)]
+[DependsOn(typeof(AbpDddDomainModule))]
 public class YiFrameworkTenantManagementModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)

@@ -1,8 +1,9 @@
 ﻿using Volo.Abp.DependencyInjection;
 using Yi.Framework.SqlSugarCore;
 using Yi.Framework.SqlSugarCore.Repositories;
+using Yi.Infra.TenantManagement.Entities;
 
-namespace Yi.Infra.TenantManagement;
+namespace Yi.Infra.TenantManagement.Repositories;
 
 public class SqlSugarTenantRepository : SqlSugarRepository<TenantAggregateRoot, Guid>, ISqlSugarTenantRepository,
     ITransientDependency

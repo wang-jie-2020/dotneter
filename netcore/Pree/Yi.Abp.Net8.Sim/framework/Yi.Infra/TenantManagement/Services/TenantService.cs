@@ -8,8 +8,9 @@ using Volo.Abp.Uow;
 using Yi.Framework.Ddd.Application;
 using Yi.Framework.SqlSugarCore;
 using Yi.Infra.TenantManagement.Dtos;
+using Yi.Infra.TenantManagement.Entities;
 
-namespace Yi.Infra.TenantManagement;
+namespace Yi.Infra.TenantManagement.Services;
 
 /// <summary>
 ///     租户管理
