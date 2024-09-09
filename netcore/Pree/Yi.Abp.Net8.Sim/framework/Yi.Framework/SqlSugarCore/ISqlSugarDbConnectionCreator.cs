@@ -12,7 +12,6 @@ public interface ISqlSugarDbConnectionCreator
     Action<string, SugarParameter[]> OnLogExecuting { get; set; }
     Action<string, SugarParameter[]> OnLogExecuted { get; set; }
     Action<PropertyInfo, EntityColumnInfo> EntityService { get; set; }
-
     ConnectionConfig Build(Action<ConnectionConfig>? action = null);
     void SetDbAop(ISqlSugarClient currentDb);
 }

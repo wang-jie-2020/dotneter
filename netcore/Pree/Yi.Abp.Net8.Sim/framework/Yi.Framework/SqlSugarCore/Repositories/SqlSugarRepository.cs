@@ -284,8 +284,7 @@ public class SqlSugarRepository<TEntity> : ISqlSugarRepository<TEntity>, IReposi
     {
         return await (await GetDbSimpleClientAsync()).GetByIdAsync(id);
     }
-
-
+    
     public virtual async Task<TEntity> GetFirstAsync(Expression<Func<TEntity, bool>> whereExpression)
     {
         return await (await GetDbSimpleClientAsync()).GetFirstAsync(whereExpression);
@@ -376,8 +375,7 @@ public class SqlSugarRepository<TEntity> : ISqlSugarRepository<TEntity>, IReposi
     {
         return await (await GetDbSimpleClientAsync()).UpdateAsync(columns, whereExpression);
     }
-
-
+    
     public virtual async Task<bool> UpdateRangeAsync(List<TEntity> updateObjs)
     {
         return await (await GetDbSimpleClientAsync()).UpdateRangeAsync(updateObjs);

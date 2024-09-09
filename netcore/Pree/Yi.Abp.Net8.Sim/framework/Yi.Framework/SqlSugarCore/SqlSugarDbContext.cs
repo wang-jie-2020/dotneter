@@ -68,49 +68,17 @@ public class SqlSugarDbContext : ISqlSugarDbContext
     {
         SqlSugarClient = sqlSugarClient;
     }
-
-    public void BackupDataBase()
-    {
-        var directoryName = "database_backup";
-        var fileName = DateTime.Now.ToString("yyyyMMdd_HHmmss") + $"_{SqlSugarClient.Ado.Connection.Database}";
-        if (!Directory.Exists(directoryName)) Directory.CreateDirectory(directoryName);
-        switch (Options.DbType)
-        {
-            case DbType.MySql:
-                //MySql
-                SqlSugarClient.DbMaintenance.BackupDataBase(SqlSugarClient.Ado.Connection.Database,
-                    $"{Path.Combine(directoryName, fileName)}.sql"); //mysql 只支持.net core
-                break;
-
-
-            case DbType.Sqlite:
-                //Sqlite
-                SqlSugarClient.DbMaintenance.BackupDataBase(null, $"{fileName}.db"); //sqlite 只支持.net core
-                break;
-
-
-            case DbType.SqlServer:
-                //SqlServer
-                SqlSugarClient.DbMaintenance.BackupDataBase(SqlSugarClient.Ado.Connection.Database,
-                    $"{Path.Combine(directoryName, fileName)}.bak" /*服务器路径*/); //第一个参数库名 
-                break;
-
-
-            default:
-                throw new NotImplementedException("其他数据库备份未实现");
-        }
-    }
-
+    
     /// <summary>
     ///     db切换多库支持
     /// </summary>
     /// <returns></returns>
     protected virtual string GetCurrentConnectionString()
     {
-        var defautlUrl = Options.Url ??
+        var defaultUrl = Options.Url ??
                          ConnectionOptions.GetConnectionStringOrNull(ConnectionStrings.DefaultConnectionStringName);
         //如果未开启多租户，返回db url 或者 默认连接字符串
-        if (!Options.EnabledSaasMultiTenancy) return defautlUrl;
+        if (!Options.EnabledSaasMultiTenancy) return defaultUrl;
 
         //开启了多租户
         var connectionStringResolver = LazyServiceProvider.LazyGetRequiredService<IConnectionStringResolver>();
@@ -120,8 +88,8 @@ public class SqlSugarDbContext : ISqlSugarDbContext
         //没有检测到使用多租户功能，默认使用默认库即可
         if (string.IsNullOrWhiteSpace(connectionString))
         {
-            Check.NotNull(Options.Url, "租户默认库Defalut未找到");
-            connectionString = defautlUrl;
+            Check.NotNull(Options.Url, "租户默认库Default未找到");
+            connectionString = defaultUrl;
         }
 
         return connectionString!;

@@ -18,8 +18,7 @@ public class DbConnOptions
     ///     开启种子数据
     /// </summary>
     public bool EnabledDbSeed { get; set; } = false;
-
-
+    
     /// <summary>
     ///     开启codefirst
     /// </summary>
