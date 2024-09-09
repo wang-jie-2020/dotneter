@@ -1,7 +1,6 @@
 ﻿using SqlSugar;
 using Volo.Abp.Auditing;
 using Volo.Abp.Domain.Entities;
-using Yi.Framework.Core.Data;
 using Yi.Infra.Rbac.Enums;
 
 namespace Yi.Infra.Rbac.Entities;
@@ -10,7 +9,7 @@ namespace Yi.Infra.Rbac.Entities;
 ///     角色表
 /// </summary>
 [SugarTable("Role")]
-public class RoleAggregateRoot : AggregateRoot<Guid>, ISoftDelete, IAuditedObject, IOrderNum, IState
+public class RoleAggregateRoot : AggregateRoot<Guid>, ISoftDelete, IAuditedObject
 {
     /// <summary>
     ///     主键

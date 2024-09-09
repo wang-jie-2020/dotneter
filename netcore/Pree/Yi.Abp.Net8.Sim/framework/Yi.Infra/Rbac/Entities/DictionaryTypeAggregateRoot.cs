@@ -2,12 +2,11 @@
 using Volo.Abp.Auditing;
 using Volo.Abp.Data;
 using Volo.Abp.Domain.Entities;
-using Yi.Framework.Core.Data;
 
 namespace Yi.Infra.Rbac.Entities;
 
 [SugarTable("DictionaryType")]
-public class DictionaryTypeAggregateRoot : AggregateRoot<Guid>, IAuditedObject, ISoftDelete, IOrderNum
+public class DictionaryTypeAggregateRoot : AggregateRoot<Guid>, IAuditedObject, ISoftDelete
 {
     /// <summary>
     ///     主键

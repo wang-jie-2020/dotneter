@@ -1,7 +1,6 @@
 ﻿using SqlSugar;
 using Volo.Abp.Auditing;
 using Volo.Abp.Domain.Entities;
-using Yi.Framework.Core.Data;
 using Yi.Framework.Core.Helper;
 using Yi.Infra.Rbac.Dtos;
 using Yi.Infra.Rbac.Enums;
@@ -12,7 +11,7 @@ namespace Yi.Infra.Rbac.Entities;
 ///     菜单表
 /// </summary>
 [SugarTable("Menu")]
-public class MenuAggregateRoot : AggregateRoot<Guid>, ISoftDelete, IAuditedObject, IOrderNum, IState
+public class MenuAggregateRoot : AggregateRoot<Guid>, ISoftDelete, IAuditedObject
 {
     public MenuAggregateRoot()
     {

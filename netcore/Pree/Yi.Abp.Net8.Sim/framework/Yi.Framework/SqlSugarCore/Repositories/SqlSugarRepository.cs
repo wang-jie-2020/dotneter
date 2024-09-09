@@ -20,6 +20,7 @@ public class SqlSugarRepository<TEntity> : ISqlSugarRepository<TEntity>, IReposi
     public ISqlSugarClient _Db => GetDbContextAsync().Result;
 
     public ISugarQueryable<TEntity> _DbQueryable => GetDbContextAsync().Result.Queryable<TEntity>();
+    
     public IAsyncQueryableExecuter AsyncExecuter { get; }
 
     public bool? IsChangeTrackingEnabled => false;
@@ -157,8 +158,7 @@ public class SqlSugarRepository<TEntity> : ISqlSugarRepository<TEntity>, IReposi
     }
 
     #endregion
-
-
+    
     #region 内置DB快捷操作
 
     public virtual async Task<IDeleteable<TEntity>> AsDeleteable()

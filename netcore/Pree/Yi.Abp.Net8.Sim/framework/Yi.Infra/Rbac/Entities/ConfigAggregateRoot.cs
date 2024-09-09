@@ -1,7 +1,6 @@
 ﻿using SqlSugar;
 using Volo.Abp.Auditing;
 using Volo.Abp.Domain.Entities;
-using Yi.Framework.Core.Data;
 
 namespace Yi.Infra.Rbac.Entities;
 
@@ -9,7 +8,7 @@ namespace Yi.Infra.Rbac.Entities;
 ///     配置表
 /// </summary>
 [SugarTable("Config")]
-public class ConfigAggregateRoot : AggregateRoot<Guid>, IAuditedObject, IOrderNum, ISoftDelete
+public class ConfigAggregateRoot : AggregateRoot<Guid>, IAuditedObject, ISoftDelete
 {
     [SugarColumn(ColumnName = "Id", IsPrimaryKey = true)]
     public override Guid Id { get; protected set; }
