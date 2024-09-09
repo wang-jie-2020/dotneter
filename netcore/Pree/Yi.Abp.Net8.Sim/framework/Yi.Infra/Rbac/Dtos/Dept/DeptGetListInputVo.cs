@@ -2,7 +2,7 @@ using Yi.Framework.Ddd.Application;
 
 namespace Yi.Infra.Rbac.Dtos.Dept;
 
-public class DeptGetListInputVo : PagedAllResultRequestDto
+public class DeptGetListInputVo : PagedRequestInput
 {
     public Guid Id { get; set; }
     public bool? State { get; set; }

@@ -7,9 +7,8 @@ using Volo.Abp.Domain.Repositories;
 
 namespace Yi.Framework.Ddd.Application;
 
-public abstract class
-    YiCrudAppService<TEntity, TEntityDto, TKey> : YiCrudAppService<TEntity, TEntityDto, TKey,
-        PagedAndSortedResultRequestDto>
+public abstract class YiCrudAppService<TEntity, TEntityDto, TKey>
+    : YiCrudAppService<TEntity, TEntityDto, TKey, PagedAndSortedResultRequestDto>
     where TEntity : class, IEntity<TKey>
     where TEntityDto : IEntityDto<TKey>
 {
@@ -67,15 +66,15 @@ public abstract class YiCrudAppService<TEntity, TGetOutputDto, TGetListOutputDto
     public override async Task<PagedResultDto<TGetListOutputDto>> GetListAsync(TGetListInput input)
     {
         List<TEntity>? entites = null;
-        //区分多查还是批量查
+        
         if (input is IPagedResultRequest pagedInput)
             entites = await Repository.GetPagedListAsync(pagedInput.SkipCount, pagedInput.MaxResultCount, string.Empty);
         else
             entites = await Repository.GetListAsync();
+        
         var total = await Repository.GetCountAsync();
         var output = await MapToGetListOutputDtosAsync(entites);
         return new PagedResultDto<TGetListOutputDto>(total, output);
-        //throw new NotImplementedException($"【{typeof(TEntity)}】实体的CrudAppService，查询为具体业务，通用查询几乎无实际场景，请重写实现！");
     }
 
     /// <summary>
@@ -99,8 +98,7 @@ public abstract class YiCrudAppService<TEntity, TGetOutputDto, TGetListOutputDto
     {
         return base.DeleteAsync(id);
     }
-
-
+    
     /// <summary>
     ///     导出excel
     /// </summary>
@@ -126,16 +124,12 @@ public abstract class YiCrudAppService<TEntity, TGetOutputDto, TGetListOutputDto
     }
 
     /// <summary>
-    ///     导入excle
+    ///     导入excel
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
     public virtual async Task PostImportExcelAsync(List<TCreateInput> input)
     {
-        var entities = input.Select(x => MapToEntity(x)).ToList();
-        //安全起见，该接口需要自己实现
         throw new NotImplementedException();
-        //await Repository.DeleteManyAsync(entities.Select(x => x.Id));
-        //await Repository.InsertManyAsync(entities);
     }
 }

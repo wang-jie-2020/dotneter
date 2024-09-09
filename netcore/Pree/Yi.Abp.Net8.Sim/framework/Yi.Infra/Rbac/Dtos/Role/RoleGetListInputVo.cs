@@ -2,7 +2,7 @@ using Yi.Framework.Ddd.Application;
 
 namespace Yi.Infra.Rbac.Dtos.Role;
 
-public class RoleGetListInputVo : PagedAllResultRequestDto
+public class RoleGetListInputVo : PagedRequestInput
 {
     public string? RoleName { get; set; }
     public string? RoleCode { get; set; }

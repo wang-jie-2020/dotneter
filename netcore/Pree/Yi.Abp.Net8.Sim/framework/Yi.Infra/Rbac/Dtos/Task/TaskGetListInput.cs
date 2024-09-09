@@ -2,7 +2,7 @@
 
 namespace Yi.Infra.Rbac.Dtos.Task;
 
-public class TaskGetListInput : PagedAllResultRequestDto
+public class TaskGetListInput : PagedRequestInput
 {
     public string? JobId { get; set; }
     public string? GroupName { get; set; }

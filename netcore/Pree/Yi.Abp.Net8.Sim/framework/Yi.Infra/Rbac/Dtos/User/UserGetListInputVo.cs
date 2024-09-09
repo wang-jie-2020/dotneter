@@ -2,7 +2,7 @@ using Yi.Framework.Ddd.Application;
 
 namespace Yi.Infra.Rbac.Dtos.User;
 
-public class UserGetListInputVo : PagedAllResultRequestDto
+public class UserGetListInputVo : PagedRequestInput
 {
     public string? Name { get; set; }
     public string? UserName { get; set; }

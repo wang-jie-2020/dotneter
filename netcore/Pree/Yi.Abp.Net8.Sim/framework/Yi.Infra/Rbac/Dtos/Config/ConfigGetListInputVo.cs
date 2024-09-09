@@ -5,7 +5,7 @@ namespace Yi.Infra.Rbac.Dtos.Config;
 /// <summary>
 ///     配置查询参数
 /// </summary>
-public class ConfigGetListInputVo : PagedAllResultRequestDto
+public class ConfigGetListInputVo : PagedRequestInput
 {
     /// <summary>
     ///     配置名称

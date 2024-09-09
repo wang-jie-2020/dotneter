@@ -2,7 +2,7 @@
 
 namespace Yi.Infra.Rbac.Dtos.LoginLog;
 
-public class LoginLogGetListInputVo : PagedAllResultRequestDto
+public class LoginLogGetListInputVo : PagedRequestInput
 {
     public string? LoginUser { get; set; }
 

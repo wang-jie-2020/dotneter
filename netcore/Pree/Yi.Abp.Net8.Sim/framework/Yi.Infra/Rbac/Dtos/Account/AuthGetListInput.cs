@@ -2,7 +2,7 @@
 
 namespace Yi.Infra.Rbac.Dtos.Account;
 
-public class AuthGetListInput : PagedAllResultRequestDto
+public class AuthGetListInput : PagedRequestInput
 {
     public Guid? UserId { get; set; }
 

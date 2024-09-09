@@ -2,7 +2,8 @@
 
 namespace Yi.Framework.Ddd.Application;
 
-public class PagedAllResultRequestDto : PagedAndSortedResultRequestDto, IPagedAllResultRequestDto
+[Serializable]
+public class PagedRequestInput : PagedAndSortedResultRequestDto
 {
     /// <summary>
     ///     查询开始时间条件
