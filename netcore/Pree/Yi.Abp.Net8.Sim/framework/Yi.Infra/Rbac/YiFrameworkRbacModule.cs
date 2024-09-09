@@ -5,7 +5,6 @@ using Volo.Abp.Caching;
 using Volo.Abp.Domain;
 using Yi.Framework;
 using Yi.Framework.Caching.FreeRedis;
-using Yi.Framework.Ddd.Application;
 using Yi.Framework.Mapster;
 using Yi.Framework.SqlSugarCore;
 using Yi.Infra.Rbac.Authorization;

@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using SqlSugar;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Domain.Entities;
-using Yi.Framework.Ddd.Application;
 using Yi.Framework.SqlSugarCore;
 using Yi.Infra.Rbac.Consts;
 using Yi.Infra.Rbac.Dtos.Role;

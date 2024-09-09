@@ -21,7 +21,6 @@ using Yi.Framework;
 using Yi.Framework.AspNetCore;
 using Yi.Framework.AspNetCore.Microsoft.AspNetCore.Builder;
 using Yi.Framework.AspNetCore.Microsoft.Extensions.DependencyInjection;
-using Yi.Framework.Ddd.Application;
 using Yi.Framework.Mapster;
 using Yi.Framework.SqlSugarCore;
 using Yi.Infra;

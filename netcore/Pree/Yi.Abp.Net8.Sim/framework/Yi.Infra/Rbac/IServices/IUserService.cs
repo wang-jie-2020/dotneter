@@ -1,4 +1,3 @@
-using Yi.Framework.Ddd.Application;
 using Yi.Infra.Rbac.Dtos.User;
 
 namespace Yi.Infra.Rbac.IServices;

@@ -1,8 +1,6 @@
-﻿using Yi.Framework.Ddd.Application;
+﻿namespace Yi.Infra.Rbac.Dtos.LoginLog;
 
-namespace Yi.Infra.Rbac.Dtos.LoginLog;
-
-public class LoginLogGetListInputVo : PagedRequestInput
+public class LoginLogGetListInputVo : PagedInfraInput
 {
     public string? LoginUser { get; set; }
 

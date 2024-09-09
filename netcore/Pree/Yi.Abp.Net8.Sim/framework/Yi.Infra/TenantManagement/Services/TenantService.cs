@@ -5,7 +5,6 @@ using SqlSugar;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Data;
 using Volo.Abp.Uow;
-using Yi.Framework.Ddd.Application;
 using Yi.Framework.SqlSugarCore;
 using Yi.Infra.TenantManagement.Dtos;
 using Yi.Infra.TenantManagement.Entities;

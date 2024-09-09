@@ -5,7 +5,7 @@ using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Entities;
 using Volo.Abp.Domain.Repositories;
 
-namespace Yi.Framework.Ddd.Application;
+namespace Yi.Infra;
 
 public abstract class YiCrudAppService<TEntity, TEntityDto, TKey>
     : YiCrudAppService<TEntity, TEntityDto, TKey, PagedAndSortedResultRequestDto>

@@ -1,8 +1,6 @@
-﻿using Yi.Framework.Ddd.Application;
+﻿namespace Yi.Infra.Rbac.Dtos.Account;
 
-namespace Yi.Infra.Rbac.Dtos.Account;
-
-public class AuthGetListInput : PagedRequestInput
+public class AuthGetListInput : PagedInfraInput
 {
     public Guid? UserId { get; set; }
 

@@ -1,8 +1,6 @@
-﻿using Yi.Framework.Ddd.Application;
+﻿namespace Yi.Infra.TenantManagement.Dtos;
 
-namespace Yi.Infra.TenantManagement.Dtos;
-
-public class TenantGetListInput : PagedRequestInput
+public class TenantGetListInput : PagedInfraInput
 {
     public string? Name { get; set; }
     //public int? EntityVersion { get;  set; }

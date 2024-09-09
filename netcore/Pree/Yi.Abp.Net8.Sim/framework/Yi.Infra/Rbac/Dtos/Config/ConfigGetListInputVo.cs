@@ -1,11 +1,9 @@
-using Yi.Framework.Ddd.Application;
-
 namespace Yi.Infra.Rbac.Dtos.Config;
 
 /// <summary>
 ///     配置查询参数
 /// </summary>
-public class ConfigGetListInputVo : PagedRequestInput
+public class ConfigGetListInputVo : PagedInfraInput
 {
     /// <summary>
     ///     配置名称

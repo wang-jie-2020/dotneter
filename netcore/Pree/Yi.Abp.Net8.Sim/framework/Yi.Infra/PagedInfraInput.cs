@@ -1,9 +1,9 @@
 ﻿using Volo.Abp.Application.Dtos;
 
-namespace Yi.Framework.Ddd.Application;
+namespace Yi.Infra;
 
 [Serializable]
-public class PagedRequestInput : PagedAndSortedResultRequestDto
+public class PagedInfraInput : PagedAndSortedResultRequestDto
 {
     /// <summary>
     ///     查询开始时间条件

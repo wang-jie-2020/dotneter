@@ -1,6 +1,5 @@
 using SqlSugar;
 using Volo.Abp.Application.Dtos;
-using Yi.Framework.Ddd.Application;
 using Yi.Infra.Rbac.Dtos.Dept;
 using Yi.Infra.Rbac.Entities;
 using Yi.Infra.Rbac.IServices;

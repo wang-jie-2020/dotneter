@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SqlSugar;
 using Volo.Abp.Application.Dtos;
-using Yi.Framework.Ddd.Application;
 using Yi.Framework.SqlSugarCore;
 using Yi.Infra.Rbac.Authorization;
 using Yi.Infra.Rbac.Dtos.Account;

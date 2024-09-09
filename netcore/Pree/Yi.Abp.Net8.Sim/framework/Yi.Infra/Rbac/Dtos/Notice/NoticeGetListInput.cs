@@ -1,4 +1,3 @@
-using Yi.Framework.Ddd.Application;
 using Yi.Infra.Rbac.Consts;
 
 namespace Yi.Infra.Rbac.Dtos.Notice;
@@ -6,7 +5,7 @@ namespace Yi.Infra.Rbac.Dtos.Notice;
 /// <summary>
 ///     查询参数
 /// </summary>
-public class NoticeGetListInput : PagedRequestInput
+public class NoticeGetListInput : PagedInfraInput
 {
     public string? Title { get; set; }
     public NoticeTypeEnum? Type { get; set; }
