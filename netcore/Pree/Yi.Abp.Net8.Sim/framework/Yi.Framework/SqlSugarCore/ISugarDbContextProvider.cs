@@ -1,4 +1,4 @@
-﻿namespace Yi.Framework.SqlSugarCore.Abstractions;
+﻿namespace Yi.Framework.SqlSugarCore;
 
 public interface ISugarDbContextProvider<TDbContext>
     where TDbContext : ISqlSugarDbContext

@@ -1,4 +1,4 @@
-﻿using Yi.Framework.Ddd.Application.Contracts;
+﻿using Yi.Framework.Ddd.Application;
 using Yi.Infra.TenantManagement.Dtos;
 
 namespace Yi.Infra.TenantManagement;

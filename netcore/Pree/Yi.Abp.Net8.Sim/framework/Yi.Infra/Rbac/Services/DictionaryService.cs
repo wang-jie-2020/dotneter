@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using SqlSugar;
 using Volo.Abp.Application.Dtos;
 using Yi.Framework.Ddd.Application;
-using Yi.Framework.SqlSugarCore.Abstractions;
+using Yi.Framework.SqlSugarCore;
 using Yi.Infra.Rbac.Dtos.Dictionary;
 using Yi.Infra.Rbac.Entities;
 using Yi.Infra.Rbac.IServices;

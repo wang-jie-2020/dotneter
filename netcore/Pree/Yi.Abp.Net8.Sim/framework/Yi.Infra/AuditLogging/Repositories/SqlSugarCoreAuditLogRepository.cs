@@ -2,7 +2,7 @@
 using SqlSugar;
 using Volo.Abp.Auditing;
 using Volo.Abp.Domain.Entities;
-using Yi.Framework.SqlSugarCore.Abstractions;
+using Yi.Framework.SqlSugarCore;
 using Yi.Framework.SqlSugarCore.Repositories;
 using Yi.Infra.AuditLogging.Entities;
 

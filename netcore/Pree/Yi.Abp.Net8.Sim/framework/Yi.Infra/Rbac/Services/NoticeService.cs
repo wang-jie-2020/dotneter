@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.SignalR;
 using SqlSugar;
 using Volo.Abp.Application.Dtos;
 using Yi.Framework.Ddd.Application;
-using Yi.Framework.SqlSugarCore.Abstractions;
+using Yi.Framework.SqlSugarCore;
 using Yi.Infra.Rbac.Dtos.Notice;
 using Yi.Infra.Rbac.Entities;
 using Yi.Infra.Rbac.IServices;

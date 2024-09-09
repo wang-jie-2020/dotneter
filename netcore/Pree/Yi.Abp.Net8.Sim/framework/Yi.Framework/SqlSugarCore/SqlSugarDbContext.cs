@@ -13,7 +13,6 @@ using Volo.Abp.Domain.Entities.Events;
 using Volo.Abp.Guids;
 using Volo.Abp.MultiTenancy;
 using Volo.Abp.Users;
-using Yi.Framework.SqlSugarCore.Abstractions;
 using Check = Volo.Abp.Check;
 
 namespace Yi.Framework.SqlSugarCore;

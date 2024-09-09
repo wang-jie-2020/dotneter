@@ -1,6 +1,4 @@
-﻿using Yi.Framework.SqlSugarCore.Abstractions;
-
-namespace Yi.Framework.SqlSugarCore;
+﻿namespace Yi.Framework.SqlSugarCore;
 
 public class AsyncLocalDbContextAccessor
 {

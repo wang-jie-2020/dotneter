@@ -3,7 +3,7 @@ using SqlSugar;
 using Volo.Abp.Domain.Entities;
 using Volo.Abp.Domain.Repositories;
 
-namespace Yi.Framework.SqlSugarCore.Abstractions;
+namespace Yi.Framework.SqlSugarCore;
 
 public interface ISqlSugarRepository<TEntity> : IRepository<TEntity> where TEntity : class, IEntity, new()
 {

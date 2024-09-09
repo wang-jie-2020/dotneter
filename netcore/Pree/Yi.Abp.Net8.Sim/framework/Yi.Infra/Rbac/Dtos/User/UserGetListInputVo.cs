@@ -1,4 +1,4 @@
-using Yi.Framework.Ddd.Application.Contracts;
+using Yi.Framework.Ddd.Application;
 
 namespace Yi.Infra.Rbac.Dtos.User;
 

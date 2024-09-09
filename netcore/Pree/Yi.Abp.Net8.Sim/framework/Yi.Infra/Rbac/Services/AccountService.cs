@@ -10,7 +10,7 @@ using Volo.Abp.Caching;
 using Volo.Abp.Guids;
 using Volo.Abp.Uow;
 using Volo.Abp.Users;
-using Yi.Framework.SqlSugarCore.Abstractions;
+using Yi.Framework.SqlSugarCore;
 using Yi.Infra.Rbac.Caches;
 using Yi.Infra.Rbac.Consts;
 using Yi.Infra.Rbac.Dtos;

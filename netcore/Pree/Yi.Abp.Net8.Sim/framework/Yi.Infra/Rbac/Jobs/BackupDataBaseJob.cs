@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Options;
 using Quartz;
 using Volo.Abp.BackgroundWorkers.Quartz;
-using Yi.Framework.SqlSugarCore.Abstractions;
+using Yi.Framework.SqlSugarCore;
 using Yi.Infra.Rbac.Options;
 
 namespace Yi.Infra.Rbac.Jobs;

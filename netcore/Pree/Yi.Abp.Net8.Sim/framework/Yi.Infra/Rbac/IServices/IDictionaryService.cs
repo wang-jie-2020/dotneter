@@ -1,4 +1,4 @@
-using Yi.Framework.Ddd.Application.Contracts;
+using Yi.Framework.Ddd.Application;
 using Yi.Infra.Rbac.Dtos.Dictionary;
 
 namespace Yi.Infra.Rbac.IServices;

@@ -5,7 +5,6 @@ using Volo.Abp.Data;
 using Volo.Abp.MultiTenancy;
 using Volo.Abp.Threading;
 using Volo.Abp.Uow;
-using Yi.Framework.SqlSugarCore.Abstractions;
 
 namespace Yi.Framework.SqlSugarCore.Uow;
 

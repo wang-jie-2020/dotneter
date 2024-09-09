@@ -21,7 +21,6 @@ using Yi.Framework.AspNetCore;
 using Yi.Framework.AspNetCore.Microsoft.AspNetCore.Builder;
 using Yi.Framework.AspNetCore.Microsoft.Extensions.DependencyInjection;
 using Yi.Framework.Ddd.Application;
-using Yi.Framework.Ddd.Application.Contracts;
 using Yi.Framework.Mapster;
 using Yi.Framework.SqlSugarCore;
 using Yi.Infra;
@@ -40,7 +39,6 @@ namespace Yi.Web;
     typeof(AbpAuditingModule),
     typeof(AbpAspNetCoreAuthenticationJwtBearerModule),
     typeof(YiFrameworkAspNetCoreModule),
-    typeof(YiFrameworkDddApplicationContractsModule),
     typeof(YiFrameworkDddApplicationModule),
     typeof(YiFrameworkMapsterModule),
     typeof(AbpDddDomainModule),

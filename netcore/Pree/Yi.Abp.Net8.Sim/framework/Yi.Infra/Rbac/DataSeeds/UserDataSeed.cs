@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Options;
 using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
-using Yi.Framework.SqlSugarCore.Abstractions;
+using Yi.Framework.SqlSugarCore;
 using Yi.Infra.Rbac.Entities;
 using Yi.Infra.Rbac.Entities.ValueObjects;
 using Yi.Infra.Rbac.Enums;

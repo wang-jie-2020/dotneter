@@ -3,7 +3,7 @@ using SqlSugar;
 using Volo.Abp.Auditing;
 using Volo.Abp.Data;
 using Volo.Abp.Domain.Entities.Auditing;
-using Yi.Framework.SqlSugarCore.Abstractions;
+using Yi.Framework.SqlSugarCore;
 using Check = Volo.Abp.Check;
 
 namespace Yi.Infra.TenantManagement;

@@ -10,7 +10,7 @@ using Volo.Abp.Domain.Services;
 using Volo.Abp.EventBus.Local;
 using Volo.Abp.Security.Claims;
 using Yi.Framework.Core.Helper;
-using Yi.Framework.SqlSugarCore.Abstractions;
+using Yi.Framework.SqlSugarCore;
 using Yi.Infra.Rbac.Consts;
 using Yi.Infra.Rbac.Dtos;
 using Yi.Infra.Rbac.Entities;

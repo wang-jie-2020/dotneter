@@ -7,7 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.Uow;
-using Yi.Framework.SqlSugarCore.Abstractions;
+using Yi.Framework.SqlSugarCore;
 using Yi.Infra.Rbac.Entities;
 using Yi.Infra.Rbac.Options;
 

@@ -1,6 +1,6 @@
 ﻿using SqlSugar;
 using Volo.Abp.DependencyInjection;
-using Yi.Framework.SqlSugarCore.Abstractions;
+using Yi.Framework.SqlSugarCore;
 using Yi.Framework.SqlSugarCore.Repositories;
 using Yi.Infra.Rbac.Entities;
 

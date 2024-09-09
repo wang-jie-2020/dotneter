@@ -4,7 +4,6 @@ using Volo.Abp.Domain.Entities;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.Linq;
 using Yi.Framework.Core.Helper;
-using Yi.Framework.SqlSugarCore.Abstractions;
 
 namespace Yi.Framework.SqlSugarCore.Repositories;
 

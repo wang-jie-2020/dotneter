@@ -6,7 +6,7 @@ using Volo.Abp.Application.Dtos;
 using Volo.Abp.Data;
 using Volo.Abp.Uow;
 using Yi.Framework.Ddd.Application;
-using Yi.Framework.SqlSugarCore.Abstractions;
+using Yi.Framework.SqlSugarCore;
 using Yi.Infra.TenantManagement.Dtos;
 
 namespace Yi.Infra.TenantManagement;

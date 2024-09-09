@@ -8,7 +8,6 @@ using SqlSugar;
 using Volo.Abp.Data;
 using Volo.Abp.Domain;
 using Volo.Abp.Domain.Repositories;
-using Yi.Framework.SqlSugarCore.Abstractions;
 using Yi.Framework.SqlSugarCore.Repositories;
 using Yi.Framework.SqlSugarCore.Uow;
 

@@ -1,4 +1,4 @@
-using Yi.Framework.Ddd.Application.Contracts;
+using Yi.Framework.Ddd.Application;
 using Yi.Infra.Rbac.Operlog;
 
 namespace Yi.Infra.Rbac.Dtos.OperLog;

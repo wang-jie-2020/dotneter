@@ -1,11 +1,9 @@
 ﻿using Volo.Abp.Application;
 using Volo.Abp.Application.Dtos;
-using Yi.Framework.Ddd.Application.Contracts;
 
 namespace Yi.Framework.Ddd.Application;
 
-[DependsOn(typeof(AbpDddApplicationModule),
-    typeof(YiFrameworkDddApplicationContractsModule))]
+[DependsOn(typeof(AbpDddApplicationModule))]
 public class YiFrameworkDddApplicationModule : AbpModule
 {
     public override void OnApplicationInitialization(ApplicationInitializationContext context)

@@ -1,4 +1,4 @@
-﻿using Yi.Framework.SqlSugarCore.Abstractions;
+﻿using Yi.Framework.SqlSugarCore;
 
 namespace Yi.Infra.TenantManagement;
 

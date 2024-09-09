@@ -1,6 +1,6 @@
 ﻿using Volo.Abp.Application.Services;
 
-namespace Yi.Framework.Ddd.Application.Contracts;
+namespace Yi.Framework.Ddd.Application;
 
 public interface IYiCrudAppService<TEntityDto, in TKey> : ICrudAppService<TEntityDto, TKey>
 {

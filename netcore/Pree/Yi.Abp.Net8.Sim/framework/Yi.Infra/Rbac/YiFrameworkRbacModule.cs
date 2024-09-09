@@ -5,7 +5,6 @@ using Volo.Abp.Caching;
 using Volo.Abp.Domain;
 using Yi.Framework.Caching.FreeRedis;
 using Yi.Framework.Ddd.Application;
-using Yi.Framework.Ddd.Application.Contracts;
 using Yi.Framework.Mapster;
 using Yi.Framework.SqlSugarCore;
 using Yi.Infra.Rbac.Authorization;
@@ -24,8 +23,8 @@ namespace Yi.Infra.Rbac;
     typeof(AbpDddDomainSharedModule),
     typeof(YiFrameworkMapsterModule),
     typeof(YiFrameworkMapsterModule),
-    typeof(YiFrameworkSqlSugarCoreModule),
-    typeof(YiFrameworkDddApplicationContractsModule))]
+    typeof(YiFrameworkSqlSugarCoreModule)
+)]
 public class YiFrameworkRbacModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)

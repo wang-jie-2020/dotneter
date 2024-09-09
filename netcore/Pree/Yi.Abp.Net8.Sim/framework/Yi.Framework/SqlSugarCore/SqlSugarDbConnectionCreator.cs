@@ -3,7 +3,6 @@ using Microsoft.Extensions.Options;
 using SqlSugar;
 using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
-using Yi.Framework.SqlSugarCore.Abstractions;
 
 namespace Yi.Framework.SqlSugarCore;
 

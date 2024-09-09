@@ -3,13 +3,11 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Volo.Abp.Data;
 using Volo.Abp.Domain;
 using Volo.Abp.MultiTenancy;
-using Yi.Framework.Ddd.Application.Contracts;
 
 namespace Yi.Infra.TenantManagement;
 
 [DependsOn(
-    typeof(AbpDddDomainModule),
-    typeof(YiFrameworkDddApplicationContractsModule)
+    typeof(AbpDddDomainModule)
 )]
 public class YiFrameworkTenantManagementModule : AbpModule
 {

@@ -1,6 +1,6 @@
 ﻿using System.Net;
 using Volo.Abp.Auditing;
-using Yi.Framework.SqlSugarCore.Abstractions;
+using Yi.Framework.SqlSugarCore;
 using Yi.Infra.AuditLogging.Entities;
 
 namespace Yi.Infra.AuditLogging.Repositories;

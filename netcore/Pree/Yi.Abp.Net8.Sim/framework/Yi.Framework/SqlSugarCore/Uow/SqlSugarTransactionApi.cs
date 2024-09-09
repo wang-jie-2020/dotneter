@@ -1,5 +1,4 @@
 ﻿using Volo.Abp.Uow;
-using Yi.Framework.SqlSugarCore.Abstractions;
 
 namespace Yi.Framework.SqlSugarCore.Uow;
 

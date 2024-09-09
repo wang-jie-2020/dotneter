@@ -1,4 +1,4 @@
-﻿using Yi.Framework.SqlSugarCore.Abstractions;
+﻿using Yi.Framework.SqlSugarCore;
 using Yi.Infra.Rbac.Entities;
 
 namespace Yi.Infra.Rbac.Repositories;
