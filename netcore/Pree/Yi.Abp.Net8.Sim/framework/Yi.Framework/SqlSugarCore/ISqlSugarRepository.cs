@@ -33,8 +33,7 @@ public interface ISqlSugarRepository<TEntity> : IRepository<TEntity> where TEnti
     Task<int> CountAsync(Expression<Func<TEntity, bool>> whereExpression);
 
     #endregion
-
-
+    
     #region 多查
 
     //多查
@@ -42,8 +41,7 @@ public interface ISqlSugarRepository<TEntity> : IRepository<TEntity> where TEnti
     Task<List<TEntity>> GetListAsync(Expression<Func<TEntity, bool>> whereExpression);
 
     #endregion
-
-
+    
     #region 分页查
 
     //分页查
@@ -67,8 +65,7 @@ public interface ISqlSugarRepository<TEntity> : IRepository<TEntity> where TEnti
     Task<bool> InsertRangeAsync(List<TEntity> insertObjs);
 
     #endregion
-
-
+    
     #region 更新
 
     //更新

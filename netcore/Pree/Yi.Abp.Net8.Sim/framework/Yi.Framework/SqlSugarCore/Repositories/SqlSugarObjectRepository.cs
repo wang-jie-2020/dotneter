@@ -9,8 +9,7 @@ namespace Yi.Framework.SqlSugarCore.Repositories;
 public class SqlSugarObjectRepository<TEntity> : IRepository<TEntity> where TEntity : class, IEntity
 {
     private ISugarDbContextProvider<ISqlSugarDbContext> _sugarDbContextProvider;
-    public ISqlSugarClient _Db => GetDbContextAsync().Result;
-
+    
     public IAsyncQueryableExecuter AsyncExecuter => throw new NotImplementedException();
 
     public bool? IsChangeTrackingEnabled => throw new NotImplementedException();
@@ -80,8 +79,7 @@ public class SqlSugarObjectRepository<TEntity> : IRepository<TEntity> where TEnt
     public async Task<TEntity> InsertAsync(TEntity entity, bool autoSave = false,
         CancellationToken cancellationToken = default)
     {
-        await (await GetDbContextAsync()).InsertableByObject(entity).ExecuteCommandAsync();
-        return entity;
+        throw new NotImplementedException();
     }
 
     public Task InsertManyAsync(IEnumerable<TEntity> entities, bool autoSave = false,
@@ -128,9 +126,7 @@ public class SqlSugarObjectRepository<TEntity> : IRepository<TEntity> where TEnt
     /// <returns></returns>
     public virtual async Task<ISqlSugarClient> GetDbContextAsync()
     {
-        var db = (await _sugarDbContextProvider.GetDbContextAsync()).SqlSugarClient;
-        //await Console.Out.WriteLineAsync("获取的id：" + db.ContextID);
-        return db;
+        throw new NotImplementedException();
     }
 }
 

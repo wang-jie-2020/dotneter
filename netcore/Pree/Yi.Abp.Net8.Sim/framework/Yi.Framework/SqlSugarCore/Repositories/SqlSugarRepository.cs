@@ -32,7 +32,6 @@ public class SqlSugarRepository<TEntity> : ISqlSugarRepository<TEntity>, IReposi
     public virtual async Task<ISqlSugarClient> GetDbContextAsync()
     {
         var db = (await _sugarDbContextProvider.GetDbContextAsync()).SqlSugarClient;
-        //await Console.Out.WriteLineAsync("获取的id：" + db.ContextID);
         return db;
     }
 

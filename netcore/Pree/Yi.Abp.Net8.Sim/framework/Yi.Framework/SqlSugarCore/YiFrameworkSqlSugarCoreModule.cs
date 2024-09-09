@@ -26,8 +26,7 @@ public class YiFrameworkSqlSugarCoreModule : AbpModule
 
         //不开放sqlsugarClient
         //service.AddTransient<ISqlSugarClient>(x => x.GetRequiredService<ISqlsugarDbContext>().SqlSugarClient);
-
-
+        
         service.AddTransient(typeof(IRepository<>), typeof(SqlSugarRepository<>));
         service.AddTransient(typeof(IRepository<,>), typeof(SqlSugarRepository<,>));
         service.AddTransient(typeof(ISqlSugarRepository<>), typeof(SqlSugarRepository<>));
