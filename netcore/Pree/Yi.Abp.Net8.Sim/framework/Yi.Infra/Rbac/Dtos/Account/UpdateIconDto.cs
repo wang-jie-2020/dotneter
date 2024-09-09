@@ -1,7 +1,6 @@
-﻿namespace Yi.Infra.Rbac.Dtos.Account
+﻿namespace Yi.Infra.Rbac.Dtos.Account;
+
+public class UpdateIconDto
 {
-    public class UpdateIconDto
-    {
-        public string? Icon { get; set; }
-    }
+    public string? Icon { get; set; }
 }

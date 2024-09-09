@@ -11,7 +11,7 @@ using static Yi.Framework.Authentication.OAuth.Gitee.GiteeAuthenticationConstant
 namespace Yi.Framework.Authentication.OAuth.Gitee;
 
 /// <summary>
-/// Defines a set of options used by <see cref="GiteeAuthenticationHandler"/>.
+///     Defines a set of options used by <see cref="GiteeAuthenticationHandler" />.
 /// </summary>
 public class GiteeAuthenticationOptions : AuthenticationOAuthOptions
 {
@@ -37,8 +37,8 @@ public class GiteeAuthenticationOptions : AuthenticationOAuthOptions
     }
 
     /// <summary>
-    /// Gets or sets the address of the endpoint exposing
-    /// the email addresses associated with the logged in user.
+    ///     Gets or sets the address of the endpoint exposing
+    ///     the email addresses associated with the logged in user.
     /// </summary>
     public string UserEmailsEndpoint { get; set; }
 }

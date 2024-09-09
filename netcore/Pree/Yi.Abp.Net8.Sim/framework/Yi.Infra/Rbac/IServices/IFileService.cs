@@ -2,11 +2,10 @@
 using Volo.Abp.Application.Services;
 using Yi.Infra.Rbac.Dtos.FileManager;
 
-namespace Yi.Infra.Rbac.IServices
+namespace Yi.Infra.Rbac.IServices;
+
+public interface IFileService : IApplicationService
 {
-    public interface IFileService : IApplicationService
-    {
-        Task<string> GetReturnPathAsync(Guid code, bool? isThumbnail);
-        Task<List<FileGetListOutputDto>> Post(IFormFileCollection file);
-    }
+    Task<string> GetReturnPathAsync(Guid code, bool? isThumbnail);
+    Task<List<FileGetListOutputDto>> Post(IFormFileCollection file);
 }

@@ -1,7 +1,6 @@
-﻿namespace Yi.Infra.Rbac.Dtos.Account
+﻿namespace Yi.Infra.Rbac.Dtos.Account;
+
+public class RestPasswordDto
 {
-    public class RestPasswordDto
-    {
-        public string Password { get; set; } = string.Empty;
-    }
+    public string Password { get; set; } = string.Empty;
 }

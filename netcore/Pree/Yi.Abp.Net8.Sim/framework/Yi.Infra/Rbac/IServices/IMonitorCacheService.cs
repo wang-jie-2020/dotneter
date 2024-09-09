@@ -1,6 +1,5 @@
-﻿namespace Yi.Infra.Rbac.IServices
+﻿namespace Yi.Infra.Rbac.IServices;
+
+public interface IMonitorCacheService
 {
-    public interface IMonitorCacheService
-    {
-    }
 }

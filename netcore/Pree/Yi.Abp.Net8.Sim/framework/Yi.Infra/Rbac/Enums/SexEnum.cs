@@ -1,22 +1,22 @@
-﻿namespace Yi.Infra.Rbac.Enums
+﻿namespace Yi.Infra.Rbac.Enums;
+
+/// <summary>
+///     性别
+/// </summary>
+public enum SexEnum
 {
     /// <summary>
-    /// 性别
+    ///     男性
     /// </summary>
-    public enum SexEnum
-    {
-        /// <summary>
-        /// 男性
-        /// </summary>
-        Male = 0,
-        /// <summary>
-        /// 女性
-        /// </summary>
-        Woman = 1,
-        /// <summary>
-        /// 未知
-        /// </summary>
-        Unknown = 2
+    Male = 0,
 
-    }
+    /// <summary>
+    ///     女性
+    /// </summary>
+    Woman = 1,
+
+    /// <summary>
+    ///     未知
+    /// </summary>
+    Unknown = 2
 }

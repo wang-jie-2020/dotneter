@@ -1,9 +1,8 @@
-﻿namespace Yi.Infra.Rbac.Options
+﻿namespace Yi.Infra.Rbac.Options;
+
+/// <summary>
+///     刷新token
+/// </summary>
+public class RefreshJwtOptions : JwtOptions
 {
-    /// <summary>
-    /// 刷新token
-    /// </summary>
-    public class RefreshJwtOptions: JwtOptions
-    {
-    }
 }

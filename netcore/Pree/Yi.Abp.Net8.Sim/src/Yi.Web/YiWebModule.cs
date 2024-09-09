@@ -32,277 +32,265 @@ using Yi.Infra.Rbac.Authorization;
 using Yi.Infra.Rbac.Consts;
 using Yi.Infra.Rbac.Options;
 
-namespace Yi.Web
+namespace Yi.Web;
+
+[DependsOn(
+    typeof(AbpAspNetCoreMultiTenancyModule),
+    typeof(AbpAspNetCoreMvcModule),
+    typeof(AbpAutofacModule),
+    typeof(AbpSwashbuckleModule),
+    typeof(AbpAspNetCoreSerilogModule),
+    typeof(AbpAuditingModule),
+    typeof(AbpAspNetCoreAuthenticationJwtBearerModule),
+    typeof(YiFrameworkAspNetCoreModule),
+    typeof(YiFrameworkAspNetCoreAuthenticationOAuthModule),
+    typeof(YiFrameworkDddApplicationContractsModule),
+    typeof(YiFrameworkDddApplicationModule),
+    typeof(YiFrameworkMapsterModule),
+    typeof(AbpDddDomainModule),
+    typeof(AbpCachingModule),
+    typeof(AbpDddDomainSharedModule),
+    typeof(YiFrameworkMapsterModule),
+    typeof(YiFrameworkSqlSugarCoreModule),
+    typeof(YiInfraModule)
+)]
+public class YiAbpWebModule : AbpModule
 {
-    [DependsOn(
-        typeof(AbpAspNetCoreMultiTenancyModule),
-        typeof(AbpAspNetCoreMvcModule),
-        typeof(AbpAutofacModule),
-        typeof(AbpSwashbuckleModule),
-        typeof(AbpAspNetCoreSerilogModule),
-        typeof(AbpAuditingModule),
-        typeof(AbpAspNetCoreAuthenticationJwtBearerModule),
-        typeof(YiFrameworkAspNetCoreModule),
-        typeof(YiFrameworkAspNetCoreAuthenticationOAuthModule),
-        typeof(YiFrameworkDddApplicationContractsModule),
-        typeof(YiFrameworkDddApplicationModule),
-        typeof(YiFrameworkMapsterModule),
-        typeof(AbpDddDomainModule),
-        typeof(AbpCachingModule),
-        typeof(AbpDddDomainSharedModule),
-        typeof(YiFrameworkMapsterModule),
-        typeof(YiFrameworkSqlSugarCoreModule),
-        typeof(YiInfraModule)
-        
-    )]
-    public class YiAbpWebModule : AbpModule
+    private const string DefaultCorsPolicyName = "Default";
+
+    public override Task ConfigureServicesAsync(ServiceConfigurationContext context)
     {
-        private const string DefaultCorsPolicyName = "Default";
-
-        public override Task ConfigureServicesAsync(ServiceConfigurationContext context)
+        var configuration = context.Services.GetConfiguration();
+        var host = context.Services.GetHostingEnvironment();
+        var service = context.Services;
+        //请求日志
+        Configure<AbpAuditingOptions>(optios =>
         {
-            var configuration = context.Services.GetConfiguration();
-            var host = context.Services.GetHostingEnvironment();
-            var service = context.Services;
-            //请求日志
-            Configure<AbpAuditingOptions>(optios =>
+            //默认关闭，开启会有大量的审计日志
+            optios.IsEnabled = false;
+            //审计日志过滤器
+            optios.AlwaysLogSelectors.Add(x => Task.FromResult(true));
+        });
+
+        //动态Api todo
+        Configure<AbpAspNetCoreMvcOptions>(options =>
+        {
+            options.ConventionalControllers.Create(typeof(YiInfraModule).Assembly,
+                options => options.RemoteServiceName = "infra");
+            //统一前缀
+            options.ConventionalControllers.ConventionalControllerSettings.ForEach(x => x.RootPath = "api/app");
+        });
+
+        //设置api格式
+        service.AddControllers().AddNewtonsoftJson(options =>
+        {
+            options.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";
+            options.SerializerSettings.Converters.Add(new StringEnumConverter());
+        });
+
+        //设置缓存不要过期，默认滑动20分钟
+        Configure<AbpDistributedCacheOptions>(cacheOptions =>
+        {
+            cacheOptions.GlobalCacheEntryOptions.SlidingExpiration = null;
+            //缓存key前缀
+            cacheOptions.KeyPrefix = "Yi:";
+        });
+
+
+        Configure<AbpAntiForgeryOptions>(options => { options.AutoValidate = false; });
+
+        //Swagger
+        context.Services.AddYiSwaggerGen<YiAbpWebModule>(options =>
+        {
+            options.SwaggerDoc("default",
+                new OpenApiInfo { Title = "Yi.Framework.Abp", Version = "v1", Description = "集大成者" });
+        });
+
+        //跨域
+        context.Services.AddCors(options =>
+        {
+            options.AddPolicy(DefaultCorsPolicyName, builder =>
             {
-                //默认关闭，开启会有大量的审计日志
-                optios.IsEnabled = false;
-                //审计日志过滤器
-                optios.AlwaysLogSelectors.Add(x => Task.FromResult(true));
+                builder
+                    .WithOrigins(
+                        configuration["App:CorsOrigins"]!
+                            .Split(";", StringSplitOptions.RemoveEmptyEntries)
+                            .Select(o => o.RemovePostFix("/"))
+                            .ToArray()
+                    )
+                    .WithAbpExposedHeaders()
+                    .SetIsOriginAllowedToAllowWildcardSubdomains()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowCredentials();
             });
+        });
 
-            //动态Api todo
-            Configure<AbpAspNetCoreMvcOptions>(options =>
+        //配置多租户
+        Configure<AbpTenantResolveOptions>(options =>
+        {
+            //基于cookie jwt不好用，有坑
+            options.TenantResolvers.Clear();
+            options.TenantResolvers.Add(new HeaderTenantResolveContributor());
+            //options.TenantResolvers.Add(new HeaderTenantResolveContributor());
+            //options.TenantResolvers.Add(new CookieTenantResolveContributor());
+
+            //options.TenantResolvers.RemoveAll(x => x.Name == CookieTenantResolveContributor.ContributorName);
+        });
+
+        //速率限制
+        //每60秒限制100个请求，滑块添加，分6段
+        service.AddRateLimiter(_ =>
+        {
+            _.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
+            _.OnRejected = (context, _) =>
             {
-                options.ConventionalControllers.Create(typeof(YiInfraModule).Assembly,
-                    options => options.RemoteServiceName = "infra");
-                //统一前缀
-                options.ConventionalControllers.ConventionalControllerSettings.ForEach(x => x.RootPath = "api/app");
-            });
+                if (context.Lease.TryGetMetadata(MetadataName.RetryAfter, out var retryAfter))
+                    context.HttpContext.Response.Headers.RetryAfter =
+                        ((int)retryAfter.TotalSeconds).ToString(NumberFormatInfo.InvariantInfo);
 
-            //设置api格式
-            service.AddControllers().AddNewtonsoftJson(options =>
-            {
-                options.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";
-                options.SerializerSettings.Converters.Add(new StringEnumConverter());
-            });
+                context.HttpContext.Response.StatusCode = StatusCodes.Status429TooManyRequests;
+                context.HttpContext.Response.WriteAsync("Too many requests. Please try again later.");
 
-            //设置缓存不要过期，默认滑动20分钟
-            Configure<AbpDistributedCacheOptions>(cacheOptions =>
-            {
-                cacheOptions.GlobalCacheEntryOptions.SlidingExpiration = null;
-                //缓存key前缀
-                cacheOptions.KeyPrefix = "Yi:";
-            });
+                return new ValueTask();
+            };
 
-
-            Configure<AbpAntiForgeryOptions>(options => { options.AutoValidate = false; });
-
-            //Swagger
-            context.Services.AddYiSwaggerGen<YiAbpWebModule>(options =>
-            {
-                options.SwaggerDoc("default",
-                    new OpenApiInfo { Title = "Yi.Framework.Abp", Version = "v1", Description = "集大成者" });
-            });
-
-            //跨域
-            context.Services.AddCors(options =>
-            {
-                options.AddPolicy(DefaultCorsPolicyName, builder =>
+            //全局使用，链式表达式
+            _.GlobalLimiter = PartitionedRateLimiter.CreateChained(
+                PartitionedRateLimiter.Create<HttpContext, string>(httpContext =>
                 {
-                    builder
-                        .WithOrigins(
-                            configuration["App:CorsOrigins"]!
-                                .Split(";", StringSplitOptions.RemoveEmptyEntries)
-                                .Select(o => o.RemovePostFix("/"))
-                                .ToArray()
-                        )
-                        .WithAbpExposedHeaders()
-                        .SetIsOriginAllowedToAllowWildcardSubdomains()
-                        .AllowAnyHeader()
-                        .AllowAnyMethod()
-                        .AllowCredentials();
-                });
-            });
+                    var userAgent = httpContext.Request.Headers.UserAgent.ToString();
 
-            //配置多租户
-            Configure<AbpTenantResolveOptions>(options =>
+                    return RateLimitPartition.GetSlidingWindowLimiter
+                    (userAgent, _ =>
+                        new SlidingWindowRateLimiterOptions
+                        {
+                            PermitLimit = 1000,
+                            Window = TimeSpan.FromSeconds(60),
+                            SegmentsPerWindow = 6,
+                            QueueProcessingOrder = QueueProcessingOrder.OldestFirst
+                        });
+                }));
+        });
+
+
+        //jwt鉴权
+        var jwtOptions = configuration.GetSection(nameof(JwtOptions)).Get<JwtOptions>();
+        var refreshJwtOptions = configuration.GetSection(nameof(RefreshJwtOptions)).Get<RefreshJwtOptions>();
+
+        context.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(options =>
             {
-                //基于cookie jwt不好用，有坑
-                options.TenantResolvers.Clear();
-                options.TenantResolvers.Add(new HeaderTenantResolveContributor());
-                //options.TenantResolvers.Add(new HeaderTenantResolveContributor());
-                //options.TenantResolvers.Add(new CookieTenantResolveContributor());
-
-                //options.TenantResolvers.RemoveAll(x => x.Name == CookieTenantResolveContributor.ContributorName);
-            });
-
-            //速率限制
-            //每60秒限制100个请求，滑块添加，分6段
-            service.AddRateLimiter(_ =>
-            {
-                _.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
-                _.OnRejected = (context, _) =>
+                options.TokenValidationParameters = new TokenValidationParameters
                 {
-                    if (context.Lease.TryGetMetadata(MetadataName.RetryAfter, out var retryAfter))
-                    {
-                        context.HttpContext.Response.Headers.RetryAfter =
-                            ((int)retryAfter.TotalSeconds).ToString(NumberFormatInfo.InvariantInfo);
-                    }
-
-                    context.HttpContext.Response.StatusCode = StatusCodes.Status429TooManyRequests;
-                    context.HttpContext.Response.WriteAsync("Too many requests. Please try again later.");
-
-                    return new ValueTask();
+                    ClockSkew = TimeSpan.Zero,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = jwtOptions.Issuer,
+                    ValidAudience = jwtOptions.Audience,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtOptions.SecurityKey))
                 };
-
-                //全局使用，链式表达式
-                _.GlobalLimiter = PartitionedRateLimiter.CreateChained(
-                    PartitionedRateLimiter.Create<HttpContext, string>(httpContext =>
-                    {
-                        var userAgent = httpContext.Request.Headers.UserAgent.ToString();
-
-                        return RateLimitPartition.GetSlidingWindowLimiter
-                        (userAgent, _ =>
-                            new SlidingWindowRateLimiterOptions
-                            {
-                                PermitLimit = 1000,
-                                Window = TimeSpan.FromSeconds(60),
-                                SegmentsPerWindow = 6,
-                                QueueProcessingOrder = QueueProcessingOrder.OldestFirst
-                            });
-                    }));
-            });
-
-
-            //jwt鉴权
-            var jwtOptions = configuration.GetSection(nameof(JwtOptions)).Get<JwtOptions>();
-            var refreshJwtOptions = configuration.GetSection(nameof(RefreshJwtOptions)).Get<RefreshJwtOptions>();
-
-            context.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(options =>
+                options.Events = new JwtBearerEvents
                 {
-                    options.TokenValidationParameters = new TokenValidationParameters
+                    OnMessageReceived = context =>
                     {
-                        ClockSkew = TimeSpan.Zero,
-                        ValidateIssuerSigningKey = true,
-                        ValidIssuer = jwtOptions.Issuer,
-                        ValidAudience = jwtOptions.Audience,
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtOptions.SecurityKey))
-                    };
-                    options.Events = new JwtBearerEvents
-                    {
-                        OnMessageReceived = context =>
-                        {
-                            var accessToken = context.Request.Query["access_token"];
-                            if (!string.IsNullOrEmpty(accessToken))
-                            {
-                                context.Token = accessToken;
-                            }
+                        var accessToken = context.Request.Query["access_token"];
+                        if (!string.IsNullOrEmpty(accessToken)) context.Token = accessToken;
 
-                            return Task.CompletedTask;
-                        }
-                    };
-                })
-                .AddJwtBearer(TokenTypeConst.Refresh, options =>
-                {
-                    options.TokenValidationParameters = new TokenValidationParameters
-                    {
-                        ClockSkew = TimeSpan.Zero,
-                        ValidateIssuerSigningKey = true,
-                        ValidIssuer = refreshJwtOptions.Issuer,
-                        ValidAudience = refreshJwtOptions.Audience,
-                        IssuerSigningKey =
-                            new SymmetricSecurityKey(Encoding.UTF8.GetBytes(refreshJwtOptions.SecurityKey))
-                    };
-                    options.Events = new JwtBearerEvents
-                    {
-                        OnMessageReceived = context =>
-                        {
-                            var refresh_token = context.Request.Headers["refresh_token"];
-                            if (!string.IsNullOrEmpty(refresh_token))
-                            {
-                                context.Token = refresh_token;
-                                return Task.CompletedTask;
-                            }
-
-                            var refreshToken = context.Request.Query["refresh_token"];
-                            if (!string.IsNullOrEmpty(refreshToken))
-                            {
-                                context.Token = refreshToken;
-                            }
-
-                            return Task.CompletedTask;
-                        }
-                    };
-                })
-                .AddQQ(options => { configuration.GetSection("OAuth:QQ").Bind(options); })
-                .AddGitee(options => { configuration.GetSection("OAuth:Gitee").Bind(options); });
-
-            //授权
-            context.Services.AddAuthorization();
-
-            return Task.CompletedTask;
-        }
-
-
-        public override Task OnApplicationInitializationAsync(ApplicationInitializationContext context)
-        {
-            var service = context.ServiceProvider;
-
-            var env = context.GetEnvironment();
-            var app = context.GetApplicationBuilder();
-
-            app.UseRouting();
-
-            //跨域
-            app.UseCors(DefaultCorsPolicyName);
-
-            if (!env.IsDevelopment())
+                        return Task.CompletedTask;
+                    }
+                };
+            })
+            .AddJwtBearer(TokenTypeConst.Refresh, options =>
             {
-                //速率限制
-                app.UseRateLimiter();
-            }
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ClockSkew = TimeSpan.Zero,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = refreshJwtOptions.Issuer,
+                    ValidAudience = refreshJwtOptions.Audience,
+                    IssuerSigningKey =
+                        new SymmetricSecurityKey(Encoding.UTF8.GetBytes(refreshJwtOptions.SecurityKey))
+                };
+                options.Events = new JwtBearerEvents
+                {
+                    OnMessageReceived = context =>
+                    {
+                        var refresh_token = context.Request.Headers["refresh_token"];
+                        if (!string.IsNullOrEmpty(refresh_token))
+                        {
+                            context.Token = refresh_token;
+                            return Task.CompletedTask;
+                        }
+
+                        var refreshToken = context.Request.Query["refresh_token"];
+                        if (!string.IsNullOrEmpty(refreshToken)) context.Token = refreshToken;
+
+                        return Task.CompletedTask;
+                    }
+                };
+            })
+            .AddQQ(options => { configuration.GetSection("OAuth:QQ").Bind(options); })
+            .AddGitee(options => { configuration.GetSection("OAuth:Gitee").Bind(options); });
+
+        //授权
+        context.Services.AddAuthorization();
+
+        return Task.CompletedTask;
+    }
 
 
-            //无感token，先刷新再鉴权
-            app.UseRefreshToken();
+    public override Task OnApplicationInitializationAsync(ApplicationInitializationContext context)
+    {
+        var service = context.ServiceProvider;
 
-            //鉴权
-            app.UseAuthentication();
+        var env = context.GetEnvironment();
+        var app = context.GetApplicationBuilder();
 
-            //多租户
-            app.UseMultiTenancy();
+        app.UseRouting();
 
-            //swagger
-            app.UseYiSwagger();
+        //跨域
+        app.UseCors(DefaultCorsPolicyName);
 
-            //请求处理
-            app.UseYiApiHandlinge();
+        if (!env.IsDevelopment())
+            //速率限制
+            app.UseRateLimiter();
 
-            //静态资源
-            app.UseStaticFiles("/api/app/wwwroot");
-            app.UseDefaultFiles();
-            app.UseDirectoryBrowser("/api/app/wwwroot");
 
-            //工作单元
-            app.UseUnitOfWork();
+        //无感token，先刷新再鉴权
+        app.UseRefreshToken();
 
-            //授权
-            app.UseAuthorization();
+        //鉴权
+        app.UseAuthentication();
 
-            //审计日志
-            app.UseAuditing();
+        //多租户
+        app.UseMultiTenancy();
 
-            //日志记录
-            app.UseAbpSerilogEnrichers();
+        //swagger
+        app.UseYiSwagger();
 
-            //终节点
-            app.UseConfiguredEndpoints();
+        //请求处理
+        app.UseYiApiHandlinge();
 
-            return Task.CompletedTask;
-        }
+        //静态资源
+        app.UseStaticFiles("/api/app/wwwroot");
+        app.UseDefaultFiles();
+        app.UseDirectoryBrowser("/api/app/wwwroot");
+
+        //工作单元
+        app.UseUnitOfWork();
+
+        //授权
+        app.UseAuthorization();
+
+        //审计日志
+        app.UseAuditing();
+
+        //日志记录
+        app.UseAbpSerilogEnrichers();
+
+        //终节点
+        app.UseConfiguredEndpoints();
+
+        return Task.CompletedTask;
     }
 }

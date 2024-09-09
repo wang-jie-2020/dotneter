@@ -1,10 +1,9 @@
-namespace Yi.Infra.Rbac.Dtos.DictionaryType
+namespace Yi.Infra.Rbac.Dtos.DictionaryType;
+
+public class DictionaryTypeUpdateInputVo
 {
-    public class DictionaryTypeUpdateInputVo
-    {
-        public string DictName { get; set; } = string.Empty;
-        public string DictType { get; set; } = string.Empty;
-        public string? Remark { get; set; }
-        public bool State { get; set; }
-    }
+    public string DictName { get; set; } = string.Empty;
+    public string DictType { get; set; } = string.Empty;
+    public string? Remark { get; set; }
+    public bool State { get; set; }
 }

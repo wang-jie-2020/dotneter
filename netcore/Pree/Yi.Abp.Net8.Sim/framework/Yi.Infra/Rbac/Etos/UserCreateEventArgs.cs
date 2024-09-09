@@ -1,14 +1,14 @@
-﻿namespace Yi.Infra.Rbac.Etos
+﻿namespace Yi.Infra.Rbac.Etos;
+
+/// <summary>
+///     用户创建的id
+/// </summary>
+public class UserCreateEventArgs
 {
-    /// <summary>
-    /// 用户创建的id
-    /// </summary>
-    public class UserCreateEventArgs
+    public UserCreateEventArgs(Guid userId)
     {
-        public UserCreateEventArgs(Guid userId)
-        {
-            UserId = userId;
-        }
-        public Guid UserId { get; set; }
+        UserId = userId;
     }
+
+    public Guid UserId { get; set; }
 }

@@ -1,26 +1,31 @@
 ﻿using Volo.Abp.Domain.Values;
 
-namespace Yi.Infra.Rbac.Entities.ValueObjects
+namespace Yi.Infra.Rbac.Entities.ValueObjects;
+
+public class EncryPasswordValueObject : ValueObject
 {
-    public class EncryPasswordValueObject : ValueObject
+    public EncryPasswordValueObject()
     {
-        public EncryPasswordValueObject() { }
-        public EncryPasswordValueObject(string password) { this.Password = password; }
+    }
 
-        /// <summary>
-        /// 密码
-        /// </summary>
-        public string Password { get; set; } = string.Empty;
+    public EncryPasswordValueObject(string password)
+    {
+        Password = password;
+    }
 
-        /// <summary>
-        /// 加密盐值
-        /// </summary>
-        public string Salt { get; set; } = string.Empty;
+    /// <summary>
+    ///     密码
+    /// </summary>
+    public string Password { get; set; } = string.Empty;
 
-        protected override IEnumerable<object> GetAtomicValues()
-        {
-            yield return Password;
-            yield return Salt;
-        }
+    /// <summary>
+    ///     加密盐值
+    /// </summary>
+    public string Salt { get; set; } = string.Empty;
+
+    protected override IEnumerable<object> GetAtomicValues()
+    {
+        yield return Password;
+        yield return Salt;
     }
 }

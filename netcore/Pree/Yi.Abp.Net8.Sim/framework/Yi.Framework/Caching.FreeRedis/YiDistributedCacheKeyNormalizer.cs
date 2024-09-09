@@ -1,40 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Options;
 using Volo.Abp.Caching;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.MultiTenancy;
 
-namespace Yi.Framework.Caching.FreeRedis
+namespace Yi.Framework.Caching.FreeRedis;
+
+[Dependency(ReplaceServices = true)]
+public class YiDistributedCacheKeyNormalizer : IDistributedCacheKeyNormalizer, ITransientDependency
 {
-    [Dependency(ReplaceServices =true)]
-    public class YiDistributedCacheKeyNormalizer : IDistributedCacheKeyNormalizer, ITransientDependency
+    public YiDistributedCacheKeyNormalizer(
+        ICurrentTenant currentTenant,
+        IOptions<AbpDistributedCacheOptions> distributedCacheOptions)
     {
-        protected ICurrentTenant CurrentTenant { get; }
+        CurrentTenant = currentTenant;
+        DistributedCacheOptions = distributedCacheOptions.Value;
+    }
 
-        protected AbpDistributedCacheOptions DistributedCacheOptions { get; }
+    protected ICurrentTenant CurrentTenant { get; }
 
-        public YiDistributedCacheKeyNormalizer(
-            ICurrentTenant currentTenant,
-            IOptions<AbpDistributedCacheOptions> distributedCacheOptions)
-        {
-            CurrentTenant = currentTenant;
-            DistributedCacheOptions = distributedCacheOptions.Value;
-        }
+    protected AbpDistributedCacheOptions DistributedCacheOptions { get; }
 
-        public virtual string NormalizeKey(DistributedCacheKeyNormalizeArgs args)
-        {
-            var normalizedKey = $"{DistributedCacheOptions.KeyPrefix}{args.Key}";
+    public virtual string NormalizeKey(DistributedCacheKeyNormalizeArgs args)
+    {
+        var normalizedKey = $"{DistributedCacheOptions.KeyPrefix}{args.Key}";
 
-            //if (!args.IgnoreMultiTenancy && CurrentTenant.Id.HasValue)
-            //{
-            //    normalizedKey = $"t:{CurrentTenant.Id.Value},{normalizedKey}";
-            //}
+        //if (!args.IgnoreMultiTenancy && CurrentTenant.Id.HasValue)
+        //{
+        //    normalizedKey = $"t:{CurrentTenant.Id.Value},{normalizedKey}";
+        //}
 
-            return normalizedKey;
-        }
+        return normalizedKey;
     }
 }

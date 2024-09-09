@@ -4,15 +4,17 @@ using Yi.Web;
 
 //创建日志,可使用{SourceContext}记录
 Log.Logger = new LoggerConfiguration()
-.MinimumLevel.Debug()
-.MinimumLevel.Override("Microsoft", LogEventLevel.Information)
-.MinimumLevel.Override("Microsoft.AspNetCore.Hosting.Diagnostics", LogEventLevel.Error)
-.MinimumLevel.Override("Quartz", LogEventLevel.Warning)
-.Enrich.FromLogContext()
-.WriteTo.Async(c => c.File("logs/all/log-.txt", rollingInterval: RollingInterval.Day, restrictedToMinimumLevel: LogEventLevel.Debug))
-.WriteTo.Async(c => c.File("logs/error/errorlog-.txt", rollingInterval: RollingInterval.Day, restrictedToMinimumLevel: LogEventLevel.Error))
-.WriteTo.Async(c => c.Console())
-.CreateLogger();
+    .MinimumLevel.Debug()
+    .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
+    .MinimumLevel.Override("Microsoft.AspNetCore.Hosting.Diagnostics", LogEventLevel.Error)
+    .MinimumLevel.Override("Quartz", LogEventLevel.Warning)
+    .Enrich.FromLogContext()
+    .WriteTo.Async(c => c.File("logs/all/log-.txt", rollingInterval: RollingInterval.Day,
+        restrictedToMinimumLevel: LogEventLevel.Debug))
+    .WriteTo.Async(c => c.File("logs/error/errorlog-.txt", rollingInterval: RollingInterval.Day,
+        restrictedToMinimumLevel: LogEventLevel.Error))
+    .WriteTo.Async(c => c.Console())
+    .CreateLogger();
 
 try
 {

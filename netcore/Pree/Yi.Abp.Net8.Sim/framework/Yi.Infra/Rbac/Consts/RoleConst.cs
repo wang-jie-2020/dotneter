@@ -1,10 +1,8 @@
-namespace Yi.Infra.Rbac.Consts
-{
-    /// <summary>
-    /// 常量定义
-    /// </summary>
+namespace Yi.Infra.Rbac.Consts;
 
-    public class RoleConst
-    {
-    }
+/// <summary>
+///     常量定义
+/// </summary>
+public class RoleConst
+{
 }

@@ -1,9 +1,5 @@
-﻿using Volo.Abp.Modularity;
+﻿namespace Yi.Framework.Core;
 
-namespace Yi.Framework.Core
+public class YiFrameworkCoreModule : AbpModule
 {
-    public class YiFrameworkCoreModule:AbpModule
-    {
-
-    }
 }

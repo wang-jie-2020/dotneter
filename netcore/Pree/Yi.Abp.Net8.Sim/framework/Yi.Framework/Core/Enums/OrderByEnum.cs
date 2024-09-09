@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Yi.Framework.Core.Enums;
 
-namespace Yi.Framework.Core.Enums
+public enum OrderByEnum
 {
-    public enum OrderByEnum
-    {
-        Asc,
-        Desc
-    }
+    Asc,
+    Desc
 }

@@ -1,16 +1,14 @@
-﻿namespace Yi.Infra.Rbac.Options
+﻿namespace Yi.Infra.Rbac.Options;
+
+public class AliyunOptions
 {
-    public class AliyunOptions
-    {
+    public string AccessKeyId { get; set; }
+    public string AccessKeySecret { get; set; }
+    public AliyunSms Sms { get; set; }
+}
 
-        public string AccessKeyId { get; set; }
-        public string AccessKeySecret { get; set; }
-        public AliyunSms Sms { get; set; }
-    }
-
-    public class AliyunSms
-    {
-        public string SignName { get; set; }
-        public string TemplateCode { get; set; }
-    }
+public class AliyunSms
+{
+    public string SignName { get; set; }
+    public string TemplateCode { get; set; }
 }

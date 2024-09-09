@@ -1,19 +1,18 @@
 using Volo.Abp.Application.Dtos;
 
-namespace Yi.Infra.Rbac.Dtos.Dept
+namespace Yi.Infra.Rbac.Dtos.Dept;
+
+public class DeptGetOutputDto : EntityDto<Guid>
 {
-    public class DeptGetOutputDto : EntityDto<Guid>
-    {
-        public bool State { get; set; }
-        public string DeptName { get; set; } = string.Empty;
-        public string DeptCode { get; set; } = string.Empty;
-        public string? Leader { get; set; }
-        public string? Remark { get; set; }
+    public bool State { get; set; }
+    public string DeptName { get; set; } = string.Empty;
+    public string DeptCode { get; set; } = string.Empty;
+    public string? Leader { get; set; }
+    public string? Remark { get; set; }
 
-        public Guid? deptId { get; set; }
+    public Guid? deptId { get; set; }
 
-        public int OrderNum { get; set; }
+    public int OrderNum { get; set; }
 
-        public Guid ParentId { get; set; }
-    }
+    public Guid ParentId { get; set; }
 }

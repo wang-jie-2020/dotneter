@@ -1,24 +1,31 @@
 ﻿using Yi.Infra.Rbac.Dtos;
 
-namespace Yi.Infra.Rbac.Caches
+namespace Yi.Infra.Rbac.Caches;
+
+public class UserInfoCacheItem
 {
-    public class UserInfoCacheItem
+    public UserInfoCacheItem(UserRoleMenuDto info)
     {
-        public UserInfoCacheItem(UserRoleMenuDto info) { Info = info; }
-        /// <summary>
-        /// 存储的用户信息
-        /// </summary>
-        public UserRoleMenuDto Info { get; set; }
+        Info = info;
     }
-    public class UserInfoCacheKey
+
+    /// <summary>
+    ///     存储的用户信息
+    /// </summary>
+    public UserRoleMenuDto Info { get; set; }
+}
+
+public class UserInfoCacheKey
+{
+    public UserInfoCacheKey(Guid userId)
     {
-        public UserInfoCacheKey(Guid userId) { UserId = userId; }
+        UserId = userId;
+    }
 
-        public Guid UserId { get; set; }
+    public Guid UserId { get; set; }
 
-        public override string ToString()
-        {
-            return $"User:{UserId}";
-        }
+    public override string ToString()
+    {
+        return $"User:{UserId}";
     }
 }

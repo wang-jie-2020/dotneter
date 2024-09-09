@@ -1,8 +1,7 @@
-﻿namespace Yi.Infra.Rbac.Dtos.Account
+﻿namespace Yi.Infra.Rbac.Dtos.Account;
+
+public class CaptchaImageDto
 {
-    public class CaptchaImageDto
-    {
-        public Guid Uuid { get; set; } = Guid.Empty;
-        public byte[] Img { get; set; }
-    }
+    public Guid Uuid { get; set; } = Guid.Empty;
+    public byte[] Img { get; set; }
 }

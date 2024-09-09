@@ -7,7 +7,7 @@
 namespace Yi.Framework.Authentication.OAuth.Gitee;
 
 /// <summary>
-/// Contains constants specific to the <see cref="GiteeAuthenticationHandler"/>.
+///     Contains constants specific to the <see cref="GiteeAuthenticationHandler" />.
 /// </summary>
 public static class GiteeAuthenticationConstants
 {

@@ -1,15 +1,14 @@
 ﻿using Volo.Abp.AspNetCore.SignalR;
 
-namespace Yi.Infra.Rbac.SignalRHubs
+namespace Yi.Infra.Rbac.SignalRHubs;
+
+[HubRoute("/hub/notice")]
+public class NoticeHub : AbpHub
 {
-    [HubRoute("/hub/notice")]
-    public class NoticeHub : AbpHub
+    /// <summary>
+    ///     由于发布功能，主要是服务端项客户端主动推送
+    /// </summary>
+    public NoticeHub()
     {
-        /// <summary>
-        /// 由于发布功能，主要是服务端项客户端主动推送
-        /// </summary>
-        public NoticeHub()
-        {
-        }
     }
 }

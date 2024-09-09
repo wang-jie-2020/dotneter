@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Yi.Framework.SqlSugarCore.Abstractions;
 
-namespace Yi.Framework.SqlSugarCore.Abstractions
+public interface ISugarDbContextProvider<TDbContext>
+    where TDbContext : ISqlSugarDbContext
 {
-    public interface ISugarDbContextProvider<TDbContext>
-        where TDbContext : ISqlSugarDbContext
-    {
-
-        Task<TDbContext> GetDbContextAsync();
-
-    }
-
+    Task<TDbContext> GetDbContextAsync();
 }

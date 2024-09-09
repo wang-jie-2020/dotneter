@@ -1,11 +1,11 @@
-﻿
-namespace Yi.Infra.TenantManagement.Dtos
-{
-    public class TenantCreateInput
-    {
-        public  string Name { get;  set; }
-        public string TenantConnectionString { get;  set; }
+﻿using SqlSugar;
 
-        public SqlSugar.DbType DbType { get;  set; }
-    }
+namespace Yi.Infra.TenantManagement.Dtos;
+
+public class TenantCreateInput
+{
+    public string Name { get; set; }
+    public string TenantConnectionString { get; set; }
+
+    public DbType DbType { get; set; }
 }

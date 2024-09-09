@@ -1,17 +1,16 @@
 ﻿using Volo.Abp.Data;
 
-namespace Yi.Infra.Rbac.Authorization
+namespace Yi.Infra.Rbac.Authorization;
+
+public static class DataPermissionExtensions
 {
-    public static class DataPermissionExtensions
+    /// <summary>
+    ///     关闭数据权限
+    /// </summary>
+    /// <param name="dataFilter"></param>
+    /// <returns></returns>
+    public static IDisposable DisablePermissionHandler(this IDataFilter dataFilter)
     {
-        /// <summary>
-        /// 关闭数据权限
-        /// </summary>
-        /// <param name="dataFilter"></param>
-        /// <returns></returns>
-        public static IDisposable DisablePermissionHandler(this IDataFilter dataFilter)
-        {
-            return dataFilter.Disable<IDataPermission>();
-        }
+        return dataFilter.Disable<IDataPermission>();
     }
 }

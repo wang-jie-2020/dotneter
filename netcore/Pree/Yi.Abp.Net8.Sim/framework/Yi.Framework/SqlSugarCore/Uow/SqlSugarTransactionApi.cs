@@ -1,36 +1,34 @@
 ﻿using Volo.Abp.Uow;
 using Yi.Framework.SqlSugarCore.Abstractions;
 
-namespace Yi.Framework.SqlSugarCore.Uow
+namespace Yi.Framework.SqlSugarCore.Uow;
+
+public class SqlSugarTransactionApi : ITransactionApi, ISupportsRollback
 {
-    public class SqlSugarTransactionApi : ITransactionApi, ISupportsRollback
+    private readonly ISqlSugarDbContext _sqlsugarDbContext;
+
+    public SqlSugarTransactionApi(ISqlSugarDbContext sqlsugarDbContext)
     {
-        private ISqlSugarDbContext _sqlsugarDbContext;
+        _sqlsugarDbContext = sqlsugarDbContext;
+    }
 
-        public SqlSugarTransactionApi(ISqlSugarDbContext sqlsugarDbContext)
-        {
-            _sqlsugarDbContext = sqlsugarDbContext;
-        }
+    public async Task RollbackAsync(CancellationToken cancellationToken = default)
+    {
+        await _sqlsugarDbContext.SqlSugarClient.Ado.RollbackTranAsync();
+    }
 
-        public ISqlSugarDbContext GetDbContext()
-        {
+    public async Task CommitAsync(CancellationToken cancellationToken = default)
+    {
+        await _sqlsugarDbContext.SqlSugarClient.Ado.CommitTranAsync();
+    }
 
-            return _sqlsugarDbContext;
-        }
+    public void Dispose()
+    {
+        _sqlsugarDbContext.SqlSugarClient.Ado.Dispose();
+    }
 
-        public async Task CommitAsync(CancellationToken cancellationToken = default)
-        {
-            await _sqlsugarDbContext.SqlSugarClient.Ado.CommitTranAsync();
-        }
-
-        public void Dispose()
-        {
-            _sqlsugarDbContext.SqlSugarClient.Ado.Dispose();
-        }
-
-        public async Task RollbackAsync(CancellationToken cancellationToken = default)
-        {
-            await _sqlsugarDbContext.SqlSugarClient.Ado.RollbackTranAsync();
-        }
+    public ISqlSugarDbContext GetDbContext()
+    {
+        return _sqlsugarDbContext;
     }
 }

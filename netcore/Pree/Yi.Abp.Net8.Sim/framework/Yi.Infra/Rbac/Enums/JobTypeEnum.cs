@@ -1,8 +1,7 @@
-﻿namespace Yi.Infra.Rbac.Enums
+﻿namespace Yi.Infra.Rbac.Enums;
+
+public enum JobTypeEnum
 {
-    public enum JobTypeEnum
-    {
-        Cron,
-        Millisecond
-    }
+    Cron,
+    Millisecond
 }

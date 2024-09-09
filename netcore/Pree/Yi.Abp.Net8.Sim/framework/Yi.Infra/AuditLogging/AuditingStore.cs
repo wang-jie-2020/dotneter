@@ -11,11 +11,6 @@ namespace Yi.Infra.AuditLogging;
 
 public class AuditingStore : IAuditingStore, ITransientDependency
 {
-    public ILogger<AuditingStore> Logger { get; set; }
-    protected IAuditLogRepository AuditLogRepository { get; }
-    protected IUnitOfWorkManager UnitOfWorkManager { get; }
-    protected AbpAuditingOptions Options { get; }
-    protected IAuditLogInfoToAuditLogConverter Converter { get; }
     public AuditingStore(
         IAuditLogRepository auditLogRepository,
         IUnitOfWorkManager unitOfWorkManager,
@@ -29,6 +24,12 @@ public class AuditingStore : IAuditingStore, ITransientDependency
 
         Logger = NullLogger<AuditingStore>.Instance;
     }
+
+    public ILogger<AuditingStore> Logger { get; set; }
+    protected IAuditLogRepository AuditLogRepository { get; }
+    protected IUnitOfWorkManager UnitOfWorkManager { get; }
+    protected AbpAuditingOptions Options { get; }
+    protected IAuditLogInfoToAuditLogConverter Converter { get; }
 
     public virtual async Task SaveAsync(AuditLogInfo auditInfo)
     {
@@ -44,7 +45,7 @@ public class AuditingStore : IAuditingStore, ITransientDependency
         }
         catch (Exception ex)
         {
-            Logger.LogWarning("Could not save the audit log object: " + Environment.NewLine + auditInfo.ToString());
+            Logger.LogWarning("Could not save the audit log object: " + Environment.NewLine + auditInfo);
             Logger.LogException(ex, LogLevel.Error);
         }
     }

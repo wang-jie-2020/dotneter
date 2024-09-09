@@ -1,23 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SqlSugar;
-using Volo.Abp.DependencyInjection;
+﻿using SqlSugar;
 
-namespace Yi.Framework.SqlSugarCore.Abstractions
+namespace Yi.Framework.SqlSugarCore.Abstractions;
+
+public interface ISqlSugarDbContext
 {
-    public interface ISqlSugarDbContext
-    {
-        //  IAbpLazyServiceProvider LazyServiceProvider { get; set; }
-        ISqlSugarClient SqlSugarClient { get; }
-        DbConnOptions Options { get; }
+    //  IAbpLazyServiceProvider LazyServiceProvider { get; set; }
+    ISqlSugarClient SqlSugarClient { get; }
+    DbConnOptions Options { get; }
 
-        /// <summary>
-        /// 数据库备份
-        /// </summary>
-        void BackupDataBase();
-        void SetSqlSugarClient(ISqlSugarClient sqlSugarClient);
-    }
+    /// <summary>
+    ///     数据库备份
+    /// </summary>
+    void BackupDataBase();
+
+    void SetSqlSugarClient(ISqlSugarClient sqlSugarClient);
 }

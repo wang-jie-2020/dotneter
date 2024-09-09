@@ -1,6 +1,5 @@
-﻿namespace Yi.Infra.Rbac.IServices
+﻿namespace Yi.Infra.Rbac.IServices;
+
+public interface IMonitorServerService
 {
-    public interface IMonitorServerService
-    {
-    }
 }

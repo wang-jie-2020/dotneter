@@ -1,16 +1,16 @@
-﻿using Volo.Abp.Application.Dtos;
+﻿using SqlSugar;
+using Volo.Abp.Application.Dtos;
 
-namespace Yi.Infra.TenantManagement.Dtos
+namespace Yi.Infra.TenantManagement.Dtos;
+
+public class TenantGetOutputDto : EntityDto<Guid>
 {
-    public class TenantGetOutputDto:EntityDto<Guid>
-    {
-        public  string Name { get;  set; }
-        public int EntityVersion { get;  set; }
+    public string Name { get; set; }
+    public int EntityVersion { get; set; }
 
-        public string TenantConnectionString { get;  set; }
+    public string TenantConnectionString { get; set; }
 
-        public SqlSugar.DbType DbType { get;  set; }
+    public DbType DbType { get; set; }
 
-        public DateTime CreationTime { get; set; }
-    }
+    public DateTime CreationTime { get; set; }
 }

@@ -1,10 +1,8 @@
-﻿using Volo.Abp;
-using Volo.Abp.Application.Services;
+﻿using Volo.Abp.Application.Services;
 
-namespace Yi.Framework.Ddd.Application.Contracts
+namespace Yi.Framework.Ddd.Application.Contracts;
+
+public interface IDeletesAppService<in TKey> : IDeleteAppService<TKey>, IApplicationService, IRemoteService
 {
-    public interface IDeletesAppService<in TKey> : IDeleteAppService< TKey> , IApplicationService, IRemoteService
-    {
-        Task DeleteAsync(IEnumerable<TKey> ids);
-    }
+    Task DeleteAsync(IEnumerable<TKey> ids);
 }

@@ -1,16 +1,12 @@
-﻿namespace Yi.Infra.Rbac.Authorization
+﻿namespace Yi.Infra.Rbac.Authorization;
+
+[AttributeUsage(AttributeTargets.Method)]
+public class PermissionAttribute : Attribute
 {
-    [AttributeUsage(AttributeTargets.Method)]
-
-    public class PermissionAttribute : Attribute
+    public PermissionAttribute(string code)
     {
-        internal string Code { get; set; }
-
-        public PermissionAttribute(string code)
-        {
-            Code = code;
-        }
-
-
+        Code = code;
     }
+
+    internal string Code { get; set; }
 }

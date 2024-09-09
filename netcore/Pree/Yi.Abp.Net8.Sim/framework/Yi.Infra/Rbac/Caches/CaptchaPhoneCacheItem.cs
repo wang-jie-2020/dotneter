@@ -1,20 +1,26 @@
-﻿namespace Yi.Infra.Rbac.Caches
+﻿namespace Yi.Infra.Rbac.Caches;
+
+public class CaptchaPhoneCacheItem
 {
-    public class CaptchaPhoneCacheItem
+    public CaptchaPhoneCacheItem(string code)
     {
-        public CaptchaPhoneCacheItem(string code) { Code = code; }
-        public string Code { get; set; }
+        Code = code;
     }
 
-    public class CaptchaPhoneCacheKey
+    public string Code { get; set; }
+}
+
+public class CaptchaPhoneCacheKey
+{
+    public CaptchaPhoneCacheKey(string phone)
     {
-        public CaptchaPhoneCacheKey(string phone) { Phone = phone; }
+        Phone = phone;
+    }
 
-        public string Phone { get; set; }
+    public string Phone { get; set; }
 
-        public override string ToString()
-        {
-            return $"Phone:{Phone}";
-        }
+    public override string ToString()
+    {
+        return $"Phone:{Phone}";
     }
 }
