@@ -5,7 +5,6 @@ using Volo.Abp.MultiTenancy;
 
 namespace Yi.Framework.Caching.FreeRedis;
 
-[Dependency(ReplaceServices = true)]
 public class YiDistributedCacheKeyNormalizer : IDistributedCacheKeyNormalizer, ITransientDependency
 {
     public YiDistributedCacheKeyNormalizer(

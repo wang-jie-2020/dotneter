@@ -6,9 +6,6 @@ using Volo.Abp.Caching;
 
 namespace Yi.Framework.Caching.FreeRedis;
 
-/// <summary>
-///     此模块得益于FreeRedis作者支持IDistributedCache，使用湿滑
-/// </summary>
 [DependsOn(typeof(AbpCachingModule))]
 public class YiFrameworkCachingFreeRedisModule : AbpModule
 {
@@ -23,8 +20,8 @@ public class YiFrameworkCachingFreeRedisModule : AbpModule
             var redisClient = new RedisClient(redisConfiguration);
 
             context.Services.AddSingleton<IRedisClient>(redisClient);
-            context.Services.Replace(ServiceDescriptor.Singleton<IDistributedCache>(new
-                DistributedCache(redisClient)));
+            context.Services.Replace(ServiceDescriptor.Singleton<IDistributedCache>(new DistributedCache(redisClient)));
+            context.Services.Replace(ServiceDescriptor.Transient<IDistributedCacheKeyNormalizer, YiDistributedCacheKeyNormalizer>());
         }
     }
 }
