@@ -8,8 +8,6 @@ namespace Yi.Framework.SqlSugarCore.Repositories;
 
 public class SqlSugarObjectRepository<TEntity> : IRepository<TEntity> where TEntity : class, IEntity
 {
-    private ISugarDbContextProvider<ISqlSugarDbContext> _sugarDbContextProvider;
-    
     public IAsyncQueryableExecuter AsyncExecuter => throw new NotImplementedException();
 
     public bool? IsChangeTrackingEnabled => throw new NotImplementedException();
@@ -119,11 +117,7 @@ public class SqlSugarObjectRepository<TEntity> : IRepository<TEntity> where TEnt
     {
         throw new NotImplementedException();
     }
-
-    /// <summary>
-    ///     获取DB
-    /// </summary>
-    /// <returns></returns>
+    
     public virtual async Task<ISqlSugarClient> GetDbContextAsync()
     {
         throw new NotImplementedException();

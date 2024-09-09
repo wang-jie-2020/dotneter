@@ -228,7 +228,7 @@ public class SqlSugarRepository<TEntity> : ISqlSugarRepository<TEntity>, IReposi
     {
         if (deleteObj is ISoftDelete)
         {
-            ReflexHelper.SetModelValue(nameof(ISoftDelete.IsDeleted), true, deleteObj);
+            ObjectHelper.TrySetProperty(((ISoftDelete)deleteObj), x => x.IsDeleted, () => true);
             return await (await GetDbSimpleClientAsync()).UpdateAsync(deleteObj);
         }
 
@@ -239,7 +239,7 @@ public class SqlSugarRepository<TEntity> : ISqlSugarRepository<TEntity>, IReposi
     {
         if (typeof(ISoftDelete).IsAssignableFrom(typeof(TEntity)))
         {
-            deleteObjs.ForEach(e => ReflexHelper.SetModelValue(nameof(ISoftDelete.IsDeleted), true, e));
+            deleteObjs.ForEach(e =>  ObjectHelper.TrySetProperty(((ISoftDelete)e), x => x.IsDeleted, () => true));
             return await (await GetDbSimpleClientAsync()).UpdateRangeAsync(deleteObjs);
         }
 
@@ -259,8 +259,7 @@ public class SqlSugarRepository<TEntity> : ISqlSugarRepository<TEntity>, IReposi
         if (typeof(ISoftDelete).IsAssignableFrom(typeof(TEntity)))
         {
             var entity = await GetByIdAsync(id);
-            //反射赋值
-            ReflexHelper.SetModelValue(nameof(ISoftDelete.IsDeleted), true, entity);
+            ObjectHelper.TrySetProperty(((ISoftDelete)entity), x => x.IsDeleted, () => true);
             return await UpdateAsync(entity);
         }
 
@@ -274,8 +273,7 @@ public class SqlSugarRepository<TEntity> : ISqlSugarRepository<TEntity>, IReposi
             var simpleClient = await GetDbSimpleClientAsync();
             var entities = await simpleClient.AsQueryable().In(ids).ToListAsync();
             if (entities.Count == 0) return false;
-            //反射赋值
-            entities.ForEach(e => ReflexHelper.SetModelValue(nameof(ISoftDelete.IsDeleted), true, e));
+            entities.ForEach(e => ObjectHelper.TrySetProperty(((ISoftDelete)e), x => x.IsDeleted, () => true));
             return await UpdateRangeAsync(entities);
         }
 
