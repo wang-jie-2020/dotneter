@@ -6,12 +6,7 @@ using Yi.Infra.AuditLogging.Repositories;
 
 namespace Yi.Infra.AuditLogging;
 
-[DependsOn(
-    typeof(AbpDddDomainModule),
-    typeof(AbpDddDomainSharedModule),
-    typeof(AbpAuditingModule),
-    typeof(YiFrameworkSqlSugarCoreModule)
-)]
+[DependsOn(typeof(AbpAuditingModule), typeof(YiFrameworkSqlSugarCoreModule))]
 public class YiFrameworkAuditLoggingModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
