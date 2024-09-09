@@ -5,8 +5,7 @@ using Yi.Infra.TenantManagement.Entities;
 
 namespace Yi.Infra.TenantManagement.Repositories;
 
-public class SqlSugarTenantRepository : SqlSugarRepository<TenantAggregateRoot, Guid>, ISqlSugarTenantRepository,
-    ITransientDependency
+public class SqlSugarTenantRepository : SqlSugarRepository<TenantAggregateRoot, Guid>, ISqlSugarTenantRepository, ITransientDependency
 {
     public SqlSugarTenantRepository(ISugarDbContextProvider<ISqlSugarDbContext> sugarDbContextProvider) : base(
         sugarDbContextProvider)
@@ -23,8 +22,11 @@ public class SqlSugarTenantRepository : SqlSugarRepository<TenantAggregateRoot, 
         return await _DbQueryable.WhereIF(!string.IsNullOrEmpty(filter), x => x.Name.Contains(filter)).CountAsync();
     }
 
-    public async Task<List<TenantAggregateRoot>> GetListAsync(string sorting = null, int maxResultCount = int.MaxValue,
-        int skipCount = 0, string filter = null, bool includeDetails = false)
+    public async Task<List<TenantAggregateRoot>> GetListAsync(string sorting = null, 
+        int maxResultCount = int.MaxValue,
+        int skipCount = 0, 
+        string filter = null, 
+        bool includeDetails = false)
     {
         return await _DbQueryable.WhereIF(!string.IsNullOrEmpty(filter), x => x.Name.Contains(filter))
             .OrderByIF(!string.IsNullOrEmpty(sorting), sorting)

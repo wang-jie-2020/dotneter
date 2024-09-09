@@ -6,6 +6,7 @@ namespace Yi.Infra.TenantManagement.Dtos;
 public class TenantGetOutputDto : EntityDto<Guid>
 {
     public string Name { get; set; }
+    
     public int EntityVersion { get; set; }
 
     public string TenantConnectionString { get; set; }

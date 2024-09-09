@@ -12,8 +12,7 @@ public interface ISqlSugarTenantRepository : ISqlSugarRepository<TenantAggregate
         int skipCount = 0,
         string filter = null,
         bool includeDetails = false);
-
-
+    
     Task<long> GetCountAsync(
         string filter = null);
 }

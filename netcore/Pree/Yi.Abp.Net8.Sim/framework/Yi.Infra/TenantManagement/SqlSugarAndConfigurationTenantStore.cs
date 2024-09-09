@@ -61,18 +61,14 @@ public class SqlSugarAndConfigurationTenantStore : DefaultTenantStore, ITenantSt
         if (cacheItem != null) return cacheItem;
 
         if (id.HasValue)
-            using
-                (CurrentTenant
-                    .Change(null)) //TODO: No need this if we can implement to define host side (or tenant-independent) entities!
+            using (CurrentTenant.Change(null)) //TODO: No need this if we can implement to define host side (or tenant-independent) entities!
             {
                 var tenant = await TenantRepository.FindAsync(id.Value);
                 return await SetCacheAsync(cacheKey, tenant);
             }
 
         if (!name.IsNullOrWhiteSpace())
-            using
-                (CurrentTenant
-                    .Change(null)) //TODO: No need this if we can implement to define host side (or tenant-independent) entities!
+            using (CurrentTenant.Change(null)) //TODO: No need this if we can implement to define host side (or tenant-independent) entities!
             {
                 var tenant = await TenantRepository.FindByNameAsync(name);
                 return await SetCacheAsync(cacheKey, tenant);

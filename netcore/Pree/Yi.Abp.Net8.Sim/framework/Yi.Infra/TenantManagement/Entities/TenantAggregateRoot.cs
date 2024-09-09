@@ -22,7 +22,8 @@ public class TenantAggregateRoot : FullAuditedAggregateRoot<Guid>, IHasEntityVer
         SetName(name);
     }
 
-    [SugarColumn(IsPrimaryKey = true)] public override Guid Id { get; protected set; }
+    [SugarColumn(IsPrimaryKey = true)] 
+    public override Guid Id { get; protected set; }
 
     public virtual string Name { get; protected set; }
 
