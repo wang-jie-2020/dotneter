@@ -2,9 +2,9 @@
 using System.Text.Encodings.Web;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using static Yi.Framework.AspNetCore.Authentication.OAuth.QQ.QQAuthenticationConstants;
+using static Yi.Framework.Authentication.OAuth.QQ.QQAuthenticationConstants;
 
-namespace Yi.Framework.AspNetCore.Authentication.OAuth.QQ
+namespace Yi.Framework.Authentication.OAuth.QQ
 {
     public class QQAuthenticationHandler : OauthAuthenticationHandler<QQAuthenticationOptions>
     {

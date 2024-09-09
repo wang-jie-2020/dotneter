@@ -2,9 +2,9 @@
 using System.Text.Encodings.Web;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using static Yi.Framework.AspNetCore.Authentication.OAuth.Gitee.GiteeAuthenticationConstants;
+using static Yi.Framework.Authentication.OAuth.Gitee.GiteeAuthenticationConstants;
 
-namespace Yi.Framework.AspNetCore.Authentication.OAuth.Gitee
+namespace Yi.Framework.Authentication.OAuth.Gitee
 {
     public class GiteeAuthenticationHandler : OauthAuthenticationHandler<GiteeAuthenticationOptions>
     {

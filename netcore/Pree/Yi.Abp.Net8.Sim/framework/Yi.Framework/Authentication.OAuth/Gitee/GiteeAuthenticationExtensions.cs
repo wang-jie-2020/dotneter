@@ -7,7 +7,7 @@
 using JetBrains.Annotations;
 using Microsoft.AspNetCore.Authentication;
 
-namespace Yi.Framework.AspNetCore.Authentication.OAuth.Gitee;
+namespace Yi.Framework.Authentication.OAuth.Gitee;
 
 /// <summary>
 /// Extension methods to add Gitee authentication capabilities to an HTTP application pipeline.

@@ -6,9 +6,8 @@
 
 using JetBrains.Annotations;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.Extensions.DependencyInjection;
 
-namespace Yi.Framework.AspNetCore.Authentication.OAuth.QQ;
+namespace Yi.Framework.Authentication.OAuth.QQ;
 
 /// <summary>
 /// Extension methods to add QQ authentication capabilities to an HTTP application pipeline.

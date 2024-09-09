@@ -4,7 +4,7 @@
  * for more information concerning the license and the contributors participating to this project.
  */
 
-namespace Yi.Framework.AspNetCore.Authentication.OAuth.QQ;
+namespace Yi.Framework.Authentication.OAuth.QQ;
 
 /// <summary>
 /// Default values for QQ authentication.

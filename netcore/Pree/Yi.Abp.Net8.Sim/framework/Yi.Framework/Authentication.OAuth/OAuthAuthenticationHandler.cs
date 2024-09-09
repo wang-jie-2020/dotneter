@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace Yi.Framework.AspNetCore.Authentication.OAuth
+namespace Yi.Framework.Authentication.OAuth
 {
     public abstract class OauthAuthenticationHandler<TOptions> : AuthenticationHandler<TOptions> where TOptions : AuthenticationSchemeOptions, new()
     {

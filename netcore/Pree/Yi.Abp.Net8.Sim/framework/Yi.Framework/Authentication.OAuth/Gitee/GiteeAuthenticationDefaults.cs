@@ -4,7 +4,7 @@
  * for more information concerning the license and the contributors participating to this project.
  */
 
-namespace Yi.Framework.AspNetCore.Authentication.OAuth.Gitee;
+namespace Yi.Framework.Authentication.OAuth.Gitee;
 
 /// <summary>
 /// Default values used by the Gitee authentication middleware.

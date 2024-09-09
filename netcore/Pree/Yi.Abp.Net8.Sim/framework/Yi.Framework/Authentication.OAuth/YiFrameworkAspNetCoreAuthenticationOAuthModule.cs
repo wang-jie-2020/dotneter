@@ -1,9 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Volo.Abp.Modularity;
-using Yi.Framework.Core;
+using Yi.Framework.AspNetCore;
 
-
-namespace Yi.Framework.AspNetCore.Authentication.OAuth
+namespace Yi.Framework.Authentication.OAuth
 {
     /// <summary>
     /// 本模块轮子来自 AspNet.Security.OAuth.QQ;

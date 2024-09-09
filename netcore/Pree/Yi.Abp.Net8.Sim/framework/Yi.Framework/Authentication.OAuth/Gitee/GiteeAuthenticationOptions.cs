@@ -6,9 +6,9 @@
 
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
-using static Yi.Framework.AspNetCore.Authentication.OAuth.Gitee.GiteeAuthenticationConstants;
+using static Yi.Framework.Authentication.OAuth.Gitee.GiteeAuthenticationConstants;
 
-namespace Yi.Framework.AspNetCore.Authentication.OAuth.Gitee;
+namespace Yi.Framework.Authentication.OAuth.Gitee;
 
 /// <summary>
 /// Defines a set of options used by <see cref="GiteeAuthenticationHandler"/>.

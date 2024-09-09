@@ -6,9 +6,9 @@
 
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
-using static Yi.Framework.AspNetCore.Authentication.OAuth.QQ.QQAuthenticationConstants;
+using static Yi.Framework.Authentication.OAuth.QQ.QQAuthenticationConstants;
 
-namespace Yi.Framework.AspNetCore.Authentication.OAuth.QQ;
+namespace Yi.Framework.Authentication.OAuth.QQ;
 
 /// <summary>
 /// Defines a set of options used by <see cref="QQAuthenticationHandler"/>.

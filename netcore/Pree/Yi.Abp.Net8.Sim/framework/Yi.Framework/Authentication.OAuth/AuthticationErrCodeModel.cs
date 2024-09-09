@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Yi.Framework.AspNetCore.Authentication.OAuth.Gitee;
-
-namespace Yi.Framework.AspNetCore.Authentication.OAuth
+﻿namespace Yi.Framework.Authentication.OAuth
 {
     public class AuthticationErrCodeModel
     {
