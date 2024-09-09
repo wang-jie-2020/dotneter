@@ -6,7 +6,7 @@ using Volo.Abp.DependencyInjection;
 
 namespace Yi.Framework.SqlSugarCore;
 
-public class SqlSugarDbConnectionCreator : ISqlSugarDbConnectionCreator, ITransientDependency
+public class SqlSugarDbConnectionCreator : ISqlSugarDbConnectionCreator
 {
     public SqlSugarDbConnectionCreator(IOptions<DbConnOptions> options)
     {

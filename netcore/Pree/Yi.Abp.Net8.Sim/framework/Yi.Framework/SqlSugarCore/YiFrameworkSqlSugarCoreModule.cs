@@ -32,7 +32,8 @@ public class YiFrameworkSqlSugarCoreModule : AbpModule
         service.AddTransient(typeof(ISqlSugarRepository<>), typeof(SqlSugarRepository<>));
         service.AddTransient(typeof(ISqlSugarRepository<,>), typeof(SqlSugarRepository<,>));
         service.AddTransient(typeof(ISugarDbContextProvider<>), typeof(UnitOfWorkSqlsugarDbContextProvider<>));
-        
+        service.AddTransient(typeof(ISqlSugarDbConnectionCreator), typeof(SqlSugarDbConnectionCreator));
+
         return Task.CompletedTask;
     }
     
