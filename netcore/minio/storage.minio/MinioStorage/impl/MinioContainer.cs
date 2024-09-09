@@ -6,6 +6,8 @@ using System.Reactive.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Minio;
+using Minio.ApiEndpoints;
+using Minio.DataModel.Args;
 using Minio.Exceptions;
 
 namespace MinioStorage.impl
@@ -15,7 +17,7 @@ namespace MinioStorage.impl
     {
         private readonly IMinioContainer _container;
 
-        public MinioClient Client => _container.Client;
+        public IMinioClient Client => _container.Client;
 
         public MinioContainer(IMinioContainerFactory minioContainerFactory)
         {
@@ -69,10 +71,10 @@ namespace MinioStorage.impl
         private readonly MinioContainerConfiguration _configuration;
         private readonly MinioProviderConfiguration _providerConfiguration;
 
-        private readonly MinioClient _client;
+        private readonly IMinioClient _client;
         private readonly IServiceProvider _serviceProvider;
 
-        public MinioClient Client => _client;
+        public IMinioClient Client => _client;
 
         public MinioContainer(string containerName,
             MinioContainerConfiguration configuration,
@@ -88,7 +90,7 @@ namespace MinioStorage.impl
             _serviceProvider = serviceProvider;
         }
 
-        protected MinioClient GetMinioClient(MinioProviderConfiguration providerConfiguration)
+        protected IMinioClient GetMinioClient(MinioProviderConfiguration providerConfiguration)
         {
             var client = new MinioClient()
                 .WithEndpoint(providerConfiguration.EndPoint)

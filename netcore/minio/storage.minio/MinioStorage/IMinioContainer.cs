@@ -13,7 +13,7 @@ namespace MinioStorage
 
     public interface IMinioContainer
     {
-        MinioClient Client { get; }
+        IMinioClient Client { get; }
 
         Task<List<string>> ListAsync(string prefix = "");
 

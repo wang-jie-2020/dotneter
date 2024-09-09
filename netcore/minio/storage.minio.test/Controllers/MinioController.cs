@@ -10,7 +10,7 @@ namespace Demo.Controllers
     public class MinioController : ControllerBase
     {
         private readonly IMinioContainer<TestContainer> _testContainer;
-        private readonly MinioClient _minioClient;
+        private readonly IMinioClient _minioClient;
 
         public MinioController(IMinioContainer<TestContainer> testContainer)
         {

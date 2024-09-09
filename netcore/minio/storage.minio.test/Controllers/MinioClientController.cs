@@ -2,7 +2,9 @@
 using System.Reactive.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Minio;
+using Minio.ApiEndpoints;
 using Minio.DataModel;
+using Minio.DataModel.Args;
 using Minio.DataModel.Tags;
 using Minio.Exceptions;
 using MinioStorage;
@@ -14,7 +16,7 @@ namespace Demo.Controllers
     [Route("minio-client")]
     public class MinioClientController : ControllerBase
     {
-        private readonly MinioClient _minioClient;
+        private readonly IMinioClient _minioClient;
         private readonly string nonVersion = "non-version";
         private readonly string versioning = "versioning";
         private readonly string versioningLocking = "versioning-locking";
