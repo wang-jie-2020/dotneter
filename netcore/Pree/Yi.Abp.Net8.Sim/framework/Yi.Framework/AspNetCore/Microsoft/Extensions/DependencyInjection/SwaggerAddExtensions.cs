@@ -21,8 +21,7 @@ public static class SwaggerAddExtensions
         var mvcSettings =
             mvcOptions.Value.ConventionalControllers.ConventionalControllerSettings
                 .DistinctBy(x => x.RemoteServiceName);
-
-
+        
         services.AddAbpSwaggerGen(
             options =>
             {
@@ -40,8 +39,7 @@ public static class SwaggerAddExtensions
                     if (apiDesc.ActionDescriptor is ControllerActionDescriptor controllerActionDescriptor)
                     {
                         var settingOrNull = mvcSettings
-                            .Where(x => x.Assembly == controllerActionDescriptor.ControllerTypeInfo.Assembly)
-                            .FirstOrDefault();
+                            .FirstOrDefault(x => x.Assembly == controllerActionDescriptor.ControllerTypeInfo.Assembly);
                         if (settingOrNull is not null) return docName == settingOrNull.RemoteServiceName;
                     }
 
