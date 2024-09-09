@@ -17,7 +17,7 @@ public static class ExpressionHelper
     {
         var parameterMap = first.Parameters.Select((f, i) => new { f, s = second.Parameters[i] })
             .ToDictionary(p => p.s, p => p.f);
-        var secondBody = LambdaParameteRebinder.ReplaceParameter(parameterMap, second.Body);
+        var secondBody = LambdaParameterRebinder.ReplaceParameter(parameterMap, second.Body);
         return Expression.Lambda<T>(merge(first.Body, secondBody), first.Parameters);
     }
 
@@ -68,7 +68,7 @@ public static class ExpressionHelper
     }
 }
 
-public class LambdaParameteRebinder : ExpressionVisitor
+public class LambdaParameterRebinder : ExpressionVisitor
 {
     /// <summary>
     ///     存放表达式树的参数的字典
@@ -79,7 +79,7 @@ public class LambdaParameteRebinder : ExpressionVisitor
     ///     构造函数
     /// </summary>
     /// <param name="map"></param>
-    public LambdaParameteRebinder(Dictionary<ParameterExpression, ParameterExpression> map)
+    public LambdaParameterRebinder(Dictionary<ParameterExpression, ParameterExpression> map)
     {
         this.map = map ?? new Dictionary<ParameterExpression, ParameterExpression>();
     }
@@ -97,6 +97,6 @@ public class LambdaParameteRebinder : ExpressionVisitor
 
     public static Expression ReplaceParameter(Dictionary<ParameterExpression, ParameterExpression> map, Expression exp)
     {
-        return new LambdaParameteRebinder(map).Visit(exp);
+        return new LambdaParameterRebinder(map).Visit(exp);
     }
 }

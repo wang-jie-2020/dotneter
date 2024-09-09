@@ -4,9 +4,7 @@ using Yi.Framework.Core;
 
 namespace Yi.Framework.Mapster;
 
-[DependsOn(typeof(YiFrameworkCoreModule),
-    typeof(AbpObjectMappingModule)
-)]
+[DependsOn(typeof(AbpObjectMappingModule))]
 public class YiFrameworkMapsterModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)

@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Volo.Abp.Auditing;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Uow;
@@ -52,7 +54,12 @@ public class AuditingStore : IAuditingStore, ITransientDependency
 
     protected virtual async Task SaveLogAsync(AuditLogInfo auditInfo)
     {
-        Logger.LogDebug("Yi-请求追踪:" + JsonHelper.ObjToStr(auditInfo, "yyyy-MM-dd HH:mm:ss"));
+        var timeConverter = new IsoDateTimeConverter
+        {
+            DateTimeFormat = "yyyy-MM-dd HH:mm:ss"
+        };
+        
+        Logger.LogDebug("Yi-请求追踪:" + JsonConvert.SerializeObject(auditInfo, Formatting.Indented, timeConverter));
         using (var uow = UnitOfWorkManager.Begin(true))
         {
             await AuditLogRepository.InsertAsync(await Converter.ConvertAsync(auditInfo));

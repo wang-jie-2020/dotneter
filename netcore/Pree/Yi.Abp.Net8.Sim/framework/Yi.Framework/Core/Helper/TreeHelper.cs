@@ -46,7 +46,6 @@ public static class TreeHelper
         public Guid Id { get; set; }
         public Guid ParentId { get; set; }
         public int OrderNum { get; set; }
-
         public List<T>? Children { get; set; }
     }
 }

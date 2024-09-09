@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.Users;
@@ -72,7 +73,7 @@ public class OperLogGlobalAttribute : ActionFilterAttribute, ITransientDependenc
             if (resultContext.Result is JsonResult result2) logEntity.RequestResult = result2.Value?.ToString();
 
             if (resultContext.Result is ObjectResult result3)
-                logEntity.RequestResult = JsonHelper.ObjToStr(result3.Value);
+                logEntity.RequestResult = JsonConvert.SerializeObject(result3.Value);
         }
 
         if (operLogAttribute.IsSaveRequestData)
