@@ -127,8 +127,7 @@ public class SqlSugarCoreAuditLogRepository : SqlSugarRepository<AuditLogAggrega
         return result.ToDictionary(element => element.Day.Value.ClearTime(),
             element => (double)element.avgExecutionTime);
     }
-
-
+    
     public virtual async Task<EntityChangeEntity> GetEntityChange(
         Guid entityChangeId,
         CancellationToken cancellationToken = default)

@@ -14,8 +14,7 @@ public class EntityPropertyChangeEntity : Entity<Guid>, IMultiTenant
     public EntityPropertyChangeEntity()
     {
     }
-
-
+    
     public EntityPropertyChangeEntity(
         IGuidGenerator guidGenerator,
         Guid entityChangeId,

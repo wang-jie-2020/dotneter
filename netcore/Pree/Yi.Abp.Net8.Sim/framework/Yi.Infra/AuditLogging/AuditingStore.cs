@@ -11,7 +11,7 @@ using Yi.Infra.AuditLogging.Repositories;
 
 namespace Yi.Infra.AuditLogging;
 
-public class AuditingStore : IAuditingStore, ITransientDependency
+public class AuditingStore : IAuditingStore
 {
     public AuditingStore(
         IAuditLogRepository auditLogRepository,

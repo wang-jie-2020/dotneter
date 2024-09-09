@@ -43,8 +43,7 @@ public class AuditLogActionEntity : Entity<Guid>, IMultiTenant
     public virtual DateTime? ExecutionTime { get; protected set; }
 
     public virtual int? ExecutionDuration { get; protected set; }
-
-
+    
     [SugarColumn(ColumnName = "Id", IsPrimaryKey = true)]
     public override Guid Id { get; protected set; }
 

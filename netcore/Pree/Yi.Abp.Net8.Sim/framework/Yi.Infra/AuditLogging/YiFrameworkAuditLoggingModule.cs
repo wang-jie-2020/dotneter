@@ -11,6 +11,8 @@ public class YiFrameworkAuditLoggingModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
+        context.Services.AddTransient<IAuditingStore, AuditingStore>();
         context.Services.AddTransient<IAuditLogRepository, SqlSugarCoreAuditLogRepository>();
+        context.Services.AddTransient<IAuditLogInfoToAuditLogConverter, AuditLogInfoToAuditLogConverter>();
     }
 }

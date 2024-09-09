@@ -16,8 +16,7 @@ public class EntityChangeEntity : Entity<Guid>, IMultiTenant
     public EntityChangeEntity()
     {
     }
-
-
+    
     public EntityChangeEntity(
         IGuidGenerator guidGenerator,
         Guid auditLogId,

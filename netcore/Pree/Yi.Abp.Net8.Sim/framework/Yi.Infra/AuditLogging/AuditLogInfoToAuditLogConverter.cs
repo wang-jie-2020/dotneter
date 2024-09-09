@@ -10,7 +10,7 @@ using Yi.Infra.AuditLogging.Entities;
 
 namespace Yi.Infra.AuditLogging;
 
-public class AuditLogInfoToAuditLogConverter : IAuditLogInfoToAuditLogConverter, ITransientDependency
+public class AuditLogInfoToAuditLogConverter : IAuditLogInfoToAuditLogConverter
 {
     public AuditLogInfoToAuditLogConverter(IGuidGenerator guidGenerator,
         IExceptionToErrorInfoConverter exceptionToErrorInfoConverter, IJsonSerializer jsonSerializer,
