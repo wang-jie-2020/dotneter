@@ -209,34 +209,18 @@ public static class MimeHelper
         AddMimeMapping(".zip", "application/x-zip-compressed");
         AddMimeMapping(".*", "application/octet-stream");
     }
-    // 通过自己定义一个静态类
-    // 将所有的Content Type都扔进去吧
-    // 调用的时候直接调用静态方法即可。
-
-    public static List<string> ImageType { get; set; } = new()
-    {
-        ".jpg", ".png", ".jpeg"
-    };
-
+    
     private static void AddMimeMapping(string extension, string MimeType)
     {
         _mimeMappingTable.Add(extension, MimeType);
     }
 
-    public static string GetMimeMapping(string FileName)
+    public static string GetMimeMapping(string fileName)
     {
         string text = null!;
-        var num = FileName.LastIndexOf('.');
-        if (0 < num && num > FileName.LastIndexOf('\\')) text = (string)_mimeMappingTable[FileName.Substring(num)]!;
+        var num = fileName.LastIndexOf('.');
+        if (0 < num && num > fileName.LastIndexOf('\\')) text = (string)_mimeMappingTable[fileName.Substring(num)]!;
         if (text == null) text = (string)_mimeMappingTable[".*"]!;
         return text;
-    }
-
-    public static FileTypeEnum GetFileType(string fileName)
-    {
-        var extension = Path.GetExtension(fileName);
-        if (ImageType.Contains(extension.ToLower()))
-            return FileTypeEnum.Image;
-        return FileTypeEnum.File;
     }
 }
