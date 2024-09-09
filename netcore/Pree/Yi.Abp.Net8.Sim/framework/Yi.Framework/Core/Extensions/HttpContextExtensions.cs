@@ -58,7 +58,7 @@ public static class HttpContextExtensions
     /// </summary>
     /// <param name="context"></param>
     /// <returns></returns>
-    public static string GetClientIp(this HttpContext context)
+    public static string GetClientIp(this HttpContext? context)
     {
         if (context == null) return "";
         var result = context.Request.Headers["X-Forwarded-For"].FirstOrDefault();

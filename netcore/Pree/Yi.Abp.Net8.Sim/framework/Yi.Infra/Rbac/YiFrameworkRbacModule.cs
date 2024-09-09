@@ -3,6 +3,7 @@ using Volo.Abp.AspNetCore.SignalR;
 using Volo.Abp.BackgroundWorkers.Quartz;
 using Volo.Abp.Caching;
 using Volo.Abp.Domain;
+using Yi.Framework;
 using Yi.Framework.Caching.FreeRedis;
 using Yi.Framework.Ddd.Application;
 using Yi.Framework.Mapster;
@@ -14,15 +15,12 @@ using Yi.Infra.Rbac.Options;
 namespace Yi.Infra.Rbac;
 
 [DependsOn(
-    typeof(YiFrameworkCachingFreeRedisModule),
+    typeof(YiAspNetCoreModule),
     typeof(AbpAspNetCoreSignalRModule),
     typeof(AbpDddDomainModule),
     typeof(AbpCachingModule),
-    typeof(YiFrameworkDddApplicationModule),
     typeof(AbpBackgroundWorkersQuartzModule),
     typeof(AbpDddDomainSharedModule),
-    typeof(YiFrameworkMapsterModule),
-    typeof(YiFrameworkMapsterModule),
     typeof(YiFrameworkSqlSugarCoreModule)
 )]
 public class YiFrameworkRbacModule : AbpModule
