@@ -20,9 +20,6 @@ using Volo.Abp.Swashbuckle;
 using Yi.Framework.AspNetCore;
 using Yi.Framework.AspNetCore.Microsoft.AspNetCore.Builder;
 using Yi.Framework.AspNetCore.Microsoft.Extensions.DependencyInjection;
-using Yi.Framework.Authentication.OAuth;
-using Yi.Framework.Authentication.OAuth.Gitee;
-using Yi.Framework.Authentication.OAuth.QQ;
 using Yi.Framework.Ddd.Application;
 using Yi.Framework.Ddd.Application.Contracts;
 using Yi.Framework.Mapster;
@@ -43,7 +40,6 @@ namespace Yi.Web;
     typeof(AbpAuditingModule),
     typeof(AbpAspNetCoreAuthenticationJwtBearerModule),
     typeof(YiFrameworkAspNetCoreModule),
-    typeof(YiFrameworkAspNetCoreAuthenticationOAuthModule),
     typeof(YiFrameworkDddApplicationContractsModule),
     typeof(YiFrameworkDddApplicationModule),
     typeof(YiFrameworkMapsterModule),
@@ -228,9 +224,7 @@ public class YiAbpWebModule : AbpModule
                         return Task.CompletedTask;
                     }
                 };
-            })
-            .AddQQ(options => { configuration.GetSection("OAuth:QQ").Bind(options); })
-            .AddGitee(options => { configuration.GetSection("OAuth:Gitee").Bind(options); });
+            });
 
         //授权
         context.Services.AddAuthorization();
