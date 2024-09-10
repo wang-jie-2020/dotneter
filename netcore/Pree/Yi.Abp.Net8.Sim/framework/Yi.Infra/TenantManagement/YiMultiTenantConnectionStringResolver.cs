@@ -6,7 +6,6 @@ using Volo.Abp.MultiTenancy;
 
 namespace Yi.Infra.TenantManagement;
 
-[Dependency(ReplaceServices = true)]
 public class YiMultiTenantConnectionStringResolver : DefaultConnectionStringResolver
 {
     private readonly ICurrentTenant _currentTenant;

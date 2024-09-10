@@ -18,5 +18,8 @@ public class YiFrameworkTenantManagementModule : AbpModule
 
         services.Replace(new ServiceDescriptor(typeof(IConnectionStringResolver),
             typeof(YiMultiTenantConnectionStringResolver), ServiceLifetime.Transient));
+        
+        services.Replace(new ServiceDescriptor(typeof(ITenantConfigurationProvider),
+            typeof(YiTenantConfigurationProvider), ServiceLifetime.Transient));
     }
 }

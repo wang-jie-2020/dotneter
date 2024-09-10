@@ -5,8 +5,7 @@ using Volo.Abp.MultiTenancy.Localization;
 
 namespace Yi.Infra.TenantManagement;
 
-[Dependency(ReplaceServices = true)]
-public class YiTenantConfigurationProvider : ITenantConfigurationProvider, ITransientDependency
+public class YiTenantConfigurationProvider : ITenantConfigurationProvider
 {
     public YiTenantConfigurationProvider(
         ITenantResolver tenantResolver,
