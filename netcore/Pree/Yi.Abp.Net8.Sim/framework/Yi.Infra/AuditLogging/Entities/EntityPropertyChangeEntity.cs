@@ -45,5 +45,6 @@ public class EntityPropertyChangeEntity : Entity<Guid>, IMultiTenant
     public virtual string? PropertyName { get; protected set; }
 
     public virtual string? PropertyTypeFullName { get; protected set; }
+    
     public virtual Guid? TenantId { get; protected set; }
 }

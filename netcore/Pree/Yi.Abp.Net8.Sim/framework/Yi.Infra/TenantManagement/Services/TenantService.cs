@@ -1,8 +1,11 @@
 ﻿using System.Reflection;
+using Mapster;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
+using MiniExcelLibs;
 using SqlSugar;
 using Volo.Abp.Application.Dtos;
+using Volo.Abp.Application.Services;
 using Volo.Abp.Data;
 using Volo.Abp.Uow;
 using Yi.Framework.SqlSugarCore;
@@ -11,106 +14,97 @@ using Yi.Infra.TenantManagement.Entities;
 
 namespace Yi.Infra.TenantManagement.Services;
 
-/// <summary>
-///     租户管理
-/// </summary>
-public class TenantService :
-    YiCrudAppService<TenantAggregateRoot, TenantGetOutputDto, TenantGetListOutputDto, Guid, TenantGetListInput,
-        TenantCreateInput, TenantUpdateInput>, ITenantService
+[RemoteService(false)]
+public class TenantService : ApplicationService, ITenantService
 {
     private readonly IDataSeeder _dataSeeder;
     private readonly ISqlSugarRepository<TenantAggregateRoot, Guid> _repository;
 
-    public TenantService(ISqlSugarRepository<TenantAggregateRoot, Guid> repository, IDataSeeder dataSeeder) :
-        base(repository)
+    public TenantService(ISqlSugarRepository<TenantAggregateRoot, Guid> repository, IDataSeeder dataSeeder)
     {
         _repository = repository;
         _dataSeeder = dataSeeder;
     }
 
-    /// <summary>
-    ///     租户单查
-    /// </summary>
-    /// <param name="id"></param>
-    /// <returns></returns>
-    public override Task<TenantGetOutputDto> GetAsync(Guid id)
+    public async Task<TenantGetOutputDto> GetAsync(Guid id)
     {
-        return base.GetAsync(id);
+        var entity = await _repository.GetAsync(id);
+        return entity.Adapt<TenantGetOutputDto>();
     }
 
-    /// <summary>
-    ///     租户多查
-    /// </summary>
-    /// <param name="input"></param>
-    /// <returns></returns>
-    public override async Task<PagedResultDto<TenantGetListOutputDto>> GetListAsync(TenantGetListInput input)
+    public async Task<PagedResultDto<TenantGetListOutputDto>> GetListAsync(TenantGetListInput input)
     {
         RefAsync<int> total = 0;
 
         var entities = await _repository._DbQueryable
             .WhereIF(!string.IsNullOrEmpty(input.Name), x => x.Name.Contains(input.Name!))
-            .WhereIF(input.StartTime is not null && input.EndTime is not null,
-                x => x.CreationTime >= input.StartTime && x.CreationTime <= input.EndTime)
+            .WhereIF(input.StartTime is not null && input.EndTime is not null, x => x.CreationTime >= input.StartTime && x.CreationTime <= input.EndTime)
             .ToPageListAsync(input.SkipCount, input.MaxResultCount, total);
-        return new PagedResultDto<TenantGetListOutputDto>(total, await MapToGetListOutputDtosAsync(entities));
+
+        return new PagedResultDto<TenantGetListOutputDto>(total, entities.Adapt<List<TenantGetListOutputDto>>());
     }
 
-
-    /// <summary>
-    ///     创建租户
-    /// </summary>
-    /// <param name="input"></param>
-    /// <returns></returns>
-    public override async Task<TenantGetOutputDto> CreateAsync(TenantCreateInput input)
+    public async Task<TenantGetOutputDto> CreateAsync(TenantCreateInput input)
     {
-        if (await _repository.IsAnyAsync(x => x.Name == input.Name)) throw new UserFriendlyException("创建失败，当前租户已存在");
+        if (await _repository.IsAnyAsync(x => x.Name == input.Name))
+        {
+            throw new UserFriendlyException("创建失败，当前租户已存在");
+        }
 
-        return await base.CreateAsync(input);
+        var entity = input.Adapt<TenantAggregateRoot>();
+        await _repository.InsertAsync(entity, autoSave: true);
+
+        return entity.Adapt<TenantGetOutputDto>();
     }
-
-    /// <summary>
-    ///     更新租户
-    /// </summary>
-    /// <param name="id"></param>
-    /// <param name="input"></param>
-    /// <returns></returns>
-    public override async Task<TenantGetOutputDto> UpdateAsync(Guid id, TenantUpdateInput input)
+    
+    public async Task<TenantGetOutputDto> UpdateAsync(Guid id, TenantUpdateInput input)
     {
         if (await _repository.IsAnyAsync(x => x.Name == input.Name && x.Id != id))
             throw new UserFriendlyException("更新后租户名已经存在");
 
-        return await base.UpdateAsync(id, input);
+        var entity = await _repository.GetAsync(id);
+        input.Adapt(entity);
+        await _repository.UpdateAsync(entity, autoSave: true);
+        
+        return entity.Adapt<TenantGetOutputDto>();
     }
 
-
-    /// <summary>
-    ///     租户删除
-    /// </summary>
-    /// <param name="id"></param>
-    /// <returns></returns>
-    public override Task DeleteAsync(IEnumerable<Guid> id)
+    public async Task DeleteAsync(IEnumerable<Guid> id)
     {
-        return base.DeleteAsync(id);
+        await _repository.DeleteManyAsync(id);
     }
 
-    /// <summary>
-    ///     租户选项
-    /// </summary>
-    /// <returns></returns>
+    public virtual async Task<IActionResult> GetExportExcelAsync(TenantGetListInput input)
+    {
+        if (input is IPagedResultRequest paged)
+        {
+            paged.SkipCount = 0;
+            paged.MaxResultCount = LimitedResultRequestDto.MaxMaxResultCount;
+        }
+
+        var output = await GetListAsync(input);
+        var dirPath = "/wwwroot/temp";
+
+        var fileName = $"{nameof(TenantAggregateRoot)}_{DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss")}_{Guid.NewGuid()}";
+        var filePath = $"{dirPath}/{fileName}.xlsx";
+        if (!Directory.Exists(dirPath)) Directory.CreateDirectory(dirPath);
+
+        MiniExcel.SaveAs(filePath, output.Items);
+        return new PhysicalFileResult(filePath, "application/vnd.ms-excel");
+    }
+    
     public async Task<List<TenantSelectOutputDto>> GetSelectAsync()
     {
-        var entites = await _repository._DbQueryable.ToListAsync();
-        return entites.Select(x => new TenantSelectOutputDto { Id = x.Id, Name = x.Name }).ToList();
+        var entities = await _repository._DbQueryable.ToListAsync();
+        return entities.Select(x => new TenantSelectOutputDto { Id = x.Id, Name = x.Name }).ToList();
     }
-
-
+    
     /// <summary>
     ///     初始化租户
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-    [HttpPut("tenant/init/{id}")]
-    public async Task InitAsync([FromRoute] Guid id)
+    public async Task InitAsync(Guid id)
     {
         await CurrentUnitOfWork.SaveChangesAsync();
         using (CurrentTenant.Change(id))

@@ -42,7 +42,7 @@ public static class SwaggerAddExtensions
                             .FirstOrDefault(x => x.Assembly == controllerActionDescriptor.ControllerTypeInfo.Assembly);
                         if (settingOrNull is not null) return docName == settingOrNull.RemoteServiceName;
                     }
-
+                
                     return false;
                 });
 

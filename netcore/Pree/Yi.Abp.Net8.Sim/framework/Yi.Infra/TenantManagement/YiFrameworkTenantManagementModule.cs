@@ -12,6 +12,7 @@ public class YiFrameworkTenantManagementModule : AbpModule
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
         var services = context.Services;
+        
         services.Replace(new ServiceDescriptor(typeof(ITenantStore), typeof(SqlSugarAndConfigurationTenantStore),
             ServiceLifetime.Transient));
 
