@@ -6,7 +6,6 @@ using Yi.Infra.TenantManagement.Services;
 
 namespace Yi.Infra.TenantManagement.Controllers;
 
-[ApiController]
 [Route("api/app/tenant")]
 public class TenantController : AbpController
 {
@@ -30,13 +29,13 @@ public class TenantController : AbpController
     }
 
     [HttpPost]
-    public async Task<TenantGetOutputDto> CreateAsync(TenantCreateInput input)
+    public async Task<TenantGetOutputDto> CreateAsync([FromBody] TenantCreateInput input)
     {
         return await _tenantService.CreateAsync(input);
     }
 
     [HttpPut("{id}")]
-    public async Task<TenantGetOutputDto> UpdateAsync([FromRoute] Guid id, TenantUpdateInput input)
+    public async Task<TenantGetOutputDto> UpdateAsync([FromRoute] Guid id, [FromBody] TenantUpdateInput input)
     {
         return await _tenantService.UpdateAsync(id, input);
     }

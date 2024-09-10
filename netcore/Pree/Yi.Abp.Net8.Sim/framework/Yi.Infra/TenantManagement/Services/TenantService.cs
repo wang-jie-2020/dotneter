@@ -8,6 +8,7 @@ using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Data;
 using Volo.Abp.Uow;
+using Yi.Framework.Core.Helper;
 using Yi.Framework.SqlSugarCore;
 using Yi.Infra.TenantManagement.Dtos;
 using Yi.Infra.TenantManagement.Entities;
@@ -56,7 +57,7 @@ public class TenantService : ApplicationService, ITenantService
 
         return entity.Adapt<TenantGetOutputDto>();
     }
-    
+
     public async Task<TenantGetOutputDto> UpdateAsync(Guid id, TenantUpdateInput input)
     {
         if (await _repository.IsAnyAsync(x => x.Name == input.Name && x.Id != id))
@@ -65,7 +66,7 @@ public class TenantService : ApplicationService, ITenantService
         var entity = await _repository.GetAsync(id);
         input.Adapt(entity);
         await _repository.UpdateAsync(entity, autoSave: true);
-        
+
         return entity.Adapt<TenantGetOutputDto>();
     }
 
@@ -83,22 +84,15 @@ public class TenantService : ApplicationService, ITenantService
         }
 
         var output = await GetListAsync(input);
-        var dirPath = "/wwwroot/temp";
-
-        var fileName = $"{nameof(TenantAggregateRoot)}_{DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss")}_{Guid.NewGuid()}";
-        var filePath = $"{dirPath}/{fileName}.xlsx";
-        if (!Directory.Exists(dirPath)) Directory.CreateDirectory(dirPath);
-
-        MiniExcel.SaveAs(filePath, output.Items);
-        return new PhysicalFileResult(filePath, "application/vnd.ms-excel");
+        return new PhysicalFileResult(ExporterHelper.ExportExcel(output.Items), "application/vnd.ms-excel");
     }
-    
+
     public async Task<List<TenantSelectOutputDto>> GetSelectAsync()
     {
         var entities = await _repository._DbQueryable.ToListAsync();
         return entities.Select(x => new TenantSelectOutputDto { Id = x.Id, Name = x.Name }).ToList();
     }
-    
+
     /// <summary>
     ///     初始化租户
     /// </summary>
