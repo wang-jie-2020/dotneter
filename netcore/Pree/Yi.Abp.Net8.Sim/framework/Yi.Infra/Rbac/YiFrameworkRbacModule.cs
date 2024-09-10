@@ -19,8 +19,7 @@ namespace Yi.Infra.Rbac;
     typeof(AbpDddDomainModule),
     typeof(AbpCachingModule),
     typeof(AbpBackgroundWorkersQuartzModule),
-    typeof(AbpDddDomainSharedModule),
-    typeof(YiFrameworkSqlSugarCoreModule)
+    typeof(AbpDddDomainSharedModule)
 )]
 public class YiFrameworkRbacModule : AbpModule
 {

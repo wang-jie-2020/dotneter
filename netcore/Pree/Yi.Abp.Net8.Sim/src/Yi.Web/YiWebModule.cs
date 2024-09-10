@@ -42,7 +42,6 @@ namespace Yi.Web;
     typeof(AbpDddDomainModule),
     typeof(AbpCachingModule),
     typeof(AbpDddDomainSharedModule),
-    typeof(YiFrameworkSqlSugarCoreModule),
     typeof(YiInfraModule)
 )]
 public class YiAbpWebModule : AbpModule
@@ -256,7 +255,7 @@ public class YiAbpWebModule : AbpModule
 
         //swagger
         app.UseYiSwagger();
-        
+
         //静态资源
         app.UseStaticFiles("/api/app/wwwroot");
         app.UseDefaultFiles();
