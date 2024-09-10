@@ -25,4 +25,8 @@
     <ItemGroup>
         <ProjectReference Include="..\Yi.Framework\Yi.Framework.csproj" />
     </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="OperationLogging\Entities\" />
+    </ItemGroup>
 </Project>
