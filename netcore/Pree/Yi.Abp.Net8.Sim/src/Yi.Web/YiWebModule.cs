@@ -50,6 +50,10 @@ public class YiAbpWebModule : AbpModule
 
     public override Task ConfigureServicesAsync(ServiceConfigurationContext context)
     {
+        context.Services.AddYiDbContext<YiDbContext>();
+        //默认不开放，可根据项目需要是否Db直接对外开放
+        //context.Services.AddTransient(x => x.GetRequiredService<ISqlSugarDbContext>().SqlSugarClient);
+        
         var configuration = context.Services.GetConfiguration();
         var host = context.Services.GetHostingEnvironment();
         var service = context.Services;

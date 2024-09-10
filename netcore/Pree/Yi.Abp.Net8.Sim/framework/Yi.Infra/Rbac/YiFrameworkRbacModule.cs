@@ -16,15 +16,14 @@ namespace Yi.Infra.Rbac;
 [DependsOn(
     typeof(YiAspNetCoreModule),
     typeof(AbpAspNetCoreSignalRModule),
-    typeof(AbpDddDomainModule),
-    typeof(AbpCachingModule),
-    typeof(AbpBackgroundWorkersQuartzModule),
-    typeof(AbpDddDomainSharedModule)
+    typeof(AbpBackgroundWorkersQuartzModule)
 )]
 public class YiFrameworkRbacModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
+        context.Services.TryAddYiDbContext<YiRbacDbContext>();
+        
         var service = context.Services;
 
         service.AddCaptcha();
