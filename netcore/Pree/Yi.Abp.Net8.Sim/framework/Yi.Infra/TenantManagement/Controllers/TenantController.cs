@@ -6,6 +6,7 @@ using Yi.Infra.TenantManagement.Services;
 
 namespace Yi.Infra.TenantManagement.Controllers;
 
+[ApiController]
 [Route("api/app/tenant")]
 public class TenantController : AbpController
 {
@@ -17,31 +18,31 @@ public class TenantController : AbpController
     }
 
     [HttpGet("{id}")]
-    public async Task<TenantGetOutputDto> GetAsync([FromRoute] Guid id)
+    public async Task<TenantGetOutputDto> GetAsync(Guid id)
     {
         return await _tenantService.GetAsync(id);
     }
 
     [HttpGet]
-    public async Task<PagedResultDto<TenantGetListOutputDto>> GetListAsync(TenantGetListInput input)
+    public async Task<PagedResultDto<TenantGetListOutputDto>> GetListAsync([FromQuery] TenantGetListInput input)
     {
         return await _tenantService.GetListAsync(input);
     }
 
     [HttpPost]
-    public async Task<TenantGetOutputDto> CreateAsync([FromBody] TenantCreateInput input)
+    public async Task<TenantGetOutputDto> CreateAsync(TenantCreateInput input)
     {
         return await _tenantService.CreateAsync(input);
     }
 
     [HttpPut("{id}")]
-    public async Task<TenantGetOutputDto> UpdateAsync([FromRoute] Guid id, [FromBody] TenantUpdateInput input)
+    public async Task<TenantGetOutputDto> UpdateAsync(Guid id, TenantUpdateInput input)
     {
         return await _tenantService.UpdateAsync(id, input);
     }
 
     [HttpDelete]
-    public async Task DeleteAsync(IEnumerable<Guid> id)
+    public async Task DeleteAsync([FromQuery] IEnumerable<Guid> id)
     {
         await _tenantService.DeleteAsync(id);
     }
@@ -59,7 +60,7 @@ public class TenantController : AbpController
     }
 
     [HttpPut("init/{id}")]
-    public async Task InitAsync([FromRoute] Guid id)
+    public async Task InitAsync(Guid id)
     {
         await _tenantService.InitAsync(id);
     }
