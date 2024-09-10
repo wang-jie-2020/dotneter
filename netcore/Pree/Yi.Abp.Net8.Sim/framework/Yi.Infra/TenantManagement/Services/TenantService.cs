@@ -27,13 +27,13 @@ public class TenantService : ApplicationService, ITenantService
         _dataSeeder = dataSeeder;
     }
 
-    public async Task<TenantGetOutputDto> GetAsync(Guid id)
+    public async Task<TenantDto> GetAsync(Guid id)
     {
         var entity = await _repository.GetAsync(id);
-        return entity.Adapt<TenantGetOutputDto>();
+        return entity.Adapt<TenantDto>();
     }
 
-    public async Task<PagedResultDto<TenantGetListOutputDto>> GetListAsync(TenantGetListInput input)
+    public async Task<PagedResultDto<TenantDto>> GetListAsync(TenantGetListInput input)
     {
         RefAsync<int> total = 0;
 
@@ -42,10 +42,10 @@ public class TenantService : ApplicationService, ITenantService
             .WhereIF(input.StartTime is not null && input.EndTime is not null, x => x.CreationTime >= input.StartTime && x.CreationTime <= input.EndTime)
             .ToPageListAsync(input.SkipCount, input.MaxResultCount, total);
 
-        return new PagedResultDto<TenantGetListOutputDto>(total, entities.Adapt<List<TenantGetListOutputDto>>());
+        return new PagedResultDto<TenantDto>(total, entities.Adapt<List<TenantDto>>());
     }
 
-    public async Task<TenantGetOutputDto> CreateAsync(TenantCreateInput input)
+    public async Task<TenantDto> CreateAsync(TenantCreateInput input)
     {
         if (await _repository.IsAnyAsync(x => x.Name == input.Name))
         {
@@ -55,10 +55,10 @@ public class TenantService : ApplicationService, ITenantService
         var entity = input.Adapt<TenantAggregateRoot>();
         await _repository.InsertAsync(entity, autoSave: true);
 
-        return entity.Adapt<TenantGetOutputDto>();
+        return entity.Adapt<TenantDto>();
     }
 
-    public async Task<TenantGetOutputDto> UpdateAsync(Guid id, TenantUpdateInput input)
+    public async Task<TenantDto> UpdateAsync(Guid id, TenantUpdateInput input)
     {
         if (await _repository.IsAnyAsync(x => x.Name == input.Name && x.Id != id))
             throw new UserFriendlyException("更新后租户名已经存在");
@@ -67,7 +67,7 @@ public class TenantService : ApplicationService, ITenantService
         input.Adapt(entity);
         await _repository.UpdateAsync(entity, autoSave: true);
 
-        return entity.Adapt<TenantGetOutputDto>();
+        return entity.Adapt<TenantDto>();
     }
 
     public async Task DeleteAsync(IEnumerable<Guid> id)
@@ -87,10 +87,10 @@ public class TenantService : ApplicationService, ITenantService
         return new PhysicalFileResult(ExporterHelper.ExportExcel(output.Items), "application/vnd.ms-excel");
     }
 
-    public async Task<List<TenantSelectOutputDto>> GetSelectAsync()
+    public async Task<List<TenantSelectDto>> GetSelectAsync()
     {
         var entities = await _repository._DbQueryable.ToListAsync();
-        return entities.Select(x => new TenantSelectOutputDto { Id = x.Id, Name = x.Name }).ToList();
+        return entities.Select(x => new TenantSelectDto { Id = x.Id, Name = x.Name }).ToList();
     }
 
     /// <summary>

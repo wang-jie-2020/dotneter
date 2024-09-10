@@ -8,9 +8,9 @@ using Volo.Abp.MultiTenancy;
 using Yi.Framework.SqlSugarCore;
 using Yi.Infra.AuditLogging;
 using Yi.Infra.AuditLogging.Repositories;
+using Yi.Infra.OperationLogging;
 using Yi.Infra.Rbac;
 using Yi.Infra.Rbac.Authorization;
-using Yi.Infra.Rbac.Operlog;
 using Yi.Infra.Rbac.Options;
 using Yi.Infra.TenantManagement;
 
@@ -40,7 +40,7 @@ public class YiInfraModule : AbpModule
         context.Services.Replace(new ServiceDescriptor(typeof(ITenantConfigurationProvider),
             typeof(YiTenantConfigurationProvider), ServiceLifetime.Transient));
         
-        context.Services.TryAddYiDbContext<YiRbacDbContext>();
+        //Rbac
         
         var service = context.Services;
 
@@ -50,7 +50,7 @@ public class YiInfraModule : AbpModule
         service.AddControllers(options =>
         {
             options.Filters.Add<PermissionGlobalAttribute>();
-            options.Filters.Add<OperLogGlobalAttribute>();
+            options.Filters.Add<OperationLogGlobalAttribute>();
         });
 
         //配置阿里云短信

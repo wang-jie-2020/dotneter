@@ -5,6 +5,7 @@ using Volo.Abp.Caching;
 using Volo.Abp.EventBus.Local;
 using Volo.Abp.Users;
 using Yi.Framework.SqlSugarCore;
+using Yi.Infra.OperationLogging;
 using Yi.Infra.Rbac.Authorization;
 using Yi.Infra.Rbac.Caches;
 using Yi.Infra.Rbac.Consts;
@@ -13,7 +14,6 @@ using Yi.Infra.Rbac.Entities;
 using Yi.Infra.Rbac.Entities.ValueObjects;
 using Yi.Infra.Rbac.IServices;
 using Yi.Infra.Rbac.Managers;
-using Yi.Infra.Rbac.Operlog;
 using Yi.Infra.Rbac.Repositories;
 
 namespace Yi.Infra.Rbac.Services.System;
@@ -84,7 +84,7 @@ public class UserService : YiCrudAppService<UserAggregateRoot, UserGetOutputDto,
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
-    [OperLog("添加用户", OperEnum.Insert)]
+    [OperationLog("添加用户", OperationEnum.Insert)]
     [Permission("system:user:add")]
     public override async Task<UserGetOutputDto> CreateAsync(UserCreateInputVo input)
     {
@@ -118,7 +118,7 @@ public class UserService : YiCrudAppService<UserAggregateRoot, UserGetOutputDto,
     /// <param name="id"></param>
     /// <param name="input"></param>
     /// <returns></returns>
-    [OperLog("更新用户", OperEnum.Update)]
+    [OperationLog("更新用户", OperationEnum.Update)]
     [Permission("system:user:edit")]
     public override async Task<UserGetOutputDto> UpdateAsync(Guid id, UserUpdateInputVo input)
     {
@@ -142,7 +142,7 @@ public class UserService : YiCrudAppService<UserAggregateRoot, UserGetOutputDto,
         return await MapToGetOutputDtoAsync(entity);
     }
 
-    [OperLog("删除用户", OperEnum.Delete)]
+    [OperationLog("删除用户", OperationEnum.Delete)]
     [Permission("system:user:delete")]
     public override async Task DeleteAsync(Guid id)
     {
@@ -169,7 +169,7 @@ public class UserService : YiCrudAppService<UserAggregateRoot, UserGetOutputDto,
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
-    [OperLog("更新个人信息", OperEnum.Update)]
+    [OperationLog("更新个人信息", OperationEnum.Update)]
     public async Task<UserGetOutputDto> UpdateProfileAsync(ProfileUpdateInputVo input)
     {
         var entity = await _repository.GetByIdAsync(_currentUser.Id);
@@ -187,7 +187,7 @@ public class UserService : YiCrudAppService<UserAggregateRoot, UserGetOutputDto,
     /// <param name="state"></param>
     /// <returns></returns>
     [Route("user/{id}/{state}")]
-    [OperLog("更新用户状态", OperEnum.Update)]
+    [OperationLog("更新用户状态", OperationEnum.Update)]
     [Permission("system:user:update")]
     public async Task<UserGetOutputDto> UpdateStateAsync([FromRoute] Guid id, [FromRoute] bool state)
     {

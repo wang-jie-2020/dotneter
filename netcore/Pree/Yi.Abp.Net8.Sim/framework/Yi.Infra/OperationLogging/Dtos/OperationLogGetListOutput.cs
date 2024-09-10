@@ -1,12 +1,11 @@
 using Volo.Abp.Application.Dtos;
-using Yi.Infra.Rbac.Operlog;
 
-namespace Yi.Infra.Rbac.Dtos.OperLog;
+namespace Yi.Infra.OperationLogging.Dtos;
 
-public class OperationLogGetListOutputDto : EntityDto<Guid>
+public class OperationLogGetListOutput : EntityDto<Guid>
 {
     public string? Title { get; set; }
-    public OperEnum OperType { get; set; }
+    public OperationEnum OperType { get; set; }
     public string? RequestMethod { get; set; }
     public string? OperUser { get; set; }
     public string? OperIp { get; set; }

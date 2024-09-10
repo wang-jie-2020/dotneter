@@ -2,7 +2,7 @@
 using Volo.Abp.Auditing;
 using Volo.Abp.Domain.Entities;
 
-namespace Yi.Infra.Rbac.Operlog;
+namespace Yi.Infra.OperationLogging.Entities;
 
 /// <summary>
 ///     操作日志表
@@ -22,7 +22,7 @@ public class OperationLogEntity : Entity<Guid>, ICreationAuditedObject
     ///     操作类型
     /// </summary>
     [SugarColumn(ColumnName = "OperType")]
-    public OperEnum OperType { get; set; }
+    public OperationEnum OperType { get; set; }
 
     /// <summary>
     ///     请求方法

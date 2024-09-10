@@ -6,17 +6,17 @@ namespace Yi.Infra.TenantManagement.Services;
 
 public interface ITenantService 
 {
-    Task<TenantGetOutputDto> GetAsync(Guid id);
+    Task<TenantDto> GetAsync(Guid id);
 
-    Task<PagedResultDto<TenantGetListOutputDto>> GetListAsync(TenantGetListInput input);
+    Task<PagedResultDto<TenantDto>> GetListAsync(TenantGetListInput input);
 
-    Task<TenantGetOutputDto> CreateAsync(TenantCreateInput input);
+    Task<TenantDto> CreateAsync(TenantCreateInput input);
 
-    Task<TenantGetOutputDto> UpdateAsync(Guid id, TenantUpdateInput input);
+    Task<TenantDto> UpdateAsync(Guid id, TenantUpdateInput input);
 
     Task DeleteAsync(IEnumerable<Guid> id);
 
-    Task<List<TenantSelectOutputDto>> GetSelectAsync();
+    Task<List<TenantSelectDto>> GetSelectAsync();
 
     Task InitAsync(Guid id);
 

@@ -2,7 +2,7 @@
 
 namespace Yi.Infra.TenantManagement.Dtos;
 
-public class TenantSelectOutputDto : EntityDto<Guid>
+public class TenantSelectDto : EntityDto<Guid>
 {
     public string Name { get; set; }
 }

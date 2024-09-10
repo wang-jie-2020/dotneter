@@ -1,17 +1,16 @@
 using SqlSugar;
 using Volo.Abp.Application.Dtos;
 using Yi.Framework.SqlSugarCore;
-using Yi.Infra.Rbac.Dtos.OperLog;
-using Yi.Infra.Rbac.IServices;
-using Yi.Infra.Rbac.Operlog;
+using Yi.Infra.OperationLogging.Dtos;
+using Yi.Infra.OperationLogging.Entities;
 
-namespace Yi.Infra.Rbac.Services.RecordLog;
+namespace Yi.Infra.OperationLogging.Services;
 
 /// <summary>
 ///     OperationLog服务实现
 /// </summary>
-public class OperationLogService : YiCrudAppService<OperationLogEntity, OperationLogGetListOutputDto, Guid,
-        OperationLogGetListInputVo>,
+public class OperationLogService : YiCrudAppService<OperationLogEntity, OperationLogGetListOutput, Guid,
+        OperationLogGetListInput>,
     IOperationLogService
 {
     private readonly ISqlSugarRepository<OperationLogEntity, Guid> _repository;
@@ -21,8 +20,8 @@ public class OperationLogService : YiCrudAppService<OperationLogEntity, Operatio
         _repository = repository;
     }
 
-    public override async Task<PagedResultDto<OperationLogGetListOutputDto>> GetListAsync(
-        OperationLogGetListInputVo input)
+    public override async Task<PagedResultDto<OperationLogGetListOutput>> GetListAsync(
+        OperationLogGetListInput input)
     {
         RefAsync<int> total = 0;
         var entities = await _repository._DbQueryable.WhereIF(!string.IsNullOrEmpty(input.OperUser),
@@ -31,11 +30,11 @@ public class OperationLogService : YiCrudAppService<OperationLogEntity, Operatio
             .WhereIF(input.StartTime is not null && input.EndTime is not null,
                 x => x.CreationTime >= input.StartTime && x.CreationTime <= input.EndTime)
             .ToPageListAsync(input.SkipCount, input.MaxResultCount, total);
-        return new PagedResultDto<OperationLogGetListOutputDto>(total, await MapToGetListOutputDtosAsync(entities));
+        return new PagedResultDto<OperationLogGetListOutput>(total, await MapToGetListOutputDtosAsync(entities));
     }
 
     [RemoteService(false)]
-    public override Task<OperationLogGetListOutputDto> UpdateAsync(Guid id, OperationLogGetListOutputDto input)
+    public override Task<OperationLogGetListOutput> UpdateAsync(Guid id, OperationLogGetListOutput input)
     {
         return base.UpdateAsync(id, input);
     }

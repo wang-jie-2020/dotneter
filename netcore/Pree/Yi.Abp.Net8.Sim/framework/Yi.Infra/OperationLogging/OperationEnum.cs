@@ -1,6 +1,6 @@
-﻿namespace Yi.Infra.Rbac.Operlog;
+﻿namespace Yi.Infra.OperationLogging;
 
-public enum OperEnum
+public enum OperationEnum
 {
     Insert = 1,
     Update = 2,

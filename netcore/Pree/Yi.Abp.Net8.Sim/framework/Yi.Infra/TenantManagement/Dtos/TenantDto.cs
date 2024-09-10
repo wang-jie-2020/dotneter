@@ -3,7 +3,7 @@ using Volo.Abp.Application.Dtos;
 
 namespace Yi.Infra.TenantManagement.Dtos;
 
-public class TenantGetListOutputDto : EntityDto<Guid>
+public class TenantDto : EntityDto<Guid>
 {
     public string Name { get; set; }
     
@@ -12,6 +12,6 @@ public class TenantGetListOutputDto : EntityDto<Guid>
     public string TenantConnectionString { get; set; }
 
     public DbType DbType { get; set; }
-    
+
     public DateTime CreationTime { get; set; }
 }

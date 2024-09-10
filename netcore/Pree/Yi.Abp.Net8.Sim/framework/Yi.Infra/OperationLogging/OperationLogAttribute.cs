@@ -1,9 +1,9 @@
-﻿namespace Yi.Infra.Rbac.Operlog;
+﻿namespace Yi.Infra.OperationLogging;
 
 [AttributeUsage(AttributeTargets.Method)]
-public class OperLogAttribute : Attribute
+public class OperationLogAttribute : Attribute
 {
-    public OperLogAttribute(string title, OperEnum operationType)
+    public OperationLogAttribute(string title, OperationEnum operationType)
     {
         Title = title;
         OperType = operationType;
@@ -12,7 +12,7 @@ public class OperLogAttribute : Attribute
     /// <summary>
     ///     操作类型
     /// </summary>
-    public OperEnum OperType { get; set; }
+    public OperationEnum OperType { get; set; }
 
     /// <summary>
     ///     日志标题（模块）

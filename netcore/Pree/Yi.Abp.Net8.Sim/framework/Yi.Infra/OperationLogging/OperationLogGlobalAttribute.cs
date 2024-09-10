@@ -8,19 +8,19 @@ using Volo.Abp.DependencyInjection;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.Users;
 using Yi.Framework.Core.Extensions;
-using Yi.Framework.Core.Helper;
+using Yi.Infra.OperationLogging.Entities;
 
-namespace Yi.Infra.Rbac.Operlog;
+namespace Yi.Infra.OperationLogging;
 
-public class OperLogGlobalAttribute : ActionFilterAttribute, ITransientDependency
+public class OperationLogGlobalAttribute : ActionFilterAttribute, ITransientDependency
 {
     private readonly ICurrentUser _currentUser;
-    private ILogger<OperLogGlobalAttribute> _logger;
+    private ILogger<OperationLogGlobalAttribute> _logger;
 
     private readonly IRepository<OperationLogEntity> _repository;
 
     //注入一个日志服务
-    public OperLogGlobalAttribute(ILogger<OperLogGlobalAttribute> logger, IRepository<OperationLogEntity> repository,
+    public OperationLogGlobalAttribute(ILogger<OperationLogGlobalAttribute> logger, IRepository<OperationLogEntity> repository,
         ICurrentUser currentUser)
     {
         _logger = logger;
@@ -38,7 +38,7 @@ public class OperLogGlobalAttribute : ActionFilterAttribute, ITransientDependenc
 
         //查找标签，获取标签对象
         var operLogAttribute = controllerActionDescriptor.MethodInfo.GetCustomAttributes(true)
-            .FirstOrDefault(a => a.GetType().Equals(typeof(OperLogAttribute))) as OperLogAttribute;
+            .FirstOrDefault(a => a.GetType().Equals(typeof(OperationLogAttribute))) as OperationLogAttribute;
         //空对象直接返回
         if (operLogAttribute is null) return;
 
