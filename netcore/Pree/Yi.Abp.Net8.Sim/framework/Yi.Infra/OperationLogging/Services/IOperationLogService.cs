@@ -1,10 +1,16 @@
+using Microsoft.AspNetCore.Mvc;
+using Volo.Abp.Application.Dtos;
 using Yi.Infra.OperationLogging.Dtos;
 
 namespace Yi.Infra.OperationLogging.Services;
 
-/// <summary>
-///     OperationLog服务抽象
-/// </summary>
-public interface IOperationLogService : IYiCrudAppService<OperationLogDto, Guid, OperationLogGetListInput>
+public interface IOperationLogService
 {
+    Task<OperationLogDto> GetAsync(Guid id);
+
+    Task<PagedResultDto<OperationLogDto>> GetListAsync(OperationLogGetListInput input);
+
+    Task DeleteAsync(IEnumerable<Guid> id);
+
+    Task<IActionResult> GetExportExcelAsync(OperationLogGetListInput input);
 }
