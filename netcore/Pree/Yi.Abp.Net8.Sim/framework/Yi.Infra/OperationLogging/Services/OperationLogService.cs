@@ -9,7 +9,7 @@ namespace Yi.Infra.OperationLogging.Services;
 /// <summary>
 ///     OperationLog服务实现
 /// </summary>
-public class OperationLogService : YiCrudAppService<OperationLogEntity, OperationLogGetListOutput, Guid,
+public class OperationLogService : YiCrudAppService<OperationLogEntity, OperationLogDto, Guid,
         OperationLogGetListInput>,
     IOperationLogService
 {
@@ -20,7 +20,7 @@ public class OperationLogService : YiCrudAppService<OperationLogEntity, Operatio
         _repository = repository;
     }
 
-    public override async Task<PagedResultDto<OperationLogGetListOutput>> GetListAsync(
+    public override async Task<PagedResultDto<OperationLogDto>> GetListAsync(
         OperationLogGetListInput input)
     {
         RefAsync<int> total = 0;
@@ -30,11 +30,11 @@ public class OperationLogService : YiCrudAppService<OperationLogEntity, Operatio
             .WhereIF(input.StartTime is not null && input.EndTime is not null,
                 x => x.CreationTime >= input.StartTime && x.CreationTime <= input.EndTime)
             .ToPageListAsync(input.SkipCount, input.MaxResultCount, total);
-        return new PagedResultDto<OperationLogGetListOutput>(total, await MapToGetListOutputDtosAsync(entities));
+        return new PagedResultDto<OperationLogDto>(total, await MapToGetListOutputDtosAsync(entities));
     }
 
     [RemoteService(false)]
-    public override Task<OperationLogGetListOutput> UpdateAsync(Guid id, OperationLogGetListOutput input)
+    public override Task<OperationLogDto> UpdateAsync(Guid id, OperationLogDto input)
     {
         return base.UpdateAsync(id, input);
     }

@@ -10,7 +10,8 @@ namespace Yi.Infra.OperationLogging.Entities;
 [SugarTable("OperationLog")]
 public class OperationLogEntity : Entity<Guid>, ICreationAuditedObject
 {
-    [SugarColumn(IsPrimaryKey = true)] public override Guid Id { get; protected set; }
+    [SugarColumn(IsPrimaryKey = true)] 
+    public override Guid Id { get; protected set; }
 
     /// <summary>
     ///     操作模块
