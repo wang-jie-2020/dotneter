@@ -3,10 +3,11 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Volo.Abp.Data;
 using Volo.Abp.Domain;
 using Volo.Abp.MultiTenancy;
+using Yi.Framework;
 
 namespace Yi.Infra.TenantManagement;
 
-[DependsOn(typeof(AbpDddDomainModule))]
+[DependsOn(typeof(YiAspNetCoreModule))]
 public class YiFrameworkTenantManagementModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
