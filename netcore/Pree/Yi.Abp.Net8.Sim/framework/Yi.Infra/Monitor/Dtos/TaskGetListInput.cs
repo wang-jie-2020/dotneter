@@ -1,4 +1,4 @@
-﻿namespace Yi.Infra.Monitor.dtos;
+﻿namespace Yi.Infra.Monitor.Dtos;
 
 public class TaskGetListInput : PagedInfraInput
 {

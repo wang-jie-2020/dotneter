@@ -1,6 +1,6 @@
 using Yi.Infra.Notice.Entities;
 
-namespace Yi.Infra.Notice.dtos;
+namespace Yi.Infra.Notice.Dtos;
 
 /// <summary>
 ///     Notice输入创建对象

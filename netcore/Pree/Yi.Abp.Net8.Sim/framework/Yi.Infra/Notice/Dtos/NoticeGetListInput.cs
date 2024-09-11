@@ -1,6 +1,6 @@
 using Yi.Infra.Notice.Entities;
 
-namespace Yi.Infra.Notice.dtos;
+namespace Yi.Infra.Notice.Dtos;
 
 /// <summary>
 ///     查询参数

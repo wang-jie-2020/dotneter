@@ -6,7 +6,7 @@ using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Yi.Framework.Core.Helper;
 using Yi.Framework.SqlSugarCore;
-using Yi.Infra.Notice.dtos;
+using Yi.Infra.Notice.Dtos;
 using Yi.Infra.Notice.Entities;
 
 namespace Yi.Infra.Notice.Services;

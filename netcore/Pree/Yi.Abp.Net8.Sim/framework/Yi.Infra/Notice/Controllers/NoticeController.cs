@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.AspNetCore.Mvc;
-using Yi.Infra.Notice.dtos;
+using Yi.Infra.Notice.Dtos;
 using Yi.Infra.Notice.Services;
 
 namespace Yi.Infra.Notice.Controllers;
