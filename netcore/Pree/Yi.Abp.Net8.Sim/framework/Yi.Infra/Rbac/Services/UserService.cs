@@ -153,7 +153,7 @@ public class UserService : YiCrudAppService<UserAggregateRoot, UserGetOutputDto,
     protected override UserAggregateRoot MapToEntity(UserCreateInputVo createInput)
     {
         var output = base.MapToEntity(createInput);
-        output.EncryPassword = new EncryPasswordValueObject(createInput.Password);
+        output.EncryPassword = new EncryptPasswordValueObject(createInput.Password);
         return output;
     }
 

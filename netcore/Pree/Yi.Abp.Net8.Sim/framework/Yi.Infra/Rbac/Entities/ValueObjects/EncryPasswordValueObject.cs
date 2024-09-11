@@ -2,13 +2,13 @@
 
 namespace Yi.Infra.Rbac.Entities.ValueObjects;
 
-public class EncryPasswordValueObject : ValueObject
+public class EncryptPasswordValueObject : ValueObject
 {
-    public EncryPasswordValueObject()
+    public EncryptPasswordValueObject()
     {
     }
 
-    public EncryPasswordValueObject(string password)
+    public EncryptPasswordValueObject(string password)
     {
         Password = password;
     }

@@ -52,7 +52,7 @@ public class UserAggregateRoot : AggregateRoot<Guid>, ISoftDelete, IAuditedObjec
     ///     加密密码
     /// </summary>
     [SugarColumn(IsOwnsOne = true)]
-    public EncryPasswordValueObject EncryPassword { get; set; } = new();
+    public EncryptPasswordValueObject EncryPassword { get; set; } = new();
 
     ///// <summary>
     ///// 密码
