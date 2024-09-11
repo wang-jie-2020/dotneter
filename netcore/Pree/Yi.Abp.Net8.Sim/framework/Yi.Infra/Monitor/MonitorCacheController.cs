@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.Caching;
-using Yi.Infra.Rbac.Dtos.MonitorCache;
+using Yi.Infra.Monitor.Dtos;
 
 namespace Yi.Infra.Monitor;
 
