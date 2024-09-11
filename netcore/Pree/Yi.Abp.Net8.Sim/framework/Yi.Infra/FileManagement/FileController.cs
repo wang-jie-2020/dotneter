@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Volo.Abp.AspNetCore.Mvc;
 
-namespace Yi.Infra.File;
+namespace Yi.Infra.FileManagement;
 
 [ApiController]
 [Route("api/app/file")]
