@@ -54,7 +54,7 @@ export default {
     try {
       var that = this;
       await this.SR.stop();
-    } catch {}
+    } catch { }
   },
 
   async start() {
@@ -100,16 +100,17 @@ export default {
     //   console.log('welcome', data)
     //   Notification.info(data)
     // });
-    // // 接收后台手动推送消息
-    // connection.on("receiveNotice", (title, data) => {
-    //   Notification({
-    //     type: 'info',
-    //     title: title,
-    //     message: data,
-    //     dangerouslyUseHTMLString: true,
-    //     duration: 0
-    //   })
-    // })
+    // 接收后台手动推送消息
+    connection.on("receiveNotice", (type, title, data) => {
+      alert(data);
+      // Notification({
+      //   type: 'info',
+      //   title: title,
+      //   message: data,
+      //   dangerouslyUseHTMLString: true,
+      //   duration: 0
+      // })
+    })
     // // 接收系统通知/公告
     // connection.on("moreNotice", (data) => {
     //   if (data.code == 200) {

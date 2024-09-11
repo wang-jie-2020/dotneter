@@ -17,10 +17,10 @@ public class NoticeService : YiCrudAppService<NoticeAggregateRoot, NoticeGetOutp
         NoticeGetListInput, NoticeCreateInput, NoticeUpdateInput>,
     INoticeService
 {
-    private readonly IHubContext<NoticeHub> _hubContext;
+    private readonly IHubContext<OnlineHub> _hubContext;
     private readonly ISqlSugarRepository<NoticeAggregateRoot, Guid> _repository;
 
-    public NoticeService(ISqlSugarRepository<NoticeAggregateRoot, Guid> repository, IHubContext<NoticeHub> hubContext) :
+    public NoticeService(ISqlSugarRepository<NoticeAggregateRoot, Guid> repository, IHubContext<OnlineHub> hubContext) :
         base(repository)
     {
         _hubContext = hubContext;
