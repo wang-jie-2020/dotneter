@@ -11,7 +11,7 @@ using Yi.Infra.Rbac.Consts;
 using Yi.Infra.Rbac.Dtos.Task;
 using Yi.Infra.Rbac.IServices;
 
-namespace Yi.Infra.Rbac.Services.Monitor;
+namespace Yi.Infra.Monitor;
 
 public class TaskService : ApplicationService, ITaskService
 {

@@ -3,24 +3,25 @@ using System.Runtime.InteropServices;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Volo.Abp.Application.Services;
+using Volo.Abp.AspNetCore.Mvc;
 using Yi.Framework.Core.Helper;
-using Yi.Infra.Rbac.IServices;
 
-namespace Yi.Infra.Rbac.Services.Monitor;
+namespace Yi.Infra.Monitor;
 
-public class MonitorServerService : ApplicationService, IMonitorServerService
+[ApiController]
+[Route("api/app/monitor-server")]
+public class MonitorServerController : AbpController
 {
     private readonly IWebHostEnvironment _hostEnvironment;
     private readonly IHttpContextAccessor _httpContextAccessor;
 
-    public MonitorServerService(IWebHostEnvironment hostEnvironment, IHttpContextAccessor httpContextAccessor)
+    public MonitorServerController(IWebHostEnvironment hostEnvironment, IHttpContextAccessor httpContextAccessor)
     {
         _hostEnvironment = hostEnvironment;
         _httpContextAccessor = httpContextAccessor;
     }
 
-    [HttpGet("monitor-server/info")]
+    [HttpGet("info")]
     public object GetInfo()
     {
         var cpuNum = Environment.ProcessorCount;
@@ -28,10 +29,10 @@ public class MonitorServerService : ApplicationService, IMonitorServerService
         var osName = RuntimeInformation.OSDescription;
         var osArch = RuntimeInformation.OSArchitecture.ToString();
         var version = RuntimeInformation.FrameworkDescription;
-        var appRAM = ((double)Process.GetCurrentProcess().WorkingSet64 / 1048576).ToString("N2") + " MB";
+        var ram = ((double)Process.GetCurrentProcess().WorkingSet64 / 1048576).ToString("N2") + " MB";
         var startTime = Process.GetCurrentProcess().StartTime.ToString("yyyy-MM-dd HH:mm:ss");
         var sysRunTime = ComputerHelper.GetRunTime();
-        var serverIP = _httpContextAccessor.HttpContext.Connection.LocalIpAddress.MapToIPv4() + ":" +
+        var ip = _httpContextAccessor.HttpContext.Connection.LocalIpAddress.MapToIPv4() + ":" +
                        _httpContextAccessor.HttpContext.Connection.LocalPort; //获取服务器IP
 
         var programStartTime = Process.GetCurrentProcess().StartTime;
@@ -42,17 +43,17 @@ public class MonitorServerService : ApplicationService, IMonitorServerService
         {
             cpu = ComputerHelper.GetComputerInfo(),
             disk = ComputerHelper.GetDiskInfos(),
-            sys = new { cpuNum, computerName, osName, osArch, serverIP, runTime = sysRunTime },
+            sys = new { cpuNum, computerName, osName, osArch, serverIP = ip, runTime = sysRunTime },
             app = new
             {
                 name = _hostEnvironment.EnvironmentName,
                 rootPath = _hostEnvironment.ContentRootPath,
                 webRootPath = _hostEnvironment.WebRootPath,
                 version,
-                appRAM,
+                appRAM = ram,
                 startTime,
                 runTime = programRunTime,
-                host = serverIP
+                host = ip
             }
         };
 

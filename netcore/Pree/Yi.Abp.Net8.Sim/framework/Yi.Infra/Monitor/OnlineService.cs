@@ -7,7 +7,7 @@ using Yi.Infra.Rbac.IServices;
 using Yi.Infra.Rbac.Model;
 using Yi.Infra.Rbac.SignalRHubs;
 
-namespace Yi.Infra.Rbac.Services.Monitor;
+namespace Yi.Infra.Monitor;
 
 public class OnlineService : ApplicationService, IOnlineService
 {

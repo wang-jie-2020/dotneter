@@ -3,22 +3,22 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Volo.Abp.Application.Services;
+using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.Caching;
 using Volo.Abp.DependencyInjection;
 using Yi.Infra.Rbac.Dtos.MonitorCache;
 using Yi.Infra.Rbac.IServices;
 
-namespace Yi.Infra.Rbac.Services.Monitor;
+namespace Yi.Infra.Monitor;
 
-public class MonitorCacheService : ApplicationService, IMonitorCacheService
+[ApiController]
+[Route("api/app/monitor-cache")]
+public class MonitorCacheController : AbpController
 {
-    public IAbpLazyServiceProvider LazyServiceProvider { get; set; }
-
     /// <summary>
     ///     缓存前缀
     /// </summary>
-    private string CacheKeyPrefix => LazyServiceProvider.LazyGetRequiredService<IOptions<AbpDistributedCacheOptions>>()
-        .Value.KeyPrefix;
+    private string CacheKeyPrefix => LazyServiceProvider.LazyGetRequiredService<IOptions<AbpDistributedCacheOptions>>().Value.KeyPrefix;
 
     private bool EnableRedisCache
     {
@@ -38,7 +38,7 @@ public class MonitorCacheService : ApplicationService, IMonitorCacheService
     ///     获取所有key并分组
     /// </summary>
     /// <returns></returns>
-    [HttpGet("monitor-cache/name")]
+    [HttpGet("name")]
     public List<MonitorCacheNameGetListOutputDto> GetName()
     {
         VerifyRedisCacheEnable();
@@ -77,39 +77,39 @@ public class MonitorCacheService : ApplicationService, IMonitorCacheService
         if (!EnableRedisCache) throw new UserFriendlyException("后端程序未使用Redis缓存，无法对Redis进行监控，可切换使用Redis");
     }
 
-    [HttpGet("monitor-cache/key/{cacaheName}")]
-    public List<string> GetKey(string cacaheName)
+    [HttpGet("key/{cacheName}")]
+    public List<string> GetKey(string cacheName)
     {
         VerifyRedisCacheEnable();
-        var output = RedisClient.Keys($"{cacaheName}:*").Select(x => x.RemovePreFix(cacaheName + ":"));
+        var output = RedisClient.Keys($"{cacheName}:*").Select(x => x.RemovePreFix(cacheName + ":"));
         return output.ToList();
     }
 
     //全部不为空
-    [HttpGet("monitor-cache/value/{cacaheName}/{cacaheKey}")]
-    public MonitorCacheGetListOutputDto GetValue(string cacaheName, string cacaheKey)
+    [HttpGet("value/{cacheName}/{cacheKey}")]
+    public MonitorCacheGetListOutputDto GetValue(string cacheName, string cacheKey)
     {
-        var value = RedisClient.HGet($"{cacaheName}:{cacaheKey}", "data");
-        return new MonitorCacheGetListOutputDto { CacheKey = cacaheKey, CacheName = cacaheName, CacheValue = value };
+        var value = RedisClient.HGet($"{cacheName}:{cacheKey}", "data");
+        return new MonitorCacheGetListOutputDto { CacheKey = cacheKey, CacheName = cacheName, CacheValue = value };
     }
 
 
-    [HttpDelete("monitor-cache/key/{cacaheName}")]
-    public bool DeleteKey(string cacaheName)
+    [HttpDelete("key/{cacheName}")]
+    public bool DeleteKey(string cacheName)
     {
         VerifyRedisCacheEnable();
-        RedisClient.Del($"{cacaheName}:*");
+        RedisClient.Del($"{cacheName}:*");
         return true;
     }
 
-    [HttpDelete("monitor-cache/value/{cacaheName}/{cacaheKey}")]
-    public bool DeleteValue(string cacaheName, string cacaheKey)
+    [HttpDelete("value/{cacheName}/{cacheKey}")]
+    public bool DeleteValue(string cacheName, string cacheKey)
     {
-        RedisClient.Del($"{cacaheName}:{cacaheKey}");
+        RedisClient.Del($"{cacheName}:{cacheKey}");
         return true;
     }
 
-    [HttpDelete("monitor-cache/clear")]
+    [HttpDelete("clear")]
     public bool DeleteClear()
     {
         RedisClient.FlushDb();
