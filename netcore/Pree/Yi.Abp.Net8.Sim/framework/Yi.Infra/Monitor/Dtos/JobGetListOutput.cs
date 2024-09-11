@@ -1,6 +1,6 @@
 ﻿namespace Yi.Infra.Monitor.Dtos;
 
-public class TaskGetListOutput
+public class JobGetListOutput
 {
     /// <summary>
     ///     作业 Id

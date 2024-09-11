@@ -1,6 +1,6 @@
 ﻿namespace Yi.Infra.Monitor.Dtos;
 
-public class TaskUpdateInput
+public class JobUpdateInput
 {
     public string AssemblyName { get; set; }
 

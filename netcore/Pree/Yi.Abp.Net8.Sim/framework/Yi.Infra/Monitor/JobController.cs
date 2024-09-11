@@ -25,7 +25,7 @@ public class JobController : AbpController
     }
 
     [HttpGet("{jobId}")]
-    public async Task<TaskGetOutput> GetAsync([FromRoute] string jobId)
+    public async Task<JobGetOutput> GetAsync([FromRoute] string jobId)
     {
         var scheduler = await _schedulerFactory.GetScheduler();
 
@@ -33,7 +33,7 @@ public class JobController : AbpController
         var trigger = (await scheduler.GetTriggersOfJob(new JobKey(jobId))).First();
         var state = await scheduler.GetTriggerState(trigger.Key);
 
-        var output = new TaskGetOutput
+        var output = new JobGetOutput
         {
             JobId = jobDetail.Key.Name,
             GroupName = jobDetail.Key.Group,
@@ -64,9 +64,9 @@ public class JobController : AbpController
     }
 
     [HttpGet]
-    public async Task<PagedResultDto<TaskGetListOutput>> GetListAsync([FromQuery] TaskGetListInput input)
+    public async Task<PagedResultDto<JobGetListOutput>> GetListAsync([FromQuery] JobGetListInput input)
     {
-        var items = new List<TaskGetOutput>();
+        var items = new List<JobGetOutput>();
 
         var scheduler = await _schedulerFactory.GetScheduler();
         var groups = await scheduler.GetJobGroupNames();
@@ -84,11 +84,11 @@ public class JobController : AbpController
             .OrderByDescending(x => x.LastRunTime)
             .ToList();
 
-        return new PagedResultDto<TaskGetListOutput>(items.Count(), output.Adapt<List<TaskGetListOutput>>());
+        return new PagedResultDto<JobGetListOutput>(items.Count(), output.Adapt<List<JobGetListOutput>>());
     }
 
     [HttpPost]
-    public async Task CreateAsync([FromBody] TaskCreateInput input)
+    public async Task CreateAsync([FromBody] JobCreateInput input)
     {
         var scheduler = await _schedulerFactory.GetScheduler();
 
@@ -130,10 +130,10 @@ public class JobController : AbpController
     }
 
     [HttpPut("{jobId}")]
-    public async Task UpdateAsync([FromRoute] string jobId, [FromBody] TaskUpdateInput input)
+    public async Task UpdateAsync([FromRoute] string jobId, [FromBody] JobUpdateInput input)
     {
         await DeleteAsync(new List<string> { jobId });
-        await CreateAsync(input.Adapt<TaskCreateInput>());
+        await CreateAsync(input.Adapt<JobCreateInput>());
     }
 
     [HttpDelete]
