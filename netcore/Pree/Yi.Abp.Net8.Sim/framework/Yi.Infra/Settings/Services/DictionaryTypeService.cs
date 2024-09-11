@@ -1,28 +1,30 @@
+using Mapster;
 using SqlSugar;
 using Volo.Abp.Application.Dtos;
+using Volo.Abp.Application.Services;
 using Yi.Framework.SqlSugarCore;
 using Yi.Infra.Settings.Dtos;
 using Yi.Infra.Settings.Entities;
 
 namespace Yi.Infra.Settings.Services;
 
-/// <summary>
-///     DictionaryType服务实现
-/// </summary>
-public class DictionaryTypeService : YiCrudAppService<DictionaryTypeAggregateRoot, DictionaryTypeDto,
-        DictionaryTypeDto, Guid, DictionaryTypeGetListInput, DictionaryTypeCreateInput,
-        DictionaryTypeUpdateInput>,
-    IDictionaryTypeService
+[RemoteService(false)]
+public class DictionaryTypeService : ApplicationService, IDictionaryTypeService
 {
     private readonly ISqlSugarRepository<DictionaryTypeAggregateRoot, Guid> _repository;
 
-    public DictionaryTypeService(ISqlSugarRepository<DictionaryTypeAggregateRoot, Guid> repository) : base(repository)
+    public DictionaryTypeService(ISqlSugarRepository<DictionaryTypeAggregateRoot, Guid> repository)
     {
         _repository = repository;
     }
 
-    public override async Task<PagedResultDto<DictionaryTypeDto>> GetListAsync(
-        DictionaryTypeGetListInput input)
+    public async Task<DictionaryTypeDto> GetAsync(Guid id)
+    {
+        var entity = await _repository.GetAsync(id);
+        return entity.Adapt<DictionaryTypeDto>();
+    }
+
+    public async Task<PagedResultDto<DictionaryTypeDto>> GetListAsync(DictionaryTypeGetListInput input)
     {
         RefAsync<int> total = 0;
         var entities = await _repository._DbQueryable
@@ -36,7 +38,29 @@ public class DictionaryTypeService : YiCrudAppService<DictionaryTypeAggregateRoo
         return new PagedResultDto<DictionaryTypeDto>
         {
             TotalCount = total,
-            Items = await MapToGetListOutputDtosAsync(entities)
+            Items = entities.Adapt<List<DictionaryTypeDto>>()
         };
+    }
+
+    public async Task<DictionaryTypeDto> CreateAsync(DictionaryTypeCreateInput input)
+    {
+        var entity = input.Adapt<DictionaryTypeAggregateRoot>();
+        await _repository.InsertAsync(entity, autoSave: true);
+
+        return entity.Adapt<DictionaryTypeDto>();
+    }
+
+    public async Task<DictionaryTypeDto> UpdateAsync(Guid id, DictionaryTypeUpdateInput input)
+    {
+        var entity = await _repository.GetAsync(id);
+        input.Adapt(entity);
+        await _repository.UpdateAsync(entity, autoSave: true);
+
+        return entity.Adapt<DictionaryTypeDto>();
+    }
+
+    public async Task DeleteAsync(IEnumerable<Guid> id)
+    {
+        await _repository.DeleteManyAsync(id);
     }
 }
