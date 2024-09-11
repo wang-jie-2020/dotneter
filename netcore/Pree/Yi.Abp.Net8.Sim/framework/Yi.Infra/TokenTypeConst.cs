@@ -1,4 +1,4 @@
-﻿namespace Yi.Infra.Rbac.Consts;
+﻿namespace Yi.Infra;
 
 public class TokenTypeConst
 {
