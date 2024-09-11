@@ -67,7 +67,7 @@
                v-hasPermi="['monitor:operlog:remove']"
             >删除</el-button>
          </el-col>
-         <el-col :span="1.5">
+         <!-- <el-col :span="1.5">
             <el-button
                type="danger"
                plain
@@ -75,16 +75,7 @@
                @click="handleClean"
                v-hasPermi="['monitor:operlog:remove']"
             >清空</el-button>
-         </el-col>
-         <el-col :span="1.5">
-            <el-button
-               type="warning"
-               plain
-               icon="Download"
-               @click="handleExport"
-               v-hasPermi="['monitor:operlog:export']"
-            >导出</el-button>
-         </el-col>
+         </el-col> -->
          <right-toolbar v-model:showSearch="showSearch" @queryTable="getList"></right-toolbar>
       </el-row>
 
@@ -177,7 +168,7 @@
 </template>
 
 <script setup name="Operlog">
-import { list, delOperlog, cleanOperlog } from "@/api/monitor/operlog";
+import { list, delOperlog } from "@/api/monitor/operlog";
 
 const { proxy } = getCurrentInstance();
 const { sys_oper_type, sys_common_status } = proxy.useDict("sys_oper_type","sys_common_status");
@@ -258,21 +249,6 @@ function handleDelete(row) {
     getList();
     proxy.$modal.msgSuccess("删除成功");
   }).catch(() => {});
-}
-/** 清空按钮操作 */
-function handleClean() {
-  proxy.$modal.confirm("是否确认清空所有操作日志数据项?").then(function () {
-    return cleanOperlog();
-  }).then(() => {
-    getList();
-    proxy.$modal.msgSuccess("清空成功");
-  }).catch(() => {});
-}
-/** 导出按钮操作 */
-function handleExport() {
-  proxy.download("monitor/operlog/export",{
-    ...queryParams.value,
-  }, `config_${new Date().getTime()}.xlsx`);
 }
 
 getList();

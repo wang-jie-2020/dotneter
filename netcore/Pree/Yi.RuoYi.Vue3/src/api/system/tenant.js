@@ -1,4 +1,4 @@
-import request from '@/utils/request'
+import request,{download} from '@/utils/request'
 /* 以下为api的模板，通用的crud，将以下变量替换即可：
 tenant : 实体模型
 */
@@ -42,6 +42,11 @@ export function updateData(id,data) {
     method: 'put',
     data: data
   })
+}
+
+// 导出
+export function getExportExcel(query) {
+  return download('/tenant/export-excel',query,'导出数据.xlsx')
 }
 
 // 初始化

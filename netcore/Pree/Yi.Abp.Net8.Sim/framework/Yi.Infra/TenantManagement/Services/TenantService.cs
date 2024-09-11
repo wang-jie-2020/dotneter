@@ -75,7 +75,7 @@ public class TenantService : ApplicationService, ITenantService
         await _repository.DeleteManyAsync(id);
     }
 
-    public virtual async Task<IActionResult> GetExportExcelAsync(TenantGetListInput input)
+    public async Task<IActionResult> GetExportExcelAsync(TenantGetListInput input)
     {
         if (input is IPagedResultRequest paged)
         {

@@ -30,13 +30,13 @@ public class TenantController : AbpController
     }
 
     [HttpPost]
-    public async Task<TenantDto> CreateAsync(TenantCreateInput input)
+    public async Task<TenantDto> CreateAsync([FromBody] TenantCreateInput input)
     {
         return await _tenantService.CreateAsync(input);
     }
 
     [HttpPut("{id}")]
-    public async Task<TenantDto> UpdateAsync(Guid id, TenantUpdateInput input)
+    public async Task<TenantDto> UpdateAsync(Guid id, [FromBody] TenantUpdateInput input)
     {
         return await _tenantService.UpdateAsync(id, input);
     }
@@ -48,7 +48,7 @@ public class TenantController : AbpController
     }
 
     [HttpGet("export-excel")]
-    public async Task<IActionResult> GetExportExcelAsync(TenantGetListInput input)
+    public async Task<IActionResult> GetExportExcelAsync([FromQuery] TenantGetListInput input)
     {
         return await _tenantService.GetExportExcelAsync(input);
     }

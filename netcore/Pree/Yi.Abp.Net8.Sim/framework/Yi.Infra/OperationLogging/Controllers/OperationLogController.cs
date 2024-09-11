@@ -12,7 +12,7 @@ namespace Yi.Infra.OperationLogging.Controllers;
 public class OperationLogController : AbpController
 {
     private readonly IOperationLogService _operationLogService;
-    
+
     public OperationLogController(IOperationLogService operationLogService)
     {
         _operationLogService = operationLogService;
@@ -29,15 +29,15 @@ public class OperationLogController : AbpController
     {
         return await _operationLogService.GetListAsync(input);
     }
-    
+
     [HttpDelete]
-    public async Task DeleteAsync(IEnumerable<Guid> id)
+    public async Task DeleteAsync([FromBody] IEnumerable<Guid> id)
     {
         await _operationLogService.DeleteAsync(id);
     }
 
     [HttpGet("export-excel")]
-    public async Task<IActionResult> GetExportExcelAsync(OperationLogGetListInput input)
+    public async Task<IActionResult> GetExportExcelAsync([FromQuery] OperationLogGetListInput input)
     {
         return await _operationLogService.GetExportExcelAsync(input);
     }

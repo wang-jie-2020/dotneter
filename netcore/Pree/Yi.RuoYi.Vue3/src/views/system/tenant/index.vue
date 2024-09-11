@@ -159,7 +159,8 @@ import {
     delData,
     addData,
     updateData,
-    InitData
+    InitData,
+    getExportExcel
 } from "@/api/system/tenant";
 import { ref } from "@vue/reactivity";
 
@@ -294,7 +295,9 @@ function handleDelete(row) {
         .catch(() => { });
 }
 /** 导出按钮操作 */
-function handleExport() { }
+function handleExport() {
+    getExportExcel(proxy.addDateRange(queryParams.value, dateRange.value));
+ }
 
 getList();
 </script>

@@ -29,23 +29,23 @@ public class OperationLogService : ApplicationService, IOperationLogService
     public async Task<PagedResultDto<OperationLogDto>> GetListAsync(OperationLogGetListInput input)
     {
         RefAsync<int> total = 0;
-        
+
         var entities = await _repository._DbQueryable.WhereIF(!string.IsNullOrEmpty(input.OperUser),
                 x => x.OperUser.Contains(input.OperUser!))
             .WhereIF(input.OperType is not null, x => x.OperType == input.OperType)
             .WhereIF(input.StartTime is not null && input.EndTime is not null,
                 x => x.CreationTime >= input.StartTime && x.CreationTime <= input.EndTime)
             .ToPageListAsync(input.SkipCount, input.MaxResultCount, total);
-        
+
         return new PagedResultDto<OperationLogDto>(total, entities.Adapt<List<OperationLogDto>>());
     }
 
-    public async Task DeleteAsync(IEnumerable<Guid> id)
+    public async Task DeleteAsync([FromBody] IEnumerable<Guid> id)
     {
         await _repository.DeleteManyAsync(id);
     }
 
-    public virtual async Task<IActionResult> GetExportExcelAsync(OperationLogGetListInput input)
+    public async Task<IActionResult> GetExportExcelAsync(OperationLogGetListInput input)
     {
         if (input is IPagedResultRequest paged)
         {

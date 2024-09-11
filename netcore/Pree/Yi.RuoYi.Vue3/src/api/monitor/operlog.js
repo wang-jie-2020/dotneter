@@ -12,16 +12,8 @@ export function list(query) {
 // 删除操作日志
 export function delOperlog(operId) {
   return request({
-    url: '/operationLog/delList',
+    url: '/operation-log',
     method: 'delete',
     data:"string"==typeof(operId)?[operId]:operId
-  })
-}
-
-// 清空操作日志
-export function cleanOperlog() {
-  return request({
-    url: '/operationLog/clear',
-    method: 'delete'
   })
 }
