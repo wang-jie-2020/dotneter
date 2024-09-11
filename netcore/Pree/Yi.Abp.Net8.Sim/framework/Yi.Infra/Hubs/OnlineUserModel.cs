@@ -1,4 +1,4 @@
-﻿namespace Yi.Infra.Rbac.Model;
+﻿namespace Yi.Infra.Hubs;
 
 public class OnlineUserModel
 {
@@ -6,15 +6,15 @@ public class OnlineUserModel
     {
     }
 
-    public OnlineUserModel(string connnectionId)
+    public OnlineUserModel(string connectionId)
     {
-        ConnnectionId = connnectionId;
+        ConnectionId = connectionId;
     }
 
     /// <summary>
     ///     客户端连接Id
     /// </summary>
-    public string? ConnnectionId { get; }
+    public string? ConnectionId { get; }
 
     /// <summary>
     ///     用户id
@@ -22,10 +22,14 @@ public class OnlineUserModel
     public Guid? UserId { get; set; }
 
     public string? UserName { get; set; }
+    
     public DateTime LoginTime { get; set; }
+    
     public string? Ipaddr { get; set; }
+    
     public string? LoginLocation { get; set; }
-
+    
     public string? Os { get; set; }
+    
     public string? Browser { get; set; }
 }

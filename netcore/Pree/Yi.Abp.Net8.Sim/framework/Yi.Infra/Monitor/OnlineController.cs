@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Logging;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.AspNetCore.Mvc;
+using Yi.Infra.Hubs;
 using Yi.Infra.Rbac.Model;
 
 namespace Yi.Infra.Monitor;
@@ -47,7 +48,7 @@ public class OnlineController : AbpController
     [HttpDelete("{connectionId}")]
     public async Task<bool> ForceOut([FromRoute] string connectionId)
     {
-        if (MainHub.clientUsers.Exists(u => u.ConnnectionId == connectionId))
+        if (MainHub.clientUsers.Exists(u => u.ConnectionId == connectionId))
         {
             //前端接受到这个事件后，触发前端自动退出
             await _hub.Clients.Client(connectionId).SendAsync("forceOut", "你已被强制退出！");

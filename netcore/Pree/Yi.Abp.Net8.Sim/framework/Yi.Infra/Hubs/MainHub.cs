@@ -3,9 +3,8 @@ using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Logging;
 using Volo.Abp.AspNetCore.SignalR;
 using Yi.Infra.Rbac.Entities;
-using Yi.Infra.Rbac.Model;
 
-namespace Yi.Infra;
+namespace Yi.Infra.Hubs;
 
 [HubRoute("/hub/main")]
 //开放不需要授权
@@ -23,7 +22,7 @@ public class MainHub : AbpHub
     }
 
     private ILogger<MainHub> _logger => LoggerFactory.CreateLogger<MainHub>();
-    
+
     /// <summary>
     ///     成功连接
     /// </summary>
@@ -55,9 +54,9 @@ public class MainHub : AbpHub
             }
 
             //全部移除之后，再进行添加
-            clientUsers.RemoveAll(u => u.ConnnectionId == Context.ConnectionId);
-
+            clientUsers.RemoveAll(u => u.ConnectionId == Context.ConnectionId);
             clientUsers.Add(user);
+            
             //当有人加入，向全部客户端发送当前总数
             Clients.All.SendAsync("onlineNum", clientUsers.Count);
         }
@@ -82,7 +81,7 @@ public class MainHub : AbpHub
                 _logger.LogInformation($"用户{CurrentUser?.UserName}离开了，当前已连接{clientUsers.Count}个");
             }
 
-            clientUsers.RemoveAll(u => u.ConnnectionId == Context.ConnectionId);
+            clientUsers.RemoveAll(u => u.ConnectionId == Context.ConnectionId);
             Clients.All.SendAsync("onlineNum", clientUsers.Count);
         }
 
