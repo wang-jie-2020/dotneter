@@ -27,7 +27,7 @@ public class TenantAggregateRoot : FullAuditedAggregateRoot<Guid>, IHasEntityVer
 
     public virtual string Name { get; protected set; }
 
-    public string TenantConnectionString { get; protected set; }
+    public string? TenantConnectionString { get; protected set; }
 
     public DbType DbType { get; protected set; }
 
