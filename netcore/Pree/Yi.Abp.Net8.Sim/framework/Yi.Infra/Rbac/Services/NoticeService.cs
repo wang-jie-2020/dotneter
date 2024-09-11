@@ -6,7 +6,6 @@ using Yi.Framework.SqlSugarCore;
 using Yi.Infra.Rbac.Dtos.Notice;
 using Yi.Infra.Rbac.Entities;
 using Yi.Infra.Rbac.IServices;
-using Yi.Infra.Rbac.SignalRHubs;
 
 namespace Yi.Infra.Rbac.Services;
 
@@ -17,10 +16,10 @@ public class NoticeService : YiCrudAppService<NoticeAggregateRoot, NoticeGetOutp
         NoticeGetListInput, NoticeCreateInput, NoticeUpdateInput>,
     INoticeService
 {
-    private readonly IHubContext<OnlineHub> _hubContext;
+    private readonly IHubContext<MainHub> _hubContext;
     private readonly ISqlSugarRepository<NoticeAggregateRoot, Guid> _repository;
 
-    public NoticeService(ISqlSugarRepository<NoticeAggregateRoot, Guid> repository, IHubContext<OnlineHub> hubContext) :
+    public NoticeService(ISqlSugarRepository<NoticeAggregateRoot, Guid> repository, IHubContext<MainHub> hubContext) :
         base(repository)
     {
         _hubContext = hubContext;

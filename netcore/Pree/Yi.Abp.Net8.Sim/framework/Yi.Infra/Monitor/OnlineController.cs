@@ -6,7 +6,6 @@ using Volo.Abp.Application.Services;
 using Volo.Abp.AspNetCore.Mvc;
 using Yi.Infra.Rbac.IServices;
 using Yi.Infra.Rbac.Model;
-using Yi.Infra.Rbac.SignalRHubs;
 
 namespace Yi.Infra.Monitor;
 
@@ -15,9 +14,9 @@ namespace Yi.Infra.Monitor;
 public class OnlineController : AbpController
 {
     private readonly ILogger<OnlineController> _logger;
-    private readonly IHubContext<OnlineHub> _hub;
+    private readonly IHubContext<MainHub> _hub;
 
-    public OnlineController(ILogger<OnlineController> logger, IHubContext<OnlineHub> hub)
+    public OnlineController(ILogger<OnlineController> logger, IHubContext<MainHub> hub)
     {
         _logger = logger;
         _hub = hub;
@@ -26,7 +25,7 @@ public class OnlineController : AbpController
     [HttpGet]
     public Task<PagedResultDto<OnlineUserModel>> GetListAsync([FromQuery] OnlineUserModel online)
     {
-        var data = OnlineHub.clientUsers;
+        var data = MainHub.clientUsers;
         var dataWhere = data.AsEnumerable();
 
         if (!string.IsNullOrEmpty(online.Ipaddr))
@@ -41,8 +40,7 @@ public class OnlineController : AbpController
 
         return Task.FromResult(new PagedResultDto<OnlineUserModel> { TotalCount = data.Count, Items = dataWhere.ToList() });
     }
-
-
+    
     /// <summary>
     ///     强制退出用户
     /// </summary>
@@ -51,7 +49,7 @@ public class OnlineController : AbpController
     [HttpDelete("{connectionId}")]
     public async Task<bool> ForceOut([FromRoute] string connectionId)
     {
-        if (OnlineHub.clientUsers.Exists(u => u.ConnnectionId == connectionId))
+        if (MainHub.clientUsers.Exists(u => u.ConnnectionId == connectionId))
         {
             //前端接受到这个事件后，触发前端自动退出
             await _hub.Clients.Client(connectionId).SendAsync("forceOut", "你已被强制退出！");

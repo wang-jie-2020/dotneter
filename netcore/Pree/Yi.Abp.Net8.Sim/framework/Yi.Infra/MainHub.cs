@@ -5,26 +5,25 @@ using Volo.Abp.AspNetCore.SignalR;
 using Yi.Infra.Rbac.Entities;
 using Yi.Infra.Rbac.Model;
 
-namespace Yi.Infra.Rbac.SignalRHubs;
+namespace Yi.Infra;
 
 [HubRoute("/hub/main")]
 //开放不需要授权
 //[Authorize]
-public class OnlineHub : AbpHub
+public class MainHub : AbpHub
 {
     public static readonly List<OnlineUserModel> clientUsers = new();
     private static readonly object objLock = new();
 
     private readonly HttpContext? _httpContext;
 
-    public OnlineHub(IHttpContextAccessor httpContextAccessor)
+    public MainHub(IHttpContextAccessor httpContextAccessor)
     {
         _httpContext = httpContextAccessor?.HttpContext;
     }
 
-    private ILogger<OnlineHub> _logger => LoggerFactory.CreateLogger<OnlineHub>();
-
-
+    private ILogger<MainHub> _logger => LoggerFactory.CreateLogger<MainHub>();
+    
     /// <summary>
     ///     成功连接
     /// </summary>
@@ -52,8 +51,7 @@ public class OnlineHub : AbpHub
             {
                 //先移除之前的用户id，一个用户只能一个
                 clientUsers.RemoveAll(u => u.UserId == CurrentUser.Id);
-                _logger.LogInformation(
-                    $"{DateTime.Now}：{name},{Context.ConnectionId}连接服务端success，当前已连接{clientUsers.Count}个");
+                _logger.LogInformation($"{DateTime.Now}：{name},{Context.ConnectionId}连接服务端success，当前已连接{clientUsers.Count}个");
             }
 
             //全部移除之后，再进行添加
