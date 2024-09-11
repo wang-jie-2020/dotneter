@@ -1,14 +1,14 @@
 ﻿using SqlSugar;
 using Volo.Abp.Auditing;
 using Volo.Abp.Domain.Entities;
-using Yi.Infra.Rbac.Consts;
 
-namespace Yi.Infra.Rbac.Entities;
+namespace Yi.Infra.Notice.Entities;
 
 [SugarTable("Notice")]
 public class NoticeAggregateRoot : AggregateRoot<Guid>, ISoftDelete, IAuditedObject
 {
-    [SugarColumn(IsPrimaryKey = true)] public override Guid Id { get; protected set; }
+    [SugarColumn(IsPrimaryKey = true)] 
+    public override Guid Id { get; protected set; }
 
     /// <summary>
     ///     公告标题
@@ -37,5 +37,6 @@ public class NoticeAggregateRoot : AggregateRoot<Guid>, ISoftDelete, IAuditedObj
     public int OrderNum { get; set; }
 
     public bool IsDeleted { get; set; }
+    
     public bool State { get; set; }
 }

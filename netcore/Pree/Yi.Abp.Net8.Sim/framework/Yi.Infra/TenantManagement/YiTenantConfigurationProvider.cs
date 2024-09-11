@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Localization;
-using Volo.Abp.DependencyInjection;
 using Volo.Abp.MultiTenancy;
 using Volo.Abp.MultiTenancy.Localization;
 

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Yi.Infra.Rbac.Consts;
+namespace Yi.Infra.Notice.Entities;
 
 public enum NoticeTypeEnum
 {

@@ -1,6 +1,6 @@
-using Yi.Infra.Rbac.Consts;
+using Yi.Infra.Notice.Entities;
 
-namespace Yi.Infra.Rbac.Dtos.Notice;
+namespace Yi.Infra.Notice.dtos;
 
 /// <summary>
 ///     Notice输入创建对象
@@ -8,8 +8,12 @@ namespace Yi.Infra.Rbac.Dtos.Notice;
 public class NoticeCreateInput
 {
     public string Title { get; set; }
+    
     public NoticeTypeEnum Type { get; set; }
+    
     public string Content { get; set; }
+    
     public int OrderNum { get; set; }
+    
     public bool State { get; set; }
 }

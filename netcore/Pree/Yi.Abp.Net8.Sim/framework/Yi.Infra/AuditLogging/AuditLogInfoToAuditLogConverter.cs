@@ -2,7 +2,6 @@
 using Volo.Abp.AspNetCore.ExceptionHandling;
 using Volo.Abp.Auditing;
 using Volo.Abp.Data;
-using Volo.Abp.DependencyInjection;
 using Volo.Abp.Guids;
 using Volo.Abp.Http;
 using Volo.Abp.Json;

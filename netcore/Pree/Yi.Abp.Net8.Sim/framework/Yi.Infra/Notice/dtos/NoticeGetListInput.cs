@@ -1,6 +1,6 @@
-using Yi.Infra.Rbac.Consts;
+using Yi.Infra.Notice.Entities;
 
-namespace Yi.Infra.Rbac.Dtos.Notice;
+namespace Yi.Infra.Notice.dtos;
 
 /// <summary>
 ///     查询参数
@@ -8,5 +8,6 @@ namespace Yi.Infra.Rbac.Dtos.Notice;
 public class NoticeGetListInput : PagedInfraInput
 {
     public string? Title { get; set; }
+    
     public NoticeTypeEnum? Type { get; set; }
 }

@@ -3,7 +3,6 @@ using Volo.Abp.Application.Dtos;
 using Volo.Abp.AspNetCore.Mvc;
 using Yi.Infra.OperationLogging.Dtos;
 using Yi.Infra.OperationLogging.Services;
-using Yi.Infra.TenantManagement.Dtos;
 
 namespace Yi.Infra.OperationLogging.Controllers;
 

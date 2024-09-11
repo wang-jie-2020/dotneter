@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Options;
 using Volo.Abp.Caching;
-using Volo.Abp.DependencyInjection;
 using Volo.Abp.MultiTenancy;
 
 namespace Yi.Framework.Caching.FreeRedis;

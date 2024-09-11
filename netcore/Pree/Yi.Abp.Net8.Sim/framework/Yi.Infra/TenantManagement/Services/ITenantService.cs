@@ -16,9 +16,9 @@ public interface ITenantService
 
     Task DeleteAsync(IEnumerable<Guid> id);
 
+    Task<IActionResult> GetExportExcelAsync(TenantGetListInput input);
+    
     Task<List<TenantSelectDto>> GetSelectAsync();
 
     Task InitAsync(Guid id);
-
-    Task<IActionResult> GetExportExcelAsync(TenantGetListInput input);
 }
