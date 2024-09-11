@@ -1,10 +1,7 @@
-using Yi.Infra.Rbac.Dtos.Dictionary;
+using Yi.Infra.Settings.Dtos;
 
-namespace Yi.Infra.Rbac.IServices;
+namespace Yi.Infra.Settings.Services;
 
-/// <summary>
-///     Dictionary服务抽象
-/// </summary>
 public interface IDictionaryService : IYiCrudAppService<DictionaryGetOutputDto, DictionaryGetListOutputDto, Guid,
     DictionaryGetListInputVo, DictionaryCreateInputVo, DictionaryUpdateInputVo>
 {

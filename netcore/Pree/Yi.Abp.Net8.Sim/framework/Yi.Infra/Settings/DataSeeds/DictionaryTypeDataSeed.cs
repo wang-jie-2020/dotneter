@@ -1,9 +1,9 @@
 ﻿using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
 using Yi.Framework.SqlSugarCore;
-using Yi.Infra.Rbac.Entities;
+using Yi.Infra.Settings.Entities;
 
-namespace Yi.Infra.Rbac.DataSeeds;
+namespace Yi.Infra.Settings.DataSeeds;
 
 public class DictionaryTypeDataSeed : IDataSeedContributor, ITransientDependency
 {
@@ -98,6 +98,7 @@ public class DictionaryTypeDataSeed : IDataSeedContributor, ITransientDependency
             State = true
         };
         entities.Add(dict7);
+        
         var dict8 = new DictionaryTypeAggregateRoot
         {
             DictName = "通知状态",
@@ -119,8 +120,7 @@ public class DictionaryTypeDataSeed : IDataSeedContributor, ITransientDependency
             State = true
         };
         entities.Add(dict9);
-
-
+        
         var dict10 = new DictionaryTypeAggregateRoot
         {
             DictName = "系统状态",
@@ -131,6 +131,7 @@ public class DictionaryTypeDataSeed : IDataSeedContributor, ITransientDependency
             State = true
         };
         entities.Add(dict10);
+        
         return entities;
     }
 }

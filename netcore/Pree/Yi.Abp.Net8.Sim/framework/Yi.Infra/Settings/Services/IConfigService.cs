@@ -1,10 +1,7 @@
-using Yi.Infra.Rbac.Dtos.Config;
+using Yi.Infra.Settings.Dtos;
 
-namespace Yi.Infra.Rbac.IServices;
+namespace Yi.Infra.Settings.Services;
 
-/// <summary>
-///     Config服务抽象
-/// </summary>
 public interface IConfigService : IYiCrudAppService<ConfigGetOutputDto, ConfigGetListOutputDto, Guid,
     ConfigGetListInputVo, ConfigCreateInputVo, ConfigUpdateInputVo>
 {

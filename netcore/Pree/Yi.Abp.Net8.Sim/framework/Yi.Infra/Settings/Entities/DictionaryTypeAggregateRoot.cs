@@ -3,7 +3,7 @@ using Volo.Abp.Auditing;
 using Volo.Abp.Data;
 using Volo.Abp.Domain.Entities;
 
-namespace Yi.Infra.Rbac.Entities;
+namespace Yi.Infra.Settings.Entities;
 
 [SugarTable("DictionaryType")]
 public class DictionaryTypeAggregateRoot : AggregateRoot<Guid>, IAuditedObject, ISoftDelete
@@ -13,8 +13,7 @@ public class DictionaryTypeAggregateRoot : AggregateRoot<Guid>, IAuditedObject, 
     /// </summary>
     [SugarColumn(IsPrimaryKey = true)]
     public override Guid Id { get; protected set; }
-
-
+    
     /// <summary>
     ///     状态
     /// </summary>

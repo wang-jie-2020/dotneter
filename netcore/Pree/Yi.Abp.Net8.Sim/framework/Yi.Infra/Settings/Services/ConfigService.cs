@@ -1,11 +1,10 @@
 using SqlSugar;
 using Volo.Abp.Application.Dtos;
 using Yi.Framework.SqlSugarCore;
-using Yi.Infra.Rbac.Dtos.Config;
-using Yi.Infra.Rbac.Entities;
-using Yi.Infra.Rbac.IServices;
+using Yi.Infra.Settings.Dtos;
+using Yi.Infra.Settings.Entities;
 
-namespace Yi.Infra.Rbac.Services;
+namespace Yi.Infra.Settings.Services;
 
 /// <summary>
 ///     Config服务实现

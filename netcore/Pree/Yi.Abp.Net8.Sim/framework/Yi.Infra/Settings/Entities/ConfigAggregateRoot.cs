@@ -2,7 +2,7 @@
 using Volo.Abp.Auditing;
 using Volo.Abp.Domain.Entities;
 
-namespace Yi.Infra.Rbac.Entities;
+namespace Yi.Infra.Settings.Entities;
 
 /// <summary>
 ///     配置表

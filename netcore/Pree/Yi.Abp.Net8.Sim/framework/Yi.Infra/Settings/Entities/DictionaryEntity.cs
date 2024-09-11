@@ -2,7 +2,7 @@
 using Volo.Abp.Auditing;
 using Volo.Abp.Domain.Entities;
 
-namespace Yi.Infra.Rbac.Entities;
+namespace Yi.Infra.Settings.Entities;
 
 [SugarTable("Dictionary")]
 public class DictionaryEntity : Entity<Guid>, IAuditedObject, ISoftDelete
@@ -67,8 +67,7 @@ public class DictionaryEntity : Entity<Guid>, IAuditedObject, ISoftDelete
     ///     排序
     /// </summary>
     public int OrderNum { get; set; } = 0;
-
-
+    
     /// <summary>
     ///     逻辑删除
     /// </summary>

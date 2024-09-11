@@ -1,14 +1,23 @@
-using Volo.Abp.Application.Dtos;
+namespace Yi.Infra.Settings.Dtos;
 
-namespace Yi.Infra.Rbac.Dtos.Config;
-
-public class ConfigGetOutputDto : EntityDto<Guid>
+/// <summary>
+///     Config输入创建对象
+/// </summary>
+public class ConfigCreateInputVo
 {
+    public Guid Id { get; set; }
+    
     public string ConfigName { get; set; } = string.Empty;
+    
     public string ConfigKey { get; set; } = string.Empty;
+    
     public string ConfigValue { get; set; } = string.Empty;
+    
     public string? ConfigType { get; set; }
+    
     public int OrderNum { get; set; }
+    
     public string? Remark { get; set; }
+    
     public DateTime CreationTime { get; set; }
 }

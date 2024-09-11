@@ -1,9 +1,9 @@
 ﻿using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
 using Yi.Framework.SqlSugarCore;
-using Yi.Infra.Rbac.Entities;
+using Yi.Infra.Settings.Entities;
 
-namespace Yi.Infra.Rbac.DataSeeds;
+namespace Yi.Infra.Settings.DataSeeds;
 
 public class DictionaryDataSeed : IDataSeedContributor, ITransientDependency
 {
@@ -82,8 +82,7 @@ public class DictionaryDataSeed : IDataSeedContributor, ITransientDependency
             State = true
         };
         entities.Add(dictInfo5);
-
-
+        
         var dictInfo6 = new DictionaryEntity
         {
             DictLabel = "正常",
@@ -95,6 +94,7 @@ public class DictionaryDataSeed : IDataSeedContributor, ITransientDependency
             State = true
         };
         entities.Add(dictInfo6);
+        
         var dictInfo7 = new DictionaryEntity
         {
             DictLabel = "停用",
@@ -108,7 +108,6 @@ public class DictionaryDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(dictInfo7);
 
-
         var dictInfo8 = new DictionaryEntity
         {
             DictLabel = "正常",
@@ -120,6 +119,7 @@ public class DictionaryDataSeed : IDataSeedContributor, ITransientDependency
             State = true
         };
         entities.Add(dictInfo8);
+        
         var dictInfo9 = new DictionaryEntity
         {
             DictLabel = "暂停",
@@ -132,8 +132,7 @@ public class DictionaryDataSeed : IDataSeedContributor, ITransientDependency
             ListClass = "danger"
         };
         entities.Add(dictInfo9);
-
-
+        
         var dictInfo10 = new DictionaryEntity
         {
             DictLabel = "默认",
@@ -145,6 +144,7 @@ public class DictionaryDataSeed : IDataSeedContributor, ITransientDependency
             State = true
         };
         entities.Add(dictInfo10);
+        
         var dictInfo11 = new DictionaryEntity
         {
             DictLabel = "系统",
@@ -156,8 +156,7 @@ public class DictionaryDataSeed : IDataSeedContributor, ITransientDependency
             State = true
         };
         entities.Add(dictInfo11);
-
-
+        
         var dictInfo12 = new DictionaryEntity
         {
             DictLabel = "是",
@@ -169,6 +168,7 @@ public class DictionaryDataSeed : IDataSeedContributor, ITransientDependency
             State = true
         };
         entities.Add(dictInfo12);
+        
         var dictInfo13 = new DictionaryEntity
         {
             DictLabel = "否",
@@ -181,8 +181,7 @@ public class DictionaryDataSeed : IDataSeedContributor, ITransientDependency
             ListClass = "danger"
         };
         entities.Add(dictInfo13);
-
-
+        
         var dictInfo14 = new DictionaryEntity
         {
             DictLabel = "通知",
@@ -194,6 +193,7 @@ public class DictionaryDataSeed : IDataSeedContributor, ITransientDependency
             State = true
         };
         entities.Add(dictInfo14);
+        
         var dictInfo15 = new DictionaryEntity
         {
             DictLabel = "公告",
@@ -217,6 +217,7 @@ public class DictionaryDataSeed : IDataSeedContributor, ITransientDependency
             State = true
         };
         entities.Add(dictInfo16);
+        
         var dictInfo17 = new DictionaryEntity
         {
             DictLabel = "关闭",
@@ -241,6 +242,7 @@ public class DictionaryDataSeed : IDataSeedContributor, ITransientDependency
             State = true
         };
         entities.Add(dictInfo18);
+        
         var dictInfo19 = new DictionaryEntity
         {
             DictLabel = "修改",
@@ -252,6 +254,7 @@ public class DictionaryDataSeed : IDataSeedContributor, ITransientDependency
             State = true
         };
         entities.Add(dictInfo19);
+        
         var dictInfo22 = new DictionaryEntity
         {
             DictLabel = "删除",
@@ -264,6 +267,7 @@ public class DictionaryDataSeed : IDataSeedContributor, ITransientDependency
             ListClass = "danger"
         };
         entities.Add(dictInfo22);
+        
         var dictInfo23 = new DictionaryEntity
         {
             DictLabel = "授权",
@@ -275,6 +279,7 @@ public class DictionaryDataSeed : IDataSeedContributor, ITransientDependency
             State = true
         };
         entities.Add(dictInfo23);
+        
         var dictInfo24 = new DictionaryEntity
         {
             DictLabel = "导出",
@@ -286,6 +291,7 @@ public class DictionaryDataSeed : IDataSeedContributor, ITransientDependency
             State = true
         };
         entities.Add(dictInfo24);
+        
         var dictInfo25 = new DictionaryEntity
         {
             DictLabel = "导入",
@@ -297,6 +303,7 @@ public class DictionaryDataSeed : IDataSeedContributor, ITransientDependency
             State = true
         };
         entities.Add(dictInfo25);
+        
         var dictInfo26 = new DictionaryEntity
         {
             DictLabel = "强退",
@@ -308,6 +315,7 @@ public class DictionaryDataSeed : IDataSeedContributor, ITransientDependency
             State = true
         };
         entities.Add(dictInfo26);
+        
         var dictInfo27 = new DictionaryEntity
         {
             DictLabel = "生成代码",
@@ -319,6 +327,7 @@ public class DictionaryDataSeed : IDataSeedContributor, ITransientDependency
             State = true
         };
         entities.Add(dictInfo27);
+        
         var dictInfo28 = new DictionaryEntity
         {
             DictLabel = "清空数据",
@@ -332,7 +341,6 @@ public class DictionaryDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(dictInfo28);
 
-
         var dictInfo20 = new DictionaryEntity
         {
             DictLabel = "成功",
@@ -344,6 +352,7 @@ public class DictionaryDataSeed : IDataSeedContributor, ITransientDependency
             State = true
         };
         entities.Add(dictInfo20);
+        
         var dictInfo21 = new DictionaryEntity
         {
             DictLabel = "失败",

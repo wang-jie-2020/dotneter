@@ -1,4 +1,4 @@
-namespace Yi.Infra.Rbac.Dtos.Config;
+namespace Yi.Infra.Settings.Dtos;
 
 /// <summary>
 ///     配置查询参数
