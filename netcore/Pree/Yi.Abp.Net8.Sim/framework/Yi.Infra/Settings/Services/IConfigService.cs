@@ -12,7 +12,7 @@ public interface IConfigService
 
     Task<ConfigGetOutputDto> CreateAsync(ConfigCreateInputVo input);
 
-    Task<ConfigGetOutputDto> UpdateAsync(Guid id, ConfigUpdateInputVo input);
+    Task<ConfigGetOutputDto> UpdateAsync(Guid id, ConfigUpdateInput input);
 
     Task DeleteAsync(IEnumerable<Guid> id);
 

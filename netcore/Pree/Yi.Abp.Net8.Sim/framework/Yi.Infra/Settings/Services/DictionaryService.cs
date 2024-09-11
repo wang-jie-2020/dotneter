@@ -11,7 +11,7 @@ namespace Yi.Infra.Settings.Services;
 ///     Dictionary服务实现
 /// </summary>
 public class DictionaryService : YiCrudAppService<DictionaryEntity, DictionaryGetOutputDto, DictionaryGetListOutputDto,
-        Guid, DictionaryGetListInputVo, DictionaryCreateInputVo, DictionaryUpdateInputVo>,
+        Guid, DictionaryGetListInput, DictionaryCreateInput, DictionaryUpdateInput>,
     IDictionaryService
 {
     private readonly ISqlSugarRepository<DictionaryEntity, Guid> _repository;
@@ -24,7 +24,7 @@ public class DictionaryService : YiCrudAppService<DictionaryEntity, DictionaryGe
     /// <summary>
     ///     查询
     /// </summary>
-    public override async Task<PagedResultDto<DictionaryGetListOutputDto>> GetListAsync(DictionaryGetListInputVo input)
+    public override async Task<PagedResultDto<DictionaryGetListOutputDto>> GetListAsync(DictionaryGetListInput input)
     {
         RefAsync<int> total = 0;
         var entities = await _repository._DbQueryable

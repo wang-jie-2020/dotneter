@@ -38,7 +38,7 @@ public class ConfigController : AbpController
     }
 
     [HttpPut("{id}")]
-    public async Task<ConfigGetOutputDto> UpdateAsync(Guid id, [FromBody] ConfigUpdateInputVo input)
+    public async Task<ConfigGetOutputDto> UpdateAsync(Guid id, [FromBody] ConfigUpdateInput input)
     {
         return await _configService.UpdateAsync(id, input);
     }

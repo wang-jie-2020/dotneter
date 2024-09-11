@@ -1,6 +1,6 @@
 namespace Yi.Infra.Settings.Dtos;
 
-public class DictionaryTypeGetListInputVo : PagedInfraInput
+public class DictionaryTypeGetListInput : PagedInfraInput
 {
     public string? DictName { get; set; }
     

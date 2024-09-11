@@ -1,6 +1,9 @@
 namespace Yi.Infra.Settings.Dtos;
 
-public class DictionaryUpdateInputVo
+/// <summary>
+///     Dictionary输入创建对象
+/// </summary>
+public class DictionaryCreateInput
 {
     public string? Remark { get; set; }
     

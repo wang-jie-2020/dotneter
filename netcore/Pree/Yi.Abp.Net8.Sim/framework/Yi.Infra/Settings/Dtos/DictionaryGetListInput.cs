@@ -2,7 +2,7 @@ using Volo.Abp.Application.Dtos;
 
 namespace Yi.Infra.Settings.Dtos;
 
-public class DictionaryGetListInputVo : PagedAndSortedResultRequestDto
+public class DictionaryGetListInput : PagedAndSortedResultRequestDto
 {
     public string? DictType { get; set; }
     

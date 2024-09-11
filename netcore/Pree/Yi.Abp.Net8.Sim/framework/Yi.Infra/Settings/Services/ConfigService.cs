@@ -48,7 +48,7 @@ public class ConfigService : ApplicationService, IConfigService
         return entity.Adapt<ConfigGetOutputDto>();
     }
 
-    public async Task<ConfigGetOutputDto> UpdateAsync(Guid id, ConfigUpdateInputVo input)
+    public async Task<ConfigGetOutputDto> UpdateAsync(Guid id, ConfigUpdateInput input)
     {
         var entity = await _repository.GetAsync(id);
         input.Adapt(entity);

@@ -9,9 +9,9 @@ namespace Yi.Infra.Settings.Services;
 /// <summary>
 ///     DictionaryType服务实现
 /// </summary>
-public class DictionaryTypeService : YiCrudAppService<DictionaryTypeAggregateRoot, DictionaryTypeGetOutputDto,
-        DictionaryTypeGetListOutputDto, Guid, DictionaryTypeGetListInputVo, DictionaryTypeCreateInputVo,
-        DictionaryTypeUpdateInputVo>,
+public class DictionaryTypeService : YiCrudAppService<DictionaryTypeAggregateRoot, DictionaryTypeDto,
+        DictionaryTypeDto, Guid, DictionaryTypeGetListInput, DictionaryTypeCreateInput,
+        DictionaryTypeUpdateInput>,
     IDictionaryTypeService
 {
     private readonly ISqlSugarRepository<DictionaryTypeAggregateRoot, Guid> _repository;
@@ -21,8 +21,8 @@ public class DictionaryTypeService : YiCrudAppService<DictionaryTypeAggregateRoo
         _repository = repository;
     }
 
-    public override async Task<PagedResultDto<DictionaryTypeGetListOutputDto>> GetListAsync(
-        DictionaryTypeGetListInputVo input)
+    public override async Task<PagedResultDto<DictionaryTypeDto>> GetListAsync(
+        DictionaryTypeGetListInput input)
     {
         RefAsync<int> total = 0;
         var entities = await _repository._DbQueryable
@@ -33,7 +33,7 @@ public class DictionaryTypeService : YiCrudAppService<DictionaryTypeAggregateRoo
                 x => x.CreationTime >= input.StartTime && x.CreationTime <= input.EndTime)
             .ToPageListAsync(input.SkipCount, input.MaxResultCount, total);
 
-        return new PagedResultDto<DictionaryTypeGetListOutputDto>
+        return new PagedResultDto<DictionaryTypeDto>
         {
             TotalCount = total,
             Items = await MapToGetListOutputDtosAsync(entities)

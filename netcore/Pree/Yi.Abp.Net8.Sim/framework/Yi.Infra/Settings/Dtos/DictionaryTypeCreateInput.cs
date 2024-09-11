@@ -3,7 +3,7 @@ namespace Yi.Infra.Settings.Dtos;
 /// <summary>
 ///     DictionaryType输入创建对象
 /// </summary>
-public class DictionaryTypeCreateInputVo
+public class DictionaryTypeCreateInput
 {
     public string DictName { get; set; } = string.Empty;
     

@@ -1,6 +1,6 @@
 namespace Yi.Infra.Settings.Dtos;
 
-public class ConfigUpdateInputVo
+public class ConfigUpdateInput
 {
     public Guid Id { get; set; }
     

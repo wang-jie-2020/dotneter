@@ -2,7 +2,7 @@ using Volo.Abp.Application.Dtos;
 
 namespace Yi.Infra.Settings.Dtos;
 
-public class DictionaryTypeGetOutputDto : EntityDto<Guid>
+public class DictionaryTypeDto : EntityDto<Guid>
 {
     public DateTime CreationTime { get; set; } = DateTime.Now;
     
