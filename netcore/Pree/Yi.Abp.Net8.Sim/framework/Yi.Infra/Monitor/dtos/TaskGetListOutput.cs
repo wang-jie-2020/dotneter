@@ -1,4 +1,4 @@
-﻿namespace Yi.Infra.Rbac.Dtos.Task;
+﻿namespace Yi.Infra.Monitor.dtos;
 
 public class TaskGetListOutput
 {
@@ -74,8 +74,7 @@ public class TaskGetListOutput
     ///     作业信息额外数据运行时实例
     /// </summary>
     internal string RuntimeProperties { get; set; }
-
-
+    
     /// <summary>
     ///     触发器参数
     /// </summary>

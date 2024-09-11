@@ -6,40 +6,33 @@ using Quartz;
 using Quartz.Impl.Matchers;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
+using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.Timing;
-using Yi.Infra.Rbac.Consts;
-using Yi.Infra.Rbac.Dtos.Task;
-using Yi.Infra.Rbac.IServices;
+using Yi.Infra.Monitor.dtos;
 
 namespace Yi.Infra.Monitor;
 
-public class TaskService : ApplicationService, ITaskService
+[ApiController]
+[Route("api/app/job")]
+public class JobController : AbpController
 {
     private readonly IClock _clock;
     private readonly ISchedulerFactory _schedulerFactory;
 
-    public TaskService(ISchedulerFactory schedulerFactory, IClock clock)
+    public JobController(ISchedulerFactory schedulerFactory, IClock clock)
     {
         _clock = clock;
         _schedulerFactory = schedulerFactory;
     }
 
-
-    /// <summary>
-    ///     单查job
-    /// </summary>
-    /// <param name="jobId"></param>
-    /// <returns></returns>
-    [HttpGet("task/{jobId}")]
+    [HttpGet("{jobId}")]
     public async Task<TaskGetOutput> GetAsync([FromRoute] string jobId)
     {
         var scheduler = await _schedulerFactory.GetScheduler();
 
         var jobDetail = await scheduler.GetJobDetail(new JobKey(jobId));
         var trigger = (await scheduler.GetTriggersOfJob(new JobKey(jobId))).First();
-        //状态
         var state = await scheduler.GetTriggerState(trigger.Key);
-
 
         var output = new TaskGetOutput
         {
@@ -71,16 +64,12 @@ public class TaskService : ApplicationService, ITaskService
         return output;
     }
 
-    /// <summary>
-    ///     多查job
-    /// </summary>
-    /// <returns></returns>
+    [HttpGet]
     public async Task<PagedResultDto<TaskGetListOutput>> GetListAsync([FromQuery] TaskGetListInput input)
     {
         var items = new List<TaskGetOutput>();
 
         var scheduler = await _schedulerFactory.GetScheduler();
-
         var groups = await scheduler.GetJobGroupNames();
 
         foreach (var groupName in groups)
@@ -92,33 +81,28 @@ public class TaskService : ApplicationService, ITaskService
             items.Add(await GetAsync(jobName));
         }
 
-
         var output = items.Skip((input.SkipCount - 1) * input.MaxResultCount).Take(input.MaxResultCount)
             .OrderByDescending(x => x.LastRunTime)
             .ToList();
+
         return new PagedResultDto<TaskGetListOutput>(items.Count(), output.Adapt<List<TaskGetListOutput>>());
     }
 
-    /// <summary>
-    ///     创建job
-    /// </summary>
-    /// <param name="input"></param>
-    /// <returns></returns>
-    public async Task CreateAsync(TaskCreateInput input)
+    [HttpPost]
+    public async Task CreateAsync([FromBody] TaskCreateInput input)
     {
         var scheduler = await _schedulerFactory.GetScheduler();
 
         //设置启动时执行一次，然后最大只执行一次
 
-
         //jobBuilder
-        var jobClassType = Assembly.Load(input.AssemblyName).GetTypes().Where(x => x.Name == input.JobType)
-            .FirstOrDefault();
+        var jobClassType = Assembly.Load(input.AssemblyName).GetTypes().FirstOrDefault(x => x.Name == input.JobType);
 
         if (jobClassType is null) throw new UserFriendlyException($"程序集：{input.AssemblyName}，{input.JobType} 不存在");
 
         var jobBuilder = JobBuilder.Create(jobClassType).WithIdentity(new JobKey(input.JobId, input.GroupName))
             .WithDescription(input.Description);
+
         if (!input.Concurrent) jobBuilder.DisallowConcurrentExecution();
 
         //triggerBuilder
@@ -146,54 +130,35 @@ public class TaskService : ApplicationService, ITaskService
         await scheduler.ScheduleJob(jobBuilder.Build(), triggerBuilder.Build());
     }
 
-    /// <summary>
-    ///     移除job
-    /// </summary>
-    /// <param name="id"></param>
-    /// <returns></returns>
-    public async Task DeleteAsync(IEnumerable<string> id)
+    [HttpPut("{jobId}")]
+    public async Task UpdateAsync([FromRoute] string jobId, [FromBody] TaskUpdateInput input)
+    {
+        await DeleteAsync(new List<string> { jobId });
+        await CreateAsync(input.Adapt<TaskCreateInput>());
+    }
+
+    [HttpDelete]
+    public async Task DeleteAsync([FromQuery] IEnumerable<string> id)
     {
         var scheduler = await _schedulerFactory.GetScheduler();
         await scheduler.DeleteJobs(id.Select(x => new JobKey(x)).ToList());
     }
 
-    /// <summary>
-    ///     暂停job
-    /// </summary>
-    /// <param name="jobId"></param>
-    /// <returns></returns>
-    [HttpPut]
-    public async Task PauseAsync(string jobId)
+    [HttpPut("pause/{jobId}")]
+    public async Task PauseAsync([FromRoute] string jobId)
     {
         var scheduler = await _schedulerFactory.GetScheduler();
         await scheduler.PauseJob(new JobKey(jobId));
     }
 
-    /// <summary>
-    ///     开始job
-    /// </summary>
-    /// <param name="jobId"></param>
-    /// <returns></returns>
-    [HttpPut]
-    public async Task StartAsync(string jobId)
+    [HttpPut("/start/{jobId}")]
+    public async Task StartAsync([FromRoute] string jobId)
     {
         var scheduler = await _schedulerFactory.GetScheduler();
         await scheduler.ResumeJob(new JobKey(jobId));
     }
 
-    /// <summary>
-    ///     更新job
-    /// </summary>
-    /// <param name="id"></param>
-    /// <param name="input"></param>
-    /// <returns></returns>
-    public async Task UpdateAsync(string id, TaskUpdateInput input)
-    {
-        await DeleteAsync(new List<string> { id });
-        await CreateAsync(input.Adapt<TaskCreateInput>());
-    }
-
-    [HttpPost("task/run-once/{id}")]
+    [HttpPost("run-once/{id}")]
     public async Task RunOnceAsync([FromRoute] string id)
     {
         var scheduler = await _schedulerFactory.GetScheduler();

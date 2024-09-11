@@ -1,6 +1,6 @@
 ﻿using Yi.Infra.Rbac.Consts;
 
-namespace Yi.Infra.Rbac.Dtos.Task;
+namespace Yi.Infra.Monitor.dtos;
 
 public class TaskGetOutput
 {

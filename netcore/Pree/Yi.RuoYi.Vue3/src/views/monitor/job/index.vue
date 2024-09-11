@@ -63,7 +63,7 @@
                v-hasPermi="['monitor:job:remove']"
             >删除</el-button>
          </el-col>
-         <el-col :span="1.5">
+         <!-- <el-col :span="1.5">
             <el-button
                type="warning"
                plain
@@ -71,8 +71,8 @@
                @click="handleExport"
                v-hasPermi="['monitor:job:export']"
             >导出</el-button>
-         </el-col>
-         <el-col :span="1.5">
+         </el-col> -->
+         <!-- <el-col :span="1.5">
             <el-button
                type="info"
                plain
@@ -80,7 +80,7 @@
                @click="handleJobLog"
                v-hasPermi="['monitor:job:query']"
             >日志</el-button>
-         </el-col>
+         </el-col> -->
          <right-toolbar v-model:showSearch="showSearch" @queryTable="getList"></right-toolbar>
       </el-row>
 
