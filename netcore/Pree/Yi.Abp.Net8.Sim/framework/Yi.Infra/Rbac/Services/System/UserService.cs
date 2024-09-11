@@ -6,7 +6,7 @@ using Volo.Abp.EventBus.Local;
 using Volo.Abp.Users;
 using Yi.Framework.SqlSugarCore;
 using Yi.Infra.OperationLogging;
-using Yi.Infra.Rbac.Authorization;
+using Yi.Infra.Permissions;
 using Yi.Infra.Rbac.Caches;
 using Yi.Infra.Rbac.Consts;
 using Yi.Infra.Rbac.Dtos.User;

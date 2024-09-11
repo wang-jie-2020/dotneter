@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Http;
 
-namespace Yi.Infra.Rbac.Authorization;
+namespace Yi.Infra.Permissions;
 
 internal class PermissionGlobalAttribute : ActionFilterAttribute, ITransientDependency
 {
@@ -32,8 +32,7 @@ internal class PermissionGlobalAttribute : ActionFilterAttribute, ITransientDepe
             //存在有一个不满，直接跳出
             if (!result) break;
         }
-
-
+        
         if (!result)
         {
             var model = new RemoteServiceErrorInfo
@@ -47,6 +46,7 @@ internal class PermissionGlobalAttribute : ActionFilterAttribute, ITransientDepe
             {
                 StatusCode = 403
             };
+            
             context.Result = content;
         }
     }

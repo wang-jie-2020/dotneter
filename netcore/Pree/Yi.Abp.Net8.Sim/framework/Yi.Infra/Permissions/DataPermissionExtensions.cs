@@ -1,6 +1,6 @@
 ﻿using Volo.Abp.Data;
 
-namespace Yi.Infra.Rbac.Authorization;
+namespace Yi.Infra.Permissions;
 
 public static class DataPermissionExtensions
 {

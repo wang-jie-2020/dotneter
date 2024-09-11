@@ -5,10 +5,9 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Security.Claims;
-using Yi.Infra.Rbac.Consts;
 using Yi.Infra.Rbac.Managers;
 
-namespace Yi.Infra.Rbac.Authorization;
+namespace Yi.Infra.Permissions;
 
 [DebuggerStepThrough]
 public class RefreshTokenMiddleware : IMiddleware, ITransientDependency
@@ -35,8 +34,7 @@ public class RefreshTokenMiddleware : IMiddleware, ITransientDependency
                 var refresh_Token = _accountManager.CreateRefreshToken(userId);
                 context.Response.Headers["access_token"] = access_Token;
                 context.Response.Headers["refresh_token"] = refresh_Token;
-
-
+                
                 //请求头替换，补充后续鉴权逻辑
                 context.Request.Headers["Authorization"] = "Bearer " + access_Token;
             }

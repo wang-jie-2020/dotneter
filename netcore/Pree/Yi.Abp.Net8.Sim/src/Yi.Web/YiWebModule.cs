@@ -22,7 +22,7 @@ using Yi.Framework.AspNetCore.Microsoft.AspNetCore.Builder;
 using Yi.Framework.AspNetCore.Microsoft.Extensions.DependencyInjection;
 using Yi.Framework.SqlSugarCore;
 using Yi.Infra;
-using Yi.Infra.Rbac.Authorization;
+using Yi.Infra.Permissions;
 using Yi.Infra.Rbac.Consts;
 using Yi.Infra.Rbac.Options;
 

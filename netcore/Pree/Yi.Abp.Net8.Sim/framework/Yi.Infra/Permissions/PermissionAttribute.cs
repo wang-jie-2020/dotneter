@@ -1,4 +1,4 @@
-﻿namespace Yi.Infra.Rbac.Authorization;
+﻿namespace Yi.Infra.Permissions;
 
 [AttributeUsage(AttributeTargets.Method)]
 public class PermissionAttribute : Attribute

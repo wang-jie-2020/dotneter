@@ -1,7 +1,7 @@
 ﻿using SqlSugar;
 using Volo.Abp.DependencyInjection;
 using Yi.Framework.SqlSugarCore;
-using Yi.Infra.Rbac.Authorization;
+using Yi.Infra.Permissions;
 using Yi.Infra.Rbac.Consts;
 using Yi.Infra.Rbac.Entities;
 using Yi.Infra.Rbac.Extensions;

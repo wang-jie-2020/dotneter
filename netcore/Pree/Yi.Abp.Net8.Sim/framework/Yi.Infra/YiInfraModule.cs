@@ -9,8 +9,8 @@ using Yi.Framework.SqlSugarCore;
 using Yi.Infra.AuditLogging;
 using Yi.Infra.AuditLogging.Repositories;
 using Yi.Infra.OperationLogging;
+using Yi.Infra.Permissions;
 using Yi.Infra.Rbac;
-using Yi.Infra.Rbac.Authorization;
 using Yi.Infra.Rbac.Options;
 using Yi.Infra.TenantManagement;
 
