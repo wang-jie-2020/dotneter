@@ -5,7 +5,7 @@ namespace Yi.Infra.Rbac.Dtos;
 /// <summary>
 ///     Menu输入创建对象
 /// </summary>
-public class MenuCreateInputVo
+public class MenuCreateInput
 {
     public Guid Id { get; set; }
     public DateTime CreationTime { get; set; } = DateTime.Now;

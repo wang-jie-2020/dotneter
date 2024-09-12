@@ -19,7 +19,7 @@ namespace Yi.Infra.Rbac.Services;
 ///     User服务实现
 /// </summary>
 public class UserService : YiCrudAppService<UserAggregateRoot, UserGetOutputDto, UserGetListOutputDto, Guid,
-        UserGetListInputVo, UserCreateInputVo, UserUpdateInputVo>, IUserService
+        UserGetListInput, UserCreateInput, UserUpdateInput>, IUserService
     //IUserService
 {
     private ILocalEventBus _localEventBus;
@@ -46,7 +46,7 @@ public class UserService : YiCrudAppService<UserAggregateRoot, UserGetOutputDto,
     /// <param name="input"></param>
     /// <returns></returns>
     [Permission("system:user:list")]
-    public override async Task<PagedResultDto<UserGetListOutputDto>> GetListAsync(UserGetListInputVo input)
+    public override async Task<PagedResultDto<UserGetListOutputDto>> GetListAsync(UserGetListInput input)
     {
         RefAsync<int> total = 0;
         List<Guid> deptIds = null;
@@ -83,7 +83,7 @@ public class UserService : YiCrudAppService<UserAggregateRoot, UserGetOutputDto,
     /// <returns></returns>
     [OperationLog("添加用户", OperationEnum.Insert)]
     [Permission("system:user:add")]
-    public override async Task<UserGetOutputDto> CreateAsync(UserCreateInputVo input)
+    public override async Task<UserGetOutputDto> CreateAsync(UserCreateInput input)
     {
         var entitiy = await MapToEntityAsync(input);
 
@@ -117,7 +117,7 @@ public class UserService : YiCrudAppService<UserAggregateRoot, UserGetOutputDto,
     /// <returns></returns>
     [OperationLog("更新用户", OperationEnum.Update)]
     [Permission("system:user:edit")]
-    public override async Task<UserGetOutputDto> UpdateAsync(Guid id, UserUpdateInputVo input)
+    public override async Task<UserGetOutputDto> UpdateAsync(Guid id, UserUpdateInput input)
     {
         if (input.UserName == UserConst.Admin || input.UserName == UserConst.TenantAdmin)
             throw new UserFriendlyException(UserConst.Name_Not_Allowed);
@@ -147,14 +147,14 @@ public class UserService : YiCrudAppService<UserAggregateRoot, UserGetOutputDto,
     }
 
 
-    protected override UserAggregateRoot MapToEntity(UserCreateInputVo createInput)
+    protected override UserAggregateRoot MapToEntity(UserCreateInput createInput)
     {
         var output = base.MapToEntity(createInput);
         output.EncryPassword = new EncryptPasswordValueObject(createInput.Password);
         return output;
     }
 
-    protected override async Task<UserAggregateRoot> MapToEntityAsync(UserCreateInputVo createInput)
+    protected override async Task<UserAggregateRoot> MapToEntityAsync(UserCreateInput createInput)
     {
         var entitiy = await base.MapToEntityAsync(createInput);
         entitiy.BuildPassword();
@@ -167,7 +167,7 @@ public class UserService : YiCrudAppService<UserAggregateRoot, UserGetOutputDto,
     /// <param name="input"></param>
     /// <returns></returns>
     [OperationLog("更新个人信息", OperationEnum.Update)]
-    public async Task<UserGetOutputDto> UpdateProfileAsync(ProfileUpdateInputVo input)
+    public async Task<UserGetOutputDto> UpdateProfileAsync(ProfileUpdateInput input)
     {
         var entity = await _repository.GetByIdAsync(_currentUser.Id);
         ObjectMapper.Map(input, entity);
@@ -196,13 +196,13 @@ public class UserService : YiCrudAppService<UserAggregateRoot, UserGetOutputDto,
     }
 
     [Permission("system:user:export")]
-    public override Task<IActionResult> GetExportExcelAsync(UserGetListInputVo input)
+    public override Task<IActionResult> GetExportExcelAsync(UserGetListInput input)
     {
         return base.GetExportExcelAsync(input);
     }
 
     [Permission("system:user:import")]
-    public override Task PostImportExcelAsync(List<UserCreateInputVo> input)
+    public override Task PostImportExcelAsync(List<UserCreateInput> input)
     {
         return base.PostImportExcelAsync(input);
     }

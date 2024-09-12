@@ -1,6 +1,6 @@
 namespace Yi.Infra.Rbac.Dtos;
 
-public class PostUpdateInputVo
+public class PostUpdateInput
 {
     public Guid Id { get; set; }
     public DateTime CreationTime { get; set; } = DateTime.Now;

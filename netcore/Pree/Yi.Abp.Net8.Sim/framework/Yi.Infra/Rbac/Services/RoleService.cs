@@ -14,7 +14,7 @@ namespace Yi.Infra.Rbac.Services;
 ///     Role服务实现
 /// </summary>
 public class RoleService : YiCrudAppService<RoleAggregateRoot, RoleGetOutputDto, RoleGetListOutputDto, Guid,
-        RoleGetListInputVo, RoleCreateInputVo, RoleUpdateInputVo>,
+        RoleGetListInput, RoleCreateInput, RoleUpdateInput>,
     IRoleService
 {
     private readonly ISqlSugarRepository<RoleAggregateRoot, Guid> _repository;
@@ -33,7 +33,7 @@ public class RoleService : YiCrudAppService<RoleAggregateRoot, RoleGetOutputDto,
 
     private RoleManager _roleManager { get; }
 
-    public override async Task<PagedResultDto<RoleGetListOutputDto>> GetListAsync(RoleGetListInputVo input)
+    public override async Task<PagedResultDto<RoleGetListOutputDto>> GetListAsync(RoleGetListInput input)
     {
         RefAsync<int> total = 0;
 
@@ -50,7 +50,7 @@ public class RoleService : YiCrudAppService<RoleAggregateRoot, RoleGetOutputDto,
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
-    public override async Task<RoleGetOutputDto> CreateAsync(RoleCreateInputVo input)
+    public override async Task<RoleGetOutputDto> CreateAsync(RoleCreateInput input)
     {
         RoleGetOutputDto outputDto;
         //using (var uow = _unitOfWorkManager.CreateContext())
@@ -71,7 +71,7 @@ public class RoleService : YiCrudAppService<RoleAggregateRoot, RoleGetOutputDto,
     /// <param name="id"></param>
     /// <param name="input"></param>
     /// <returns></returns>
-    public override async Task<RoleGetOutputDto> UpdateAsync(Guid id, RoleUpdateInputVo input)
+    public override async Task<RoleGetOutputDto> UpdateAsync(Guid id, RoleUpdateInput input)
     {
         var dto = new RoleGetOutputDto();
         //using (var uow = _unitOfWorkManager.CreateContext())

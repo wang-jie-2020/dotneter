@@ -3,7 +3,7 @@ namespace Yi.Infra.Rbac.Dtos;
 /// <summary>
 ///     Role输入创建对象
 /// </summary>
-public class RoleCreateInputVo
+public class RoleCreateInput
 {
     public string? RoleName { get; set; }
     public string? RoleCode { get; set; }

@@ -2,7 +2,7 @@
 
 namespace Yi.Infra.Rbac.Dtos;
 
-public class ProfileUpdateInputVo
+public class ProfileUpdateInput
 {
     public string? Name { get; set; }
     public int? Age { get; set; }

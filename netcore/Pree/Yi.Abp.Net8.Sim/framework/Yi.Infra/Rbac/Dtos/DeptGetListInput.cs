@@ -1,6 +1,6 @@
 namespace Yi.Infra.Rbac.Dtos;
 
-public class DeptGetListInputVo : PagedInfraInput
+public class DeptGetListInput : PagedInfraInput
 {
     public Guid Id { get; set; }
     public bool? State { get; set; }

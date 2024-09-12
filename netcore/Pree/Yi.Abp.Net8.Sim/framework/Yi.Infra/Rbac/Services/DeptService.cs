@@ -10,7 +10,7 @@ namespace Yi.Infra.Rbac.Services;
 ///     Dept服务实现
 /// </summary>
 public class DeptService : YiCrudAppService<DeptAggregateRoot, DeptGetOutputDto, DeptGetListOutputDto, Guid,
-    DeptGetListInputVo, DeptCreateInputVo, DeptUpdateInputVo>, IDeptService
+    DeptGetListInput, DeptCreateInput, DeptUpdateInput>, IDeptService
 {
     private readonly IDeptRepository _deptRepository;
 
@@ -30,7 +30,7 @@ public class DeptService : YiCrudAppService<DeptAggregateRoot, DeptGetOutputDto,
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
-    public override async Task<PagedResultDto<DeptGetListOutputDto>> GetListAsync(DeptGetListInputVo input)
+    public override async Task<PagedResultDto<DeptGetListOutputDto>> GetListAsync(DeptGetListInput input)
     {
         RefAsync<int> total = 0;
         var entities = await _deptRepository._DbQueryable

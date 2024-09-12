@@ -10,7 +10,7 @@ namespace Yi.Infra.Rbac.Services;
 ///     Post服务实现
 /// </summary>
 public class PostService : YiCrudAppService<PostAggregateRoot, PostGetOutputDto, PostGetListOutputDto, Guid,
-        PostGetListInputVo, PostCreateInputVo, PostUpdateInputVo>,
+        PostGetListInput, PostCreateInput, PostUpdateInput>,
     IPostService
 {
     private readonly ISqlSugarRepository<PostAggregateRoot, Guid> _repository;
@@ -20,7 +20,7 @@ public class PostService : YiCrudAppService<PostAggregateRoot, PostGetOutputDto,
         _repository = repository;
     }
 
-    public override async Task<PagedResultDto<PostGetListOutputDto>> GetListAsync(PostGetListInputVo input)
+    public override async Task<PagedResultDto<PostGetListOutputDto>> GetListAsync(PostGetListInput input)
     {
         RefAsync<int> total = 0;
 

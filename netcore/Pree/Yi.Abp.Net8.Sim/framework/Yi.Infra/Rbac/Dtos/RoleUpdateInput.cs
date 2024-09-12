@@ -1,6 +1,6 @@
 namespace Yi.Infra.Rbac.Dtos;
 
-public class RoleUpdateInputVo
+public class RoleUpdateInput
 {
     public string? RoleName { get; set; }
     public string? RoleCode { get; set; }

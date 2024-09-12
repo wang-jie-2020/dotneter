@@ -3,7 +3,7 @@ using Yi.Infra.Rbac.Entities;
 
 namespace Yi.Infra.Rbac.Dtos;
 
-public class UserUpdateInputVo
+public class UserUpdateInput
 {
     public string? Name { get; set; }
     public int? Age { get; set; }

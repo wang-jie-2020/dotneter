@@ -10,7 +10,7 @@ namespace Yi.Infra.Rbac.Services;
 ///     Menu服务实现
 /// </summary>
 public class MenuService : YiCrudAppService<MenuAggregateRoot, MenuGetOutputDto, MenuGetListOutputDto, Guid,
-        MenuGetListInputVo, MenuCreateInputVo, MenuUpdateInputVo>,
+        MenuGetListInput, MenuCreateInput, MenuUpdateInput>,
     IMenuService
 {
     private readonly ISqlSugarRepository<MenuAggregateRoot, Guid> _repository;
@@ -20,7 +20,7 @@ public class MenuService : YiCrudAppService<MenuAggregateRoot, MenuGetOutputDto,
         _repository = repository;
     }
 
-    public override async Task<PagedResultDto<MenuGetListOutputDto>> GetListAsync(MenuGetListInputVo input)
+    public override async Task<PagedResultDto<MenuGetListOutputDto>> GetListAsync(MenuGetListInput input)
     {
         RefAsync<int> total = 0;
 

@@ -2,7 +2,7 @@ using Yi.Infra.Rbac.Entities;
 
 namespace Yi.Infra.Rbac.Dtos;
 
-public class MenuUpdateInputVo
+public class MenuUpdateInput
 {
     public Guid Id { get; set; }
     public Guid? CreatorId { get; set; }

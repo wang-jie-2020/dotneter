@@ -2,7 +2,7 @@ using Volo.Abp.Application.Dtos;
 
 namespace Yi.Infra.Rbac.Dtos;
 
-public class PostGetListInputVo : PagedAndSortedResultRequestDto
+public class PostGetListInput : PagedAndSortedResultRequestDto
 {
     public bool? State { get; set; }
 

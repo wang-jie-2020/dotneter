@@ -5,7 +5,7 @@ namespace Yi.Infra.Rbac.Dtos;
 /// <summary>
 ///     User输入创建对象
 /// </summary>
-public class UserCreateInputVo
+public class UserCreateInput
 {
     public string? Name { get; set; }
     public int? Age { get; set; }

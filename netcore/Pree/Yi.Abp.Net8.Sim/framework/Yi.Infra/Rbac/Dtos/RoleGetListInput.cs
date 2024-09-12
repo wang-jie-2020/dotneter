@@ -1,6 +1,6 @@
 namespace Yi.Infra.Rbac.Dtos;
 
-public class RoleGetListInputVo : PagedInfraInput
+public class RoleGetListInput : PagedInfraInput
 {
     public string? RoleName { get; set; }
     public string? RoleCode { get; set; }

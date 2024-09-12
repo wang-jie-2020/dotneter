@@ -1,9 +1,6 @@
 namespace Yi.Infra.Rbac.Dtos;
 
-/// <summary>
-///     Dept输入创建对象
-/// </summary>
-public class DeptCreateInputVo
+public class DeptUpdateInput
 {
     public Guid Id { get; set; }
     public DateTime CreationTime { get; set; } = DateTime.Now;

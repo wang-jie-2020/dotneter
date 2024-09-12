@@ -3,7 +3,7 @@ namespace Yi.Infra.Rbac.Dtos;
 /// <summary>
 ///     Post输入创建对象
 /// </summary>
-public class PostCreateInputVo
+public class PostCreateInput
 {
     public Guid Id { get; set; }
     public DateTime CreationTime { get; set; } = DateTime.Now;
