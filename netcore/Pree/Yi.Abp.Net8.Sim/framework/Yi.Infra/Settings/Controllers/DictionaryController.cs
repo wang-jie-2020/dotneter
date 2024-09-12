@@ -55,7 +55,7 @@ public class DictionaryController : AbpController
     /// </summary>
     /// <param name="dicType"></param>
     /// <returns></returns>
-    [Route("dic-type/{dicType}")]
+    [HttpGet("dic-type/{dicType}")]
     public async Task<List<DictionaryDto>> GetDicType([FromRoute] string dicType)
     {
         return await _dictionaryService.GetDicType(dicType);

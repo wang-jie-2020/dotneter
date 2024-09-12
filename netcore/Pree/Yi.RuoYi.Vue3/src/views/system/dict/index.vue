@@ -80,24 +80,6 @@
                v-hasPermi="['system:dict:remove']"
             >删除</el-button>
          </el-col>
-         <el-col :span="1.5">
-            <el-button
-               type="warning"
-               plain
-               icon="Download"
-               @click="handleExport"
-               v-hasPermi="['system:dict:export']"
-            >导出</el-button>
-         </el-col>
-         <el-col :span="1.5">
-            <el-button
-               type="danger"
-               plain
-               icon="Refresh"
-               @click="handleRefreshCache"
-               v-hasPermi="['system:dict:remove']"
-            >刷新缓存</el-button>
-         </el-col>
          <right-toolbar v-model:showSearch="showSearch" @queryTable="getList"></right-toolbar>
       </el-row>
 
@@ -181,7 +163,7 @@
 
 <script setup name="Dict">
 import useDictStore from '@/store/modules/dict'
-import { listType, getType, delType, addType, updateType, refreshCache } from "@/api/system/dict/type";
+import { listType, getType, delType, addType, updateType } from "@/api/system/dict/type";
 import router from '../../../router';
 
 const { proxy } = getCurrentInstance();
@@ -296,19 +278,6 @@ function handleDelete(row) {
     getList();
     proxy.$modal.msgSuccess("删除成功");
   }).catch(() => {});
-}
-/** 导出按钮操作 */
-function handleExport() {
-  proxy.download("system/dict/type/export", {
-    ...queryParams.value
-  }, `dict_${new Date().getTime()}.xlsx`);
-}
-/** 刷新缓存按钮操作 */
-function handleRefreshCache() {
-  refreshCache().then(() => {
-    proxy.$modal.msgSuccess("刷新成功");
-    useDictStore().cleanDict();
-  });
 }
 
 getList();
