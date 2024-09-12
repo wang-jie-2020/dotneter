@@ -5,9 +5,13 @@ namespace Yi.Infra.Rbac.Dtos;
 public class DeptGetOutputDto : EntityDto<Guid>
 {
     public bool State { get; set; }
+    
     public string DeptName { get; set; } = string.Empty;
+    
     public string DeptCode { get; set; } = string.Empty;
+    
     public string? Leader { get; set; }
+    
     public string? Remark { get; set; }
 
     public Guid? deptId { get; set; }
