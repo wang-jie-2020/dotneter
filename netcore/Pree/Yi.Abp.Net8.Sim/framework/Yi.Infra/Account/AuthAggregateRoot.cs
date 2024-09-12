@@ -3,7 +3,7 @@ using Volo.Abp.Auditing;
 using Volo.Abp.Data;
 using Volo.Abp.Domain.Entities;
 
-namespace Yi.Infra.Rbac.Account;
+namespace Yi.Infra.Account;
 
 /// <summary>
 ///     第三方授权表

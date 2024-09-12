@@ -1,4 +1,4 @@
-﻿namespace Yi.Infra.Rbac.Options;
+﻿namespace Yi.Infra.Account.Options;
 
 /// <summary>
 ///     刷新token

@@ -6,12 +6,12 @@ using Volo.Abp.BackgroundWorkers.Quartz;
 using Volo.Abp.Data;
 using Volo.Abp.MultiTenancy;
 using Yi.Framework.SqlSugarCore;
+using Yi.Infra.Account.Options;
 using Yi.Infra.AuditLogging;
 using Yi.Infra.AuditLogging.Repositories;
 using Yi.Infra.OperationLogging;
 using Yi.Infra.Permissions;
 using Yi.Infra.Rbac;
-using Yi.Infra.Rbac.Options;
 using Yi.Infra.TenantManagement;
 
 namespace Yi.Infra;

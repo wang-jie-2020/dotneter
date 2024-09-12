@@ -9,10 +9,9 @@ using Volo.Abp.Domain.Services;
 using Volo.Abp.EventBus.Local;
 using Volo.Abp.Guids;
 using Yi.Framework.SqlSugarCore;
+using Yi.Infra.Account.Options;
 using Yi.Infra.Rbac.Dtos;
 using Yi.Infra.Rbac.Entities;
-using Yi.Infra.Rbac.Etos;
-using Yi.Infra.Rbac.Options;
 using Yi.Infra.Rbac.Repositories;
 
 namespace Yi.Infra.Rbac.Managers;

@@ -1,6 +1,5 @@
 ﻿using Volo.Abp.DependencyInjection;
 using Volo.Abp.EventBus;
-using Yi.Infra.Rbac.Etos;
 
 namespace Yi.Infra.Rbac.Managers;
 

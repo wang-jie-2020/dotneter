@@ -1,4 +1,4 @@
-﻿namespace Yi.Infra.Rbac.Etos;
+﻿namespace Yi.Infra.Rbac.Managers;
 
 /// <summary>
 ///     用户创建的id

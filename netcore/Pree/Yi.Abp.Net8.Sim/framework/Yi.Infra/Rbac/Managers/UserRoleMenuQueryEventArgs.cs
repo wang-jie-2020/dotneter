@@ -1,6 +1,6 @@
 ﻿using Yi.Infra.Rbac.Dtos;
 
-namespace Yi.Infra.Rbac.Etos;
+namespace Yi.Infra.Rbac.Managers;
 
 public class UserRoleMenuQueryEventArgs
 {

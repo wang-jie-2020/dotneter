@@ -1,8 +1,8 @@
 ﻿using SqlSugar;
 using Volo.Abp.Application.Dtos;
 using Yi.Framework.SqlSugarCore;
-using Yi.Infra.Rbac.Account;
-using Yi.Infra.Rbac.Account.Dtos;
+using Yi.Infra.Account;
+using Yi.Infra.Account.Dtos;
 
 namespace Yi.Infra.Rbac.Services;
 

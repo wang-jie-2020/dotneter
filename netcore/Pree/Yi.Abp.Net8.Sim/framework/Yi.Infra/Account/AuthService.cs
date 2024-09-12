@@ -6,11 +6,9 @@ using Microsoft.Extensions.Logging;
 using SqlSugar;
 using Volo.Abp.Application.Dtos;
 using Yi.Framework.SqlSugarCore;
-using Yi.Infra.Rbac.Account.Dtos;
-using Yi.Infra.Rbac.Entities;
-using Yi.Infra.Rbac.Managers;
+using Yi.Infra.Account.Dtos;
 
-namespace Yi.Infra.Rbac.Account;
+namespace Yi.Infra.Account;
 
 /// <summary>
 ///     第三方授权服务

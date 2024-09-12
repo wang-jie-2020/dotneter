@@ -4,7 +4,7 @@ using Volo.Abp.DependencyInjection;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.EventBus;
 
-namespace Yi.Infra.Rbac.Account;
+namespace Yi.Infra.Account;
 
 public class LoginEventHandler : ILocalEventHandler<LoginEventArgs>,
     ITransientDependency

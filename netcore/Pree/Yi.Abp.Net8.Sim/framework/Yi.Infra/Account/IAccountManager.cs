@@ -1,7 +1,7 @@
 ﻿using Volo.Abp.Domain.Services;
 using Yi.Infra.Rbac.Entities;
 
-namespace Yi.Infra.Rbac.Account;
+namespace Yi.Infra.Account;
 
 public interface IAccountManager : IDomainService
 {

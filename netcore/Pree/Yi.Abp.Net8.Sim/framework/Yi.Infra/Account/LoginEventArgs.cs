@@ -1,4 +1,4 @@
-﻿namespace Yi.Infra.Rbac.Account;
+﻿namespace Yi.Infra.Account;
 
 public class LoginEventArgs
 {

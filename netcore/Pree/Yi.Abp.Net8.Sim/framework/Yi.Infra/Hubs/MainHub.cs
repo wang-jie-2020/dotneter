@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Logging;
 using Volo.Abp.AspNetCore.SignalR;
-using Yi.Infra.Rbac.Account;
+using Yi.Infra.Account;
 using Yi.Infra.Rbac.Entities;
 
 namespace Yi.Infra.Hubs;
