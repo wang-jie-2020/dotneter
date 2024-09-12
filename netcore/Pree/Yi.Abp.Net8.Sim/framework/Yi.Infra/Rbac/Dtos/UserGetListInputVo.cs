@@ -1,4 +1,4 @@
-namespace Yi.Infra.Rbac.Dtos.User;
+namespace Yi.Infra.Rbac.Dtos;
 
 public class UserGetListInputVo : PagedInfraInput
 {

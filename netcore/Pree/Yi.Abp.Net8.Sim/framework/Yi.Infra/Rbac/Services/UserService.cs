@@ -7,7 +7,7 @@ using Volo.Abp.Users;
 using Yi.Framework.SqlSugarCore;
 using Yi.Infra.OperationLogging;
 using Yi.Infra.Permissions;
-using Yi.Infra.Rbac.Dtos.User;
+using Yi.Infra.Rbac.Dtos;
 using Yi.Infra.Rbac.Entities;
 using Yi.Infra.Rbac.Entities.ValueObjects;
 using Yi.Infra.Rbac.Managers;

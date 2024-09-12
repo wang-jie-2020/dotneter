@@ -1,4 +1,4 @@
-using Yi.Infra.Rbac.Dtos.Role;
+using Yi.Infra.Rbac.Dtos;
 
 namespace Yi.Infra.Rbac.Services;
 

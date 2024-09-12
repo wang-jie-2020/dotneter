@@ -1,6 +1,6 @@
 ﻿using Yi.Infra.Rbac.Entities;
 
-namespace Yi.Infra.Rbac.Dtos.User;
+namespace Yi.Infra.Rbac.Dtos;
 
 public class ProfileUpdateInputVo
 {

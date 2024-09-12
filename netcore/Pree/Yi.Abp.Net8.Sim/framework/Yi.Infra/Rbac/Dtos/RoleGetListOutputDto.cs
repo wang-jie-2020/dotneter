@@ -1,6 +1,6 @@
 using Volo.Abp.Application.Dtos;
 
-namespace Yi.Infra.Rbac.Dtos.Role;
+namespace Yi.Infra.Rbac.Dtos;
 
 public class RoleGetListOutputDto : EntityDto<Guid>
 {

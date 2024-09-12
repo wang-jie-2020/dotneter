@@ -1,4 +1,4 @@
-namespace Yi.Infra.Rbac.Dtos.Role;
+namespace Yi.Infra.Rbac.Dtos;
 
 /// <summary>
 ///     Role输入创建对象

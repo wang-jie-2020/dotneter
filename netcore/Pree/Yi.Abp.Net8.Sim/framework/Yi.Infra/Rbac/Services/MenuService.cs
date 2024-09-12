@@ -1,7 +1,7 @@
 using SqlSugar;
 using Volo.Abp.Application.Dtos;
 using Yi.Framework.SqlSugarCore;
-using Yi.Infra.Rbac.Dtos.Menu;
+using Yi.Infra.Rbac.Dtos;
 using Yi.Infra.Rbac.Entities;
 
 namespace Yi.Infra.Rbac.Services;

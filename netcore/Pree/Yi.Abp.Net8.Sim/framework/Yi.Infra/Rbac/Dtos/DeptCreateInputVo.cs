@@ -1,9 +1,11 @@
-using Volo.Abp.Application.Dtos;
+namespace Yi.Infra.Rbac.Dtos;
 
-namespace Yi.Infra.Rbac.Dtos.Dept;
-
-public class DeptGetListOutputDto : EntityDto<Guid>
+/// <summary>
+///     Dept输入创建对象
+/// </summary>
+public class DeptCreateInputVo
 {
+    public Guid Id { get; set; }
     public DateTime CreationTime { get; set; } = DateTime.Now;
     public Guid? CreatorId { get; set; }
     public bool State { get; set; }
@@ -12,6 +14,4 @@ public class DeptGetListOutputDto : EntityDto<Guid>
     public string? Leader { get; set; }
     public Guid ParentId { get; set; }
     public string? Remark { get; set; }
-
-    public int OrderNum { get; set; }
 }

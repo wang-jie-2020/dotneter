@@ -1,7 +1,7 @@
 using Volo.Abp.Application.Dtos;
 using Yi.Infra.Rbac.Entities;
 
-namespace Yi.Infra.Rbac.Dtos.Menu;
+namespace Yi.Infra.Rbac.Dtos;
 
 public class MenuGetOutputDto : EntityDto<Guid>
 {

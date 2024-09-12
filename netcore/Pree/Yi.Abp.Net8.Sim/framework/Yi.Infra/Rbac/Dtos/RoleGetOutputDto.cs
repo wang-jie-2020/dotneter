@@ -1,7 +1,11 @@
-namespace Yi.Infra.Rbac.Dtos.Role;
+using Volo.Abp.Application.Dtos;
 
-public class RoleUpdateInputVo
+namespace Yi.Infra.Rbac.Dtos;
+
+public class RoleGetOutputDto : EntityDto<Guid>
 {
+    public DateTime CreationTime { get; set; } = DateTime.Now;
+    public Guid? CreatorId { get; set; }
     public string? RoleName { get; set; }
     public string? RoleCode { get; set; }
     public string? Remark { get; set; }
@@ -9,8 +13,4 @@ public class RoleUpdateInputVo
     public bool State { get; set; }
 
     public int OrderNum { get; set; }
-
-    public List<Guid>? DeptIds { get; set; }
-
-    public List<Guid>? MenuIds { get; set; }
 }

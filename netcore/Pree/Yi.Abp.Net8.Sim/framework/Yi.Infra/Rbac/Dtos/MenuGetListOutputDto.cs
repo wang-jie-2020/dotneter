@@ -1,13 +1,10 @@
+using Volo.Abp.Application.Dtos;
 using Yi.Infra.Rbac.Entities;
 
-namespace Yi.Infra.Rbac.Dtos.Menu;
+namespace Yi.Infra.Rbac.Dtos;
 
-/// <summary>
-///     Menu输入创建对象
-/// </summary>
-public class MenuCreateInputVo
+public class MenuGetListOutputDto : EntityDto<Guid>
 {
-    public Guid Id { get; set; }
     public DateTime CreationTime { get; set; } = DateTime.Now;
     public Guid? CreatorId { get; set; }
     public bool State { get; set; }
@@ -23,5 +20,7 @@ public class MenuCreateInputVo
     public string? Remark { get; set; }
     public string? Component { get; set; }
     public string? Query { get; set; }
+
     public int OrderNum { get; set; }
+    //public List<MenuEntity>? Children { get; set; }
 }

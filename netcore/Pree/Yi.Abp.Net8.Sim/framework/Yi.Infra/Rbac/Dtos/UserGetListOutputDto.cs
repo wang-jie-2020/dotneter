@@ -1,20 +1,13 @@
-using Mapster;
+using Volo.Abp.Application.Dtos;
 using Yi.Infra.Rbac.Entities;
 
-namespace Yi.Infra.Rbac.Dtos.User;
+namespace Yi.Infra.Rbac.Dtos;
 
-public class UserUpdateInputVo
+public class UserGetListOutputDto : EntityDto<Guid>
 {
     public string? Name { get; set; }
     public int? Age { get; set; }
-    public string? UserName { get; set; }
-
-    /// <summary>
-    ///     该成员需忽略
-    /// </summary>
-    [AdaptIgnore]
-    public string? Password { get; set; }
-
+    public string UserName { get; set; } = string.Empty;
     public string? Icon { get; set; }
     public string? Nick { get; set; }
     public string? Email { get; set; }
@@ -23,10 +16,13 @@ public class UserUpdateInputVo
     public long? Phone { get; set; }
     public string? Introduction { get; set; }
     public string? Remark { get; set; }
-    public SexEnum? Sex { get; set; }
+    public SexEnum Sex { get; set; } = SexEnum.Unknown;
     public Guid? DeptId { get; set; }
-    public List<Guid>? PostIds { get; set; }
+    public DateTime CreationTime { get; set; } = DateTime.Now;
+    public Guid? CreatorId { get; set; }
 
-    public List<Guid>? RoleIds { get; set; }
-    public bool? State { get; set; }
+    public bool State { get; set; }
+
+
+    public string DeptName { get; set; }
 }

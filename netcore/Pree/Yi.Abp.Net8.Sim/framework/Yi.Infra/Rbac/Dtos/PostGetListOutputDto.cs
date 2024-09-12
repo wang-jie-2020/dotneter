@@ -1,12 +1,14 @@
-namespace Yi.Infra.Rbac.Dtos.Post;
+using Volo.Abp.Application.Dtos;
 
-public class PostUpdateInputVo
+namespace Yi.Infra.Rbac.Dtos;
+
+public class PostGetListOutputDto : EntityDto<Guid>
 {
-    public Guid Id { get; set; }
     public DateTime CreationTime { get; set; } = DateTime.Now;
-    public Guid? CreatorId { get; set; }
-    public bool? State { get; set; }
+    public bool State { get; set; }
     public string PostCode { get; set; } = string.Empty;
     public string PostName { get; set; } = string.Empty;
     public string? Remark { get; set; }
+
+    public int OrderNum { get; set; }
 }

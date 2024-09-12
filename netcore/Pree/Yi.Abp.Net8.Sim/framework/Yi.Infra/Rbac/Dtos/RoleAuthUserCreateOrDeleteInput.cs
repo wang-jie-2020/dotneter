@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Yi.Infra.Rbac.Dtos.Role;
+namespace Yi.Infra.Rbac.Dtos;
 
 public class RoleAuthUserCreateOrDeleteInput
 {

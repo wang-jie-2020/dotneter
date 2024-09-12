@@ -1,6 +1,6 @@
 using Volo.Abp.Application.Dtos;
 
-namespace Yi.Infra.Rbac.Dtos.Menu;
+namespace Yi.Infra.Rbac.Dtos;
 
 public class MenuGetListInputVo : PagedAndSortedResultRequestDto
 {
