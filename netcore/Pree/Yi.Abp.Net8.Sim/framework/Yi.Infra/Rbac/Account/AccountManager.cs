@@ -14,7 +14,6 @@ using Yi.Framework.SqlSugarCore;
 using Yi.Infra.Rbac.Dtos;
 using Yi.Infra.Rbac.Entities;
 using Yi.Infra.Rbac.Managers;
-using Yi.Infra.Rbac.Model;
 using Yi.Infra.Rbac.Options;
 using Yi.Infra.Rbac.Repositories;
 

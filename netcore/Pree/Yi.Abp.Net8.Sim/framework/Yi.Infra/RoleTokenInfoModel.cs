@@ -1,4 +1,4 @@
-﻿namespace Yi.Infra.Rbac.Model;
+﻿namespace Yi.Infra;
 
 public class RoleTokenInfoModel
 {

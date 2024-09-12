@@ -1,9 +1,8 @@
 ﻿using Volo.Abp.DependencyInjection;
 using Volo.Abp.EventBus;
 using Yi.Infra.Rbac.Etos;
-using Yi.Infra.Rbac.Managers;
 
-namespace Yi.Infra.Rbac.EventHandlers;
+namespace Yi.Infra.Rbac.Managers;
 
 public class UserInfoHandler : ILocalEventHandler<UserRoleMenuQueryEventArgs>, ITransientDependency
 {

@@ -4,7 +4,6 @@ using Microsoft.Extensions.Logging;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.AspNetCore.Mvc;
 using Yi.Infra.Hubs;
-using Yi.Infra.Rbac.Model;
 
 namespace Yi.Infra.Monitor;
 
