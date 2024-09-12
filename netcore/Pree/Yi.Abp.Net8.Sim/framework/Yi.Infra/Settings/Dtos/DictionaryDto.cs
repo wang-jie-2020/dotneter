@@ -2,7 +2,7 @@ using Volo.Abp.Application.Dtos;
 
 namespace Yi.Infra.Settings.Dtos;
 
-public class DictionaryGetListOutputDto : EntityDto<Guid>
+public class DictionaryDto : EntityDto<Guid>
 {
     public DateTime CreationTime { get; set; } = DateTime.Now;
     
@@ -21,6 +21,6 @@ public class DictionaryGetListOutputDto : EntityDto<Guid>
     public string DictValue { get; set; } = string.Empty;
     
     public bool IsDefault { get; set; }
-    
+
     public bool State { get; set; }
 }
