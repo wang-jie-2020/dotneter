@@ -11,17 +11,14 @@ using Volo.Abp.Guids;
 using Volo.Abp.Uow;
 using Volo.Abp.Users;
 using Yi.Framework.SqlSugarCore;
-using Yi.Infra.Rbac.Caches;
-using Yi.Infra.Rbac.Consts;
+using Yi.Infra.Rbac.Account.Dtos;
 using Yi.Infra.Rbac.Dtos;
-using Yi.Infra.Rbac.Dtos.Account;
 using Yi.Infra.Rbac.Entities;
-using Yi.Infra.Rbac.IServices;
 using Yi.Infra.Rbac.Managers;
 using Yi.Infra.Rbac.Options;
 using Yi.Infra.Rbac.Repositories;
 
-namespace Yi.Infra.Rbac.Services;
+namespace Yi.Infra.Rbac.Account;
 
 public class AccountService : ApplicationService, IAccountService
 {

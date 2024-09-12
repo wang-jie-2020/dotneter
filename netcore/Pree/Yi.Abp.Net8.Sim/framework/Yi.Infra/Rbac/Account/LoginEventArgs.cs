@@ -1,13 +1,15 @@
-﻿using Volo.Abp.Application.Dtos;
+﻿namespace Yi.Infra.Rbac.Account;
 
-namespace Yi.Infra.Rbac.Dtos.LoginLog;
-
-public class LoginLogGetListOutputDto : EntityDto<Guid>
+public class LoginEventArgs
 {
+    public Guid UserId { get; set; }
+    public string UserName { get; set; }
+
     public DateTime CreationTime { get; set; }
 
-    public string? LoginUser { get; set; }
-
+    /// <summary>
+    ///     登录地点
+    /// </summary>
     public string? LoginLocation { get; set; }
 
     /// <summary>
@@ -23,12 +25,11 @@ public class LoginLogGetListOutputDto : EntityDto<Guid>
     /// <summary>
     ///     操作系统
     /// </summary>
+
     public string? Os { get; set; }
 
     /// <summary>
     ///     登录信息
     /// </summary>
     public string? LogMsg { get; set; }
-
-    public Guid? CreatorId { get; set; }
 }

@@ -1,4 +1,4 @@
-﻿namespace Yi.Infra.Rbac.Consts;
+﻿namespace Yi.Infra.Rbac.Entities;
 
 /// <summary>
 ///     性别

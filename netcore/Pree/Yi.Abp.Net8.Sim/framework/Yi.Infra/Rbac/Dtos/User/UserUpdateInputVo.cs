@@ -1,5 +1,5 @@
 using Mapster;
-using Yi.Infra.Rbac.Consts;
+using Yi.Infra.Rbac.Entities;
 
 namespace Yi.Infra.Rbac.Dtos.User;
 

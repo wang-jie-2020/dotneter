@@ -11,15 +11,14 @@ using Volo.Abp.EventBus.Local;
 using Volo.Abp.Security.Claims;
 using Yi.Framework.Core.Helper;
 using Yi.Framework.SqlSugarCore;
-using Yi.Infra.Rbac.Consts;
 using Yi.Infra.Rbac.Dtos;
 using Yi.Infra.Rbac.Entities;
-using Yi.Infra.Rbac.Etos;
+using Yi.Infra.Rbac.Managers;
 using Yi.Infra.Rbac.Model;
 using Yi.Infra.Rbac.Options;
 using Yi.Infra.Rbac.Repositories;
 
-namespace Yi.Infra.Rbac.Managers;
+namespace Yi.Infra.Rbac.Account;
 
 /// <summary>
 ///     用户领域服务

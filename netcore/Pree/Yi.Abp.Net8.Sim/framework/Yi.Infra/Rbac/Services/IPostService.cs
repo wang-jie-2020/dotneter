@@ -1,6 +1,6 @@
 using Yi.Infra.Rbac.Dtos.Post;
 
-namespace Yi.Infra.Rbac.IServices;
+namespace Yi.Infra.Rbac.Services;
 
 /// <summary>
 ///     Post服务抽象

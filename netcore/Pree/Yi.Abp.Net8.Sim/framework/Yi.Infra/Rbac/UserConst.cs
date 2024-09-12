@@ -1,4 +1,4 @@
-namespace Yi.Infra.Rbac.Consts;
+namespace Yi.Infra.Rbac;
 
 /// <summary>
 ///     常量定义

@@ -3,9 +3,8 @@ using Volo.Abp.Application.Dtos;
 using Yi.Framework.SqlSugarCore;
 using Yi.Infra.Rbac.Dtos.Post;
 using Yi.Infra.Rbac.Entities;
-using Yi.Infra.Rbac.IServices;
 
-namespace Yi.Infra.Rbac.Services.System;
+namespace Yi.Infra.Rbac.Services;
 
 /// <summary>
 ///     Post服务实现

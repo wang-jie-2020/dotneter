@@ -3,10 +3,8 @@ using Microsoft.Extensions.Logging;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.EventBus;
-using Yi.Infra.Rbac.Entities;
-using Yi.Infra.Rbac.Etos;
 
-namespace Yi.Infra.Rbac.EventHandlers;
+namespace Yi.Infra.Rbac.Account;
 
 public class LoginEventHandler : ILocalEventHandler<LoginEventArgs>,
     ITransientDependency

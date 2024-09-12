@@ -1,6 +1,6 @@
 using Yi.Infra.Rbac.Dtos.Role;
 
-namespace Yi.Infra.Rbac.IServices;
+namespace Yi.Infra.Rbac.Services;
 
 /// <summary>
 ///     Role服务抽象

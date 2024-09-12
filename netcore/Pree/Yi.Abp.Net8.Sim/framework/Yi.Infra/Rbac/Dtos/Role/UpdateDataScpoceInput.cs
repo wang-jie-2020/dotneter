@@ -1,6 +1,4 @@
-﻿using Yi.Infra.Rbac.Consts;
-
-namespace Yi.Infra.Rbac.Dtos.Role;
+﻿namespace Yi.Infra.Rbac.Dtos.Role;
 
 public class UpdateDataScpoceInput
 {

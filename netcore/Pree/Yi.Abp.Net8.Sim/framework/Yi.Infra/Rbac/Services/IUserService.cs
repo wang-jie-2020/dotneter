@@ -1,6 +1,6 @@
 using Yi.Infra.Rbac.Dtos.User;
 
-namespace Yi.Infra.Rbac.IServices;
+namespace Yi.Infra.Rbac.Services;
 
 /// <summary>
 ///     User服务抽象

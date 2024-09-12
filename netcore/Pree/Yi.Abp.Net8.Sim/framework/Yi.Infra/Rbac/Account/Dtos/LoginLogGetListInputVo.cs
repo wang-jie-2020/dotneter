@@ -1,4 +1,4 @@
-﻿namespace Yi.Infra.Rbac.Dtos.LoginLog;
+﻿namespace Yi.Infra.Rbac.Account.Dtos;
 
 public class LoginLogGetListInputVo : PagedInfraInput
 {

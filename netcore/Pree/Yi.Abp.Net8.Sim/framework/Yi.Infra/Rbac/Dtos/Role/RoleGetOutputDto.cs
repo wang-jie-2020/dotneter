@@ -1,5 +1,4 @@
 using Volo.Abp.Application.Dtos;
-using Yi.Infra.Rbac.Consts;
 
 namespace Yi.Infra.Rbac.Dtos.Role;
 

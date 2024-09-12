@@ -1,4 +1,4 @@
-﻿namespace Yi.Infra.Rbac.Dtos.Account;
+﻿namespace Yi.Infra.Rbac.Account.Dtos;
 
 public class AuthGetListInput : PagedInfraInput
 {

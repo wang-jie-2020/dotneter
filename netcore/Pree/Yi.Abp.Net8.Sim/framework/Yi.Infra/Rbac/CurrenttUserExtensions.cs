@@ -1,11 +1,10 @@
 ﻿using Newtonsoft.Json;
 using Volo.Abp.Users;
-using Yi.Infra.Rbac.Consts;
 using Yi.Infra.Rbac.Model;
 
-namespace Yi.Infra.Rbac.Extensions;
+namespace Yi.Infra.Rbac;
 
-public static class CurrestUserExtensions
+public static class CurrenttUserExtensions
 {
     /// <summary>
     ///     获取用户权限codes

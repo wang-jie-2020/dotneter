@@ -3,9 +3,8 @@ using Volo.Abp.Application.Dtos;
 using Yi.Framework.SqlSugarCore;
 using Yi.Infra.Rbac.Dtos.Menu;
 using Yi.Infra.Rbac.Entities;
-using Yi.Infra.Rbac.IServices;
 
-namespace Yi.Infra.Rbac.Services.System;
+namespace Yi.Infra.Rbac.Services;
 
 /// <summary>
 ///     Menu服务实现

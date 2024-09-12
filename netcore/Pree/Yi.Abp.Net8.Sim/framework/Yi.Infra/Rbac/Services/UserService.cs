@@ -7,16 +7,13 @@ using Volo.Abp.Users;
 using Yi.Framework.SqlSugarCore;
 using Yi.Infra.OperationLogging;
 using Yi.Infra.Permissions;
-using Yi.Infra.Rbac.Caches;
-using Yi.Infra.Rbac.Consts;
 using Yi.Infra.Rbac.Dtos.User;
 using Yi.Infra.Rbac.Entities;
 using Yi.Infra.Rbac.Entities.ValueObjects;
-using Yi.Infra.Rbac.IServices;
 using Yi.Infra.Rbac.Managers;
 using Yi.Infra.Rbac.Repositories;
 
-namespace Yi.Infra.Rbac.Services.System;
+namespace Yi.Infra.Rbac.Services;
 
 /// <summary>
 ///     User服务实现

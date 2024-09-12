@@ -1,6 +1,6 @@
 using Yi.Infra.Rbac.Dtos.Menu;
 
-namespace Yi.Infra.Rbac.IServices;
+namespace Yi.Infra.Rbac.Services;
 
 /// <summary>
 ///     Menu服务抽象

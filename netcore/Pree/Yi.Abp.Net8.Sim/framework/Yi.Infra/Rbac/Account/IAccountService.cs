@@ -1,8 +1,8 @@
 ﻿using Volo.Abp.Application.Services;
+using Yi.Infra.Rbac.Account.Dtos;
 using Yi.Infra.Rbac.Dtos;
-using Yi.Infra.Rbac.Dtos.Account;
 
-namespace Yi.Infra.Rbac.IServices;
+namespace Yi.Infra.Rbac.Account;
 
 public interface IAccountService : IApplicationService
 {

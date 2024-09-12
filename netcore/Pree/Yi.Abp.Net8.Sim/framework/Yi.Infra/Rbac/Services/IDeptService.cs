@@ -1,6 +1,6 @@
 using Yi.Infra.Rbac.Dtos.Dept;
 
-namespace Yi.Infra.Rbac.IServices;
+namespace Yi.Infra.Rbac.Services;
 
 /// <summary>
 ///     Dept服务抽象

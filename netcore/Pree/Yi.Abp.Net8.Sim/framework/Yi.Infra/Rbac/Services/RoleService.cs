@@ -4,14 +4,12 @@ using SqlSugar;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Domain.Entities;
 using Yi.Framework.SqlSugarCore;
-using Yi.Infra.Rbac.Consts;
 using Yi.Infra.Rbac.Dtos.Role;
 using Yi.Infra.Rbac.Dtos.User;
 using Yi.Infra.Rbac.Entities;
-using Yi.Infra.Rbac.IServices;
 using Yi.Infra.Rbac.Managers;
 
-namespace Yi.Infra.Rbac.Services.System;
+namespace Yi.Infra.Rbac.Services;
 
 /// <summary>
 ///     Role服务实现
