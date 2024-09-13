@@ -37,7 +37,7 @@ public class UserGetOutputDto : EntityDto<Guid>
 
     public DeptGetOutputDto? Dept { get; set; }
 
-    public List<PostGetListOutputDto>? Posts { get; set; }
+    public List<PostDto>? Posts { get; set; }
 
-    public List<RoleGetListOutputDto>? Roles { get; set; }
+    public List<RoleDto>? Roles { get; set; }
 }

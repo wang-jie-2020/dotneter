@@ -2,7 +2,7 @@ using Volo.Abp.Application.Dtos;
 
 namespace Yi.Infra.Rbac.Dtos;
 
-public class PostGetOutputDto : EntityDto<Guid>
+public class PostDto : EntityDto<Guid>
 {
     public DateTime CreationTime { get; set; } = DateTime.Now;
     

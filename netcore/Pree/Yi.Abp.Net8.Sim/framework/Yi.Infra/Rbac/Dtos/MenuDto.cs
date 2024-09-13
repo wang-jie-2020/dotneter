@@ -1,8 +1,9 @@
-﻿using Yi.Infra.Rbac.Entities;
+﻿using Volo.Abp.Application.Dtos;
+using Yi.Infra.Rbac.Entities;
 
 namespace Yi.Infra.Rbac.Dtos;
 
-public class MenuDto
+public class MenuDto : EntityDto<Guid>
 {
     public Guid Id { get; set; }
 

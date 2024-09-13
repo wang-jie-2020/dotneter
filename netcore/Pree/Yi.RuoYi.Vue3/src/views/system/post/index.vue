@@ -272,7 +272,8 @@ function handleDelete(row) {
 }
 /** 导出按钮操作 */
 function handleExport() {
-  proxy.download("system/post/export", {
+   debugger;
+  proxy.download("/post/export-excel", {
     ...queryParams.value
   }, `post_${new Date().getTime()}.xlsx`);
 }

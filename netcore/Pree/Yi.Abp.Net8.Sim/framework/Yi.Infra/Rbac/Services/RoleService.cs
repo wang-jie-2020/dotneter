@@ -13,7 +13,7 @@ namespace Yi.Infra.Rbac.Services;
 /// <summary>
 ///     Role服务实现
 /// </summary>
-public class RoleService : YiCrudAppService<RoleAggregateRoot, RoleGetOutputDto, RoleGetListOutputDto, Guid,
+public class RoleService : YiCrudAppService<RoleAggregateRoot, RoleDto, RoleDto, Guid,
         RoleGetListInput, RoleCreateInput, RoleUpdateInput>,
     IRoleService
 {
@@ -33,7 +33,7 @@ public class RoleService : YiCrudAppService<RoleAggregateRoot, RoleGetOutputDto,
 
     private RoleManager _roleManager { get; }
 
-    public override async Task<PagedResultDto<RoleGetListOutputDto>> GetListAsync(RoleGetListInput input)
+    public override async Task<PagedResultDto<RoleDto>> GetListAsync(RoleGetListInput input)
     {
         RefAsync<int> total = 0;
 
@@ -42,7 +42,7 @@ public class RoleService : YiCrudAppService<RoleAggregateRoot, RoleGetOutputDto,
             .WhereIF(!string.IsNullOrEmpty(input.RoleName), x => x.RoleName.Contains(input.RoleName!))
             .WhereIF(input.State is not null, x => x.State == input.State)
             .ToPageListAsync(input.SkipCount, input.MaxResultCount, total);
-        return new PagedResultDto<RoleGetListOutputDto>(total, await MapToGetListOutputDtosAsync(entities));
+        return new PagedResultDto<RoleDto>(total, await MapToGetListOutputDtosAsync(entities));
     }
 
     /// <summary>
@@ -50,9 +50,9 @@ public class RoleService : YiCrudAppService<RoleAggregateRoot, RoleGetOutputDto,
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
-    public override async Task<RoleGetOutputDto> CreateAsync(RoleCreateInput input)
+    public override async Task<RoleDto> CreateAsync(RoleCreateInput input)
     {
-        RoleGetOutputDto outputDto;
+        RoleDto outputDto;
         //using (var uow = _unitOfWorkManager.CreateContext())
         //{
         var entity = await MapToEntityAsync(input);
@@ -71,9 +71,9 @@ public class RoleService : YiCrudAppService<RoleAggregateRoot, RoleGetOutputDto,
     /// <param name="id"></param>
     /// <param name="input"></param>
     /// <returns></returns>
-    public override async Task<RoleGetOutputDto> UpdateAsync(Guid id, RoleUpdateInput input)
+    public override async Task<RoleDto> UpdateAsync(Guid id, RoleUpdateInput input)
     {
-        var dto = new RoleGetOutputDto();
+        var dto = new RoleDto();
         //using (var uow = _unitOfWorkManager.CreateContext())
         //{
         var entity = await _repository.GetByIdAsync(id);
@@ -112,7 +112,7 @@ public class RoleService : YiCrudAppService<RoleAggregateRoot, RoleGetOutputDto,
     /// <param name="state"></param>
     /// <returns></returns>
     [Route("role/{id}/{state}")]
-    public async Task<RoleGetOutputDto> UpdateStateAsync([FromRoute] Guid id, [FromRoute] bool state)
+    public async Task<RoleDto> UpdateStateAsync([FromRoute] Guid id, [FromRoute] bool state)
     {
         var entity = await _repository.GetByIdAsync(id);
         if (entity is null) throw new ApplicationException("角色未存在");

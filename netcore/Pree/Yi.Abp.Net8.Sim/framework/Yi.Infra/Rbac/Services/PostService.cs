@@ -9,7 +9,7 @@ namespace Yi.Infra.Rbac.Services;
 /// <summary>
 ///     Post服务实现
 /// </summary>
-public class PostService : YiCrudAppService<PostAggregateRoot, PostGetOutputDto, PostGetListOutputDto, Guid,
+public class PostService : YiCrudAppService<PostAggregateRoot, PostDto, PostDto, Guid,
         PostGetListInput, PostCreateInput, PostUpdateInput>,
     IPostService
 {
@@ -20,7 +20,7 @@ public class PostService : YiCrudAppService<PostAggregateRoot, PostGetOutputDto,
         _repository = repository;
     }
 
-    public override async Task<PagedResultDto<PostGetListOutputDto>> GetListAsync(PostGetListInput input)
+    public override async Task<PagedResultDto<PostDto>> GetListAsync(PostGetListInput input)
     {
         RefAsync<int> total = 0;
 
@@ -28,6 +28,6 @@ public class PostService : YiCrudAppService<PostAggregateRoot, PostGetOutputDto,
                 x => x.PostName.Contains(input.PostName!))
             .WhereIF(input.State is not null, x => x.State == input.State)
             .ToPageListAsync(input.SkipCount, input.MaxResultCount, total);
-        return new PagedResultDto<PostGetListOutputDto>(total, await MapToGetListOutputDtosAsync(entities));
+        return new PagedResultDto<PostDto>(total, await MapToGetListOutputDtosAsync(entities));
     }
 }

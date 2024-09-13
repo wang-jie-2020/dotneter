@@ -5,7 +5,7 @@ namespace Yi.Infra.Rbac.Services;
 /// <summary>
 ///     Post服务抽象
 /// </summary>
-public interface IPostService : IYiCrudAppService<PostGetOutputDto, PostGetListOutputDto, Guid, PostGetListInput,
+public interface IPostService : IYiCrudAppService<PostDto, PostDto, Guid, PostGetListInput,
     PostCreateInput, PostUpdateInput>
 {
 }

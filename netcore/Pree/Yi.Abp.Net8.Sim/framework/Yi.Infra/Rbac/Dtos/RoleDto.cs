@@ -1,6 +1,8 @@
-﻿namespace Yi.Infra.Rbac.Dtos;
+﻿using Volo.Abp.Application.Dtos;
 
-public class RoleDto
+namespace Yi.Infra.Rbac.Dtos;
+
+public class RoleDto : EntityDto<Guid>
 {
     public Guid Id { get; set; }
 
