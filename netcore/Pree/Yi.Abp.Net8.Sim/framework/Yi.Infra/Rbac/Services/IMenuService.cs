@@ -1,11 +1,22 @@
+using Microsoft.AspNetCore.Mvc;
+using Volo.Abp.Application.Dtos;
 using Yi.Infra.Rbac.Dtos;
 
 namespace Yi.Infra.Rbac.Services;
 
-/// <summary>
-///     Menu服务抽象
-/// </summary>
-public interface IMenuService : IYiCrudAppService<MenuDto, MenuDto, Guid, MenuGetListInput,
-    MenuCreateInput, MenuUpdateInput>
+public interface IMenuService
 {
+    Task<MenuDto> GetAsync(Guid id);
+
+    Task<PagedResultDto<MenuDto>> GetListAsync(MenuGetListInput input);
+
+    Task<MenuDto> CreateAsync(MenuCreateInput input);
+
+    Task<MenuDto> UpdateAsync(Guid id, MenuUpdateInput input);
+
+    Task DeleteAsync(IEnumerable<Guid> id);
+
+    Task<IActionResult> GetExportExcelAsync(MenuGetListInput input);
+
+    Task<List<MenuDto>> GetListRoleIdAsync(Guid roleId);
 }

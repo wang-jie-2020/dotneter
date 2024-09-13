@@ -11,7 +11,7 @@ public interface ISqlSugarRepository<TEntity> : IRepository<TEntity> where TEnti
     ISugarQueryable<TEntity> _DbQueryable { get; }
 
     Task<ISqlSugarClient> GetDbContextAsync();
-    Task<IDeleteable<TEntity>> AsDeleteable();
+    Task<IDeleteable<TEntity>> AsDeletable();
     Task<IInsertable<TEntity>> AsInsertable(List<TEntity> insertObjs);
     Task<IInsertable<TEntity>> AsInsertable(TEntity insertObj);
     Task<IInsertable<TEntity>> AsInsertable(TEntity[] insertObjs);

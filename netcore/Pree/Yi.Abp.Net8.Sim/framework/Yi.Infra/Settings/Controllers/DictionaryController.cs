@@ -3,8 +3,6 @@ using Volo.Abp.Application.Dtos;
 using Volo.Abp.AspNetCore.Mvc;
 using Yi.Infra.Settings.Dtos;
 using Yi.Infra.Settings.Services;
-using Yi.Infra.TenantManagement.Dtos;
-using Yi.Infra.TenantManagement.Services;
 
 namespace Yi.Infra.Settings.Controllers;
 

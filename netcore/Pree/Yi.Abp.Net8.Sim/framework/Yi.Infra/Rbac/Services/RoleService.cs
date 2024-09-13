@@ -2,7 +2,9 @@ using Mapster;
 using Microsoft.AspNetCore.Mvc;
 using SqlSugar;
 using Volo.Abp.Application.Dtos;
+using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Entities;
+using Yi.Framework.Core.Helper;
 using Yi.Framework.SqlSugarCore;
 using Yi.Infra.Rbac.Dtos;
 using Yi.Infra.Rbac.Entities;
@@ -10,30 +12,31 @@ using Yi.Infra.Rbac.Managers;
 
 namespace Yi.Infra.Rbac.Services;
 
-/// <summary>
-///     Role服务实现
-/// </summary>
-public class RoleService : YiCrudAppService<RoleAggregateRoot, RoleDto, RoleDto, Guid,
-        RoleGetListInput, RoleCreateInput, RoleUpdateInput>,
-    IRoleService
+[RemoteService(false)]
+public class RoleService : ApplicationService, IRoleService
 {
+    private readonly RoleManager _roleManager;
+
     private readonly ISqlSugarRepository<RoleAggregateRoot, Guid> _repository;
-
     private readonly ISqlSugarRepository<RoleDeptEntity> _roleDeptRepository;
-
     private readonly ISqlSugarRepository<UserRoleEntity> _userRoleRepository;
 
-    public RoleService(RoleManager roleManager, ISqlSugarRepository<RoleDeptEntity> roleDeptRepository,
+    public RoleService(RoleManager roleManager,
+        ISqlSugarRepository<RoleDeptEntity> roleDeptRepository,
         ISqlSugarRepository<UserRoleEntity> userRoleRepository,
-        ISqlSugarRepository<RoleAggregateRoot, Guid> repository) : base(repository)
+        ISqlSugarRepository<RoleAggregateRoot, Guid> repository)
     {
         (_roleManager, _roleDeptRepository, _userRoleRepository, _repository) =
             (roleManager, roleDeptRepository, userRoleRepository, repository);
     }
 
-    private RoleManager _roleManager { get; }
+    public async Task<RoleDto> GetAsync(Guid id)
+    {
+        var entity = await _repository.GetAsync(id);
+        return entity.Adapt<RoleDto>();
+    }
 
-    public override async Task<PagedResultDto<RoleDto>> GetListAsync(RoleGetListInput input)
+    public async Task<PagedResultDto<RoleDto>> GetListAsync(RoleGetListInput input)
     {
         RefAsync<int> total = 0;
 
@@ -42,7 +45,7 @@ public class RoleService : YiCrudAppService<RoleAggregateRoot, RoleDto, RoleDto,
             .WhereIF(!string.IsNullOrEmpty(input.RoleName), x => x.RoleName.Contains(input.RoleName!))
             .WhereIF(input.State is not null, x => x.State == input.State)
             .ToPageListAsync(input.SkipCount, input.MaxResultCount, total);
-        return new PagedResultDto<RoleDto>(total, await MapToGetListOutputDtosAsync(entities));
+        return new PagedResultDto<RoleDto>(total, entities.Adapt<List<RoleDto>>());
     }
 
     /// <summary>
@@ -50,19 +53,14 @@ public class RoleService : YiCrudAppService<RoleAggregateRoot, RoleDto, RoleDto,
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
-    public override async Task<RoleDto> CreateAsync(RoleCreateInput input)
+    public async Task<RoleDto> CreateAsync(RoleCreateInput input)
     {
-        RoleDto outputDto;
-        //using (var uow = _unitOfWorkManager.CreateContext())
-        //{
-        var entity = await MapToEntityAsync(input);
+        var entity = input.Adapt<RoleAggregateRoot>();
         await _repository.InsertAsync(entity);
-        outputDto = await MapToGetOutputDtoAsync(entity);
         await _roleManager.GiveRoleSetMenuAsync(new List<Guid> { entity.Id }, input.MenuIds);
-        //    uow.Commit();
-        //}
 
-        return outputDto;
+        return entity.Adapt<RoleDto>();
+        ;
     }
 
     /// <summary>
@@ -71,39 +69,50 @@ public class RoleService : YiCrudAppService<RoleAggregateRoot, RoleDto, RoleDto,
     /// <param name="id"></param>
     /// <param name="input"></param>
     /// <returns></returns>
-    public override async Task<RoleDto> UpdateAsync(Guid id, RoleUpdateInput input)
+    public async Task<RoleDto> UpdateAsync(Guid id, RoleUpdateInput input)
     {
-        var dto = new RoleDto();
-        //using (var uow = _unitOfWorkManager.CreateContext())
-        //{
         var entity = await _repository.GetByIdAsync(id);
-        await MapToEntityAsync(input, entity);
-        await _repository.UpdateAsync(entity);
+        input.Adapt(entity);
 
+        await _repository.UpdateAsync(entity);
         await _roleManager.GiveRoleSetMenuAsync(new List<Guid> { id }, input.MenuIds);
 
-        dto = await MapToGetOutputDtoAsync(entity);
-        //    uow.Commit();
-        //}
-        return dto;
+        return entity.Adapt<RoleDto>();
     }
 
-    public async Task UpdateDataScpoceAsync(UpdateDataScpoceInput input)
+    public async Task DeleteAsync(IEnumerable<Guid> id)
+    {
+        await _repository.DeleteManyAsync(id);
+    }
+
+    public async Task<IActionResult> GetExportExcelAsync(RoleGetListInput input)
+    {
+        if (input is IPagedResultRequest paged)
+        {
+            paged.SkipCount = 0;
+            paged.MaxResultCount = LimitedResultRequestDto.MaxMaxResultCount;
+        }
+
+        var output = await GetListAsync(input);
+        return new PhysicalFileResult(ExporterHelper.ExportExcel(output.Items), "application/vnd.ms-excel");
+    }
+
+    public async Task UpdateDataScopeAsync(UpdateDataScopeInput input)
     {
         //只有自定义的需要特殊处理
         if (input.DataScope == DataScopeEnum.CUSTOM)
         {
             await _roleDeptRepository.DeleteAsync(x => x.RoleId == input.RoleId);
-            var insertEntities = input.DeptIds.Select(x => new RoleDeptEntity { DeptId = x, RoleId = input.RoleId })
-                .ToList();
+
+            var insertEntities = input.DeptIds.Select(x => new RoleDeptEntity { DeptId = x, RoleId = input.RoleId }).ToList();
             await _roleDeptRepository.InsertRangeAsync(insertEntities);
         }
 
         var entity = new RoleAggregateRoot { DataScope = input.DataScope };
         EntityHelper.TrySetId(entity, () => input.RoleId);
+
         await _repository._Db.Updateable(entity).UpdateColumns(x => x.DataScope).ExecuteCommandAsync();
     }
-
 
     /// <summary>
     ///     更新状态
@@ -111,17 +120,15 @@ public class RoleService : YiCrudAppService<RoleAggregateRoot, RoleDto, RoleDto,
     /// <param name="id"></param>
     /// <param name="state"></param>
     /// <returns></returns>
-    [Route("role/{id}/{state}")]
-    public async Task<RoleDto> UpdateStateAsync([FromRoute] Guid id, [FromRoute] bool state)
+    public async Task<RoleDto> UpdateStateAsync(Guid id, bool state)
     {
         var entity = await _repository.GetByIdAsync(id);
         if (entity is null) throw new ApplicationException("角色未存在");
 
         entity.State = state;
         await _repository.UpdateAsync(entity);
-        return await MapToGetOutputDtoAsync(entity);
+        return entity.Adapt<RoleDto>();
     }
-
 
     /// <summary>
     ///     获取角色下的用户
@@ -130,24 +137,27 @@ public class RoleService : YiCrudAppService<RoleAggregateRoot, RoleDto, RoleDto,
     /// <param name="input"></param>
     /// <param name="isAllocated">是否在该角色下</param>
     /// <returns></returns>
-    [Route("role/auth-user/{roleId}/{isAllocated}")]
-    public async Task<PagedResultDto<UserGetListOutputDto>> GetAuthUserByRoleIdAsync([FromRoute] Guid roleId,
-        [FromRoute] bool isAllocated, [FromQuery] RoleAuthUserGetListInput input)
+    public async Task<PagedResultDto<UserGetListOutputDto>> GetAuthUserByRoleIdAsync(Guid roleId, bool isAllocated, RoleAuthUserGetListInput input)
     {
         PagedResultDto<UserGetListOutputDto> output;
         //角色下已授权用户
         if (isAllocated)
+        {
             output = await GetAllocatedAuthUserByRoleIdAsync(roleId, input);
+        }
         //角色下未授权用户
         else
+        {
             output = await GetNotAllocatedAuthUserByRoleIdAsync(roleId, input);
+        }
+
         return output;
     }
 
-    private async Task<PagedResultDto<UserGetListOutputDto>> GetAllocatedAuthUserByRoleIdAsync(Guid roleId,
-        RoleAuthUserGetListInput input)
+    private async Task<PagedResultDto<UserGetListOutputDto>> GetAllocatedAuthUserByRoleIdAsync(Guid roleId, RoleAuthUserGetListInput input)
     {
         RefAsync<int> total = 0;
+
         var output = await _userRoleRepository._DbQueryable
             .LeftJoin<UserAggregateRoot>((ur, u) => ur.UserId == u.Id && ur.RoleId == roleId)
             .Where((ur, u) => ur.RoleId == roleId)
@@ -155,23 +165,24 @@ public class RoleService : YiCrudAppService<RoleAggregateRoot, RoleDto, RoleDto,
             .WhereIF(input.Phone is not null, (ur, u) => u.Phone.ToString().Contains(input.Phone.ToString()))
             .Select((ur, u) => new UserGetListOutputDto { Id = u.Id }, true)
             .ToPageListAsync(input.SkipCount, input.MaxResultCount, total);
+
         return new PagedResultDto<UserGetListOutputDto>(total, output);
     }
 
-    private async Task<PagedResultDto<UserGetListOutputDto>> GetNotAllocatedAuthUserByRoleIdAsync(Guid roleId,
-        RoleAuthUserGetListInput input)
+    private async Task<PagedResultDto<UserGetListOutputDto>> GetNotAllocatedAuthUserByRoleIdAsync(Guid roleId, RoleAuthUserGetListInput input)
     {
         RefAsync<int> total = 0;
+
         var entities = await _userRoleRepository._Db.Queryable<UserAggregateRoot>()
             .Where(u => SqlFunc.Subqueryable<UserRoleEntity>().Where(x => x.RoleId == roleId)
                 .Where(x => x.UserId == u.Id).NotAny())
             .WhereIF(!string.IsNullOrEmpty(input.UserName), u => u.UserName.Contains(input.UserName))
             .WhereIF(input.Phone is not null, u => u.Phone.ToString().Contains(input.Phone.ToString()))
             .ToPageListAsync(input.SkipCount, input.MaxResultCount, total);
+
         var output = entities.Adapt<List<UserGetListOutputDto>>();
         return new PagedResultDto<UserGetListOutputDto>(total, output);
     }
-
 
     /// <summary>
     ///     批量给用户授权
@@ -184,7 +195,6 @@ public class RoleService : YiCrudAppService<RoleAggregateRoot, RoleDto, RoleDto,
             .ToList();
         await _userRoleRepository.InsertRangeAsync(userRoleEntities);
     }
-
 
     /// <summary>
     ///     批量取消授权

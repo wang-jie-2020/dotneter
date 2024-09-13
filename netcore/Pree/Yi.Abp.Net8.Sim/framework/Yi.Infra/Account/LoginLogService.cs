@@ -1,10 +1,9 @@
 ﻿using SqlSugar;
 using Volo.Abp.Application.Dtos;
 using Yi.Framework.SqlSugarCore;
-using Yi.Infra.Account;
 using Yi.Infra.Account.Dtos;
 
-namespace Yi.Infra.Rbac.Services;
+namespace Yi.Infra.Account;
 
 public class LoginLogService : YiCrudAppService<LoginLogAggregateRoot, LoginLogGetListOutputDto, Guid,
     LoginLogGetListInputVo>

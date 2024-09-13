@@ -1,6 +1,6 @@
 ﻿namespace Yi.Infra.Rbac.Dtos;
 
-public class UpdateDataScpoceInput
+public class UpdateDataScopeInput
 {
     public Guid RoleId { get; set; }
 

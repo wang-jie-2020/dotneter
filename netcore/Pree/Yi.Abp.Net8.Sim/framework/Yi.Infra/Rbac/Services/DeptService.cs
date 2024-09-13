@@ -1,58 +1,89 @@
+using Mapster;
+using Microsoft.AspNetCore.Mvc;
 using SqlSugar;
 using Volo.Abp.Application.Dtos;
+using Volo.Abp.Application.Services;
+using Yi.Framework.Core.Helper;
 using Yi.Infra.Rbac.Dtos;
 using Yi.Infra.Rbac.Entities;
 using Yi.Infra.Rbac.Repositories;
 
 namespace Yi.Infra.Rbac.Services;
 
-/// <summary>
-///     Dept服务实现
-/// </summary>
-public class DeptService : YiCrudAppService<DeptAggregateRoot, DeptGetOutputDto, DeptGetListOutputDto, Guid,
-    DeptGetListInput, DeptCreateInput, DeptUpdateInput>, IDeptService
+[RemoteService(false)]
+public class DeptService : ApplicationService, IDeptService
 {
-    private readonly IDeptRepository _deptRepository;
+    private readonly IDeptRepository _repository;
 
-    public DeptService(IDeptRepository deptRepository) : base(deptRepository)
+    public DeptService(IDeptRepository repository)
     {
-        _deptRepository = deptRepository;
+        _repository = repository;
     }
 
-    [RemoteService(false)]
-    public async Task<List<Guid>> GetChildListAsync(Guid deptId)
+    public async Task<DeptGetOutputDto> GetAsync(Guid id)
     {
-        return await _deptRepository.GetChildListAsync(deptId);
+        var entity = await _repository.GetAsync(id);
+        return entity.Adapt<DeptGetOutputDto>();
     }
 
-    /// <summary>
-    ///     多查
-    /// </summary>
-    /// <param name="input"></param>
-    /// <returns></returns>
-    public override async Task<PagedResultDto<DeptGetListOutputDto>> GetListAsync(DeptGetListInput input)
+    public async Task<PagedResultDto<DeptGetListOutputDto>> GetListAsync(DeptGetListInput input)
     {
         RefAsync<int> total = 0;
-        var entities = await _deptRepository._DbQueryable
+        var entities = await _repository._DbQueryable
             .WhereIF(!string.IsNullOrEmpty(input.DeptName), u => u.DeptName.Contains(input.DeptName!))
             .WhereIF(input.State is not null, u => u.State == input.State)
             .OrderBy(u => u.OrderNum)
             .ToPageListAsync(input.SkipCount, input.MaxResultCount, total);
+
         return new PagedResultDto<DeptGetListOutputDto>
         {
-            Items = await MapToGetListOutputDtosAsync(entities),
-            TotalCount = total
+            TotalCount = total,
+            Items = entities.Adapt<List<DeptGetListOutputDto>>()
         };
     }
 
-    /// <summary>
-    ///     通过角色id查询该角色全部部门
-    /// </summary>
-    /// <returns></returns>
-    //[Route("{roleId}")]
+    public async Task<DeptGetOutputDto> CreateAsync(DeptCreateInput input)
+    {
+        var entity = input.Adapt<DeptAggregateRoot>();
+        await _repository.InsertAsync(entity, autoSave: true);
+
+        return entity.Adapt<DeptGetOutputDto>();
+    }
+
+    public async Task<DeptGetOutputDto> UpdateAsync(Guid id, DeptUpdateInput input)
+    {
+        var entity = await _repository.GetAsync(id);
+        input.Adapt(entity);
+        await _repository.UpdateAsync(entity, autoSave: true);
+
+        return entity.Adapt<DeptGetOutputDto>();
+    }
+
+    public async Task DeleteAsync(IEnumerable<Guid> id)
+    {
+        await _repository.DeleteManyAsync(id);
+    }
+
+    public async Task<IActionResult> GetExportExcelAsync(DeptGetListInput input)
+    {
+        if (input is IPagedResultRequest paged)
+        {
+            paged.SkipCount = 0;
+            paged.MaxResultCount = LimitedResultRequestDto.MaxMaxResultCount;
+        }
+
+        var output = await GetListAsync(input);
+        return new PhysicalFileResult(ExporterHelper.ExportExcel(output.Items), "application/vnd.ms-excel");
+    }
+
+    public async Task<List<Guid>> GetChildListAsync(Guid deptId)
+    {
+        return await _repository.GetChildListAsync(deptId);
+    }
+    
     public async Task<List<DeptGetListOutputDto>> GetRoleIdAsync(Guid roleId)
     {
-        var entities = await _deptRepository.GetListRoleIdAsync(roleId);
-        return await MapToGetListOutputDtosAsync(entities);
+        var entities = await _repository.GetListRoleIdAsync(roleId);
+        return entities.Adapt<List<DeptGetListOutputDto>>();
     }
 }

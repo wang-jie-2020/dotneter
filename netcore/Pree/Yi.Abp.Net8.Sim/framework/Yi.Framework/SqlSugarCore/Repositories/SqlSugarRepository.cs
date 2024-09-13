@@ -159,7 +159,7 @@ public class SqlSugarRepository<TEntity> : ISqlSugarRepository<TEntity>, IReposi
     
     #region 内置DB快捷操作
 
-    public virtual async Task<IDeleteable<TEntity>> AsDeleteable()
+    public virtual async Task<IDeleteable<TEntity>> AsDeletable()
     {
         return (await GetDbSimpleClientAsync()).AsDeleteable();
     }
