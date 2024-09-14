@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Options;
 using Volo.Abp.Application.Services;
+using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.Authorization;
 using Volo.Abp.Caching;
 using Volo.Abp.Guids;
@@ -21,7 +22,9 @@ using Yi.Infra.Rbac.Repositories;
 
 namespace Yi.Infra.Account;
 
-public class AccountService : ApplicationService, IAccountService
+[ApiController]
+[Route("api/app/account")]
+public class AccountService : AbpController
 {
     private readonly ICaptcha _captcha;
     private readonly IGuidGenerator _guidGenerator;
@@ -32,8 +35,6 @@ public class AccountService : ApplicationService, IAccountService
     private readonly IDistributedCache<CaptchaPhoneCacheItem, CaptchaPhoneCacheKey> _phoneCache;
     private readonly IDistributedCache<UserInfoCacheItem, UserInfoCacheKey> _userCache;
     private readonly UserManager _userManager;
-
-
     private readonly IUserRepository _userRepository;
 
     public AccountService(IUserRepository userRepository,
@@ -59,14 +60,14 @@ public class AccountService : ApplicationService, IAccountService
         _userManager = userManager;
     }
 
-
     /// <summary>
     ///     登录
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
     [AllowAnonymous]
-    public async Task<object> PostLoginAsync(LoginInputVo input)
+    [HttpPost("login")]
+    public async Task<object> PostLoginAsync([FromBody] LoginInputVo input)
     {
         if (string.IsNullOrEmpty(input.Password) || string.IsNullOrEmpty(input.UserName))
             throw new UserFriendlyException("请输入合理数据！");
@@ -90,11 +91,23 @@ public class AccountService : ApplicationService, IAccountService
     /// </summary>
     /// <returns></returns>
     [AllowAnonymous]
+    [HttpGet("captcha-image")]
     public async Task<CaptchaImageDto> GetCaptchaImageAsync()
     {
         var uuid = _guidGenerator.Create();
         var captcha = _captcha.Generate(uuid.ToString());
         return new CaptchaImageDto { Img = captcha.Bytes, Uuid = uuid };
+    }
+
+    /// <summary>
+    ///     校验图片登录验证码,无需和账号绑定
+    /// </summary>
+    private void ValidationImageCaptcha(LoginInputVo input)
+    {
+        if (_rbacOptions.EnableCaptcha)
+            //登录不想要验证码 ，可不校验
+            if (!_captcha.Validate(input.Uuid, input.Code))
+                throw new UserFriendlyException("验证码错误");
     }
 
     /// <summary>
@@ -104,7 +117,8 @@ public class AccountService : ApplicationService, IAccountService
     /// <returns></returns>
     [AllowAnonymous]
     [UnitOfWork]
-    public async Task PostRegisterAsync(RegisterDto input)
+    [HttpPost("register")]
+    public async Task PostRegisterAsync([FromBody] RegisterDto input)
     {
         if (_rbacOptions.EnableRegister == false) throw new UserFriendlyException("该系统暂未开放注册功能");
         if (_rbacOptions.EnableCaptcha)
@@ -113,7 +127,6 @@ public class AccountService : ApplicationService, IAccountService
         //注册领域逻辑
         await _accountManager.RegisterAsync(input.UserName, input.Password, input.Phone);
     }
-
 
     /// <summary>
     ///     查询已登录的账户信息，已缓存
@@ -137,8 +150,8 @@ public class AccountService : ApplicationService, IAccountService
     /// <param name="userId"></param>
     /// <param name="input"></param>
     /// <returns></returns>
-    [HttpPut]
-    public async Task<bool> RestPasswordAsync(Guid userId, RestPasswordDto input)
+    [HttpPut("reset-password/{userId}")]
+    public async Task<bool> RestPasswordAsync([FromRoute] Guid userId, [FromBody] RestPasswordDto input)
     {
         if (string.IsNullOrEmpty(input.Password)) throw new UserFriendlyException("重置密码不能为空！");
         await _accountManager.RestPasswordAsync(userId, input.Password);
@@ -146,24 +159,12 @@ public class AccountService : ApplicationService, IAccountService
     }
 
     /// <summary>
-    ///     校验图片登录验证码,无需和账号绑定
-    /// </summary>
-    [AllowAnonymous]
-    private void ValidationImageCaptcha(LoginInputVo input)
-    {
-        if (_rbacOptions.EnableCaptcha)
-            //登录不想要验证码 ，可不校验
-            if (!_captcha.Validate(input.Uuid, input.Code))
-                throw new UserFriendlyException("验证码错误");
-    }
-
-
-    /// <summary>
     ///     刷新token
     /// </summary>
     /// <param name="refresh_token"></param>
     /// <returns></returns>
     [Authorize(AuthenticationSchemes = TokenTypeConst.Refresh)]
+    [HttpPost("refresh")]
     public async Task<object> PostRefreshAsync([FromQuery] string refresh_token)
     {
         var userId = CurrentUser.Id.Value;
@@ -184,13 +185,13 @@ public class AccountService : ApplicationService, IAccountService
             throw new UserFriendlyException("该手机号已被注册！");
     }
 
-
     /// <summary>
     ///     注册 手机验证码
     /// </summary>
     /// <returns></returns>
     [AllowAnonymous]
-    public async Task<object> PostCaptchaPhone(PhoneCaptchaImageDto input)
+    [HttpPost("captcha-phone")]
+    public async Task<object> PostCaptchaPhone([FromBody] PhoneCaptchaImageDto input)
     {
         await ValidationPhone(input.Phone);
         var value = await _phoneCache.GetAsync(new CaptchaPhoneCacheKey(input.Phone));
@@ -228,7 +229,6 @@ public class AccountService : ApplicationService, IAccountService
         throw new UserFriendlyException("验证码错误");
     }
 
-
     /// <summary>
     ///     获取当前登录用户的前端路由
     /// </summary>
@@ -254,6 +254,7 @@ public class AccountService : ApplicationService, IAccountService
     ///     退出登录
     /// </summary>
     /// <returns></returns>
+    [HttpPost]
     public async Task<bool> PostLogout()
     {
         //通过鉴权jwt获取到用户的id
@@ -270,7 +271,8 @@ public class AccountService : ApplicationService, IAccountService
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
-    public async Task<bool> UpdatePasswordAsync(UpdatePasswordDto input)
+    [HttpPut("password")]
+    public async Task<bool> UpdatePasswordAsync([FromBody] UpdatePasswordDto input)
     {
         if (input.OldPassword.Equals(input.NewPassword)) throw new UserFriendlyException("无效更新！输入的数据，新密码不能与老密码相同");
         if (_currentUser.Id is null) throw new UserFriendlyException("用户未登录");
@@ -283,7 +285,8 @@ public class AccountService : ApplicationService, IAccountService
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
-    public async Task<bool> UpdateIconAsync(UpdateIconDto input)
+    [HttpPut("icon")]
+    public async Task<bool> UpdateIconAsync([FromBody] UpdateIconDto input)
     {
         var entity = await _userRepository.GetByIdAsync(_currentUser.Id);
         entity.Icon = input.Icon;

@@ -244,8 +244,7 @@ public class AccountManager : DomainService, IAccountManager
 
         return claims;
     }
-
-
+    
     private void AddToClaim(List<KeyValuePair<string, string>> claims, string key, string value)
     {
         claims.Add(new KeyValuePair<string, string>(key, value));
