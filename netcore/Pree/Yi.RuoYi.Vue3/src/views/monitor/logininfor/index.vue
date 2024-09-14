@@ -51,7 +51,7 @@
       </el-form>
 
       <el-row :gutter="10" class="mb8">
-         <el-col :span="1.5">
+         <!-- <el-col :span="1.5">
             <el-button
                type="danger"
                plain
@@ -88,7 +88,7 @@
                @click="handleExport"
                v-hasPermi="['monitor:logininfor:export']"
             >导出</el-button>
-         </el-col>
+         </el-col> -->
          <right-toolbar v-model:showSearch="showSearch" @queryTable="getList"></right-toolbar>
       </el-row>
 
@@ -124,7 +124,7 @@
 </template>
 
 <script setup name="Logininfor">
-import { list, delLogininfor, cleanLogininfor, unlockLogininfor } from "@/api/monitor/logininfor";
+import { list } from "@/api/monitor/logininfor";
 
 const { proxy } = getCurrentInstance();
 const { sys_common_status } = proxy.useDict("sys_common_status");
@@ -185,40 +185,40 @@ function handleSortChange(column, prop, order) {
   queryParams.value.isAsc = column.order;
   getList();
 }
-/** 删除按钮操作 */
-function handleDelete(row) {
-  const infoIds = row.id || ids.value;
-  proxy.$modal.confirm('是否确认删除访问编号为"' + infoIds + '"的数据项?').then(function () {
-    return delLogininfor(infoIds);
-  }).then(() => {
-    getList();
-    proxy.$modal.msgSuccess("删除成功");
-  }).catch(() => {});
-}
-/** 清空按钮操作 */
-function handleClean() {
-  proxy.$modal.confirm("是否确认清空所有登录日志数据项?").then(function () {
-    return cleanLogininfor();
-  }).then(() => {
-    getList();
-    proxy.$modal.msgSuccess("清空成功");
-  }).catch(() => {});
-}
-/** 解锁按钮操作 */
-function handleUnlock() {
-  const loginUser = selectName.value;
-  proxy.$modal.confirm('是否确认解锁用户"' + loginUser + '"数据项?').then(function () {
-    return unlockLogininfor(loginUser);
-  }).then(() => {
-    proxy.$modal.msgSuccess("用户" + loginUser + "解锁成功");
-  }).catch(() => {});
-}
-/** 导出按钮操作 */
-function handleExport() {
-  proxy.download("monitor/logininfor/export", {
-    ...queryParams.value,
-  }, `config_${new Date().getTime()}.xlsx`);
-}
+// /** 删除按钮操作 */
+// function handleDelete(row) {
+//   const infoIds = row.id || ids.value;
+//   proxy.$modal.confirm('是否确认删除访问编号为"' + infoIds + '"的数据项?').then(function () {
+//     return delLogininfor(infoIds);
+//   }).then(() => {
+//     getList();
+//     proxy.$modal.msgSuccess("删除成功");
+//   }).catch(() => {});
+// }
+// /** 清空按钮操作 */
+// function handleClean() {
+//   proxy.$modal.confirm("是否确认清空所有登录日志数据项?").then(function () {
+//     return cleanLogininfor();
+//   }).then(() => {
+//     getList();
+//     proxy.$modal.msgSuccess("清空成功");
+//   }).catch(() => {});
+// }
+// /** 解锁按钮操作 */
+// function handleUnlock() {
+//   const loginUser = selectName.value;
+//   proxy.$modal.confirm('是否确认解锁用户"' + loginUser + '"数据项?').then(function () {
+//     return unlockLogininfor(loginUser);
+//   }).then(() => {
+//     proxy.$modal.msgSuccess("用户" + loginUser + "解锁成功");
+//   }).catch(() => {});
+// }
+// /** 导出按钮操作 */
+// function handleExport() {
+//   proxy.download("monitor/logininfor/export", {
+//     ...queryParams.value,
+//   }, `config_${new Date().getTime()}.xlsx`);
+// }
 
 getList();
 </script>
