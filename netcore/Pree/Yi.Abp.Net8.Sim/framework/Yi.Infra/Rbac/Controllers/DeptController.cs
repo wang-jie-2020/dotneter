@@ -8,10 +8,10 @@ namespace Yi.Infra.Rbac.Controllers;
 
 [ApiController]
 [Route("api/app/dept")]
-public class DeptController :AbpController
+public class DeptController : AbpController
 {
     private readonly IDeptService _deptService;
-    
+
     public DeptController(IDeptService deptService)
     {
         _deptService = deptService;
@@ -52,12 +52,12 @@ public class DeptController :AbpController
     {
         return await _deptService.GetExportExcelAsync(input);
     }
-    
+
     /// <summary>
     ///     通过角色id查询该角色全部部门
     /// </summary>
     /// <returns></returns>
-    [Route("{roleId}")]
+    [HttpGet("role-id/{roleId}")]
     public async Task<List<DeptGetListOutputDto>> GetRoleIdAsync(Guid roleId)
     {
         return await _deptService.GetRoleIdAsync(roleId);

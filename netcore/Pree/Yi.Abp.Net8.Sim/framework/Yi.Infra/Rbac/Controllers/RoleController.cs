@@ -100,7 +100,7 @@ public class RoleController : AbpController
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
-    [HttpPost("auth-user")]
+    [HttpDelete("auth-user")]
     public async Task DeleteAuthUserAsync([FromBody] RoleAuthUserCreateOrDeleteInput input)
     {
         await _roleService.DeleteAuthUserAsync(input);

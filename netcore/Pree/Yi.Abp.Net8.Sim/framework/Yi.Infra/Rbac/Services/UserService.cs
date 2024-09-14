@@ -77,7 +77,7 @@ public class UserService : ApplicationService, IUserService
     public async Task<UserGetOutputDto> CreateAsync(UserCreateInput input)
     {
         var entity = input.Adapt<UserAggregateRoot>();
-        entity.BuildPassword();
+        entity.BuildPassword(input.Password);
 
         await _userManager.CreateAsync(entity);
         await _userManager.GiveUserSetRoleAsync(new List<Guid> { entity.Id }, input.RoleIds);

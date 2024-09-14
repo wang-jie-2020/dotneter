@@ -14,18 +14,3 @@ public class UserInfoCacheItem
     /// </summary>
     public UserRoleMenuDto Info { get; set; }
 }
-
-public class UserInfoCacheKey
-{
-    public UserInfoCacheKey(Guid userId)
-    {
-        UserId = userId;
-    }
-
-    public Guid UserId { get; set; }
-
-    public override string ToString()
-    {
-        return $"User:{UserId}";
-    }
-}

@@ -30,8 +30,9 @@ public class PostService : ApplicationService, IPostService
     {
         RefAsync<int> total = 0;
 
-        var entities = await _repository._DbQueryable.WhereIF(!string.IsNullOrEmpty(input.PostName),
-                x => x.PostName.Contains(input.PostName!))
+        var entities = await _repository._DbQueryable
+            .WhereIF(!string.IsNullOrEmpty(input.PostName), x => x.PostName.Contains(input.PostName!))
+            .WhereIF(!string.IsNullOrEmpty(input.PostCode), x => x.PostCode.Contains(input.PostCode!))
             .WhereIF(input.State is not null, x => x.State == input.State)
             .ToPageListAsync(input.SkipCount, input.MaxResultCount, total);
         return new PagedResultDto<PostDto>(total, entities.Adapt<List<PostDto>>());

@@ -58,8 +58,8 @@ public class MenuController : AbpController
     /// </summary>
     /// <param name="roleId"></param>
     /// <returns></returns>
-    [Route("{roleId}")]
-    public async Task<List<MenuDto>> GetListRoleIdAsync(Guid roleId)
+    [HttpGet("role-id/{roleId}")]
+    public async Task<List<MenuDto>> GetListRoleIdAsync([FromRoute] Guid roleId)
     {
         return await _menuService.GetListRoleIdAsync(roleId);
     }

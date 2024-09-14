@@ -69,6 +69,7 @@ public class AccountManager : DomainService, IAccountManager
 
         if (userInfo.RoleCodes.Count == 0) throw new UserFriendlyException(UserConst.No_Role);
         if (userInfo.PermissionCodes.Count() == 0) throw new UserFriendlyException(UserConst.No_Permission);
+        
         //这里抛出一个登录的事件,也可以在全部流程走完，在应用层组装
         if (_httpContextAccessor.HttpContext is not null)
         {
