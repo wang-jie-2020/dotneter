@@ -31,7 +31,10 @@ public class RoleManager : DomainService
         {
             //添加新的关系
             List<RoleMenuEntity> roleMenuEntity = new();
-            foreach (var menu in menuIds) roleMenuEntity.Add(new RoleMenuEntity { RoleId = roleId, MenuId = menu });
+            foreach (var menu in menuIds)
+            {
+                roleMenuEntity.Add(new RoleMenuEntity { RoleId = roleId, MenuId = menu });
+            }
             //一次性批量添加
             await _roleMenuRepository.InsertRangeAsync(roleMenuEntity);
         }

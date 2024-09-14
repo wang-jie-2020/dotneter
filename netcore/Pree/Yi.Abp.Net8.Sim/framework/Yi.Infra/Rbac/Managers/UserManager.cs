@@ -19,9 +19,9 @@ namespace Yi.Infra.Rbac.Managers;
 public class UserManager : DomainService
 {
     private readonly IGuidGenerator _guidGenerator;
-    public readonly ISqlSugarRepository<UserAggregateRoot> _repository;
-    public readonly ISqlSugarRepository<UserPostEntity> _repositoryUserPost;
-    public readonly ISqlSugarRepository<UserRoleEntity> _repositoryUserRole;
+    private readonly ISqlSugarRepository<UserAggregateRoot> _repository;
+    private readonly ISqlSugarRepository<UserPostEntity> _repositoryUserPost;
+    private readonly ISqlSugarRepository<UserRoleEntity> _repositoryUserRole;
     private readonly ISqlSugarRepository<RoleAggregateRoot> _roleRepository;
     private readonly ILocalEventBus _localEventBus;
     private readonly IDistributedCache<UserInfoCacheItem, UserInfoCacheKey> _userCache;
@@ -63,7 +63,6 @@ public class UserManager : DomainService
                 await _repositoryUserRole.InsertRangeAsync(userRoleEntities);
             }
     }
-
 
     /// <summary>
     ///     给用户设置岗位
@@ -109,13 +108,9 @@ public class UserManager : DomainService
         if (isExist) throw new UserFriendlyException(UserConst.User_Exist);
 
         var entity = await _repository.InsertReturnEntityAsync(userEntity);
-
-        userEntity = entity;
-        await _localEventBus.PublishAsync(new UserCreateEventArgs(entity.Id));
     }
-
-
-    public async Task SetDefautRoleAsync(Guid userId)
+    
+    public async Task SetDefaultRoleAsync(Guid userId)
     {
         var role = await _roleRepository.GetFirstAsync(x => x.RoleCode == UserConst.DefaultRoleCode);
         if (role is not null) await GiveUserSetRoleAsync(new List<Guid> { userId }, new List<Guid> { role.Id });
@@ -163,7 +158,7 @@ public class UserManager : DomainService
                 return new UserInfoCacheItem(data);
             },
             () => new DistributedCacheEntryOptions
-                { AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(tokenExpiresMinuteTime) });
+                { AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(1) }); //缓存可能真的不是个好主意
 
         if (cacheData is not null) output = cacheData.Info;
         return output!;

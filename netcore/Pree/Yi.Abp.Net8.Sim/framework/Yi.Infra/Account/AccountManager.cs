@@ -174,7 +174,7 @@ public class AccountManager : DomainService, IAccountManager
     {
         var user = new UserAggregateRoot(userName, password, phone);
         await _userManager.CreateAsync(user);
-        await _userManager.SetDefautRoleAsync(user.Id);
+        await _userManager.SetDefaultRoleAsync(user.Id);
     }
 
     /// <summary>

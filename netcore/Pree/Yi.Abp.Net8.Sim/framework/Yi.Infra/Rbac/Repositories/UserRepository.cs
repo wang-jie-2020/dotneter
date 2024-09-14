@@ -7,8 +7,7 @@ namespace Yi.Infra.Rbac.Repositories;
 
 public class UserRepository : SqlSugarRepository<UserAggregateRoot>, IUserRepository, ITransientDependency
 {
-    public UserRepository(ISugarDbContextProvider<ISqlSugarDbContext> sugarDbContextProvider) : base(
-        sugarDbContextProvider)
+    public UserRepository(ISugarDbContextProvider<ISqlSugarDbContext> sugarDbContextProvider) : base(sugarDbContextProvider)
     {
     }
 
@@ -25,8 +24,7 @@ public class UserRepository : SqlSugarRepository<UserAggregateRoot>, IUserReposi
                 r => r.Menus.Where(m => m.IsDeleted == false).ToList()).ToListAsync();
         return users;
     }
-
-
+    
     /// <summary>
     ///     获取用户id的全部信息
     /// </summary>
