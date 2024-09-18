@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.AspNetCore.Mvc;
-using Yi.System.Services.TenantManagement.Dtos;
-using Yi.System.Services.TenantManagement.Services;
+using Yi.Admin.Services.TenantManagement.Dtos;
+using Yi.Admin.Services.TenantManagement.Services;
 
-namespace Yi.System.Controllers;
+namespace Yi.Admin.Controllers;
 
 [ApiController]
 [Route("api/app/tenant")]

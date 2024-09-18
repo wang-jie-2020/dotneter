@@ -2,7 +2,7 @@
 using Volo.Abp.MultiTenancy;
 using Volo.Abp.MultiTenancy.Localization;
 
-namespace Yi.System.Services.TenantManagement;
+namespace Yi.Admin.Services.TenantManagement;
 
 public class YiTenantConfigurationProvider : ITenantConfigurationProvider
 {

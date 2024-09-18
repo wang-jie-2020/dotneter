@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Volo.Abp.Application.Dtos;
-using Yi.System.Services.TenantManagement.Dtos;
+using Yi.Admin.Services.TenantManagement.Dtos;
 
-namespace Yi.System.Services.TenantManagement.Services;
+namespace Yi.Admin.Services.TenantManagement.Services;
 
 public interface ITenantService 
 {

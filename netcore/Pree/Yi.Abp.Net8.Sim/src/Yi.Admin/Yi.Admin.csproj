@@ -7,6 +7,7 @@
     <Import Project="..\..\common.props" />
 
     <ItemGroup>
+        <PackageReference Include="Volo.Abp.AspNetCore.MultiTenancy" Version="$(AbpVersion)" />
         <PackageReference Include="Volo.Abp.BackgroundWorkers.Quartz" Version="$(AbpVersion)" />
     </ItemGroup>
     

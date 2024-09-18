@@ -4,7 +4,7 @@ using Volo.Abp.Data;
 using Volo.Abp.Domain.Entities.Auditing;
 using Check = Volo.Abp.Check;
 
-namespace Yi.System.Services.TenantManagement.Entities;
+namespace Yi.Admin.Services.TenantManagement.Entities;
 
 [SugarTable("Tenant")]
 [DefaultTenantTable]

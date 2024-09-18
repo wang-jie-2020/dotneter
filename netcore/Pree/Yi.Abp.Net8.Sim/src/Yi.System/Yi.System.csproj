@@ -15,7 +15,6 @@
 
     <ItemGroup>
         <PackageReference Include="Volo.Abp.AspNetCore.Authentication.JwtBearer" Version="$(AbpVersion)" />
-        <PackageReference Include="Volo.Abp.AspNetCore.MultiTenancy" Version="$(AbpVersion)" />
         <PackageReference Include="Volo.Abp.AspNetCore.SignalR" Version="$(AbpVersion)" />
     </ItemGroup>
 

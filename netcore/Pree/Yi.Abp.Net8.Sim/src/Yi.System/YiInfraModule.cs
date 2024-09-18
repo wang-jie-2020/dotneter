@@ -8,7 +8,6 @@ using Yi.System.Domains.AuditLogging;
 using Yi.System.Domains.AuditLogging.Repositories;
 using Yi.System.Services.Account.Options;
 using Yi.System.Services.OperationLogging;
-using Yi.System.Services.TenantManagement;
 
 namespace Yi.System;
 
@@ -25,15 +24,7 @@ public class YiInfraModule : AbpModule
         context.Services.AddTransient<IAuditLogRepository, SqlSugarCoreAuditLogRepository>();
         context.Services.AddTransient<IAuditLogInfoToAuditLogConverter, AuditLogInfoToAuditLogConverter>();
         
-        //Tenant
-        context.Services.Replace(new ServiceDescriptor(typeof(ITenantStore), typeof(SqlSugarAndConfigurationTenantStore),
-            ServiceLifetime.Transient));
-
-        context.Services.Replace(new ServiceDescriptor(typeof(IConnectionStringResolver),
-            typeof(YiMultiTenantConnectionStringResolver), ServiceLifetime.Transient));
-        
-        context.Services.Replace(new ServiceDescriptor(typeof(ITenantConfigurationProvider),
-            typeof(YiTenantConfigurationProvider), ServiceLifetime.Transient));
+       
         
         //Rbac
         
