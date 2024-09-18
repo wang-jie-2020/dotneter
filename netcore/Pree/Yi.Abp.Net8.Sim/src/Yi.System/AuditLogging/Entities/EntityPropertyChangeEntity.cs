@@ -6,7 +6,7 @@ using Yi.System.AuditLogging.Consts;
 
 namespace Yi.System.AuditLogging.Entities;
 
-[SugarTable("YiEntityPropertyChange")]
+[SugarTable("EntityPropertyChange")]
 [SugarIndex($"index_{nameof(EntityChangeId)}", nameof(EntityChangeId), OrderByType.Asc)]
 public class EntityPropertyChangeEntity : Entity<Guid>, IMultiTenant
 {

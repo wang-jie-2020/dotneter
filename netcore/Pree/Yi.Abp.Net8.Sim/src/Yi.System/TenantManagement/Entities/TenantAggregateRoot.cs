@@ -6,7 +6,7 @@ using Check = Volo.Abp.Check;
 
 namespace Yi.System.TenantManagement.Entities;
 
-[SugarTable("YiTenant")]
+[SugarTable("Tenant")]
 [DefaultTenantTable]
 public class TenantAggregateRoot : FullAuditedAggregateRoot<Guid>, IHasEntityVersion
 {

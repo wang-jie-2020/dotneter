@@ -6,7 +6,7 @@ using Yi.System.AuditLogging.Consts;
 
 namespace Yi.System.AuditLogging.Entities;
 
-[SugarTable("YiEntityChange")]
+[SugarTable("EntityChange")]
 [SugarIndex($"index_{nameof(AuditLogId)}", nameof(AuditLogId), OrderByType.Asc)]
 [SugarIndex($"index_{nameof(TenantId)}_{nameof(EntityId)}", nameof(TenantId), OrderByType.Asc,
     nameof(EntityTypeFullName), OrderByType.Asc, nameof(EntityId), OrderByType.Asc)]
