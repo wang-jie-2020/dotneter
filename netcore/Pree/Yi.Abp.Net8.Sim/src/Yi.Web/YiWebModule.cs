@@ -18,8 +18,7 @@ using Volo.Abp.Domain;
 using Volo.Abp.MultiTenancy;
 using Volo.Abp.Swashbuckle;
 using Yi.Framework;
-using Yi.Framework.AspNetCore.Microsoft.AspNetCore.Builder;
-using Yi.Framework.AspNetCore.Microsoft.Extensions.DependencyInjection;
+using Yi.Framework.Core.Extensions;
 using Yi.Framework.SqlSugarCore;
 using Yi.Infra;
 using Yi.Infra.Account.Options;
@@ -62,13 +61,7 @@ public class YiAbpWebModule : AbpModule
             //审计日志过滤器
             optios.AlwaysLogSelectors.Add(x => Task.FromResult(true));
         });
-
-        Configure<AbpAspNetCoreMvcOptions>(options =>
-        {
-            options.ConventionalControllers.Create(typeof(YiInfraModule).Assembly,
-                options => options.RemoteServiceName = "infra");
-            options.ConventionalControllers.ConventionalControllerSettings.ForEach(x => x.RootPath = "api/app");
-        });
+        
         //设置api格式
         service.AddControllers().AddNewtonsoftJson(options =>
         {

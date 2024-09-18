@@ -5,7 +5,6 @@ using Volo.Abp.Application.Dtos;
 using Volo.Abp.AspNetCore.Mvc;
 using Yi.Framework.SqlSugarCore;
 using Yi.Infra.Account.Dtos;
-using Yi.Infra.Settings.Dtos;
 
 namespace Yi.Infra.Account;
 

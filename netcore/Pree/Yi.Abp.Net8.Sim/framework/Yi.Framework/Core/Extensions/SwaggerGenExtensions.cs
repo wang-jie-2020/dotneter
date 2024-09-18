@@ -1,12 +1,14 @@
 ﻿using System.ComponentModel;
 using System.Text;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using Swashbuckle.AspNetCore.SwaggerUI;
 
-namespace Yi.Framework.AspNetCore.Microsoft.Extensions.DependencyInjection;
+namespace Yi.Framework.Core.Extensions;
 
 public static class SwaggerGenExtensions
 {
@@ -62,6 +64,17 @@ public static class SwaggerGenExtensions
 
 
         return services;
+    }
+    
+    public static IApplicationBuilder UseYiSwagger(this IApplicationBuilder app, Action<SwaggerUIOptions>? setupAction = null)
+    {
+        app.UseSwagger();
+        app.UseSwaggerUI(c =>
+        {
+            setupAction?.Invoke(c);
+        });
+
+        return app;
     }
 }
 
