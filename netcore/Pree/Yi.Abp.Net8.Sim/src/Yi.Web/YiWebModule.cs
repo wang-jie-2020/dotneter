@@ -48,12 +48,12 @@ public class YiAbpWebModule : AbpModule
     public override Task ConfigureServicesAsync(ServiceConfigurationContext context)
     {
         context.Services.AddYiDbContext<YiDbContext>();
-        //默认不开放，可根据项目需要是否Db直接对外开放
-        //context.Services.AddTransient(x => x.GetRequiredService<ISqlSugarDbContext>().SqlSugarClient);
-        
+        context.Services.AddTransient(x => x.GetRequiredService<ISqlSugarDbContext>().SqlSugarClient);
+
         var configuration = context.Services.GetConfiguration();
         var host = context.Services.GetHostingEnvironment();
         var service = context.Services;
+
         //请求日志
         Configure<AbpAuditingOptions>(optios =>
         {
@@ -63,15 +63,12 @@ public class YiAbpWebModule : AbpModule
             optios.AlwaysLogSelectors.Add(x => Task.FromResult(true));
         });
 
-        //动态Api todo
         Configure<AbpAspNetCoreMvcOptions>(options =>
         {
             options.ConventionalControllers.Create(typeof(YiInfraModule).Assembly,
                 options => options.RemoteServiceName = "infra");
-            //统一前缀
             options.ConventionalControllers.ConventionalControllerSettings.ForEach(x => x.RootPath = "api/app");
         });
-
         //设置api格式
         service.AddControllers().AddNewtonsoftJson(options =>
         {
@@ -91,11 +88,7 @@ public class YiAbpWebModule : AbpModule
         Configure<AbpAntiForgeryOptions>(options => { options.AutoValidate = false; });
 
         //Swagger
-        context.Services.AddYiSwaggerGen<YiAbpWebModule>(options =>
-        {
-            options.SwaggerDoc("default",
-                new OpenApiInfo { Title = "Yi.Framework.Abp", Version = "v1", Description = "集大成者" });
-        });
+        context.Services.AddYiSwaggerGen<YiAbpWebModule>(options => { options.SwaggerDoc("default", new OpenApiInfo { Title = "Yi", Version = "v1", Description = "Yi" }); });
 
         //跨域
         context.Services.AddCors(options =>
@@ -163,7 +156,6 @@ public class YiAbpWebModule : AbpModule
                         });
                 }));
         });
-
 
         //jwt鉴权
         var jwtOptions = configuration.GetSection(nameof(JwtOptions)).Get<JwtOptions>();
@@ -255,7 +247,7 @@ public class YiAbpWebModule : AbpModule
         app.UseMultiTenancy();
 
         //swagger
-        app.UseYiSwagger();
+        app.UseYiSwagger(c => c.SwaggerEndpoint("/swagger/default/swagger.json", "default"));
 
         //静态资源
         app.UseStaticFiles("/api/app/wwwroot");

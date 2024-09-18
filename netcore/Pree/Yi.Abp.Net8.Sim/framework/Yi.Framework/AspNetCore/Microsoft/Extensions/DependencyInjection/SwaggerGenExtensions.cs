@@ -2,45 +2,31 @@
 using System.Text;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
-using Volo.Abp.AspNetCore.Mvc;
 
 namespace Yi.Framework.AspNetCore.Microsoft.Extensions.DependencyInjection;
 
-public static class SwaggerAddExtensions
+public static class SwaggerGenExtensions
 {
-    public static IServiceCollection AddYiSwaggerGen<Program>(this IServiceCollection services,
-        Action<SwaggerGenOptions>? action = null)
+    public static IServiceCollection AddYiSwaggerGen<Program>(this IServiceCollection services, Action<SwaggerGenOptions>? action = null)
     {
-        var serviceProvider = services.BuildServiceProvider();
-        var mvcOptions = serviceProvider.GetRequiredService<IOptions<AbpAspNetCoreMvcOptions>>();
-
-        var mvcSettings =
-            mvcOptions.Value.ConventionalControllers.ConventionalControllerSettings
-                .DistinctBy(x => x.RemoteServiceName);
-        
         services.AddAbpSwaggerGen(
             options =>
             {
-                if (action is not null) action.Invoke(options);
+                action?.Invoke(options);
 
-                // 配置分组,还需要去重,支持重写,如果外部传入后，将以外部为准
-                foreach (var setting in mvcSettings.OrderBy(x => x.RemoteServiceName))
-                    if (!options.SwaggerGeneratorOptions.SwaggerDocs.ContainsKey(setting.RemoteServiceName))
-                        options.SwaggerDoc(setting.RemoteServiceName,
-                            new OpenApiInfo { Title = setting.RemoteServiceName, Version = "v1" });
-
-                // 根据分组名称过滤 API 文档
                 options.DocInclusionPredicate((docName, apiDesc) =>
                 {
+                    if (docName == "default")
+                    {
+                        return true;
+                    }
+                    
                     if (apiDesc.ActionDescriptor is ControllerActionDescriptor controllerActionDescriptor)
                     {
-                        var settingOrNull = mvcSettings
-                            .FirstOrDefault(x => x.Assembly == controllerActionDescriptor.ControllerTypeInfo.Assembly);
-                        if (settingOrNull is not null) return docName == settingOrNull.RemoteServiceName;
+                        return docName == apiDesc.GroupName;
                     }
                 
                     return false;
@@ -96,8 +82,7 @@ public class EnumSchemaFilter : ISchemaFilter
             model.Enum.Clear();
             model.Type = "string";
             model.Format = null;
-
-
+            
             var stringBuilder = new StringBuilder();
             Enum.GetNames(context.Type)
                 .ToList()
