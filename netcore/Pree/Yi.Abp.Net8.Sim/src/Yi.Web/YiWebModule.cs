@@ -17,12 +17,13 @@ using Volo.Abp.Caching;
 using Volo.Abp.Domain;
 using Volo.Abp.MultiTenancy;
 using Volo.Abp.Swashbuckle;
-using Yi.Framework;
-using Yi.Framework.Core.Extensions;
-using Yi.Framework.SqlSugarCore;
-using Yi.Infra;
-using Yi.Infra.Account.Options;
-using Yi.Infra.Permissions;
+using Yi.AspNetCore;
+using Yi.AspNetCore.Core.Extensions;
+using Yi.AspNetCore.SqlSugarCore;
+using Yi.System;
+using Yi.System.Account.Options;
+using Yi.System.Permissions;
+
 
 namespace Yi.Web;
 

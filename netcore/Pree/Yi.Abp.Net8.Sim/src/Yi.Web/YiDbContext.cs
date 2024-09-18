@@ -1,5 +1,5 @@
 ﻿using Volo.Abp.DependencyInjection;
-using Yi.Infra.Rbac;
+using Yi.System;
 
 namespace Yi.Web;
 
