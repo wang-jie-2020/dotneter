@@ -19,7 +19,7 @@ public class SqlSugarCoreAuditLogRepository : SqlSugarRepository<AuditLogAggrega
     /// <returns></returns>
     public override async Task<bool> InsertAsync(AuditLogAggregateRoot insertObj)
     {
-        return await _Db.InsertNav(insertObj)
+        return await Db.InsertNav(insertObj)
             .Include(z1 => z1.Actions)
             //.Include(z1 => z1.EntityChanges).ThenInclude(z2 => z2.PropertyChanges)
             .ExecuteCommandAsync();
@@ -110,7 +110,7 @@ public class SqlSugarCoreAuditLogRepository : SqlSugarRepository<AuditLogAggrega
         DateTime endDate,
         CancellationToken cancellationToken = default)
     {
-        var result = await _DbQueryable
+        var result = await DbQueryable
             .Where(a => a.ExecutionTime < endDate.AddDays(1) && a.ExecutionTime > startDate)
             .OrderBy(t => t.ExecutionTime)
             .GroupBy(t => new { t.ExecutionTime.Value.Date })
@@ -180,7 +180,7 @@ public class SqlSugarCoreAuditLogRepository : SqlSugarRepository<AuditLogAggrega
     public virtual async Task<EntityChangeWithUsername> GetEntityChangeWithUsernameAsync(
         Guid entityChangeId)
     {
-        var auditLog = await _DbQueryable
+        var auditLog = await DbQueryable
             .Where(x => x.EntityChanges.Any(y => y.Id == entityChangeId)).FirstAsync();
 
         return new EntityChangeWithUsername
@@ -221,7 +221,7 @@ public class SqlSugarCoreAuditLogRepository : SqlSugarRepository<AuditLogAggrega
         bool includeDetails = false)
     {
         var nHttpStatusCode = (int?)httpStatusCode;
-        return _DbQueryable
+        return DbQueryable
             .WhereIF(startTime.HasValue, auditLog => auditLog.ExecutionTime >= startTime)
             .WhereIF(endTime.HasValue, auditLog => auditLog.ExecutionTime <= endTime)
             .WhereIF(hasException.HasValue && hasException.Value,

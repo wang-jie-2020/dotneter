@@ -16,9 +16,9 @@ public class SqlSugarRepository<TEntity> : ISqlSugarRepository<TEntity>, IReposi
         _sugarDbContextProvider = sugarDbContextProvider;
     }
 
-    public ISqlSugarClient _Db => GetDbContextAsync().Result;
+    public ISqlSugarClient Db => GetDbContextAsync().Result;
 
-    public ISugarQueryable<TEntity> _DbQueryable => GetDbContextAsync().Result.Queryable<TEntity>();
+    public ISugarQueryable<TEntity> DbQueryable => GetDbContextAsync().Result.Queryable<TEntity>();
     
     public IAsyncQueryableExecuter AsyncExecuter { get; }
 

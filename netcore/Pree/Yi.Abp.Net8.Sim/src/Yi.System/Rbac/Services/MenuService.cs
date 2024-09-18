@@ -28,7 +28,7 @@ public class MenuService : ApplicationService, IMenuService
     {
         RefAsync<int> total = 0;
 
-        var entities = await _repository._DbQueryable.WhereIF(!string.IsNullOrEmpty(input.MenuName),
+        var entities = await _repository.DbQueryable.WhereIF(!string.IsNullOrEmpty(input.MenuName),
                 x => x.MenuName.Contains(input.MenuName!))
             .WhereIF(input.State is not null, x => x.State == input.State)
             .OrderByDescending(x => x.OrderNum)
@@ -78,7 +78,7 @@ public class MenuService : ApplicationService, IMenuService
     /// <returns></returns>
     public async Task<List<MenuDto>> GetListRoleIdAsync(Guid roleId)
     {
-        var entities = await _repository._DbQueryable.Where(m =>
+        var entities = await _repository.DbQueryable.Where(m =>
                 SqlFunc.Subqueryable<RoleMenuEntity>().Where(rm => rm.RoleId == roleId && rm.MenuId == m.Id).Any())
             .ToListAsync();
 

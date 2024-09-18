@@ -13,6 +13,7 @@ public class SqlSugarDbContextCreationContext
     }
 
     public static SqlSugarDbContextCreationContext Current => _current.Value;
+    
     public string ConnectionStringName { get; }
 
     public string ConnectionString { get; }

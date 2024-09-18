@@ -28,7 +28,7 @@ public class UserService : ApplicationService, IUserService
     public async Task<UserGetOutputDto> GetAsync(Guid id)
     {
         //使用导航树形查询
-        var entity = await _repository._DbQueryable
+        var entity = await _repository.DbQueryable
             .Includes(u => u.Roles)
             .Includes(u => u.Posts)
             .Includes(u => u.Dept)
@@ -51,7 +51,7 @@ public class UserService : ApplicationService, IUserService
 
         var ids = input.Ids?.Split(",").Select(x => Guid.Parse(x)).ToList();
 
-        var outPut = await _repository._DbQueryable
+        var outPut = await _repository.DbQueryable
             .WhereIF(!string.IsNullOrEmpty(input.UserName), x => x.UserName.Contains(input.UserName!))
             .WhereIF(input.Phone is not null, x => x.Phone.ToString()!.Contains(input.Phone.ToString()!))
             .WhereIF(!string.IsNullOrEmpty(input.Name), x => x.Name!.Contains(input.Name!))

@@ -7,10 +7,10 @@ namespace Yi.AspNetCore.SqlSugarCore;
 
 public interface ISqlSugarRepository<TEntity> : IRepository<TEntity> where TEntity : class, IEntity, new()
 {
-    ISqlSugarClient _Db { get; }
-    ISugarQueryable<TEntity> _DbQueryable { get; }
-
+    ISqlSugarClient Db { get; }
+    ISugarQueryable<TEntity> DbQueryable { get; }
     Task<ISqlSugarClient> GetDbContextAsync();
+    
     Task<IDeleteable<TEntity>> AsDeletable();
     Task<IInsertable<TEntity>> AsInsertable(List<TEntity> insertObjs);
     Task<IInsertable<TEntity>> AsInsertable(TEntity insertObj);

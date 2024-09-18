@@ -34,7 +34,7 @@ public class TenantService : ApplicationService, ITenantService
     {
         RefAsync<int> total = 0;
 
-        var entities = await _repository._DbQueryable
+        var entities = await _repository.DbQueryable
             .WhereIF(!string.IsNullOrEmpty(input.Name), x => x.Name.Contains(input.Name!))
             .WhereIF(input.StartTime is not null && input.EndTime is not null, x => x.CreationTime >= input.StartTime && x.CreationTime <= input.EndTime)
             .ToPageListAsync(input.SkipCount, input.MaxResultCount, total);
@@ -86,7 +86,7 @@ public class TenantService : ApplicationService, ITenantService
 
     public async Task<List<TenantSelectDto>> GetSelectAsync()
     {
-        var entities = await _repository._DbQueryable.ToListAsync();
+        var entities = await _repository.DbQueryable.ToListAsync();
         return entities.Select(x => new TenantSelectDto { Id = x.Id, Name = x.Name }).ToList();
     }
 

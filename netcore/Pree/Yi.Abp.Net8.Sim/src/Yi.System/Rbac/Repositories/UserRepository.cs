@@ -17,7 +17,7 @@ public class UserRepository : SqlSugarRepository<UserAggregateRoot>, IUserReposi
     /// <exception cref="ArgumentNullException"></exception>
     public async Task<List<UserAggregateRoot>> GetListUserAllInfoAsync(List<Guid> userIds)
     {
-        var users = await _DbQueryable.Where(x => userIds.Contains(x.Id))
+        var users = await DbQueryable.Where(x => userIds.Contains(x.Id))
             .Includes(u => u.Roles.Where(r => r.IsDeleted == false).ToList(),
                 r => r.Menus.Where(m => m.IsDeleted == false).ToList()).ToListAsync();
         return users;
@@ -32,7 +32,7 @@ public class UserRepository : SqlSugarRepository<UserAggregateRoot>, IUserReposi
     public async Task<UserAggregateRoot> GetUserAllInfoAsync(Guid userId)
     {
         //得到用户
-        var user = await _DbQueryable.Includes(u => u.Roles.Where(r => r.IsDeleted == false).ToList(),
+        var user = await DbQueryable.Includes(u => u.Roles.Where(r => r.IsDeleted == false).ToList(),
             r => r.Menus.Where(m => m.IsDeleted == false).ToList()).InSingleAsync(userId);
         return user;
     }

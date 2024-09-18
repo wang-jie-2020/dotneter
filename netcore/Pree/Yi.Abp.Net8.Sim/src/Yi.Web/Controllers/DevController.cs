@@ -6,7 +6,7 @@ namespace Yi.Web.Controllers;
 
 [ApiController]
 [Route("dev-api")]
-public class DevController:AbpController
+public class DevController : AbpController
 {
     private readonly IObjectMapper _objectMapper;
     private readonly IAutoObjectMappingProvider _autoObjectMappingProvider;
@@ -22,6 +22,5 @@ public class DevController:AbpController
     [HttpGet("mappers")]
     public void Mappers()
     {
-        
     }
 }

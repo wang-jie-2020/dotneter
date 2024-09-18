@@ -41,21 +41,24 @@ public class SqlSugarDbContext : ISqlSugarDbContext
     }
 
     public ICurrentUser CurrentUser => LazyServiceProvider.GetRequiredService<ICurrentUser>();
+    
     private IAbpLazyServiceProvider LazyServiceProvider { get; }
 
     private IGuidGenerator GuidGenerator => LazyServiceProvider.LazyGetRequiredService<IGuidGenerator>();
+    
     protected ILoggerFactory Logger => LazyServiceProvider.LazyGetRequiredService<ILoggerFactory>();
+    
     private ICurrentTenant CurrentTenant => LazyServiceProvider.LazyGetRequiredService<ICurrentTenant>();
+    
     public IDataFilter DataFilter => LazyServiceProvider.LazyGetRequiredService<IDataFilter>();
+    
     protected virtual bool IsMultiTenantFilterEnabled => DataFilter?.IsEnabled<IMultiTenant>() ?? false;
 
     protected virtual bool IsSoftDeleteFilterEnabled => DataFilter?.IsEnabled<ISoftDelete>() ?? false;
 
-    public IEntityChangeEventHelper EntityChangeEventHelper =>
-        LazyServiceProvider.LazyGetService<IEntityChangeEventHelper>(NullEntityChangeEventHelper.Instance);
+    public IEntityChangeEventHelper EntityChangeEventHelper => LazyServiceProvider.LazyGetService<IEntityChangeEventHelper>(NullEntityChangeEventHelper.Instance);
 
-    public AbpDbConnectionOptions ConnectionOptions =>
-        LazyServiceProvider.LazyGetRequiredService<IOptions<AbpDbConnectionOptions>>().Value;
+    public AbpDbConnectionOptions ConnectionOptions => LazyServiceProvider.LazyGetRequiredService<IOptions<AbpDbConnectionOptions>>().Value;
 
     /// <summary>
     ///     SqlSugar 客户端
@@ -75,16 +78,15 @@ public class SqlSugarDbContext : ISqlSugarDbContext
     /// <returns></returns>
     protected virtual string GetCurrentConnectionString()
     {
-        var defaultUrl = Options.Url ??
-                         ConnectionOptions.GetConnectionStringOrNull(ConnectionStrings.DefaultConnectionStringName);
+        var defaultUrl = Options.Url ?? ConnectionOptions.GetConnectionStringOrNull(ConnectionStrings.DefaultConnectionStringName);
+        
         //如果未开启多租户，返回db url 或者 默认连接字符串
         if (!Options.EnabledSaasMultiTenancy) return defaultUrl;
 
         //开启了多租户
         var connectionStringResolver = LazyServiceProvider.LazyGetRequiredService<IConnectionStringResolver>();
         var connectionString = connectionStringResolver.ResolveAsync().GetAwaiter().GetResult();
-
-
+        
         //没有检测到使用多租户功能，默认使用默认库即可
         if (string.IsNullOrWhiteSpace(connectionString))
         {
@@ -194,8 +196,7 @@ public class SqlSugarDbContext : ISqlSugarDbContext
                         entityInfo.SetValue(CurrentTenant.Id);
                 break;
         }
-
-
+        
         //领域事件
         switch (entityInfo.OperationType)
         {

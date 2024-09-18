@@ -8,8 +8,7 @@ using Volo.Abp.Uow;
 
 namespace Yi.AspNetCore.SqlSugarCore.Uow;
 
-public class UnitOfWorkSqlsugarDbContextProvider<TDbContext> : ISugarDbContextProvider<TDbContext>
-    where TDbContext : ISqlSugarDbContext
+public class UnitOfWorkSqlSugarDbContextProvider<TDbContext> : ISugarDbContextProvider<TDbContext> where TDbContext : ISqlSugarDbContext
 {
     private readonly ISqlSugarDbConnectionCreator _dbConnectionCreator;
     protected readonly ICancellationTokenProvider CancellationTokenProvider;
@@ -17,7 +16,7 @@ public class UnitOfWorkSqlsugarDbContextProvider<TDbContext> : ISugarDbContextPr
     protected readonly ICurrentTenant CurrentTenant;
     protected readonly IUnitOfWorkManager UnitOfWorkManager;
 
-    public UnitOfWorkSqlsugarDbContextProvider(
+    public UnitOfWorkSqlSugarDbContextProvider(
         IUnitOfWorkManager unitOfWorkManager,
         IConnectionStringResolver connectionStringResolver,
         ICancellationTokenProvider cancellationTokenProvider,
@@ -29,11 +28,11 @@ public class UnitOfWorkSqlsugarDbContextProvider<TDbContext> : ISugarDbContextPr
         ConnectionStringResolver = connectionStringResolver;
         CancellationTokenProvider = cancellationTokenProvider;
         CurrentTenant = currentTenant;
-        Logger = NullLogger<UnitOfWorkSqlsugarDbContextProvider<TDbContext>>.Instance;
+        Logger = NullLogger<UnitOfWorkSqlSugarDbContextProvider<TDbContext>>.Instance;
         _dbConnectionCreator = dbConnectionCreator;
     }
 
-    public ILogger<UnitOfWorkSqlsugarDbContextProvider<TDbContext>> Logger { get; set; }
+    public ILogger<UnitOfWorkSqlSugarDbContextProvider<TDbContext>> Logger { get; set; }
     
     public IServiceProvider ServiceProvider { get; set; }
 
@@ -74,8 +73,7 @@ public class UnitOfWorkSqlsugarDbContextProvider<TDbContext> : ISugarDbContextPr
 
         return (TDbContext)((SqlSugarDatabaseApi)databaseApi).DbContext;
     }
-
-
+    
     protected virtual async Task<TDbContext> CreateDbContextAsync(IUnitOfWork unitOfWork, string connectionStringName,
         string connectionString)
     {
@@ -115,8 +113,7 @@ public class UnitOfWorkSqlsugarDbContextProvider<TDbContext> : ISugarDbContextPr
 
         return (TDbContext)activeTransaction.GetDbContext();
     }
-
-
+    
     protected virtual async Task<string> ResolveConnectionStringAsync(string connectionStringName)
     {
         if (typeof(TDbContext).IsDefined(typeof(IgnoreMultiTenancyAttribute), false))

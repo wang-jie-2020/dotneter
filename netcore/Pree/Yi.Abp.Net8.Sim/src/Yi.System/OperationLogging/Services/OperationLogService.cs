@@ -27,7 +27,7 @@ public class OperationLogService : ApplicationService, IOperationLogService
     {
         RefAsync<int> total = 0;
 
-        var entities = await _repository._DbQueryable.WhereIF(!string.IsNullOrEmpty(input.OperUser),
+        var entities = await _repository.DbQueryable.WhereIF(!string.IsNullOrEmpty(input.OperUser),
                 x => x.OperUser.Contains(input.OperUser!))
             .WhereIF(input.OperType is not null, x => x.OperType == input.OperType)
             .WhereIF(input.StartTime is not null && input.EndTime is not null,

@@ -38,7 +38,7 @@ public class RoleService : ApplicationService, IRoleService
     {
         RefAsync<int> total = 0;
 
-        var entities = await _repository._DbQueryable.WhereIF(!string.IsNullOrEmpty(input.RoleCode),
+        var entities = await _repository.DbQueryable.WhereIF(!string.IsNullOrEmpty(input.RoleCode),
                 x => x.RoleCode.Contains(input.RoleCode!))
             .WhereIF(!string.IsNullOrEmpty(input.RoleName), x => x.RoleName.Contains(input.RoleName!))
             .WhereIF(input.State is not null, x => x.State == input.State)
@@ -109,7 +109,7 @@ public class RoleService : ApplicationService, IRoleService
         var entity = new RoleAggregateRoot { DataScope = input.DataScope };
         EntityHelper.TrySetId(entity, () => input.RoleId);
 
-        await _repository._Db.Updateable(entity).UpdateColumns(x => x.DataScope).ExecuteCommandAsync();
+        await _repository.Db.Updateable(entity).UpdateColumns(x => x.DataScope).ExecuteCommandAsync();
     }
 
     /// <summary>
@@ -156,7 +156,7 @@ public class RoleService : ApplicationService, IRoleService
     {
         RefAsync<int> total = 0;
 
-        var output = await _userRoleRepository._DbQueryable
+        var output = await _userRoleRepository.DbQueryable
             .LeftJoin<UserAggregateRoot>((ur, u) => ur.UserId == u.Id && ur.RoleId == roleId)
             .Where((ur, u) => ur.RoleId == roleId)
             .WhereIF(!string.IsNullOrEmpty(input.UserName), (ur, u) => u.UserName.Contains(input.UserName))
@@ -171,7 +171,7 @@ public class RoleService : ApplicationService, IRoleService
     {
         RefAsync<int> total = 0;
 
-        var entities = await _userRoleRepository._Db.Queryable<UserAggregateRoot>()
+        var entities = await _userRoleRepository.Db.Queryable<UserAggregateRoot>()
             .Where(u => SqlFunc.Subqueryable<UserRoleEntity>().Where(x => x.RoleId == roleId)
                 .Where(x => x.UserId == u.Id).NotAny())
             .WhereIF(!string.IsNullOrEmpty(input.UserName), u => u.UserName.Contains(input.UserName))
@@ -201,7 +201,7 @@ public class RoleService : ApplicationService, IRoleService
     /// <returns></returns>
     public async Task DeleteAuthUserAsync(RoleAuthUserCreateOrDeleteInput input)
     {
-        await _userRoleRepository._Db.Deleteable<UserRoleEntity>().Where(x => x.RoleId == input.RoleId)
+        await _userRoleRepository.Db.Deleteable<UserRoleEntity>().Where(x => x.RoleId == input.RoleId)
             .Where(x => input.UserIds.Contains(x.UserId))
             .ExecuteCommandAsync();
         ;

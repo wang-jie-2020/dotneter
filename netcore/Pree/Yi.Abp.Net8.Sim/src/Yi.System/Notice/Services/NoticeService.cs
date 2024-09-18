@@ -32,7 +32,7 @@ public class NoticeService : ApplicationService, INoticeService
     {
         RefAsync<int> total = 0;
 
-        var entities = await _repository._DbQueryable.WhereIF(input.Type is not null, x => x.Type == input.Type)
+        var entities = await _repository.DbQueryable.WhereIF(input.Type is not null, x => x.Type == input.Type)
             .WhereIF(!string.IsNullOrEmpty(input.Title), x => x.Title!.Contains(input.Title!))
             .WhereIF(input.StartTime is not null && input.EndTime is not null,
                 x => x.CreationTime >= input.StartTime && x.CreationTime <= input.EndTime)
@@ -81,7 +81,7 @@ public class NoticeService : ApplicationService, INoticeService
     /// <returns></returns>
     public async Task SendOnlineAsync(Guid id)
     {
-        var entity = await _repository._DbQueryable.FirstAsync(x => x.Id == id);
+        var entity = await _repository.DbQueryable.FirstAsync(x => x.Id == id);
         await _hubContext.Clients.All.SendAsync("ReceiveNotice", entity.Type.ToString(), entity.Title, entity.Content);
     }
 

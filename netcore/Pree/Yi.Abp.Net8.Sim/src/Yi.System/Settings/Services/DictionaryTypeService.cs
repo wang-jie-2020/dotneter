@@ -25,7 +25,7 @@ public class DictionaryTypeService : ApplicationService, IDictionaryTypeService
     public async Task<PagedResultDto<DictionaryTypeDto>> GetListAsync(DictionaryTypeGetListInput input)
     {
         RefAsync<int> total = 0;
-        var entities = await _repository._DbQueryable
+        var entities = await _repository.DbQueryable
             .WhereIF(input.DictName is not null, x => x.DictName.Contains(input.DictName!))
             .WhereIF(input.DictType is not null, x => x.DictType!.Contains(input.DictType!))
             .WhereIF(input.State is not null, x => x.State == input.State)
