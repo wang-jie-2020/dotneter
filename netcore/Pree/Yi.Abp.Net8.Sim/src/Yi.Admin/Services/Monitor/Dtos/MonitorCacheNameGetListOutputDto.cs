@@ -1,4 +1,4 @@
-﻿namespace Yi.Admin.Services.Dtos;
+﻿namespace Yi.Admin.Services.Monitor.Dtos;
 
 public class MonitorCacheNameGetListOutputDto
 {

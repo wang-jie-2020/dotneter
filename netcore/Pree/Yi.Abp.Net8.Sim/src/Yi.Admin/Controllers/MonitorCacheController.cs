@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.Caching;
-using Yi.Admin.Services.Dtos;
+using Yi.Admin.Services.Monitor.Dtos;
 
 namespace Yi.Admin.Controllers;
 

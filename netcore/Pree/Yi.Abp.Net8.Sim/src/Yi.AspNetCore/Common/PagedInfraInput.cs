@@ -2,6 +2,9 @@
 
 namespace Yi.AspNetCore.Common;
 
+/// <summary>
+/// todo 明显不合适
+/// </summary>
 [Serializable]
 public class PagedInfraInput : PagedAndSortedResultRequestDto
 {

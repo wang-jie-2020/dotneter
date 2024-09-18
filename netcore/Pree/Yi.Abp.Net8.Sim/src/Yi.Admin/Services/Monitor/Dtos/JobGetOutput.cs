@@ -1,6 +1,6 @@
 ﻿using Yi.Admin.Domains;
 
-namespace Yi.Admin.Services.Dtos;
+namespace Yi.Admin.Services.Monitor.Dtos;
 
 public class JobGetOutput
 {
