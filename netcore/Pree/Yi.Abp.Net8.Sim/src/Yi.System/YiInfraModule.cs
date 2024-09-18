@@ -5,11 +5,11 @@ using Volo.Abp.Auditing;
 using Volo.Abp.BackgroundWorkers.Quartz;
 using Volo.Abp.Data;
 using Volo.Abp.MultiTenancy;
-using Yi.System.Account.Options;
-using Yi.System.AuditLogging;
-using Yi.System.AuditLogging.Repositories;
-using Yi.System.OperationLogging;
-using Yi.System.TenantManagement;
+using Yi.System.Domains.AuditLogging;
+using Yi.System.Domains.AuditLogging.Repositories;
+using Yi.System.Services.Account.Options;
+using Yi.System.Services.OperationLogging;
+using Yi.System.Services.TenantManagement;
 
 namespace Yi.System;
 

@@ -25,4 +25,8 @@
     <ItemGroup>
       <ProjectReference Include="..\Yi.AspNetCore\Yi.AspNetCore.csproj" />
     </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Services\" />
+    </ItemGroup>
 </Project>
