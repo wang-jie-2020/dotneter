@@ -1,5 +1,4 @@
 ﻿using Volo.Abp.DependencyInjection;
-using Yi.AspNetCore.SqlSugarCore.Repositories;
 using Yi.System.TenantManagement.Entities;
 
 namespace Yi.System.TenantManagement.Repositories;

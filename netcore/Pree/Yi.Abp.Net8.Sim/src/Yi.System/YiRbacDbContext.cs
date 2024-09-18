@@ -1,5 +1,5 @@
 ﻿using Volo.Abp.DependencyInjection;
-using Yi.System.Permissions;
+using Yi.AspNetCore.Permissions;
 using Yi.System.Rbac;
 using Yi.System.Rbac.Entities;
 

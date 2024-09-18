@@ -9,7 +9,6 @@ using Yi.System.Account.Options;
 using Yi.System.AuditLogging;
 using Yi.System.AuditLogging.Repositories;
 using Yi.System.OperationLogging;
-using Yi.System.Permissions;
 using Yi.System.TenantManagement;
 
 namespace Yi.System;
@@ -47,7 +46,6 @@ public class YiInfraModule : AbpModule
         var configuration = context.Services.GetConfiguration();
         service.AddControllers(options =>
         {
-            options.Filters.Add<PermissionGlobalAttribute>();
             options.Filters.Add<OperationLogGlobalAttribute>();
         });
 

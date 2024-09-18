@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Volo.Abp.Users;
+using Yi.AspNetCore.Permissions;
 
 namespace Yi.System.Rbac;
 

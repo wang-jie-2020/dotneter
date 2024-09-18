@@ -1,8 +1,6 @@
-﻿using Mapster;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.AspNetCore.Mvc;
-using Yi.AspNetCore.SqlSugarCore;
 using Yi.System.Account.Dtos;
 
 namespace Yi.System.Account;

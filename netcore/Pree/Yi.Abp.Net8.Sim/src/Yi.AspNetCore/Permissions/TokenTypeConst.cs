@@ -1,4 +1,4 @@
-﻿namespace Yi.System;
+﻿namespace Yi.AspNetCore.Permissions;
 
 public class TokenTypeConst
 {

@@ -1,6 +1,5 @@
 ﻿using Volo.Abp.Auditing;
 using Volo.Abp.Domain.Entities;
-using Yi.AspNetCore.Core.Helpers;
 using Yi.System.Rbac.Dtos;
 
 namespace Yi.System.Rbac.Entities;

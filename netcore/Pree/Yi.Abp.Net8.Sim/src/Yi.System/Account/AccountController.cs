@@ -10,6 +10,7 @@ using Volo.Abp.Caching;
 using Volo.Abp.Guids;
 using Volo.Abp.Uow;
 using Volo.Abp.Users;
+using Yi.AspNetCore.Permissions;
 using Yi.System.Account.Dtos;
 using Yi.System.Account.Options;
 using Yi.System.Rbac;

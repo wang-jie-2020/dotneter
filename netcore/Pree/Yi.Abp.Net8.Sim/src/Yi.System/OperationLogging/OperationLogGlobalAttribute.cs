@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.Users;
+using Yi.AspNetCore.Extensions;
 using Yi.System.OperationLogging.Entities;
 
 namespace Yi.System.OperationLogging;

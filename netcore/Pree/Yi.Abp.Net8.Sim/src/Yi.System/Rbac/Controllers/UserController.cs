@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.AspNetCore.Mvc;
+using Yi.AspNetCore.Permissions;
 using Yi.System.OperationLogging;
-using Yi.System.Permissions;
 using Yi.System.Rbac.Dtos;
 using Yi.System.Rbac.Services;
 

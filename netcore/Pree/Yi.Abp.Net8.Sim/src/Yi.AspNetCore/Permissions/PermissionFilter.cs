@@ -4,13 +4,13 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Http;
 
-namespace Yi.System.Permissions;
+namespace Yi.AspNetCore.Permissions;
 
-internal class PermissionGlobalAttribute : ActionFilterAttribute, ITransientDependency
+internal class PermissionFilter : ActionFilterAttribute, ITransientDependency
 {
     private readonly IPermissionHandler _permissionHandler;
 
-    public PermissionGlobalAttribute(IPermissionHandler permissionHandler)
+    public PermissionFilter(IPermissionHandler permissionHandler)
     {
         _permissionHandler = permissionHandler;
     }

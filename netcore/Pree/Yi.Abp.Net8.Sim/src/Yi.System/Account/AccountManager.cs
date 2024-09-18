@@ -1,7 +1,6 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using Mapster;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -9,8 +8,7 @@ using Newtonsoft.Json;
 using Volo.Abp.Domain.Services;
 using Volo.Abp.EventBus.Local;
 using Volo.Abp.Security.Claims;
-using Yi.AspNetCore.Core.Helpers;
-using Yi.AspNetCore.SqlSugarCore;
+using Yi.AspNetCore.Permissions;
 using Yi.System.Account.Options;
 using Yi.System.Rbac;
 using Yi.System.Rbac.Dtos;
