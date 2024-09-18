@@ -1,6 +1,6 @@
 ﻿namespace Yi.AspNetCore.Permissions;
 
-public class TokenTypeConst
+public class TokenClaimConst
 {
     public const string Id = nameof(Id);
 

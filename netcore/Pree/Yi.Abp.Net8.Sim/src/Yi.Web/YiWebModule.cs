@@ -178,7 +178,7 @@ public class YiAbpWebModule : AbpModule
                     }
                 };
             })
-            .AddJwtBearer(TokenTypeConst.Refresh, options =>
+            .AddJwtBearer(TokenClaimConst.Refresh, options =>
             {
                 options.TokenValidationParameters = new TokenValidationParameters
                 {

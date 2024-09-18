@@ -162,7 +162,7 @@ public class AccountController : AbpController
     /// </summary>
     /// <param name="refresh_token"></param>
     /// <returns></returns>
-    [Authorize(AuthenticationSchemes = TokenTypeConst.Refresh)]
+    [Authorize(AuthenticationSchemes = TokenClaimConst.Refresh)]
     [HttpPost("refresh")]
     public async Task<object> PostRefreshAsync([FromQuery] string refresh_token)
     {

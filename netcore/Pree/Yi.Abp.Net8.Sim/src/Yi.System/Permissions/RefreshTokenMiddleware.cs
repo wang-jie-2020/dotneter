@@ -26,7 +26,7 @@ public class RefreshTokenMiddleware : IMiddleware, ITransientDependency
         if (!string.IsNullOrEmpty(refreshToken))
         {
             //每个用户的token刷新频率可以进行控制，防止刷新token当访问token使用
-            var authResult = await context.AuthenticateAsync(TokenTypeConst.Refresh);
+            var authResult = await context.AuthenticateAsync(TokenClaimConst.Refresh);
             //token鉴权刷新成功
             if (authResult.Succeeded)
             {

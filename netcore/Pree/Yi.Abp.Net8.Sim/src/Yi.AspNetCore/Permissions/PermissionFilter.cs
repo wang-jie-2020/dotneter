@@ -17,18 +17,23 @@ internal class PermissionFilter : ActionFilterAttribute, ITransientDependency
 
     public override void OnActionExecuting(ActionExecutingContext context)
     {
-        if (context.ActionDescriptor is not ControllerActionDescriptor controllerActionDescriptor) return;
-        List<PermissionAttribute>? perAttributes = controllerActionDescriptor.MethodInfo.GetCustomAttributes(true)
-            .Where(a => a.GetType().Equals(typeof(PermissionAttribute)))
+        if (context.ActionDescriptor is not ControllerActionDescriptor controllerActionDescriptor)
+        {
+            return;
+        }
+        
+        List<PermissionAttribute>? attributes = controllerActionDescriptor.MethodInfo.GetCustomAttributes(true)
+            .Where(a => a.GetType() == typeof(PermissionAttribute))
             .Select(x => x as PermissionAttribute)
             .ToList()!;
+        
         //空对象直接返回
-        if (perAttributes.Count == 0) return;
+        if (attributes.Count == 0) return;
 
         var result = false;
-        foreach (var perAttribute in perAttributes)
+        foreach (var attribute in attributes)
         {
-            result = _permissionHandler.IsPass(perAttribute.Code);
+            result = _permissionHandler.IsPass(attribute.Code);
             //存在有一个不满，直接跳出
             if (!result) break;
         }

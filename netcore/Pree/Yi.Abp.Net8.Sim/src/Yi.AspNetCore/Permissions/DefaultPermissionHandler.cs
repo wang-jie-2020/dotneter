@@ -18,7 +18,7 @@ public class DefaultPermissionHandler : IPermissionHandler, ITransientDependency
 
     public bool IsPass(string permission)
     {
-        var permissions = _httpContextAccessor.HttpContext.GetUserPermissions(TokenTypeConst.Permission);
+        var permissions = _httpContextAccessor.HttpContext.GetUserPermissions(TokenClaimConst.Permission);
         if (permissions is not null)
         {
             if (permissions.Contains("*:*:*"))

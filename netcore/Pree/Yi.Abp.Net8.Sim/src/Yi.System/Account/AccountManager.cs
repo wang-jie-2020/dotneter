@@ -93,7 +93,7 @@ public class AccountManager : DomainService, IAccountManager
         var claims = new List<Claim>
         {
             new(AbpClaimTypes.UserId, userId.ToString()),
-            new(TokenTypeConst.Refresh, "true")
+            new(TokenClaimConst.Refresh, "true")
         };
         var token = new JwtSecurityToken(
             _refreshJwtOptions.Issuer,
@@ -222,21 +222,21 @@ public class AccountManager : DomainService, IAccountManager
         var claims = new List<KeyValuePair<string, string>>();
         AddToClaim(claims, AbpClaimTypes.UserId, dto.User.Id.ToString());
         AddToClaim(claims, AbpClaimTypes.UserName, dto.User.UserName);
-        if (dto.User.DeptId is not null) AddToClaim(claims, TokenTypeConst.DeptId, dto.User.DeptId.ToString());
+        if (dto.User.DeptId is not null) AddToClaim(claims, TokenClaimConst.DeptId, dto.User.DeptId.ToString());
         if (dto.User.Email is not null) AddToClaim(claims, AbpClaimTypes.Email, dto.User.Email);
         if (dto.User.Phone is not null) AddToClaim(claims, AbpClaimTypes.PhoneNumber, dto.User.Phone.ToString());
         if (dto.Roles.Count > 0)
-            AddToClaim(claims, TokenTypeConst.RoleInfo,
+            AddToClaim(claims, TokenClaimConst.RoleInfo,
                 JsonConvert.SerializeObject(dto.Roles.Select(x => new RoleTokenInfoModel
                     { Id = x.Id, DataScope = x.DataScope })));
         if (UserConst.Admin.Equals(dto.User.UserName))
         {
-            AddToClaim(claims, TokenTypeConst.Permission, UserConst.AdminPermissionCode);
-            AddToClaim(claims, TokenTypeConst.Roles, UserConst.AdminRolesCode);
+            AddToClaim(claims, TokenClaimConst.Permission, UserConst.AdminPermissionCode);
+            AddToClaim(claims, TokenClaimConst.Roles, UserConst.AdminRolesCode);
         }
         else
         {
-            dto.PermissionCodes?.ForEach(per => AddToClaim(claims, TokenTypeConst.Permission, per));
+            dto.PermissionCodes?.ForEach(per => AddToClaim(claims, TokenClaimConst.Permission, per));
             dto.RoleCodes?.ForEach(role => AddToClaim(claims, AbpClaimTypes.Role, role));
         }
 
