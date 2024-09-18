@@ -1,4 +1,4 @@
-﻿namespace Yi.System.Domains.AuditLogging.Consts;
+﻿namespace Yi.Admin.Domains.AuditLogging.Consts;
 
 public class EntityPropertyChangeConsts
 {

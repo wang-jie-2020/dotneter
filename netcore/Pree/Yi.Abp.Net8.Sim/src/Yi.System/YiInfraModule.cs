@@ -1,11 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using Volo.Abp.AspNetCore.SignalR;
 using Volo.Abp.Auditing;
-using Volo.Abp.Data;
-using Volo.Abp.MultiTenancy;
-using Yi.System.Domains.AuditLogging;
-using Yi.System.Domains.AuditLogging.Repositories;
 using Yi.System.Services.Account.Options;
 using Yi.System.Services.OperationLogging;
 
@@ -19,10 +14,7 @@ public class YiInfraModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
-        //Auditing
-        context.Services.AddTransient<IAuditingStore, AuditingStore>();
-        context.Services.AddTransient<IAuditLogRepository, SqlSugarCoreAuditLogRepository>();
-        context.Services.AddTransient<IAuditLogInfoToAuditLogConverter, AuditLogInfoToAuditLogConverter>();
+
         
        
         

@@ -1,9 +1,9 @@
 ﻿using Volo.Abp.Auditing;
 using Volo.Abp.Domain.Entities;
 using Volo.Abp.MultiTenancy;
-using Yi.System.Domains.AuditLogging.Consts;
+using Yi.Admin.Domains.AuditLogging.Consts;
 
-namespace Yi.System.Domains.AuditLogging.Entities;
+namespace Yi.Admin.Domains.AuditLogging.Entities;
 
 [DisableAuditing]
 [SugarTable("AuditLogAction")]

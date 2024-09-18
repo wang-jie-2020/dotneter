@@ -5,9 +5,9 @@ using Volo.Abp.Data;
 using Volo.Abp.Guids;
 using Volo.Abp.Http;
 using Volo.Abp.Json;
-using Yi.System.Domains.AuditLogging.Entities;
+using Yi.Admin.Domains.AuditLogging.Entities;
 
-namespace Yi.System.Domains.AuditLogging;
+namespace Yi.Admin.Domains.AuditLogging;
 
 public class AuditLogInfoToAuditLogConverter : IAuditLogInfoToAuditLogConverter
 {

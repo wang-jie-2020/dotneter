@@ -1,8 +1,8 @@
 ﻿using System.Net;
 using Volo.Abp.Auditing;
-using Yi.System.Domains.AuditLogging.Entities;
+using Yi.Admin.Domains.AuditLogging.Entities;
 
-namespace Yi.System.Domains.AuditLogging.Repositories;
+namespace Yi.Admin.Domains.AuditLogging.Repositories;
 
 public interface IAuditLogRepository : ISqlSugarRepository<AuditLogAggregateRoot, Guid>
 {

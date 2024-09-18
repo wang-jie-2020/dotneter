@@ -5,9 +5,9 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Volo.Abp.Auditing;
 using Volo.Abp.Uow;
-using Yi.System.Domains.AuditLogging.Repositories;
+using Yi.Admin.Domains.AuditLogging.Repositories;
 
-namespace Yi.System.Domains.AuditLogging;
+namespace Yi.Admin.Domains.AuditLogging;
 
 public class AuditingStore : IAuditingStore
 {
