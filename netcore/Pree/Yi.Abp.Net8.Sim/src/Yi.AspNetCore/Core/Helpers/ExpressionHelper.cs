@@ -12,7 +12,8 @@ public static class ExpressionHelper
     /// <param name="second"></param>
     /// <param name="merge"></param>
     /// <returns></returns>
-    public static Expression<T> Compose<T>(this Expression<T> first, Expression<T> second,
+    public static Expression<T> Compose<T>(this Expression<T> first, 
+        Expression<T> second,
         Func<Expression, Expression, Expression> merge)
     {
         var parameterMap = first.Parameters.Select((f, i) => new { f, s = second.Parameters[i] })

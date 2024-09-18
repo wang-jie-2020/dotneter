@@ -7,7 +7,6 @@ public class MapsterAutoObjectMappingProvider : IAutoObjectMappingProvider
 {
     public TDestination Map<TSource, TDestination>(object source)
     {
-        var sss = typeof(TDestination).Name;
         return source.Adapt<TDestination>();
     }
 

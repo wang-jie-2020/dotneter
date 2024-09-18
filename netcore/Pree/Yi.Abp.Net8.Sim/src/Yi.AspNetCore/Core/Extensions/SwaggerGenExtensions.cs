@@ -54,15 +54,14 @@ public static class SwaggerGenExtensions
                 };
                 options.AddSecurityRequirement(new OpenApiSecurityRequirement
                 {
-                    [scheme] = new string[0]
+                    [scheme] = Array.Empty<string>()
                 });
 
                 options.OperationFilter<AddRequiredHeaderParameter>();
                 options.SchemaFilter<EnumSchemaFilter>();
             }
         );
-
-
+        
         return services;
     }
     
@@ -102,10 +101,10 @@ public class EnumSchemaFilter : ISchemaFilter
                 .ForEach(name =>
                 {
                     var e = (Enum)Enum.Parse(context.Type, name);
-                    var descrptionOrNull = GetEnumDescription(e);
+                    var descriptionOrNull = GetEnumDescription(e);
                     model.Enum.Add(new OpenApiString(name));
                     stringBuilder.Append(
-                        $"【枚举：{name}{(descrptionOrNull is null ? string.Empty : $"({descrptionOrNull})")}={Convert.ToInt64(Enum.Parse(context.Type, name))}】<br />");
+                        $"【枚举：{name}{(descriptionOrNull is null ? string.Empty : $"({descriptionOrNull})")}={Convert.ToInt64(Enum.Parse(context.Type, name))}】<br />");
                 });
             model.Description = stringBuilder.ToString();
         }
@@ -126,7 +125,9 @@ public class AddRequiredHeaderParameter : IOperationFilter
     public void Apply(OpenApiOperation operation, OperationFilterContext context)
     {
         if (operation.Parameters == null)
+        {
             operation.Parameters = new List<OpenApiParameter>();
+        }
         operation.Parameters.Add(new OpenApiParameter
         {
             Name = HeaderKey,

@@ -1,4 +1,5 @@
-﻿using Volo.Abp.ObjectMapping;
+﻿using Mapster;
+using Volo.Abp.ObjectMapping;
 
 namespace Yi.AspNetCore.Mapster;
 
@@ -8,11 +9,11 @@ public class MapsterObjectMapper : IObjectMapper
 
     public TDestination Map<TSource, TDestination>(TSource source)
     {
-        throw new NotImplementedException();
+        return source.Adapt<TDestination>();
     }
 
     public TDestination Map<TSource, TDestination>(TSource source, TDestination destination)
     {
-        throw new NotImplementedException();
+        return source.Adapt(destination);
     }
 }

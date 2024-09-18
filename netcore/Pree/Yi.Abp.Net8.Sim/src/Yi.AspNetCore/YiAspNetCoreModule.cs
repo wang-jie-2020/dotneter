@@ -31,6 +31,7 @@ public class YiAspNetCoreModule : AbpModule
         var configuration = context.Services.GetConfiguration();
 
         //Mapster
+        context.Services.AddTransient<IObjectMapper, MapsterObjectMapper>();
         context.Services.AddTransient<IAutoObjectMappingProvider, MapsterAutoObjectMappingProvider>();
 
         //Redis

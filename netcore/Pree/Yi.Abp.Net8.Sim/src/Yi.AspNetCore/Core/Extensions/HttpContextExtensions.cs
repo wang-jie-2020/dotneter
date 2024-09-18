@@ -62,9 +62,15 @@ public static class HttpContextExtensions
     {
         if (context == null) return "";
         var result = context.Request.Headers["X-Forwarded-For"].FirstOrDefault();
-        if (string.IsNullOrEmpty(result)) result = context.Connection.RemoteIpAddress?.ToString();
+        if (string.IsNullOrEmpty(result))
+        {
+            result = context.Connection.RemoteIpAddress?.ToString();
+        }
+
         if (string.IsNullOrEmpty(result) || result.Contains("::1"))
+        {
             result = "127.0.0.1";
+        }
 
         result = result.Replace("::ffff:", "127.0.0.1");
 
