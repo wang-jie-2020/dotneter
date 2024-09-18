@@ -6,9 +6,7 @@ namespace Yi.Framework.Caching.FreeRedis;
 
 public class YiDistributedCacheKeyNormalizer : IDistributedCacheKeyNormalizer
 {
-    public YiDistributedCacheKeyNormalizer(
-        ICurrentTenant currentTenant,
-        IOptions<AbpDistributedCacheOptions> distributedCacheOptions)
+    public YiDistributedCacheKeyNormalizer(ICurrentTenant currentTenant, IOptions<AbpDistributedCacheOptions> distributedCacheOptions)
     {
         CurrentTenant = currentTenant;
         DistributedCacheOptions = distributedCacheOptions.Value;

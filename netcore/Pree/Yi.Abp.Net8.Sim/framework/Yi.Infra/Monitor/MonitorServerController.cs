@@ -31,7 +31,7 @@ public class MonitorServerController : AbpController
         var version = RuntimeInformation.FrameworkDescription;
         var ram = ((double)Process.GetCurrentProcess().WorkingSet64 / 1048576).ToString("N2") + " MB";
         var startTime = Process.GetCurrentProcess().StartTime.ToString("yyyy-MM-dd HH:mm:ss");
-        var sysRunTime = ComputerHelper.GetRunTime();
+        var sysRunTime = OsHelper.GetRunTime();
         var ip = _httpContextAccessor.HttpContext.Connection.LocalIpAddress.MapToIPv4() + ":" +
                        _httpContextAccessor.HttpContext.Connection.LocalPort; //获取服务器IP
 
@@ -41,8 +41,8 @@ public class MonitorServerController : AbpController
                 long.Parse((DateTime.Now - programStartTime).TotalMilliseconds.ToString().Split('.')[0]));
         var data = new
         {
-            cpu = ComputerHelper.GetComputerInfo(),
-            disk = ComputerHelper.GetDiskInfos(),
+            cpu = OsHelper.GetComputerInfo(),
+            disk = OsHelper.GetDiskInfos(),
             sys = new { cpuNum, computerName, osName, osArch, serverIP = ip, runTime = sysRunTime },
             app = new
             {

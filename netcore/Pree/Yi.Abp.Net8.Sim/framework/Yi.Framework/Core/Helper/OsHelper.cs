@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System.Diagnostics;
+using System.Globalization;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
@@ -7,7 +8,7 @@ using Newtonsoft.Json;
 
 namespace Yi.Framework.Core.Helper;
 
-public class ComputerHelper
+public class OsHelper
 {
     /// <summary>
     ///     将object转换为long，若转换失败，则返回0。不抛出异常。
@@ -141,7 +142,7 @@ public class ComputerHelper
         {
             try
             {
-                var output = ShellHelper.Bash("df -m / | awk '{print $2,$3,$4,$5,$6}'");
+                var output = Bash("df -m / | awk '{print $2,$3,$4,$5,$6}'");
                 var arr = output.Split('\n', StringSplitOptions.RemoveEmptyEntries);
                 if (arr.Length == 0) return diskInfos;
 
@@ -200,12 +201,12 @@ public class ComputerHelper
         string cpuRate;
         if (IsUnix())
         {
-            var output = ShellHelper.Bash("top -b -n1 | grep \"Cpu(s)\" | awk '{print $2 + $4}'");
+            var output = Bash("top -b -n1 | grep \"Cpu(s)\" | awk '{print $2 + $4}'");
             cpuRate = output.Trim();
         }
         else
         {
-            var output = ShellHelper.Cmd("wmic", "cpu get LoadPercentage");
+            var output = Cmd("wmic", "cpu get LoadPercentage");
             cpuRate = output.Replace("LoadPercentage", string.Empty).Trim();
         }
 
@@ -223,13 +224,13 @@ public class ComputerHelper
         {
             if (IsUnix())
             {
-                var output = ShellHelper.Bash("uptime -s").Trim();
+                var output = Bash("uptime -s").Trim();
                 runTime = FormatTime(ParseToLong((DateTime.Now - ParseToDateTime(output))
                     .TotalMilliseconds.ToString().Split('.')[0]));
             }
             else
             {
-                var output = ShellHelper.Cmd("wmic", "OS get LastBootUpTime/Value");
+                var output = Cmd("wmic", "OS get LastBootUpTime/Value");
                 var outputArr = output.Split('=', (char)StringSplitOptions.RemoveEmptyEntries);
                 if (outputArr.Length == 2)
                     runTime = FormatTime(ParseToLong(
@@ -285,6 +286,55 @@ public class ComputerHelper
         }
 
         return instanceIp;
+    }
+    
+    /// <summary>
+    ///     linux 系统命令
+    /// </summary>
+    /// <param name="command"></param>
+    /// <returns></returns>
+    public static string Bash(string command)
+    {
+        var escapedArgs = command.Replace("\"", "\\\"");
+        var process = new Process
+        {
+            StartInfo = new ProcessStartInfo
+            {
+                FileName = "/bin/bash",
+                Arguments = $"-c \"{escapedArgs}\"",
+                RedirectStandardOutput = true,
+                UseShellExecute = false,
+                CreateNoWindow = true
+            }
+        };
+        process.Start();
+        var result = process.StandardOutput.ReadToEnd();
+        process.WaitForExit();
+        process.Dispose();
+        return result;
+    }
+
+    /// <summary>
+    ///     windows系统命令
+    /// </summary>
+    /// <param name="fileName"></param>
+    /// <param name="args"></param>
+    /// <returns></returns>
+    public static string Cmd(string fileName, string args)
+    {
+        var output = string.Empty;
+
+        var info = new ProcessStartInfo();
+        info.FileName = fileName;
+        info.Arguments = args;
+        info.RedirectStandardOutput = true;
+
+        using (var process = Process.Start(info))
+        {
+            output = process.StandardOutput.ReadToEnd();
+        }
+
+        return output;
     }
 }
 
@@ -356,7 +406,7 @@ public class MemoryMetricsClient
     /// <returns></returns>
     public MemoryMetrics GetWindowsMetrics()
     {
-        var output = ShellHelper.Cmd("wmic", "OS get FreePhysicalMemory,TotalVisibleMemorySize /Value");
+        var output = OsHelper.Cmd("wmic", "OS get FreePhysicalMemory,TotalVisibleMemorySize /Value");
         var metrics = new MemoryMetrics();
         var lines = output.Trim().Split('\n', (char)StringSplitOptions.RemoveEmptyEntries);
 
@@ -378,7 +428,7 @@ public class MemoryMetricsClient
     /// <returns></returns>
     public MemoryMetrics GetUnixMetrics()
     {
-        var output = ShellHelper.Bash("free -m | awk '{print $2,$3,$4,$5,$6}'");
+        var output = OsHelper.Bash("free -m | awk '{print $2,$3,$4,$5,$6}'");
         var metrics = new MemoryMetrics();
         var lines = output.Split('\n', (char)StringSplitOptions.RemoveEmptyEntries);
 

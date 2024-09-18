@@ -39,8 +39,7 @@ public static class TreeHelper
 
         mm.Children = mm.Children.OrderByDescending(m => (m as ITreeModel<T>)!.OrderNum).ToList();
     }
-
-
+    
     public interface ITreeModel<T>
     {
         public Guid Id { get; set; }
