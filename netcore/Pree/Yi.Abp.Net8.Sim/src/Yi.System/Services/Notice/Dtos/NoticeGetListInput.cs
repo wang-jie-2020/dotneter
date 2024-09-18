@@ -1,3 +1,4 @@
+using Yi.AspNetCore.Common;
 using Yi.System.Services.Notice.Entities;
 
 namespace Yi.System.Services.Notice.Dtos;

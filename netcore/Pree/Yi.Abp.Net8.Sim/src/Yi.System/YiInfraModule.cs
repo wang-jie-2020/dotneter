@@ -2,7 +2,6 @@
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Volo.Abp.AspNetCore.SignalR;
 using Volo.Abp.Auditing;
-using Volo.Abp.BackgroundWorkers.Quartz;
 using Volo.Abp.Data;
 using Volo.Abp.MultiTenancy;
 using Yi.System.Domains.AuditLogging;
@@ -15,8 +14,7 @@ namespace Yi.System;
 
 [DependsOn(
     typeof(AbpAuditingModule),
-    typeof(AbpAspNetCoreSignalRModule),
-    typeof(AbpBackgroundWorkersQuartzModule)
+    typeof(AbpAspNetCoreSignalRModule)
 )]
 public class YiInfraModule : AbpModule
 {

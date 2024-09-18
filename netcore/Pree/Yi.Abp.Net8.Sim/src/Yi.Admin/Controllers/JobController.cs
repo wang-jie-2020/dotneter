@@ -6,10 +6,10 @@ using Quartz.Impl.Matchers;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.Timing;
-using Yi.System.Services.Monitor;
-using Yi.System.Services.Monitor.Dtos;
+using Yi.Admin.Domains;
+using Yi.Admin.Services.Dtos;
 
-namespace Yi.System.Controllers;
+namespace Yi.Admin.Controllers;
 
 [ApiController]
 [Route("api/app/job")]

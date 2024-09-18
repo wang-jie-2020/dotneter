@@ -21,6 +21,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\Yi.Admin\Yi.Admin.csproj" />
         <ProjectReference Include="..\Yi.AspNetCore\Yi.AspNetCore.csproj" />
         <ProjectReference Include="..\Yi.System\Yi.System.csproj" />
     </ItemGroup>

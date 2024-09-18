@@ -1,3 +1,5 @@
+using Yi.AspNetCore.Common;
+
 namespace Yi.System.Services.OperationLogging.Dtos;
 
 public class OperationLogGetListInput : PagedInfraInput

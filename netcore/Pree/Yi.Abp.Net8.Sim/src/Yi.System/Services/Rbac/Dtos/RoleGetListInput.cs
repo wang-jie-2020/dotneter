@@ -1,3 +1,5 @@
+using Yi.AspNetCore.Common;
+
 namespace Yi.System.Services.Rbac.Dtos;
 
 public class RoleGetListInput : PagedInfraInput

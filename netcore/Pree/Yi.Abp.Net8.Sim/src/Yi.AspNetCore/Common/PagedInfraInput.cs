@@ -1,6 +1,6 @@
 ﻿using Volo.Abp.Application.Dtos;
 
-namespace Yi.System;
+namespace Yi.AspNetCore.Common;
 
 [Serializable]
 public class PagedInfraInput : PagedAndSortedResultRequestDto

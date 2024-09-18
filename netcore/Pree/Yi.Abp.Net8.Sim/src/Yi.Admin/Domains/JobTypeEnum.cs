@@ -1,4 +1,4 @@
-﻿namespace Yi.System.Services.Monitor;
+﻿namespace Yi.Admin.Domains;
 
 public enum JobTypeEnum
 {

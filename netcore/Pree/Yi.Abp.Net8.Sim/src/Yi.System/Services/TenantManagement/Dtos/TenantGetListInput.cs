@@ -1,4 +1,6 @@
-﻿namespace Yi.System.Services.TenantManagement.Dtos;
+﻿using Yi.AspNetCore.Common;
+
+namespace Yi.System.Services.TenantManagement.Dtos;
 
 public class TenantGetListInput : PagedInfraInput
 {

@@ -1,4 +1,6 @@
-﻿namespace Yi.System.Services.Monitor.Dtos;
+﻿using Yi.Admin.Domains;
+
+namespace Yi.Admin.Services.Dtos;
 
 public class JobGetOutput
 {

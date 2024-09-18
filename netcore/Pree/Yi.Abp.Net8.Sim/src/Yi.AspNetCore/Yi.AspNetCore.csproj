@@ -17,6 +17,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <PackageReference Include="Volo.Abp.AspNetCore.Mvc" Version="$(AbpVersion)" />
         <PackageReference Include="Volo.Abp.Caching" Version="$(AbpVersion)" />
         <PackageReference Include="Volo.Abp.Core" Version="$(AbpVersion)" />
         <PackageReference Include="Volo.Abp.Ddd.Application" Version="$(AbpVersion)" />

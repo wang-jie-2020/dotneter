@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Volo.Abp.AspNetCore.Mvc;
 
-namespace Yi.System.Controllers;
+namespace Yi.Admin.Controllers;
 
 [ApiController]
 [Route("api/app/monitor-server")]

@@ -1,4 +1,6 @@
-﻿namespace Yi.System.Services.Account.Dtos;
+﻿using Yi.AspNetCore.Common;
+
+namespace Yi.System.Services.Account.Dtos;
 
 public class LoginLogGetListInputVo : PagedInfraInput
 {
