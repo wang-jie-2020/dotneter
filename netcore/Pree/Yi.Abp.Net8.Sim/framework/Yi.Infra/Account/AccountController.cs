@@ -24,7 +24,7 @@ namespace Yi.Infra.Account;
 
 [ApiController]
 [Route("api/app/account")]
-public class AccountService : AbpController
+public class AccountController : AbpController
 {
     private readonly ICaptcha _captcha;
     private readonly IGuidGenerator _guidGenerator;
@@ -37,7 +37,7 @@ public class AccountService : AbpController
     private readonly UserManager _userManager;
     private readonly IUserRepository _userRepository;
 
-    public AccountService(IUserRepository userRepository,
+    public AccountController(IUserRepository userRepository,
         ICurrentUser currentUser,
         IAccountManager accountManager,
         ISqlSugarRepository<MenuAggregateRoot> menuRepository,
@@ -132,7 +132,7 @@ public class AccountService : AbpController
     ///     查询已登录的账户信息，已缓存
     /// </summary>
     /// <returns></returns>
-    [Route("account")]
+    [HttpGet("account")]
     [Authorize]
     public async Task<UserRoleMenuDto> GetAsync()
     {
@@ -234,7 +234,7 @@ public class AccountService : AbpController
     /// </summary>
     /// <returns></returns>
     [Authorize]
-    [Route("account/Vue3Router")]
+    [HttpGet("account/Vue3Router")]
     public async Task<List<Vue3RouterDto>> GetVue3Router()
     {
         var userId = _currentUser.Id;
@@ -254,7 +254,7 @@ public class AccountService : AbpController
     ///     退出登录
     /// </summary>
     /// <returns></returns>
-    [HttpPost]
+    [HttpPost("logout")]
     public async Task<bool> PostLogout()
     {
         //通过鉴权jwt获取到用户的id
