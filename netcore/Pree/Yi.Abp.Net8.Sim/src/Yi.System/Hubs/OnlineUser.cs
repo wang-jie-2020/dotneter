@@ -1,12 +1,12 @@
 ﻿namespace Yi.System.Hubs;
 
-public class OnlineUserModel
+public class OnlineUser
 {
-    public OnlineUserModel()
+    public OnlineUser()
     {
     }
 
-    public OnlineUserModel(string connectionId)
+    public OnlineUser(string connectionId)
     {
         ConnectionId = connectionId;
     }

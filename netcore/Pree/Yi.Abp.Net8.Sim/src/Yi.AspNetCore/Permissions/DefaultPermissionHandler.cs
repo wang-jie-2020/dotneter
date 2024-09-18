@@ -5,7 +5,7 @@ using Yi.AspNetCore.Extensions;
 
 namespace Yi.AspNetCore.Permissions;
 
-public class DefaultPermissionHandler : IPermissionHandler, ITransientDependency
+public class DefaultPermissionHandler : IPermissionHandler
 {
     private readonly ICurrentUser _currentUser;
     private readonly IHttpContextAccessor _httpContextAccessor;

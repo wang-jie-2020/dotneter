@@ -60,6 +60,8 @@ public class YiAspNetCoreModule : AbpModule
         context.Services.AddTransient(typeof(ISqlSugarDbConnectionCreator), typeof(SqlSugarDbConnectionCreator));
         
         //AspNetCore
+        context.Services.AddTransient<IPermissionHandler, DefaultPermissionHandler>();
+        context.Services.AddTransient<PermissionFilter>();
         context.Services.Configure<MvcOptions>(options =>
         {
             options.Filters.Add<PermissionFilter>();

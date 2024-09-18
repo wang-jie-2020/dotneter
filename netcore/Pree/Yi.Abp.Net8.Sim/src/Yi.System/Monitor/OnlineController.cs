@@ -21,7 +21,7 @@ public class OnlineController : AbpController
     }
 
     [HttpGet]
-    public Task<PagedResultDto<OnlineUserModel>> GetListAsync([FromQuery] OnlineUserModel online)
+    public Task<PagedResultDto<OnlineUser>> GetListAsync([FromQuery] OnlineUser online)
     {
         var data = MainHub.clientUsers;
         var dataWhere = data.AsEnumerable();
@@ -36,7 +36,7 @@ public class OnlineController : AbpController
             dataWhere = dataWhere.Where(u => u.UserName!.Contains(online.UserName));
         }
 
-        return Task.FromResult(new PagedResultDto<OnlineUserModel> { TotalCount = data.Count, Items = dataWhere.ToList() });
+        return Task.FromResult(new PagedResultDto<OnlineUser> { TotalCount = data.Count, Items = dataWhere.ToList() });
     }
     
     /// <summary>

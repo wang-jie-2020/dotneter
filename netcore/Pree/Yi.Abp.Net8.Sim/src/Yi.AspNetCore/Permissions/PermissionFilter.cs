@@ -6,7 +6,7 @@ using Volo.Abp.Http;
 
 namespace Yi.AspNetCore.Permissions;
 
-internal class PermissionFilter : ActionFilterAttribute, ITransientDependency
+internal class PermissionFilter : ActionFilterAttribute
 {
     private readonly IPermissionHandler _permissionHandler;
 

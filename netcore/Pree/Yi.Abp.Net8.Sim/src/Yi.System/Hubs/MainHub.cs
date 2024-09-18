@@ -11,7 +11,7 @@ namespace Yi.System.Hubs;
 //[Authorize]
 public class MainHub : AbpHub
 {
-    public static readonly List<OnlineUserModel> clientUsers = new();
+    public static readonly List<OnlineUser> clientUsers = new();
     private static readonly object objLock = new();
 
     private readonly HttpContext? _httpContext;
@@ -34,7 +34,7 @@ public class MainHub : AbpHub
             var name = CurrentUser.UserName;
             var loginUser = new LoginLogAggregateRoot().GetInfoByHttpContext(_httpContext);
 
-            OnlineUserModel user = new(Context.ConnectionId)
+            OnlineUser user = new(Context.ConnectionId)
             {
                 Browser = loginUser?.Browser,
                 LoginLocation = loginUser?.LoginLocation,
