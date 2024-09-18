@@ -17,6 +17,7 @@ using Volo.Abp.Caching;
 using Volo.Abp.Domain;
 using Volo.Abp.MultiTenancy;
 using Volo.Abp.Swashbuckle;
+using Yi.Admin;
 using Yi.AspNetCore;
 using Yi.AspNetCore.Extensions;
 using Yi.AspNetCore.Permissions;
@@ -40,7 +41,8 @@ namespace Yi.Web;
     typeof(AbpDddDomainModule),
     typeof(AbpCachingModule),
     typeof(AbpDddDomainSharedModule),
-    typeof(YiInfraModule)
+    typeof(YiInfraModule),
+    typeof(YiAdminModule)
 )]
 public class YiAbpWebModule : AbpModule
 {

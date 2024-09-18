@@ -132,7 +132,7 @@ public class AccountController : AbpController
     ///     查询已登录的账户信息，已缓存
     /// </summary>
     /// <returns></returns>
-    [HttpGet("account")]
+    [HttpGet]
     [Authorize]
     public async Task<UserRoleMenuDto> GetAsync()
     {
@@ -234,7 +234,7 @@ public class AccountController : AbpController
     /// </summary>
     /// <returns></returns>
     [Authorize]
-    [HttpGet("account/Vue3Router")]
+    [HttpGet("Vue3Router")]
     public async Task<List<Vue3RouterDto>> GetVue3Router()
     {
         var userId = _currentUser.Id;
