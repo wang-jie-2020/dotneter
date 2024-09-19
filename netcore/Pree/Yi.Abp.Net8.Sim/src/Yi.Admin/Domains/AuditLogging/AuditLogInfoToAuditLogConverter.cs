@@ -32,22 +32,25 @@ public class AuditLogInfoToAuditLogConverter : IAuditLogInfoToAuditLogConverter
 
         var extraProperties = new ExtraPropertyDictionary();
         if (auditLogInfo.ExtraProperties != null)
+        {
             foreach (var pair in auditLogInfo.ExtraProperties)
+            {
                 extraProperties.Add(pair.Key, pair.Value);
+            }
+        }
 
-        var entityChanges = auditLogInfo
-                                .EntityChanges?
-                                .Select(entityChangeInfo => new EntityChangeEntity(GuidGenerator, auditLogId,
-                                    entityChangeInfo, auditLogInfo.TenantId))
-                                .ToList()
-                            ?? new List<EntityChangeEntity>();
+        var entityChanges = auditLogInfo.EntityChanges?
+            .Select(entityChangeInfo => new EntityChangeEntity(
+                GuidGenerator,
+                auditLogId,
+                entityChangeInfo,
+                auditLogInfo.TenantId))
+            .ToList() ?? new List<EntityChangeEntity>();
 
-        var actions = auditLogInfo
-                          .Actions?
-                          .Select(auditLogActionInfo => new AuditLogActionEntity(GuidGenerator.Create(), auditLogId,
-                              auditLogActionInfo, auditLogInfo.TenantId))
-                          .ToList()
-                      ?? new List<AuditLogActionEntity>();
+        var actions = auditLogInfo.Actions?
+            .Select(auditLogActionInfo => new AuditLogActionEntity(GuidGenerator.Create(), auditLogId,
+                auditLogActionInfo, auditLogInfo.TenantId))
+            .ToList() ?? new List<AuditLogActionEntity>();
 
         var remoteServiceErrorInfos = auditLogInfo.Exceptions?.Select(exception =>
                                           ExceptionToErrorInfoConverter.Convert(exception, options =>

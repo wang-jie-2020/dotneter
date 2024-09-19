@@ -1,13 +1,11 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Volo.Abp.Auditing;
-using Volo.Abp.BackgroundWorkers.Quartz;
 using Volo.Abp.Data;
 using Volo.Abp.MultiTenancy;
 using Yi.Admin.Domains.AuditLogging;
 using Yi.Admin.Domains.AuditLogging.Repositories;
 using Yi.Admin.Domains.TenantManagement;
-using Yi.Admin.Services.TenantManagement;
 using Yi.AspNetCore;
 
 namespace Yi.Admin;

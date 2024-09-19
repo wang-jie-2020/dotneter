@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Volo.Abp.DependencyInjection;
 using Volo.Abp.Users;
 using Yi.AspNetCore.Extensions;
 

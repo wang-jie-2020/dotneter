@@ -1,6 +1,4 @@
-﻿using Yi.Admin.Domains;
-
-namespace Yi.Admin.Services.Monitor.Dtos;
+﻿namespace Yi.Admin.Services.Monitor.Dtos;
 
 public class JobCreateInput
 {

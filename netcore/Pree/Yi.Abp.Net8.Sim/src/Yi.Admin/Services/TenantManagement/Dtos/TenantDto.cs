@@ -2,8 +2,10 @@
 
 namespace Yi.Admin.Services.TenantManagement.Dtos;
 
-public class TenantDto : EntityDto<Guid>
+public class TenantDto 
 {
+    public Guid Id { get; set; }
+    
     public string Name { get; set; }
     
     public int EntityVersion { get; set; }

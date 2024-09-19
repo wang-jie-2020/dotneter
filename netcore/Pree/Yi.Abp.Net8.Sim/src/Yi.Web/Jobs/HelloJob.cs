@@ -1,7 +1,7 @@
 ﻿using Quartz;
 using Volo.Abp.BackgroundWorkers.Quartz;
 
-namespace Yi.Web;
+namespace Yi.Web.Jobs;
 
 public class HelloJob : QuartzBackgroundWorkerBase
 {

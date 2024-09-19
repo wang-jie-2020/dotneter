@@ -17,8 +17,9 @@ User缓存 明显漏洞
 
 国际化
 
+Oss minio,本地直接pass掉
 
-
+Tenant 租户切换
 
 
 

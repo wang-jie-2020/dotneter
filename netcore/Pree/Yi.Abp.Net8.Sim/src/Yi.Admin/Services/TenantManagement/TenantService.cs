@@ -10,7 +10,6 @@ using Yi.Admin.Services.TenantManagement.Dtos;
 
 namespace Yi.Admin.Services.TenantManagement;
 
-[RemoteService(false)]
 public class TenantService : ApplicationService, ITenantService
 {
     private readonly IDataSeeder _dataSeeder;

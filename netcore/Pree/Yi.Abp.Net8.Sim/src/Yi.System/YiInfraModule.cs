@@ -1,6 +1,4 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Volo.Abp.AspNetCore.SignalR;
-using Volo.Abp.Auditing;
 using Yi.AspNetCore;
 using Yi.System.Services.Account.Options;
 using Yi.System.Services.OperationLogging;

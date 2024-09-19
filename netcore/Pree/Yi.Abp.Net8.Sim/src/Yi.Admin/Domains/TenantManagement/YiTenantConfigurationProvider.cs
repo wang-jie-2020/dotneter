@@ -28,7 +28,10 @@ public class YiTenantConfigurationProvider : ITenantConfigurationProvider
         //租户解析器获取到当前解析成功的租户
         var resolveResult = await TenantResolver.ResolveTenantIdOrNameAsync();
 
-        if (saveResolveResult) TenantResolveResultAccessor.Result = resolveResult;
+        if (saveResolveResult)
+        {
+            TenantResolveResultAccessor.Result = resolveResult;
+        }
 
         TenantConfiguration? tenant = null;
         if (resolveResult.TenantIdOrName != null)
@@ -37,18 +40,22 @@ public class YiTenantConfigurationProvider : ITenantConfigurationProvider
             tenant = await FindTenantAsync(resolveResult.TenantIdOrName);
 
             if (tenant == null)
+            {
                 throw new BusinessException(
                     "Volo.AbpIo.MultiTenancy:010001",
                     StringLocalizer["TenantNotFoundMessage"],
                     StringLocalizer["TenantNotFoundDetails", resolveResult.TenantIdOrName]
                 );
+            }
 
             if (!tenant.IsActive)
+            {
                 throw new BusinessException(
                     "Volo.AbpIo.MultiTenancy:010002",
                     StringLocalizer["TenantNotActiveMessage"],
                     StringLocalizer["TenantNotActiveDetails", resolveResult.TenantIdOrName]
                 );
+            }
         }
 
         return tenant;
@@ -57,7 +64,10 @@ public class YiTenantConfigurationProvider : ITenantConfigurationProvider
     protected virtual async Task<TenantConfiguration?> FindTenantAsync(string tenantIdOrName)
     {
         if (Guid.TryParse(tenantIdOrName, out var parsedTenantId))
+        {
             return await TenantStore.FindAsync(parsedTenantId);
+        }
+
         return await TenantStore.FindAsync(tenantIdOrName);
     }
 }

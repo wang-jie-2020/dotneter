@@ -38,9 +38,10 @@ public class SqlSugarAndConfigurationTenantStore : DefaultTenantStore, ITenantSt
     public new async Task<TenantConfiguration?> FindAsync(string name)
     {
         var tenantFromOptions = await base.FindAsync(name);
-        //如果配置文件不存在改租户
         if (tenantFromOptions is null)
+        {
             return (await GetCacheItemAsync(null, name)).Value;
+        }
         return tenantFromOptions;
     }
 
@@ -48,12 +49,14 @@ public class SqlSugarAndConfigurationTenantStore : DefaultTenantStore, ITenantSt
     {
         var tenantFromOptions = await base.FindAsync(id);
         if (tenantFromOptions is null)
+        {
             return (await GetCacheItemAsync(id, null)).Value;
+        }
         return tenantFromOptions;
     }
 
 
-    protected virtual async Task<TenantCacheItem> GetCacheItemAsync(Guid? id, string name)
+    protected virtual async Task<TenantCacheItem> GetCacheItemAsync(Guid? id, string? name)
     {
         var cacheKey = CalculateCacheKey(id, name);
 
@@ -61,23 +64,27 @@ public class SqlSugarAndConfigurationTenantStore : DefaultTenantStore, ITenantSt
         if (cacheItem != null) return cacheItem;
 
         if (id.HasValue)
+        {
             using (CurrentTenant.Change(null)) //TODO: No need this if we can implement to define host side (or tenant-independent) entities!
             {
                 var tenant = await TenantRepository.FindAsync(id.Value);
                 return await SetCacheAsync(cacheKey, tenant);
             }
+        }
 
         if (!name.IsNullOrWhiteSpace())
+        {
             using (CurrentTenant.Change(null)) //TODO: No need this if we can implement to define host side (or tenant-independent) entities!
             {
                 var tenant = await TenantRepository.FindByNameAsync(name);
                 return await SetCacheAsync(cacheKey, tenant);
             }
+        }
 
         throw new AbpException("Both id and name can't be invalid.");
     }
 
-    protected virtual async Task<TenantCacheItem> SetCacheAsync(string cacheKey, [CanBeNull] TenantAggregateRoot tenant)
+    protected virtual async Task<TenantCacheItem> SetCacheAsync(string cacheKey, TenantAggregateRoot? tenant)
     {
         var tenantConfiguration = tenant != null ? MapToConfiguration(tenant) : null;
         var cacheItem = new TenantCacheItem(tenantConfiguration);
@@ -87,18 +94,22 @@ public class SqlSugarAndConfigurationTenantStore : DefaultTenantStore, ITenantSt
 
     private TenantConfiguration MapToConfiguration(TenantAggregateRoot tenantAggregateRoot)
     {
-        var tenantConfiguration = new TenantConfiguration();
-        tenantConfiguration.Id = tenantAggregateRoot.Id;
-        tenantConfiguration.Name = tenantAggregateRoot.Name;
-        tenantConfiguration.ConnectionStrings = MapToString(tenantAggregateRoot.TenantConnectionString);
-        tenantConfiguration.IsActive = true;
+        var tenantConfiguration = new TenantConfiguration
+        {
+            Id = tenantAggregateRoot.Id,
+            Name = tenantAggregateRoot.Name,
+            ConnectionStrings = MapToString(tenantAggregateRoot.TenantConnectionString),
+            IsActive = true
+        };
         return tenantConfiguration;
     }
 
     private ConnectionStrings? MapToString(string tenantConnectionString)
     {
-        var connectionStrings = new ConnectionStrings();
-        connectionStrings[ConnectionStrings.DefaultConnectionStringName] = tenantConnectionString;
+        var connectionStrings = new ConnectionStrings
+        {
+            [ConnectionStrings.DefaultConnectionStringName] = tenantConnectionString
+        };
         return connectionStrings;
     }
 

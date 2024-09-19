@@ -7,8 +7,7 @@ namespace Yi.Admin.Domains.AuditLogging.Repositories;
 
 public class SqlSugarCoreAuditLogRepository : SqlSugarRepository<AuditLogAggregateRoot, Guid>, IAuditLogRepository
 {
-    public SqlSugarCoreAuditLogRepository(ISugarDbContextProvider<ISqlSugarDbContext> sugarDbContextProvider) : base(
-        sugarDbContextProvider)
+    public SqlSugarCoreAuditLogRepository(ISugarDbContextProvider<ISqlSugarDbContext> sugarDbContextProvider) : base(sugarDbContextProvider)
     {
     }
 
@@ -26,18 +25,18 @@ public class SqlSugarCoreAuditLogRepository : SqlSugarRepository<AuditLogAggrega
     }
 
     public virtual async Task<List<AuditLogAggregateRoot>> GetListAsync(
-        string sorting = null,
+        string? sorting = null,
         int maxResultCount = 50,
         int skipCount = 0,
         DateTime? startTime = null,
         DateTime? endTime = null,
-        string httpMethod = null,
-        string url = null,
+        string? httpMethod = null,
+        string? url = null,
         Guid? userId = null,
-        string userName = null,
-        string applicationName = null,
-        string clientIpAddress = null,
-        string correlationId = null,
+        string? userName = null,
+        string? applicationName = null,
+        string? clientIpAddress = null,
+        string? correlationId = null,
         int? maxExecutionDuration = null,
         int? minExecutionDuration = null,
         bool? hasException = null,
@@ -71,13 +70,13 @@ public class SqlSugarCoreAuditLogRepository : SqlSugarRepository<AuditLogAggrega
     public virtual async Task<long> GetCountAsync(
         DateTime? startTime = null,
         DateTime? endTime = null,
-        string httpMethod = null,
-        string url = null,
+        string? httpMethod = null,
+        string? url = null,
         Guid? userId = null,
-        string userName = null,
-        string applicationName = null,
-        string clientIpAddress = null,
-        string correlationId = null,
+        string? userName = null,
+        string? applicationName = null,
+        string? clientIpAddress = null,
+        string? correlationId = null,
         int? maxExecutionDuration = null,
         int? minExecutionDuration = null,
         bool? hasException = null,
@@ -121,10 +120,9 @@ public class SqlSugarCoreAuditLogRepository : SqlSugarRepository<AuditLogAggrega
             })
             .ToListAsync();
 
-        return result.ToDictionary(element => element.Day.Value.ClearTime(),
-            element => (double)element.avgExecutionTime);
+        return result.ToDictionary(element => element.Day.Value.ClearTime(), element => (double)element.avgExecutionTime);
     }
-    
+
     public virtual async Task<EntityChangeEntity> GetEntityChange(
         Guid entityChangeId,
         CancellationToken cancellationToken = default)
@@ -140,15 +138,15 @@ public class SqlSugarCoreAuditLogRepository : SqlSugarRepository<AuditLogAggrega
     }
 
     public virtual async Task<List<EntityChangeEntity>> GetEntityChangeListAsync(
-        string sorting = null,
+        string? sorting = null,
         int maxResultCount = 50,
         int skipCount = 0,
         Guid? auditLogId = null,
         DateTime? startTime = null,
         DateTime? endTime = null,
         EntityChangeType? changeType = null,
-        string entityId = null,
-        string entityTypeFullName = null,
+        string? entityId = null,
+        string? entityTypeFullName = null,
         bool includeDetails = false,
         CancellationToken cancellationToken = default)
     {
@@ -165,8 +163,8 @@ public class SqlSugarCoreAuditLogRepository : SqlSugarRepository<AuditLogAggrega
         DateTime? startTime = null,
         DateTime? endTime = null,
         EntityChangeType? changeType = null,
-        string entityId = null,
-        string entityTypeFullName = null,
+        string? entityId = null,
+        string? entityTypeFullName = null,
         CancellationToken cancellationToken = default)
     {
         var query = await GetEntityChangeListQueryAsync(auditLogId, startTime, endTime, changeType, entityId,
@@ -207,13 +205,13 @@ public class SqlSugarCoreAuditLogRepository : SqlSugarRepository<AuditLogAggrega
     protected virtual async Task<ISugarQueryable<AuditLogAggregateRoot>> GetListQueryAsync(
         DateTime? startTime = null,
         DateTime? endTime = null,
-        string httpMethod = null,
-        string url = null,
+        string? httpMethod = null,
+        string? url = null,
         Guid? userId = null,
-        string userName = null,
-        string applicationName = null,
-        string clientIpAddress = null,
-        string correlationId = null,
+        string? userName = null,
+        string? applicationName = null,
+        string? clientIpAddress = null,
+        string? correlationId = null,
         int? maxExecutionDuration = null,
         int? minExecutionDuration = null,
         bool? hasException = null,
