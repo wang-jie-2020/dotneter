@@ -8,9 +8,10 @@ EXPOSE 8080
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
+COPY ["src/Yi.Admin/Yi.Admin.csproj", "src/Yi.Admin/"]
+COPY ["src/Yi.AspNetCore/Yi.AspNetCore.csproj", "src/Yi.AspNetCore/"]
+COPY ["src/Yi.System/Yi.System.csproj", "src/Yi.System/"]
 COPY ["src/Yi.Web/Yi.Web.csproj", "src/Yi.Web/"]
-COPY ["framework/Yi.Framework/Yi.Framework.csproj", "framework/Yi.Framework/"]
-COPY ["framework/Yi.Infra/Yi.Infra.csproj", "framework/Yi.Infra/"]
 
 RUN dotnet restore "./src/Yi.Web/Yi.Web.csproj"
 COPY . .

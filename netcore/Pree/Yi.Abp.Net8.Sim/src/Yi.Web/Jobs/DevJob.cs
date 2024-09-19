@@ -3,17 +3,17 @@ using Volo.Abp.BackgroundWorkers.Quartz;
 
 namespace Yi.Web.Jobs;
 
-public class HelloJob : QuartzBackgroundWorkerBase
+public class DevJob : QuartzBackgroundWorkerBase
 {
-    public HelloJob()
+    public DevJob()
     {
-        JobDetail = JobBuilder.Create<HelloJob>().WithIdentity(nameof(HelloJob)).Build();
+        JobDetail = JobBuilder.Create<DevJob>().WithIdentity(nameof(DevJob)).Build();
 
         // Trigger = TriggerBuilder.Create().WithIdentity(nameof(HelloJob)).StartNow()
         //     .WithSimpleSchedule(x => x.WithIntervalInSeconds(1000 * 60).RepeatForever())
         //     .Build();
-        
-        Trigger = TriggerBuilder.Create().WithIdentity(nameof(HelloJob)).WithCronSchedule("0 0 * * * ? ").Build();
+
+        Trigger = TriggerBuilder.Create().WithIdentity(nameof(DevJob)).WithCronSchedule("0 0 * * * ? ").Build();
     }
 
     public override async Task Execute(IJobExecutionContext context)

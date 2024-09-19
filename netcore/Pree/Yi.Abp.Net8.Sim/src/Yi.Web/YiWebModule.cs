@@ -19,7 +19,6 @@ using Yi.AspNetCore.SqlSugarCore;
 using Yi.System;
 using Yi.System.Options;
 
-
 namespace Yi.Web;
 
 [DependsOn(
@@ -33,24 +32,23 @@ public class YiAbpWebModule : AbpModule
 
     public override Task ConfigureServicesAsync(ServiceConfigurationContext context)
     {
+        var configuration = context.Services.GetConfiguration();
+        var host = context.Services.GetHostingEnvironment();
+
         context.Services.AddYiDbContext<YiDbContext>();
         context.Services.AddTransient(x => x.GetRequiredService<ISqlSugarDbContext>().SqlSugarClient);
 
-        var configuration = context.Services.GetConfiguration();
-        var host = context.Services.GetHostingEnvironment();
-        var service = context.Services;
-
         //请求日志
-        Configure<AbpAuditingOptions>(optios =>
+        Configure<AbpAuditingOptions>(options =>
         {
             //默认关闭，开启会有大量的审计日志
-            optios.IsEnabled = false;
+            options.IsEnabled = false;
             //审计日志过滤器
-            optios.AlwaysLogSelectors.Add(x => Task.FromResult(true));
+            options.AlwaysLogSelectors.Add(x => Task.FromResult(true));
         });
-        
+
         //设置api格式
-        service.AddControllers().AddNewtonsoftJson(options =>
+        context.Services.AddControllers().AddNewtonsoftJson(options =>
         {
             options.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";
             options.SerializerSettings.Converters.Add(new StringEnumConverter());
@@ -63,7 +61,6 @@ public class YiAbpWebModule : AbpModule
             //缓存key前缀
             cacheOptions.KeyPrefix = "Yi:";
         });
-
 
         Configure<AbpAntiForgeryOptions>(options => { options.AutoValidate = false; });
 
@@ -104,7 +101,7 @@ public class YiAbpWebModule : AbpModule
 
         //速率限制
         //每60秒限制100个请求，滑块添加，分6段
-        service.AddRateLimiter(_ =>
+        context.Services.AddRateLimiter(_ =>
         {
             _.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
             _.OnRejected = (context, _) =>
@@ -186,7 +183,10 @@ public class YiAbpWebModule : AbpModule
                         }
 
                         var refreshToken = context.Request.Query["refresh_token"];
-                        if (!string.IsNullOrEmpty(refreshToken)) context.Token = refreshToken;
+                        if (!string.IsNullOrEmpty(refreshToken))
+                        {
+                            context.Token = refreshToken;
+                        }
 
                         return Task.CompletedTask;
                     }
@@ -198,7 +198,6 @@ public class YiAbpWebModule : AbpModule
 
         return Task.CompletedTask;
     }
-
 
     public override Task OnApplicationInitializationAsync(ApplicationInitializationContext context)
     {
@@ -212,10 +211,8 @@ public class YiAbpWebModule : AbpModule
         //跨域
         app.UseCors(DefaultCorsPolicyName);
 
-        if (!env.IsDevelopment())
-            //速率限制
-            app.UseRateLimiter();
-
+        //速率限制
+        app.UseRateLimiter();
 
         //无感token，先刷新再鉴权
         app.UseRefreshToken();
