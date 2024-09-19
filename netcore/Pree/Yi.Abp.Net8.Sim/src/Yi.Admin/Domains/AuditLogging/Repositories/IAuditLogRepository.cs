@@ -4,7 +4,7 @@ using Yi.Admin.Domains.AuditLogging.Entities;
 
 namespace Yi.Admin.Domains.AuditLogging.Repositories;
 
-public interface IAuditLogRepository : ISqlSugarRepository<AuditLogAggregateRoot, Guid>
+public interface IAuditLogRepository : ISqlSugarRepository<AuditLogEntity, Guid>
 {
     Task<Dictionary<DateTime, double>> GetAverageExecutionDurationPerDayAsync(
         DateTime startDate, 
@@ -58,7 +58,7 @@ public interface IAuditLogRepository : ISqlSugarRepository<AuditLogAggregateRoot
 
     Task<EntityChangeWithUsername> GetEntityChangeWithUsernameAsync(Guid entityChangeId);
 
-    Task<List<AuditLogAggregateRoot>> GetListAsync(
+    Task<List<AuditLogEntity>> GetListAsync(
         string? sorting = null, 
         int maxResultCount = 50,
         int skipCount = 0,

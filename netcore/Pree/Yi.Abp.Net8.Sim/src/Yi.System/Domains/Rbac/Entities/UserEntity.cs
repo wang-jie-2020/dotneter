@@ -10,13 +10,13 @@ namespace Yi.System.Domains.Rbac.Entities;
 /// </summary>
 [SugarTable("User")]
 [SugarIndex($"index_{nameof(UserName)}", nameof(UserName), OrderByType.Asc)]
-public class UserAggregateRoot : AggregateRoot<Guid>, ISoftDelete, IAuditedObject
+public class UserEntity : AggregateRoot<Guid>, ISoftDelete, IAuditedObject
 {
-    public UserAggregateRoot()
+    public UserEntity()
     {
     }
 
-    public UserAggregateRoot(string userName, string password, long phone, string nick = "萌新")
+    public UserEntity(string userName, string password, long phone, string nick = "萌新")
     {
         UserName = userName;
         EncryPassword.Password = password;
@@ -117,21 +117,21 @@ public class UserAggregateRoot : AggregateRoot<Guid>, ISoftDelete, IAuditedObjec
     ///     角色
     /// </summary>
     [Navigate(typeof(UserRoleEntity), nameof(UserRoleEntity.UserId), nameof(UserRoleEntity.RoleId))]
-    public List<RoleAggregateRoot> Roles { get; set; }
+    public List<RoleEntity> Roles { get; set; }
 
     /// <summary>
     ///     岗位
     /// </summary>
 
     [Navigate(typeof(UserPostEntity), nameof(UserPostEntity.UserId), nameof(UserPostEntity.PostId))]
-    public List<PostAggregateRoot> Posts { get; set; }
+    public List<PostEntity> Posts { get; set; }
 
     /// <summary>
     ///     部门
     /// </summary>
 
     [Navigate(NavigateType.OneToOne, nameof(DeptId))]
-    public DeptAggregateRoot? Dept { get; set; }
+    public DeptEntity? Dept { get; set; }
 
     /// <summary>
     ///     创建时间
@@ -171,7 +171,7 @@ public class UserAggregateRoot : AggregateRoot<Guid>, ISoftDelete, IAuditedObjec
     /// <summary>
     ///     构建密码，MD5盐值加密
     /// </summary>
-    public UserAggregateRoot BuildPassword(string password = null)
+    public UserEntity BuildPassword(string password = null)
     {
         //如果不传值，那就把自己的password当作传进来的password
         if (password == null)

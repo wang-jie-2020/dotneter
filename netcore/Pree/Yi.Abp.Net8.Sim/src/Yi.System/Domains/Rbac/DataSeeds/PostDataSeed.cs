@@ -6,9 +6,9 @@ namespace Yi.System.Domains.Rbac.DataSeeds;
 
 public class PostDataSeed : IDataSeedContributor, ITransientDependency
 {
-    private readonly ISqlSugarRepository<PostAggregateRoot> _repository;
+    private readonly ISqlSugarRepository<PostEntity> _repository;
 
-    public PostDataSeed(ISqlSugarRepository<PostAggregateRoot> repository)
+    public PostDataSeed(ISqlSugarRepository<PostEntity> repository)
     {
         _repository = repository;
     }
@@ -18,11 +18,11 @@ public class PostDataSeed : IDataSeedContributor, ITransientDependency
         if (!await _repository.IsAnyAsync(x => true)) await _repository.InsertManyAsync(GetSeedData());
     }
 
-    public List<PostAggregateRoot> GetSeedData()
+    public List<PostEntity> GetSeedData()
     {
-        var entites = new List<PostAggregateRoot>();
+        var entites = new List<PostEntity>();
 
-        var Post1 = new PostAggregateRoot
+        var Post1 = new PostEntity
         {
             PostName = "董事长",
             PostCode = "ceo",
@@ -31,7 +31,7 @@ public class PostDataSeed : IDataSeedContributor, ITransientDependency
         };
         entites.Add(Post1);
 
-        var Post2 = new PostAggregateRoot
+        var Post2 = new PostEntity
         {
             PostName = "项目经理",
             PostCode = "se",
@@ -40,7 +40,7 @@ public class PostDataSeed : IDataSeedContributor, ITransientDependency
         };
         entites.Add(Post2);
 
-        var Post3 = new PostAggregateRoot
+        var Post3 = new PostEntity
         {
             PostName = "人力资源",
             PostCode = "hr",
@@ -49,7 +49,7 @@ public class PostDataSeed : IDataSeedContributor, ITransientDependency
         };
         entites.Add(Post3);
 
-        var Post4 = new PostAggregateRoot
+        var Post4 = new PostEntity
         {
             PostName = "普通员工",
             PostCode = "user",

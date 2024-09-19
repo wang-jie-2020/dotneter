@@ -10,9 +10,9 @@ namespace Yi.System.Domains.Rbac.DataSeeds;
 public class UserDataSeed : IDataSeedContributor, ITransientDependency
 {
     private readonly RbacOptions _options;
-    private readonly ISqlSugarRepository<UserAggregateRoot> _repository;
+    private readonly ISqlSugarRepository<UserEntity> _repository;
 
-    public UserDataSeed(ISqlSugarRepository<UserAggregateRoot> repository, IOptions<RbacOptions> options)
+    public UserDataSeed(ISqlSugarRepository<UserEntity> repository, IOptions<RbacOptions> options)
     {
         _repository = repository;
         _options = options.Value;
@@ -22,8 +22,8 @@ public class UserDataSeed : IDataSeedContributor, ITransientDependency
     {
         if (!await _repository.IsAnyAsync(x => true))
         {
-            var entities = new List<UserAggregateRoot>();
-            var user1 = new UserAggregateRoot
+            var entities = new List<UserEntity>();
+            var user1 = new UserEntity
             {
                 Name = "大橙子",
                 UserName = "cc",
@@ -42,7 +42,7 @@ public class UserDataSeed : IDataSeedContributor, ITransientDependency
             user1.BuildPassword();
             entities.Add(user1);
 
-            var user2 = new UserAggregateRoot
+            var user2 = new UserEntity
             {
                 Name = "大测试",
                 UserName = "test",
@@ -61,7 +61,7 @@ public class UserDataSeed : IDataSeedContributor, ITransientDependency
             user2.BuildPassword();
             entities.Add(user2);
 
-            var user3 = new UserAggregateRoot
+            var user3 = new UserEntity
             {
                 Name = "游客",
                 UserName = "guest",

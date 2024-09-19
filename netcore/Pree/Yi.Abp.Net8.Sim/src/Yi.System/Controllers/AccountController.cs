@@ -29,7 +29,7 @@ public class AccountController : AbpController
     private readonly RbacOptions _rbacOptions;
     private readonly IAccountManager _accountManager;
     private readonly ICurrentUser _currentUser;
-    private readonly ISqlSugarRepository<MenuAggregateRoot> _menuRepository;
+    private readonly ISqlSugarRepository<MenuEntity> _menuRepository;
     private readonly IDistributedCache<CaptchaPhoneCacheItem, CaptchaPhoneCacheKey> _phoneCache;
     private readonly IDistributedCache<UserInfoCacheItem, UserInfoCacheKey> _userCache;
     private readonly UserManager _userManager;
@@ -38,7 +38,7 @@ public class AccountController : AbpController
     public AccountController(IUserRepository userRepository,
         ICurrentUser currentUser,
         IAccountManager accountManager,
-        ISqlSugarRepository<MenuAggregateRoot> menuRepository,
+        ISqlSugarRepository<MenuEntity> menuRepository,
         IDistributedCache<CaptchaPhoneCacheItem, CaptchaPhoneCacheKey> phoneCache,
         IDistributedCache<UserInfoCacheItem, UserInfoCacheKey> userCache,
         ICaptcha captcha,
@@ -76,7 +76,7 @@ public class AccountController : AbpController
         ValidationImageCaptcha(input);
 
         //校验
-        UserAggregateRoot user = new();
+        UserEntity user = new();
         await _accountManager.LoginValidationAsync(input.UserName, input.Password, x => user = x);
 
         //获取token
@@ -271,11 +271,11 @@ public class AccountController : AbpController
         //为超级管理员直接给全部路由
         if (UserConst.Admin.Equals(data.User.UserName))
         {
-            menus = ObjectMapper.Map<List<MenuAggregateRoot>, List<MenuDto>>(await _menuRepository.GetListAsync());
+            menus = ObjectMapper.Map<List<MenuEntity>, List<MenuDto>>(await _menuRepository.GetListAsync());
         }
         
         //将后端菜单转换成前端路由，组件级别需要过滤
-        var routers = ObjectMapper.Map<List<MenuDto>, List<MenuAggregateRoot>>(menus).Vue3RouterBuild();
+        var routers = ObjectMapper.Map<List<MenuDto>, List<MenuEntity>>(menus).Vue3RouterBuild();
         return routers;
     }
 

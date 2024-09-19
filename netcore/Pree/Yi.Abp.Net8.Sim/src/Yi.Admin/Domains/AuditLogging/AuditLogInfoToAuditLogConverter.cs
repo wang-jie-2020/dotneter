@@ -26,7 +26,7 @@ public class AuditLogInfoToAuditLogConverter : IAuditLogInfoToAuditLogConverter
     protected IJsonSerializer JsonSerializer { get; }
     protected AbpExceptionHandlingOptions ExceptionHandlingOptions { get; }
 
-    public virtual Task<AuditLogAggregateRoot> ConvertAsync(AuditLogInfo auditLogInfo)
+    public virtual Task<AuditLogEntity> ConvertAsync(AuditLogInfo auditLogInfo)
     {
         var auditLogId = GuidGenerator.Create();
 
@@ -70,7 +70,7 @@ public class AuditLogInfoToAuditLogConverter : IAuditLogInfoToAuditLogConverter
             .Comments?
             .JoinAsString(Environment.NewLine);
 
-        var auditLog = new AuditLogAggregateRoot(
+        var auditLog = new AuditLogEntity(
             auditLogId,
             auditLogInfo.ApplicationName,
             auditLogInfo.TenantId,

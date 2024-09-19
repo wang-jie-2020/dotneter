@@ -5,13 +5,13 @@ using Volo.Abp.Domain.Entities;
 namespace Yi.Admin.Domains.Oss.Entities;
 
 [SugarTable("File")]
-public class FileAggregateRoot : AggregateRoot<Guid>, IAuditedObject
+public class FileEntity : AggregateRoot<Guid>, IAuditedObject
 {
-    public FileAggregateRoot()
+    public FileEntity()
     {
     }
 
-    public FileAggregateRoot(Guid fileId)
+    public FileEntity(Guid fileId)
     {
         Id = fileId;
     }

@@ -4,7 +4,7 @@ using Volo.Abp.Domain.Entities;
 namespace Yi.System.Domains.Sys.Entities;
 
 [SugarTable("Notice")]
-public class NoticeAggregateRoot : AggregateRoot<Guid>, ISoftDelete, IAuditedObject
+public class NoticeEntity : AggregateRoot<Guid>, ISoftDelete, IAuditedObject
 {
     [SugarColumn(IsPrimaryKey = true)] 
     public override Guid Id { get; protected set; }

@@ -42,7 +42,7 @@ public class DeptService : ApplicationService, IDeptService
 
     public async Task<DeptGetOutputDto> CreateAsync(DeptCreateInput input)
     {
-        var entity = input.Adapt<DeptAggregateRoot>();
+        var entity = input.Adapt<DeptEntity>();
         await _repository.InsertAsync(entity, autoSave: true);
 
         return entity.Adapt<DeptGetOutputDto>();

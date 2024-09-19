@@ -5,10 +5,10 @@ namespace Yi.System.Domains.Rbac;
 
 public class RoleManager : DomainService
 {
-    private ISqlSugarRepository<RoleAggregateRoot> _repository;
+    private ISqlSugarRepository<RoleEntity> _repository;
     private readonly ISqlSugarRepository<RoleMenuEntity> _roleMenuRepository;
 
-    public RoleManager(ISqlSugarRepository<RoleAggregateRoot> repository,
+    public RoleManager(ISqlSugarRepository<RoleEntity> repository,
         ISqlSugarRepository<RoleMenuEntity> roleMenuRepository)
     {
         _repository = repository;

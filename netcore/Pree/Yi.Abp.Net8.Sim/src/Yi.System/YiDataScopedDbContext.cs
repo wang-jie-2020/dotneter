@@ -31,8 +31,8 @@ public class YiDataScopedDbContext : SqlSugarDbContext
         //管理员不过滤
         if (CurrentUser.UserName.Equals(UserConst.Admin) ||
             CurrentUser.Roles.Any(f => f.Equals(UserConst.AdminRolesCode))) return;
-        var expUser = Expressionable.Create<UserAggregateRoot>();
-        var expRole = Expressionable.Create<RoleAggregateRoot>();
+        var expUser = Expressionable.Create<UserEntity>();
+        var expRole = Expressionable.Create<RoleEntity>();
 
 
         var roleInfo = CurrentUser.GetRoleInfo();
@@ -68,7 +68,7 @@ public class YiDataScopedDbContext : SqlSugarDbContext
                 else if (DataScopeEnum.DEPT_FOLLOW.Equals(dataScope)) //本部门及以下数据
                 {
                     //SQl  OR {}.dept_id IN ( SELECT dept_id FROM sys_dept WHERE dept_id = {} or find_in_set( {} , ancestors ) )
-                    var allChildDepts = sqlSugarClient.Queryable<DeptAggregateRoot>()
+                    var allChildDepts = sqlSugarClient.Queryable<DeptEntity>()
                         .ToChildList(it => it.ParentId, CurrentUser.GetDeptId());
 
                     expUser.Or(it => allChildDepts.Select(f => f.Id).ToList().Contains(it.DeptId ?? Guid.Empty));

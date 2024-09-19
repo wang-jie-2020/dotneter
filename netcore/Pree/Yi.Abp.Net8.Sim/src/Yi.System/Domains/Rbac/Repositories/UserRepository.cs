@@ -3,7 +3,7 @@ using Yi.System.Domains.Rbac.Entities;
 
 namespace Yi.System.Domains.Rbac.Repositories;
 
-public class UserRepository : SqlSugarRepository<UserAggregateRoot>, IUserRepository, ITransientDependency
+public class UserRepository : SqlSugarRepository<UserEntity>, IUserRepository, ITransientDependency
 {
     public UserRepository(ISugarDbContextProvider<ISqlSugarDbContext> sugarDbContextProvider) : base(sugarDbContextProvider)
     {
@@ -15,7 +15,7 @@ public class UserRepository : SqlSugarRepository<UserAggregateRoot>, IUserReposi
     /// <param name="userIds"></param>
     /// <returns></returns>
     /// <exception cref="ArgumentNullException"></exception>
-    public async Task<List<UserAggregateRoot>> GetListUserAllInfoAsync(List<Guid> userIds)
+    public async Task<List<UserEntity>> GetListUserAllInfoAsync(List<Guid> userIds)
     {
         var users = await DbQueryable.Where(x => userIds.Contains(x.Id))
             .Includes(u => u.Roles.Where(r => r.IsDeleted == false).ToList(),
@@ -29,7 +29,7 @@ public class UserRepository : SqlSugarRepository<UserAggregateRoot>, IUserReposi
     /// <param name="userId"></param>
     /// <returns></returns>
     /// <exception cref="ArgumentNullException"></exception>
-    public async Task<UserAggregateRoot> GetUserAllInfoAsync(Guid userId)
+    public async Task<UserEntity> GetUserAllInfoAsync(Guid userId)
     {
         //得到用户
         var user = await DbQueryable.Includes(u => u.Roles.Where(r => r.IsDeleted == false).ToList(),

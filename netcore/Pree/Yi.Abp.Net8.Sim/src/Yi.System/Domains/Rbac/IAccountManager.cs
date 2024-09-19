@@ -9,7 +9,7 @@ public interface IAccountManager : IDomainService
     
     Task<string> GetTokenByUserIdAsync(Guid userId);
     
-    Task LoginValidationAsync(string userName, string password, Action<UserAggregateRoot> userAction = null);
+    Task LoginValidationAsync(string userName, string password, Action<UserEntity> userAction = null);
     
     Task RegisterAsync(string userName, string password, long phone);
     

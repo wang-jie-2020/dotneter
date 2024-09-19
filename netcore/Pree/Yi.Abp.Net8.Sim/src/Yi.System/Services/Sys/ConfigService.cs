@@ -10,9 +10,9 @@ namespace Yi.System.Services.Sys;
 [RemoteService(false)]
 public class ConfigService : ApplicationService, IConfigService
 {
-    private readonly ISqlSugarRepository<ConfigAggregateRoot, Guid> _repository;
+    private readonly ISqlSugarRepository<ConfigEntity, Guid> _repository;
 
-    public ConfigService(ISqlSugarRepository<ConfigAggregateRoot, Guid> repository)
+    public ConfigService(ISqlSugarRepository<ConfigEntity, Guid> repository)
     {
         _repository = repository;
     }
@@ -37,7 +37,7 @@ public class ConfigService : ApplicationService, IConfigService
 
     public async Task<ConfigGetOutputDto> CreateAsync(ConfigCreateInputVo input)
     {
-        var entity = input.Adapt<ConfigAggregateRoot>();
+        var entity = input.Adapt<ConfigEntity>();
         await _repository.InsertAsync(entity, autoSave: true);
 
         return entity.Adapt<ConfigGetOutputDto>();

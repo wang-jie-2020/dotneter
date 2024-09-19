@@ -5,7 +5,7 @@ using Volo.Abp.Domain.Entities;
 namespace Yi.System.Domains.Sys.Entities;
 
 [SugarTable("DictionaryType")]
-public class DictionaryTypeAggregateRoot : AggregateRoot<Guid>, IAuditedObject, ISoftDelete
+public class DictionaryTypeEntity : AggregateRoot<Guid>, IAuditedObject, ISoftDelete
 {
     /// <summary>
     ///     主键

@@ -30,7 +30,7 @@ public class MainHub : AbpHub
         lock (objLock)
         {
             var name = CurrentUser.UserName;
-            var loginUser = new LoginLogAggregateRoot().GetInfoByHttpContext(_httpContext);
+            var loginUser = new LoginLogEntity().GetInfoByHttpContext(_httpContext);
 
             OnlineUser user = new(Context.ConnectionId)
             {

@@ -12,10 +12,10 @@ namespace Yi.System.Services.Sys;
 [RemoteService(false)]
 public class NoticeService : ApplicationService, INoticeService
 {
-    private readonly ISqlSugarRepository<NoticeAggregateRoot, Guid> _repository;
+    private readonly ISqlSugarRepository<NoticeEntity, Guid> _repository;
     private readonly IHubContext<MainHub> _hubContext;
 
-    public NoticeService(ISqlSugarRepository<NoticeAggregateRoot, Guid> repository, IHubContext<MainHub> hubContext)
+    public NoticeService(ISqlSugarRepository<NoticeEntity, Guid> repository, IHubContext<MainHub> hubContext)
     {
         _hubContext = hubContext;
         _repository = repository;
@@ -41,7 +41,7 @@ public class NoticeService : ApplicationService, INoticeService
 
     public async Task<NoticeDto> CreateAsync(NoticeCreateInput input)
     {
-        var entity = input.Adapt<NoticeAggregateRoot>();
+        var entity = input.Adapt<NoticeEntity>();
         await _repository.InsertAsync(entity, autoSave: true);
 
         return entity.Adapt<NoticeDto>();

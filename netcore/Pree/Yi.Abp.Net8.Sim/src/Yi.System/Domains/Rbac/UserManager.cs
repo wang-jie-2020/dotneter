@@ -18,19 +18,19 @@ namespace Yi.System.Domains.Rbac;
 public class UserManager : DomainService
 {
     private readonly IGuidGenerator _guidGenerator;
-    private readonly ISqlSugarRepository<UserAggregateRoot> _repository;
+    private readonly ISqlSugarRepository<UserEntity> _repository;
     private readonly ISqlSugarRepository<UserPostEntity> _repositoryUserPost;
     private readonly ISqlSugarRepository<UserRoleEntity> _repositoryUserRole;
-    private readonly ISqlSugarRepository<RoleAggregateRoot> _roleRepository;
+    private readonly ISqlSugarRepository<RoleEntity> _roleRepository;
     private readonly ILocalEventBus _localEventBus;
     private readonly IDistributedCache<UserInfoCacheItem, UserInfoCacheKey> _userCache;
     private readonly IUserRepository _userRepository;
 
-    public UserManager(ISqlSugarRepository<UserAggregateRoot> repository,
+    public UserManager(ISqlSugarRepository<UserEntity> repository,
         ISqlSugarRepository<UserRoleEntity> repositoryUserRole, ISqlSugarRepository<UserPostEntity> repositoryUserPost,
         IGuidGenerator guidGenerator, IDistributedCache<UserInfoCacheItem, UserInfoCacheKey> userCache,
         IUserRepository userRepository, ILocalEventBus localEventBus,
-        ISqlSugarRepository<RoleAggregateRoot> roleRepository)
+        ISqlSugarRepository<RoleEntity> roleRepository)
     {
         (_repository, _repositoryUserRole, _repositoryUserPost, _guidGenerator, _userCache, _userRepository,
                 _localEventBus, _roleRepository) =
@@ -91,7 +91,7 @@ public class UserManager : DomainService
     ///     创建用户
     /// </summary>
     /// <returns></returns>
-    public async Task CreateAsync(UserAggregateRoot userEntity)
+    public async Task CreateAsync(UserEntity userEntity)
     {
         //校验用户名
         ValidateUserName(userEntity);
@@ -127,7 +127,7 @@ public class UserManager : DomainService
         }
     }
 
-    private void ValidateUserName(UserAggregateRoot input)
+    private void ValidateUserName(UserEntity input)
     {
         if (input.UserName == UserConst.Admin || input.UserName == UserConst.TenantAdmin)
         {
@@ -206,7 +206,7 @@ public class UserManager : DomainService
     }
 
 
-    private UserRoleMenuDto EntityMapToDto(UserAggregateRoot user)
+    private UserRoleMenuDto EntityMapToDto(UserEntity user)
     {
         var userRoleMenu = new UserRoleMenuDto();
         //首先获取到该用户全部信息，导航到角色、菜单，(菜单需要去重,完全交给Set来处理即可)
@@ -248,11 +248,11 @@ public class UserManager : DomainService
             }
 
             //刚好可以去除一下多余的导航属性
-            role.Menus = new List<MenuAggregateRoot>();
+            role.Menus = new List<MenuEntity>();
             userRoleMenu.Roles.Add(role.Adapt<RoleDto>());
         }
 
-        user.Roles = new List<RoleAggregateRoot>();
+        user.Roles = new List<RoleEntity>();
         userRoleMenu.User = user.Adapt<UserDto>();
         userRoleMenu.Menus = userRoleMenu.Menus.OrderByDescending(x => x.OrderNum).ToHashSet();
         return userRoleMenu;

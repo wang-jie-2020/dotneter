@@ -8,13 +8,13 @@ namespace Yi.Admin.Domains.TenantManagement.Entities;
 
 [SugarTable("Tenant")]
 [DefaultTenantTable]
-public class TenantAggregateRoot : FullAuditedAggregateRoot<Guid>, IHasEntityVersion
+public class TenantEntity : FullAuditedAggregateRoot<Guid>, IHasEntityVersion
 {
-    public TenantAggregateRoot()
+    public TenantEntity()
     {
     }
 
-    protected internal TenantAggregateRoot(Guid id, [NotNull] string name)
+    protected internal TenantEntity(Guid id, [NotNull] string name)
         : base(id)
     {
         SetName(name);

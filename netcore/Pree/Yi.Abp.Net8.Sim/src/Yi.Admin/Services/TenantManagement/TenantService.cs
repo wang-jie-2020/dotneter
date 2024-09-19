@@ -14,9 +14,9 @@ namespace Yi.Admin.Services.TenantManagement;
 public class TenantService : ApplicationService, ITenantService
 {
     private readonly IDataSeeder _dataSeeder;
-    private readonly ISqlSugarRepository<TenantAggregateRoot, Guid> _repository;
+    private readonly ISqlSugarRepository<TenantEntity, Guid> _repository;
 
-    public TenantService(ISqlSugarRepository<TenantAggregateRoot, Guid> repository, IDataSeeder dataSeeder)
+    public TenantService(ISqlSugarRepository<TenantEntity, Guid> repository, IDataSeeder dataSeeder)
     {
         _repository = repository;
         _dataSeeder = dataSeeder;
@@ -47,7 +47,7 @@ public class TenantService : ApplicationService, ITenantService
             throw new UserFriendlyException("创建失败，当前租户已存在");
         }
 
-        var entity = input.Adapt<TenantAggregateRoot>();
+        var entity = input.Adapt<TenantEntity>();
         await _repository.InsertAsync(entity, autoSave: true);
 
         return entity.Adapt<TenantDto>();

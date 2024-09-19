@@ -8,9 +8,9 @@ namespace Yi.System.Services.Sys;
 [RemoteService(false)]
 public class DictionaryTypeService : ApplicationService, IDictionaryTypeService
 {
-    private readonly ISqlSugarRepository<DictionaryTypeAggregateRoot, Guid> _repository;
+    private readonly ISqlSugarRepository<DictionaryTypeEntity, Guid> _repository;
 
-    public DictionaryTypeService(ISqlSugarRepository<DictionaryTypeAggregateRoot, Guid> repository)
+    public DictionaryTypeService(ISqlSugarRepository<DictionaryTypeEntity, Guid> repository)
     {
         _repository = repository;
     }
@@ -40,7 +40,7 @@ public class DictionaryTypeService : ApplicationService, IDictionaryTypeService
 
     public async Task<DictionaryTypeDto> CreateAsync(DictionaryTypeCreateInput input)
     {
-        var entity = input.Adapt<DictionaryTypeAggregateRoot>();
+        var entity = input.Adapt<DictionaryTypeEntity>();
         await _repository.InsertAsync(entity, autoSave: true);
 
         return entity.Adapt<DictionaryTypeDto>();

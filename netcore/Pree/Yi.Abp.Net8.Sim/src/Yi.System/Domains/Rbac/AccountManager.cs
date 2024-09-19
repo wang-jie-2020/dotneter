@@ -29,7 +29,7 @@ public class AccountManager : DomainService, IAccountManager
     private readonly IUserRepository _repository;
     private readonly IHttpContextAccessor _httpContextAccessor;
     private readonly RefreshJwtOptions _refreshJwtOptions;
-    private ISqlSugarRepository<RoleAggregateRoot> _roleRepository;
+    private ISqlSugarRepository<RoleEntity> _roleRepository;
     private readonly UserManager _userManager;
 
     public AccountManager(IUserRepository repository
@@ -38,7 +38,7 @@ public class AccountManager : DomainService, IAccountManager
         , ILocalEventBus localEventBus
         , UserManager userManager
         , IOptions<RefreshJwtOptions> refreshJwtOptions
-        , ISqlSugarRepository<RoleAggregateRoot> roleRepository
+        , ISqlSugarRepository<RoleEntity> roleRepository
         , IOptions<RbacOptions> options)
     {
         _repository = repository;
@@ -81,7 +81,7 @@ public class AccountManager : DomainService, IAccountManager
         //这里抛出一个登录的事件,也可以在全部流程走完，在应用层组装
         if (_httpContextAccessor.HttpContext is not null)
         {
-            var loginEntity = new LoginLogAggregateRoot().GetInfoByHttpContext(_httpContextAccessor.HttpContext);
+            var loginEntity = new LoginLogEntity().GetInfoByHttpContext(_httpContextAccessor.HttpContext);
             var loginEto = loginEntity.Adapt<LoginEventArgs>();
             loginEto.UserName = userInfo.User.UserName;
             loginEto.UserId = userInfo.User.Id;
@@ -125,9 +125,9 @@ public class AccountManager : DomainService, IAccountManager
     /// <param name="userAction"></param>
     /// <returns></returns>
     public async Task LoginValidationAsync(string userName, string password,
-        Action<UserAggregateRoot> userAction = null)
+        Action<UserEntity> userAction = null)
     {
-        var user = new UserAggregateRoot();
+        var user = new UserEntity();
         if (await ExistAsync(userName, o => user = o))
         {
             if (userAction is not null)
@@ -191,7 +191,7 @@ public class AccountManager : DomainService, IAccountManager
     /// <returns></returns>
     public async Task RegisterAsync(string userName, string password, long phone)
     {
-        var user = new UserAggregateRoot(userName, password, phone);
+        var user = new UserEntity(userName, password, phone);
         await _userManager.CreateAsync(user);
         await _userManager.SetDefaultRoleAsync(user.Id);
     }
@@ -224,7 +224,7 @@ public class AccountManager : DomainService, IAccountManager
     /// <param name="userName"></param>
     /// <param name="userAction"></param>
     /// <returns></returns>
-    public async Task<bool> ExistAsync(string userName, Action<UserAggregateRoot> userAction = null)
+    public async Task<bool> ExistAsync(string userName, Action<UserEntity> userAction = null)
     {
         var user = await _repository.GetFirstAsync(u => u.UserName == userName && u.State == true);
         if (userAction is not null)

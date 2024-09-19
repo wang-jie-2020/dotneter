@@ -10,9 +10,9 @@ namespace Yi.System.Controllers;
 [Route("api/app/login-log")]
 public class LoginLogController : AbpController
 {
-    private readonly ISqlSugarRepository<LoginLogAggregateRoot, Guid> _repository;
+    private readonly ISqlSugarRepository<LoginLogEntity, Guid> _repository;
 
-    public LoginLogController(ISqlSugarRepository<LoginLogAggregateRoot, Guid> repository)
+    public LoginLogController(ISqlSugarRepository<LoginLogEntity, Guid> repository)
     {
         _repository = repository;
     }

@@ -6,9 +6,9 @@ namespace Yi.System.Domains.Rbac.DataSeeds;
 
 public class RoleDataSeed : IDataSeedContributor, ITransientDependency
 {
-    private readonly ISqlSugarRepository<RoleAggregateRoot> _repository;
+    private readonly ISqlSugarRepository<RoleEntity> _repository;
 
-    public RoleDataSeed(ISqlSugarRepository<RoleAggregateRoot> repository)
+    public RoleDataSeed(ISqlSugarRepository<RoleEntity> repository)
     {
         _repository = repository;
     }
@@ -18,10 +18,10 @@ public class RoleDataSeed : IDataSeedContributor, ITransientDependency
         if (!await _repository.IsAnyAsync(x => true)) await _repository.InsertManyAsync(GetSeedData());
     }
 
-    public List<RoleAggregateRoot> GetSeedData()
+    public List<RoleEntity> GetSeedData()
     {
-        var entities = new List<RoleAggregateRoot>();
-        var role1 = new RoleAggregateRoot
+        var entities = new List<RoleEntity>();
+        var role1 = new RoleEntity
         {
             RoleName = "管理员",
             RoleCode = "admin",
@@ -32,7 +32,7 @@ public class RoleDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(role1);
 
-        var role2 = new RoleAggregateRoot
+        var role2 = new RoleEntity
         {
             RoleName = "测试角色",
             RoleCode = "test",
@@ -43,7 +43,7 @@ public class RoleDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(role2);
 
-        var role3 = new RoleAggregateRoot
+        var role3 = new RoleEntity
         {
             RoleName = "普通角色",
             RoleCode = "common",
@@ -54,7 +54,7 @@ public class RoleDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(role3);
 
-        var role4 = new RoleAggregateRoot
+        var role4 = new RoleEntity
         {
             RoleName = "默认角色",
             RoleCode = "default",

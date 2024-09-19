@@ -14,14 +14,14 @@ public class RoleService : ApplicationService, IRoleService
 {
     private readonly RoleManager _roleManager;
 
-    private readonly ISqlSugarRepository<RoleAggregateRoot, Guid> _repository;
+    private readonly ISqlSugarRepository<RoleEntity, Guid> _repository;
     private readonly ISqlSugarRepository<RoleDeptEntity> _roleDeptRepository;
     private readonly ISqlSugarRepository<UserRoleEntity> _userRoleRepository;
 
     public RoleService(RoleManager roleManager,
         ISqlSugarRepository<RoleDeptEntity> roleDeptRepository,
         ISqlSugarRepository<UserRoleEntity> userRoleRepository,
-        ISqlSugarRepository<RoleAggregateRoot, Guid> repository)
+        ISqlSugarRepository<RoleEntity, Guid> repository)
     {
         (_roleManager, _roleDeptRepository, _userRoleRepository, _repository) =
             (roleManager, roleDeptRepository, userRoleRepository, repository);
@@ -52,7 +52,7 @@ public class RoleService : ApplicationService, IRoleService
     /// <returns></returns>
     public async Task<RoleDto> CreateAsync(RoleCreateInput input)
     {
-        var entity = input.Adapt<RoleAggregateRoot>();
+        var entity = input.Adapt<RoleEntity>();
         await _repository.InsertAsync(entity);
         await _roleManager.GiveRoleSetMenuAsync(new List<Guid> { entity.Id }, input.MenuIds);
 
@@ -105,7 +105,7 @@ public class RoleService : ApplicationService, IRoleService
             await _roleDeptRepository.InsertRangeAsync(insertEntities);
         }
 
-        var entity = new RoleAggregateRoot { DataScope = input.DataScope };
+        var entity = new RoleEntity { DataScope = input.DataScope };
         EntityHelper.TrySetId(entity, () => input.RoleId);
 
         await _repository.Db.Updateable(entity).UpdateColumns(x => x.DataScope).ExecuteCommandAsync();
@@ -156,7 +156,7 @@ public class RoleService : ApplicationService, IRoleService
         RefAsync<int> total = 0;
 
         var output = await _userRoleRepository.DbQueryable
-            .LeftJoin<UserAggregateRoot>((ur, u) => ur.UserId == u.Id && ur.RoleId == roleId)
+            .LeftJoin<UserEntity>((ur, u) => ur.UserId == u.Id && ur.RoleId == roleId)
             .Where((ur, u) => ur.RoleId == roleId)
             .WhereIF(!string.IsNullOrEmpty(input.UserName), (ur, u) => u.UserName.Contains(input.UserName))
             .WhereIF(input.Phone is not null, (ur, u) => u.Phone.ToString().Contains(input.Phone.ToString()))
@@ -170,7 +170,7 @@ public class RoleService : ApplicationService, IRoleService
     {
         RefAsync<int> total = 0;
 
-        var entities = await _userRoleRepository.Db.Queryable<UserAggregateRoot>()
+        var entities = await _userRoleRepository.Db.Queryable<UserEntity>()
             .Where(u => SqlFunc.Subqueryable<UserRoleEntity>().Where(x => x.RoleId == roleId)
                 .Where(x => x.UserId == u.Id).NotAny())
             .WhereIF(!string.IsNullOrEmpty(input.UserName), u => u.UserName.Contains(input.UserName))

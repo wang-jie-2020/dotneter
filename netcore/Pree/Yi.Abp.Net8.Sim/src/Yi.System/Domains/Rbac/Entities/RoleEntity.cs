@@ -4,34 +4,45 @@ using Volo.Abp.Domain.Entities;
 namespace Yi.System.Domains.Rbac.Entities;
 
 /// <summary>
-///     岗位表
+///     角色表
 /// </summary>
-[SugarTable("Post")]
-public class PostAggregateRoot : AggregateRoot<Guid>, ISoftDelete, IAuditedObject
+[SugarTable("Role")]
+public class RoleEntity : AggregateRoot<Guid>, ISoftDelete, IAuditedObject
 {
     /// <summary>
     ///     主键
     /// </summary>
     [SugarColumn(IsPrimaryKey = true)]
     public override Guid Id { get; protected set; }
+    
+    /// <summary>
+    ///     角色名
+    /// </summary>
+    public string RoleName { get; set; } = string.Empty;
 
     /// <summary>
-    ///     岗位编码
+    ///     角色编码
     /// </summary>
-    [SugarColumn(ColumnName = "PostCode")]
-    public string PostCode { get; set; } = string.Empty;
-
-    /// <summary>
-    ///     岗位名称
-    /// </summary>
-    [SugarColumn(ColumnName = "PostName")]
-    public string PostName { get; set; } = string.Empty;
+    [SugarColumn(ColumnName = "RoleCode")]
+    public string RoleCode { get; set; } = string.Empty;
 
     /// <summary>
     ///     描述
     /// </summary>
     [SugarColumn(ColumnName = "Remark")]
     public string? Remark { get; set; }
+
+    /// <summary>
+    ///     角色数据范围
+    /// </summary>
+    [SugarColumn(ColumnName = "DataScope")]
+    public DataScopeEnum DataScope { get; set; } = DataScopeEnum.ALL;
+    
+    [Navigate(typeof(RoleMenuEntity), nameof(RoleMenuEntity.RoleId), nameof(RoleMenuEntity.MenuId))]
+    public List<MenuEntity>? Menus { get; set; }
+
+    [Navigate(typeof(RoleDeptEntity), nameof(RoleDeptEntity.RoleId), nameof(RoleDeptEntity.DeptId))]
+    public List<DeptEntity>? Depts { get; set; }
 
     /// <summary>
     ///     创建时间

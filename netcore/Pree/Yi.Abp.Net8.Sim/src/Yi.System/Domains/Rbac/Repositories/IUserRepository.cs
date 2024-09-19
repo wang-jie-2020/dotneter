@@ -2,19 +2,19 @@
 
 namespace Yi.System.Domains.Rbac.Repositories;
 
-public interface IUserRepository : ISqlSugarRepository<UserAggregateRoot>
+public interface IUserRepository : ISqlSugarRepository<UserEntity>
 {
     /// <summary>
     ///     获取用户的所有信息
     /// </summary>
     /// <param name="userId"></param>
     /// <returns></returns>
-    Task<UserAggregateRoot> GetUserAllInfoAsync(Guid userId);
+    Task<UserEntity> GetUserAllInfoAsync(Guid userId);
 
     /// <summary>
     ///     批量获取用户的所有信息
     /// </summary>
     /// <param name="userIds"></param>
     /// <returns></returns>
-    Task<List<UserAggregateRoot>> GetListUserAllInfoAsync(List<Guid> userIds);
+    Task<List<UserEntity>> GetListUserAllInfoAsync(List<Guid> userIds);
 }

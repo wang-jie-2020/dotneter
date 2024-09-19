@@ -2,9 +2,9 @@
 
 namespace Yi.System.Domains.Rbac.Repositories;
 
-public interface IDeptRepository : ISqlSugarRepository<DeptAggregateRoot, Guid>
+public interface IDeptRepository : ISqlSugarRepository<DeptEntity, Guid>
 {
     Task<List<Guid>> GetChildListAsync(Guid deptId);
     
-    Task<List<DeptAggregateRoot>> GetListRoleIdAsync(Guid roleId);
+    Task<List<DeptEntity>> GetListRoleIdAsync(Guid roleId);
 }

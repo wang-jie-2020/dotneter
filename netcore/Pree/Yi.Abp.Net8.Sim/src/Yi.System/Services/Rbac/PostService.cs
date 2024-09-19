@@ -10,9 +10,9 @@ namespace Yi.System.Services.Rbac;
 [RemoteService(false)]
 public class PostService : ApplicationService, IPostService
 {
-    private readonly ISqlSugarRepository<PostAggregateRoot, Guid> _repository;
+    private readonly ISqlSugarRepository<PostEntity, Guid> _repository;
 
-    public PostService(ISqlSugarRepository<PostAggregateRoot, Guid> repository)
+    public PostService(ISqlSugarRepository<PostEntity, Guid> repository)
     {
         _repository = repository;
     }
@@ -37,7 +37,7 @@ public class PostService : ApplicationService, IPostService
 
     public async Task<PostDto> CreateAsync(PostCreateInput input)
     {
-        var entity = input.Adapt<PostAggregateRoot>();
+        var entity = input.Adapt<PostEntity>();
         await _repository.InsertAsync(entity, autoSave: true);
 
         return entity.Adapt<PostDto>();

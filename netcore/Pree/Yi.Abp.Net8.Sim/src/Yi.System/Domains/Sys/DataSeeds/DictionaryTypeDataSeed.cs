@@ -6,9 +6,9 @@ namespace Yi.System.Domains.Sys.DataSeeds;
 
 public class DictionaryTypeDataSeed : IDataSeedContributor, ITransientDependency
 {
-    private readonly ISqlSugarRepository<DictionaryTypeAggregateRoot> _repository;
+    private readonly ISqlSugarRepository<DictionaryTypeEntity> _repository;
 
-    public DictionaryTypeDataSeed(ISqlSugarRepository<DictionaryTypeAggregateRoot> repository)
+    public DictionaryTypeDataSeed(ISqlSugarRepository<DictionaryTypeEntity> repository)
     {
         _repository = repository;
     }
@@ -18,10 +18,10 @@ public class DictionaryTypeDataSeed : IDataSeedContributor, ITransientDependency
         if (!await _repository.IsAnyAsync(x => true)) await _repository.InsertManyAsync(GetSeedData());
     }
 
-    public List<DictionaryTypeAggregateRoot> GetSeedData()
+    public List<DictionaryTypeEntity> GetSeedData()
     {
-        var entities = new List<DictionaryTypeAggregateRoot>();
-        var dict1 = new DictionaryTypeAggregateRoot
+        var entities = new List<DictionaryTypeEntity>();
+        var dict1 = new DictionaryTypeEntity
         {
             DictName = "用户性别",
             DictType = "sys_user_sex",
@@ -32,7 +32,7 @@ public class DictionaryTypeDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(dict1);
 
-        var dict2 = new DictionaryTypeAggregateRoot
+        var dict2 = new DictionaryTypeEntity
         {
             DictName = "菜单状态",
             DictType = "sys_show_hide",
@@ -43,7 +43,7 @@ public class DictionaryTypeDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(dict2);
 
-        var dict3 = new DictionaryTypeAggregateRoot
+        var dict3 = new DictionaryTypeEntity
         {
             DictName = "系统开关",
             DictType = "sys_normal_disable",
@@ -54,7 +54,7 @@ public class DictionaryTypeDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(dict3);
 
-        var dict4 = new DictionaryTypeAggregateRoot
+        var dict4 = new DictionaryTypeEntity
         {
             DictName = "任务状态",
             DictType = "sys_job_status",
@@ -65,7 +65,7 @@ public class DictionaryTypeDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(dict4);
 
-        var dict5 = new DictionaryTypeAggregateRoot
+        var dict5 = new DictionaryTypeEntity
         {
             DictName = "任务分组",
             DictType = "sys_job_group",
@@ -76,7 +76,7 @@ public class DictionaryTypeDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(dict5);
 
-        var dict6 = new DictionaryTypeAggregateRoot
+        var dict6 = new DictionaryTypeEntity
         {
             DictName = "系统是否",
             DictType = "sys_yes_no",
@@ -87,7 +87,7 @@ public class DictionaryTypeDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(dict6);
 
-        var dict7 = new DictionaryTypeAggregateRoot
+        var dict7 = new DictionaryTypeEntity
         {
             DictName = "通知类型",
             DictType = "sys_notice_type",
@@ -98,7 +98,7 @@ public class DictionaryTypeDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(dict7);
         
-        var dict8 = new DictionaryTypeAggregateRoot
+        var dict8 = new DictionaryTypeEntity
         {
             DictName = "通知状态",
             DictType = "sys_notice_status",
@@ -109,7 +109,7 @@ public class DictionaryTypeDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(dict8);
 
-        var dict9 = new DictionaryTypeAggregateRoot
+        var dict9 = new DictionaryTypeEntity
         {
             DictName = "操作类型",
             DictType = "sys_oper_type",
@@ -120,7 +120,7 @@ public class DictionaryTypeDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(dict9);
         
-        var dict10 = new DictionaryTypeAggregateRoot
+        var dict10 = new DictionaryTypeEntity
         {
             DictName = "系统状态",
             DictType = "sys_common_status",

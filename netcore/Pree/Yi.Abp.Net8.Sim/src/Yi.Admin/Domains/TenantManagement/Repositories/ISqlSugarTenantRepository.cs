@@ -2,11 +2,11 @@
 
 namespace Yi.Admin.Domains.TenantManagement.Repositories;
 
-public interface ISqlSugarTenantRepository : ISqlSugarRepository<TenantAggregateRoot, Guid>
+public interface ISqlSugarTenantRepository : ISqlSugarRepository<TenantEntity, Guid>
 {
-    Task<TenantAggregateRoot> FindByNameAsync(string name, bool includeDetails = true);
+    Task<TenantEntity> FindByNameAsync(string name, bool includeDetails = true);
 
-    Task<List<TenantAggregateRoot>> GetListAsync(
+    Task<List<TenantEntity>> GetListAsync(
         string? sorting = null,
         int maxResultCount = int.MaxValue,
         int skipCount = 0,

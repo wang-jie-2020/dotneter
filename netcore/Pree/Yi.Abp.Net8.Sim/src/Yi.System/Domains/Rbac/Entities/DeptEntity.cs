@@ -7,19 +7,19 @@ namespace Yi.System.Domains.Rbac.Entities;
 ///     部门表
 /// </summary>
 [SugarTable("Dept")]
-public class DeptAggregateRoot : AggregateRoot<Guid>, ISoftDelete, IAuditedObject
+public class DeptEntity : AggregateRoot<Guid>, ISoftDelete, IAuditedObject
 {
-    public DeptAggregateRoot()
+    public DeptEntity()
     {
     }
 
-    public DeptAggregateRoot(Guid Id)
+    public DeptEntity(Guid Id)
     {
         this.Id = Id;
         ParentId = Guid.Empty;
     }
 
-    public DeptAggregateRoot(Guid Id, Guid parentId)
+    public DeptEntity(Guid Id, Guid parentId)
     {
         this.Id = Id;
         ParentId = parentId;

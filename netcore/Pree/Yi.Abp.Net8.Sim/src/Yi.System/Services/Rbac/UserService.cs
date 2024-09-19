@@ -11,11 +11,11 @@ namespace Yi.System.Services.Rbac;
 [RemoteService(false)]
 public class UserService : ApplicationService, IUserService
 {
-    private readonly ISqlSugarRepository<UserAggregateRoot, Guid> _repository;
+    private readonly ISqlSugarRepository<UserEntity, Guid> _repository;
     private readonly UserManager _userManager;
     private readonly IDeptService _deptService;
 
-    public UserService(ISqlSugarRepository<UserAggregateRoot, Guid> repository,
+    public UserService(ISqlSugarRepository<UserEntity, Guid> repository,
         UserManager userManager,
         IDeptService deptService)
     {
@@ -58,7 +58,7 @@ public class UserService : ApplicationService, IUserService
             .WhereIF(input.StartTime is not null && input.EndTime is not null, x => x.CreationTime >= input.StartTime && x.CreationTime <= input.EndTime)
             .WhereIF(input.DeptId is not null, x => deptIds.Contains(x.DeptId ?? Guid.Empty))
             .WhereIF(ids is not null, x => ids.Contains(x.Id))
-            .LeftJoin<DeptAggregateRoot>((user, dept) => user.DeptId == dept.Id)
+            .LeftJoin<DeptEntity>((user, dept) => user.DeptId == dept.Id)
             .OrderByDescending(user => user.CreationTime)
             .Select((user, dept) => new UserGetListOutputDto(), true)
             .ToPageListAsync(input.SkipCount, input.MaxResultCount, total);
@@ -73,7 +73,7 @@ public class UserService : ApplicationService, IUserService
 
     public async Task<UserGetOutputDto> CreateAsync(UserCreateInput input)
     {
-        var entity = input.Adapt<UserAggregateRoot>();
+        var entity = input.Adapt<UserEntity>();
         entity.BuildPassword(input.Password);
 
         await _userManager.CreateAsync(entity);

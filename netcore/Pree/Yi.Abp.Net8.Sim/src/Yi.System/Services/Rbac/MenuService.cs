@@ -10,9 +10,9 @@ namespace Yi.System.Services.Rbac;
 [RemoteService((false))]
 public class MenuService : ApplicationService, IMenuService
 {
-    private readonly ISqlSugarRepository<MenuAggregateRoot, Guid> _repository;
+    private readonly ISqlSugarRepository<MenuEntity, Guid> _repository;
 
-    public MenuService(ISqlSugarRepository<MenuAggregateRoot, Guid> repository)
+    public MenuService(ISqlSugarRepository<MenuEntity, Guid> repository)
     {
         _repository = repository;
     }
@@ -38,7 +38,7 @@ public class MenuService : ApplicationService, IMenuService
 
     public async Task<MenuDto> CreateAsync(MenuCreateInput input)
     {
-        var entity = input.Adapt<MenuAggregateRoot>();
+        var entity = input.Adapt<MenuEntity>();
         await _repository.InsertAsync(entity, autoSave: true);
 
         return entity.Adapt<MenuDto>();

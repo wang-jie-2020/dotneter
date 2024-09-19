@@ -12,13 +12,13 @@ namespace Yi.Admin.Domains.AuditLogging.Entities;
     OrderByType.Asc)]
 [SugarIndex($"index_{nameof(ExecutionTime)}_{nameof(UserId)}", nameof(TenantId), OrderByType.Asc, nameof(UserId),
     OrderByType.Asc, nameof(ExecutionTime), OrderByType.Asc)]
-public class AuditLogAggregateRoot : AggregateRoot<Guid>, IMultiTenant
+public class AuditLogEntity : AggregateRoot<Guid>, IMultiTenant
 {
-    public AuditLogAggregateRoot()
+    public AuditLogEntity()
     {
     }
 
-    public AuditLogAggregateRoot(
+    public AuditLogEntity(
         Guid id,
         string applicationName,
         Guid? tenantId,

@@ -83,7 +83,7 @@ public class SqlSugarAndConfigurationTenantStore : DefaultTenantStore, ITenantSt
         throw new AbpException("Both id and name can't be invalid.");
     }
 
-    protected virtual async Task<TenantCacheItem> SetCacheAsync(string cacheKey, TenantAggregateRoot? tenant)
+    protected virtual async Task<TenantCacheItem> SetCacheAsync(string cacheKey, TenantEntity? tenant)
     {
         var tenantConfiguration = tenant != null ? MapToConfiguration(tenant) : null;
         var cacheItem = new TenantCacheItem(tenantConfiguration);
@@ -91,13 +91,13 @@ public class SqlSugarAndConfigurationTenantStore : DefaultTenantStore, ITenantSt
         return cacheItem;
     }
 
-    private TenantConfiguration MapToConfiguration(TenantAggregateRoot tenantAggregateRoot)
+    private TenantConfiguration MapToConfiguration(TenantEntity tenantEntity)
     {
         var tenantConfiguration = new TenantConfiguration
         {
-            Id = tenantAggregateRoot.Id,
-            Name = tenantAggregateRoot.Name,
-            ConnectionStrings = MapToString(tenantAggregateRoot.TenantConnectionString),
+            Id = tenantEntity.Id,
+            Name = tenantEntity.Name,
+            ConnectionStrings = MapToString(tenantEntity.TenantConnectionString),
             IsActive = true
         };
         return tenantConfiguration;

@@ -3,14 +3,14 @@ using Yi.Admin.Domains.TenantManagement.Entities;
 
 namespace Yi.Admin.Domains.TenantManagement.Repositories;
 
-public class SqlSugarTenantRepository : SqlSugarRepository<TenantAggregateRoot, Guid>, ISqlSugarTenantRepository, ITransientDependency
+public class SqlSugarTenantRepository : SqlSugarRepository<TenantEntity, Guid>, ISqlSugarTenantRepository, ITransientDependency
 {
     public SqlSugarTenantRepository(ISugarDbContextProvider<ISqlSugarDbContext> sugarDbContextProvider) : base(
         sugarDbContextProvider)
     {
     }
 
-    public async Task<TenantAggregateRoot> FindByNameAsync(string name, bool includeDetails = true)
+    public async Task<TenantEntity> FindByNameAsync(string name, bool includeDetails = true)
     {
         return await DbQueryable.FirstAsync(x => x.Name == name);
     }
@@ -20,7 +20,7 @@ public class SqlSugarTenantRepository : SqlSugarRepository<TenantAggregateRoot, 
         return await DbQueryable.WhereIF(!string.IsNullOrEmpty(filter), x => x.Name.Contains(filter)).CountAsync();
     }
 
-    public async Task<List<TenantAggregateRoot>> GetListAsync(
+    public async Task<List<TenantEntity>> GetListAsync(
         string? sorting = null,
         int maxResultCount = int.MaxValue,
         int skipCount = 0,
