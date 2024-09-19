@@ -5,8 +5,7 @@ namespace Yi.System.Domains.Rbac.Repositories;
 
 public class DeptRepository : SqlSugarRepository<DeptAggregateRoot, Guid>, IDeptRepository, ITransientDependency
 {
-    public DeptRepository(ISugarDbContextProvider<ISqlSugarDbContext> sugarDbContextProvider) : base(
-        sugarDbContextProvider)
+    public DeptRepository(ISugarDbContextProvider<ISqlSugarDbContext> sugarDbContextProvider) : base(sugarDbContextProvider)
     {
     }
 
@@ -18,8 +17,8 @@ public class DeptRepository : SqlSugarRepository<DeptAggregateRoot, Guid>, IDept
 
     public async Task<List<DeptAggregateRoot>> GetListRoleIdAsync(Guid roleId)
     {
-        return await DbQueryable.Where(d =>
-                SqlFunc.Subqueryable<RoleDeptEntity>().Where(rd => rd.RoleId == roleId && d.Id == rd.DeptId).Any())
+        return await DbQueryable.
+            Where(d => SqlFunc.Subqueryable<RoleDeptEntity>().Where(rd => rd.RoleId == roleId && d.Id == rd.DeptId).Any())
             .ToListAsync();
     }
 }

@@ -53,8 +53,7 @@ public class LoginLogAggregateRoot : AggregateRoot<Guid>, ICreationAuditedObject
     public DateTime CreationTime { get; set; }
 
     public Guid? CreatorId { get; set; }
-
-
+    
     public LoginLogAggregateRoot GetInfoByHttpContext(HttpContext context)
     {
         ClientInfo GetClientInfo(HttpContext context)

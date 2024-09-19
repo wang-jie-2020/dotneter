@@ -27,11 +27,9 @@ public class ConfigService : ApplicationService, IConfigService
     {
         RefAsync<int> total = 0;
 
-        var entities = await _repository.DbQueryable.WhereIF(!string.IsNullOrEmpty(input.ConfigKey),
-                x => x.ConfigKey.Contains(input.ConfigKey!))
+        var entities = await _repository.DbQueryable.WhereIF(!string.IsNullOrEmpty(input.ConfigKey), x => x.ConfigKey.Contains(input.ConfigKey!))
             .WhereIF(!string.IsNullOrEmpty(input.ConfigName), x => x.ConfigName!.Contains(input.ConfigName!))
-            .WhereIF(input.StartTime is not null && input.EndTime is not null,
-                x => x.CreationTime >= input.StartTime && x.CreationTime <= input.EndTime)
+            .WhereIF(input.StartTime is not null && input.EndTime is not null, x => x.CreationTime >= input.StartTime && x.CreationTime <= input.EndTime)
             .ToPageListAsync(input.SkipCount, input.MaxResultCount, total);
 
         return new PagedResultDto<ConfigGetListOutputDto>(total, entities.Adapt<List<ConfigGetListOutputDto>>());

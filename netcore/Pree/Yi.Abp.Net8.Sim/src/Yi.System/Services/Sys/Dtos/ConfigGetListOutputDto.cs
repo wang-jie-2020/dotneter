@@ -2,7 +2,7 @@ using Volo.Abp.Application.Dtos;
 
 namespace Yi.System.Services.Sys.Dtos;
 
-public class ConfigGetListOutputDto : EntityDto<Guid>
+public class ConfigGetListOutputDto 
 {
     public Guid Id { get; set; }
 

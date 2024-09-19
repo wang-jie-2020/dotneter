@@ -23,7 +23,7 @@ Tenant 租户切换
 RefreshTokenMiddleware 在哪合适?
 OperationLogging 是不是应该考虑做Interceptor？结果是什么样子的
 
-
+Entity基类,Entity统一下名称
 
 
 

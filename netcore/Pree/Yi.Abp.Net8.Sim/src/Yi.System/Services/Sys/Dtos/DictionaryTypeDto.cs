@@ -2,8 +2,10 @@ using Volo.Abp.Application.Dtos;
 
 namespace Yi.System.Services.Sys.Dtos;
 
-public class DictionaryTypeDto : EntityDto<Guid>
+public class DictionaryTypeDto 
 {
+    public Guid Id { get; set; }
+    
     public DateTime CreationTime { get; set; } = DateTime.Now;
     
     public Guid? CreatorId { get; set; }

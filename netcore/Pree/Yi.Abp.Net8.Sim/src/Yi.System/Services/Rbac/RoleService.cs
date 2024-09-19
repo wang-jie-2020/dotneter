@@ -203,6 +203,5 @@ public class RoleService : ApplicationService, IRoleService
         await _userRoleRepository.Db.Deleteable<UserRoleEntity>().Where(x => x.RoleId == input.RoleId)
             .Where(x => input.UserIds.Contains(x.UserId))
             .ExecuteCommandAsync();
-        ;
     }
 }

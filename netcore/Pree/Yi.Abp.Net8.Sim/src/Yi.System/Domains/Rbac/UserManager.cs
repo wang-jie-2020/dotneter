@@ -97,36 +97,56 @@ public class UserManager : DomainService
         ValidateUserName(userEntity);
 
         if (userEntity.EncryPassword?.Password.Length < 6)
+        {
             throw new UserFriendlyException(UserConst.Create_Passworld_Error);
+        }
 
         if (userEntity.Phone is not null)
+        {
             if (await _repository.IsAnyAsync(x => x.Phone == userEntity.Phone))
+            {
                 throw new UserFriendlyException(UserConst.Phone_Repeat);
+            }
+        }
 
         var isExist = await _repository.IsAnyAsync(x => x.UserName == userEntity.UserName);
-        if (isExist) throw new UserFriendlyException(UserConst.User_Exist);
+        if (isExist)
+        {
+            throw new UserFriendlyException(UserConst.User_Exist);
+        }
 
         var entity = await _repository.InsertReturnEntityAsync(userEntity);
     }
-    
+
     public async Task SetDefaultRoleAsync(Guid userId)
     {
         var role = await _roleRepository.GetFirstAsync(x => x.RoleCode == UserConst.DefaultRoleCode);
-        if (role is not null) await GiveUserSetRoleAsync(new List<Guid> { userId }, new List<Guid> { role.Id });
+        if (role is not null)
+        {
+            await GiveUserSetRoleAsync(new List<Guid> { userId }, new List<Guid> { role.Id });
+        }
     }
 
     private void ValidateUserName(UserAggregateRoot input)
     {
         if (input.UserName == UserConst.Admin || input.UserName == UserConst.TenantAdmin)
+        {
             throw new UserFriendlyException("用户名无效注册！");
+        }
 
-        if (input.UserName.Length < 2) throw new UserFriendlyException("账号名需大于等于2位！");
+        if (input.UserName.Length < 2)
+        {
+            throw new UserFriendlyException("账号名需大于等于2位！");
+        }
 
         // 正则表达式，匹配只包含数字和字母的字符串
         var pattern = @"^[a-zA-Z0-9]+$";
 
         var isMatch = Regex.IsMatch(input.UserName, pattern);
-        if (!isMatch) throw new UserFriendlyException("用户名不能包含除【字母】与【数字】的其他字符");
+        if (!isMatch)
+        {
+            throw new UserFriendlyException("用户名不能包含除【字母】与【数字】的其他字符");
+        }
     }
 
     /// <summary>
@@ -143,8 +163,7 @@ public class UserManager : DomainService
     {
         //此处优先从缓存中获取
         UserRoleMenuDto output = null;
-        var tokenExpiresMinuteTime =
-            LazyServiceProvider.GetRequiredService<IOptions<JwtOptions>>().Value.ExpiresMinuteTime;
+        var tokenExpiresMinuteTime = LazyServiceProvider.GetRequiredService<IOptions<JwtOptions>>().Value.ExpiresMinuteTime;
         var cacheData = await _userCache.GetOrAddAsync(new UserInfoCacheKey(userId),
             async () =>
             {
@@ -157,9 +176,15 @@ public class UserManager : DomainService
                 return new UserInfoCacheItem(data);
             },
             () => new DistributedCacheEntryOptions
-                { AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(1) }); //缓存可能真的不是个好主意
+            {
+                AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(1) //缓存可能真的不是个好主意
+            });
 
-        if (cacheData is not null) output = cacheData.Info;
+        if (cacheData is not null)
+        {
+            output = cacheData.Info;
+        }
+
         return output!;
     }
 
@@ -172,7 +197,11 @@ public class UserManager : DomainService
     public async Task<List<UserRoleMenuDto>> GetInfoListAsync(List<Guid> userIds)
     {
         var output = new List<UserRoleMenuDto>();
-        foreach (var userId in userIds) output.Add(await GetInfoByCacheAsync(userId));
+        foreach (var userId in userIds)
+        {
+            output.Add(await GetInfoByCacheAsync(userId));
+        }
+
         return output;
     }
 
@@ -206,12 +235,17 @@ public class UserManager : DomainService
             userRoleMenu.RoleCodes.Add(role.RoleCode);
 
             if (role.Menus is not null)
+            {
                 foreach (var menu in role.Menus)
                 {
                     if (!string.IsNullOrEmpty(menu.PermissionCode))
+                    {
                         userRoleMenu.PermissionCodes.Add(menu.PermissionCode);
+                    }
+
                     userRoleMenu.Menus.Add(menu.Adapt<MenuDto>());
                 }
+            }
 
             //刚好可以去除一下多余的导航属性
             role.Menus = new List<MenuAggregateRoot>();

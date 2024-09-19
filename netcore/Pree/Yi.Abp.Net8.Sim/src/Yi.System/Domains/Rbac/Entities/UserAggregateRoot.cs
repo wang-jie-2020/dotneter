@@ -112,8 +112,7 @@ public class UserAggregateRoot : AggregateRoot<Guid>, ISoftDelete, IAuditedObjec
     ///     部门id
     /// </summary>
     public Guid? DeptId { get; set; }
-
-
+    
     /// <summary>
     ///     角色
     /// </summary>
@@ -163,8 +162,7 @@ public class UserAggregateRoot : AggregateRoot<Guid>, ISoftDelete, IAuditedObjec
     ///     逻辑删除
     /// </summary>
     public bool IsDeleted { get; set; }
-
-
+    
     /// <summary>
     ///     状态
     /// </summary>

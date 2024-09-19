@@ -14,8 +14,7 @@ public class RoleAggregateRoot : AggregateRoot<Guid>, ISoftDelete, IAuditedObjec
     /// </summary>
     [SugarColumn(IsPrimaryKey = true)]
     public override Guid Id { get; protected set; }
-
-
+    
     /// <summary>
     ///     角色名
     /// </summary>
@@ -38,8 +37,7 @@ public class RoleAggregateRoot : AggregateRoot<Guid>, ISoftDelete, IAuditedObjec
     /// </summary>
     [SugarColumn(ColumnName = "DataScope")]
     public DataScopeEnum DataScope { get; set; } = DataScopeEnum.ALL;
-
-
+    
     [Navigate(typeof(RoleMenuEntity), nameof(RoleMenuEntity.RoleId), nameof(RoleMenuEntity.MenuId))]
     public List<MenuAggregateRoot>? Menus { get; set; }
 

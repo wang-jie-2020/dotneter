@@ -3,7 +3,7 @@ using Yi.System;
 
 namespace Yi.Web;
 
-public class YiDbContext: YiRbacDbContext
+public class YiDbContext: YiDataScopedDbContext
 {
     public YiDbContext(IAbpLazyServiceProvider lazyServiceProvider) : base(lazyServiceProvider)
     {

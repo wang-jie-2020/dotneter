@@ -33,8 +33,7 @@ public class NoticeService : ApplicationService, INoticeService
 
         var entities = await _repository.DbQueryable.WhereIF(input.Type is not null, x => x.Type == input.Type)
             .WhereIF(!string.IsNullOrEmpty(input.Title), x => x.Title!.Contains(input.Title!))
-            .WhereIF(input.StartTime is not null && input.EndTime is not null,
-                x => x.CreationTime >= input.StartTime && x.CreationTime <= input.EndTime)
+            .WhereIF(input.StartTime is not null && input.EndTime is not null, x => x.CreationTime >= input.StartTime && x.CreationTime <= input.EndTime)
             .ToPageListAsync(input.SkipCount, input.MaxResultCount, total);
 
         return new PagedResultDto<NoticeDto>(total, entities.Adapt<List<NoticeDto>>());

@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Volo.Abp.Users;
 using Yi.AspNetCore.Permissions;
+using Yi.System.Domains.Rbac;
 
 namespace Yi.System.Services.Rbac;
 
@@ -27,10 +28,10 @@ public static class CurrenttUserExtensions
         return deptIdOrNull is null ? null : Guid.Parse(deptIdOrNull);
     }
 
-    public static List<RoleTokenInfoModel>? GetRoleInfo(this ICurrentUser currentUser)
+    public static List<RoleTokenInfo>? GetRoleInfo(this ICurrentUser currentUser)
     {
         var roleOrNull = currentUser.FindClaims(TokenClaimConst.RoleInfo).Select(x => x.Value).FirstOrDefault();
-        return roleOrNull is null ? null : JsonConvert.DeserializeObject<List<RoleTokenInfoModel>>(roleOrNull);
+        return roleOrNull is null ? null : JsonConvert.DeserializeObject<List<RoleTokenInfo>>(roleOrNull);
     }
 
     public static bool IsRefreshToken(this ICurrentUser currentUser)

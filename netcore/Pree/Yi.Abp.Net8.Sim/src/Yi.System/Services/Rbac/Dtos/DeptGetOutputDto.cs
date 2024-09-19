@@ -2,8 +2,10 @@ using Volo.Abp.Application.Dtos;
 
 namespace Yi.System.Services.Rbac.Dtos;
 
-public class DeptGetOutputDto : EntityDto<Guid>
+public class DeptGetOutputDto 
 {
+    public Guid Id { get; set; }
+    
     public bool State { get; set; }
     
     public string DeptName { get; set; } = string.Empty;

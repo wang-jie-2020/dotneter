@@ -15,7 +15,10 @@ public class DictionaryDataSeed : IDataSeedContributor, ITransientDependency
 
     public async Task SeedAsync(DataSeedContext context)
     {
-        if (!await _repository.IsAnyAsync(x => true)) await _repository.InsertManyAsync(GetSeedData());
+        if (!await _repository.IsAnyAsync(x => true))
+        {
+            await _repository.InsertManyAsync(GetSeedData());
+        }
     }
 
     public List<DictionaryEntity> GetSeedData()
@@ -56,8 +59,7 @@ public class DictionaryDataSeed : IDataSeedContributor, ITransientDependency
             State = true
         };
         entities.Add(dictInfo3);
-
-
+        
         var dictInfo4 = new DictionaryEntity
         {
             DictLabel = "显示",

@@ -1,8 +1,9 @@
 ﻿using Volo.Abp.Application.Dtos;
+using Yi.System.Domains.Rbac;
 
 namespace Yi.System.Services.Rbac.Dtos;
 
-public class RoleDto : EntityDto<Guid>
+public class RoleDto 
 {
     public Guid Id { get; set; }
 

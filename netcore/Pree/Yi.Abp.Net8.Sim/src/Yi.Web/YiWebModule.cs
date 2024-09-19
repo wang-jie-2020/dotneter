@@ -25,7 +25,7 @@ namespace Yi.Web;
 [DependsOn(
     typeof(YiAspNetCoreModule),
     typeof(YiAdminModule),
-    typeof(YiInfraModule)
+    typeof(YiSystemModule)
 )]
 public class YiAbpWebModule : AbpModule
 {

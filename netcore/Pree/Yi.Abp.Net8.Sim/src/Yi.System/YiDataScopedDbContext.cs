@@ -1,13 +1,14 @@
 ﻿using Volo.Abp.DependencyInjection;
 using Yi.AspNetCore.Permissions;
+using Yi.System.Domains.Rbac;
 using Yi.System.Domains.Rbac.Entities;
 using Yi.System.Services.Rbac;
 
 namespace Yi.System;
 
-public class YiRbacDbContext : SqlSugarDbContext
+public class YiDataScopedDbContext : SqlSugarDbContext
 {
-    public YiRbacDbContext(IAbpLazyServiceProvider lazyServiceProvider) : base(lazyServiceProvider)
+    public YiDataScopedDbContext(IAbpLazyServiceProvider lazyServiceProvider) : base(lazyServiceProvider)
     {
     }
 

@@ -35,8 +35,7 @@ public class DeptDataSeed : IDataSeedContributor, ITransientDependency
             Remark = "如名所指"
         };
         entities.Add(chengziDept);
-
-
+        
         var shenzhenDept = new DeptAggregateRoot(_guidGenerator.Create())
         {
             DeptName = "深圳总公司",
@@ -45,8 +44,7 @@ public class DeptDataSeed : IDataSeedContributor, ITransientDependency
             ParentId = chengziDept.Id
         };
         entities.Add(shenzhenDept);
-
-
+        
         var jiangxiDept = new DeptAggregateRoot(_guidGenerator.Create())
         {
             DeptName = "江西总公司",
@@ -55,8 +53,7 @@ public class DeptDataSeed : IDataSeedContributor, ITransientDependency
             ParentId = chengziDept.Id
         };
         entities.Add(jiangxiDept);
-
-
+        
         var szDept1 = new DeptAggregateRoot(_guidGenerator.Create())
         {
             DeptName = "研发部门",
@@ -121,8 +118,7 @@ public class DeptDataSeed : IDataSeedContributor, ITransientDependency
             ParentId = jiangxiDept.Id
         };
         entities.Add(jxDept2);
-
-
+        
         return entities;
     }
 }

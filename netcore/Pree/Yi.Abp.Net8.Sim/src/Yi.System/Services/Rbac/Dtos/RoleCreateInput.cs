@@ -1,3 +1,5 @@
+using Yi.System.Domains.Rbac;
+
 namespace Yi.System.Services.Rbac.Dtos;
 
 /// <summary>

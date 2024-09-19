@@ -7,7 +7,6 @@ namespace Yi.System.Domains.Rbac.Entities;
 /// </summary>
 [SugarTable("RoleMenu")]
 public class RoleMenuEntity : Entity<Guid>
-
 {
     /// <summary>
     ///     主键

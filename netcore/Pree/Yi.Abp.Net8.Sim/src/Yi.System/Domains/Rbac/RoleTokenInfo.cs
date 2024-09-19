@@ -1,6 +1,6 @@
-﻿namespace Yi.System;
+﻿namespace Yi.System.Domains.Rbac;
 
-public class RoleTokenInfoModel
+public class RoleTokenInfo
 {
     public Guid Id { get; set; }
     

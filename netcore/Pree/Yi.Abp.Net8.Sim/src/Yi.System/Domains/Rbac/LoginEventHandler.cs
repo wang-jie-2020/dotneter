@@ -24,7 +24,6 @@ public class LoginEventHandler : ILocalEventHandler<LoginEventArgs>, ITransientD
         loginLogEntity.LogMsg = eventData.UserName + "登录系统";
         loginLogEntity.LoginUser = eventData.UserName;
         loginLogEntity.CreatorId = eventData.UserId;
-        //异步插入
         await _loginLogRepository.InsertAsync(loginLogEntity);
     }
 }

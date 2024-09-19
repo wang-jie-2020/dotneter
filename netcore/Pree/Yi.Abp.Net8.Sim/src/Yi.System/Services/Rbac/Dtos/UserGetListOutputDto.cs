@@ -3,8 +3,10 @@ using Yi.System.Domains.Rbac.Entities;
 
 namespace Yi.System.Services.Rbac.Dtos;
 
-public class UserGetListOutputDto : EntityDto<Guid>
+public class UserGetListOutputDto 
 {
+    public Guid Id { get; set; }
+    
     public string? Name { get; set; }
     
     public int? Age { get; set; }

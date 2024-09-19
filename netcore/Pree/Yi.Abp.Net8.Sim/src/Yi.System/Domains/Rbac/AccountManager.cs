@@ -269,7 +269,7 @@ public class AccountManager : DomainService, IAccountManager
         if (dto.Roles.Count > 0)
         {
             AddToClaim(claims, TokenClaimConst.RoleInfo,
-                JsonConvert.SerializeObject(dto.Roles.Select(x => new RoleTokenInfoModel
+                JsonConvert.SerializeObject(dto.Roles.Select(x => new RoleTokenInfo
                     { Id = x.Id, DataScope = x.DataScope })));
         }
 

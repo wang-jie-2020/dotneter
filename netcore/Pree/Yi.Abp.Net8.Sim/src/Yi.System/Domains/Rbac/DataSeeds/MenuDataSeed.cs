@@ -24,8 +24,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
     public List<MenuAggregateRoot> GetSeedData()
     {
         var entities = new List<MenuAggregateRoot>();
-
-
+        
         //系统管理
         var system = new MenuAggregateRoot(_guidGenerator.Create(), Guid.Empty)
         {
@@ -88,8 +87,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
             IsDeleted = false
         };
         entities.Add(field);
-
-
+        
         //模板管理
         var template = new MenuAggregateRoot(_guidGenerator.Create(), code.Id)
         {
@@ -106,8 +104,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
             IsDeleted = false
         };
         entities.Add(template);
-
-
+        
         //系统监控
         var monitoring = new MenuAggregateRoot(_guidGenerator.Create())
         {
@@ -121,7 +118,6 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
             IsDeleted = false
         };
         entities.Add(monitoring);
-
 
         //在线用户
         var online = new MenuAggregateRoot(_guidGenerator.Create(), monitoring.Id)
@@ -190,8 +186,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
             IsDeleted = false
         };
         entities.Add(task);
-
-
+        
         //系统工具
         var tool = new MenuAggregateRoot(_guidGenerator.Create())
         {
@@ -205,6 +200,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
             IsDeleted = false
         };
         entities.Add(tool);
+        
         //swagger文档
         var swagger = new MenuAggregateRoot(_guidGenerator.Create(), tool.Id)
         {
@@ -219,7 +215,6 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(swagger);
 
-
         //ERP
         var erp = new MenuAggregateRoot(_guidGenerator.Create())
         {
@@ -233,8 +228,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
             IsDeleted = false
         };
         entities.Add(erp);
-
-
+        
         //供应商定义
         var supplier = new MenuAggregateRoot(_guidGenerator.Create(), erp.Id)
         {
@@ -292,8 +286,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
             IsDeleted = false
         };
         entities.Add(supplierRemove);
-
-
+        
         //仓库定义
         var warehouse = new MenuAggregateRoot(_guidGenerator.Create(), erp.Id)
         {
@@ -351,8 +344,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
             IsDeleted = false
         };
         entities.Add(warehouseRemove);
-
-
+        
         //单位定义
         var unit = new MenuAggregateRoot(_guidGenerator.Create(), erp.Id)
         {
@@ -409,8 +401,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
             IsDeleted = false
         };
         entities.Add(unitRemove);
-
-
+        
         //物料定义
         var material = new MenuAggregateRoot(_guidGenerator.Create())
         {
@@ -472,8 +463,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
             IsDeleted = false
         };
         entities.Add(materialRemove);
-
-
+        
         //采购订单
         var purchase = new MenuAggregateRoot(_guidGenerator.Create())
         {
@@ -535,7 +525,6 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
             IsDeleted = false
         };
         entities.Add(purchaseRemove);
-
 
         //Yi框架
         var guide = new MenuAggregateRoot(_guidGenerator.Create())
@@ -613,7 +602,6 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(tenantRemove);
 
-
         //用户管理
         var user = new MenuAggregateRoot(_guidGenerator.Create())
         {
@@ -675,8 +663,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
             IsDeleted = false
         };
         entities.Add(userRemove);
-
-
+        
         var userResetPwd = new MenuAggregateRoot(_guidGenerator.Create())
         {
             MenuName = "重置密码",
@@ -687,8 +674,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
             IsDeleted = false
         };
         entities.Add(userResetPwd);
-
-
+        
         //角色管理
         var role = new MenuAggregateRoot(_guidGenerator.Create())
         {
@@ -750,8 +736,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
             IsDeleted = false
         };
         entities.Add(roleRemove);
-
-
+        
         //菜单管理
         var menu = new MenuAggregateRoot(_guidGenerator.Create())
         {
@@ -1000,8 +985,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
             IsDeleted = false
         };
         entities.Add(dictRemove);
-
-
+        
         //参数设置
         var config = new MenuAggregateRoot(_guidGenerator.Create())
         {
@@ -1064,7 +1048,6 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(configRemove);
 
-
         //通知公告
         var notice = new MenuAggregateRoot(_guidGenerator.Create())
         {
@@ -1126,8 +1109,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
             IsDeleted = false
         };
         entities.Add(noticeRemove);
-
-
+        
         //日志管理
         var log = new MenuAggregateRoot(_guidGenerator.Create())
         {
@@ -1182,8 +1164,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
             IsDeleted = false
         };
         entities.Add(operationLogRemove);
-
-
+        
         //登录日志
         var loginLog = new MenuAggregateRoot(_guidGenerator.Create())
         {
