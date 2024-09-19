@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.AspNetCore.Mvc;
+using Yi.System.Services.Rbac;
 using Yi.System.Services.Rbac.Dtos;
-using Yi.System.Services.Rbac.Services;
 
 namespace Yi.System.Controllers;
 

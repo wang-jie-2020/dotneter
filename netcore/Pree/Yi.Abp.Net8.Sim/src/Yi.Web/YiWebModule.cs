@@ -17,8 +17,7 @@ using Yi.AspNetCore.Extensions;
 using Yi.AspNetCore.Permissions;
 using Yi.AspNetCore.SqlSugarCore;
 using Yi.System;
-using Yi.System.Services.Account;
-using Yi.System.Services.Account.Options;
+using Yi.System.Options;
 
 
 namespace Yi.Web;

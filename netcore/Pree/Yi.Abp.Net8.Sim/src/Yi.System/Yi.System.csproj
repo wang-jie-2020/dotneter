@@ -16,9 +16,4 @@
     <ItemGroup>
       <ProjectReference Include="..\Yi.AspNetCore\Yi.AspNetCore.csproj" />
     </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Domains\" />
-      <Folder Include="Services\" />
-    </ItemGroup>
 </Project>

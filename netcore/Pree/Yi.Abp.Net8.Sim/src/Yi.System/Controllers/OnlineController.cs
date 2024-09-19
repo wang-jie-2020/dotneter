@@ -23,7 +23,7 @@ public class OnlineController : AbpController
     [HttpGet]
     public Task<PagedResultDto<OnlineUser>> GetListAsync([FromQuery] OnlineUser online)
     {
-        var data = MainHub.clientUsers;
+        var data = MainHub.ClientUsers;
         var dataWhere = data.AsEnumerable();
 
         if (!string.IsNullOrEmpty(online.Ipaddr))
@@ -47,7 +47,7 @@ public class OnlineController : AbpController
     [HttpDelete("{connectionId}")]
     public async Task<bool> ForceOut([FromRoute] string connectionId)
     {
-        if (MainHub.clientUsers.Exists(u => u.ConnectionId == connectionId))
+        if (MainHub.ClientUsers.Exists(u => u.ConnectionId == connectionId))
         {
             //前端接受到这个事件后，触发前端自动退出
             await _hub.Clients.Client(connectionId).SendAsync("forceOut", "你已被强制退出！");
