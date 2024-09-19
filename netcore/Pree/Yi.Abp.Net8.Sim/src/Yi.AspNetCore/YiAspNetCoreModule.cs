@@ -82,7 +82,10 @@ public class YiAspNetCoreModule : AbpModule
         //AspNetCore
         context.Services.AddTransient<IPermissionHandler, DefaultPermissionHandler>();
         context.Services.AddTransient<PermissionFilter>();
-        context.Services.Configure<MvcOptions>(options => { options.Filters.Add<PermissionFilter>(); });
+        context.Services.Configure<MvcOptions>(options =>
+        {
+            options.Filters.Add<PermissionFilter>();
+        });
     }
 
     public override async Task OnPreApplicationInitializationAsync(ApplicationInitializationContext context)

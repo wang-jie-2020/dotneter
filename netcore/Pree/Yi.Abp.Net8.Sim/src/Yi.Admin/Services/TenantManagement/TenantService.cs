@@ -5,10 +5,10 @@ using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Data;
 using Volo.Abp.Uow;
+using Yi.Admin.Domains.TenantManagement.Entities;
 using Yi.Admin.Services.TenantManagement.Dtos;
-using Yi.Admin.Services.TenantManagement.Entities;
 
-namespace Yi.Admin.Services.TenantManagement.Services;
+namespace Yi.Admin.Services.TenantManagement;
 
 [RemoteService(false)]
 public class TenantService : ApplicationService, ITenantService

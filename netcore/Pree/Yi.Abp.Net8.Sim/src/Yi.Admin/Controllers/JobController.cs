@@ -7,6 +7,7 @@ using Volo.Abp.Application.Dtos;
 using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.Timing;
 using Yi.Admin.Domains;
+using Yi.Admin.Services.Monitor;
 using Yi.Admin.Services.Monitor.Dtos;
 
 namespace Yi.Admin.Controllers;

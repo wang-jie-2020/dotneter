@@ -2,7 +2,7 @@
 using Volo.Abp.Application.Dtos;
 using Yi.Admin.Services.TenantManagement.Dtos;
 
-namespace Yi.Admin.Services.TenantManagement.Services;
+namespace Yi.Admin.Services.TenantManagement;
 
 public interface ITenantService 
 {
