@@ -7,6 +7,7 @@ using Volo.Abp.Data;
 using Volo.Abp.Uow;
 using Yi.Admin.Domains.TenantManagement.Entities;
 using Yi.Admin.Services.TenantManagement.Dtos;
+using Yi.AspNetCore.Helpers;
 
 namespace Yi.Admin.Services.TenantManagement;
 

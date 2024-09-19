@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Entities;
+using Yi.AspNetCore.Helpers;
 using Yi.System.Domains.Rbac;
 using Yi.System.Domains.Rbac.Entities;
 using Yi.System.Services.Rbac.Dtos;

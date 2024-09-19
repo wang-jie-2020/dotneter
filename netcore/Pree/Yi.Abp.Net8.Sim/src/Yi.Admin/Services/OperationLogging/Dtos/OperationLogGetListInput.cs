@@ -1,10 +1,10 @@
 using Yi.AspNetCore.Common;
 
-namespace Yi.System.Services.OperationLogging.Dtos;
+namespace Yi.Admin.Services.OperationLogging.Dtos;
 
 public class OperationLogGetListInput : PagedInfraInput
 {
-    public OperationEnum? OperType { get; set; }
+    public OperationLogEnum? OperType { get; set; }
     
     public string? OperUser { get; set; }
 }

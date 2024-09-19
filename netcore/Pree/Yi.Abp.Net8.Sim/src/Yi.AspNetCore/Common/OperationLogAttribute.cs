@@ -1,18 +1,18 @@
-﻿namespace Yi.System.Services.OperationLogging;
+﻿namespace Yi.AspNetCore.Common;
 
 [AttributeUsage(AttributeTargets.Method)]
 public class OperationLogAttribute : Attribute
 {
-    public OperationLogAttribute(string title, OperationEnum operationType)
+    public OperationLogAttribute(string title, OperationLogEnum operationLogType)
     {
         Title = title;
-        OperType = operationType;
+        OperLogType = operationLogType;
     }
 
     /// <summary>
     ///     操作类型
     /// </summary>
-    public OperationEnum OperType { get; set; }
+    public OperationLogEnum OperLogType { get; set; }
 
     /// <summary>
     ///     日志标题（模块）

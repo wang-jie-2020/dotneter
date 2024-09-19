@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.AspNetCore.Mvc;
+using Yi.AspNetCore.Common;
 using Yi.AspNetCore.Permissions;
-using Yi.System.Services.OperationLogging;
 using Yi.System.Services.Rbac;
 using Yi.System.Services.Rbac.Dtos;
 
@@ -33,7 +33,7 @@ public class UserController : AbpController
     }
 
     [HttpPost]
-    [OperationLog("添加用户", OperationEnum.Insert)]
+    [OperationLog("添加用户", OperationLogEnum.Insert)]
     [Permission("system:user:add")]
     public async Task<UserGetOutputDto> CreateAsync([FromBody] UserCreateInput input)
     {
@@ -41,7 +41,7 @@ public class UserController : AbpController
     }
 
     [HttpPut("{id}")]
-    [OperationLog("更新用户", OperationEnum.Update)]
+    [OperationLog("更新用户", OperationLogEnum.Update)]
     [Permission("system:user:edit")]
     public async Task<UserGetOutputDto> UpdateAsync(Guid id, [FromBody] UserUpdateInput input)
     {
@@ -49,7 +49,7 @@ public class UserController : AbpController
     }
 
     [HttpDelete]
-    [OperationLog("删除用户", OperationEnum.Delete)]
+    [OperationLog("删除用户", OperationLogEnum.Delete)]
     [Permission("system:user:delete")]
     public async Task DeleteAsync([FromQuery] IEnumerable<Guid> id)
     {
@@ -76,7 +76,7 @@ public class UserController : AbpController
     /// <param name="input"></param>
     /// <returns></returns>
     [HttpPut("profile")]
-    [OperationLog("更新个人信息", OperationEnum.Update)]
+    [OperationLog("更新个人信息", OperationLogEnum.Update)]
     public async Task<UserGetOutputDto> UpdateProfileAsync(ProfileUpdateInput input)
     {
         return await _userService.UpdateProfileAsync(input);
@@ -89,7 +89,7 @@ public class UserController : AbpController
     /// <param name="state"></param>
     /// <returns></returns>
     [HttpPut("{id}/{state}")]
-    [OperationLog("更新用户状态", OperationEnum.Update)]
+    [OperationLog("更新用户状态", OperationLogEnum.Update)]
     [Permission("system:user:update")]
     public async Task<UserGetOutputDto> UpdateStateAsync([FromRoute] Guid id, [FromRoute] bool state)
     {

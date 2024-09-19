@@ -22,6 +22,7 @@ using Volo.Abp.Domain.Repositories;
 using Volo.Abp.ObjectMapping;
 using Volo.Abp.Swashbuckle;
 using Yi.AspNetCore.Caching.FreeRedis;
+using Yi.AspNetCore.Common;
 using Yi.AspNetCore.Mapster;
 using Yi.AspNetCore.Permissions;
 using Yi.AspNetCore.SqlSugarCore;
@@ -82,9 +83,11 @@ public class YiAspNetCoreModule : AbpModule
         //AspNetCore
         context.Services.AddTransient<IPermissionHandler, DefaultPermissionHandler>();
         context.Services.AddTransient<PermissionFilter>();
+        context.Services.AddSingleton<IOperationLogStore, SimpleOperationLogStore>();
         context.Services.Configure<MvcOptions>(options =>
         {
             options.Filters.Add<PermissionFilter>();
+            options.Filters.Add<OperationLogFilter>();
         });
     }
 

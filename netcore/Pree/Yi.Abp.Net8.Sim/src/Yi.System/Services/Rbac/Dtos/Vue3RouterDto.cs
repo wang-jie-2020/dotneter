@@ -1,4 +1,6 @@
-﻿namespace Yi.System.Services.Rbac.Dtos;
+﻿using Yi.AspNetCore.Helpers;
+
+namespace Yi.System.Services.Rbac.Dtos;
 
 public class Vue3RouterDto : TreeHelper.ITreeModel<Vue3RouterDto>
 {

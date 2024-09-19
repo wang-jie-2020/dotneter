@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Volo.Abp.Application.Dtos;
-using Yi.System.Services.OperationLogging.Dtos;
+using Yi.Admin.Services.OperationLogging.Dtos;
 
-namespace Yi.System.Services.OperationLogging.Services;
+namespace Yi.Admin.Services.OperationLogging;
 
 public interface IOperationLogService
 {

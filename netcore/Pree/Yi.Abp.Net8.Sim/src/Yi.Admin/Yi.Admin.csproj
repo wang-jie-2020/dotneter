@@ -4,9 +4,9 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
     </PropertyGroup>
-    <Import Project="..\..\common.props" />
-
+    <Import Project="..\..\common.props"/>
+    
     <ItemGroup>
-        <ProjectReference Include="..\Yi.AspNetCore\Yi.AspNetCore.csproj" />
+        <ProjectReference Include="..\Yi.AspNetCore\Yi.AspNetCore.csproj"/>
     </ItemGroup>
 </Project>

@@ -1,6 +1,6 @@
 ﻿using MiniExcelLibs;
 
-namespace Yi.AspNetCore.Core.Helpers;
+namespace Yi.AspNetCore.Helpers;
 
 public static class ExporterHelper
 {

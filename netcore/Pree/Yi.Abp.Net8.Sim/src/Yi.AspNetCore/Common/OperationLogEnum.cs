@@ -1,6 +1,6 @@
-﻿namespace Yi.System.Services.OperationLogging;
+﻿namespace Yi.AspNetCore.Common;
 
-public enum OperationEnum
+public enum OperationLogEnum
 {
     Insert = 1,
     Update = 2,

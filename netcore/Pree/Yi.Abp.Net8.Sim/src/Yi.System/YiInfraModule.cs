@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Yi.AspNetCore;
 using Yi.System.Options;
-using Yi.System.Services.OperationLogging;
 
 namespace Yi.System;
 
@@ -14,11 +13,7 @@ public class YiInfraModule : AbpModule
         
         //Rbac
         context.Services.AddCaptcha();
-        context.Services.AddControllers(options =>
-        {
-            options.Filters.Add<OperationLogGlobalAttribute>();
-        });
-        
+
         Configure<JwtOptions>(configuration.GetSection(nameof(JwtOptions)));
         Configure<RefreshJwtOptions>(configuration.GetSection(nameof(RefreshJwtOptions)));
         Configure<RbacOptions>(configuration.GetSection(nameof(RbacOptions)));

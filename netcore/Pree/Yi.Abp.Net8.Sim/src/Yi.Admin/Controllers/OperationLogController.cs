@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.AspNetCore.Mvc;
-using Yi.System.Services.OperationLogging.Dtos;
-using Yi.System.Services.OperationLogging.Services;
+using Yi.Admin.Services.OperationLogging;
+using Yi.Admin.Services.OperationLogging.Dtos;
 
-namespace Yi.System.Controllers;
+namespace Yi.Admin.Controllers;
 
 [ApiController]
 [Route("api/app/operation-log")]

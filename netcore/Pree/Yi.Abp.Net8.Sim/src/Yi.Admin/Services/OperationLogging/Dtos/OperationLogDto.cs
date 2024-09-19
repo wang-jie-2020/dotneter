@@ -1,12 +1,13 @@
 using Volo.Abp.Application.Dtos;
+using Yi.AspNetCore.Common;
 
-namespace Yi.System.Services.OperationLogging.Dtos;
+namespace Yi.Admin.Services.OperationLogging.Dtos;
 
 public class OperationLogDto : EntityDto<Guid>
 {
     public string? Title { get; set; }
     
-    public OperationEnum OperType { get; set; }
+    public OperationLogEnum OperType { get; set; }
     
     public string? RequestMethod { get; set; }
     

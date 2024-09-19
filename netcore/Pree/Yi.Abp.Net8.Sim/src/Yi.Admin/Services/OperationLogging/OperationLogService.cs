@@ -1,10 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
-using Yi.System.Services.OperationLogging.Dtos;
-using Yi.System.Services.OperationLogging.Entities;
+using Yi.Admin.Domains.OperationLogging.Entities;
+using Yi.Admin.Services.OperationLogging.Dtos;
+using Yi.AspNetCore.Helpers;
 
-namespace Yi.System.Services.OperationLogging.Services;
+namespace Yi.Admin.Services.OperationLogging;
 
 [RemoteService(false)]
 public class OperationLogService : ApplicationService, IOperationLogService

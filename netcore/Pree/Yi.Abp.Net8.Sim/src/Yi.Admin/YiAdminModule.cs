@@ -5,8 +5,10 @@ using Volo.Abp.Data;
 using Volo.Abp.MultiTenancy;
 using Yi.Admin.Domains.AuditLogging;
 using Yi.Admin.Domains.AuditLogging.Repositories;
+using Yi.Admin.Domains.OperationLogging;
 using Yi.Admin.Domains.TenantManagement;
 using Yi.AspNetCore;
+using Yi.AspNetCore.Common;
 
 namespace Yi.Admin;
 
@@ -24,5 +26,8 @@ public class YiAdminModule : AbpModule
         context.Services.Replace(new ServiceDescriptor(typeof(ITenantStore), typeof(SqlSugarAndConfigurationTenantStore), ServiceLifetime.Transient));
         context.Services.Replace(new ServiceDescriptor(typeof(IConnectionStringResolver), typeof(YiMultiTenantConnectionStringResolver), ServiceLifetime.Transient));
         context.Services.Replace(new ServiceDescriptor(typeof(ITenantConfigurationProvider), typeof(YiTenantConfigurationProvider), ServiceLifetime.Transient));
+        
+        //OperationLog
+        context.Services.Replace(new ServiceDescriptor(typeof(IOperationLogStore), typeof(OperationLogStore), ServiceLifetime.Singleton));
     }
 }

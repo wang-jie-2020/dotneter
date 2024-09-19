@@ -1,7 +1,8 @@
 ﻿using Volo.Abp.Auditing;
 using Volo.Abp.Domain.Entities;
+using Yi.AspNetCore.Common;
 
-namespace Yi.System.Services.OperationLogging.Entities;
+namespace Yi.Admin.Domains.OperationLogging.Entities;
 
 /// <summary>
 ///     操作日志表
@@ -22,7 +23,7 @@ public class OperationLogEntity : Entity<Guid>, ICreationAuditedObject
     ///     操作类型
     /// </summary>
     [SugarColumn(ColumnName = "OperType")]
-    public OperationEnum OperType { get; set; }
+    public OperationLogEnum OperType { get; set; }
 
     /// <summary>
     ///     请求方法

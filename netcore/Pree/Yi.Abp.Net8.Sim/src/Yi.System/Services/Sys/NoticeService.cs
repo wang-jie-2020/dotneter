@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
+using Yi.AspNetCore.Helpers;
 using Yi.System.Domains.Sys.Entities;
 using Yi.System.Hubs;
 using Yi.System.Services.Sys.Dtos;
