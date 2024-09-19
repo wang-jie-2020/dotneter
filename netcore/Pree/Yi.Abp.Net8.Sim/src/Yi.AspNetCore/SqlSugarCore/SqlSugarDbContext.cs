@@ -318,7 +318,7 @@ public class SqlSugarDbContext : ISqlSugarDbContext
             column.IsIgnore = true;
         }
 
-        if (property.Name == nameof(Entity<object>.Id))
+        if (property.Name == nameof(IEntity<object>.Id))
         {
             column.IsPrimarykey = true;
         }

@@ -1,7 +1,7 @@
 ﻿using Volo.Abp.Auditing;
-using Volo.Abp.Domain.Entities;
 using Volo.Abp.MultiTenancy;
 using Yi.Admin.Domains.AuditLogging.Consts;
+using Yi.AspNetCore.SqlSugarCore.Entities;
 
 namespace Yi.Admin.Domains.AuditLogging.Entities;
 
@@ -10,7 +10,7 @@ namespace Yi.Admin.Domains.AuditLogging.Entities;
 [SugarIndex($"index_{nameof(AuditLogId)}", nameof(AuditLogId), OrderByType.Asc)]
 [SugarIndex($"index_{nameof(TenantId)}_{nameof(ExecutionTime)}", nameof(TenantId), OrderByType.Asc, nameof(ServiceName),
     OrderByType.Asc, nameof(MethodName), OrderByType.Asc, nameof(ExecutionTime), OrderByType.Asc)]
-public class AuditLogActionEntity : Entity<Guid>, IMultiTenant
+public class AuditLogActionEntity : SimpleEntity, IMultiTenant
 {
     public AuditLogActionEntity()
     {
@@ -43,8 +43,5 @@ public class AuditLogActionEntity : Entity<Guid>, IMultiTenant
 
     public virtual int? ExecutionDuration { get; protected set; }
     
-    [SugarColumn(ColumnName = "Id", IsPrimaryKey = true)]
-    public override Guid Id { get; protected set; }
-
     public virtual Guid? TenantId { get; protected set; }
 }

@@ -3,6 +3,7 @@ using Volo.Abp.Data;
 using Volo.Abp.Domain.Entities;
 using Volo.Abp.MultiTenancy;
 using Yi.Admin.Domains.AuditLogging.Consts;
+using Yi.AspNetCore.SqlSugarCore.Entities;
 
 namespace Yi.Admin.Domains.AuditLogging.Entities;
 
@@ -12,7 +13,7 @@ namespace Yi.Admin.Domains.AuditLogging.Entities;
     OrderByType.Asc)]
 [SugarIndex($"index_{nameof(ExecutionTime)}_{nameof(UserId)}", nameof(TenantId), OrderByType.Asc, nameof(UserId),
     OrderByType.Asc, nameof(ExecutionTime), OrderByType.Asc)]
-public class AuditLogEntity : AggregateRoot<Guid>, IMultiTenant
+public class AuditLogEntity : SimpleEntity, IMultiTenant
 {
     public AuditLogEntity()
     {
@@ -39,13 +40,12 @@ public class AuditLogEntity : AggregateRoot<Guid>, IMultiTenant
         string impersonatorUserName,
         Guid? impersonatorTenantId,
         string impersonatorTenantName,
-        ExtraPropertyDictionary extraPropertyDictionary,
         List<EntityChangeEntity> entityChanges,
         List<AuditLogActionEntity> actions,
         string exceptions,
         string comments)
-        : base(id)
     {
+        Id = id;
         ApplicationName = applicationName.Truncate(AuditLogConsts.MaxApplicationNameLength);
         TenantId = tenantId;
         TenantName = tenantName.Truncate(AuditLogConsts.MaxTenantNameLength);
@@ -65,16 +65,12 @@ public class AuditLogEntity : AggregateRoot<Guid>, IMultiTenant
         ImpersonatorUserName = impersonatorUserName.Truncate(AuditLogConsts.MaxUserNameLength);
         ImpersonatorTenantId = impersonatorTenantId;
         ImpersonatorTenantName = impersonatorTenantName.Truncate(AuditLogConsts.MaxTenantNameLength);
-        ExtraProperties = extraPropertyDictionary;
         EntityChanges = entityChanges;
         Actions = actions;
         Exceptions = exceptions;
         Comments = comments.Truncate(AuditLogConsts.MaxCommentsLength);
     }
-
-    [SugarColumn(ColumnName = "Id", IsPrimaryKey = true)]
-    public override Guid Id { get; protected set; }
-
+    
     public virtual string? ApplicationName { get; set; }
 
     public virtual Guid? UserId { get; protected set; }
@@ -122,8 +118,6 @@ public class AuditLogEntity : AggregateRoot<Guid>, IMultiTenant
     //导航属性
     [Navigate(NavigateType.OneToMany, nameof(AuditLogActionEntity.AuditLogId))]
     public virtual List<AuditLogActionEntity> Actions { get; protected set; }
-
-    [SugarColumn(IsIgnore = true)] public override ExtraPropertyDictionary ExtraProperties { get; protected set; }
-
+    
     public virtual Guid? TenantId { get; protected set; }
 }

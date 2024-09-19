@@ -3,12 +3,13 @@ using Volo.Abp.Domain.Entities;
 using Volo.Abp.Guids;
 using Volo.Abp.MultiTenancy;
 using Yi.Admin.Domains.AuditLogging.Consts;
+using Yi.AspNetCore.SqlSugarCore.Entities;
 
 namespace Yi.Admin.Domains.AuditLogging.Entities;
 
 [SugarTable("EntityPropertyChange")]
 [SugarIndex($"index_{nameof(EntityChangeId)}", nameof(EntityChangeId), OrderByType.Asc)]
-public class EntityPropertyChangeEntity : Entity<Guid>, IMultiTenant
+public class EntityPropertyChangeEntity : SimpleEntity, IMultiTenant
 {
     public EntityPropertyChangeEntity()
     {
@@ -31,10 +32,7 @@ public class EntityPropertyChangeEntity : Entity<Guid>, IMultiTenant
             entityChangeInfo.PropertyTypeFullName.TruncateFromBeginning(EntityPropertyChangeConsts
                 .MaxPropertyTypeFullNameLength);
     }
-
-    [SugarColumn(ColumnName = "Id", IsPrimaryKey = true)]
-    public override Guid Id { get; protected set; }
-
+    
     public virtual Guid? EntityChangeId { get; protected set; }
 
     public virtual string? NewValue { get; protected set; }
