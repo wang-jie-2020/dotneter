@@ -27,13 +27,19 @@ public class YiDataScopedDbContext : SqlSugarDbContext
     protected void DataPermissionFilter(ISqlSugarClient sqlSugarClient)
     {
         //获取当前用户的信息
-        if (CurrentUser.Id == null || CurrentUser.IsRefreshToken()) return;
+        if (CurrentUser.Id == null || CurrentUser.IsRefreshToken())
+        {
+            return;
+        }
+        
         //管理员不过滤
-        if (CurrentUser.UserName.Equals(UserConst.Admin) ||
-            CurrentUser.Roles.Any(f => f.Equals(UserConst.AdminRolesCode))) return;
+        if (CurrentUser.UserName.Equals(UserConst.Admin) || CurrentUser.Roles.Any(f => f.Equals(UserConst.AdminRolesCode)))
+        {
+            return;
+        }
+        
         var expUser = Expressionable.Create<UserEntity>();
         var expRole = Expressionable.Create<RoleEntity>();
-
 
         var roleInfo = CurrentUser.GetRoleInfo();
 
@@ -80,8 +86,7 @@ public class YiDataScopedDbContext : SqlSugarDbContext
                 }
             }
         }
-
-
+        
         sqlSugarClient.QueryFilter.AddTableFilter(expUser.ToExpression());
         sqlSugarClient.QueryFilter.AddTableFilter(expRole.ToExpression());
     }

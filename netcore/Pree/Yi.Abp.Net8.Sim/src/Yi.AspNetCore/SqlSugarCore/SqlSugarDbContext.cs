@@ -138,7 +138,10 @@ public class SqlSugarDbContext : ISqlSugarDbContext
     {
         //需自定义扩展
         if (IsSoftDeleteFilterEnabled)
+        {
             sqlSugarClient.QueryFilter.AddTableFilter<ISoftDelete>(u => u.IsDeleted == false);
+        }
+        
         if (IsMultiTenantFilterEnabled)
         {
             //表达式不能放方法
