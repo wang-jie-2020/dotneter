@@ -31,7 +31,7 @@ public class OperationLogService : ApplicationService, IOperationLogService
                 x => x.OperUser.Contains(input.OperUser!))
             .WhereIF(input.OperType is not null, x => x.OperType == input.OperType)
             .WhereIF(input.StartTime is not null && input.EndTime is not null,
-                x => x.CreationTime >= input.StartTime && x.CreationTime <= input.EndTime)
+                x => x.ExecutionTime >= input.StartTime && x.ExecutionTime <= input.EndTime)
             .ToPageListAsync(input.SkipCount, input.MaxResultCount, total);
 
         return new PagedResultDto<OperationLogDto>(total, entities.Adapt<List<OperationLogDto>>());

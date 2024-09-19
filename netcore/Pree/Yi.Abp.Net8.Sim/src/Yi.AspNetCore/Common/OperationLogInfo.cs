@@ -36,4 +36,6 @@ public class OperationLogInfo
     ///     请求结果
     /// </summary>
     public string? Result { get; set; }
+    
+    public DateTime ExecutionTime { get; set; }
 }

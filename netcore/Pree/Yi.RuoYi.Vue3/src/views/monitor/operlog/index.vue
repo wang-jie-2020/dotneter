@@ -96,9 +96,9 @@
                <dict-tag :options="sys_common_status" :value="scope.row.state" />
             </template>
          </el-table-column> -->
-         <el-table-column label="操作日期" align="center" prop="creationTime" sortable="custom" :sort-orders="['descending', 'ascending']" width="180">
+         <el-table-column label="操作日期" align="center" prop="executionTime" sortable="custom" :sort-orders="['descending', 'ascending']" width="180">
             <template #default="scope">
-               <span>{{ parseTime(scope.row.creationTime) }}</span>
+               <span>{{ parseTime(scope.row.executionTime) }}</span>
             </template>
          </el-table-column>
          <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
@@ -151,7 +151,7 @@
                   </el-form-item>
                </el-col> -->
                <el-col :span="12">
-                  <el-form-item label="操作时间：">{{ parseTime(form.creationTime) }}</el-form-item>
+                  <el-form-item label="操作时间：">{{ parseTime(form.executionTime) }}</el-form-item>
                </el-col>
                <el-col :span="24">
                   <el-form-item label="异常信息：" v-if="form.state === 1">{{ form.errorMsg }}</el-form-item>

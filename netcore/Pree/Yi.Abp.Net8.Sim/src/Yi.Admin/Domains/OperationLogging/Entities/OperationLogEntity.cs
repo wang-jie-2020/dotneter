@@ -2,6 +2,7 @@
 using Volo.Abp.Domain.Entities;
 using Volo.Abp.MultiTenancy;
 using Yi.AspNetCore.Common;
+using Yi.AspNetCore.SqlSugarCore.Entities;
 
 namespace Yi.Admin.Domains.OperationLogging.Entities;
 
@@ -9,10 +10,8 @@ namespace Yi.Admin.Domains.OperationLogging.Entities;
 ///     操作日志表
 /// </summary>
 [SugarTable("OperationLog")]
-public class OperationLogEntity : Entity<Guid>, IMultiTenant, ICreationAuditedObject
+public class OperationLogEntity : SimpleEntity, IMultiTenant
 {
-    [SugarColumn(IsPrimaryKey = true)] public override Guid Id { get; protected set; }
-
     /// <summary>
     ///     操作模块
     /// </summary>
@@ -67,9 +66,10 @@ public class OperationLogEntity : Entity<Guid>, IMultiTenant, ICreationAuditedOb
     [SugarColumn(ColumnName = "RequestResult", Length = 9999)]
     public string? RequestResult { get; set; }
 
-    public DateTime CreationTime { get; set; }
-
-    public Guid? CreatorId { get; set; }
+    /// <summary>
+    ///     请求时间
+    /// </summary>
+    public DateTime ExecutionTime { get; set; }
 
     public Guid? TenantId { get; set; }
 }

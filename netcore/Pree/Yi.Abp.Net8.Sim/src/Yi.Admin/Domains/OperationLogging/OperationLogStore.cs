@@ -26,7 +26,8 @@ public class OperationLogStore : IOperationLogStore
             Method = operationLogInfo.Method,
             RequestMethod = operationLogInfo.RequestMethod,
             RequestParam = operationLogInfo.RequestParam,
-            RequestResult = operationLogInfo.Result
+            RequestResult = operationLogInfo.Result,
+            ExecutionTime = operationLogInfo.ExecutionTime
         };
 
         await _repository.InsertAsync(entity);

@@ -51,6 +51,7 @@ public class OperationLogFilter : ActionFilterAttribute, ITransientDependency
             Operator = _currentUser.UserName,
             Method = resultContext.HttpContext.Request.Path.Value,
             RequestMethod = resultContext.HttpContext.Request.Method,
+            ExecutionTime = DateTime.Now
         };
         
         if (operLogAttribute.IsSaveResponseData)
