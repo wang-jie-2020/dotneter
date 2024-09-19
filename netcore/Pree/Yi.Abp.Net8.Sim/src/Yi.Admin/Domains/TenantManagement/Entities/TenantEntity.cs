@@ -8,7 +8,7 @@ namespace Yi.Admin.Domains.TenantManagement.Entities;
 
 [SugarTable("Tenant")]
 [DefaultTenantTable]
-public class TenantEntity : FullAuditedAggregateRoot<Guid>, IHasEntityVersion
+public class TenantEntity : FullAuditedAggregateRoot<Guid>
 {
     public TenantEntity()
     {
@@ -35,9 +35,7 @@ public class TenantEntity : FullAuditedAggregateRoot<Guid>, IHasEntityVersion
         get => base.ExtraProperties;
         protected set => base.ExtraProperties = value;
     }
-
-    public int EntityVersion { get; protected set; }
-
+    
     public virtual void SetConnectionString(DbType dbType, string connectionString)
     {
         DbType = dbType;

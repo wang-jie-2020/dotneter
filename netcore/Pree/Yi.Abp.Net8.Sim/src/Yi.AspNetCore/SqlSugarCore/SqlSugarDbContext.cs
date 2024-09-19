@@ -170,30 +170,56 @@ public class SqlSugarDbContext : ISqlSugarDbContext
             case DataFilterType.UpdateByObject:
 
                 if (entityInfo.PropertyName.Equals(nameof(IAuditedObject.LastModificationTime)))
+                {
                     if (!DateTime.MinValue.Equals(oldValue))
+                    {
                         entityInfo.SetValue(DateTime.Now);
+                    }
+                }
+
                 if (entityInfo.PropertyName.Equals(nameof(IAuditedObject.LastModifierId)))
+                {
                     if (CurrentUser.Id != null)
+                    {
                         entityInfo.SetValue(CurrentUser.Id);
+                    }
+                }
                 break;
             case DataFilterType.InsertByObject:
                 if (entityInfo.PropertyName.Equals(nameof(IEntity<Guid>.Id)))
+                {
                     //主键为空或者为默认最小值
                     if (Guid.Empty.Equals(oldValue))
+                    {
                         entityInfo.SetValue(GuidGenerator.Create());
+                    }
+                }
 
                 if (entityInfo.PropertyName.Equals(nameof(IAuditedObject.CreationTime)))
+                {
                     //为空或者为默认最小值
                     if (oldValue is null || DateTime.MinValue.Equals(oldValue))
+                    {
                         entityInfo.SetValue(DateTime.Now);
+                    }
+                }
+
                 if (entityInfo.PropertyName.Equals(nameof(IAuditedObject.CreatorId)))
+                {
                     if (CurrentUser.Id != null)
+                    {
                         entityInfo.SetValue(CurrentUser.Id);
+                    }
+                }
 
                 //插入时，需要租户id,先预留
                 if (entityInfo.PropertyName.Equals(nameof(IMultiTenant.TenantId)))
+                {
                     if (CurrentTenant is not null)
+                    {
                         entityInfo.SetValue(CurrentTenant.Id);
+                    }
+                }
                 break;
         }
         
@@ -202,7 +228,9 @@ public class SqlSugarDbContext : ISqlSugarDbContext
         {
             case DataFilterType.InsertByObject:
                 if (entityInfo.PropertyName == nameof(IEntity<object>.Id))
+                {
                     EntityChangeEventHelper.PublishEntityCreatedEvent(entityInfo.EntityValue);
+                }
                 break;
             case DataFilterType.UpdateByObject:
                 if (entityInfo.PropertyName == nameof(IEntity<object>.Id))
@@ -211,7 +239,9 @@ public class SqlSugarDbContext : ISqlSugarDbContext
                     if (entityInfo.EntityValue is ISoftDelete softDelete)
                     {
                         if (softDelete.IsDeleted)
+                        {
                             EntityChangeEventHelper.PublishEntityDeletedEvent(entityInfo.EntityValue);
+                        }
                     }
                     else
                     {
@@ -222,10 +252,16 @@ public class SqlSugarDbContext : ISqlSugarDbContext
                 break;
             case DataFilterType.DeleteByObject:
                 if (entityInfo.PropertyName == nameof(IEntity<object>.Id))
+                {
                     //这里sqlsugar有个特殊，删除会返回批量的结果
                     if (entityInfo.EntityValue is IEnumerable entityValues)
+                    {
                         foreach (var entityValue in entityValues)
+                        {
                             EntityChangeEventHelper.PublishEntityDeletedEvent(entityValue);
+                        }
+                    }
+                }
                 break;
         }
     }
@@ -269,8 +305,19 @@ public class SqlSugarDbContext : ISqlSugarDbContext
     /// <param name="column"></param>
     protected virtual void EntityService(PropertyInfo property, EntityColumnInfo column)
     {
-        if (property.Name == "ConcurrencyStamp") column.IsIgnore = true;
-        if (property.PropertyType == typeof(ExtraPropertyDictionary)) column.IsIgnore = true;
-        if (property.Name == nameof(Entity<object>.Id)) column.IsPrimarykey = true;
+        if (property.Name == "ConcurrencyStamp")
+        {
+            column.IsIgnore = true;
+        }
+
+        if (property.PropertyType == typeof(ExtraPropertyDictionary))
+        {
+            column.IsIgnore = true;
+        }
+
+        if (property.Name == nameof(Entity<object>.Id))
+        {
+            column.IsPrimarykey = true;
+        }
     }
 }
