@@ -2,7 +2,7 @@
 using Volo.Abp.Data;
 using Volo.Abp.Domain.Entities;
 
-namespace Yi.Admin.Domains;
+namespace Yi.Admin.Domains.Oss.Entities;
 
 [SugarTable("File")]
 public class FileAggregateRoot : AggregateRoot<Guid>, IAuditedObject
