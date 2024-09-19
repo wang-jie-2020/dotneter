@@ -3,7 +3,7 @@ using Yi.System.Domains.Rbac.Entities;
 
 namespace Yi.System.Services.Rbac.Dtos;
 
-public class MenuDto : EntityDto<Guid>
+public class MenuDto 
 {
     public Guid Id { get; set; }
 

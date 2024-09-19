@@ -3,8 +3,10 @@ using Yi.AspNetCore.Common;
 
 namespace Yi.Admin.Services.OperationLogging.Dtos;
 
-public class OperationLogDto : EntityDto<Guid>
+public class OperationLogDto 
 {
+    public Guid Id { get; set; }
+    
     public string? Title { get; set; }
     
     public OperationLogEnum OperType { get; set; }
