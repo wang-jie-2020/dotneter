@@ -71,5 +71,5 @@ public class OperationLogEntity : Entity<Guid>, IMultiTenant, ICreationAuditedOb
 
     public Guid? CreatorId { get; set; }
 
-    public Guid? TenantId { get; }
+    public Guid? TenantId { get; set; }
 }
