@@ -12,12 +12,7 @@
         <PackageReference Include="SkiaSharp.NativeAssets.Linux.NoDependencies" Version="2.88.7" />
         <PackageReference Include="UAParser" Version="3.1.47" />
     </ItemGroup>
-
-    <ItemGroup>
-        <PackageReference Include="Volo.Abp.AspNetCore.Authentication.JwtBearer" Version="$(AbpVersion)" />
-        <PackageReference Include="Volo.Abp.AspNetCore.SignalR" Version="$(AbpVersion)" />
-    </ItemGroup>
-
+    
     <ItemGroup>
       <ProjectReference Include="..\Yi.AspNetCore\Yi.AspNetCore.csproj" />
     </ItemGroup>

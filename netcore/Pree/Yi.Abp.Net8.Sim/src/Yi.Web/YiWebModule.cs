@@ -30,17 +30,7 @@ using Yi.System.Services.Account.Options;
 namespace Yi.Web;
 
 [DependsOn(
-    typeof(AbpAspNetCoreMultiTenancyModule),
-    typeof(AbpAspNetCoreMvcModule),
-    typeof(AbpAutofacModule),
-    typeof(AbpSwashbuckleModule),
-    typeof(AbpAspNetCoreSerilogModule),
-    typeof(AbpAuditingModule),
-    typeof(AbpAspNetCoreAuthenticationJwtBearerModule),
     typeof(YiAspNetCoreModule),
-    typeof(AbpDddDomainModule),
-    typeof(AbpCachingModule),
-    typeof(AbpDddDomainSharedModule),
     typeof(YiInfraModule),
     typeof(YiAdminModule)
 )]

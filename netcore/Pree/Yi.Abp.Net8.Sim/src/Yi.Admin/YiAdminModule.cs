@@ -7,13 +7,11 @@ using Volo.Abp.MultiTenancy;
 using Yi.Admin.Domains.AuditLogging;
 using Yi.Admin.Domains.AuditLogging.Repositories;
 using Yi.Admin.Services.TenantManagement;
+using Yi.AspNetCore;
 
 namespace Yi.Admin;
 
-[DependsOn(
-    typeof(AbpAuditingModule),
-    typeof(AbpBackgroundWorkersQuartzModule)
-)]
+[DependsOn(typeof(YiAspNetCoreModule))]
 public class YiAdminModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
@@ -22,14 +20,14 @@ public class YiAdminModule : AbpModule
         context.Services.AddTransient<IAuditingStore, AuditingStore>();
         context.Services.AddTransient<IAuditLogRepository, SqlSugarCoreAuditLogRepository>();
         context.Services.AddTransient<IAuditLogInfoToAuditLogConverter, AuditLogInfoToAuditLogConverter>();
-        
+
         //Tenant
         context.Services.Replace(new ServiceDescriptor(typeof(ITenantStore), typeof(SqlSugarAndConfigurationTenantStore),
             ServiceLifetime.Transient));
 
         context.Services.Replace(new ServiceDescriptor(typeof(IConnectionStringResolver),
             typeof(YiMultiTenantConnectionStringResolver), ServiceLifetime.Transient));
-        
+
         context.Services.Replace(new ServiceDescriptor(typeof(ITenantConfigurationProvider),
             typeof(YiTenantConfigurationProvider), ServiceLifetime.Transient));
     }

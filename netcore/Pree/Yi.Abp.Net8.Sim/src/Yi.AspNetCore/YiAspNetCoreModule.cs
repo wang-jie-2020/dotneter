@@ -7,11 +7,20 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
 using SqlSugar;
 using Volo.Abp.Application;
+using Volo.Abp.AspNetCore.Authentication.JwtBearer;
+using Volo.Abp.AspNetCore.MultiTenancy;
+using Volo.Abp.AspNetCore.Mvc;
+using Volo.Abp.AspNetCore.Serilog;
+using Volo.Abp.AspNetCore.SignalR;
+using Volo.Abp.Auditing;
+using Volo.Abp.Autofac;
+using Volo.Abp.BackgroundWorkers.Quartz;
 using Volo.Abp.Caching;
 using Volo.Abp.Data;
 using Volo.Abp.Domain;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.ObjectMapping;
+using Volo.Abp.Swashbuckle;
 using Yi.AspNetCore.Caching.FreeRedis;
 using Yi.AspNetCore.Mapster;
 using Yi.AspNetCore.Permissions;
@@ -22,10 +31,21 @@ using Yi.AspNetCore.SqlSugarCore.Uow;
 namespace Yi.AspNetCore;
 
 [DependsOn(
+    typeof(AbpAuditingModule),
+    typeof(AbpAspNetCoreAuthenticationJwtBearerModule),
+    typeof(AbpAspNetCoreMultiTenancyModule),
+    typeof(AbpAspNetCoreMvcModule),
+    typeof(AbpAspNetCoreSerilogModule),
+    typeof(AbpAspNetCoreSignalRModule),
+    typeof(AbpAutofacModule),
+    typeof(AbpBackgroundWorkersQuartzModule),
+    typeof(AbpCachingModule),
     typeof(AbpDddApplicationModule),
     typeof(AbpDddDomainModule),
+    typeof(AbpDddDomainSharedModule),
     typeof(AbpObjectMappingModule),
-    typeof(AbpCachingModule))]
+    typeof(AbpSwashbuckleModule)
+)]
 public class YiAspNetCoreModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
@@ -50,7 +70,7 @@ public class YiAspNetCoreModule : AbpModule
 
         //SqlSugar
         Configure<DbConnOptions>(configuration.GetSection("DbConnOptions"));
-        
+
         context.Services.TryAddScoped<ISqlSugarDbContext, SqlSugarDbContext>();
         context.Services.AddTransient(typeof(IRepository<>), typeof(SqlSugarRepository<>));
         context.Services.AddTransient(typeof(IRepository<,>), typeof(SqlSugarRepository<,>));
@@ -58,21 +78,18 @@ public class YiAspNetCoreModule : AbpModule
         context.Services.AddTransient(typeof(ISqlSugarRepository<,>), typeof(SqlSugarRepository<,>));
         context.Services.AddTransient(typeof(ISugarDbContextProvider<>), typeof(UnitOfWorkSqlSugarDbContextProvider<>));
         context.Services.AddTransient(typeof(ISqlSugarDbConnectionCreator), typeof(SqlSugarDbConnectionCreator));
-        
+
         //AspNetCore
         context.Services.AddTransient<IPermissionHandler, DefaultPermissionHandler>();
         context.Services.AddTransient<PermissionFilter>();
-        context.Services.Configure<MvcOptions>(options =>
-        {
-            options.Filters.Add<PermissionFilter>();
-        });
+        context.Services.Configure<MvcOptions>(options => { options.Filters.Add<PermissionFilter>(); });
     }
 
     public override async Task OnPreApplicationInitializationAsync(ApplicationInitializationContext context)
     {
         var service = context.ServiceProvider;
         var options = service.GetRequiredService<IOptions<DbConnOptions>>().Value;
-        
+
         // var sb = new StringBuilder();
         // sb.AppendLine();
         // sb.AppendLine("==========Yi-SQL配置:==========");

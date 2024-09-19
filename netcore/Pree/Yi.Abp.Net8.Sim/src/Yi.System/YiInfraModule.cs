@@ -1,23 +1,17 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.AspNetCore.SignalR;
 using Volo.Abp.Auditing;
+using Yi.AspNetCore;
 using Yi.System.Services.Account.Options;
 using Yi.System.Services.OperationLogging;
 
 namespace Yi.System;
 
-[DependsOn(
-    typeof(AbpAuditingModule),
-    typeof(AbpAspNetCoreSignalRModule)
-)]
+[DependsOn(typeof(YiAspNetCoreModule))]
 public class YiInfraModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
-
-        
-       
-        
         //Rbac
         
         var service = context.Services;

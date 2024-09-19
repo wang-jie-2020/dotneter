@@ -16,11 +16,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Volo.Abp.AspNetCore.Serilog" Version="$(AbpVersion)" />
-        <PackageReference Include="Volo.Abp.Autofac" Version="$(AbpVersion)" />
-    </ItemGroup>
-
-    <ItemGroup>
         <ProjectReference Include="..\Yi.Admin\Yi.Admin.csproj" />
         <ProjectReference Include="..\Yi.AspNetCore\Yi.AspNetCore.csproj" />
         <ProjectReference Include="..\Yi.System\Yi.System.csproj" />
