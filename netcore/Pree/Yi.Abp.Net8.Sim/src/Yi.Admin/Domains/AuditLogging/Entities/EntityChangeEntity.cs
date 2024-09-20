@@ -11,7 +11,7 @@ namespace Yi.Admin.Domains.AuditLogging.Entities;
 [SugarIndex($"index_{nameof(AuditLogId)}", nameof(AuditLogId), OrderByType.Asc)]
 [SugarIndex($"index_{nameof(TenantId)}_{nameof(EntityId)}", nameof(TenantId), OrderByType.Asc,
     nameof(EntityTypeFullName), OrderByType.Asc, nameof(EntityId), OrderByType.Asc)]
-public class EntityChangeEntity : SimpleEntity, IMultiTenant
+public class EntityChangeEntity : SimpleEntity<Guid>, IMultiTenant
 {
     public EntityChangeEntity()
     {

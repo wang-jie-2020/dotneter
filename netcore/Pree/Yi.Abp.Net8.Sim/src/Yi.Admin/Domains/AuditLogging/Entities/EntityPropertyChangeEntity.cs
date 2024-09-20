@@ -9,7 +9,7 @@ namespace Yi.Admin.Domains.AuditLogging.Entities;
 
 [SugarTable("EntityPropertyChange")]
 [SugarIndex($"index_{nameof(EntityChangeId)}", nameof(EntityChangeId), OrderByType.Asc)]
-public class EntityPropertyChangeEntity : SimpleEntity, IMultiTenant
+public class EntityPropertyChangeEntity : SimpleEntity<Guid>, IMultiTenant
 {
     public EntityPropertyChangeEntity()
     {

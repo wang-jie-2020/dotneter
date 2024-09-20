@@ -4,10 +4,10 @@ using Volo.Abp.Domain.Entities;
 
 namespace Yi.AspNetCore.SqlSugarCore.Entities;
 
-public class BizEntity : IEntity<Guid>, ISoftDelete, IAuditedObject
+public class BizEntity<T> : IEntity<T>, ISoftDelete, IAuditedObject
 {
     [SugarColumn(ColumnName = "Id", IsPrimaryKey = true)]
-    public Guid Id { get; set; }
+    public T Id { get; set; }
 
     public object?[] GetKeys()
     {

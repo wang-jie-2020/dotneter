@@ -10,7 +10,7 @@ namespace Yi.Admin.Domains.AuditLogging.Entities;
 [SugarIndex($"index_{nameof(AuditLogId)}", nameof(AuditLogId), OrderByType.Asc)]
 [SugarIndex($"index_{nameof(TenantId)}_{nameof(ExecutionTime)}", nameof(TenantId), OrderByType.Asc, nameof(ServiceName),
     OrderByType.Asc, nameof(MethodName), OrderByType.Asc, nameof(ExecutionTime), OrderByType.Asc)]
-public class AuditLogActionEntity : SimpleEntity, IMultiTenant
+public class AuditLogActionEntity : SimpleEntity<Guid>, IMultiTenant
 {
     public AuditLogActionEntity()
     {

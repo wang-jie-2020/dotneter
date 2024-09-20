@@ -10,7 +10,7 @@ namespace Yi.Admin.Domains.OperationLogging.Entities;
 ///     操作日志表
 /// </summary>
 [SugarTable("OperationLog")]
-public class OperationLogEntity : SimpleEntity, IMultiTenant
+public class OperationLogEntity : SimpleEntity<Guid>, IMultiTenant
 {
     /// <summary>
     ///     操作模块
