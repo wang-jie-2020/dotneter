@@ -4,16 +4,14 @@ using UAParser;
 using Volo.Abp.Auditing;
 using Volo.Abp.Domain.Entities;
 using Yi.AspNetCore.Extensions;
+using Yi.AspNetCore.SqlSugarCore.Entities;
 
 namespace Yi.System.Domains.Rbac.Entities;
 
 [SugarTable("LoginLog")]
 [SugarIndex($"index_{nameof(LoginUser)}", nameof(LoginUser), OrderByType.Asc)]
-public class LoginLogEntity : AggregateRoot<Guid>, ICreationAuditedObject
+public class LoginLogEntity : SimpleEntity<Guid>, ICreationAuditedObject
 {
-    [SugarColumn(ColumnName = "Id", IsPrimaryKey = true)]
-    public override Guid Id { get; protected set; }
-
     /// <summary>
     ///     登录用户
     /// </summary>

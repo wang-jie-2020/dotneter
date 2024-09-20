@@ -1,4 +1,5 @@
 ﻿using Volo.Abp.Domain.Entities;
+using Yi.AspNetCore.SqlSugarCore.Entities;
 
 namespace Yi.System.Domains.Rbac.Entities;
 
@@ -6,14 +7,8 @@ namespace Yi.System.Domains.Rbac.Entities;
 ///     角色菜单关系表
 /// </summary>
 [SugarTable("RoleMenu")]
-public class RoleMenuEntity : Entity<Guid>
+public class RoleMenuEntity : SimpleEntity<Guid>
 {
-    /// <summary>
-    ///     主键
-    /// </summary>
-    [SugarColumn(IsPrimaryKey = true)]
-    public override Guid Id { get; protected set; }
-
     /// <summary>
     /// </summary>
     [SugarColumn(ColumnName = "RoleId")]

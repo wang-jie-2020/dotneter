@@ -1,5 +1,6 @@
 ﻿using Volo.Abp.Auditing;
 using Volo.Abp.Domain.Entities;
+using Yi.AspNetCore.SqlSugarCore.Entities;
 
 namespace Yi.System.Domains.Rbac.Entities;
 
@@ -7,14 +8,8 @@ namespace Yi.System.Domains.Rbac.Entities;
 ///     角色表
 /// </summary>
 [SugarTable("Role")]
-public class RoleEntity : AggregateRoot<Guid>, ISoftDelete, IAuditedObject
+public class RoleEntity : BizEntity<Guid>
 {
-    /// <summary>
-    ///     主键
-    /// </summary>
-    [SugarColumn(IsPrimaryKey = true)]
-    public override Guid Id { get; protected set; }
-    
     /// <summary>
     ///     角色名
     /// </summary>
@@ -43,37 +38,12 @@ public class RoleEntity : AggregateRoot<Guid>, ISoftDelete, IAuditedObject
 
     [Navigate(typeof(RoleDeptEntity), nameof(RoleDeptEntity.RoleId), nameof(RoleDeptEntity.DeptId))]
     public List<DeptEntity>? Depts { get; set; }
-
-    /// <summary>
-    ///     创建时间
-    /// </summary>
-    public DateTime CreationTime { get; set; } = DateTime.Now;
-
-    /// <summary>
-    ///     创建者
-    /// </summary>
-    public Guid? CreatorId { get; set; }
-
-    /// <summary>
-    ///     最后修改者
-    /// </summary>
-    public Guid? LastModifierId { get; set; }
-
-    /// <summary>
-    ///     最后修改时间
-    /// </summary>
-    public DateTime? LastModificationTime { get; set; }
-
+    
     /// <summary>
     ///     排序
     /// </summary>
     public int OrderNum { get; set; } = 0;
-
-    /// <summary>
-    ///     逻辑删除
-    /// </summary>
-    public bool IsDeleted { get; set; }
-
+    
     /// <summary>
     ///     状态
     /// </summary>
