@@ -7,7 +7,6 @@ using Yi.System.Services.Rbac.Dtos;
 
 namespace Yi.System.Services.Rbac;
 
-[RemoteService(false)]
 public class PostService : ApplicationService, IPostService
 {
     private readonly ISqlSugarRepository<PostEntity, Guid> _repository;

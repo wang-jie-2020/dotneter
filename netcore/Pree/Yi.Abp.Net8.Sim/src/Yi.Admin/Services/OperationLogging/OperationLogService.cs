@@ -7,7 +7,6 @@ using Yi.AspNetCore.Helpers;
 
 namespace Yi.Admin.Services.OperationLogging;
 
-[RemoteService(false)]
 public class OperationLogService : ApplicationService, IOperationLogService
 {
     private readonly ISqlSugarRepository<OperationLogEntity, Guid> _repository;

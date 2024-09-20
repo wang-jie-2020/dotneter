@@ -7,7 +7,6 @@ using Yi.System.Services.Rbac.Dtos;
 
 namespace Yi.System.Services.Rbac;
 
-[RemoteService((false))]
 public class MenuService : ApplicationService, IMenuService
 {
     private readonly ISqlSugarRepository<MenuEntity, Guid> _repository;

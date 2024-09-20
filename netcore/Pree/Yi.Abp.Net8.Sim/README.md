@@ -9,7 +9,6 @@ Guid 改雪花?
 audit 日志审计、Entity审计
 
 路由的route api/app改掉
-RemoteService 去掉
 Export、Import
 
 token过长,不适合放在cookie

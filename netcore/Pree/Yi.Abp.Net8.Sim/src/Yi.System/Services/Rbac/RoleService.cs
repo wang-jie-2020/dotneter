@@ -9,7 +9,6 @@ using Yi.System.Services.Rbac.Dtos;
 
 namespace Yi.System.Services.Rbac;
 
-[RemoteService(false)]
 public class RoleService : ApplicationService, IRoleService
 {
     private readonly RoleManager _roleManager;

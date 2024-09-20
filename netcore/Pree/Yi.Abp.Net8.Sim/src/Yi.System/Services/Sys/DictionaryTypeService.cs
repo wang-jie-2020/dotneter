@@ -5,7 +5,6 @@ using Yi.System.Services.Sys.Dtos;
 
 namespace Yi.System.Services.Sys;
 
-[RemoteService(false)]
 public class DictionaryTypeService : ApplicationService, IDictionaryTypeService
 {
     private readonly ISqlSugarRepository<DictionaryTypeEntity, Guid> _repository;

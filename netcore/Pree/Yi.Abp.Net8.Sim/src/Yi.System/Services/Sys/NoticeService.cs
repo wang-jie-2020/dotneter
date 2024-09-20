@@ -9,7 +9,6 @@ using Yi.System.Services.Sys.Dtos;
 
 namespace Yi.System.Services.Sys;
 
-[RemoteService(false)]
 public class NoticeService : ApplicationService, INoticeService
 {
     private readonly ISqlSugarRepository<NoticeEntity, Guid> _repository;

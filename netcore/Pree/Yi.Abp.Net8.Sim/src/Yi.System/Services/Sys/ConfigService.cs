@@ -7,7 +7,6 @@ using Yi.System.Services.Sys.Dtos;
 
 namespace Yi.System.Services.Sys;
 
-[RemoteService(false)]
 public class ConfigService : ApplicationService, IConfigService
 {
     private readonly ISqlSugarRepository<ConfigEntity, Guid> _repository;

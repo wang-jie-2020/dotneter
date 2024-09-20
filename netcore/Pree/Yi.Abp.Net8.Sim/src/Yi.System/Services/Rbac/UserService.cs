@@ -8,7 +8,6 @@ using Yi.System.Services.Rbac.Dtos;
 
 namespace Yi.System.Services.Rbac;
 
-[RemoteService(false)]
 public class UserService : ApplicationService, IUserService
 {
     private readonly ISqlSugarRepository<UserEntity, Guid> _repository;

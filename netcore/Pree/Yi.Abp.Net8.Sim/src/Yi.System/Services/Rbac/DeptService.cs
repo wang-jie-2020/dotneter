@@ -8,7 +8,6 @@ using Yi.System.Services.Rbac.Dtos;
 
 namespace Yi.System.Services.Rbac;
 
-[RemoteService(false)]
 public class DeptService : ApplicationService, IDeptService
 {
     private readonly IDeptRepository _repository;
