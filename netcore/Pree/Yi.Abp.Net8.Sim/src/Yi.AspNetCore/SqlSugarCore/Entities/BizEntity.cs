@@ -4,14 +4,16 @@ using Volo.Abp.Domain.Entities;
 
 namespace Yi.AspNetCore.SqlSugarCore.Entities;
 
-public class BizEntity<T> : IEntity<T>, ISoftDelete, IAuditedObject
+public class BizEntity<T> : SimpleEntity<T>, ISoftDelete, IAuditedObject
 {
-    [SugarColumn(ColumnName = "Id", IsPrimaryKey = true)]
-    public T Id { get; set; }
-
-    public object?[] GetKeys()
+    public BizEntity()
     {
-        return new object?[] { Id };
+        
+    }
+
+    public BizEntity(T id) : base(id)
+    {
+        
     }
 
     public bool IsDeleted { get; set; }

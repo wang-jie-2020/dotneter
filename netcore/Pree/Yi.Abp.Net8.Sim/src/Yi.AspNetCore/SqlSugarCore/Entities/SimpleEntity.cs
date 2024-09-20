@@ -12,4 +12,14 @@ public class SimpleEntity<T> : IEntity<T>
     {
         return new object?[] { Id };
     }
+
+    public SimpleEntity()
+    {
+        
+    }
+
+    public SimpleEntity(T id)
+    {
+        Id = id;
+    }
 }
