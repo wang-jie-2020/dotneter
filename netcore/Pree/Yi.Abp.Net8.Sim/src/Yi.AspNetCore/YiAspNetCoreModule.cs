@@ -26,7 +26,6 @@ using Yi.AspNetCore.Mapster;
 using Yi.AspNetCore.SqlSugarCore;
 using Yi.AspNetCore.SqlSugarCore.Repositories;
 using Yi.AspNetCore.SqlSugarCore.Uow;
-using Yi.AspNetCore.System;
 using Yi.AspNetCore.System.Loggings;
 using Yi.AspNetCore.System.Permissions;
 

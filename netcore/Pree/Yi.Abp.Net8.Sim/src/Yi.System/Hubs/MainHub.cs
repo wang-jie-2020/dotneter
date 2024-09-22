@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Logging;
 using Volo.Abp.AspNetCore.SignalR;
 using Yi.AspNetCore.System.Events;
-using Yi.System.Domains.Rbac.Entities;
 
 namespace Yi.System.Hubs;
 

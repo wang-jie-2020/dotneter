@@ -3,7 +3,7 @@ import request from '@/utils/request'
 // 查询操作日志列表
 export function list(query) {
   return request({
-    url: '/operation-log',
+    url: '/monitor/operation-log',
     method: 'get',
     params: query
   })
@@ -12,7 +12,7 @@ export function list(query) {
 // 删除操作日志
 export function delOperlog(operId) {
   return request({
-    url: '/oper-log',
+    url: '/monitor/oper-log',
     method: 'delete',
     data:"string"==typeof(operId)?[operId]:operId
   })
