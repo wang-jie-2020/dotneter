@@ -2,9 +2,9 @@
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.EventBus;
-using Yi.System.Domains.Rbac.Entities;
+using Yi.AspNetCore.System.Events;
 
-namespace Yi.System.Domains.Rbac;
+namespace Yi.Admin.Domains;
 
 public class LoginEventHandler : ILocalEventHandler<LoginEventArgs>, ITransientDependency
 {

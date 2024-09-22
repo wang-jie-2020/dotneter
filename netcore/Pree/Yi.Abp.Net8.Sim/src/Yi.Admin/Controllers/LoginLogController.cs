@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.AspNetCore.Mvc;
-using Yi.System.Domains.Rbac.Entities;
-using Yi.System.Services.Rbac.Dtos;
+using Yi.Admin.Domains;
+using Yi.Admin.Services;
 
-namespace Yi.System.Controllers;
+namespace Yi.Admin.Controllers;
 
 [ApiController]
 [Route("api/login-log")]

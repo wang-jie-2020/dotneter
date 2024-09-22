@@ -1,6 +1,6 @@
 ﻿using Yi.AspNetCore.System;
 
-namespace Yi.System.Services.Rbac.Dtos;
+namespace Yi.Admin.Services;
 
 public class LoginLogGetListInputVo : PagedInfraInput
 {

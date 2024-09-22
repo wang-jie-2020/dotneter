@@ -1,57 +1,45 @@
 ﻿using IPTools.Core;
 using Microsoft.AspNetCore.Http;
 using UAParser;
-using Volo.Abp.Auditing;
 using Yi.AspNetCore.Extensions;
-using Yi.AspNetCore.System.Entities;
 
-namespace Yi.System.Domains.Rbac.Entities;
+namespace Yi.AspNetCore.System.Events;
 
-[SugarTable("LoginLog")]
-[SugarIndex($"index_{nameof(LoginUser)}", nameof(LoginUser), OrderByType.Asc)]
-public class LoginLogEntity : SimpleEntity<Guid>, ICreationAuditedObject
+public class LoginEventArgs
 {
-    /// <summary>
-    ///     登录用户
-    /// </summary>
-    [SugarColumn(ColumnName = "LoginUser")]
-    public string? LoginUser { get; set; }
+    public Guid UserId { get; set; }
+    
+    public string UserName { get; set; }
+    
+    public DateTime CreationTime { get; set; }
 
     /// <summary>
     ///     登录地点
     /// </summary>
-    [SugarColumn(ColumnName = "LoginLocation")]
     public string? LoginLocation { get; set; }
 
     /// <summary>
     ///     登录Ip
     /// </summary>
-    [SugarColumn(ColumnName = "LoginIp")]
     public string? LoginIp { get; set; }
 
     /// <summary>
     ///     浏览器
     /// </summary>
-    [SugarColumn(ColumnName = "Browser")]
     public string? Browser { get; set; }
 
     /// <summary>
     ///     操作系统
     /// </summary>
-    [SugarColumn(ColumnName = "Os")]
+
     public string? Os { get; set; }
 
     /// <summary>
     ///     登录信息
     /// </summary>
-    [SugarColumn(ColumnName = "LogMsg")]
     public string? LogMsg { get; set; }
-
-    public DateTime CreationTime { get; set; }
-
-    public Guid? CreatorId { get; set; }
     
-    public LoginLogEntity GetInfoByHttpContext(HttpContext context)
+    public LoginEventArgs GetInfoByHttpContext(HttpContext context)
     {
         ClientInfo GetClientInfo(HttpContext context)
         {
@@ -78,13 +66,14 @@ public class LoginLogEntity : SimpleEntity<Guid>, ICreationAuditedObject
         else
             location = IpTool.Search(ipAddr);
         var clientInfo = GetClientInfo(context);
-        LoginLogEntity entity = new()
+        LoginEventArgs entity = new()
         {
             Browser = clientInfo.Device.Family,
             Os = clientInfo.OS.ToString(),
             LoginIp = ipAddr,
             LoginLocation = location.Province + "-" + location.City
         };
+        
         return entity;
     }
 }

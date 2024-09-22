@@ -9,6 +9,7 @@ using Volo.Abp.Domain.Services;
 using Volo.Abp.EventBus.Local;
 using Volo.Abp.Security.Claims;
 using Yi.AspNetCore.Helpers;
+using Yi.AspNetCore.System.Events;
 using Yi.AspNetCore.System.Permissions;
 using Yi.System.Domains.Rbac.Entities;
 using Yi.System.Domains.Rbac.Repositories;
@@ -81,8 +82,7 @@ public class AccountManager : DomainService, IAccountManager
         //这里抛出一个登录的事件,也可以在全部流程走完，在应用层组装
         if (_httpContextAccessor.HttpContext is not null)
         {
-            var loginEntity = new LoginLogEntity().GetInfoByHttpContext(_httpContextAccessor.HttpContext);
-            var loginEto = loginEntity.Adapt<LoginEventArgs>();
+            var loginEto = new LoginEventArgs().GetInfoByHttpContext(_httpContextAccessor.HttpContext);
             loginEto.UserName = userInfo.User.UserName;
             loginEto.UserId = userInfo.User.Id;
             await _localEventBus.PublishAsync(loginEto);

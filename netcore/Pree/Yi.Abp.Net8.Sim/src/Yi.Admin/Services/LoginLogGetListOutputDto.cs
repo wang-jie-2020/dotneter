@@ -1,17 +1,13 @@
-﻿namespace Yi.System.Domains.Rbac;
+﻿namespace Yi.Admin.Services;
 
-public class LoginEventArgs
+public class LoginLogGetListOutputDto 
 {
-    public Guid UserId { get; set; }
+    public Guid Id { get; set; }
     
-    public string UserName { get; set; }
-    
-
     public DateTime CreationTime { get; set; }
 
-    /// <summary>
-    ///     登录地点
-    /// </summary>
+    public string? LoginUser { get; set; }
+
     public string? LoginLocation { get; set; }
 
     /// <summary>
@@ -27,11 +23,12 @@ public class LoginEventArgs
     /// <summary>
     ///     操作系统
     /// </summary>
-
     public string? Os { get; set; }
 
     /// <summary>
     ///     登录信息
     /// </summary>
     public string? LogMsg { get; set; }
+
+    public Guid? CreatorId { get; set; }
 }

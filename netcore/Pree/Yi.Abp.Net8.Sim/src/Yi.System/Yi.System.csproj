@@ -9,8 +9,6 @@
     <ItemGroup>
         <PackageReference Include="Lazy.Captcha.Core" Version="2.0.7" />
         <PackageReference Include="SkiaSharp.NativeAssets.Linux.NoDependencies" Version="2.88.7" />
-        <PackageReference Include="IPTools.China" Version="1.6.0" />
-        <PackageReference Include="UAParser" Version="3.1.47" />
     </ItemGroup>
     
     <ItemGroup>

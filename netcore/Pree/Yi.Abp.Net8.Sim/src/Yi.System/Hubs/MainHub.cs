@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Logging;
 using Volo.Abp.AspNetCore.SignalR;
+using Yi.AspNetCore.System.Events;
 using Yi.System.Domains.Rbac.Entities;
 
 namespace Yi.System.Hubs;
@@ -30,7 +31,7 @@ public class MainHub : AbpHub
         lock (objLock)
         {
             var name = CurrentUser.UserName;
-            var loginUser = new LoginLogEntity().GetInfoByHttpContext(_httpContext);
+            var loginUser = new LoginEventArgs().GetInfoByHttpContext(_httpContext);
 
             OnlineUser user = new(Context.ConnectionId)
             {
