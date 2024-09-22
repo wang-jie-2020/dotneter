@@ -7,7 +7,7 @@ using Yi.System.Services.Sys.Dtos;
 namespace Yi.Admin.Controllers.System;
 
 [ApiController]
-[Route("api/dictionary-type")]
+[Route("api/system/dictionary-type")]
 public class DictionaryTypeController : AbpController
 {
     private readonly IDictionaryTypeService _dictionaryTypeService;

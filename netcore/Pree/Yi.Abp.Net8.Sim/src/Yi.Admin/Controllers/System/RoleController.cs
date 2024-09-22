@@ -7,7 +7,7 @@ using Yi.System.Services.Rbac.Dtos;
 namespace Yi.Admin.Controllers.System;
 
 [ApiController]
-[Route("api/role")]
+[Route("api/system/role")]
 public class RoleController : AbpController
 {
     private readonly IRoleService _roleService;

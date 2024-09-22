@@ -5,14 +5,14 @@ tenant : 实体模型
 // 分页查询
 export function listData(query) {
   return request({
-    url: '/tenant',
+    url: '/system/tenant',
     method: 'get',
     params: query
   })
 }
 export function SelectData() {
   return request({
-    url: '/tenant/select',
+    url: '/system/tenant/select',
     method: 'get'
   })
 }
@@ -21,7 +21,7 @@ export function SelectData() {
 // id查询
 export function getData(id) {
   return request({
-    url: `/tenant/${id}`,
+    url: `/system/tenant/${id}`,
     method: 'get'
   })
 }
@@ -29,7 +29,7 @@ export function getData(id) {
 // 新增
 export function addData(data) {
   return request({
-    url: '/tenant',
+    url: '/system/tenant',
     method: 'post',
     data: data
   })
@@ -38,7 +38,7 @@ export function addData(data) {
 // 修改
 export function updateData(id, data) {
   return request({
-    url: `/tenant/${id}`,
+    url: `/system/tenant/${id}`,
     method: 'put',
     data: data
   })
@@ -46,13 +46,13 @@ export function updateData(id, data) {
 
 // 导出
 export function getExportExcel(query) {
-  return download('/tenant/export-excel', query, `tenant_${new Date().getTime()}.xlsx`)
+  return download('/system/tenant/export-excel', query, `tenant_${new Date().getTime()}.xlsx`)
 }
 
 // 初始化
 export function InitData(id) {
   return request({
-    url: `/tenant/init/${id}`,
+    url: `/system/tenant/init/${id}`,
     method: 'put'
   })
 }
@@ -60,7 +60,7 @@ export function InitData(id) {
 // 删除
 export function delData(ids) {
   return request({
-    url: `/tenant`,
+    url: `/system/tenant`,
     method: 'delete',
     params: { id: ids }
   })

@@ -7,7 +7,7 @@ using Yi.System.Services.TenantManagement.Dtos;
 namespace Yi.Admin.Controllers.System;
 
 [ApiController]
-[Route("api/tenant")]
+[Route("api/system/tenant")]
 public class TenantController : AbpController
 {
     private readonly ITenantService _tenantService;

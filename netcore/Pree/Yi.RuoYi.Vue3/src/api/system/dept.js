@@ -3,7 +3,7 @@ import request from '@/utils/request'
 // 查询部门列表
 export function listDept(query) {
   return request({
-    url: '/dept',
+    url: '/system/dept',
     method: 'get',
     params: query
   })
@@ -20,7 +20,7 @@ export function listDept(query) {
 // 查询部门详细
 export function getDept(deptId) {
   return request({
-    url: '/dept/' + deptId,
+    url: '/system/dept/' + deptId,
     method: 'get'
   })
 }
@@ -29,7 +29,7 @@ export function getDept(deptId) {
 export function addDept(data) {
   data.phone=data.phone==""?null:data.phone;
   return request({
-    url: '/dept',
+    url: '/system/dept',
     method: 'post',
     data: data
   })
@@ -39,7 +39,7 @@ export function addDept(data) {
 export function updateDept(data) {
   data.phone=data.phone==""?null:data.phone;
   return request({
-    url: `/dept/${data.id}`,
+    url: `/system/dept/${data.id}`,
     method: 'put',
     data: data
   })
@@ -48,7 +48,7 @@ export function updateDept(data) {
 // 删除部门
 export function delDept(deptId) {
   return request({
-    url: `/dept`,
+    url: `/system/dept`,
     method: 'delete',
     params:{id:deptId}
   })
@@ -58,7 +58,7 @@ export function delDept(deptId) {
 // 根据角色ID查询菜单下拉树结构
 export function roleDeptTreeselect(roleId) {
   return request({
-    url: '/dept/role-id/' + roleId,
+    url: '/system/dept/role-id/' + roleId,
     method: 'get'
   })
 }

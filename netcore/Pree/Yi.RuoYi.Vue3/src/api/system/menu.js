@@ -4,7 +4,7 @@ import request from '@/utils/request'
 export function listMenu(query) {
   console.log(query,"query")
   return request({
-    url: '/menu',
+    url: '/system/menu',
     method: 'get',
     params: query
   })
@@ -13,7 +13,7 @@ export function listMenu(query) {
 // 查询菜单详细
 export function getMenu(menuId) {
   return request({
-    url: '/menu/' + menuId,
+    url: '/system/menu/' + menuId,
     method: 'get'
   })
 }
@@ -29,7 +29,7 @@ export function treeselect() {
 // 根据角色ID查询菜单下拉树结构
 export function roleMenuTreeselect(roleId) {
   return request({
-    url: '/menu/role-id/' + roleId,
+    url: '/system/menu/role-id/' + roleId,
     method: 'get'
   })
 }
@@ -38,7 +38,7 @@ export function roleMenuTreeselect(roleId) {
 export function addMenu(data) {
 
   return request({
-    url: '/menu',
+    url: '/system/menu',
     method: 'post',
     data: data
   })
@@ -47,7 +47,7 @@ export function addMenu(data) {
 // 修改菜单
 export function updateMenu(data) {
   return request({
-    url: `/menu/${data.id}`,
+    url: `/system/menu/${data.id}`,
     method: 'put',
     data: data
   })
@@ -57,7 +57,7 @@ export function updateMenu(data) {
 export function delMenu(menuId) {
 
   return request({
-    url: `/menu`,
+    url: `/system/menu`,
     method: 'delete',
     params:{id:menuId}
   })

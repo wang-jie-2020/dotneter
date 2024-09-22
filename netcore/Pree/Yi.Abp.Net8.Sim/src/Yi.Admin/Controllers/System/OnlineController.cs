@@ -8,7 +8,7 @@ using Yi.System.Hubs;
 namespace Yi.Admin.Controllers.System;
 
 [ApiController]
-[Route("api/online")]
+[Route("api/system/online")]
 public class OnlineController : AbpController
 {
     private readonly ILogger<OnlineController> _logger;

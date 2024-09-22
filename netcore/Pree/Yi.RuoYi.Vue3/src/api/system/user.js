@@ -4,13 +4,13 @@ import { parseStrEmpty } from "@/utils/ruoyi";
 // 导出角色
 export function getExportExcel(query) {
   
-  return download('/user/export-excel',query,'导出数据.xlsx')
+  return download('/system/user/export-excel',query,'导出数据.xlsx')
 }
 
 // 查询用户列表
 export function listUser(query) {
   return request({
-    url: '/user',
+    url: '/system/user',
     method: 'get',
     params: query
   })
@@ -19,7 +19,7 @@ export function listUser(query) {
 // 查询用户详细
 export function getUser(userId) {
   return request({
-    url: '/user/' + parseStrEmpty(userId),
+    url: '/system/user/' + parseStrEmpty(userId),
     method: 'get'
   })
 }
@@ -28,7 +28,7 @@ export function getUser(userId) {
 export function addUser(data) {
   data.phone=data.phone==""?null:data.phone;
   return request({
-    url: '/user',
+    url: '/system/user',
     method: 'post',
     data: data
   })
@@ -38,7 +38,7 @@ export function addUser(data) {
 export function updateUser(id, data) {
   data.phone=data.phone==""?null:data.phone;
   return request({
-    url: `/user/${id}`,
+    url: `/system/user/${id}`,
     method: 'put',
     data: data
   })
@@ -47,7 +47,7 @@ export function updateUser(id, data) {
 // 删除用户
 export function delUser(userId) {
   return request({
-    url: `/user`,
+    url: `/system/user`,
     method: 'delete',
     params:{id:userId}
   })
@@ -61,7 +61,7 @@ export function resetUserPwd(id, password) {
 
 
   return request({
-    url: `/account/rest-password/${id}`,
+    url: `/system/account/rest-password/${id}`,
     method: 'put',
     data: data
   })
@@ -78,7 +78,7 @@ export function changeUserStatus(userId, isDel) {
 // 查询用户个人信息
 export function getUserProfile() {
   return request({
-    url: '/account',
+    url: '/system/account',
     method: 'get'
   })
 }
@@ -86,7 +86,7 @@ export function getUserProfile() {
 // 修改用户个人信息
 export function updateUserProfile(data) {
   return request({
-    url: `/user/profile`,
+    url: `/system/user/profile`,
     method: 'put',
     data:  data 
   })
@@ -94,7 +94,7 @@ export function updateUserProfile(data) {
 // 只修改用户头像
 export function updateUserIcon(data) {
   return request({
-    url: `/account/icon`,
+    url: `/system/account/icon`,
     method: 'put',
     data:{icon:data}  
   })
@@ -108,7 +108,7 @@ export function updateUserPwd(oldPassword, newPassword) {
     newPassword
   }
   return request({
-    url: '/account/password',
+    url: '/system/account/password',
     method: 'put',
     data: data
   })

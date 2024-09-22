@@ -9,7 +9,7 @@ export function login(username, password, code, uuid) {
     uuid
   }
   return request({
-    url: '/account/login',
+    url: '/system/account/login',
     headers: {
       isToken: false
     },
@@ -21,7 +21,7 @@ export function login(username, password, code, uuid) {
 // 注册方法
 export function register(data) {
   return request({
-    url: '/register',
+    url: '/system/register',
     headers: {
       isToken: false
     },
@@ -33,7 +33,7 @@ export function register(data) {
 // 获取用户详细信息
 export function getInfo() {
   return request({
-    url: '/account',
+    url: '/system/account',
     method: 'get'
   })
 }
@@ -41,7 +41,7 @@ export function getInfo() {
 // 退出方法
 export function logout() {
   return request({
-    url: '/account/logout',
+    url: '/system/account/logout',
     method: 'post'
   })
 }
@@ -50,7 +50,7 @@ export function logout() {
 export function getCodeImg() {
 
   return request({
-    url: '/account/captcha-image',
+    url: '/system/account/captcha-image',
     headers: {
       isToken: false
     },

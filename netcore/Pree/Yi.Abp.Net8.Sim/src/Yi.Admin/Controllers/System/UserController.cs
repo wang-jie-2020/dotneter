@@ -9,7 +9,7 @@ using Yi.System.Services.Rbac.Dtos;
 namespace Yi.Admin.Controllers.System;
 
 [ApiController]
-[Route("api/user")]
+[Route("api/system/user")]
 public class UserController : AbpController
 {
     private readonly IUserService _userService;
