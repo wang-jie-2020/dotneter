@@ -5,7 +5,7 @@ namespace Yi.System.Domains.System.Entities;
 /// <summary>
 ///     菜单表
 /// </summary>
-[SugarTable("Menu")]
+[SugarTable("Sys_Menu")]
 public class MenuEntity : BizEntity<Guid>
 {
     public MenuEntity()

@@ -5,7 +5,7 @@ namespace Yi.System.Domains.System.Entities;
 /// <summary>
 ///     部门表
 /// </summary>
-[SugarTable("Dept")]
+[SugarTable("Sys_Dept")]
 public class DeptEntity : BizEntity<Guid>
 {
     public DeptEntity()

@@ -6,7 +6,7 @@ namespace Yi.System.Domains.System.Entities;
 /// <summary>
 ///     配置表
 /// </summary>
-[SugarTable("Config")]
+[SugarTable("Sys_Config")]
 public class ConfigEntity : AggregateRoot<Guid>, IAuditedObject, ISoftDelete
 {
     [SugarColumn(ColumnName = "Id", IsPrimaryKey = true)]

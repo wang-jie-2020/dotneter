@@ -23,7 +23,5 @@ OperationLogging 是不是应该考虑做Interceptor？结果是什么样子的
 清理前端
 
 Guid 改雪花?
-loginEvent要不要换个位置
-Sys+Entity比较合适,区分业务和系统
 
 Dto太多了,有些纯属无必要，每种类型都给Dto的意义真不大

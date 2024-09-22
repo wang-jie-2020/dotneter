@@ -5,7 +5,7 @@ namespace Yi.System.Domains.System.Entities;
 /// <summary>
 ///     角色菜单关系表
 /// </summary>
-[SugarTable("RoleMenu")]
+[SugarTable("Sys_RoleMenu")]
 public class RoleMenuEntity : SimpleEntity<Guid>
 {
     /// <summary>

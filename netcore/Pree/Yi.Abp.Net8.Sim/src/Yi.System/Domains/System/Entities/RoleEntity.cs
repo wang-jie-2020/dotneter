@@ -5,7 +5,7 @@ namespace Yi.System.Domains.System.Entities;
 /// <summary>
 ///     角色表
 /// </summary>
-[SugarTable("Role")]
+[SugarTable("Sys_Role")]
 public class RoleEntity : BizEntity<Guid>
 {
     /// <summary>

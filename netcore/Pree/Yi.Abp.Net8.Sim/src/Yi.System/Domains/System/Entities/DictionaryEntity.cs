@@ -3,7 +3,7 @@ using Volo.Abp.Domain.Entities;
 
 namespace Yi.System.Domains.System.Entities;
 
-[SugarTable("Dictionary")]
+[SugarTable("Sys_Dictionary")]
 public class DictionaryEntity : Entity<Guid>, IAuditedObject, ISoftDelete
 {
     /// <summary>

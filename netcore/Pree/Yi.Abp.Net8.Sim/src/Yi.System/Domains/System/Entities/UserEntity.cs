@@ -7,7 +7,7 @@ namespace Yi.System.Domains.System.Entities;
 /// <summary>
 ///     用户表
 /// </summary>
-[SugarTable("User")]
+[SugarTable("Sys_User")]
 [SugarIndex($"index_{nameof(UserName)}", nameof(UserName), OrderByType.Asc)]
 public class UserEntity : BizEntity<Guid>
 {

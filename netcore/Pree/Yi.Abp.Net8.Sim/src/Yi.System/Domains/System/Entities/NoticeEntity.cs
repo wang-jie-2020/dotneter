@@ -3,7 +3,7 @@ using Volo.Abp.Domain.Entities;
 
 namespace Yi.System.Domains.System.Entities;
 
-[SugarTable("Notice")]
+[SugarTable("Sys_Notice")]
 public class NoticeEntity : AggregateRoot<Guid>, ISoftDelete, IAuditedObject
 {
     [SugarColumn(IsPrimaryKey = true)] 

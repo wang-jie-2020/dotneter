@@ -4,7 +4,7 @@ using Check = Volo.Abp.Check;
 
 namespace Yi.System.Domains.System.Entities;
 
-[SugarTable("Tenant")]
+[SugarTable("Sys_Tenant")]
 [DefaultTenantTable]
 public class TenantEntity : BizEntity<Guid>
 {

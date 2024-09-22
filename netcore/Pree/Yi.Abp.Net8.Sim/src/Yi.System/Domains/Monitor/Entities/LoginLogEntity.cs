@@ -7,7 +7,7 @@ using Yi.AspNetCore.System.Entities;
 
 namespace Yi.System.Domains.Monitor.Entities;
 
-[SugarTable("LoginLog")]
+[SugarTable("Sys_LoginLog")]
 [SugarIndex($"index_{nameof(LoginUser)}", nameof(LoginUser), OrderByType.Asc)]
 public class LoginLogEntity : SimpleEntity<Guid>, ICreationAuditedObject
 {

@@ -5,7 +5,7 @@ namespace Yi.System.Domains.System.Entities;
 /// <summary>
 ///     岗位表
 /// </summary>
-[SugarTable("Post")]
+[SugarTable("Sys_Post")]
 public class PostEntity : BizEntity<Guid>
 {
     /// <summary>
