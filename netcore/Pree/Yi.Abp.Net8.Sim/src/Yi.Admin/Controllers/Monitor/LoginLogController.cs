@@ -3,6 +3,7 @@ using Volo.Abp.Application.Dtos;
 using Volo.Abp.AspNetCore.Mvc;
 using Yi.System.Domains;
 using Yi.System.Services;
+using Yi.System.Services.Monitor.Dtos;
 
 namespace Yi.Admin.Controllers.Monitor;
 

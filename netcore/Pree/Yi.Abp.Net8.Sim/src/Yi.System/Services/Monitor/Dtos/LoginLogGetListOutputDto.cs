@@ -1,4 +1,4 @@
-﻿namespace Yi.System.Services;
+﻿namespace Yi.System.Services.Monitor.Dtos;
 
 public class LoginLogGetListOutputDto 
 {
