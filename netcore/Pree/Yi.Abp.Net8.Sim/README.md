@@ -25,6 +25,5 @@ OperationLogging 是不是应该考虑做Interceptor？结果是什么样子的
 Entity基类???
 Dto基类???
 
-
-
+符合标准的日志记录
 
