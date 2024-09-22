@@ -1,5 +1,3 @@
-using Volo.Abp.Application.Dtos;
-
 namespace Yi.System.Services.Rbac.Dtos;
 
 public class DeptGetOutputDto 

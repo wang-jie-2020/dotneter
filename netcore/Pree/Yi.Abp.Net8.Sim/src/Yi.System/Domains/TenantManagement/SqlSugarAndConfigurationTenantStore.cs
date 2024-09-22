@@ -3,10 +3,10 @@ using Volo.Abp.Caching;
 using Volo.Abp.Data;
 using Volo.Abp.MultiTenancy;
 using Volo.Abp.MultiTenancy.ConfigurationStore;
-using Yi.Admin.Domains.TenantManagement.Entities;
-using Yi.Admin.Domains.TenantManagement.Repositories;
+using Yi.System.Domains.TenantManagement.Entities;
+using Yi.System.Domains.TenantManagement.Repositories;
 
-namespace Yi.Admin.Domains.TenantManagement;
+namespace Yi.System.Domains.TenantManagement;
 
 public class SqlSugarAndConfigurationTenantStore : DefaultTenantStore, ITenantStore
 {

@@ -1,12 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Volo.Abp.Auditing;
-using Volo.Abp.Data;
-using Volo.Abp.MultiTenancy;
 using Yi.Admin.Domains.AuditLogging;
 using Yi.Admin.Domains.AuditLogging.Repositories;
 using Yi.Admin.Domains.OperationLogging;
-using Yi.Admin.Domains.TenantManagement;
 using Yi.AspNetCore;
 using Yi.AspNetCore.Common;
 
@@ -21,11 +18,6 @@ public class YiAdminModule : AbpModule
         context.Services.Replace(new ServiceDescriptor(typeof(IAuditingStore), typeof(AuditingStore), ServiceLifetime.Singleton));
         context.Services.AddTransient<IAuditLogRepository, SqlSugarCoreAuditLogRepository>();
         context.Services.AddTransient<IAuditLogInfoToAuditLogConverter, AuditLogInfoToAuditLogConverter>();
-
-        //Tenant
-        context.Services.Replace(new ServiceDescriptor(typeof(ITenantStore), typeof(SqlSugarAndConfigurationTenantStore), ServiceLifetime.Transient));
-        context.Services.Replace(new ServiceDescriptor(typeof(IConnectionStringResolver), typeof(YiMultiTenantConnectionStringResolver), ServiceLifetime.Transient));
-        context.Services.Replace(new ServiceDescriptor(typeof(ITenantConfigurationProvider), typeof(YiTenantConfigurationProvider), ServiceLifetime.Transient));
         
         //OperationLog
         context.Services.Replace(new ServiceDescriptor(typeof(IOperationLogStore), typeof(OperationLogStore), ServiceLifetime.Singleton));

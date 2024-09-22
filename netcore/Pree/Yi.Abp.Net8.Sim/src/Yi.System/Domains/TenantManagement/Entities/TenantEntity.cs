@@ -1,11 +1,8 @@
 ﻿using JetBrains.Annotations;
-using Volo.Abp.Auditing;
-using Volo.Abp.Data;
-using Volo.Abp.Domain.Entities.Auditing;
 using Yi.AspNetCore.SqlSugarCore.Entities;
 using Check = Volo.Abp.Check;
 
-namespace Yi.Admin.Domains.TenantManagement.Entities;
+namespace Yi.System.Domains.TenantManagement.Entities;
 
 [SugarTable("Tenant")]
 [DefaultTenantTable]

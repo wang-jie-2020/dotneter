@@ -1,6 +1,4 @@
-﻿using Volo.Abp.Auditing;
-using Volo.Abp.Domain.Entities;
-using Yi.AspNetCore.Helpers;
+﻿using Yi.AspNetCore.Helpers;
 using Yi.AspNetCore.SqlSugarCore.Entities;
 using Yi.System.Domains.Rbac.Entities.ValueObjects;
 

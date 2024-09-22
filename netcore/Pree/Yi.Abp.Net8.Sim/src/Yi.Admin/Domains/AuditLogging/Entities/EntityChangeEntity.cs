@@ -1,5 +1,4 @@
 ﻿using Volo.Abp.Auditing;
-using Volo.Abp.Domain.Entities;
 using Volo.Abp.Guids;
 using Volo.Abp.MultiTenancy;
 using Yi.Admin.Domains.AuditLogging.Consts;

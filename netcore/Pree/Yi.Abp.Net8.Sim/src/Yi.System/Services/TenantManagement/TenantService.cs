@@ -5,11 +5,11 @@ using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Data;
 using Volo.Abp.Uow;
-using Yi.Admin.Domains.TenantManagement.Entities;
-using Yi.Admin.Services.TenantManagement.Dtos;
 using Yi.AspNetCore.Helpers;
+using Yi.System.Domains.TenantManagement.Entities;
+using Yi.System.Services.TenantManagement.Dtos;
 
-namespace Yi.Admin.Services.TenantManagement;
+namespace Yi.System.Services.TenantManagement;
 
 public class TenantService : ApplicationService, ITenantService
 {

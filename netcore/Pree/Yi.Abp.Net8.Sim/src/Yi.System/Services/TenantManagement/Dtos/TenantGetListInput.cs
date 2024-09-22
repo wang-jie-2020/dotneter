@@ -1,6 +1,6 @@
 ﻿using Yi.AspNetCore.Common;
 
-namespace Yi.Admin.Services.TenantManagement.Dtos;
+namespace Yi.System.Services.TenantManagement.Dtos;
 
 public class TenantGetListInput : PagedInfraInput
 {

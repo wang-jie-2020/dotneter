@@ -1,6 +1,4 @@
-﻿using Volo.Abp.Auditing;
-using Volo.Abp.Domain.Entities;
-using Volo.Abp.MultiTenancy;
+﻿using Volo.Abp.MultiTenancy;
 using Yi.AspNetCore.Common;
 using Yi.AspNetCore.SqlSugarCore.Entities;
 

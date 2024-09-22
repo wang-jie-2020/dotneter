@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Http;
 using UAParser;
 using Volo.Abp.Auditing;
-using Volo.Abp.Domain.Entities;
 using Yi.AspNetCore.Extensions;
 using Yi.AspNetCore.SqlSugarCore.Entities;
 

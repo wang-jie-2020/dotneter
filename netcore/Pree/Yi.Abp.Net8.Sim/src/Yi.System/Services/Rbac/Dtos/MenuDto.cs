@@ -1,5 +1,4 @@
-﻿using Volo.Abp.Application.Dtos;
-using Yi.System.Domains.Rbac.Entities;
+﻿using Yi.System.Domains.Rbac.Entities;
 
 namespace Yi.System.Services.Rbac.Dtos;
 

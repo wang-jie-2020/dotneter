@@ -1,6 +1,6 @@
 ﻿using Volo.Abp.MultiTenancy;
 
-namespace Yi.Admin.Domains.TenantManagement;
+namespace Yi.System.Domains.TenantManagement;
 
 [Serializable]
 [IgnoreMultiTenancy]

@@ -1,5 +1,4 @@
-﻿using Volo.Abp.Domain.Entities;
-using Yi.AspNetCore.SqlSugarCore.Entities;
+﻿using Yi.AspNetCore.SqlSugarCore.Entities;
 
 namespace Yi.System.Domains.Rbac.Entities;
 
