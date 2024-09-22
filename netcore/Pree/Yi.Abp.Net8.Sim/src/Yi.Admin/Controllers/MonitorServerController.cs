@@ -9,7 +9,7 @@ using Yi.AspNetCore.Helpers;
 namespace Yi.Admin.Controllers;
 
 [ApiController]
-[Route("api/app/monitor-server")]
+[Route("api/monitor-server")]
 public class MonitorServerController : AbpController
 {
     private readonly IWebHostEnvironment _hostEnvironment;

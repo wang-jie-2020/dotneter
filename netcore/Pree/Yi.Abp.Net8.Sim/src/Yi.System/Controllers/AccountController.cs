@@ -21,7 +21,7 @@ using Yi.System.Services.Rbac.Dtos;
 namespace Yi.System.Controllers;
 
 [ApiController]
-[Route("api/app/account")]
+[Route("api/account")]
 public class AccountController : AbpController
 {
     private readonly ICaptcha _captcha;

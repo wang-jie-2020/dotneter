@@ -1,7 +1,7 @@
 using Yi.AspNetCore.System;
 using Yi.AspNetCore.System.Logging;
 
-namespace Yi.Admin.Services.OperationLogging.Dtos;
+namespace Yi.Admin.Services.Monitor.Dtos;
 
 public class OperationLogGetListInput : PagedInfraInput
 {

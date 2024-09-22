@@ -7,7 +7,7 @@ using Yi.System.Services.Sys.Dtos;
 namespace Yi.System.Controllers;
 
 [ApiController]
-[Route("api/app/notice")]
+[Route("api/notice")]
 public class NoticeController : AbpController
 {
     private readonly INoticeService _noticeService;

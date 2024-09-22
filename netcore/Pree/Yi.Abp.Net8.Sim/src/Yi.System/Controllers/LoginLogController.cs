@@ -7,7 +7,7 @@ using Yi.System.Services.Rbac.Dtos;
 namespace Yi.System.Controllers;
 
 [ApiController]
-[Route("api/app/login-log")]
+[Route("api/login-log")]
 public class LoginLogController : AbpController
 {
     private readonly ISqlSugarRepository<LoginLogEntity, Guid> _repository;

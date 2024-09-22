@@ -2,10 +2,10 @@ using Microsoft.AspNetCore.Mvc;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Yi.Admin.Domains.OperationLogging.Entities;
-using Yi.Admin.Services.OperationLogging.Dtos;
+using Yi.Admin.Services.Monitor.Dtos;
 using Yi.AspNetCore.Helpers;
 
-namespace Yi.Admin.Services.OperationLogging;
+namespace Yi.Admin.Services.Monitor;
 
 public class OperationLogService : ApplicationService, IOperationLogService
 {

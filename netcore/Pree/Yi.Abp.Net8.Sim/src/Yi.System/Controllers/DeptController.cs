@@ -7,7 +7,7 @@ using Yi.System.Services.Rbac.Dtos;
 namespace Yi.System.Controllers;
 
 [ApiController]
-[Route("api/app/dept")]
+[Route("api/dept")]
 public class DeptController : AbpController
 {
     private readonly IDeptService _deptService;

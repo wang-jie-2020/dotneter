@@ -227,9 +227,7 @@ public class YiAbpWebModule : AbpModule
         app.UseYiSwagger(c => c.SwaggerEndpoint("/swagger/default/swagger.json", "default"));
 
         //静态资源
-        app.UseStaticFiles("/api/app/wwwroot");
-        app.UseDefaultFiles();
-        app.UseDirectoryBrowser("/api/app/wwwroot");
+        app.UseStaticFiles();
 
         //工作单元
         app.UseUnitOfWork();

@@ -7,7 +7,7 @@ using Yi.System.Services.Sys.Dtos;
 namespace Yi.System.Controllers;
 
 [ApiController]
-[Route("api/app/config")]
+[Route("api/config")]
 public class ConfigController : AbpController
 {
     private readonly IConfigService _configService;

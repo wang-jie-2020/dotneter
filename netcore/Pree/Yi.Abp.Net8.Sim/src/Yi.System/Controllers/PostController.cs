@@ -7,7 +7,7 @@ using Yi.System.Services.Rbac.Dtos;
 namespace Yi.System.Controllers;
 
 [ApiController]
-[Route("api/app/post")]
+[Route("api/post")]
 public class PostController : AbpController
 {
     private readonly IPostService _postService;

@@ -7,7 +7,7 @@ using Yi.System.Services.Rbac.Dtos;
 namespace Yi.System.Controllers;
 
 [ApiController]
-[Route(("api/app/menu"))]
+[Route(("api/menu"))]
 public class MenuController : AbpController
 {
     private readonly IMenuService _menuService;

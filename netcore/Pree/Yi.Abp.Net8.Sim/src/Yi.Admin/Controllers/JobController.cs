@@ -11,7 +11,7 @@ using Yi.Admin.Services.Monitor.Dtos;
 namespace Yi.Admin.Controllers;
 
 [ApiController]
-[Route("api/app/job")]
+[Route("api/job")]
 public class JobController : AbpController
 {
     private readonly IClock _clock;
