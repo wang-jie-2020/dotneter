@@ -9,7 +9,7 @@ using Yi.System.Services.Monitor.Dtos;
 namespace Yi.Admin.Controllers.Monitor;
 
 [ApiController]
-[Route("api/monitor/monitor-cache")]
+[Route("api/monitor/cache")]
 public class MonitorCacheController : AbpController
 {
     /// <summary>
