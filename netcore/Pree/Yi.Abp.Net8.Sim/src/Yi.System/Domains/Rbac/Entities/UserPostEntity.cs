@@ -1,4 +1,4 @@
-﻿using Yi.AspNetCore.SqlSugarCore.Entities;
+﻿using Yi.AspNetCore.System.Entities;
 
 namespace Yi.System.Domains.Rbac.Entities;
 

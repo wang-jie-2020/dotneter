@@ -1,4 +1,4 @@
-using Yi.AspNetCore.Common;
+using Yi.AspNetCore.System;
 using Yi.System.Domains.Sys.Entities;
 
 namespace Yi.System.Services.Sys.Dtos;

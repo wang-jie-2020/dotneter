@@ -14,8 +14,8 @@ using Volo.Abp.MultiTenancy;
 using Yi.Admin;
 using Yi.AspNetCore;
 using Yi.AspNetCore.Extensions;
-using Yi.AspNetCore.Permissions;
 using Yi.AspNetCore.SqlSugarCore;
+using Yi.AspNetCore.System.Permissions;
 using Yi.System;
 using Yi.System.Options;
 

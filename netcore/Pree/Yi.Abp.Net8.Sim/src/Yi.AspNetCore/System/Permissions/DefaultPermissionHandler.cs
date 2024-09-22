@@ -2,7 +2,7 @@
 using Volo.Abp.Users;
 using Yi.AspNetCore.Extensions;
 
-namespace Yi.AspNetCore.Permissions;
+namespace Yi.AspNetCore.System.Permissions;
 
 public class DefaultPermissionHandler : IPermissionHandler
 {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 
-namespace Yi.AspNetCore.Common;
+namespace Yi.AspNetCore.System.Logging;
 
 public class SimpleOperationLogStore : IOperationLogStore
 {

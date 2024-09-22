@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http;
 using UAParser;
 using Volo.Abp.Auditing;
 using Yi.AspNetCore.Extensions;
-using Yi.AspNetCore.SqlSugarCore.Entities;
+using Yi.AspNetCore.System.Entities;
 
 namespace Yi.System.Domains.Rbac.Entities;
 

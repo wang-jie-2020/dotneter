@@ -1,4 +1,4 @@
-﻿namespace Yi.AspNetCore.Permissions;
+﻿namespace Yi.AspNetCore.System.Permissions;
 
 [AttributeUsage(AttributeTargets.Method)]
 public class PermissionAttribute : Attribute

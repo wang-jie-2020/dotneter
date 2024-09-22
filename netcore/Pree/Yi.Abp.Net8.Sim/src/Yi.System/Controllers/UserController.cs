@@ -1,8 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.AspNetCore.Mvc;
-using Yi.AspNetCore.Common;
-using Yi.AspNetCore.Permissions;
+using Yi.AspNetCore.System;
+using Yi.AspNetCore.System.Logging;
+using Yi.AspNetCore.System.Permissions;
 using Yi.System.Services.Rbac;
 using Yi.System.Services.Rbac.Dtos;
 

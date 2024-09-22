@@ -1,4 +1,4 @@
-﻿namespace Yi.AspNetCore.Common;
+﻿namespace Yi.AspNetCore.System.Logging;
 
 public interface IOperationLogStore
 {

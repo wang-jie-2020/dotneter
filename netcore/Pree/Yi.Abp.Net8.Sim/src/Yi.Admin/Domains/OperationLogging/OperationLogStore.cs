@@ -1,7 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
 using Volo.Abp.Domain.Repositories;
 using Yi.Admin.Domains.OperationLogging.Entities;
-using Yi.AspNetCore.Common;
+using Yi.AspNetCore.System;
+using Yi.AspNetCore.System.Logging;
 
 namespace Yi.Admin.Domains.OperationLogging;
 

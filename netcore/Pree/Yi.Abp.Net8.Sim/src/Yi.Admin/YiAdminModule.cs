@@ -5,7 +5,8 @@ using Yi.Admin.Domains.AuditLogging;
 using Yi.Admin.Domains.AuditLogging.Repositories;
 using Yi.Admin.Domains.OperationLogging;
 using Yi.AspNetCore;
-using Yi.AspNetCore.Common;
+using Yi.AspNetCore.System;
+using Yi.AspNetCore.System.Logging;
 
 namespace Yi.Admin;
 

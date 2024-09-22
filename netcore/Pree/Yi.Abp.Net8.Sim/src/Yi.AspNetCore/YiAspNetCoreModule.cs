@@ -22,12 +22,13 @@ using Volo.Abp.Domain.Repositories;
 using Volo.Abp.ObjectMapping;
 using Volo.Abp.Swashbuckle;
 using Yi.AspNetCore.Caching.FreeRedis;
-using Yi.AspNetCore.Common;
 using Yi.AspNetCore.Mapster;
-using Yi.AspNetCore.Permissions;
 using Yi.AspNetCore.SqlSugarCore;
 using Yi.AspNetCore.SqlSugarCore.Repositories;
 using Yi.AspNetCore.SqlSugarCore.Uow;
+using Yi.AspNetCore.System;
+using Yi.AspNetCore.System.Logging;
+using Yi.AspNetCore.System.Permissions;
 
 namespace Yi.AspNetCore;
 

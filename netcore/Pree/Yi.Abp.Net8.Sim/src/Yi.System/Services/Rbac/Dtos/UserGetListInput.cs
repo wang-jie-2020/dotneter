@@ -1,4 +1,4 @@
-using Yi.AspNetCore.Common;
+using Yi.AspNetCore.System;
 
 namespace Yi.System.Services.Rbac.Dtos;
 

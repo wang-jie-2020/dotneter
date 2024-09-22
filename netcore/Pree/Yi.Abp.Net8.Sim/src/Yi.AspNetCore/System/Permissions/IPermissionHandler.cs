@@ -1,4 +1,4 @@
-﻿namespace Yi.AspNetCore.Permissions;
+﻿namespace Yi.AspNetCore.System.Permissions;
 
 public interface IPermissionHandler
 {

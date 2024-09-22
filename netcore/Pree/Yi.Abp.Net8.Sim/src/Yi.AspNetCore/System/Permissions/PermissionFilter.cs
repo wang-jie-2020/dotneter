@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Volo.Abp.Http;
 
-namespace Yi.AspNetCore.Permissions;
+namespace Yi.AspNetCore.System.Permissions;
 
 internal class PermissionFilter : ActionFilterAttribute
 {

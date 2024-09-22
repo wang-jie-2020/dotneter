@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Users;
 
-namespace Yi.AspNetCore.Common;
+namespace Yi.AspNetCore.System.Logging;
 
 public class OperationLogFilter : ActionFilterAttribute, ITransientDependency
 {

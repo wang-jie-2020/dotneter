@@ -1,6 +1,7 @@
 ﻿using Volo.Abp.MultiTenancy;
-using Yi.AspNetCore.Common;
-using Yi.AspNetCore.SqlSugarCore.Entities;
+using Yi.AspNetCore.System;
+using Yi.AspNetCore.System.Entities;
+using Yi.AspNetCore.System.Logging;
 
 namespace Yi.Admin.Domains.OperationLogging.Entities;
 

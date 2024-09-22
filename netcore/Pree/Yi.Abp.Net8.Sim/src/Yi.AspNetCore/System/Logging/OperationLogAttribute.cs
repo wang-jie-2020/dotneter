@@ -1,4 +1,4 @@
-﻿namespace Yi.AspNetCore.Common;
+﻿namespace Yi.AspNetCore.System.Logging;
 
 [AttributeUsage(AttributeTargets.Method)]
 public class OperationLogAttribute : Attribute

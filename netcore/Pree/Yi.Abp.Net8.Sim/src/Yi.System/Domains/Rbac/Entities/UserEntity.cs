@@ -1,5 +1,5 @@
 ﻿using Yi.AspNetCore.Helpers;
-using Yi.AspNetCore.SqlSugarCore.Entities;
+using Yi.AspNetCore.System.Entities;
 using Yi.System.Domains.Rbac.Entities.ValueObjects;
 
 namespace Yi.System.Domains.Rbac.Entities;

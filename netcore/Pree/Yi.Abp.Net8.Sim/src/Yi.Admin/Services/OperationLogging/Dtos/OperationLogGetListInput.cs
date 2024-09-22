@@ -1,4 +1,5 @@
-using Yi.AspNetCore.Common;
+using Yi.AspNetCore.System;
+using Yi.AspNetCore.System.Logging;
 
 namespace Yi.Admin.Services.OperationLogging.Dtos;
 

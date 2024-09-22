@@ -1,6 +1,6 @@
 ﻿using Volo.Abp.Application.Dtos;
 
-namespace Yi.AspNetCore.Common;
+namespace Yi.AspNetCore.System;
 
 /// <summary>
 /// todo 明显不合适
