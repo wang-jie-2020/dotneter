@@ -1,6 +1,6 @@
-﻿namespace Yi.AspNetCore.System.Logging;
+﻿namespace Yi.AspNetCore.System.Loggings;
 
-public class OperationLogInfo
+public class OperLogInfo
 {
     /// <summary>
     ///     操作模块
@@ -10,7 +10,7 @@ public class OperationLogInfo
     /// <summary>
     ///     操作类型
     /// </summary>
-    public OperationLogEnum OperationLog { get; set; }
+    public OperLogEnum OperLog { get; set; }
 
     /// <summary>
     ///     操作人员

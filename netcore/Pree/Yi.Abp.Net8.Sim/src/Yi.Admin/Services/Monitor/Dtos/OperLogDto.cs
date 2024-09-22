@@ -1,14 +1,14 @@
-using Yi.AspNetCore.System.Logging;
+using Yi.AspNetCore.System.Loggings;
 
 namespace Yi.Admin.Services.Monitor.Dtos;
 
-public class OperationLogDto 
+public class OperLogDto 
 {
     public Guid Id { get; set; }
     
     public string? Title { get; set; }
     
-    public OperationLogEnum OperType { get; set; }
+    public OperLogEnum OperType { get; set; }
     
     public string? RequestMethod { get; set; }
     

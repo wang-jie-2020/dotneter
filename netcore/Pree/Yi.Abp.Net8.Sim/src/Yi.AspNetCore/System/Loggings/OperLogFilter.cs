@@ -6,21 +6,21 @@ using Newtonsoft.Json;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Users;
 
-namespace Yi.AspNetCore.System.Logging;
+namespace Yi.AspNetCore.System.Loggings;
 
-public class OperationLogFilter : ActionFilterAttribute, ITransientDependency
+public class OperLogFilter : ActionFilterAttribute, ITransientDependency
 {
-    private readonly ILogger<OperationLogFilter> _logger;
-    private readonly IOperationLogStore _operationLogStore;
+    private readonly ILogger<OperLogFilter> _logger;
+    private readonly IOperLogStore _operLogStore;
     private readonly ICurrentUser _currentUser;
     
-    public OperationLogFilter(
-        ILogger<OperationLogFilter> logger,
-        IOperationLogStore operationLogStore,
+    public OperLogFilter(
+        ILogger<OperLogFilter> logger,
+        IOperLogStore operLogStore,
         ICurrentUser currentUser)
     {
         _logger = logger;
-        _operationLogStore = operationLogStore;
+        _operLogStore = operLogStore;
         _currentUser = currentUser;
     }
 
@@ -36,7 +36,7 @@ public class OperationLogFilter : ActionFilterAttribute, ITransientDependency
         //查找标签，获取标签对象
         var operLogAttribute = controllerActionDescriptor
             .MethodInfo.GetCustomAttributes(true)
-            .FirstOrDefault(a => a.GetType().Equals(typeof(OperationLogAttribute))) as OperationLogAttribute;
+            .FirstOrDefault(a => a.GetType().Equals(typeof(OperLogAttribute))) as OperLogAttribute;
 
         //空对象直接返回
         if (operLogAttribute is null)
@@ -44,10 +44,10 @@ public class OperationLogFilter : ActionFilterAttribute, ITransientDependency
             return;
         }
         
-        var info = new OperationLogInfo
+        var info = new OperLogInfo
         {
             Title = operLogAttribute.Title,
-            OperationLog = operLogAttribute.OperLogType,
+            OperLog = operLogAttribute.OperLogType,
             Operator = _currentUser.UserName,
             Method = resultContext.HttpContext.Request.Path.Value,
             RequestMethod = resultContext.HttpContext.Request.Method,
@@ -78,6 +78,6 @@ public class OperationLogFilter : ActionFilterAttribute, ITransientDependency
             //info.RequestParam = context.HttpContext.GetRequestValue(logEntity.RequestMethod);
         }
 
-        await _operationLogStore.SaveAsync(info);
+        await _operLogStore.SaveAsync(info);
     }
 }

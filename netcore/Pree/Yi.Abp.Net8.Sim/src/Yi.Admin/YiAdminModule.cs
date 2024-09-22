@@ -3,10 +3,10 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Volo.Abp.Auditing;
 using Yi.Admin.Domains.AuditLogging;
 using Yi.Admin.Domains.AuditLogging.Repositories;
-using Yi.Admin.Domains.OperationLogging;
+using Yi.Admin.Domains.OperLogging;
 using Yi.AspNetCore;
 using Yi.AspNetCore.System;
-using Yi.AspNetCore.System.Logging;
+using Yi.AspNetCore.System.Loggings;
 
 namespace Yi.Admin;
 
@@ -21,6 +21,6 @@ public class YiAdminModule : AbpModule
         context.Services.AddTransient<IAuditLogInfoToAuditLogConverter, AuditLogInfoToAuditLogConverter>();
         
         //OperationLog
-        context.Services.Replace(new ServiceDescriptor(typeof(IOperationLogStore), typeof(OperationLogStore), ServiceLifetime.Singleton));
+        context.Services.Replace(new ServiceDescriptor(typeof(IOperLogStore), typeof(OperLogStore), ServiceLifetime.Singleton));
     }
 }

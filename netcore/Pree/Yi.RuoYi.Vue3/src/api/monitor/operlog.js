@@ -12,7 +12,7 @@ export function list(query) {
 // 删除操作日志
 export function delOperlog(operId) {
   return request({
-    url: '/operation-log',
+    url: '/oper-log',
     method: 'delete',
     data:"string"==typeof(operId)?[operId]:operId
   })

@@ -1,15 +1,14 @@
 ﻿using Volo.Abp.MultiTenancy;
-using Yi.AspNetCore.System;
 using Yi.AspNetCore.System.Entities;
-using Yi.AspNetCore.System.Logging;
+using Yi.AspNetCore.System.Loggings;
 
-namespace Yi.Admin.Domains.OperationLogging.Entities;
+namespace Yi.Admin.Domains.OperLogging.Entities;
 
 /// <summary>
 ///     操作日志表
 /// </summary>
-[SugarTable("OperationLog")]
-public class OperationLogEntity : SimpleEntity<Guid>, IMultiTenant
+[SugarTable("OperLog")]
+public class OperLogEntity : SimpleEntity<Guid>, IMultiTenant
 {
     /// <summary>
     ///     操作模块
@@ -21,7 +20,7 @@ public class OperationLogEntity : SimpleEntity<Guid>, IMultiTenant
     ///     操作类型
     /// </summary>
     [SugarColumn(ColumnName = "OperType")]
-    public OperationLogEnum OperType { get; set; }
+    public OperLogEnum OperType { get; set; }
 
     /// <summary>
     ///     请求方法

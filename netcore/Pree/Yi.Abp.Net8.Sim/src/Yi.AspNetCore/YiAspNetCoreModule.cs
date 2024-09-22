@@ -27,7 +27,7 @@ using Yi.AspNetCore.SqlSugarCore;
 using Yi.AspNetCore.SqlSugarCore.Repositories;
 using Yi.AspNetCore.SqlSugarCore.Uow;
 using Yi.AspNetCore.System;
-using Yi.AspNetCore.System.Logging;
+using Yi.AspNetCore.System.Loggings;
 using Yi.AspNetCore.System.Permissions;
 
 namespace Yi.AspNetCore;
@@ -84,11 +84,11 @@ public class YiAspNetCoreModule : AbpModule
         //AspNetCore
         context.Services.AddTransient<IPermissionHandler, DefaultPermissionHandler>();
         context.Services.AddTransient<PermissionFilter>();
-        context.Services.AddSingleton<IOperationLogStore, SimpleOperationLogStore>();
+        context.Services.AddSingleton<IOperLogStore, SimpleOperLogStore>();
         context.Services.Configure<MvcOptions>(options =>
         {
             options.Filters.Add<PermissionFilter>();
-            options.Filters.Add<OperationLogFilter>();
+            options.Filters.Add<OperLogFilter>();
         });
     }
 
