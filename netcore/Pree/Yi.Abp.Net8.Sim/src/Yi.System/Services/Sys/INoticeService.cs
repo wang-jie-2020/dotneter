@@ -17,8 +17,4 @@ public interface INoticeService
     Task DeleteAsync(IEnumerable<Guid> id);
 
     Task<IActionResult> GetExportExcelAsync(NoticeGetListInput input);
-
-    Task SendOnlineAsync(Guid id);
-
-    Task SendOfflineAsync(Guid id);
 }

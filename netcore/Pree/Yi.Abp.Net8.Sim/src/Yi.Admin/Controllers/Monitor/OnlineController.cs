@@ -3,12 +3,12 @@ using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Logging;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.AspNetCore.Mvc;
-using Yi.System.Hubs;
+using Yi.Admin.Hubs;
 
-namespace Yi.Admin.Controllers.System;
+namespace Yi.Admin.Controllers.Monitor;
 
 [ApiController]
-[Route("api/system/online")]
+[Route("api/monitor/online")]
 public class OnlineController : AbpController
 {
     private readonly ILogger<OnlineController> _logger;

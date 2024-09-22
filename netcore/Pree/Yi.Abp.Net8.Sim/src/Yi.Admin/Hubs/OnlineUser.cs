@@ -1,4 +1,4 @@
-﻿namespace Yi.System.Hubs;
+﻿namespace Yi.Admin.Hubs;
 
 public class OnlineUser
 {

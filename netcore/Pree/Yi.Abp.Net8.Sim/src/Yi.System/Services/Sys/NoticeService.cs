@@ -1,10 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.SignalR;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Yi.AspNetCore.Helpers;
 using Yi.System.Domains.Sys.Entities;
-using Yi.System.Hubs;
 using Yi.System.Services.Sys.Dtos;
 
 namespace Yi.System.Services.Sys;
@@ -12,11 +10,9 @@ namespace Yi.System.Services.Sys;
 public class NoticeService : ApplicationService, INoticeService
 {
     private readonly ISqlSugarRepository<NoticeEntity, Guid> _repository;
-    private readonly IHubContext<MainHub> _hubContext;
 
-    public NoticeService(ISqlSugarRepository<NoticeEntity, Guid> repository, IHubContext<MainHub> hubContext)
+    public NoticeService(ISqlSugarRepository<NoticeEntity, Guid> repository)
     {
-        _hubContext = hubContext;
         _repository = repository;
     }
 
@@ -70,24 +66,5 @@ public class NoticeService : ApplicationService, INoticeService
 
         var output = await GetListAsync(input);
         return new PhysicalFileResult(ExporterHelper.ExportExcel(output.Items), "application/vnd.ms-excel");
-    }
-
-    /// <summary>
-    ///     发送在线消息
-    /// </summary>
-    /// <returns></returns>
-    public async Task SendOnlineAsync(Guid id)
-    {
-        var entity = await _repository.DbQueryable.FirstAsync(x => x.Id == id);
-        await _hubContext.Clients.All.SendAsync("ReceiveNotice", entity.Type.ToString(), entity.Title, entity.Content);
-    }
-
-    /// <summary>
-    ///     发送离线消息
-    /// </summary>
-    /// <returns></returns>
-    public async Task SendOfflineAsync(Guid id)
-    {
-        throw new NotImplementedException();
     }
 }

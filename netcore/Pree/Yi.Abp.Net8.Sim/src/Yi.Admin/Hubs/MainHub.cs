@@ -4,7 +4,7 @@ using Microsoft.Extensions.Logging;
 using Volo.Abp.AspNetCore.SignalR;
 using Yi.AspNetCore.System.Events;
 
-namespace Yi.System.Hubs;
+namespace Yi.Admin.Hubs;
 
 [HubRoute("/hub/main")]
 public class MainHub : AbpHub

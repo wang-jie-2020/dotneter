@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.AspNetCore.Mvc;
+using Yi.Admin.Hubs;
 using Yi.System.Services.Sys;
 using Yi.System.Services.Sys.Dtos;
 
@@ -11,10 +13,12 @@ namespace Yi.Admin.Controllers.System;
 public class NoticeController : AbpController
 {
     private readonly INoticeService _noticeService;
+    private readonly IHubContext<MainHub> _hubContext;
 
-    public NoticeController(INoticeService noticeService)
+    public NoticeController(INoticeService noticeService,IHubContext<MainHub> hubContext)
     {
         _noticeService = noticeService;
+        _hubContext = hubContext;
     }
 
     [HttpGet("{id}")]
@@ -60,7 +64,8 @@ public class NoticeController : AbpController
     [HttpPost("online/{id}")]
     public async Task SendOnlineAsync([FromRoute] Guid id)
     {
-        await _noticeService.SendOnlineAsync(id);
+        var entity = await _noticeService.GetAsync(id);
+        await _hubContext.Clients.All.SendAsync("ReceiveNotice", entity.Type.ToString(), entity.Title, entity.Content);
     }
 
     /// <summary>
@@ -70,6 +75,6 @@ public class NoticeController : AbpController
     [HttpPost("offline/{id}")]
     public async Task SendOfflineAsync([FromRoute] Guid id)
     {
-        await _noticeService.SendOfflineAsync(id);
+        throw new NotImplementedException();
     }
 }
