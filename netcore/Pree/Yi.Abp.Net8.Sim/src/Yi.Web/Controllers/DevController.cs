@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Volo.Abp.AspNetCore.Mvc;
-using Volo.Abp.ObjectMapping;
 
 namespace Yi.Web.Controllers;
 
@@ -8,19 +8,14 @@ namespace Yi.Web.Controllers;
 [Route("dev-api")]
 public class DevController : AbpController
 {
-    private readonly IObjectMapper _objectMapper;
-    private readonly IAutoObjectMappingProvider _autoObjectMappingProvider;
-
-    public DevController(
-        IObjectMapper objectMapper,
-        IAutoObjectMappingProvider autoObjectMappingProvider)
+    public DevController()
     {
-        _objectMapper = objectMapper;
-        _autoObjectMappingProvider = autoObjectMappingProvider;
     }
 
-    [HttpGet("mappers")]
-    public void Mappers()
+    [HttpGet("mvc-filters")]
+    public object MvcOptions()
     {
+        var mvc = LazyServiceProvider.LazyGetRequiredService<IOptions<MvcOptions>>().Value;
+        return mvc.Filters;
     }
 }
