@@ -5,10 +5,9 @@ using Volo.Abp.Data;
 using Volo.Abp.MultiTenancy;
 using Yi.AspNetCore;
 using Yi.AspNetCore.System.Loggings;
-using Yi.System.Domains.AuditLogging;
-using Yi.System.Domains.AuditLogging.Repositories;
-using Yi.System.Domains.OperLogging;
-using Yi.System.Domains.TenantManagement;
+using Yi.System.Domains.Monitor;
+using Yi.System.Domains.Monitor.Repositories;
+using Yi.System.Domains.System;
 using Yi.System.Options;
 
 namespace Yi.System;

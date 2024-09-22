@@ -1,8 +1,9 @@
 ﻿using Volo.Abp.DependencyInjection;
 using Yi.AspNetCore.System.Permissions;
-using Yi.System.Domains.Rbac;
-using Yi.System.Domains.Rbac.Entities;
-using Yi.System.Services.Rbac;
+using Yi.System.Domains.System;
+using Yi.System.Domains.System.Entities;
+using Yi.System.Services.System;
+using Yi.System.Services.System.Impl;
 
 namespace Yi.System;
 
