@@ -2,7 +2,7 @@ using Yi.AspNetCore.System;
 
 namespace Yi.System.Services.System.Dtos;
 
-public class UserGetListInput : PagedInfraInput
+public class UserGetListInput : PagedInput
 {
     public string? Name { get; set; }
     

@@ -2,7 +2,7 @@ using Yi.AspNetCore.System;
 
 namespace Yi.System.Services.System.Dtos;
 
-public class RoleGetListInput : PagedInfraInput
+public class RoleGetListInput : PagedInput
 {
     public string? RoleName { get; set; }
     

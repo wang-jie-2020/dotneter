@@ -79,7 +79,7 @@ public class JobController : AbpController
             items.Add(await GetAsync(jobName));
         }
 
-        var output = items.Skip((input.SkipCount - 1) * input.MaxResultCount).Take(input.MaxResultCount)
+        var output = items.Skip((input.PageNum - 1) * input.PageSize).Take(input.PageSize)
             .OrderByDescending(x => x.LastRunTime)
             .ToList();
 

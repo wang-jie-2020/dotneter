@@ -24,12 +24,12 @@
       </el-form>
       <el-table
          v-loading="loading"
-         :data="onlineList.slice((queryParams.skipCount - 1) * queryParams.maxResultCount, queryParams.skipCount * queryParams.maxResultCount)"
+         :data="onlineList.slice((queryParams.pageNum - 1) * queryParams.pageSize, queryParams.pageNum * queryParams.pageSize)"
          style="width: 100%;"
       >
          <el-table-column label="序号" width="50" type="index" align="center">
             <template #default="scope">
-               <span>{{ (queryParams.skipCount - 1) * queryParams.maxResultCount + scope.$index + 1 }}</span>
+               <span>{{ (queryParams.pageNum - 1) * queryParams.pageSize + scope.$index + 1 }}</span>
             </template>
          </el-table-column>
          <el-table-column label="会话编号" align="center" prop="connnectionId" :show-overflow-tooltip="true" />
@@ -55,7 +55,7 @@
          </el-table-column>
       </el-table>
 
-      <pagination v-show="total > 0" :total="Number(total)" v-model:page="queryParams.skipCount" v-model:limit="queryParams.maxResultCount" />
+      <pagination v-show="total > 0" :total="Number(total)" v-model:page="queryParams.pageNum" v-model:limit="queryParams.pageSize" />
    </div>
 </template>
 
@@ -67,12 +67,12 @@ const { proxy } = getCurrentInstance();
 const onlineList = ref([]);
 const loading = ref(true);
 const total = ref(0);
-// const skipCount = ref(1);
-// const maxResultCount = ref(10);
+// const pageNum = ref(1);
+// const pageSize = ref(10);
 
 const queryParams = ref({
-   skipCount: 1,
-    maxResultCount: 10,
+   pageNum: 1,
+    pageSize: 10,
   ipaddr: undefined,
   userName: undefined
 });
@@ -88,7 +88,7 @@ function getList() {
 }
 /** 搜索按钮操作 */
 function handleQuery() {
-   queryParams.value.skipCount = 1;
+   queryParams.value.pageNum = 1;
   getList();
 }
 /** 重置按钮操作 */

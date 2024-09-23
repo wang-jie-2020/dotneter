@@ -60,7 +60,7 @@ public class UserService : ApplicationService, IUserService
             .LeftJoin<DeptEntity>((user, dept) => user.DeptId == dept.Id)
             .OrderByDescending(user => user.CreationTime)
             .Select((user, dept) => new UserGetListOutputDto(), true)
-            .ToPageListAsync(input.SkipCount, input.MaxResultCount, total);
+            .ToPageListAsync(input.PageNum, input.PageSize, total);
 
         var result = new PagedResultDto<UserGetListOutputDto>
         {

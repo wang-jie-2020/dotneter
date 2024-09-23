@@ -5,7 +5,7 @@ namespace Yi.System.Services.System.Dtos;
 /// <summary>
 ///     配置查询参数
 /// </summary>
-public class ConfigGetListInputVo : PagedInfraInput
+public class ConfigGetListInputVo : PagedInput
 {
     /// <summary>
     ///     配置名称

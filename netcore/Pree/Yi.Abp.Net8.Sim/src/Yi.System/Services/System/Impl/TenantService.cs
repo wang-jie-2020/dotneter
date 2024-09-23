@@ -35,7 +35,7 @@ public class TenantService : ApplicationService, ITenantService
         var entities = await _repository.DbQueryable
             .WhereIF(!string.IsNullOrEmpty(input.Name), x => x.Name.Contains(input.Name!))
             .WhereIF(input.StartTime is not null && input.EndTime is not null, x => x.CreationTime >= input.StartTime && x.CreationTime <= input.EndTime)
-            .ToPageListAsync(input.SkipCount, input.MaxResultCount, total);
+            .ToPageListAsync(input.PageNum, input.PageSize, total);
 
         return new PagedResultDto<TenantDto>(total, entities.Adapt<List<TenantDto>>());
     }

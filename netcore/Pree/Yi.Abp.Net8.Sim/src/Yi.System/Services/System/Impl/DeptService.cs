@@ -30,7 +30,7 @@ public class DeptService : ApplicationService, IDeptService
             .WhereIF(!string.IsNullOrEmpty(input.DeptName), u => u.DeptName.Contains(input.DeptName!))
             .WhereIF(input.State is not null, u => u.State == input.State)
             .OrderBy(u => u.OrderNum)
-            .ToPageListAsync(input.SkipCount, input.MaxResultCount, total);
+            .ToPageListAsync(input.PageNum, input.PageSize, total);
 
         return new PagedResultDto<DeptGetListOutputDto>
         {

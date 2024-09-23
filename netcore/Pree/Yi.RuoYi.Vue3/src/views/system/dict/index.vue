@@ -128,8 +128,8 @@
       <pagination
          v-show="total > 0"
          :total="Number(total)"
-         v-model:page="queryParams.skipCount"
-         v-model:limit="queryParams.maxResultCount"
+         v-model:page="queryParams.pageNum"
+         v-model:limit="queryParams.pageSize"
          @pagination="getList"
       />
 
@@ -183,8 +183,8 @@ const dateRange = ref([]);
 const data = reactive({
   form: {},
   queryParams: {
-    skipCount: 1,
-    maxResultCount: 10,
+    pageNum: 1,
+    pageSize: 10,
     dictName: undefined,
     dictType: undefined,
     state: true
@@ -218,7 +218,7 @@ function reset() {
 }
 /** 搜索按钮操作 */
 function handleQuery() {
-  queryParams.value.skipCount = 1;
+  queryParams.value.pageNum = 1;
   getList();
 }
 /** 重置按钮操作 */

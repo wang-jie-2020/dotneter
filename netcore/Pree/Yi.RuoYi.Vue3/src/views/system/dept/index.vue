@@ -175,8 +175,8 @@ const data = reactive({
   queryParams: {
     deptName: undefined,
     state: undefined,
-    skipCount: 1,
-    maxResultCount: 999,
+    pageNum: 1,
+    pageSize: 999,
   },
   rules: {
     parentId: [{ required: true, message: "上级部门不能为空", trigger: "blur" }],

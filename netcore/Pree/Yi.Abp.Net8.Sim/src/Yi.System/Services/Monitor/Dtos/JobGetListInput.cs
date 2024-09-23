@@ -2,7 +2,7 @@
 
 namespace Yi.System.Services.Monitor.Dtos;
 
-public class JobGetListInput : PagedInfraInput
+public class JobGetListInput : PagedInput
 {
     public string? JobId { get; set; }
     

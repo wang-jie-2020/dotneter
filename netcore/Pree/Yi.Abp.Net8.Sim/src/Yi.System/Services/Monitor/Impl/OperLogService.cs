@@ -31,7 +31,7 @@ public class OperLogService : ApplicationService, IOperLogService
             .WhereIF(input.OperType is not null, x => x.OperType == input.OperType)
             .WhereIF(input.StartTime is not null && input.EndTime is not null,
                 x => x.ExecutionTime >= input.StartTime && x.ExecutionTime <= input.EndTime)
-            .ToPageListAsync(input.SkipCount, input.MaxResultCount, total);
+            .ToPageListAsync(input.PageNum, input.PageSize, total);
 
         return new PagedResultDto<OperLogDto>(total, entities.Adapt<List<OperLogDto>>());
     }

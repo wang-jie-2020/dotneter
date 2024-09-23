@@ -2,7 +2,7 @@ using Yi.AspNetCore.System;
 
 namespace Yi.System.Services.System.Dtos;
 
-public class DictionaryTypeGetListInput : PagedInfraInput
+public class DictionaryTypeGetListInput : PagedInput
 {
     public string? DictName { get; set; }
     

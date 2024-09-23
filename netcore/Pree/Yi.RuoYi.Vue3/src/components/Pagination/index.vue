@@ -3,9 +3,9 @@
     <el-pagination
       :background="background"
       v-model:current-page="currentPage"
-      v-model:page-size="maxResultCount"
+      v-model:page-size="pageSize"
       :layout="layout"
-      :page-sizes="maxResultCounts"
+      :page-sizes="pageSizes"
       :pager-count="pagerCount"
       :total="Number(total)"
       @size-change="handleSizeChange"
@@ -30,7 +30,7 @@ const props = defineProps({
     type: Number,
     default: 20
   },
-  maxResultCounts: {
+  pageSizes: {
     type: Array,
     default() {
       return [10, 20, 30, 50]
@@ -68,7 +68,7 @@ const currentPage = computed({
     emit('update:page', val)
   }
 })
-const maxResultCount = computed({
+const pageSize = computed({
   get() {
     return props.limit
   },
@@ -86,7 +86,7 @@ function handleSizeChange(val) {
   }
 }
 function handleCurrentChange(val) {
-  emit('pagination', { page: val, limit: maxResultCount.value })
+  emit('pagination', { page: val, limit: pageSize.value })
   if (props.autoScroll) {
     scrollTo(0, 800)
   }

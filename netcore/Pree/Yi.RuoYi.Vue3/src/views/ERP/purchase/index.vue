@@ -251,8 +251,8 @@
     <pagination
       v-show="total > 0"
       :total="Number(total)"
-      v-model:page="queryParams.skipCount"
-      v-model:limit="queryParams.maxResultCount"
+      v-model:page="queryParams.pageNum"
+      v-model:limit="queryParams.pageSize"
       @pagination="getList"
     />
 
@@ -425,8 +425,8 @@
         <pagination
           v-show="materialTotal > 0"
           :total="Number(materialTotal) "
-          v-model:page="queryMaterialParams.skipCount"
-          v-model:limit="queryMaterialParams.maxResultCount"
+          v-model:page="queryMaterialParams.pageNum"
+          v-model:limit="queryMaterialParams.pageSize"
           @pagination="getMaterialList"
         />
       </el-form>
@@ -560,15 +560,15 @@ const data = reactive({
     purchaseDetails: [],
   },
   queryParams: {
-    skipCount: 1,
-    maxResultCount: 10,
+    pageNum: 1,
+    pageSize: 10,
     name: undefined,
     code: undefined,
     buyer: undefined,
   },
   queryMaterialParams: {
-    skipCount: 1,
-    maxResultCount: 10,
+    pageNum: 1,
+    pageSize: 10,
     name: undefined,
     code: undefined,
   },
@@ -603,7 +603,7 @@ function reset() {
 }
 /** 搜索按钮操作 */
 function handleQuery() {
-  queryParams.value.skipCount = 1;
+  queryParams.value.pageNum = 1;
   getList();
 }
 /** 重置按钮操作 */

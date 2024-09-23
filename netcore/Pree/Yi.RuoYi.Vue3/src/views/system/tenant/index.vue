@@ -112,8 +112,8 @@ system/tenant : api文件路径,例如：codeGen/tableApi
             </el-table-column>
         </el-table>
 
-        <pagination v-show="total > 0" :total="Number(total)" v-model:page="queryParams.skipCount"
-            v-model:limit="queryParams.maxResultCount" @pagination="getList" />
+        <pagination v-show="total > 0" :total="Number(total)" v-model:page="queryParams.pageNum"
+            v-model:limit="queryParams.pageSize" @pagination="getList" />
 
         <!-- ---------------------这里是新增和更新的对话框--------------------- -->
         <el-dialog :title="title" v-model="open" width="600px" append-to-body>
@@ -181,8 +181,8 @@ const dateRange = ref([]);
 const data = reactive({
     form: {},
     queryParams: {
-        skipCount: 1,
-        maxResultCount: 10,
+        pageNum: 1,
+        pageSize: 10,
         name: undefined,
         code: undefined,
     },
@@ -220,7 +220,7 @@ function reset() {
 }
 /** 搜索按钮操作 */
 function handleQuery() {
-    queryParams.value.skipCount = 1;
+    queryParams.value.pageNum = 1;
     getList();
 }
 /** 重置按钮操作 */

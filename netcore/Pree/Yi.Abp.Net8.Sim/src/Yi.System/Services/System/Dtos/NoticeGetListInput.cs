@@ -3,7 +3,7 @@ using Yi.System.Domains.System.Entities;
 
 namespace Yi.System.Services.System.Dtos;
 
-public class NoticeGetListInput : PagedInfraInput
+public class NoticeGetListInput : PagedInput
 {
     public string? Title { get; set; }
     

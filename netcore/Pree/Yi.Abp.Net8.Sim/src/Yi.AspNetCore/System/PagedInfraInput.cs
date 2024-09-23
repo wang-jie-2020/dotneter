@@ -1,13 +1,14 @@
-﻿using Volo.Abp.Application.Dtos;
+﻿namespace Yi.AspNetCore.System;
 
-namespace Yi.AspNetCore.System;
-
-/// <summary>
-/// todo 明显不合适
-/// </summary>
 [Serializable]
-public class PagedInfraInput : PagedAndSortedResultRequestDto
+public class PagedInput
 {
+    public int PageNum { get; set; }
+    
+    public int PageSize { get; set; } = 10;
+    
+    public string? Sorting { get; set; }
+    
     /// <summary>
     ///     查询开始时间条件
     /// </summary>

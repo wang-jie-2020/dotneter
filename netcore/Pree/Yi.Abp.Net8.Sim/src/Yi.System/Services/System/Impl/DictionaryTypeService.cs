@@ -28,7 +28,7 @@ public class DictionaryTypeService : ApplicationService, IDictionaryTypeService
             .WhereIF(input.DictType is not null, x => x.DictType!.Contains(input.DictType!))
             .WhereIF(input.State is not null, x => x.State == input.State)
             .WhereIF(input.StartTime is not null && input.EndTime is not null, x => x.CreationTime >= input.StartTime && x.CreationTime <= input.EndTime)
-            .ToPageListAsync(input.SkipCount, input.MaxResultCount, total);
+            .ToPageListAsync(input.PageNum, input.PageSize, total);
 
         return new PagedResultDto<DictionaryTypeDto>
         {

@@ -2,7 +2,7 @@
 
 namespace Yi.System.Services.Monitor.Dtos;
 
-public class LoginLogGetListInputVo : PagedInfraInput
+public class LoginLogGetListInputVo : PagedInput
 {
     public string? LoginUser { get; set; }
 

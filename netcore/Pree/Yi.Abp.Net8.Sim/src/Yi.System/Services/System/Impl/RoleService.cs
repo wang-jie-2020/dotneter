@@ -40,7 +40,7 @@ public class RoleService : ApplicationService, IRoleService
                 x => x.RoleCode.Contains(input.RoleCode!))
             .WhereIF(!string.IsNullOrEmpty(input.RoleName), x => x.RoleName.Contains(input.RoleName!))
             .WhereIF(input.State is not null, x => x.State == input.State)
-            .ToPageListAsync(input.SkipCount, input.MaxResultCount, total);
+            .ToPageListAsync(input.PageNum, input.PageSize, total);
         return new PagedResultDto<RoleDto>(total, entities.Adapt<List<RoleDto>>());
     }
 
