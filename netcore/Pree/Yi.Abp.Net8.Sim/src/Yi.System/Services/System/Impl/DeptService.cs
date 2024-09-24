@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Yi.AspNetCore.Helpers;
+using Yi.AspNetCore.System;
 using Yi.System.Domains.System.Entities;
 using Yi.System.Domains.System.Repositories;
 using Yi.System.Services.System.Dtos;
@@ -63,10 +64,10 @@ public class DeptService : ApplicationService, IDeptService
 
     public async Task<IActionResult> GetExportExcelAsync(DeptGetListInput input)
     {
-        if (input is IPagedResultRequest paged)
+        if (input is PagedInput paged)
         {
-            paged.SkipCount = 0;
-            paged.MaxResultCount = LimitedResultRequestDto.MaxMaxResultCount;
+            paged.PageNum = 0;
+            paged.PageSize = int.MaxValue;
         }
 
         var output = await GetListAsync(input);

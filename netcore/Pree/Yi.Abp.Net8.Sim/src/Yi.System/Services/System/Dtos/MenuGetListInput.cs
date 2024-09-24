@@ -1,8 +1,8 @@
-using Volo.Abp.Application.Dtos;
+using Yi.AspNetCore.System;
 
 namespace Yi.System.Services.System.Dtos;
 
-public class MenuGetListInput : PagedAndSortedResultRequestDto
+public class MenuGetListInput : PagedInput
 {
     public bool? State { get; set; }
     

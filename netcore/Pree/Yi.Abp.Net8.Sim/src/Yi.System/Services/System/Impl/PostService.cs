@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Yi.AspNetCore.Helpers;
+using Yi.AspNetCore.System;
 using Yi.System.Domains.System.Entities;
 using Yi.System.Services.System.Dtos;
 
@@ -30,7 +31,7 @@ public class PostService : ApplicationService, IPostService
             .WhereIF(!string.IsNullOrEmpty(input.PostName), x => x.PostName.Contains(input.PostName!))
             .WhereIF(!string.IsNullOrEmpty(input.PostCode), x => x.PostCode.Contains(input.PostCode!))
             .WhereIF(input.State is not null, x => x.State == input.State)
-            .ToPageListAsync(input.SkipCount, input.MaxResultCount, total);
+            .ToPageListAsync(input.PageNum, input.PageSize, total);
         return new PagedResultDto<PostDto>(total, entities.Adapt<List<PostDto>>());
     }
 
@@ -58,10 +59,10 @@ public class PostService : ApplicationService, IPostService
 
     public async Task<IActionResult> GetExportExcelAsync(PostGetListInput input)
     {
-        if (input is IPagedResultRequest paged)
+        if (input is PagedInput paged)
         {
-            paged.SkipCount = 0;
-            paged.MaxResultCount = LimitedResultRequestDto.MaxMaxResultCount;
+            paged.PageNum = 0;
+            paged.PageSize = int.MaxValue;
         }
 
         var output = await GetListAsync(input);

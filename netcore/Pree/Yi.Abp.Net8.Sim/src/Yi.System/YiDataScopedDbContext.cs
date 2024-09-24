@@ -2,7 +2,6 @@
 using Yi.AspNetCore.System.Permissions;
 using Yi.System.Domains.System;
 using Yi.System.Domains.System.Entities;
-using Yi.System.Services.System;
 using Yi.System.Services.System.Impl;
 
 namespace Yi.System;
