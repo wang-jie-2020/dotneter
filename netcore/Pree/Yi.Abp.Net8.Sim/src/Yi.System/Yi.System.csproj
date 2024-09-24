@@ -12,7 +12,6 @@
     </ItemGroup>
     
     <ItemGroup>
-      <ProjectReference Include="..\Utils.Exporting\Utils.Exporting.csproj" />
       <ProjectReference Include="..\Utils.Minio\Utils.Minio.csproj" />
       <ProjectReference Include="..\Yi.AspNetCore\Yi.AspNetCore.csproj" />
     </ItemGroup>
