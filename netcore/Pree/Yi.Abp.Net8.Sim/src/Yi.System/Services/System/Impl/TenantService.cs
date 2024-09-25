@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
+using MiniExcelLibs;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Data;
@@ -80,7 +81,15 @@ public class TenantService : ApplicationService, ITenantService
         }
 
         var output = await GetListAsync(input);
-        return new PhysicalFileResult(ExporterHelper.ExportExcel(output.Items), "application/vnd.ms-excel");
+
+        var stream = new MemoryStream();
+        await MiniExcel.SaveAsAsync(stream, output.Items);
+        stream.Seek(0, SeekOrigin.Begin);
+
+        return new FileStreamResult(stream, "application/vnd.ms-excel")
+        {
+            FileDownloadName = $"{L[nameof(TenantEntity)]}_{DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss")}" + ".xlsx"
+        };
     }
 
     public async Task<List<TenantSelectDto>> GetSelectAsync()
