@@ -148,7 +148,6 @@ export function download(url, query, filename) {
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     responseType: 'blob'
   }).then(async (data) => {
-    debugger;
       const blob = new Blob([data.data])
       saveAs(blob, filename)
     downloadLoadingInstance.close();

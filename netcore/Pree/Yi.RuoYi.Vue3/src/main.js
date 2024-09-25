@@ -12,8 +12,6 @@ import store from './store'
 import router from './router'
 import directive from './directive' // directive
 
-import i18n from '@/i18n'
-
 // 注册指令
 import plugins from './plugins' // plugins
 import { download } from '@/utils/ruoyi.js'
@@ -65,7 +63,6 @@ app.component('ImagePreview', ImagePreview)
 app.component('RightToolbar', RightToolbar)
 
 app.use(router)
-app.use(i18n)
 app.use(store)
 app.use(plugins)
 app.use(elementIcons)
