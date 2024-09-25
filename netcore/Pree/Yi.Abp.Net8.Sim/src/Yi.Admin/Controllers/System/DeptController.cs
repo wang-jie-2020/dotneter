@@ -46,13 +46,7 @@ public class DeptController : AbpController
     {
         await _deptService.DeleteAsync(id);
     }
-
-    [HttpGet("export-excel")]
-    public async Task<IActionResult> GetExportExcelAsync([FromQuery] DeptGetListInput input)
-    {
-        return await _deptService.GetExportExcelAsync(input);
-    }
-
+    
     /// <summary>
     ///     通过角色id查询该角色全部部门
     /// </summary>

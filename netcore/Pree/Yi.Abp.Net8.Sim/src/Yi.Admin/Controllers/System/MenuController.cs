@@ -46,13 +46,7 @@ public class MenuController : AbpController
     {
         await _menuService.DeleteAsync(id);
     }
-
-    [HttpGet("export-excel")]
-    public async Task<IActionResult> GetExportExcelAsync([FromQuery] MenuGetListInput input)
-    {
-        return await _menuService.GetExportExcelAsync(input);
-    }
-
+    
     /// <summary>
     ///     查询当前角色的菜单
     /// </summary>

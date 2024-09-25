@@ -11,6 +11,4 @@ public interface IOperLogService
     Task<PagedResultDto<OperLogDto>> GetListAsync(OperLogGetListInput input);
 
     Task DeleteAsync(IEnumerable<Guid> id);
-
-    Task<IActionResult> GetExportExcelAsync(OperLogGetListInput input);
 }

@@ -15,6 +15,4 @@ public interface IConfigService
     Task<ConfigGetOutputDto> UpdateAsync(Guid id, ConfigUpdateInput input);
 
     Task DeleteAsync(IEnumerable<Guid> id);
-
-    Task<IActionResult> GetExportExcelAsync(ConfigGetListInputVo input);
 }

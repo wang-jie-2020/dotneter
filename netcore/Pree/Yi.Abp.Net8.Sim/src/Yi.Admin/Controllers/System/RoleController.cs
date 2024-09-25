@@ -46,13 +46,7 @@ public class RoleController : AbpController
     {
         await _roleService.DeleteAsync(id);
     }
-
-    [HttpGet("export-excel")]
-    public async Task<IActionResult> GetExportExcelAsync([FromQuery] RoleGetListInput input)
-    {
-        return await _roleService.GetExportExcelAsync(input);
-    }
-
+    
     [HttpPut("data-scope")]
     public async Task UpdateDataScopeAsync(UpdateDataScopeInput input)
     {

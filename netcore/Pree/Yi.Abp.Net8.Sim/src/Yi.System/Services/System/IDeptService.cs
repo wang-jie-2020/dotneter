@@ -15,8 +15,6 @@ public interface IDeptService
     Task<DeptGetOutputDto> UpdateAsync(Guid id, DeptUpdateInput input);
 
     Task DeleteAsync(IEnumerable<Guid> id);
-
-    Task<IActionResult> GetExportExcelAsync(DeptGetListInput input);
     
     Task<List<Guid>> GetChildListAsync(Guid deptId);
 

@@ -15,8 +15,6 @@ public interface IMenuService
     Task<MenuDto> UpdateAsync(Guid id, MenuUpdateInput input);
 
     Task DeleteAsync(IEnumerable<Guid> id);
-
-    Task<IActionResult> GetExportExcelAsync(MenuGetListInput input);
-
+    
     Task<List<MenuDto>> GetListRoleIdAsync(Guid roleId);
 }

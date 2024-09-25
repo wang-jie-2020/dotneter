@@ -15,6 +15,4 @@ public interface INoticeService
     Task<NoticeDto> UpdateAsync(Guid id, NoticeUpdateInput input);
 
     Task DeleteAsync(IEnumerable<Guid> id);
-
-    Task<IActionResult> GetExportExcelAsync(NoticeGetListInput input);
 }

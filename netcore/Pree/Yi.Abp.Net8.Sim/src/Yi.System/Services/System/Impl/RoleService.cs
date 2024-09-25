@@ -81,19 +81,7 @@ public class RoleService : ApplicationService, IRoleService
     {
         await _repository.DeleteManyAsync(id);
     }
-
-    public async Task<IActionResult> GetExportExcelAsync(RoleGetListInput input)
-    {
-        if (input is PagedInput paged)
-        {
-            paged.PageNum = 0;
-            paged.PageSize = int.MaxValue;
-        }
-
-        var output = await GetListAsync(input);
-        return new PhysicalFileResult(ExporterHelper.ExportExcel(output.Items), "application/vnd.ms-excel");
-    }
-
+    
     public async Task UpdateDataScopeAsync(UpdateDataScopeInput input)
     {
         //只有自定义的需要特殊处理

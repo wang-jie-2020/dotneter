@@ -15,9 +15,7 @@ public interface IRoleService
     Task<RoleDto> UpdateAsync(Guid id, RoleUpdateInput input);
 
     Task DeleteAsync(IEnumerable<Guid> id);
-
-    Task<IActionResult> GetExportExcelAsync(RoleGetListInput input);
-
+    
     Task UpdateDataScopeAsync(UpdateDataScopeInput input);
 
     Task<RoleDto> UpdateStateAsync(Guid id, bool state);

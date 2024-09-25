@@ -34,10 +34,4 @@ public class OperLogController : AbpController
     {
         await _operLogService.DeleteAsync(id);
     }
-
-    [HttpGet("export-excel")]
-    public async Task<IActionResult> GetExportExcelAsync([FromQuery] OperLogGetListInput input)
-    {
-        return await _operLogService.GetExportExcelAsync(input);
-    }
 }

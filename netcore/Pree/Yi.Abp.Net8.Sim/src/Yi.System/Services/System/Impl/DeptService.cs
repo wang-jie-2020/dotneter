@@ -61,19 +61,7 @@ public class DeptService : ApplicationService, IDeptService
     {
         await _repository.DeleteManyAsync(id);
     }
-
-    public async Task<IActionResult> GetExportExcelAsync(DeptGetListInput input)
-    {
-        if (input is PagedInput paged)
-        {
-            paged.PageNum = 0;
-            paged.PageSize = int.MaxValue;
-        }
-
-        var output = await GetListAsync(input);
-        return new PhysicalFileResult(ExporterHelper.ExportExcel(output.Items), "application/vnd.ms-excel");
-    }
-
+    
     public async Task<List<Guid>> GetChildListAsync(Guid deptId)
     {
         return await _repository.GetChildListAsync(deptId);

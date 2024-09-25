@@ -46,10 +46,4 @@ public class ConfigController : AbpController
     {
         await _configService.DeleteAsync(id);
     }
-
-    [HttpGet("export-excel")]
-    public async Task<IActionResult> GetExportExcelAsync([FromQuery] ConfigGetListInputVo input)
-    {
-        return await _configService.GetExportExcelAsync(input);
-    }
 }

@@ -15,6 +15,4 @@ public interface IPostService
     Task<PostDto> UpdateAsync(Guid id, PostUpdateInput input);
 
     Task DeleteAsync(IEnumerable<Guid> id);
-
-    Task<IActionResult> GetExportExcelAsync(PostGetListInput input);
 }

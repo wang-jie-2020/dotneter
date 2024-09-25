@@ -57,19 +57,7 @@ public class MenuService : ApplicationService, IMenuService
     {
         await _repository.DeleteManyAsync(id);
     }
-
-    public async Task<IActionResult> GetExportExcelAsync(MenuGetListInput input)
-    {
-        if (input is PagedInput paged)
-        {
-            paged.PageNum = 0;
-            paged.PageSize = int.MaxValue;
-        }
-
-        var output = await GetListAsync(input);
-        return new PhysicalFileResult(ExporterHelper.ExportExcel(output.Items), "application/vnd.ms-excel");
-    }
-
+    
     /// <summary>
     ///     查询当前角色的菜单
     /// </summary>

@@ -46,10 +46,4 @@ public class PostController : AbpController
     {
         await _postService.DeleteAsync(id);
     }
-
-    [HttpGet("export-excel")]
-    public async Task<IActionResult> GetExportExcelAsync([FromQuery] PostGetListInput input)
-    {
-        return await _postService.GetExportExcelAsync(input);
-    }
 }

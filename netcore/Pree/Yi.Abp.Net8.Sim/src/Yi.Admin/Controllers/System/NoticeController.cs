@@ -50,13 +50,7 @@ public class NoticeController : AbpController
     {
         await _noticeService.DeleteAsync(id);
     }
-
-    [HttpGet("export-excel")]
-    public async Task<IActionResult> GetExportExcelAsync([FromQuery] NoticeGetListInput input)
-    {
-        return await _noticeService.GetExportExcelAsync(input);
-    }
-
+    
     /// <summary>
     ///     发送在线消息
     /// </summary>

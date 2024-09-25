@@ -118,14 +118,7 @@ public class UserService : ApplicationService, IUserService
 
     public async Task<IActionResult> GetExportExcelAsync(UserGetListInput input)
     {
-        if (input is PagedInput paged)
-        {
-            paged.PageNum = 0;
-            paged.PageSize = int.MaxValue;
-        }
-
-        var output = await GetListAsync(input);
-        return new PhysicalFileResult(ExporterHelper.ExportExcel(output.Items), "application/vnd.ms-excel");
+        throw new NotImplementedException();
     }
 
     public Task PostImportExcelAsync(List<UserCreateInput> input)

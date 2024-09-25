@@ -3,7 +3,7 @@
 ~~1.清理前端~~
 2.Export、Import 以及其名称修改  要不要miniexcel? 还是换掉??
 3.wrap以及错误Filter
-4.User缓存漏洞
+4.用户、角色、菜单   User缓存漏洞
 5.token过长,不适合放在cookie
 6.Guid 改雪花?
 7.Dto太多了,有些纯属无必要，每种类型都给Dto的意义真不大

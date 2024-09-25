@@ -297,6 +297,10 @@ function handleDelete(row) {
 /** 导出按钮操作 */
 function handleExport() {
     getExportExcel(proxy.addDateRange(queryParams.value, dateRange.value));
+
+    // proxy.download("/system/tenant/export-excel", {
+    //     ...proxy.addDateRange(queryParams.value, dateRange.value)
+    // }, `tenant_${new Date().getTime()}.xlsx`);
  }
 
 getList();
