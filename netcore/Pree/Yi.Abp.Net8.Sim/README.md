@@ -12,7 +12,7 @@
 RefreshTokenMiddleware 在哪合适?
 Oss minio,本地直接pass掉
 
-Tenant (1)租户切换
+Tenant (1)租户切换---通过租户名称得到租户连接信息不合适
 SqlSugar (1)默认赋值(2)过长的SQL的PageSize是否需要暴露(3)和miniProfiler集成,和SkyWalking集成
 Permissions (1)过滤的结构设计(2)前后端的一致
 日志问题 (1)审计日志(含实体)(2)登录日志(3)操作日志--是不是应该考虑做Interceptor(4)符合标准的日志记录
