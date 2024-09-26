@@ -5,7 +5,12 @@ namespace Yi.AspNetCore.Mapster;
 
 public class MapsterObjectMapper : IObjectMapper
 {
-    public IAutoObjectMappingProvider AutoObjectMappingProvider => throw new NotImplementedException();
+    public MapsterObjectMapper(IAutoObjectMappingProvider autoObjectMappingProvider)
+    {
+        AutoObjectMappingProvider = autoObjectMappingProvider;
+    }
+    
+    public IAutoObjectMappingProvider AutoObjectMappingProvider { get; }
 
     public TDestination Map<TSource, TDestination>(TSource source)
     {
