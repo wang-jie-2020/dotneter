@@ -10,7 +10,7 @@
             />
          </el-form-item>
          <el-form-item label="状态" prop="state">
-            <el-select v-model="queryParams.state" placeholder="菜单状态" clearable>
+            <el-select v-model="queryParams.state" placeholder="菜单状态" clearable style="width: 240px">
                <el-option
                   v-for="dict in sys_normal_disable"
                   :key="dict.value"

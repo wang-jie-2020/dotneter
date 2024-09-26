@@ -10,7 +10,7 @@
             />
          </el-form-item>
          <el-form-item label="类型" prop="type">
-            <el-select v-model="queryParams.type" placeholder="公告类型" clearable>
+            <el-select v-model="queryParams.type" placeholder="公告类型" clearable style="width: 240px">
                <el-option
                   v-for="dict in sys_notice_type"
                   :key="dict.value"
