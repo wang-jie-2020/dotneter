@@ -335,6 +335,7 @@ function handleDelete(row) {
   }).catch(() => {});
 }
 
-getTypes(route.query && route.query.dictId);
+getTypes(route.params && route.params.dictId);
+// getTypes(route.query && route.query.dictId);
 getTypeList();
 </script>

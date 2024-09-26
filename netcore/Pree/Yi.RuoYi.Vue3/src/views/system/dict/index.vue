@@ -89,10 +89,10 @@
          <el-table-column label="字典名称" align="center" prop="dictName" :show-overflow-tooltip="true"/>
          <el-table-column label="字典类型" align="center" :show-overflow-tooltip="true">
             <template #default="scope">
-               <!-- <router-link :to="'/system/dict-data/index/' + scope.row.id" class="link-type">
-                  
-               </router-link> -->
-               <span style="color: blue; cursor: pointer; " @click="handleToPath(scope.row.id)">{{ scope.row.dictType }}</span>
+               <router-link :to="'/system/dict-data/index/' + scope.row.id" class="link-type">
+                  <span>{{ scope.row.dictType }}</span>
+               </router-link>
+               <!-- <span style="color: blue; cursor: pointer; " @click="handleToPath(scope.row.id)">{{ scope.row.dictType }}</span> -->
             </template>
          </el-table-column>
          <el-table-column label="状态" align="center" prop="state">
