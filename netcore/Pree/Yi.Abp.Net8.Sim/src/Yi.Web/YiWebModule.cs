@@ -215,7 +215,7 @@ public class YiAbpWebModule : AbpModule
         app.UseRateLimiter();
 
         //无感token，先刷新再鉴权
-        app.UseRefreshToken();
+        //app.UseRefreshToken();
 
         //鉴权
         app.UseAuthentication();

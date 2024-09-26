@@ -15,7 +15,7 @@
 三、特性
 1.token
 ~~(1)cookie 存不下~~
-(2)RefreshTokenMiddleware 在哪合适?
+~~(2)RefreshTokenMiddleware不起作用~~
 
 2.用户、角色、菜单,缓存机制漏洞
 
