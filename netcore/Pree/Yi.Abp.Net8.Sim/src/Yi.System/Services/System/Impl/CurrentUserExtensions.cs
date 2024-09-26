@@ -5,17 +5,17 @@ using Yi.System.Domains.System;
 
 namespace Yi.System.Services.System.Impl;
 
-public static class CurrenttUserExtensions
+public static class CurrentUserExtensions
 {
-    /// <summary>
-    ///     获取用户权限codes
-    /// </summary>
-    /// <param name="currentUser"></param>
-    /// <returns></returns>
-    public static List<string> GetPermissions(this ICurrentUser currentUser)
-    {
-        return currentUser.FindClaims(TokenClaimConst.Permission).Select(x => x.Value).ToList();
-    }
+    // /// <summary>
+    // ///     获取用户权限codes
+    // /// </summary>
+    // /// <param name="currentUser"></param>
+    // /// <returns></returns>
+    // public static List<string> GetPermissions(this ICurrentUser currentUser)
+    // {
+    //     return currentUser.FindClaims(TokenClaimConst.Permission).Select(x => x.Value).ToList();
+    // }
 
     /// <summary>
     ///     获取用户权限岗位id
