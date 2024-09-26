@@ -170,14 +170,17 @@ public class UserManager : DomainService
                 var user = await _userRepository.GetUserAllInfoAsync(userId);
                 var data = EntityMapToDto(user);
                 //系统用户数据被重置，老前端访问重新授权
-                if (data is null) throw new AbpAuthorizationException();
+                if (data is null)
+                {
+                    throw new AbpAuthorizationException();
+                }
                 //data.Menus.Clear();
                 output = data;
                 return new UserInfoCacheItem(data);
             },
             () => new DistributedCacheEntryOptions
             {
-                AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(1) //缓存可能真的不是个好主意
+                AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(tokenExpiresMinuteTime)
             });
 
         if (cacheData is not null)
@@ -187,8 +190,7 @@ public class UserManager : DomainService
 
         return output!;
     }
-
-
+    
     /// <summary>
     ///     批量查询用户信息
     /// </summary>
@@ -204,8 +206,7 @@ public class UserManager : DomainService
 
         return output;
     }
-
-
+    
     private UserRoleMenuDto EntityMapToDto(UserEntity user)
     {
         var userRoleMenu = new UserRoleMenuDto();

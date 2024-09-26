@@ -79,10 +79,13 @@ public class AccountController : AbpController
         UserEntity user = new();
         await _accountManager.LoginValidationAsync(input.UserName, input.Password, x => user = x);
 
+        //清缓存
+        await _userCache.RemoveAsync(new UserInfoCacheKey(user.Id));
+        
         //获取token
         var accessToken = await _accountManager.GetTokenByUserIdAsync(user.Id);
         var refreshToken = _accountManager.CreateRefreshToken(user.Id);
-
+        
         return new { Token = accessToken, RefreshToken = refreshToken };
     }
 

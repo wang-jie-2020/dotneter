@@ -13,7 +13,7 @@
 5.oss
 
 三、特性
-1.token
+~~1.token~~
 ~~(1)cookie 存不下~~
 ~~(2)RefreshTokenMiddleware不起作用~~
 
