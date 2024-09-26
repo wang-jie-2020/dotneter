@@ -5,6 +5,7 @@ using Volo.Abp.Data;
 using Volo.Abp.MultiTenancy;
 using Yi.AspNetCore;
 using Yi.AspNetCore.System.Loggings;
+using Yi.AspNetCore.System.Permissions;
 using Yi.System.Domains.Monitor;
 using Yi.System.Domains.Monitor.Repositories;
 using Yi.System.Domains.System;
@@ -31,6 +32,7 @@ public class YiSystemModule : AbpModule
         //System
         context.Services.Replace(new ServiceDescriptor(typeof(IAuditingStore), typeof(AuditingStore), ServiceLifetime.Singleton));
         context.Services.Replace(new ServiceDescriptor(typeof(IOperLogStore), typeof(OperLogStore), ServiceLifetime.Singleton));
+        context.Services.Replace(new ServiceDescriptor(typeof(IPermissionHandler), typeof(UserPermissionHandler), ServiceLifetime.Transient));
         context.Services.AddTransient<IAuditLogRepository, SqlSugarCoreAuditLogRepository>();
         context.Services.AddTransient<IAuditLogInfoToAuditLogConverter, AuditLogInfoToAuditLogConverter>();
         
