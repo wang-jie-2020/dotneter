@@ -430,7 +430,7 @@ function handleImport() {
 };
 /** 下载模板操作 */
 function importTemplate() {
-   proxy.download("user/template");
+   proxy.download("/system/user/import-template");
 };
 /**文件上传中处理 */
 const handleFileUploadProgress = (event, file, fileList) => {

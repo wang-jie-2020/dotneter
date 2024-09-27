@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using MiniExcelLibs;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Yi.AspNetCore.Helpers;
@@ -118,9 +119,36 @@ public class UserService : ApplicationService, IUserService
 
     public async Task<IActionResult> GetExportExcelAsync(UserGetListInput input)
     {
-        throw new NotImplementedException();
+        if (input is PagedInput paged)
+        {
+            paged.PageNum = 0;
+            paged.PageSize = int.MaxValue;
+        }
+
+        var output = await GetListAsync(input);
+
+        var stream = new MemoryStream();
+        await MiniExcel.SaveAsAsync(stream, output.Items);
+        stream.Seek(0, SeekOrigin.Begin);
+
+        return new FileStreamResult(stream, "application/vnd.ms-excel")
+        {
+            FileDownloadName = $"{L[nameof(UserEntity)]}_{DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss")}" + ".xlsx"
+        };
     }
 
+    public async Task<IActionResult> GetImportTemplateAsync()
+    {
+        var stream = new MemoryStream();
+        await MiniExcel.SaveAsAsync(stream, new UserCreateInput());
+        stream.Seek(0, SeekOrigin.Begin);
+
+        return new FileStreamResult(stream, "application/vnd.ms-excel")
+        {
+            FileDownloadName = $"{L[nameof(UserEntity)]}_{DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss")}" + ".xlsx"
+        };
+    }
+    
     public Task PostImportExcelAsync(List<UserCreateInput> input)
     {
         throw new NotImplementedException();

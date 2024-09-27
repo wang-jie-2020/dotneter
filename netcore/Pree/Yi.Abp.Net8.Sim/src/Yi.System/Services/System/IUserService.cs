@@ -18,6 +18,8 @@ public interface IUserService
 
     Task<IActionResult> GetExportExcelAsync(UserGetListInput input);
 
+    Task<IActionResult> GetImportTemplateAsync();
+    
     Task PostImportExcelAsync(List<UserCreateInput> input);
 
     /// <summary>

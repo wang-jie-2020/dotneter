@@ -63,6 +63,12 @@ public class UserController : AbpController
         return await _userService.GetExportExcelAsync(input);
     }
 
+    [HttpGet("import-template")]
+    public async Task<IActionResult> GetImportTemplateAsync()
+    {
+        return await _userService.GetImportTemplateAsync();
+    }
+    
     [HttpPost("import-excel")]
     [Permission("system:user:import")]
     public Task PostImportExcelAsync([FromBody] List<UserCreateInput> input)
