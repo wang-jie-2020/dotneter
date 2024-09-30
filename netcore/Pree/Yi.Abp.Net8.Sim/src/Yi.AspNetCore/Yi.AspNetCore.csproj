@@ -33,7 +33,6 @@
         <PackageReference Include="Volo.Abp.Ddd.Application.Contracts" Version="$(AbpVersion)" />
         <PackageReference Include="Volo.Abp.Ddd.Domain" Version="$(AbpVersion)" />
         <PackageReference Include="Volo.Abp.Json" Version="$(AbpVersion)" />
-        <PackageReference Include="Volo.Abp.Swashbuckle" Version="$(AbpVersion)" />
         <PackageReference Include="Volo.Abp.ObjectMapping" Version="$(AbpVersion)" />
     </ItemGroup>
 </Project>
