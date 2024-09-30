@@ -18,6 +18,11 @@ public class AjaxResult
     public string Message { get; set; }
 
     /// <summary>
+    /// 错误信息
+    /// </summary>
+    public string Details { get; set; }
+
+    /// <summary>
     /// 附加数据
     /// </summary>
     public object? Extras { get; set; }
@@ -34,30 +39,33 @@ public class AjaxResult
             Code = "0",
             Type = "success",
             Message = "",
+            Details = "",
             Extras = null,
             Time = DateTime.Now
         };
     }
 
-    public static AjaxResult Error(string message)
+    public static AjaxResult Error(string message, string details = "")
     {
         return new AjaxResult()
         {
             Code = "1",
             Type = "error",
             Message = message,
+            Details = details,
             Extras = null,
             Time = DateTime.Now
         };
     }
 
-    public static AjaxResult Error(string code, string message)
+    public static AjaxResult Error(string code, string message, string details = "")
     {
         return new AjaxResult()
         {
             Code = code,
             Type = "error",
             Message = message,
+            Details = details,
             Extras = null,
             Time = DateTime.Now
         };
@@ -78,6 +86,7 @@ public class AjaxResult<T> : AjaxResult
             Code = "0",
             Type = "success",
             Message = "",
+            Details = "",
             Extras = null,
             Time = DateTime.Now,
             Data = result

@@ -10,6 +10,7 @@ using Volo.Abp.Application;
 using Volo.Abp.AspNetCore.Authentication.JwtBearer;
 using Volo.Abp.AspNetCore.MultiTenancy;
 using Volo.Abp.AspNetCore.Mvc;
+using Volo.Abp.AspNetCore.Mvc.ExceptionHandling;
 using Volo.Abp.AspNetCore.Serilog;
 using Volo.Abp.AspNetCore.SignalR;
 using Volo.Abp.Auditing;
@@ -26,6 +27,7 @@ using Yi.AspNetCore.Mapster;
 using Yi.AspNetCore.SqlSugarCore;
 using Yi.AspNetCore.SqlSugarCore.Repositories;
 using Yi.AspNetCore.SqlSugarCore.Uow;
+using Yi.AspNetCore.System.Exceptions;
 using Yi.AspNetCore.System.Loggings;
 using Yi.AspNetCore.System.Permissions;
 
@@ -84,6 +86,8 @@ public class YiAspNetCoreModule : AbpModule
         context.Services.AddTransient<IPermissionHandler, DefaultPermissionHandler>();
         context.Services.AddTransient<PermissionFilter>();
         context.Services.AddSingleton<IOperLogStore, SimpleOperLogStore>();
+        
+        context.Services.Replace(ServiceDescriptor.Transient<AbpExceptionFilter, YiExceptionFilter>());
         context.Services.Configure<MvcOptions>(options =>
         {
             options.Filters.Add<PermissionFilter>();

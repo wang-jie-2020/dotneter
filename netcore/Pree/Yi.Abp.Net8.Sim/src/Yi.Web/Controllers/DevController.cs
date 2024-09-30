@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Volo.Abp.AspNetCore.Mvc;
+using Volo.Abp.Authorization;
 using Yi.AspNetCore.System;
 using Yi.AspNetCore.System.Entities;
 using Yi.AspNetCore.System.Events;
@@ -39,4 +41,21 @@ public class DevController : AbpController
         return AjaxResult<LoginEventArgs>.Success(new LoginEventArgs());
     }
 
+    [HttpGet("error")]
+    public AjaxResult MapError()
+    {
+        return AjaxResult.Error("123123123");
+    }
+
+    [HttpGet("exception")]
+    public void MapException()
+    {
+        throw new NotImplementedException();
+    }
+    
+    [HttpGet("authorizationException")]
+    public void MapAuthorizationException()
+    {
+        throw new AbpAuthorizationException();
+    }
 }

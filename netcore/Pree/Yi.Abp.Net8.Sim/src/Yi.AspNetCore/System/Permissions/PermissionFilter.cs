@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Volo.Abp.Authorization;
 using Volo.Abp.Http;
 
 namespace Yi.AspNetCore.System.Permissions;
@@ -39,14 +40,14 @@ internal class PermissionFilter : ActionFilterAttribute
         
         if (!result)
         {
-            var model = new RemoteServiceErrorInfo
+            var error = new AjaxResult()
             {
                 Code = "403",
                 Message = "您无权限访问,请联系管理员申请",
                 Details = $"您无权限访问该接口-{context.HttpContext.Request.Path.Value}"
             };
 
-            var content = new ObjectResult(new { error = model })
+            var content = new ObjectResult(error)
             {
                 StatusCode = 403
             };
