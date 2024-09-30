@@ -18,7 +18,7 @@ public class PostController : AbpController
     }
 
     [HttpGet("{id}")]
-    public async Task<PostDto> GetAsync(Guid id)
+    public async Task<PostDto> GetAsync(long id)
     {
         return await _postService.GetAsync(id);
     }
@@ -36,13 +36,13 @@ public class PostController : AbpController
     }
 
     [HttpPut("{id}")]
-    public async Task<PostDto> UpdateAsync(Guid id, [FromBody] PostUpdateInput input)
+    public async Task<PostDto> UpdateAsync(long id, [FromBody] PostUpdateInput input)
     {
         return await _postService.UpdateAsync(id, input);
     }
 
     [HttpDelete]
-    public async Task DeleteAsync([FromQuery] IEnumerable<Guid> id)
+    public async Task DeleteAsync([FromQuery] IEnumerable<long> id)
     {
         await _postService.DeleteAsync(id);
     }

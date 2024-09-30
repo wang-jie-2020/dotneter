@@ -5,8 +5,6 @@ namespace Yi.System.Services.System.Dtos;
 /// </summary>
 public class PostCreateInput
 {
-    public Guid Id { get; set; }
-    
     public DateTime CreationTime { get; set; } = DateTime.Now;
     
     public long? CreatorId { get; set; }

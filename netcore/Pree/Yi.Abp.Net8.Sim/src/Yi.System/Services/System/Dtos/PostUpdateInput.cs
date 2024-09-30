@@ -2,8 +2,6 @@ namespace Yi.System.Services.System.Dtos;
 
 public class PostUpdateInput
 {
-    public Guid Id { get; set; }
-    
     public DateTime CreationTime { get; set; } = DateTime.Now;
     
     public Guid? CreatorId { get; set; }

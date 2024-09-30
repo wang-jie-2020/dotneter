@@ -13,6 +13,7 @@ using Volo.Abp.Domain.Entities.Events;
 using Volo.Abp.Guids;
 using Volo.Abp.MultiTenancy;
 using Volo.Abp.Users;
+using Yitter.IdGenerator;
 using Check = Volo.Abp.Check;
 
 namespace Yi.AspNetCore.SqlSugarCore;
@@ -41,17 +42,17 @@ public class SqlSugarDbContext : ISqlSugarDbContext
     }
 
     public ICurrentUser CurrentUser => LazyServiceProvider.GetRequiredService<ICurrentUser>();
-    
+
     private IAbpLazyServiceProvider LazyServiceProvider { get; }
 
     private IGuidGenerator GuidGenerator => LazyServiceProvider.LazyGetRequiredService<IGuidGenerator>();
-    
+
     protected ILoggerFactory Logger => LazyServiceProvider.LazyGetRequiredService<ILoggerFactory>();
-    
+
     private ICurrentTenant CurrentTenant => LazyServiceProvider.LazyGetRequiredService<ICurrentTenant>();
-    
+
     public IDataFilter DataFilter => LazyServiceProvider.LazyGetRequiredService<IDataFilter>();
-    
+
     protected virtual bool IsMultiTenantFilterEnabled => DataFilter?.IsEnabled<IMultiTenant>() ?? false;
 
     protected virtual bool IsSoftDeleteFilterEnabled => DataFilter?.IsEnabled<ISoftDelete>() ?? false;
@@ -71,7 +72,7 @@ public class SqlSugarDbContext : ISqlSugarDbContext
     {
         SqlSugarClient = sqlSugarClient;
     }
-    
+
     /// <summary>
     ///     db切换多库支持
     /// </summary>
@@ -79,14 +80,14 @@ public class SqlSugarDbContext : ISqlSugarDbContext
     protected virtual string GetCurrentConnectionString()
     {
         var defaultUrl = Options.Url ?? ConnectionOptions.GetConnectionStringOrNull(ConnectionStrings.DefaultConnectionStringName);
-        
+
         //如果未开启多租户，返回db url 或者 默认连接字符串
         if (!Options.EnabledSaasMultiTenancy) return defaultUrl;
 
         //开启了多租户
         var connectionStringResolver = LazyServiceProvider.LazyGetRequiredService<IConnectionStringResolver>();
         var connectionString = connectionStringResolver.ResolveAsync().GetAwaiter().GetResult();
-        
+
         //没有检测到使用多租户功能，默认使用默认库即可
         if (string.IsNullOrWhiteSpace(connectionString))
         {
@@ -141,7 +142,7 @@ public class SqlSugarDbContext : ISqlSugarDbContext
         {
             sqlSugarClient.QueryFilter.AddTableFilter<ISoftDelete>(u => u.IsDeleted == false);
         }
-        
+
         if (IsMultiTenantFilterEnabled)
         {
             //表达式不能放方法
@@ -187,17 +188,29 @@ public class SqlSugarDbContext : ISqlSugarDbContext
                         entityInfo.SetValue(CurrentUser.Id);
                     }
                 }
+
                 break;
             case DataFilterType.InsertByObject:
                 if (entityInfo.PropertyName.Equals(nameof(IEntity<Guid>.Id)))
                 {
-                    //主键为空或者为默认最小值
-                    if (Guid.Empty.Equals(oldValue))
+                    if (entityInfo.EntityColumnInfo.PropertyInfo.PropertyType == typeof(long))
                     {
-                        entityInfo.SetValue(GuidGenerator.Create());
+                        if (0l.Equals(oldValue))
+                        {
+                            entityInfo.SetValue(YitIdHelper.NextId());
+                        }
                     }
-                }
+                    else
+                    {
+                        //主键为空或者为默认最小值
+                        if (Guid.Empty.Equals(oldValue))
+                        {
+                            entityInfo.SetValue(GuidGenerator.Create());
+                        }
+                    }
 
+                }
+                
                 if (entityInfo.PropertyName.Equals(nameof(IAuditedObject.CreationTime)))
                 {
                     //为空或者为默认最小值
@@ -223,9 +236,10 @@ public class SqlSugarDbContext : ISqlSugarDbContext
                         entityInfo.SetValue(CurrentTenant.Id);
                     }
                 }
+
                 break;
         }
-        
+
         //领域事件
         switch (entityInfo.OperationType)
         {
@@ -234,6 +248,7 @@ public class SqlSugarDbContext : ISqlSugarDbContext
                 {
                     EntityChangeEventHelper.PublishEntityCreatedEvent(entityInfo.EntityValue);
                 }
+
                 break;
             case DataFilterType.UpdateByObject:
                 if (entityInfo.PropertyName == nameof(IEntity<object>.Id))
@@ -265,6 +280,7 @@ public class SqlSugarDbContext : ISqlSugarDbContext
                         }
                     }
                 }
+
                 break;
         }
     }

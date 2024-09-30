@@ -6,13 +6,13 @@ namespace Yi.System.Services.System;
 
 public interface IPostService
 {
-    Task<PostDto> GetAsync(Guid id);
+    Task<PostDto> GetAsync(long id);
 
     Task<PagedResultDto<PostDto>> GetListAsync(PostGetListInput input);
 
     Task<PostDto> CreateAsync(PostCreateInput input);
 
-    Task<PostDto> UpdateAsync(Guid id, PostUpdateInput input);
+    Task<PostDto> UpdateAsync(long id, PostUpdateInput input);
 
-    Task DeleteAsync(IEnumerable<Guid> id);
+    Task DeleteAsync(IEnumerable<long> id);
 }

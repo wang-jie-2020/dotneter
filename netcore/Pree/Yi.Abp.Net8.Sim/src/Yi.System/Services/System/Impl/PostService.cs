@@ -10,14 +10,14 @@ namespace Yi.System.Services.System.Impl;
 
 public class PostService : ApplicationService, IPostService
 {
-    private readonly ISqlSugarRepository<PostEntity, Guid> _repository;
+    private readonly ISqlSugarRepository<PostEntity, long> _repository;
 
-    public PostService(ISqlSugarRepository<PostEntity, Guid> repository)
+    public PostService(ISqlSugarRepository<PostEntity, long> repository)
     {
         _repository = repository;
     }
 
-    public async Task<PostDto> GetAsync(Guid id)
+    public async Task<PostDto> GetAsync(long id)
     {
         var entity = await _repository.GetAsync(id);
         return entity.Adapt<PostDto>();
@@ -43,7 +43,7 @@ public class PostService : ApplicationService, IPostService
         return entity.Adapt<PostDto>();
     }
 
-    public async Task<PostDto> UpdateAsync(Guid id, PostUpdateInput input)
+    public async Task<PostDto> UpdateAsync(long id, PostUpdateInput input)
     {
         var entity = await _repository.GetAsync(id);
         input.Adapt(entity);
@@ -52,7 +52,7 @@ public class PostService : ApplicationService, IPostService
         return entity.Adapt<PostDto>();
     }
 
-    public async Task DeleteAsync(IEnumerable<Guid> id)
+    public async Task DeleteAsync(IEnumerable<long> id)
     {
         await _repository.DeleteManyAsync(id);
     }
