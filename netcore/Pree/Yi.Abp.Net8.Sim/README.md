@@ -4,8 +4,8 @@
 
 二、编码
 ~~1.MiniExcel当作第一类~~
-2.ajaxResult
-3.ExceptionFilter重写?
+~~2.ajaxResult
+3.ExceptionFilter~~
 
 
 
