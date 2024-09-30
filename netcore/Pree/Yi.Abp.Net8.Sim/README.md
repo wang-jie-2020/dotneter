@@ -6,8 +6,7 @@
 ~~1.MiniExcel当作第一类~~
 ~~2.ajaxResult
 3.ExceptionFilter~~
-
-
+Guid 改雪花?
 
 三、特性
 ~~1.token~~
@@ -15,8 +14,6 @@
 ~~(2)RefreshTokenMiddleware不起作用~~
 
 ~~2.用户、角色、菜单,缓存机制漏洞~~
-oss
-Guid 改雪花?
 
 3.Tenant 
 (1)租户切换---通过租户名称得到租户连接信息不合适
@@ -46,6 +43,7 @@ Guid 改雪花?
 (2)DateTime.Now 会不会影响国际化?
 (3)Excel重构模块,Magicodes额外封装专门模块
 (4)前后端国际化、多语言
+(5)菜单之类
 
  
 

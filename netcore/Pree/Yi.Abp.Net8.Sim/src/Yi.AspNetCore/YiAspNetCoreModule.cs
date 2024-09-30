@@ -21,7 +21,6 @@ using Volo.Abp.Data;
 using Volo.Abp.Domain;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.ObjectMapping;
-using Volo.Abp.Swashbuckle;
 using Yi.AspNetCore.Caching.FreeRedis;
 using Yi.AspNetCore.Mapster;
 using Yi.AspNetCore.SqlSugarCore;
@@ -30,6 +29,7 @@ using Yi.AspNetCore.SqlSugarCore.Uow;
 using Yi.AspNetCore.System.Exceptions;
 using Yi.AspNetCore.System.Loggings;
 using Yi.AspNetCore.System.Permissions;
+using Yitter.IdGenerator;
 
 namespace Yi.AspNetCore;
 
@@ -46,8 +46,7 @@ namespace Yi.AspNetCore;
     typeof(AbpDddApplicationModule),
     typeof(AbpDddDomainModule),
     typeof(AbpDddDomainSharedModule),
-    typeof(AbpObjectMappingModule),
-    typeof(AbpSwashbuckleModule)
+    typeof(AbpObjectMappingModule)
 )]
 public class YiAspNetCoreModule : AbpModule
 {
@@ -86,13 +85,16 @@ public class YiAspNetCoreModule : AbpModule
         context.Services.AddTransient<IPermissionHandler, DefaultPermissionHandler>();
         context.Services.AddTransient<PermissionFilter>();
         context.Services.AddSingleton<IOperLogStore, SimpleOperLogStore>();
-        
+
         context.Services.Replace(ServiceDescriptor.Transient<AbpExceptionFilter, YiExceptionFilter>());
         context.Services.Configure<MvcOptions>(options =>
         {
             options.Filters.Add<PermissionFilter>();
             options.Filters.Add<OperLogFilter>();
         });
+
+        // 雪花Id
+        YitIdHelper.SetIdGenerator(new IdGeneratorOptions(0));
     }
 
     public override async Task OnPreApplicationInitializationAsync(ApplicationInitializationContext context)
