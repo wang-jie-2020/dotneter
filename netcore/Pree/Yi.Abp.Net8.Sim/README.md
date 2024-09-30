@@ -6,7 +6,6 @@
 ~~1.MiniExcel当作第一类~~
 ~~2.ajaxResult
 3.ExceptionFilter~~
-Guid 改雪花?
 
 三、特性
 ~~1.token~~
@@ -15,18 +14,18 @@ Guid 改雪花?
 
 ~~2.用户、角色、菜单,缓存机制漏洞~~
 
-3.Tenant 
+~~3.Tenant 
 (1)租户切换---通过租户名称得到租户连接信息不合适
-(2)必须租户切库?
+(2)必须租户切库?~~
 
 4.SqlSugar
 (1)默认赋值
 (2)过长的SQL的PageSize是否需要暴露
 (3)和miniProfiler集成,和SkyWalking集成
 
-5.Permissions 
+~~5.Permissions 
 (1)过滤的结构设计
-(2)前后端的一致性如何保证
+(2)前后端的一致性如何保证~~
 
 6.日志问题
 (1)审计日志(含实体)
