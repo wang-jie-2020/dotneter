@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.AspNetCore.Mvc;
@@ -56,24 +57,24 @@ public class UserController : AbpController
         await _userService.DeleteAsync(id);
     }
 
-    [HttpGet("export-excel")]
+    [HttpGet("export")]
     [Permission("system:user:export")]
     public async Task<IActionResult> GetExportExcelAsync([FromQuery] UserGetListInput input)
     {
         return await _userService.GetExportExcelAsync(input);
     }
 
-    [HttpGet("import-template")]
+    [HttpGet("template")]
     public async Task<IActionResult> GetImportTemplateAsync()
     {
         return await _userService.GetImportTemplateAsync();
     }
     
-    [HttpPost("import-excel")]
+    [HttpPost("import")]
     [Permission("system:user:import")]
-    public Task PostImportExcelAsync([FromBody] List<UserCreateInput> input)
+    public Task PostImportExcelAsync(IFormFile file)
     {
-        return _userService.PostImportExcelAsync(input);
+        return _userService.PostImportExcelAsync(file.OpenReadStream());
     }
 
     /// <summary>

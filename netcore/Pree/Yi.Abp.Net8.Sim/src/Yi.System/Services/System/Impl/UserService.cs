@@ -140,7 +140,7 @@ public class UserService : ApplicationService, IUserService
     public async Task<IActionResult> GetImportTemplateAsync()
     {
         var stream = new MemoryStream();
-        await MiniExcel.SaveAsAsync(stream, new UserCreateInput());
+        await MiniExcel.SaveAsAsync(stream, new List<UserCreateInput>());
         stream.Seek(0, SeekOrigin.Begin);
 
         return new FileStreamResult(stream, "application/vnd.ms-excel")
@@ -149,9 +149,13 @@ public class UserService : ApplicationService, IUserService
         };
     }
     
-    public Task PostImportExcelAsync(List<UserCreateInput> input)
+    public async Task PostImportExcelAsync(Stream stream)
     {
-        throw new NotImplementedException();
+        var rows = await MiniExcel.QueryAsync<UserCreateInput>(stream);
+        foreach (var row in rows)
+        {
+            Console.WriteLine(row.ToString());
+        }
     }
 
     /// <summary>

@@ -47,7 +47,7 @@ public class TenantController : AbpController
         await _tenantService.DeleteAsync(id);
     }
 
-    [HttpGet("export-excel")]
+    [HttpGet("export")]
     public async Task<IActionResult> GetExportExcelAsync([FromQuery] TenantGetListInput input)
     {
         return await _tenantService.GetExportExcelAsync(input);

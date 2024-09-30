@@ -20,7 +20,7 @@ public interface IUserService
 
     Task<IActionResult> GetImportTemplateAsync();
     
-    Task PostImportExcelAsync(List<UserCreateInput> input);
+    Task PostImportExcelAsync(Stream input);
 
     /// <summary>
     ///     更新个人中心

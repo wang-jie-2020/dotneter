@@ -274,7 +274,7 @@ const upload = reactive({
    // 设置上传的请求头部
    headers: { Authorization: "Bearer " + getToken() },
    // 上传的地址
-   url: import.meta.env.VITE_APP_BASE_API + "/user/import"
+   url: import.meta.env.VITE_APP_BASE_API + "/system/user/import"
 });
 // 列显隐信息
 const columns = ref([
@@ -430,7 +430,7 @@ function handleImport() {
 };
 /** 下载模板操作 */
 function importTemplate() {
-   proxy.download("/system/user/import-template");
+   proxy.download("/system/user/template");
 };
 /**文件上传中处理 */
 const handleFileUploadProgress = (event, file, fileList) => {

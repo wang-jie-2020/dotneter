@@ -14,7 +14,7 @@ public static class SwaggerGenExtensions
 {
     public static IServiceCollection AddYiSwaggerGen<Program>(this IServiceCollection services, Action<SwaggerGenOptions>? action = null)
     {
-        services.AddAbpSwaggerGen(
+        services.AddSwaggerGen(
             options =>
             {
                 action?.Invoke(options);

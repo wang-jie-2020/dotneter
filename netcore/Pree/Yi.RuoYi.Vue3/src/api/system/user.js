@@ -3,8 +3,7 @@ import { parseStrEmpty } from "@/utils/ruoyi";
 
 // 导出角色
 export function getExportExcel(query) {
-  
-  return download('/system/user/export-excel',query,'导出数据.xlsx')
+  return download('/system/user/export',query,'导出数据.xlsx')
 }
 
 // 查询用户列表

@@ -46,7 +46,7 @@ export function updateData(id, data) {
 
 // 导出
 export function getExportExcel(query) {
-  return download('/system/tenant/export-excel', query, `tenant_${new Date().getTime()}.xlsx`)
+  return download('/system/tenant/export', query, `tenant_${new Date().getTime()}.xlsx`)
 }
 
 // 初始化
