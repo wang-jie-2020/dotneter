@@ -53,8 +53,7 @@
     - DateTime.Now UTC.Now
     - 前后端多语言
     - Excel
-  - 搞一个EFCore版?
-  - Guid 继续改雪花
+  - EFCore版
 
 
 
