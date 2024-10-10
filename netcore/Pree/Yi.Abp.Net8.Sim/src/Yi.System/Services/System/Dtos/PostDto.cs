@@ -2,7 +2,7 @@ namespace Yi.System.Services.System.Dtos;
 
 public class PostDto 
 {
-    public long Id { get; set; }
+    public Guid Id { get; set; }
     
     public DateTime CreationTime { get; set; } = DateTime.Now;
     

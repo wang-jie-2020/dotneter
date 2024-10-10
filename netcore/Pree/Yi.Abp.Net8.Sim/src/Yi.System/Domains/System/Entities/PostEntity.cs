@@ -6,7 +6,7 @@ namespace Yi.System.Domains.System.Entities;
 ///     岗位表
 /// </summary>
 [SugarTable("Sys_Post")]
-public class PostEntity : BizEntity<long>
+public class PostEntity : BizEntity<Guid>
 {
     /// <summary>
     ///     岗位编码
