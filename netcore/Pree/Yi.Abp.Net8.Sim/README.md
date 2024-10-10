@@ -44,8 +44,6 @@
     - aop的做法是不是集中比较好?
   - 实体审计的SQLSugar实现?
   - 操作日志的Interceptor?
-  - RefreshTokenMiddleware写不写再想想
-  
   - MiniProfiler,SkyWalking
   - Cookie、Localstorage
   - 国际化
@@ -53,6 +51,7 @@
     - DateTime.Now UTC.Now
     - 前后端多语言
     - Excel
+    - DBProvider
   - EFCore版
 
 
