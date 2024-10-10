@@ -20,6 +20,7 @@ using Volo.Abp.Caching;
 using Volo.Abp.Data;
 using Volo.Abp.Domain;
 using Volo.Abp.Domain.Repositories;
+using Volo.Abp.Guids;
 using Volo.Abp.ObjectMapping;
 using Yi.AspNetCore.Caching.FreeRedis;
 using Yi.AspNetCore.Mapster;
@@ -30,6 +31,7 @@ using Yi.AspNetCore.System.Exceptions;
 using Yi.AspNetCore.System.Loggings;
 using Yi.AspNetCore.System.Permissions;
 using Yitter.IdGenerator;
+using SequentialGuidGenerator = Yi.AspNetCore.Helpers.SequentialGuidGenerator;
 
 namespace Yi.AspNetCore;
 
@@ -95,6 +97,9 @@ public class YiAspNetCoreModule : AbpModule
 
         // 雪花Id
         YitIdHelper.SetIdGenerator(new IdGeneratorOptions(0));
+
+        // uuid
+        context.Services.AddTransient<IGuidGenerator, SequentialGuidGenerator>();
     }
 
     public override async Task OnPreApplicationInitializationAsync(ApplicationInitializationContext context)

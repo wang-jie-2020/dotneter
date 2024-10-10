@@ -20,12 +20,21 @@ public class DevController : AbpController
     [HttpGet("mvc")]
     public object MvcOptions()
     {
+        var uuid1 = GuidGenerator.Create();
+        Thread.Sleep(100);
+        var uuid2 = GuidGenerator.Create();
+        Thread.Sleep(100);
+        var uuid3 = GuidGenerator.Create();
+
         var mvc = LazyServiceProvider.LazyGetRequiredService<IOptions<MvcOptions>>().Value;
         return new
         {
             mvc.Filters,
             mvc.Conventions,
             mvc.ModelBinderProviders,
+            uuid1,
+            uuid2,
+            uuid3
         };
     }
 
