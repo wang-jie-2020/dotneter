@@ -10,9 +10,9 @@ Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Override("Microsoft.AspNetCore.Hosting.Diagnostics", LogEventLevel.Error)
     .MinimumLevel.Override("Quartz", LogEventLevel.Warning)
     .Enrich.FromLogContext()
-    .WriteTo.Async(c => c.File($"logs/yi/debug.log", rollingInterval: RollingInterval.Day, restrictedToMinimumLevel: LogEventLevel.Debug))
-    .WriteTo.Async(c => c.File("logs/yi/info.log", rollingInterval: RollingInterval.Day, restrictedToMinimumLevel: LogEventLevel.Information))
-    .WriteTo.Async(c => c.File("logs/yi/error.log", rollingInterval: RollingInterval.Day, restrictedToMinimumLevel: LogEventLevel.Error))
+    .WriteTo.Async(c => c.File("logs/yi/debug-.log", rollingInterval: RollingInterval.Day, restrictedToMinimumLevel: LogEventLevel.Debug))
+    .WriteTo.Async(c => c.File("logs/yi/info-.log", rollingInterval: RollingInterval.Day, restrictedToMinimumLevel: LogEventLevel.Information))
+    .WriteTo.Async(c => c.File("logs/yi/error-.log", rollingInterval: RollingInterval.Day, restrictedToMinimumLevel: LogEventLevel.Error))
     .WriteTo.Async(c => c.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level}] {SourceContext}{NewLine}{Message:lj}{NewLine}{Exception}{NewLine}"
         , theme: AnsiConsoleTheme.Code))
     .CreateLogger();

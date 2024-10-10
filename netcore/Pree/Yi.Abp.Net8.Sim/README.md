@@ -24,12 +24,14 @@
   - BaseEntity 提供两个足矣
   - AjaxResult到RuoYi模式,是不是包装全部再讨论
   - LocalEventBus 示例见LoginEvent
+  - BackgroundWorker 示例见DevJob
   - Guid 雪花Id
 
 - SYS模块
   - UserContext的Cache的BUG(登录刷新)
   - Token过长要削减,同时Cookie有长度限制和同源策略
   - MiniExcel的Import,Export基本也够
+  - 日志组件Serilog唯一的缺憾是滚动命名不能自定义
 
 ## TODO
   - minio
@@ -43,7 +45,7 @@
   - 实体审计的SQLSugar实现?
   - 操作日志的Interceptor?
   - RefreshTokenMiddleware写不写再想想
-  - Serilog的滚动命名,也许换NLOG?
+  
   - MiniProfiler,SkyWalking
   - Cookie、Localstorage
   - 国际化
