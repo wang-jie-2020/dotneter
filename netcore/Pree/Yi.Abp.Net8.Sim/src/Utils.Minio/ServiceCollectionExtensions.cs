@@ -6,7 +6,7 @@ namespace Utils.Minio
 {
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection UseMinioStorage(this IServiceCollection services,
+        public static IServiceCollection UseMinio(this IServiceCollection services,
             Action<MinioStorageOptions> configure = null)
         {
             var options = new MinioStorageOptions();
@@ -20,7 +20,7 @@ namespace Utils.Minio
             return services;
         }
 
-        public static MinioContainerConfiguration UseMinio(this MinioContainerConfiguration containerConfiguration,
+        public static MinioContainerConfiguration Bucket(this MinioContainerConfiguration containerConfiguration,
             Action<MinioProviderConfiguration> minioConfigureAction)
         {
             minioConfigureAction(new MinioProviderConfiguration(containerConfiguration));

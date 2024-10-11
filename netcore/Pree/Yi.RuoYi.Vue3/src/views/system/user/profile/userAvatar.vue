@@ -118,19 +118,12 @@ function uploadImg() {
     formData.append("file", data);
     upload(formData).then(response => {
       open.value = false;
-      options.img = import.meta.env.VITE_APP_BASE_API +"/file/"+response.data[0].id;
+      options.img = import.meta.env.VITE_APP_BASE_API +"/file/" + response.data[0].id;
       userStore.avatar = options.img;
       updateUserIcon(response.data[0].id).then(response2=>{
         proxy.$modal.msgSuccess("修改成功");
       visible.value = false;
       })
-
-
-
-
-
-
-
     });
   });
 };

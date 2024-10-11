@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Converters;
+using Utils.Minio;
+using Volo.Abp.AspNetCore.ExceptionHandling;
 using Volo.Abp.AspNetCore.MultiTenancy;
 using Volo.Abp.AspNetCore.Mvc.AntiForgery;
 using Volo.Abp.Auditing;
@@ -64,6 +66,11 @@ public class YiAbpWebModule : AbpModule
 
         Configure<AbpAntiForgeryOptions>(options => { options.AutoValidate = false; });
 
+        Configure<AbpExceptionHandlingOptions>(options =>
+        {
+            options.SendExceptionsDetailsToClients = host.IsDevelopment() || configuration["App:SendExceptions"] == "true";
+        });
+        
         //Swagger
         context.Services.AddYiSwaggerGen<YiAbpWebModule>(options => { options.SwaggerDoc("default", new OpenApiInfo { Title = "Yi", Version = "v1", Description = "Yi" }); });
 
@@ -195,6 +202,25 @@ public class YiAbpWebModule : AbpModule
 
         //授权
         context.Services.AddAuthorization();
+
+        //minio
+        if (configuration["Minio:IsEnabled"].To<bool>())
+        {
+            context.Services.UseMinio(options =>
+            {
+                options.Containers.ConfigureAll((containerName, containerConfiguration) =>
+                {
+                    containerConfiguration.Bucket(bucket =>
+                    {
+                        bucket.EndPoint = configuration["Minio:Default:EndPoint"];
+                        bucket.AccessKey = configuration["Minio:Default:User"];
+                        bucket.SecretKey = configuration["Minio:Default:Pwd"];
+                        bucket.BucketName = configuration["Minio:Default:BucketName"];
+                        bucket.WithSSL = configuration["Minio:Default:WithSSL"].To<bool>();
+                    });
+                });
+            });
+        }
 
         return Task.CompletedTask;
     }

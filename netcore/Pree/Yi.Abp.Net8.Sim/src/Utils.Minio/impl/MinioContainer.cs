@@ -38,7 +38,7 @@ namespace Utils.Minio.impl
         {
             return _container.PublishAsync(name, stream, overrideExisting);
         }
-        
+
         public Task<bool> ExistsAsync(string name)
         {
             return _container.ExistsAsync(name);
@@ -156,12 +156,12 @@ namespace Utils.Minio.impl
         public async Task<string> PublishAsync(string name, Stream stream, bool overrideExisting = false)
         {
             await SaveAsync(name, stream, overrideExisting);
-            
+
             var bucketName = GetBucketName(_containerName);
             var objectName = GetObjectName(name);
             return $"{(_providerConfiguration.WithSSL ? "https" : "http")}://{_providerConfiguration.EndPoint}/{bucketName}/{objectName}";
         }
-        
+
         public async Task<bool> ExistsAsync(string name)
         {
             var bucketName = GetBucketName(_containerName);
@@ -224,9 +224,9 @@ namespace Utils.Minio.impl
             if (await ExistsAsync(bucketName, objectName))
             {
                 return await _client.PresignedGetObjectAsync(new PresignedGetObjectArgs()
-                     .WithBucket(bucketName)
-                     .WithObject(objectName)
-                     .WithExpiry(expiry));
+                    .WithBucket(bucketName)
+                    .WithObject(objectName)
+                    .WithExpiry(expiry));
             }
 
             return string.Empty;
@@ -255,14 +255,14 @@ namespace Utils.Minio.impl
                 .WithObject(objectName)
                 .WithExpiry(expiry));
         }
-        
+
         protected async Task<bool> ExistsAsync(string bucketName, string objectName)
         {
             if (await _client.BucketExistsAsync(new BucketExistsArgs().WithBucket(bucketName)))
             {
                 try
                 {
-                    await _client.StatObjectAsync(new StatObjectArgs().WithBucket(bucketName).WithObject(objectName));
+                    var stat = await _client.StatObjectAsync(new StatObjectArgs().WithBucket(bucketName).WithObject(objectName));
                 }
                 catch (Exception e)
                 {

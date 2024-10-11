@@ -43,7 +43,7 @@ const useUserStore = defineStore(
           getInfo().then(response => {
             const res=response.data;
             const user = res.user
-            const avatar = (user.icon == "" || user.icon == null) ? defAva : import.meta.env.VITE_APP_BASE_API + "/file/"+user.icon;
+            const avatar = (user.icon == "" || user.icon == null) ? defAva : import.meta.env.VITE_APP_BASE_API + "/file/"+ user.icon;
     
             if (res.roleCodes && res.roleCodes.length > 0) { // 验证返回的roles是否是一个非空数组
               this.roles = res.roleCodes
