@@ -8,7 +8,7 @@ using Yi.AspNetCore.System.Loggings;
 using Yi.AspNetCore.System.Permissions;
 using Yi.System.Domains.Monitor;
 using Yi.System.Domains.Monitor.Repositories;
-using Yi.System.Domains.System;
+using Yi.System.Domains.Sys;
 using Yi.System.Options;
 
 namespace Yi.System;
