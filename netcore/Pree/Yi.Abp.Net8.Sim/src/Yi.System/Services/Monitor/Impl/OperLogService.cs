@@ -1,12 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
-using Yi.AspNetCore.Helpers;
-using Yi.AspNetCore.System;
-using Yi.System.Domains.Monitor.Entities;
-using Yi.System.Services.Monitor.Dtos;
+using Yi.Sys.Domains.Monitor.Entities;
+using Yi.Sys.Services.Monitor.Dtos;
 
-namespace Yi.System.Services.Monitor.Impl;
+namespace Yi.Sys.Services.Monitor.Impl;
 
 public class OperLogService : ApplicationService, IOperLogService
 {

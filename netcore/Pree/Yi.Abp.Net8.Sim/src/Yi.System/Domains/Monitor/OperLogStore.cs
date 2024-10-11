@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.Logging;
 using Volo.Abp.Domain.Repositories;
 using Yi.AspNetCore.System.Loggings;
-using Yi.System.Domains.Monitor.Entities;
+using Yi.Sys.Domains.Monitor.Entities;
 
-namespace Yi.System.Domains.Monitor;
+namespace Yi.Sys.Domains.Monitor;
 
 public class OperLogStore : IOperLogStore
 {

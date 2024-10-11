@@ -11,12 +11,12 @@ using Volo.Abp.Guids;
 using Volo.Abp.Uow;
 using Volo.Abp.Users;
 using Yi.AspNetCore.System.Permissions;
-using Yi.System.Domains.Sys;
-using Yi.System.Domains.Sys.Entities;
-using Yi.System.Domains.Sys.Repositories;
-using Yi.System.Options;
-using Yi.System.Services.Sys.Dtos;
-using Yi.System.Services.Sys.Impl;
+using Yi.Sys.Domains.Infra;
+using Yi.Sys.Domains.Infra.Entities;
+using Yi.Sys.Domains.Infra.Repositories;
+using Yi.Sys.Options;
+using Yi.Sys.Services.Infra.Dtos;
+using Yi.Sys.Services.Infra.Impl;
 
 namespace Yi.Admin.Controllers.Sys;
 

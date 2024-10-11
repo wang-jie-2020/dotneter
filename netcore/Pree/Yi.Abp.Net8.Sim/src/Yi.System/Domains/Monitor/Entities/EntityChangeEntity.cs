@@ -2,9 +2,9 @@
 using Volo.Abp.Guids;
 using Volo.Abp.MultiTenancy;
 using Yi.AspNetCore.System.Entities;
-using Yi.System.Domains.Monitor.Consts;
+using Yi.Sys.Domains.Monitor.Consts;
 
-namespace Yi.System.Domains.Monitor.Entities;
+namespace Yi.Sys.Domains.Monitor.Entities;
 
 [SugarTable("Sys_EntityChange")]
 [SugarIndex($"index_{nameof(AuditLogId)}", nameof(AuditLogId), OrderByType.Asc)]

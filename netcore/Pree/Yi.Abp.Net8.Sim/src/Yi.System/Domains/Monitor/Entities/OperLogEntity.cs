@@ -2,7 +2,7 @@
 using Yi.AspNetCore.System.Entities;
 using Yi.AspNetCore.System.Loggings;
 
-namespace Yi.System.Domains.Monitor.Entities;
+namespace Yi.Sys.Domains.Monitor.Entities;
 
 /// <summary>
 ///     操作日志表

@@ -1,8 +1,7 @@
-using Microsoft.AspNetCore.Mvc;
 using Volo.Abp.Application.Dtos;
-using Yi.System.Services.Monitor.Dtos;
+using Yi.Sys.Services.Monitor.Dtos;
 
-namespace Yi.System.Services.Monitor;
+namespace Yi.Sys.Services.Monitor;
 
 public interface IOperLogService
 {

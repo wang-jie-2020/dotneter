@@ -1,4 +1,4 @@
-﻿namespace Yi.System.Options;
+﻿namespace Yi.Sys.Options;
 
 public class RbacOptions
 {

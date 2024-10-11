@@ -1,9 +1,9 @@
 ﻿using Volo.Abp.Auditing;
 using Volo.Abp.MultiTenancy;
 using Yi.AspNetCore.System.Entities;
-using Yi.System.Domains.Monitor.Consts;
+using Yi.Sys.Domains.Monitor.Consts;
 
-namespace Yi.System.Domains.Monitor.Entities;
+namespace Yi.Sys.Domains.Monitor.Entities;
 
 [DisableAuditing]
 [SugarTable("Sys_AuditLog")]

@@ -1,6 +1,6 @@
 ﻿using Yi.AspNetCore.System;
 
-namespace Yi.System.Services.Monitor.Dtos;
+namespace Yi.Sys.Services.Monitor.Dtos;
 
 public class JobGetListInput : PagedInput
 {

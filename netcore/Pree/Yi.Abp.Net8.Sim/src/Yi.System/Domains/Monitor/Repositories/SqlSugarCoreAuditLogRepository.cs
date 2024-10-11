@@ -1,9 +1,9 @@
 ﻿using System.Net;
 using Volo.Abp.Auditing;
 using Volo.Abp.Domain.Entities;
-using Yi.System.Domains.Monitor.Entities;
+using Yi.Sys.Domains.Monitor.Entities;
 
-namespace Yi.System.Domains.Monitor.Repositories;
+namespace Yi.Sys.Domains.Monitor.Repositories;
 
 public class SqlSugarCoreAuditLogRepository : SqlSugarRepository<AuditLogEntity, Guid>, IAuditLogRepository
 {

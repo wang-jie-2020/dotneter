@@ -1,4 +1,4 @@
-﻿namespace Yi.System.Domains.Monitor.Consts;
+﻿namespace Yi.Sys.Domains.Monitor.Consts;
 
 public class AuditLogActionConsts
 {

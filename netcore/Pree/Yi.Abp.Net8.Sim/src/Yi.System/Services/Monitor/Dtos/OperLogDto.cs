@@ -1,6 +1,6 @@
 using Yi.AspNetCore.System.Loggings;
 
-namespace Yi.System.Services.Monitor.Dtos;
+namespace Yi.Sys.Services.Monitor.Dtos;
 
 public class OperLogDto 
 {

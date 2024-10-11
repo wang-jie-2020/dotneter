@@ -1,7 +1,7 @@
 ﻿using Volo.Abp.Auditing;
-using Yi.System.Domains.Monitor.Entities;
+using Yi.Sys.Domains.Monitor.Entities;
 
-namespace Yi.System.Domains.Monitor;
+namespace Yi.Sys.Domains.Monitor;
 
 public interface IAuditLogInfoToAuditLogConverter
 {

@@ -5,7 +5,7 @@ using Volo.Abp.Auditing;
 using Yi.AspNetCore.Extensions;
 using Yi.AspNetCore.System.Entities;
 
-namespace Yi.System.Domains.Monitor.Entities;
+namespace Yi.Sys.Domains.Monitor.Entities;
 
 [SugarTable("Sys_LoginLog")]
 [SugarIndex($"index_{nameof(LoginUser)}", nameof(LoginUser), OrderByType.Asc)]

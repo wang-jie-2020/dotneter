@@ -6,9 +6,9 @@ using Microsoft.AspNetCore.Http;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Security.Claims;
 using Yi.AspNetCore.System.Permissions;
-using Yi.System.Domains.Sys;
+using Yi.Sys.Domains.Infra;
 
-namespace Yi.System;
+namespace Yi.Sys;
 
 [DebuggerStepThrough]
 public class RefreshTokenMiddleware : IMiddleware, ITransientDependency

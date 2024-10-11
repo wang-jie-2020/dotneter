@@ -1,4 +1,4 @@
-﻿namespace Yi.System.Options;
+﻿namespace Yi.Sys.Options;
 
 /// <summary>
 ///     刷新token

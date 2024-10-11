@@ -32,10 +32,9 @@ public class FileController : AbpController
         var urls = new List<string>();
         foreach (var file in fileCollection)
         {
-
             var name = file.FileName + YitIdHelper.NextId();
             var stream = file.OpenReadStream();
-
+            
             var url = await _container.PublishAsync(name, stream);
             urls.Add(url);
         }

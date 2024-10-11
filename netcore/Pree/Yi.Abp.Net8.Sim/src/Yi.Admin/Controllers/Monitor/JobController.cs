@@ -6,7 +6,7 @@ using Quartz.Impl.Matchers;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.Timing;
-using Yi.System.Services.Monitor.Dtos;
+using Yi.Sys.Services.Monitor.Dtos;
 
 namespace Yi.Admin.Controllers.Monitor;
 

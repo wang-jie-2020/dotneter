@@ -6,12 +6,12 @@ using Volo.Abp.MultiTenancy;
 using Yi.AspNetCore;
 using Yi.AspNetCore.System.Loggings;
 using Yi.AspNetCore.System.Permissions;
-using Yi.System.Domains.Monitor;
-using Yi.System.Domains.Monitor.Repositories;
-using Yi.System.Domains.Sys;
-using Yi.System.Options;
+using Yi.Sys.Domains.Infra;
+using Yi.Sys.Domains.Monitor;
+using Yi.Sys.Domains.Monitor.Repositories;
+using Yi.Sys.Options;
 
-namespace Yi.System;
+namespace Yi.Sys;
 
 [DependsOn(typeof(YiAspNetCoreModule))]
 public class YiSystemModule : AbpModule
