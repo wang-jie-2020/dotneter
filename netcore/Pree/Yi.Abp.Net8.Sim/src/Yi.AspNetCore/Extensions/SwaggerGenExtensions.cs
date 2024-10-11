@@ -57,7 +57,7 @@ public static class SwaggerGenExtensions
                     [scheme] = Array.Empty<string>()
                 });
 
-                options.OperationFilter<AddRequiredHeaderParameter>();
+                //options.OperationFilter<AddRequiredHeaderParameter>();
                 options.SchemaFilter<EnumSchemaFilter>();
             }
         );
