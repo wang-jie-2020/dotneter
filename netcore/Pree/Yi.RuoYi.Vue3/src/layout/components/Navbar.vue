@@ -22,6 +22,19 @@
           <size-select id="size-select" class="right-menu-item hover-effect" />
         </el-tooltip>
       </template>
+      <div class="lang">
+        <el-dropdown @command="handleLang">
+          <span class="el-dropdown-link">
+            <img src="@/assets/icons/svg/language.svg" alt="">
+          </span>
+          <template #dropdown>
+            <el-dropdown-menu>
+              <el-dropdown-item :disabled="Public.lang == 'zh'" command="zh">中文</el-dropdown-item>
+              <el-dropdown-item :disabled="Public.lang == 'en'" command="en">English</el-dropdown-item>
+            </el-dropdown-menu>
+          </template>
+        </el-dropdown>
+      </div>
       <div class="avatar-container">
         <el-dropdown @command="handleCommand" class="right-menu-item hover-effect" trigger="click">
           <div class="avatar-wrapper">
@@ -60,10 +73,14 @@ import RuoYiDoc from '@/components/RuoYi/Doc'
 import useAppStore from '@/store/modules/app'
 import useUserStore from '@/store/modules/user'
 import useSettingsStore from '@/store/modules/settings'
+import usePublicStore from "@/store/modules/public";
+import { useI18n } from 'vue-i18n'
 
 const appStore = useAppStore()
 const userStore = useUserStore()
 const settingsStore = useSettingsStore()
+const Public = usePublicStore();
+const { locale } = useI18n()
 
 function toggleSideBar() {
   appStore.toggleSideBar()
@@ -97,6 +114,15 @@ function logout() {
 const emits = defineEmits(['setLayout'])
 function setLayout() {
   emits('setLayout');
+}
+
+// 多语言设置
+// const lang=ref('zh');
+function handleLang(command) {
+  locale.value = command;
+  Public.lang = command;
+  localStorage.setItem('lang', command)
+  location.reload();
 }
 </script>
 
@@ -160,6 +186,16 @@ function setLayout() {
         &:hover {
           background: rgba(0, 0, 0, 0.025);
         }
+      }
+    }
+
+    .lang {
+      padding-top: 12px;
+      margin-right: 5px;
+
+      img {
+        width: 22px;
+        height: 22px;
       }
     }
 

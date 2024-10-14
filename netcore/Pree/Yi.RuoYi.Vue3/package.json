@@ -32,6 +32,7 @@
     "typeface-roboto": "^1.1.13",
     "vue": "3.4.21",
     "vue-cropper": "1.0.3",
+    "vue-i18n": "^9.2.2",
     "vue-router": "4.3.0"
   },
   "devDependencies": {
