@@ -32,9 +32,11 @@
   - Token过长要削减,同时Cookie有长度限制和同源策略
   - MiniExcel的Import,Export基本也够
   - 日志组件Serilog唯一的缺憾是滚动命名不能自定义
+  - 登录日志,操作日志
+  - AbpInterceptor 示例见OperLogInterceptor
 
 ## TODO
-  - minio
+  - orm - EntityFrameworkCore ???
   - tenant
     - 目前多租户必须切换DB,很多小系统可能不够资源 
     - 租户的DB通过租户名称得到,不合适
@@ -42,17 +44,17 @@
     - 暴露出客户端感觉更合适
     - 相较存在SQL过长的问题,在仓储层直接做?
     - aop的做法是不是集中比较好?
-  - 实体审计的SQLSugar实现?
-  - 操作日志的Interceptor?
-  - MiniProfiler,SkyWalking
-  - Cookie、Localstorage
+    - 实体审计的SQLSugar实现?
+  - 监控
+    - MiniProfiler
+    - SkyWalking  
+
   - 国际化
     - BusinessException、FriendlyException
     - DateTime.Now UTC.Now
     - 前后端多语言
     - Excel
-    - DBProvider
-  - EFCore版
+    - 文本的DBProvider
 
 
 

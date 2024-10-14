@@ -10,6 +10,7 @@ using Volo.Abp.EventBus.Local;
 using Volo.Abp.Security.Claims;
 using Yi.AspNetCore.Helpers;
 using Yi.AspNetCore.System.Events;
+using Yi.AspNetCore.System.Loggings;
 using Yi.AspNetCore.System.Permissions;
 using Yi.Sys.Domains.Infra.Entities;
 using Yi.Sys.Domains.Infra.Repositories;
@@ -58,6 +59,7 @@ public class AccountManager : DomainService, IAccountManager
     /// <param name="userId"></param>
     /// <returns></returns>
     /// <exception cref="UserFriendlyException"></exception>
+    [OperLog("生成token", OperLogEnum.Auth)]
     public async Task<string> GetTokenByUserIdAsync(Guid userId)
     {
         //获取用户信息

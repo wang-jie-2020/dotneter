@@ -52,6 +52,11 @@ namespace Yi.AspNetCore;
 )]
 public class YiAspNetCoreModule : AbpModule
 {
+    public override void PreConfigureServices(ServiceConfigurationContext context)
+    {
+        context.Services.OnRegistered(OperLogInterceptorRegistrar.RegisterIfNeeded);
+    }
+
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
         var configuration = context.Services.GetConfiguration();
@@ -100,6 +105,9 @@ public class YiAspNetCoreModule : AbpModule
 
         // uuid
         context.Services.AddTransient<IGuidGenerator, SequentialGuidGenerator>();
+        
+        // interceptor
+        context.Services.AddTransient<OperLogInterceptor>();
     }
 
     public override async Task OnPreApplicationInitializationAsync(ApplicationInitializationContext context)
