@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Utils.Minio;
 using Volo.Abp.AspNetCore.Mvc;
+using Volo.Abp.IO;
 using Yitter.IdGenerator;
 
 namespace Yi.Admin.Controllers.Sys;
@@ -22,18 +23,18 @@ public class FileController : AbpController
     /// </summary>
     /// <returns></returns>
     [HttpPost]
-    public async Task<List<string>> Post([FromForm] IFormFileCollection fileCollection)
+    public async Task<List<string>> Post([FromForm] IFormFileCollection file)
     {
-        if (fileCollection.Count() == 0)
+        if (file.Count == 0)
         {
             throw new ArgumentException("文件上传为空！");
         }
 
         var urls = new List<string>();
-        foreach (var file in fileCollection)
+        foreach (var f in file)
         {
-            var name = file.FileName + YitIdHelper.NextId();
-            var stream = file.OpenReadStream();
+            var name = Path.GetFileNameWithoutExtension(f.FileName) + YitIdHelper.NextId() + Path.GetExtension(f.FileName);
+            var stream = f.OpenReadStream();
             
             var url = await _container.PublishAsync(name, stream);
             urls.Add(url);
