@@ -11,14 +11,14 @@
 </template>
 
 <script setup>
-import usePublicStore from "@/store/modules/public";
+import useAppStore from "@/store/modules/app";
 
 const route = useRoute();
 const router = useRouter();
 const levelList = ref([])
 
-const PublicStore = usePublicStore();
-const lang = computed(() => PublicStore.lang);
+const app = useAppStore();
+const lang = computed(() => app.lang);
 
 function getBreadcrumb() {
   // only show routes with meta.title

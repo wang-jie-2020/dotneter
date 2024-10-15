@@ -29,8 +29,8 @@
           </span>
           <template #dropdown>
             <el-dropdown-menu>
-              <el-dropdown-item :disabled="Public.lang == 'zh'" command="zh">中文</el-dropdown-item>
-              <el-dropdown-item :disabled="Public.lang == 'en'" command="en">English</el-dropdown-item>
+              <el-dropdown-item :disabled="app.lang == 'zh'" command="zh">中文</el-dropdown-item>
+              <el-dropdown-item :disabled="app.lang == 'en'" command="en">English</el-dropdown-item>
             </el-dropdown-menu>
           </template>
         </el-dropdown>
@@ -73,13 +73,12 @@ import RuoYiDoc from '@/components/RuoYi/Doc'
 import useAppStore from '@/store/modules/app'
 import useUserStore from '@/store/modules/user'
 import useSettingsStore from '@/store/modules/settings'
-import usePublicStore from "@/store/modules/public";
 import { useI18n } from 'vue-i18n'
 
 const appStore = useAppStore()
 const userStore = useUserStore()
 const settingsStore = useSettingsStore()
-const Public = usePublicStore();
+const app = useAppStore();
 const { locale } = useI18n()
 
 function toggleSideBar() {
@@ -120,7 +119,7 @@ function setLayout() {
 // const lang=ref('zh');
 function handleLang(command) {
   locale.value = command;
-  Public.lang = command;
+  app.lang = command;
   localStorage.setItem('lang', command)
   location.reload();
 }

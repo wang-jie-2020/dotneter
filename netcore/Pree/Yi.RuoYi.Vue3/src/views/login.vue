@@ -38,8 +38,8 @@
             </span>
             <template #dropdown>
               <el-dropdown-menu>
-                <el-dropdown-item :disabled="Public.lang == 'zh'" command="zh">中文</el-dropdown-item>
-                <el-dropdown-item :disabled="Public.lang == 'en'" command="en">English</el-dropdown-item>
+                <el-dropdown-item :disabled="app.lang == 'zh'" command="zh">中文</el-dropdown-item>
+                <el-dropdown-item :disabled="app.lang == 'en'" command="en">English</el-dropdown-item>
               </el-dropdown-menu>
             </template>
           </el-dropdown>
@@ -67,7 +67,7 @@ import { encrypt, decrypt } from "@/utils/jsencrypt";
 import useUserStore from '@/store/modules/user'
 import { SelectData as getTenantList } from '@/api/system/tenant'
 import { ref } from "vue";
-import usePublicStore from "@/store/modules/public";
+import useAppStore from "@/store/modules/app";
 import { useI18n } from "vue-i18n";
 
 const userStore = useUserStore()
@@ -75,8 +75,8 @@ const router = useRouter();
 const { proxy } = getCurrentInstance();
 
 const { locale } = useI18n();
-const Public = usePublicStore();
-const lang = computed(() => usePublicStore().lang);
+const app = useAppStore();
+const lang = computed(() => useAppStore().lang);
 
 const tenantSelected = ref('defalut');
 const loginForm = ref({
@@ -104,7 +104,7 @@ const tenantList = ref([]);
 
 function handleLang(command) {
   locale.value = command;
-  Public.lang = command;
+  app.lang = command;
   localStorage.setItem("lang", command);
   location.reload();
 }

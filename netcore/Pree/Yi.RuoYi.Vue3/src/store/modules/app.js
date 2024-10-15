@@ -10,7 +10,8 @@ const useAppStore = defineStore(
         hide: false
       },
       device: 'desktop',
-      size: Cookies.get('size') || 'default'
+      size: Cookies.get('size') || 'default',
+      lang: localStorage.getItem("lang") ?? 'zh',
     }),
     actions: {
       toggleSideBar(withoutAnimation) {

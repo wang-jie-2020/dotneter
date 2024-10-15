@@ -28,10 +28,10 @@
 import { isExternal } from '@/utils/validate'
 import AppLink from './Link'
 import { getNormalPath } from '@/utils/ruoyi'
-import usePublicStore from "@/store/modules/public";
+import useAppStore from "@/store/modules/app";
 
-const PublicStore = usePublicStore();
-const lang = computed(() => PublicStore.lang);
+const app = useAppStore();
+const lang = computed(() => app.lang);
 const props = defineProps({
   // route object
   item: {
