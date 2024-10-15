@@ -12,7 +12,9 @@ using Volo.Abp.AspNetCore.MultiTenancy;
 using Volo.Abp.AspNetCore.Mvc.AntiForgery;
 using Volo.Abp.Auditing;
 using Volo.Abp.Caching;
+using Volo.Abp.Localization;
 using Volo.Abp.MultiTenancy;
+using Volo.Abp.VirtualFileSystem;
 using Yi.Admin;
 using Yi.AspNetCore;
 using Yi.AspNetCore.Extensions;
@@ -28,7 +30,7 @@ namespace Yi.Web;
     typeof(YiAdminModule),
     typeof(YiSystemModule)
 )]
-public class YiAbpWebModule : AbpModule
+public class YiWebModule : AbpModule
 {
     private const string DefaultCorsPolicyName = "Default";
 
@@ -49,13 +51,6 @@ public class YiAbpWebModule : AbpModule
             options.AlwaysLogSelectors.Add(x => Task.FromResult(true));
         });
 
-        //设置api格式
-        context.Services.AddControllers().AddNewtonsoftJson(options =>
-        {
-            options.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";
-            options.SerializerSettings.Converters.Add(new StringEnumConverter());
-        });
-
         //设置缓存不要过期，默认滑动20分钟
         Configure<AbpDistributedCacheOptions>(cacheOptions =>
         {
@@ -66,13 +61,41 @@ public class YiAbpWebModule : AbpModule
 
         Configure<AbpAntiForgeryOptions>(options => { options.AutoValidate = false; });
 
-        Configure<AbpExceptionHandlingOptions>(options =>
+        Configure<AbpExceptionHandlingOptions>(options => { options.SendExceptionsDetailsToClients = host.IsDevelopment() || configuration["App:SendExceptions"] == "true"; });
+
+        //配置多租户
+        Configure<AbpTenantResolveOptions>(options =>
         {
-            options.SendExceptionsDetailsToClients = host.IsDevelopment() || configuration["App:SendExceptions"] == "true";
+            //基于cookie jwt不好用，有坑
+            options.TenantResolvers.Clear();
+            options.TenantResolvers.Add(new HeaderTenantResolveContributor());
+            //options.TenantResolvers.Add(new HeaderTenantResolveContributor());
+            //options.TenantResolvers.Add(new CookieTenantResolveContributor());
+
+            //options.TenantResolvers.RemoveAll(x => x.Name == CookieTenantResolveContributor.ContributorName);
         });
-        
-        //Swagger
-        context.Services.AddYiSwaggerGen<YiAbpWebModule>(options => { options.SwaggerDoc("default", new OpenApiInfo { Title = "Yi", Version = "v1", Description = "Yi" }); });
+
+        Configure<AbpVirtualFileSystemOptions>(options =>
+        {
+            options.FileSets.AddEmbedded<YiWebModule>(
+                baseNamespace: "Yi.Web",
+                baseFolder: "/Resources"
+            );
+        });
+
+        Configure<AbpLocalizationOptions>(options =>
+        {
+            var defaultResource = options.Resources.Get<DefaultResource>();
+            defaultResource.DefaultCultureName = "zh";
+            defaultResource.AddVirtualJson("/Resources");
+        });
+
+        //设置api格式
+        context.Services.AddControllers().AddNewtonsoftJson(options =>
+        {
+            options.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";
+            options.SerializerSettings.Converters.Add(new StringEnumConverter());
+        });
 
         //跨域
         context.Services.AddCors(options =>
@@ -92,18 +115,6 @@ public class YiAbpWebModule : AbpModule
                     .AllowAnyMethod()
                     .AllowCredentials();
             });
-        });
-
-        //配置多租户
-        Configure<AbpTenantResolveOptions>(options =>
-        {
-            //基于cookie jwt不好用，有坑
-            options.TenantResolvers.Clear();
-            options.TenantResolvers.Add(new HeaderTenantResolveContributor());
-            //options.TenantResolvers.Add(new HeaderTenantResolveContributor());
-            //options.TenantResolvers.Add(new CookieTenantResolveContributor());
-
-            //options.TenantResolvers.RemoveAll(x => x.Name == CookieTenantResolveContributor.ContributorName);
         });
 
         //速率限制
@@ -203,6 +214,9 @@ public class YiAbpWebModule : AbpModule
         //授权
         context.Services.AddAuthorization();
 
+        //Swagger
+        context.Services.AddYiSwaggerGen<YiWebModule>(options => { options.SwaggerDoc("default", new OpenApiInfo { Title = "Yi", Version = "v1", Description = "Yi" }); });
+
         //minio
         if (configuration["Minio:IsEnabled"].To<bool>())
         {
@@ -254,6 +268,15 @@ public class YiAbpWebModule : AbpModule
 
         //静态资源
         app.UseStaticFiles();
+        
+        // app.UseAbpRequestLocalization(options =>
+        // {
+        //     var defaultCulture = new CultureInfo("zh-cn");
+        //     defaultCulture.DateTimeFormat.SetAllDateTimePatterns(new[] { "H:mm:ss" }, 'T');
+        //     defaultCulture.DateTimeFormat.SetAllDateTimePatterns(new[] { "H:mm" }, 't');
+        //
+        //     options.DefaultRequestCulture = new RequestCulture(defaultCulture);
+        // });
 
         //工作单元
         app.UseUnitOfWork();

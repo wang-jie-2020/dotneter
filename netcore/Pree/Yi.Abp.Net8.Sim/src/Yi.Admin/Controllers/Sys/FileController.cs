@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Utils.Minio;
 using Volo.Abp.AspNetCore.Mvc;
-using Volo.Abp.IO;
 using Yitter.IdGenerator;
 
 namespace Yi.Admin.Controllers.Sys;

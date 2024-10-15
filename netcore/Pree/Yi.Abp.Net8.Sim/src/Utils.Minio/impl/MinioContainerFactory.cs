@@ -1,6 +1,5 @@
 ﻿using System;
 using Microsoft.Extensions.Options;
-using Utils.Minio;
 
 namespace Utils.Minio.impl
 {

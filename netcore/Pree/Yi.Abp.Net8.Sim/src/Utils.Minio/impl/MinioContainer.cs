@@ -8,7 +8,6 @@ using Minio;
 using Minio.ApiEndpoints;
 using Minio.DataModel.Args;
 using Minio.Exceptions;
-using Utils.Minio;
 
 namespace Utils.Minio.impl
 {

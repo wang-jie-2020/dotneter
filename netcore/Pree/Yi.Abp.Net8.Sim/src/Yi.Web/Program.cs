@@ -37,7 +37,7 @@ try
     builder.WebHost.UseUrls(builder.Configuration["App:SelfUrl"]);
     builder.Host.UseAutofac();
     builder.Host.UseSerilog();
-    await builder.Services.AddApplicationAsync<YiAbpWebModule>();
+    await builder.Services.AddApplicationAsync<YiWebModule>();
     var app = builder.Build();
     await app.InitializeApplicationAsync();
     await app.RunAsync();

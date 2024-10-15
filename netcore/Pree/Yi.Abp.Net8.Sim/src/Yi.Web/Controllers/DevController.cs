@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.Authorization;
+using Volo.Abp.Localization;
+using Volo.Abp.VirtualFileSystem;
 using Yi.AspNetCore.System;
-using Yi.AspNetCore.System.Entities;
 using Yi.AspNetCore.System.Events;
 
 namespace Yi.Web.Controllers;
@@ -20,11 +20,13 @@ public class DevController : AbpController
     [HttpGet("mvc")]
     public object MvcOptions()
     {
-        var uuid1 = GuidGenerator.Create();
-        Thread.Sleep(100);
-        var uuid2 = GuidGenerator.Create();
-        Thread.Sleep(100);
-        var uuid3 = GuidGenerator.Create();
+        // var uuid1 = GuidGenerator.Create();
+        // Thread.Sleep(100);
+        // var uuid2 = GuidGenerator.Create();
+        // Thread.Sleep(100);
+        // var uuid3 = GuidGenerator.Create();
+
+        var abpLocalizationOptions = LazyServiceProvider.LazyGetRequiredService<IOptions<AbpLocalizationOptions>>().Value;
 
         var mvc = LazyServiceProvider.LazyGetRequiredService<IOptions<MvcOptions>>().Value;
         return new
@@ -32,9 +34,7 @@ public class DevController : AbpController
             mvc.Filters,
             mvc.Conventions,
             mvc.ModelBinderProviders,
-            uuid1,
-            uuid2,
-            uuid3
+            abpLocalizationOptions
         };
     }
 
@@ -61,10 +61,45 @@ public class DevController : AbpController
     {
         throw new NotImplementedException();
     }
-    
+
     [HttpGet("authorizationException")]
     public void MapAuthorizationException()
     {
         throw new AbpAuthorizationException();
     }
+
+    [HttpGet("files")]
+    public object VirtualFile()
+    {
+        var virtualFileProvider = LazyServiceProvider.LazyGetRequiredService<IVirtualFileProvider>();
+
+        return virtualFileProvider.GetDirectoryContents("/Resources");
+    }
+    
+    
+    [HttpGet("lang")]
+    public object Lang()
+    {
+        return L.GetAllStrings(true);
+    }
+
+    // [HttpGet("lang")]
+    // public object AppLang()
+    // {
+    //     // var localizer = StringLocalizerFactory.Create(typeof(AppResource));
+    //     // return localizer.GetAllStrings();
+    // }
+    //
+    // [HttpGet("default-local")]
+    // public string DefaultLocal()
+    // {
+    //     return L["Permission:Query"];
+    // }
+    //
+    // [HttpGet("app-local")]
+    // public string AppLocal()
+    // {
+    //     // var localizer = StringLocalizerFactory.Create(typeof(AppResource));
+    //     // return localizer["Permission:Query"];
+    // }
 }
