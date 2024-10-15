@@ -73,10 +73,15 @@ public class DevController : AbpController
     {
         var virtualFileProvider = LazyServiceProvider.LazyGetRequiredService<IVirtualFileProvider>();
 
-        return virtualFileProvider.GetDirectoryContents("/Resources");
+        var all = virtualFileProvider.GetDirectoryContents("").ToList();
+        return new
+        {
+            embeds = virtualFileProvider.GetDirectoryContents("/Yi").ToList(),
+            resources = virtualFileProvider.GetDirectoryContents("/Resources").ToList(),
+        };
     }
-    
-    
+
+
     [HttpGet("lang")]
     public object Lang()
     {

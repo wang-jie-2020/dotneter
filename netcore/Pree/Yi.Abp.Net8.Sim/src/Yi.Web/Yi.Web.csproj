@@ -38,6 +38,9 @@
 
     <ItemGroup>
         <Content Remove="Resources\**\*.json"/>
-        <EmbeddedResource Include="Resources\**\*.json"/>
+        <None Include="Resources\**\*.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <!-- <EmbeddedResource Include="Resources\**\*.json"/>-->
     </ItemGroup>
 </Project>

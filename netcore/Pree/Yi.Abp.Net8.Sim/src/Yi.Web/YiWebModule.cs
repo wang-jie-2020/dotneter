@@ -77,10 +77,14 @@ public class YiWebModule : AbpModule
 
         Configure<AbpVirtualFileSystemOptions>(options =>
         {
-            options.FileSets.AddEmbedded<YiWebModule>(
-                baseNamespace: "Yi.Web",
-                baseFolder: "/Resources"
-            );
+            // options.FileSets.AddEmbedded<YiWebModule>(
+            //     baseNamespace: "Yi.Web",
+            //     baseFolder: "Resources"
+            // );
+
+            //在项目下也许并不适合资源嵌入
+            options.FileSets.AddEmbedded<YiWebModule>();
+            options.FileSets.ReplaceEmbeddedByPhysical<YiWebModule>(AppContext.BaseDirectory);
         });
 
         Configure<AbpLocalizationOptions>(options =>
@@ -268,7 +272,7 @@ public class YiWebModule : AbpModule
 
         //静态资源
         app.UseStaticFiles();
-        
+
         // app.UseAbpRequestLocalization(options =>
         // {
         //     var defaultCulture = new CultureInfo("zh-cn");
