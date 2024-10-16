@@ -60,7 +60,7 @@ public class YiWebModule : AbpModule
         });
 
         Configure<AbpAntiForgeryOptions>(options => { options.AutoValidate = false; });
-        
+
         //配置多租户
         Configure<AbpTenantResolveOptions>(options =>
         {
@@ -75,11 +75,6 @@ public class YiWebModule : AbpModule
 
         Configure<AbpVirtualFileSystemOptions>(options =>
         {
-            // options.FileSets.AddEmbedded<YiWebModule>(
-            //     baseNamespace: "Yi.Web",
-            //     baseFolder: "Resources"
-            // );
-
             //在项目下也许并不适合资源嵌入
             options.FileSets.AddEmbedded<YiWebModule>();
             options.FileSets.ReplaceEmbeddedByPhysical<YiWebModule>(AppContext.BaseDirectory);
@@ -87,7 +82,7 @@ public class YiWebModule : AbpModule
 
         Configure<AbpLocalizationOptions>(options =>
         {
-            var defaultResource = options.Resources.Get<DefaultResource>()
+            options.Resources.Get<DefaultResource>()
                 .AddVirtualJson("/Resources");
         });
 
@@ -95,7 +90,7 @@ public class YiWebModule : AbpModule
         // {
         //     options.SendExceptionsDetailsToClients = host.IsDevelopment() || configuration["App:SendExceptions"] == "true";
         // });
-        
+
         //设置api格式
         context.Services.AddControllers().AddNewtonsoftJson(options =>
         {
@@ -282,7 +277,7 @@ public class YiWebModule : AbpModule
             defaultCulture.DateTimeFormat.SetAllDateTimePatterns(new[] { "H:mm" }, 't');
 
             options.DefaultRequestCulture = new RequestCulture(defaultCulture);
-            
+
             options.SupportedCultures = options.SupportedUICultures = new List<CultureInfo>
             {
                 new("en"),
