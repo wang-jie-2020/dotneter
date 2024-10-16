@@ -3,6 +3,7 @@ using System.Text;
 using System.Threading.RateLimiting;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Converters;
@@ -61,7 +62,10 @@ public class YiWebModule : AbpModule
 
         Configure<AbpAntiForgeryOptions>(options => { options.AutoValidate = false; });
 
-        Configure<AbpExceptionHandlingOptions>(options => { options.SendExceptionsDetailsToClients = host.IsDevelopment() || configuration["App:SendExceptions"] == "true"; });
+        // Configure<AbpExceptionHandlingOptions>(options =>
+        // {
+        //     options.SendExceptionsDetailsToClients = host.IsDevelopment() || configuration["App:SendExceptions"] == "true";
+        // });
 
         //配置多租户
         Configure<AbpTenantResolveOptions>(options =>
@@ -90,7 +94,6 @@ public class YiWebModule : AbpModule
         Configure<AbpLocalizationOptions>(options =>
         {
             var defaultResource = options.Resources.Get<DefaultResource>();
-            defaultResource.DefaultCultureName = "zh";
             defaultResource.AddVirtualJson("/Resources");
         });
 
@@ -273,14 +276,20 @@ public class YiWebModule : AbpModule
         //静态资源
         app.UseStaticFiles();
 
-        // app.UseAbpRequestLocalization(options =>
-        // {
-        //     var defaultCulture = new CultureInfo("zh-cn");
-        //     defaultCulture.DateTimeFormat.SetAllDateTimePatterns(new[] { "H:mm:ss" }, 'T');
-        //     defaultCulture.DateTimeFormat.SetAllDateTimePatterns(new[] { "H:mm" }, 't');
-        //
-        //     options.DefaultRequestCulture = new RequestCulture(defaultCulture);
-        // });
+        app.UseAbpRequestLocalization(options =>
+        {
+            var defaultCulture = new CultureInfo("zh");
+            defaultCulture.DateTimeFormat.SetAllDateTimePatterns(new[] { "H:mm:ss" }, 'T');
+            defaultCulture.DateTimeFormat.SetAllDateTimePatterns(new[] { "H:mm" }, 't');
+
+            options.DefaultRequestCulture = new RequestCulture(defaultCulture);
+
+            options.SupportedCultures = options.SupportedUICultures = new List<CultureInfo>
+            {
+                new("en"),
+                new("zh"),
+            };
+        });
 
         //工作单元
         app.UseUnitOfWork();

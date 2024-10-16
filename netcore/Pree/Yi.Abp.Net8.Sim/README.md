@@ -35,6 +35,11 @@
   - 登录日志,操作日志
   - AbpInterceptor 示例见OperLogInterceptor
 
+- 国际化
+  - vue-i18n 引了功能,菜单面包屑之类,$t的改写不做了
+  - abp (1) json嵌入资源似乎不合适项目方式 (2) 各模块默认实参对象都是DefaultResource,故不再新建
+  - 多语言的Provider是否考虑动态DB未想好,实现上有参考
+
 ## TODO
   - orm - EntityFrameworkCore ???
   - tenant
@@ -52,9 +57,7 @@
   - 国际化
     - BusinessException、FriendlyException
     - DateTime.Now UTC.Now
-    - 前后端多语言
     - Excel
-    - 文本的DBProvider
 
 
 
