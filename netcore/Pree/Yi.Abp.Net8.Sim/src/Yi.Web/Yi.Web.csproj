@@ -5,20 +5,20 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
-    <Import Project="..\..\common.props"/>
+    <Import Project="..\..\common.props" />
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.3"/>
-        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.3"/>
-        <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.6"/>
-        <PackageReference Include="Serilog.AspNetCore" Version="8.0.1"/>
-        <PackageReference Include="Serilog.Sinks.Async" Version="1.5.0"/>
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.3" />
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.3" />
+        <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.6" />
+        <PackageReference Include="Serilog.AspNetCore" Version="8.0.1" />
+        <PackageReference Include="Serilog.Sinks.Async" Version="1.5.0" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Yi.Admin\Yi.Admin.csproj"/>
-        <ProjectReference Include="..\Yi.AspNetCore\Yi.AspNetCore.csproj"/>
-        <ProjectReference Include="..\Yi.System\Yi.System.csproj"/>
+        <ProjectReference Include="..\Yi.Admin\Yi.Admin.csproj" />
+        <ProjectReference Include="..\Yi.AspNetCore\Yi.AspNetCore.csproj" />
+        <ProjectReference Include="..\Yi.System\Yi.System.csproj" />
     </ItemGroup>
 
     <ItemGroup>
@@ -37,7 +37,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Content Remove="Resources\**\*.json"/>
+        <Content Remove="Resources\**\*.json" />
         <None Include="Resources\**\*.json">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>

@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Options;
 using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.Authorization;
+using Volo.Abp.ExceptionHandling.Localization;
 using Volo.Abp.Localization;
 using Volo.Abp.VirtualFileSystem;
 using Yi.AspNetCore.System;
@@ -86,6 +87,13 @@ public class DevController : AbpController
     public object Lang()
     {
         return L.GetAllStrings(true);
+    }
+    
+    [HttpGet("lang2")]
+    public object Lang2()
+    {
+        var localizer = StringLocalizerFactory.Create(typeof(AbpExceptionHandlingResource));
+        return localizer.GetAllStrings(true);
     }
 
     // [HttpGet("lang")]

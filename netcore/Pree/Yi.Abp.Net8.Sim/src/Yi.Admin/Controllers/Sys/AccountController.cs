@@ -111,7 +111,9 @@ public class AccountController : AbpController
         if (_rbacOptions.EnableCaptcha)
         {
             if (!_captcha.Validate(input.Uuid, input.Code))
-                throw new UserFriendlyException("验证码错误");
+            {
+                throw new BusinessException(UserConst.InvalidVerificationCode);
+            }
         }
     }
 

@@ -16,6 +16,8 @@ public class UserConst
     public const string Name_Not_Allowed = "用户名被禁止";
     public const string Phone_Repeat = "手机号已重复";
 
+    public const string InvalidVerificationCode = "Account:010001";
+    
     //子租户管理员
     public const string Admin = "cc";
     public const string AdminRolesCode = "admin";

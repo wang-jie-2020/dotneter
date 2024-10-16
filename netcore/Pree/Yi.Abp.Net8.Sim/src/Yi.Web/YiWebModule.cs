@@ -8,7 +8,6 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Converters;
 using Utils.Minio;
-using Volo.Abp.AspNetCore.ExceptionHandling;
 using Volo.Abp.AspNetCore.MultiTenancy;
 using Volo.Abp.AspNetCore.Mvc.AntiForgery;
 using Volo.Abp.Auditing;
@@ -61,12 +60,7 @@ public class YiWebModule : AbpModule
         });
 
         Configure<AbpAntiForgeryOptions>(options => { options.AutoValidate = false; });
-
-        // Configure<AbpExceptionHandlingOptions>(options =>
-        // {
-        //     options.SendExceptionsDetailsToClients = host.IsDevelopment() || configuration["App:SendExceptions"] == "true";
-        // });
-
+        
         //配置多租户
         Configure<AbpTenantResolveOptions>(options =>
         {
@@ -93,10 +87,15 @@ public class YiWebModule : AbpModule
 
         Configure<AbpLocalizationOptions>(options =>
         {
-            var defaultResource = options.Resources.Get<DefaultResource>();
-            defaultResource.AddVirtualJson("/Resources");
+            var defaultResource = options.Resources.Get<DefaultResource>()
+                .AddVirtualJson("/Resources");
         });
 
+        // Configure<AbpExceptionHandlingOptions>(options =>
+        // {
+        //     options.SendExceptionsDetailsToClients = host.IsDevelopment() || configuration["App:SendExceptions"] == "true";
+        // });
+        
         //设置api格式
         context.Services.AddControllers().AddNewtonsoftJson(options =>
         {
@@ -283,11 +282,13 @@ public class YiWebModule : AbpModule
             defaultCulture.DateTimeFormat.SetAllDateTimePatterns(new[] { "H:mm" }, 't');
 
             options.DefaultRequestCulture = new RequestCulture(defaultCulture);
-
+            
             options.SupportedCultures = options.SupportedUICultures = new List<CultureInfo>
             {
                 new("en"),
-                new("zh"),
+                new("fr"),
+                new("zh-CN"),
+                new("zh-Hans")
             };
         });
 

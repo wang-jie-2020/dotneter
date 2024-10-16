@@ -6,6 +6,7 @@
     "Permission:Update": "Update",
     "Permission:Delete": "Delete",
     "Permission:Export": "Export",
-    "Permission:Enable": "Enable|Disable"
+    "Permission:Enable": "Enable|Disable",
+    "Account:010001": "Invalid Verification Code"
   }
 }
