@@ -130,9 +130,9 @@ service.interceptors.response.use(res => {
   error => {
 
     console.log(error.response,"error")
-    const errorRes=error.response;
+    const errorRes = error.response;
     const code = errorRes.status || 200;
-    const msg = `${errorRes.data?.error?.message}` ;
+    const msg = `${errorRes.data?.error?.message || errorRes.data?.message}` ;
     handler(code, msg);
     return Promise.reject(error)
   }
