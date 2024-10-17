@@ -88,7 +88,7 @@ public class YiExceptionFilter : IAsyncExceptionFilter
             // {
             //     context.HttpContext.Response.StatusCode = (int)HttpStatusCode.OK;
             // }
-            context.Result = new ObjectResult(AjaxResult.Error(remoteServiceErrorInfo.Code ?? "1", remoteServiceErrorInfo.Message, remoteServiceErrorInfo.Details));
+            context.Result = new ObjectResult(AjaxResult.Error(remoteServiceErrorInfo.Code, remoteServiceErrorInfo.Message, remoteServiceErrorInfo.Details));
         }
 
         context.ExceptionHandled = true; //Handled!

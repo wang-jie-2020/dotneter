@@ -120,11 +120,19 @@ service.interceptors.response.use(res => {
   //   return res.data
   // }
 
-  // const code = res.data.status || 200;
+  //const code = res.data.status || 200;
   // // 获取错误信息
   // const msg = `${res.data.errors.message},详细信息：${details}` ;
 
   // handler(code, msg);
+
+    const code = res.data.code || 200;
+    const msg = `${res.data?.error?.message || res.data?.message}` ;
+
+    if(code === 1) {
+      handler(code, msg)
+      return Promise.reject('error')
+    }
   return Promise.resolve(res);
 },
   error => {
@@ -200,6 +208,11 @@ const handler = (code, msg) => {
         message: "404未找到资源",
         type: 'error'
       });
+      break;
+    case 1:
+      ElNotification.error({
+        title: msg
+      })
       break;
     //正常
     case 200:

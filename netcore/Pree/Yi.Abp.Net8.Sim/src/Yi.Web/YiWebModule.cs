@@ -272,7 +272,7 @@ public class YiWebModule : AbpModule
 
         app.UseAbpRequestLocalization(options =>
         {
-            var defaultCulture = new CultureInfo("zh");
+            var defaultCulture = new CultureInfo("zh-CN");
             defaultCulture.DateTimeFormat.SetAllDateTimePatterns(new[] { "H:mm:ss" }, 'T');
             defaultCulture.DateTimeFormat.SetAllDateTimePatterns(new[] { "H:mm" }, 't');
 

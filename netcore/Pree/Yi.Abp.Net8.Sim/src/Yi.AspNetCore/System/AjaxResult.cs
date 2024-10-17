@@ -3,12 +3,12 @@
 public class AjaxResult
 {
     /// <summary>
-    /// 状态码
+    /// 状态码 0=成功 1=失败
     /// </summary>
-    public string Code { get; set; }
+    public int Code { get; set; }
 
     /// <summary>
-    /// 类型success、warning、error
+    /// 错误类型码 
     /// </summary>
     public string Type { get; set; }
 
@@ -36,8 +36,8 @@ public class AjaxResult
     {
         return new AjaxResult()
         {
-            Code = "0",
-            Type = "success",
+            Code = 0,
+            Type = "",
             Message = message,
             Details = "",
             Time = DateTime.Now
@@ -48,8 +48,8 @@ public class AjaxResult
     {
         return new AjaxResult()
         {
-            Code = "0",
-            Type = "success",
+            Code = 0,
+            Type = "",
             Message = message,
             Details = "",
             Time = DateTime.Now,
@@ -61,20 +61,20 @@ public class AjaxResult
     {
         return new AjaxResult()
         {
-            Code = "1",
-            Type = "error",
+            Code = 1,
+            Type = "",
             Message = message,
             Details = details,
             Time = DateTime.Now
         };
     }
 
-    public static AjaxResult Error(string code, string message, string details = "")
+    public static AjaxResult Error(string type, string message, string details = "")
     {
         return new AjaxResult()
         {
-            Code = code,
-            Type = "error",
+            Code = 1,
+            Type = type,
             Message = message,
             Details = details,
             Time = DateTime.Now
@@ -93,7 +93,7 @@ public class AjaxResult<T> : AjaxResult
     {
         return new AjaxResult<T>()
         {
-            Code = "0",
+            Code = 0,
             Type = "success",
             Message = "",
             Details = "",
