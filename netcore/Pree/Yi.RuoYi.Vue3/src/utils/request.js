@@ -6,6 +6,7 @@ import { tansParams, blobValidate } from '@/utils/ruoyi'
 import cache from '@/plugins/cache'
 import { saveAs } from 'file-saver'
 import useUserStore from '@/store/modules/user'
+import useAppStore from "@/store/modules/app"
 import JsonBig from 'json-bigint'
 import qs from 'qs'
 
@@ -54,11 +55,16 @@ return qs.stringify(params, {arrayFormat: 'repeat'});
   }],
 })
 
-
+function getLanguage() {
+  let lang = useAppStore().lang || 'zh';
+  return lang == 'zh' ? 'zh-CN' : 'en'
+}
 
 
 // request拦截器
 service.interceptors.request.use(config => {
+
+  config.headers['Accept-Language'] = getLanguage();
 
   // 是否需要设置 token
   const isToken = (config.headers || {}).isToken === false
