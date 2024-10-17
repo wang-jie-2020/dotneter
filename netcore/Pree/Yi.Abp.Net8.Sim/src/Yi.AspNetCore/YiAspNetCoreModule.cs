@@ -93,11 +93,14 @@ public class YiAspNetCoreModule : AbpModule
         context.Services.AddTransient<PermissionFilter>();
         context.Services.AddSingleton<IOperLogStore, SimpleOperLogStore>();
 
-        context.Services.Replace(ServiceDescriptor.Transient<AbpExceptionFilter, YiExceptionFilter>());
+        context.Services.AddTransient<YiExceptionFilter>();
         context.Services.Configure<MvcOptions>(options =>
         {
-            options.Filters.Add<PermissionFilter>();
-            options.Filters.Add<OperLogFilter>();
+            options.Filters.AddService<PermissionFilter>();
+            options.Filters.AddService<OperLogFilter>();
+            
+            options.Filters.Remove(options.Filters.FirstOrDefault(metadata => (metadata as ServiceFilterAttribute)?.ServiceType == typeof(AbpExceptionFilter)));
+            options.Filters.AddService<YiExceptionFilter>();
         });
 
         // 雪花Id
@@ -105,7 +108,7 @@ public class YiAspNetCoreModule : AbpModule
 
         // uuid
         context.Services.AddTransient<IGuidGenerator, SequentialGuidGenerator>();
-        
+
         // interceptor
         context.Services.AddTransient<OperLogInterceptor>();
     }
