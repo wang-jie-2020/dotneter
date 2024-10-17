@@ -2,8 +2,9 @@
 using Microsoft.AspNetCore.Mvc.Filters;
 using Volo.Abp.AspNetCore.Mvc.ExceptionHandling;
 using Volo.Abp.Http;
+using Yi.AspNetCore.System;
 
-namespace Yi.AspNetCore.System.Exceptions;
+namespace Yi.AspNetCore.Exceptions;
 
 public class YiExceptionFilter : AbpExceptionFilter, IAsyncExceptionFilter
 {
