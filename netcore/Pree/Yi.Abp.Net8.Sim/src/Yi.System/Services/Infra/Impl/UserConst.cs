@@ -15,8 +15,8 @@ public class UserConst
     public const string No_Role = "登录禁用！该用户分配无任何角色，无意义登录！";
     public const string Name_Not_Allowed = "用户名被禁止";
     public const string Phone_Repeat = "手机号已重复";
-
-    public const string InvalidVerificationCode = "Account:010001";
+    
+    public const string Invalid_VerificationCode = "Invalid_VerificationCode";
     
     //子租户管理员
     public const string Admin = "cc";

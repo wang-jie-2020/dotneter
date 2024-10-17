@@ -7,6 +7,6 @@
     "Permission:Delete": "删除",
     "Permission:Export": "导出",
     "Permission:Enable": "启用|禁用",
-    "Account:010001": "验证码错误"
+    "Invalid_VerificationCode": "验证码错误"
   }
 }

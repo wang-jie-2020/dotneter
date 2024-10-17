@@ -113,7 +113,7 @@ public class AccountController : AbpController
         {
             if (!_captcha.Validate(input.Uuid, input.Code))
             {
-                throw Oops.Oh(UserConst.InvalidVerificationCode);
+                throw Oops.Oh(UserConst.Invalid_VerificationCode);
             }
         }
     }
