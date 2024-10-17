@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Net;
+using System.Text;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Abstractions;
@@ -83,6 +84,10 @@ public class YiExceptionFilter : IAsyncExceptionFilter
             //context.Result = new ObjectResult(new RemoteServiceErrorResponse(remoteServiceErrorInfo));
             
             //AjaxResult
+            // if (context.Exception is IBusinessException)
+            // {
+            //     context.HttpContext.Response.StatusCode = (int)HttpStatusCode.OK;
+            // }
             context.Result = new ObjectResult(AjaxResult.Error(remoteServiceErrorInfo.Code ?? "1", remoteServiceErrorInfo.Message, remoteServiceErrorInfo.Details));
         }
 

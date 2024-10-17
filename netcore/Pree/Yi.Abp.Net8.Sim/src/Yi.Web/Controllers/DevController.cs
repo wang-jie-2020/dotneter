@@ -7,6 +7,7 @@ using Volo.Abp.Localization;
 using Volo.Abp.VirtualFileSystem;
 using Yi.AspNetCore.System;
 using Yi.AspNetCore.System.Events;
+using Yi.Sys.Services.Infra.Impl;
 
 namespace Yi.Web.Controllers;
 
@@ -21,20 +22,14 @@ public class DevController : AbpController
     [HttpGet("mvc")]
     public object MvcOptions()
     {
-        // var uuid1 = GuidGenerator.Create();
-        // Thread.Sleep(100);
-        // var uuid2 = GuidGenerator.Create();
-        // Thread.Sleep(100);
-        // var uuid3 = GuidGenerator.Create();
-
+        var mvcOptions = LazyServiceProvider.LazyGetRequiredService<IOptions<MvcOptions>>().Value;
         var abpLocalizationOptions = LazyServiceProvider.LazyGetRequiredService<IOptions<AbpLocalizationOptions>>().Value;
-
-        var mvc = LazyServiceProvider.LazyGetRequiredService<IOptions<MvcOptions>>().Value;
+        
         return new
         {
-            mvc.Filters,
-            mvc.Conventions,
-            mvc.ModelBinderProviders,
+            mvcOptions.Filters,
+            mvcOptions.Conventions,
+            mvcOptions.ModelBinderProviders,
             abpLocalizationOptions
         };
     }
@@ -46,7 +41,7 @@ public class DevController : AbpController
     }
 
     [HttpGet("success2")]
-    public AjaxResult<LoginEventArgs> MapSuccess2()
+    public AjaxResult<LoginEventArgs> MapSuccess2 ()
     {
         return AjaxResult<LoginEventArgs>.Success(new LoginEventArgs());
     }
@@ -54,19 +49,25 @@ public class DevController : AbpController
     [HttpGet("error")]
     public AjaxResult MapError()
     {
-        return AjaxResult.Error("123123123");
+        return AjaxResult.Error("123");
     }
 
     [HttpGet("exception")]
     public void MapException()
     {
-        throw new NotImplementedException();
+        throw new Exception();
     }
 
     [HttpGet("authorizationException")]
     public void MapAuthorizationException()
     {
         throw new AbpAuthorizationException();
+    }
+    
+    [HttpGet("businessException")]
+    public void MapBusinessException()
+    {
+        throw new BusinessException(UserConst.InvalidVerificationCode);
     }
 
     [HttpGet("files")]
@@ -81,8 +82,7 @@ public class DevController : AbpController
             resources = virtualFileProvider.GetDirectoryContents("/Resources").ToList(),
         };
     }
-
-
+    
     [HttpGet("lang")]
     public object Lang()
     {
@@ -95,24 +95,4 @@ public class DevController : AbpController
         var localizer = StringLocalizerFactory.Create(typeof(AbpExceptionHandlingResource));
         return localizer.GetAllStrings(true);
     }
-
-    // [HttpGet("lang")]
-    // public object AppLang()
-    // {
-    //     // var localizer = StringLocalizerFactory.Create(typeof(AppResource));
-    //     // return localizer.GetAllStrings();
-    // }
-    //
-    // [HttpGet("default-local")]
-    // public string DefaultLocal()
-    // {
-    //     return L["Permission:Query"];
-    // }
-    //
-    // [HttpGet("app-local")]
-    // public string AppLocal()
-    // {
-    //     // var localizer = StringLocalizerFactory.Create(typeof(AppResource));
-    //     // return localizer["Permission:Query"];
-    // }
 }
