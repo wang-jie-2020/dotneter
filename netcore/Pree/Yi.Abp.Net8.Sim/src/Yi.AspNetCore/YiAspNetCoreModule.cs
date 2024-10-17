@@ -8,6 +8,7 @@ using Microsoft.Extensions.Options;
 using SqlSugar;
 using Volo.Abp.Application;
 using Volo.Abp.AspNetCore.Authentication.JwtBearer;
+using Volo.Abp.AspNetCore.ExceptionHandling;
 using Volo.Abp.AspNetCore.MultiTenancy;
 using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.AspNetCore.Mvc.ExceptionHandling;
@@ -94,12 +95,28 @@ public class YiAspNetCoreModule : AbpModule
         context.Services.AddSingleton<IOperLogStore, SimpleOperLogStore>();
 
         context.Services.AddTransient<YiExceptionFilter>();
+        context.Services.Replace(ServiceDescriptor.Transient<IExceptionToErrorInfoConverter, YiExceptionToErrorInfoConverter>());
         context.Services.Configure<MvcOptions>(options =>
         {
+            // 权限过滤器
             options.Filters.AddService<PermissionFilter>();
-            options.Filters.AddService<OperLogFilter>();
             
-            options.Filters.Remove(options.Filters.FirstOrDefault(metadata => (metadata as ServiceFilterAttribute)?.ServiceType == typeof(AbpExceptionFilter)));
+            // 操作日志过滤器
+            options.Filters.AddService<OperLogFilter>();
+
+            // 错误过滤器
+            var abpExceptionFilter = options.Filters.FirstOrDefault(metadata => (metadata as ServiceFilterAttribute)?.ServiceType == typeof(AbpExceptionFilter));
+            if (abpExceptionFilter != null)
+            {
+                options.Filters.Remove(abpExceptionFilter);
+            }
+            
+            var abpExceptionPageFilter = options.Filters.FirstOrDefault(metadata => (metadata as ServiceFilterAttribute)?.ServiceType == typeof(AbpExceptionPageFilter));
+            if (abpExceptionPageFilter != null)
+            {
+                options.Filters.Remove(abpExceptionPageFilter);
+            }
+            
             options.Filters.AddService<YiExceptionFilter>();
         });
 

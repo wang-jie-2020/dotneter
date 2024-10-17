@@ -42,7 +42,7 @@ public class DevController : AbpController
     [HttpGet("success")]
     public AjaxResult MapSuccess()
     {
-        return AjaxResult.Success();
+        return AjaxResult.Success(EventArgs.Empty);
     }
 
     [HttpGet("success2")]

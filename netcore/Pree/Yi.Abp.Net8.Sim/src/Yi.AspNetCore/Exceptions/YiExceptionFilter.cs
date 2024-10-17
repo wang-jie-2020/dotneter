@@ -18,10 +18,12 @@ using Yi.AspNetCore.System;
 
 namespace Yi.AspNetCore.Exceptions;
 
+/// <summary>
+///   <see cref="AbpExceptionFilter"/>
+///     RemoteServiceErrorResponse -> AjaxResult
+/// </summary>
 public class YiExceptionFilter : IAsyncExceptionFilter
 {
-    private AjaxResult _error;
-
     public async Task OnExceptionAsync(ExceptionContext context)
     {
         if (!ShouldHandleException(context))
@@ -35,8 +37,6 @@ public class YiExceptionFilter : IAsyncExceptionFilter
     
     protected virtual bool ShouldHandleException(ExceptionContext context)
     {
-        //TODO: Create DontWrap attribute to control wrapping..?
-
         if (context.ExceptionHandled)
         {
             return false;
@@ -63,8 +63,6 @@ public class YiExceptionFilter : IAsyncExceptionFilter
 
     protected async Task HandleAndWrapException(ExceptionContext context)
     {
-        //TODO: Trigger an AbpExceptionHandled event or something like that.
-
         LogException(context, out var remoteServiceErrorInfo);
 
         await context.GetRequiredService<IExceptionNotifier>().NotifyAsync(new ExceptionNotificationContext(context.Exception));
@@ -81,12 +79,14 @@ public class YiExceptionFilter : IAsyncExceptionFilter
                 .GetRequiredService<IHttpExceptionStatusCodeFinder>()
                 .GetStatusCode(context.HttpContext, context.Exception);
 
-            context.Result = new ObjectResult(new RemoteServiceErrorResponse(remoteServiceErrorInfo));
+            //abp RemoteServiceErrorResponse
+            //context.Result = new ObjectResult(new RemoteServiceErrorResponse(remoteServiceErrorInfo));
+            
+            //AjaxResult
+            context.Result = new ObjectResult(AjaxResult.Error(remoteServiceErrorInfo.Code ?? "1", remoteServiceErrorInfo.Message, remoteServiceErrorInfo.Details));
         }
 
         context.ExceptionHandled = true; //Handled!
-        
-        context.Result = new ObjectResult(_error);
     }
 
     protected void LogException(ExceptionContext context, out RemoteServiceErrorInfo remoteServiceErrorInfo)
@@ -107,7 +107,5 @@ public class YiExceptionFilter : IAsyncExceptionFilter
         var logLevel = context.Exception.GetLogLevel();
         logger.LogWithLevel(logLevel, remoteServiceErrorInfoBuilder.ToString());
         logger.LogException(context.Exception, logLevel);
-        
-        _error = AjaxResult.Error(remoteServiceErrorInfo.Code ?? "1", remoteServiceErrorInfo.Message, remoteServiceErrorInfo.Details);
     }
 }
