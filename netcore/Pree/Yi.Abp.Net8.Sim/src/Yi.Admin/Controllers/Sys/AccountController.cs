@@ -10,6 +10,7 @@ using Volo.Abp.Caching;
 using Volo.Abp.Guids;
 using Volo.Abp.Uow;
 using Volo.Abp.Users;
+using Yi.AspNetCore.System;
 using Yi.AspNetCore.System.Permissions;
 using Yi.Sys.Domains.Infra;
 using Yi.Sys.Domains.Infra.Entities;
@@ -112,7 +113,7 @@ public class AccountController : AbpController
         {
             if (!_captcha.Validate(input.Uuid, input.Code))
             {
-                throw new BusinessException(UserConst.InvalidVerificationCode);
+                throw Oops.Oh(UserConst.InvalidVerificationCode);
             }
         }
     }
