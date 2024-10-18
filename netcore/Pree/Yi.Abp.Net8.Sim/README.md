@@ -31,6 +31,8 @@ GitHub中搜索不到简易基架,在Yi.Abp上继续整合.核心思路是保证
     - vue中增加vue-i18n,路由和面包屑,登录页面补了示例,其他页面不动
     - abp的本地化模式保留,但json作为嵌入资源似乎不合适项目
     - zh-CN -> zh-Hans -> zh 的关系不考虑了,约定web端zh-CN
+    - DateTime.Now TimeZone 要考虑实际情况,未能进行
+    - Excel 要考虑实际情况,未能进行
     
 - SYS(RuoYi)
   - 示例LocalEventBus -> LoginEvent
@@ -53,11 +55,6 @@ GitHub中搜索不到简易基架,在Yi.Abp上继续整合.核心思路是保证
  - 监控
    - MiniProfiler
    - SkyWalking
-   
- - 国际化
-  - BusinessException、FriendlyException
-  - DateTime.Now UTC.Now IClock
-  - Excel
 
 
 
