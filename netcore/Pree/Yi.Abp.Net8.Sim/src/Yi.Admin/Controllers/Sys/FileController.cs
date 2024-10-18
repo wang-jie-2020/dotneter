@@ -26,7 +26,7 @@ public class FileController : AbpController
     {
         if (file.Count == 0)
         {
-            throw new ArgumentException("文件上传为空！");
+            throw new ArgumentException("missing files");
         }
 
         var urls = new List<string>();
