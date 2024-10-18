@@ -105,7 +105,7 @@ public class RoleService : ApplicationService, IRoleService
     public async Task<RoleDto> UpdateStateAsync(Guid id, bool state)
     {
         var entity = await _repository.GetByIdAsync(id);
-        if (entity is null) throw new ApplicationException("角色未存在");
+        if (entity is null) throw new EntityNotFoundException();
 
         entity.State = state;
         await _repository.UpdateAsync(entity);
