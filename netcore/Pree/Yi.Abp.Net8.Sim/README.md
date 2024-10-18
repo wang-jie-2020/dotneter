@@ -42,8 +42,11 @@ GitHub中搜索不到简易基架,在Yi.Abp上继续整合.核心思路是保证
   - User的Token超过Cookie长度限制
   - 新增了Aop标注操作日志
 
+- Utils
+  - Swagger
+  - MiniProfiler
+
 - TODO
- - Serilog的滚动命名不能自定义
  - EntityFrameworkCore的分支
  - 租户
    - 租户DB隔离,很多系统可能不够资源

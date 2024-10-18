@@ -59,7 +59,10 @@ public class YiWebModule : AbpModule
             cacheOptions.KeyPrefix = "Yi:";
         });
 
-        Configure<AbpAntiForgeryOptions>(options => { options.AutoValidate = false; });
+        Configure<AbpAntiForgeryOptions>(options =>
+        {
+            options.AutoValidate = false;
+        });
 
         //配置多租户
         Configure<AbpTenantResolveOptions>(options =>
@@ -92,11 +95,12 @@ public class YiWebModule : AbpModule
         // });
 
         //设置api格式
-        context.Services.AddControllers().AddNewtonsoftJson(options =>
-        {
-            options.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";
-            options.SerializerSettings.Converters.Add(new StringEnumConverter());
-        });
+        context.Services.AddControllers()
+            .AddNewtonsoftJson(options =>
+            {
+                options.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";
+                options.SerializerSettings.Converters.Add(new StringEnumConverter());
+            });
 
         //跨域
         context.Services.AddCors(options =>
@@ -216,7 +220,16 @@ public class YiWebModule : AbpModule
         context.Services.AddAuthorization();
 
         //Swagger
-        context.Services.AddYiSwaggerGen<YiWebModule>(options => { options.SwaggerDoc("default", new OpenApiInfo { Title = "Yi", Version = "v1", Description = "Yi" }); });
+        context.Services.AddYiSwaggerGen<YiWebModule>(options =>
+        {
+            options.SwaggerDoc("default", new OpenApiInfo { Title = "Yi", Version = "v1", Description = "Yi" });
+        });
+
+        //miniProfiler
+        context.Services.AddMiniProfiler(options =>
+        {
+            options.RouteBasePath = "/profiler";
+        });
 
         //minio
         if (configuration["Minio:IsEnabled"].To<bool>())
@@ -267,6 +280,9 @@ public class YiWebModule : AbpModule
         //swagger
         app.UseYiSwagger(c => c.SwaggerEndpoint("/swagger/default/swagger.json", "default"));
 
+        //MiniProfiler
+        app.UseMiniProfiler();
+        
         //静态资源
         app.UseStaticFiles();
 

@@ -1,10 +1,12 @@
 ﻿using System.Collections;
+using System.Diagnostics;
 using System.Reflection;
 using System.Text;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using SqlSugar;
+using StackExchange.Profiling;
 using Volo.Abp.Auditing;
 using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
@@ -20,6 +22,9 @@ namespace Yi.AspNetCore.SqlSugarCore;
 
 public class SqlSugarDbContext : ISqlSugarDbContext
 {
+    // protected static readonly DiagnosticListener s_diagnosticListener =
+    //     new DiagnosticListener("Microsoft.AspNetCore");
+    
     private ISqlSugarDbConnectionCreator _dbConnectionCreator;
 
     public SqlSugarDbContext(IAbpLazyServiceProvider lazyServiceProvider)
@@ -208,9 +213,8 @@ public class SqlSugarDbContext : ISqlSugarDbContext
                             entityInfo.SetValue(GuidGenerator.Create());
                         }
                     }
-
                 }
-                
+
                 if (entityInfo.PropertyName.Equals(nameof(IAuditedObject.CreationTime)))
                 {
                     //为空或者为默认最小值
@@ -297,10 +301,18 @@ public class SqlSugarDbContext : ISqlSugarDbContext
             var sb = new StringBuilder();
             sb.AppendLine();
             sb.AppendLine("==========Yi-SQL执行:==========");
-            sb.AppendLine(UtilMethods.GetSqlString(DbType.SqlServer, sql, pars));
+            sb.AppendLine(UtilMethods.GetSqlString(_dbConnectionCreator.Options.DbType ?? DbType.Sqlite, sql, pars));
             sb.AppendLine("===============================");
             Logger.CreateLogger<SqlSugarDbContext>().LogDebug(sb.ToString());
         }
+
+
+        // if (s_diagnosticListener.IsEnabled("Sugar.Executing"))
+        // {
+        //     s_diagnosticListener.Write("Sugar.Executing", UtilMethods.GetSqlString(_dbConnectionCreator.Options.DbType ?? DbType.Sqlite, sql, pars));
+        // }
+        
+        CustomTiming customTiming = MiniProfiler.Current?.CustomTiming("SqlSugar", UtilMethods.GetSqlString(_dbConnectionCreator.Options.DbType ?? DbType.Sqlite, sql, pars));
     }
 
     /// <summary>
