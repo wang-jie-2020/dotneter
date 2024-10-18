@@ -7,6 +7,7 @@ using Volo.Abp.Localization;
 using Volo.Abp.VirtualFileSystem;
 using Yi.AspNetCore.System;
 using Yi.AspNetCore.System.Events;
+using Yi.Sys.Domains.Infra.Consts;
 using Yi.Sys.Services.Infra.Impl;
 
 namespace Yi.Web.Controllers;
@@ -67,7 +68,7 @@ public class DevController : AbpController
     [HttpGet("businessException")]
     public void MapBusinessException()
     {
-        throw Oops.Oh(UserConst.Invalid_VerificationCode);
+        throw Oops.Oh(UserConst.VerificationCode_Invalid);
     }
 
     [HttpGet("files")]

@@ -13,6 +13,7 @@ using Volo.Abp.Users;
 using Yi.AspNetCore.System;
 using Yi.AspNetCore.System.Permissions;
 using Yi.Sys.Domains.Infra;
+using Yi.Sys.Domains.Infra.Consts;
 using Yi.Sys.Domains.Infra.Entities;
 using Yi.Sys.Domains.Infra.Repositories;
 using Yi.Sys.Options;
@@ -113,7 +114,7 @@ public class AccountController : AbpController
         {
             if (!_captcha.Validate(input.Uuid, input.Code))
             {
-                throw Oops.Oh(UserConst.Invalid_VerificationCode);
+                throw Oops.Oh(UserConst.VerificationCode_Invalid);
             }
         }
     }
@@ -200,10 +201,10 @@ public class AccountController : AbpController
     private async Task ValidationPhone(string str_handset)
     {
         var res = Regex.IsMatch(str_handset, @"^\d{11}$");
-        if (res == false) throw Oops.Oh(UserConst.Phone_Invalid);
+        if (res == false) throw Oops.Oh(UserConst.User_Phone_Invalid);
         if (await _userRepository.IsAnyAsync(x => x.Phone.ToString() == str_handset))
         {
-            throw Oops.Oh(UserConst.Phone_Repeat);
+            throw Oops.Oh(UserConst.User_Phone_Repeat);
         }
     }
 

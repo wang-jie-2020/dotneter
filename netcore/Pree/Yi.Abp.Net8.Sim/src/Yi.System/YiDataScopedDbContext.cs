@@ -1,6 +1,7 @@
 ﻿using Volo.Abp.DependencyInjection;
 using Yi.AspNetCore.System.Permissions;
 using Yi.Sys.Domains.Infra;
+using Yi.Sys.Domains.Infra.Consts;
 using Yi.Sys.Domains.Infra.Entities;
 using Yi.Sys.Services.Infra.Impl;
 

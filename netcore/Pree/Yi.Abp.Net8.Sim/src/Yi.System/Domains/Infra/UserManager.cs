@@ -8,6 +8,7 @@ using Volo.Abp.Domain.Services;
 using Volo.Abp.EventBus.Local;
 using Volo.Abp.Guids;
 using Yi.AspNetCore.System;
+using Yi.Sys.Domains.Infra.Consts;
 using Yi.Sys.Domains.Infra.Entities;
 using Yi.Sys.Domains.Infra.Repositories;
 using Yi.Sys.Options;
@@ -99,14 +100,14 @@ public class UserManager : DomainService
 
         if (userEntity.EncryPassword?.Password.Length < 6)
         {
-            throw Oops.Oh(UserConst.Create_Passworld_Error);
+            throw Oops.Oh(UserConst.User_Password_Length);
         }
 
         if (userEntity.Phone is not null)
         {
             if (await _repository.IsAnyAsync(x => x.Phone == userEntity.Phone))
             {
-                throw Oops.Oh(UserConst.Phone_Repeat);
+                throw Oops.Oh(UserConst.User_Phone_Repeat);
             }
         }
 
@@ -132,12 +133,12 @@ public class UserManager : DomainService
     {
         if (input.UserName == UserConst.Admin || input.UserName == UserConst.TenantAdmin)
         {
-            throw Oops.Oh(UserConst.Name_Not_Allowed);
+            throw Oops.Oh(UserConst.User_Name_Not_Allowed);
         }
 
         if (input.UserName.Length < 2)
         {
-            throw Oops.Oh(UserConst.Name_Length);
+            throw Oops.Oh(UserConst.User_Name_Length);
         }
 
         // 正则表达式，匹配只包含数字和字母的字符串
@@ -146,7 +147,7 @@ public class UserManager : DomainService
         var isMatch = Regex.IsMatch(input.UserName, pattern);
         if (!isMatch)
         {
-            throw Oops.Oh(UserConst.Name_Invalid);
+            throw Oops.Oh(UserConst.User_Name_Invalid);
         }
     }
 

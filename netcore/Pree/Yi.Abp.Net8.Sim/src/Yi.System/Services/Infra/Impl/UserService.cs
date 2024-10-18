@@ -5,6 +5,7 @@ using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Entities;
 using Yi.AspNetCore.System;
 using Yi.Sys.Domains.Infra;
+using Yi.Sys.Domains.Infra.Consts;
 using Yi.Sys.Domains.Infra.Entities;
 using Yi.Sys.Services.Infra.Dtos;
 
@@ -88,7 +89,7 @@ public class UserService : ApplicationService, IUserService
     {
         if (input.UserName == UserConst.Admin || input.UserName == UserConst.TenantAdmin)
         {
-            throw Oops.Oh(UserConst.Name_Not_Allowed);
+            throw Oops.Oh(UserConst.User_Name_Not_Allowed);
         }
 
         if (await _repository.IsAnyAsync(u => input.UserName!.Equals(u.UserName) && !id.Equals(u.Id)))
