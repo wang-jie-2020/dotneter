@@ -87,9 +87,9 @@ public class UserService : ApplicationService, IUserService
 
     public async Task<UserGetOutputDto> UpdateAsync(Guid id, UserUpdateInput input)
     {
-        if (input.UserName == UserConst.Admin || input.UserName == UserConst.TenantAdmin)
+        if (input.UserName == AccountConst.Admin || input.UserName == AccountConst.TenantAdmin)
         {
-            throw Oops.Oh(UserConst.User_Name_Not_Allowed);
+            throw Oops.Oh(AccountConst.User_Name_Not_Allowed);
         }
 
         if (await _repository.IsAnyAsync(u => input.UserName!.Equals(u.UserName) && !id.Equals(u.Id)))
@@ -184,7 +184,7 @@ public class UserService : ApplicationService, IUserService
         var entity = await _repository.GetByIdAsync(id);
         if (entity is null)
         {
-            throw Oops.Oh(UserConst.User_Not_Exist);
+            throw Oops.Oh(AccountConst.User_Not_Exist);
         }
 
         entity.State = state;

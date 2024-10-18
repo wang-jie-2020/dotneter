@@ -114,7 +114,7 @@ public class AccountController : AbpController
         {
             if (!_captcha.Validate(input.Uuid, input.Code))
             {
-                throw Oops.Oh(UserConst.VerificationCode_Invalid);
+                throw Oops.Oh(AccountConst.VerificationCode_Invalid);
             }
         }
     }
@@ -131,7 +131,7 @@ public class AccountController : AbpController
     {
         if (_rbacOptions.EnableRegister == false)
         {
-            throw Oops.Oh(UserConst.Signup_Forbidden);
+            throw Oops.Oh(AccountConst.Signup_Forbidden);
         }
 
         if (_rbacOptions.EnableCaptcha)
@@ -201,10 +201,10 @@ public class AccountController : AbpController
     private async Task ValidationPhone(string str_handset)
     {
         var res = Regex.IsMatch(str_handset, @"^\d{11}$");
-        if (res == false) throw Oops.Oh(UserConst.User_Phone_Invalid);
+        if (res == false) throw Oops.Oh(AccountConst.User_Phone_Invalid);
         if (await _userRepository.IsAnyAsync(x => x.Phone.ToString() == str_handset))
         {
-            throw Oops.Oh(UserConst.User_Phone_Repeat);
+            throw Oops.Oh(AccountConst.User_Phone_Repeat);
         }
     }
 
@@ -222,7 +222,7 @@ public class AccountController : AbpController
         //防止暴刷
         if (value is not null)
         {
-            throw Oops.Oh(UserConst.VerificationCode_TooMuch)
+            throw Oops.Oh(AccountConst.VerificationCode_TooMuch)
                 .WithData("Phone", input.Phone);
         }
 
@@ -257,7 +257,7 @@ public class AccountController : AbpController
             return;
         }
 
-        throw Oops.Oh(UserConst.VerificationCode_NotMatched);
+        throw Oops.Oh(AccountConst.VerificationCode_NotMatched);
     }
 
     /// <summary>
@@ -278,7 +278,7 @@ public class AccountController : AbpController
         var menus = data.Menus.ToList();
 
         //为超级管理员直接给全部路由
-        if (UserConst.Admin.Equals(data.User.UserName))
+        if (AccountConst.Admin.Equals(data.User.UserName))
         {
             menus = ObjectMapper.Map<List<MenuEntity>, List<MenuDto>>(await _menuRepository.GetListAsync());
         }

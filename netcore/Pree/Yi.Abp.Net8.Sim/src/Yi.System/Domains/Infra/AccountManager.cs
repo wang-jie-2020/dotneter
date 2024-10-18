@@ -70,17 +70,17 @@ public class AccountManager : DomainService, IAccountManager
         //判断用户状态
         if (userInfo.User.State == false)
         {
-            throw Oops.Oh(UserConst.User_State);
+            throw Oops.Oh(AccountConst.User_State);
         }
 
         if (userInfo.RoleCodes.Count == 0)
         {
-            throw Oops.Oh(UserConst.User_No_Role);
+            throw Oops.Oh(AccountConst.User_No_Role);
         }
 
         if (userInfo.PermissionCodes.Count() == 0)
         {
-            throw Oops.Oh(UserConst.User_No_Permission);
+            throw Oops.Oh(AccountConst.User_No_Permission);
         }
 
         //这里抛出一个登录的事件,也可以在全部流程走完，在应用层组装
@@ -144,10 +144,10 @@ public class AccountManager : DomainService, IAccountManager
                 return;
             }
 
-            throw Oops.Oh(UserConst.Login_Error);
+            throw Oops.Oh(AccountConst.Login_Error);
         }
 
-        throw Oops.Oh(UserConst.Login_Not_Exist);
+        throw Oops.Oh(AccountConst.Login_Not_Exist);
     }
 
     /// <summary>
@@ -163,7 +163,7 @@ public class AccountManager : DomainService, IAccountManager
         var user = await _repository.GetByIdAsync(userId);
         if (!user.JudgePassword(oldPassword))
         {
-            throw Oops.Oh(UserConst.User_Password_NotMatched);
+            throw Oops.Oh(AccountConst.User_Password_NotMatched);
         }
 
         user.EncryPassword.Password = newPassword;
@@ -278,10 +278,10 @@ public class AccountManager : DomainService, IAccountManager
                     { Id = x.Id, DataScope = x.DataScope })));
         }
         
-        if (UserConst.Admin.Equals(dto.User.UserName))
+        if (AccountConst.Admin.Equals(dto.User.UserName))
         {
             //AddToClaim(claims, TokenClaimConst.Permission, UserConst.AdminPermissionCode);
-            AddToClaim(claims, TokenClaimConst.Roles, UserConst.AdminRolesCode);
+            AddToClaim(claims, TokenClaimConst.Roles, AccountConst.AdminRolesCode);
         }
         else
         {

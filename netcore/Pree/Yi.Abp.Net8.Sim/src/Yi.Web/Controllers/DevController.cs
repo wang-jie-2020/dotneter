@@ -68,7 +68,7 @@ public class DevController : AbpController
     [HttpGet("businessException")]
     public void MapBusinessException()
     {
-        throw Oops.Oh(UserConst.VerificationCode_Invalid);
+        throw Oops.Oh(AccountConst.VerificationCode_Invalid);
     }
 
     [HttpGet("files")]

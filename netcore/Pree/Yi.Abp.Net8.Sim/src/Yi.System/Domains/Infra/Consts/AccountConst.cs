@@ -3,7 +3,7 @@ namespace Yi.Sys.Domains.Infra.Consts;
 /// <summary>
 ///     常量定义
 /// </summary>
-public class UserConst
+public class AccountConst
 {
     public const string Signup_Forbidden = "暂未开放注册功能";
     

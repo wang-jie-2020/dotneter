@@ -34,7 +34,7 @@ public class YiDataScopedDbContext : SqlSugarDbContext
         }
         
         //管理员不过滤
-        if (CurrentUser.UserName.Equals(UserConst.Admin) || CurrentUser.Roles.Any(f => f.Equals(UserConst.AdminRolesCode)))
+        if (CurrentUser.UserName.Equals(AccountConst.Admin) || CurrentUser.Roles.Any(f => f.Equals(AccountConst.AdminRolesCode)))
         {
             return;
         }
