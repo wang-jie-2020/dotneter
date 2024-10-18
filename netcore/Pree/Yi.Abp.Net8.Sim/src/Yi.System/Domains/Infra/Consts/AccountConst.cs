@@ -7,8 +7,8 @@ public class AccountConst
 {
     public const string Signup_Forbidden = "暂未开放注册功能";
     
-    public const string Login_Error = "用户名或密码错误";
     public const string Login_Not_Exist = "用户名不存在";
+    public const string Login_NotMatched = "用户名或密码错误";
     
     public const string VerificationCode_Invalid = "Invalid_VerificationCode";
     public const string VerificationCode_TooMuch = "已发送过验证码，10分钟后可重试";

@@ -144,7 +144,7 @@ public class AccountManager : DomainService, IAccountManager
                 return;
             }
 
-            throw Oops.Oh(AccountConst.Login_Error);
+            throw Oops.Oh(AccountConst.Login_NotMatched);
         }
 
         throw Oops.Oh(AccountConst.Login_Not_Exist);
