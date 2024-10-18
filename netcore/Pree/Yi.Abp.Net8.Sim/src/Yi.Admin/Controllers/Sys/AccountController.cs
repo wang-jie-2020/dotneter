@@ -70,7 +70,7 @@ public class AccountController : AbpController
     {
         if (string.IsNullOrEmpty(input.Password) || string.IsNullOrEmpty(input.UserName))
         {
-            throw new UserFriendlyException("请输入合理数据！");
+            throw new ArgumentNullException();
         }
 
         //校验验证码
@@ -82,11 +82,11 @@ public class AccountController : AbpController
 
         //清缓存
         await _userCache.RemoveAsync(new UserInfoCacheKey(user.Id));
-        
+
         //获取token
         var accessToken = await _accountManager.GetTokenByUserIdAsync(user.Id);
         var refreshToken = _accountManager.CreateRefreshToken(user.Id);
-        
+
         return new { Token = accessToken, RefreshToken = refreshToken };
     }
 
@@ -130,13 +130,14 @@ public class AccountController : AbpController
     {
         if (_rbacOptions.EnableRegister == false)
         {
-            throw new UserFriendlyException("该系统暂未开放注册功能");
+            throw Oops.Oh(UserConst.Signup_Forbidden);
         }
 
         if (_rbacOptions.EnableCaptcha)
         {
             await ValidationPhoneCaptchaAsync(input);
         }
+
         await _accountManager.RegisterAsync(input.UserName, input.Password, input.Phone);
     }
 
@@ -152,9 +153,9 @@ public class AccountController : AbpController
         var userId = _currentUser.Id;
         if (userId is null)
         {
-            throw new UserFriendlyException("用户未登录");
+            throw new ArgumentNullException(nameof(CurrentUser));
         }
-        
+
         //此处优先从缓存中获取
         var output = await _userManager.GetInfoAsync(userId.Value);
         return output;
@@ -171,9 +172,9 @@ public class AccountController : AbpController
     {
         if (string.IsNullOrEmpty(input.Password))
         {
-            throw new UserFriendlyException("重置密码不能为空！");
+            throw new ArgumentNullException(nameof(input.Password));
         }
-        
+
         return await _accountManager.RestPasswordAsync(userId, input.Password);
     }
 
@@ -199,10 +200,10 @@ public class AccountController : AbpController
     private async Task ValidationPhone(string str_handset)
     {
         var res = Regex.IsMatch(str_handset, @"^\d{11}$");
-        if (res == false) throw new UserFriendlyException("手机号码格式错误！请检查");
+        if (res == false) throw Oops.Oh(UserConst.Phone_Invalid);
         if (await _userRepository.IsAnyAsync(x => x.Phone.ToString() == str_handset))
         {
-            throw new UserFriendlyException("该手机号已被注册！");
+            throw Oops.Oh(UserConst.Phone_Repeat);
         }
     }
 
@@ -220,9 +221,10 @@ public class AccountController : AbpController
         //防止暴刷
         if (value is not null)
         {
-            throw new UserFriendlyException($"{input.Phone}已发送过验证码，10分钟后可重试");
+            throw Oops.Oh(UserConst.VerificationCode_TooMuch)
+                .WithData("Phone", input.Phone);
         }
-        
+
         //生成一个4位数的验证码
         //发送短信，同时生成uuid
         ////key： 电话号码  value:验证码+uuid  
@@ -231,10 +233,10 @@ public class AccountController : AbpController
         // await _aliyunManger.SendSmsAsync(input.Phone, code);
 
         await _phoneCache.SetAsync(
-            new CaptchaPhoneCacheKey(input.Phone), 
+            new CaptchaPhoneCacheKey(input.Phone),
             new CaptchaPhoneCacheItem(code),
             new DistributedCacheEntryOptions { SlidingExpiration = TimeSpan.FromMinutes(10) });
-       
+
         return new
         {
             Uuid = uuid
@@ -254,7 +256,7 @@ public class AccountController : AbpController
             return;
         }
 
-        throw new UserFriendlyException("验证码错误");
+        throw Oops.Oh(UserConst.VerificationCode_NotMatched);
     }
 
     /// <summary>
@@ -268,9 +270,9 @@ public class AccountController : AbpController
         var userId = _currentUser.Id;
         if (_currentUser.Id is null)
         {
-            throw new AbpAuthorizationException("用户未登录");
+            throw new ArgumentNullException(nameof(CurrentUser));
         }
-        
+
         var data = await _userManager.GetInfoAsync(userId!.Value);
         var menus = data.Menus.ToList();
 
@@ -279,7 +281,7 @@ public class AccountController : AbpController
         {
             menus = ObjectMapper.Map<List<MenuEntity>, List<MenuDto>>(await _menuRepository.GetListAsync());
         }
-        
+
         //将后端菜单转换成前端路由，组件级别需要过滤
         var routers = ObjectMapper.Map<List<MenuDto>, List<MenuEntity>>(menus).Vue3RouterBuild();
         return routers;
@@ -298,6 +300,7 @@ public class AccountController : AbpController
         {
             return false;
         }
+
         await _userCache.RemoveAsync(new UserInfoCacheKey(userId.Value));
         return true;
     }
@@ -310,16 +313,11 @@ public class AccountController : AbpController
     [HttpPut("password")]
     public async Task<bool> UpdatePasswordAsync([FromBody] UpdatePasswordDto input)
     {
-        if (input.OldPassword.Equals(input.NewPassword))
-        {
-            throw new UserFriendlyException("无效更新！输入的数据，新密码不能与老密码相同");
-        }
-
         if (_currentUser.Id is null)
         {
-            throw new UserFriendlyException("用户未登录");
+            throw new ArgumentNullException(nameof(CurrentUser));
         }
-        
+
         await _accountManager.UpdatePasswordAsync(_currentUser.Id ?? Guid.Empty, input.NewPassword, input.OldPassword);
         return true;
     }

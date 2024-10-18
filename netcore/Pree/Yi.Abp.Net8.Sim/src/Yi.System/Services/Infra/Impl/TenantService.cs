@@ -45,7 +45,7 @@ public class TenantService : ApplicationService, ITenantService
     {
         if (await _repository.IsAnyAsync(x => x.Name == input.Name))
         {
-            throw new UserFriendlyException("创建失败，当前租户已存在");
+            throw Oops.Oh(UserConst.Tenant_Exist);
         }
 
         var entity = input.Adapt<TenantEntity>();
@@ -57,7 +57,7 @@ public class TenantService : ApplicationService, ITenantService
     public async Task<TenantDto> UpdateAsync(Guid id, TenantUpdateInput input)
     {
         if (await _repository.IsAnyAsync(x => x.Name == input.Name && x.Id != id))
-            throw new UserFriendlyException("更新后租户名已经存在");
+            throw Oops.Oh(UserConst.Tenant_Repeat);
 
         var entity = await _repository.GetAsync(id);
         input.Adapt(entity);

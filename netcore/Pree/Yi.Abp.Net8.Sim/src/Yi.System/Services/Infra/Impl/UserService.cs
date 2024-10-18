@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using MiniExcelLibs;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
+using Volo.Abp.Domain.Entities;
 using Yi.AspNetCore.System;
 using Yi.Sys.Domains.Infra;
 using Yi.Sys.Domains.Infra.Entities;
@@ -87,12 +88,12 @@ public class UserService : ApplicationService, IUserService
     {
         if (input.UserName == UserConst.Admin || input.UserName == UserConst.TenantAdmin)
         {
-            throw new UserFriendlyException(UserConst.Name_Not_Allowed);
+            throw Oops.Oh(UserConst.Name_Not_Allowed);
         }
 
         if (await _repository.IsAnyAsync(u => input.UserName!.Equals(u.UserName) && !id.Equals(u.Id)))
         {
-            throw new UserFriendlyException("用户已经存在，更新失败");
+            throw Oops.Oh("Name_Repeat");
         }
 
         var entity = await _repository.GetByIdAsync(id);
@@ -182,7 +183,7 @@ public class UserService : ApplicationService, IUserService
         var entity = await _repository.GetByIdAsync(id);
         if (entity is null)
         {
-            throw new ApplicationException("用户未存在");
+            throw Oops.Oh(UserConst.User_Not_Exist);
         }
 
         entity.State = state;

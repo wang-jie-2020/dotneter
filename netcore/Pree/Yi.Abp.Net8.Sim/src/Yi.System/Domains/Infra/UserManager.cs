@@ -7,6 +7,7 @@ using Volo.Abp.Caching;
 using Volo.Abp.Domain.Services;
 using Volo.Abp.EventBus.Local;
 using Volo.Abp.Guids;
+using Yi.AspNetCore.System;
 using Yi.Sys.Domains.Infra.Entities;
 using Yi.Sys.Domains.Infra.Repositories;
 using Yi.Sys.Options;
@@ -98,21 +99,21 @@ public class UserManager : DomainService
 
         if (userEntity.EncryPassword?.Password.Length < 6)
         {
-            throw new UserFriendlyException(UserConst.Create_Passworld_Error);
+            throw Oops.Oh(UserConst.Create_Passworld_Error);
         }
 
         if (userEntity.Phone is not null)
         {
             if (await _repository.IsAnyAsync(x => x.Phone == userEntity.Phone))
             {
-                throw new UserFriendlyException(UserConst.Phone_Repeat);
+                throw Oops.Oh(UserConst.Phone_Repeat);
             }
         }
 
         var isExist = await _repository.IsAnyAsync(x => x.UserName == userEntity.UserName);
         if (isExist)
         {
-            throw new UserFriendlyException(UserConst.User_Exist);
+            throw Oops.Oh(UserConst.User_Exist);
         }
 
         var entity = await _repository.InsertReturnEntityAsync(userEntity);
@@ -131,12 +132,12 @@ public class UserManager : DomainService
     {
         if (input.UserName == UserConst.Admin || input.UserName == UserConst.TenantAdmin)
         {
-            throw new UserFriendlyException("用户名无效注册！");
+            throw Oops.Oh(UserConst.Name_Not_Allowed);
         }
 
         if (input.UserName.Length < 2)
         {
-            throw new UserFriendlyException("账号名需大于等于2位！");
+            throw Oops.Oh(UserConst.Name_Length);
         }
 
         // 正则表达式，匹配只包含数字和字母的字符串
@@ -145,7 +146,7 @@ public class UserManager : DomainService
         var isMatch = Regex.IsMatch(input.UserName, pattern);
         if (!isMatch)
         {
-            throw new UserFriendlyException("用户名不能包含除【字母】与【数字】的其他字符");
+            throw Oops.Oh(UserConst.Name_Invalid);
         }
     }
 

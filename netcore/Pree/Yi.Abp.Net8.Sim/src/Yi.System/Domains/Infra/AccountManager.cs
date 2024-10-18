@@ -9,6 +9,7 @@ using Volo.Abp.Domain.Services;
 using Volo.Abp.EventBus.Local;
 using Volo.Abp.Security.Claims;
 using Yi.AspNetCore.Helpers;
+using Yi.AspNetCore.System;
 using Yi.AspNetCore.System.Events;
 using Yi.AspNetCore.System.Loggings;
 using Yi.AspNetCore.System.Permissions;
@@ -68,17 +69,17 @@ public class AccountManager : DomainService, IAccountManager
         //判断用户状态
         if (userInfo.User.State == false)
         {
-            throw new UserFriendlyException(UserConst.State_Is_State);
+            throw Oops.Oh(UserConst.State_Is_State);
         }
 
         if (userInfo.RoleCodes.Count == 0)
         {
-            throw new UserFriendlyException(UserConst.No_Role);
+            throw Oops.Oh(UserConst.No_Role);
         }
 
         if (userInfo.PermissionCodes.Count() == 0)
         {
-            throw new UserFriendlyException(UserConst.No_Permission);
+            throw Oops.Oh(UserConst.No_Permission);
         }
 
         //这里抛出一个登录的事件,也可以在全部流程走完，在应用层组装
@@ -142,10 +143,10 @@ public class AccountManager : DomainService, IAccountManager
                 return;
             }
 
-            throw new UserFriendlyException(UserConst.Login_Error);
+            throw Oops.Oh(UserConst.Login_Error);
         }
 
-        throw new UserFriendlyException(UserConst.Login_User_No_Exist);
+        throw Oops.Oh(UserConst.Login_User_No_Exist);
     }
 
     /// <summary>
@@ -161,7 +162,7 @@ public class AccountManager : DomainService, IAccountManager
         var user = await _repository.GetByIdAsync(userId);
         if (!user.JudgePassword(oldPassword))
         {
-            throw new UserFriendlyException("无效更新！原密码错误！");
+            throw Oops.Oh(UserConst.Password_Error);
         }
 
         user.EncryPassword.Password = newPassword;
