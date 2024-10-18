@@ -5,6 +5,7 @@ using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
+using SkyApm;
 using SqlSugar;
 using StackExchange.Profiling.Internal;
 using Volo.Abp.Application;
@@ -133,6 +134,7 @@ public class YiAspNetCoreModule : AbpModule
         
         // profiler
         context.Services.AddSingleton<IMiniProfilerDiagnosticListener, SqlSugarDiagnosticListener>();
+        context.Services.AddSingleton<ITracingDiagnosticProcessor, SqlSugarTracingDiagnosticProcessor>();
     }
 
     public override async Task OnPreApplicationInitializationAsync(ApplicationInitializationContext context)

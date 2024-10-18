@@ -313,6 +313,7 @@ public class SqlSugarDbContext : ISqlSugarDbContext
         {
             s_diagnosticListener.Write(LogExecutingEvent.EventName, new LogExecutingEvent(
                 Guid.NewGuid(),
+                Options.Url,
                 UtilMethods.GetSqlString(_dbConnectionCreator.Options.DbType ?? DbType.Sqlite, sql, pars)
             ));
         }

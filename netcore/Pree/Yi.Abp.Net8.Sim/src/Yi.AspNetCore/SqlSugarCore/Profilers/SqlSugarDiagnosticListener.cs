@@ -4,6 +4,9 @@ using StackExchange.Profiling.Internal;
 
 namespace Yi.AspNetCore.SqlSugarCore.Profilers;
 
+/// <summary>
+///  MiniProfiler
+/// </summary>
 public class SqlSugarDiagnosticListener : IMiniProfilerDiagnosticListener
 {
     public string ListenerName => "SQLSugar";
