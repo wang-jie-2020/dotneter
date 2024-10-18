@@ -7,6 +7,25 @@
     "Permission:Delete": "删除",
     "Permission:Export": "导出",
     "Permission:Enable": "启用|禁用",
-    "Invalid_VerificationCode": "验证码错误"
+    "Signup_Forbidden": "暂未开放注册功能",
+    "Login_Not_Exist": "用户名不存在",
+    "Login_NotMatched": "用户名或密码错误",
+    "VerificationCode_Invalid": "验证码错误",
+    "VerificationCode_TooMuch": "已发送过验证码，10分钟后可重试",
+    "VerificationCode_NotMatched": "验证码错误",
+    "User_Exist": "用户已经存在",
+    "User_Not_Exist": "用户不存在",
+    "User_State": "该用户已被禁用，请联系管理员进行恢复",
+    "User_No_Role": "该用户分配无任何角色",
+    "User_No_Permission": "该用户分配无任何权限",
+    "User_Name_Not_Allowed": "用户名被禁止",
+    "User_Name_Length": "账号名需大于等于2位！",
+    "User_Name_Invalid": "用户名不能包含除【字母】与【数字】的其他字符",
+    "User_Password_NotMatched": "密码错误",
+    "User_Password_Length": "密码长度需大于等于6位",
+    "User_Phone_Repeat": "手机号已注册",
+    "User_Phone_Invalid": "手机号码格式错误",
+    "Tenant_Exist": "租户已经存在",
+    "Tenant_Repeat": "租户名已经存在"
   }
 }

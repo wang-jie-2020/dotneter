@@ -7,6 +7,25 @@
     "Permission:Delete": "Delete",
     "Permission:Export": "Export",
     "Permission:Enable": "Enable|Disable",
-    "Invalid_VerificationCode": "Invalid Verification Code"
+    "Signup_Forbidden": "Signup Forbidden",
+    "Login_Not_Exist": "User Not Exist",
+    "Login_NotMatched": "",
+    "VerificationCode_Invalid": "Invalid VerificationCode",
+    "VerificationCode_TooMuch": "",
+    "VerificationCode_NotMatched": "",
+    "User_Exist": "",
+    "User_Not_Exist": "",
+    "User_State": "",
+    "User_No_Role": "",
+    "User_No_Permission": "",
+    "User_Name_Not_Allowed": "",
+    "User_Name_Length": "！",
+    "User_Name_Invalid": "",
+    "User_Password_NotMatched": "",
+    "User_Password_Length": "",
+    "User_Phone_Repeat": "",
+    "User_Phone_Invalid": "",
+    "Tenant_Exist": "",
+    "Tenant_Repeat": ""
   }
 }

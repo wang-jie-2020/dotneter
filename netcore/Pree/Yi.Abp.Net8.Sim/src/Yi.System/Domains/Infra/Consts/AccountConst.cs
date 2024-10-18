@@ -10,7 +10,7 @@ public class AccountConst
     public const string Login_Not_Exist = "用户名不存在";
     public const string Login_NotMatched = "用户名或密码错误";
     
-    public const string VerificationCode_Invalid = "Invalid_VerificationCode";
+    public const string VerificationCode_Invalid = "VerificationCode_Invalid";
     public const string VerificationCode_TooMuch = "已发送过验证码，10分钟后可重试";
     public const string VerificationCode_NotMatched = "验证码错误";
     
