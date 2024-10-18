@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
 using SqlSugar;
+using StackExchange.Profiling.Internal;
 using Volo.Abp.Application;
 using Volo.Abp.AspNetCore.Authentication.JwtBearer;
 using Volo.Abp.AspNetCore.ExceptionHandling;
@@ -27,6 +28,7 @@ using Yi.AspNetCore.Caching.FreeRedis;
 using Yi.AspNetCore.Exceptions;
 using Yi.AspNetCore.Mapster;
 using Yi.AspNetCore.SqlSugarCore;
+using Yi.AspNetCore.SqlSugarCore.Profilers;
 using Yi.AspNetCore.SqlSugarCore.Repositories;
 using Yi.AspNetCore.SqlSugarCore.Uow;
 using Yi.AspNetCore.System.Loggings;
@@ -128,6 +130,9 @@ public class YiAspNetCoreModule : AbpModule
 
         // interceptor
         context.Services.AddTransient<OperLogInterceptor>();
+        
+        // profiler
+        context.Services.AddSingleton<IMiniProfilerDiagnosticListener, SqlSugarDiagnosticListener>();
     }
 
     public override async Task OnPreApplicationInitializationAsync(ApplicationInitializationContext context)

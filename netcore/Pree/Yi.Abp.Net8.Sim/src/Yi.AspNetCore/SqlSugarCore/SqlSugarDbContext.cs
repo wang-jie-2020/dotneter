@@ -15,6 +15,7 @@ using Volo.Abp.Domain.Entities.Events;
 using Volo.Abp.Guids;
 using Volo.Abp.MultiTenancy;
 using Volo.Abp.Users;
+using Yi.AspNetCore.SqlSugarCore.Profilers;
 using Yitter.IdGenerator;
 using Check = Volo.Abp.Check;
 
@@ -22,9 +23,9 @@ namespace Yi.AspNetCore.SqlSugarCore;
 
 public class SqlSugarDbContext : ISqlSugarDbContext
 {
-    // protected static readonly DiagnosticListener s_diagnosticListener =
-    //     new DiagnosticListener("Microsoft.AspNetCore");
-    
+    protected static readonly DiagnosticListener s_diagnosticListener =
+        new DiagnosticListener("SQLSugar");
+
     private ISqlSugarDbConnectionCreator _dbConnectionCreator;
 
     public SqlSugarDbContext(IAbpLazyServiceProvider lazyServiceProvider)
@@ -306,13 +307,15 @@ public class SqlSugarDbContext : ISqlSugarDbContext
             Logger.CreateLogger<SqlSugarDbContext>().LogDebug(sb.ToString());
         }
 
+        //CustomTiming customTiming = MiniProfiler.Current?.CustomTiming("SqlSugar", UtilMethods.GetSqlString(_dbConnectionCreator.Options.DbType ?? DbType.Sqlite, sql, pars));
 
-        // if (s_diagnosticListener.IsEnabled("Sugar.Executing"))
-        // {
-        //     s_diagnosticListener.Write("Sugar.Executing", UtilMethods.GetSqlString(_dbConnectionCreator.Options.DbType ?? DbType.Sqlite, sql, pars));
-        // }
-        
-        CustomTiming customTiming = MiniProfiler.Current?.CustomTiming("SqlSugar", UtilMethods.GetSqlString(_dbConnectionCreator.Options.DbType ?? DbType.Sqlite, sql, pars));
+        if (s_diagnosticListener.IsEnabled(LogExecutingEvent.EventName))
+        {
+            s_diagnosticListener.Write(LogExecutingEvent.EventName, new LogExecutingEvent(
+                Guid.NewGuid(),
+                UtilMethods.GetSqlString(_dbConnectionCreator.Options.DbType ?? DbType.Sqlite, sql, pars)
+            ));
+        }
     }
 
     /// <summary>
