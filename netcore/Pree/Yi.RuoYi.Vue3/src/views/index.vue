@@ -1,5 +1,4 @@
 <template>
-   <MiniProfiler />
   <div class="app-container home">
 
   </div>
@@ -9,7 +8,6 @@
 import useSocketStore from '@/store/modules/socket'
 import { ref } from 'vue';
 import { storeToRefs } from 'pinia';
-import MiniProfiler from '@/components/MiniProfiler';
 
 const socketStore=useSocketStore();
 const {onlineNum}=storeToRefs(socketStore);
