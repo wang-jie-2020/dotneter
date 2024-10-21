@@ -1,5 +1,6 @@
 <template>
   <router-view />
+  <MiniProfiler v-if="profiler" />
 </template>
 
 <script setup>
@@ -8,9 +9,12 @@ import { handleThemeStyle } from '@/utils/theme'
 import useUserStore from '@/store/modules/user'
 import { storeToRefs } from 'pinia';
 import signalR from '@/utils/signalR'
+import MiniProfiler from '@/components/MiniProfiler'
 
 const {token}=storeToRefs(useUserStore());
 
+const profiler = ref(useSettingsStore().profiler);
+console.log('profiler', profiler)
 onMounted(async () => {
   await  signalR.init(`main`);
   nextTick(() => {

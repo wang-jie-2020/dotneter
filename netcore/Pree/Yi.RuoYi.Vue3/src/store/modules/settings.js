@@ -17,7 +17,8 @@ const useSettingsStore = defineStore(
       tagsView: storageSetting.tagsView === undefined ? tagsView : storageSetting.tagsView,
       fixedHeader: storageSetting.fixedHeader === undefined ? fixedHeader : storageSetting.fixedHeader,
       sidebarLogo: storageSetting.sidebarLogo === undefined ? sidebarLogo : storageSetting.sidebarLogo,
-      dynamicTitle: storageSetting.dynamicTitle === undefined ? dynamicTitle : storageSetting.dynamicTitle
+      dynamicTitle: storageSetting.dynamicTitle === undefined ? dynamicTitle : storageSetting.dynamicTitle,
+      profiler: localStorage.getItem("profiler") ?? 0,
     }),
     actions: {
       // 修改布局设置
