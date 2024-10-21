@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using MiniExcelLibs;
+using StackExchange.Profiling;
 using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.Authorization;
 using Volo.Abp.ExceptionHandling.Localization;
@@ -28,12 +29,15 @@ public class DevController : AbpController
         var mvcOptions = LazyServiceProvider.LazyGetRequiredService<IOptions<MvcOptions>>().Value;
         var abpLocalizationOptions = LazyServiceProvider.LazyGetRequiredService<IOptions<AbpLocalizationOptions>>().Value;
 
+        var miniProfiler = MiniProfiler.Current.RenderIncludes(HttpContext).ToString();
+        
         return new
         {
             mvcOptions.Filters,
             mvcOptions.Conventions,
             mvcOptions.ModelBinderProviders,
-            abpLocalizationOptions
+            abpLocalizationOptions,
+            miniProfiler
         };
     }
 

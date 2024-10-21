@@ -278,7 +278,11 @@ public class YiWebModule : AbpModule
         app.UseMultiTenancy();
 
         //swagger
-        app.UseYiSwagger(c => c.SwaggerEndpoint("/swagger/default/swagger.json", "default"));
+        app.UseYiSwagger(c =>
+        {
+            c.InjectJavascript("/swagger/ui/Customization.js");
+            c.SwaggerEndpoint("/swagger/default/swagger.json", "default");
+        });
 
         //MiniProfiler
         app.UseMiniProfiler();
