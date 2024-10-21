@@ -55,9 +55,6 @@ GitHub中搜索不到简易基架,在Yi.Abp上继续整合.核心思路是保证
     - 暴露出客户端?SQL过长的问题在仓储层直接做?
     - aop是不是集中在web入口比较好?
     - 实体审计的SQLSugar实现?
- - 监控
-   - MiniProfiler
-   - SkyWalking
 
 
 
