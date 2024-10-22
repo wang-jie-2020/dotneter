@@ -35,6 +35,7 @@ function appendMiniProfiler() {
     s.setAttribute('data-trivial-milliseconds', "2.0");
     s.setAttribute('data-ignored-duplicate-execute-types', "Open,OpenAsync,Close,CloseAsync");
     s.setAttribute('data-max-traces', 15);
+    s.setAttribute('data-controls', true);
     document.head.appendChild(s);
 
     const css = document.createElement('link');
