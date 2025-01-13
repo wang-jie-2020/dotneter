@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "Trackers": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "SkyAPM.Agent.AspNetCore"
+      },
+      "applicationUrl": "https://localhost:10556;http://localhost:10557"
+    }
+  }
+}

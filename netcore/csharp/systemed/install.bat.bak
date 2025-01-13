@@ -1,0 +1,12 @@
+@echo off
+set serviceName=OSService
+set serviceFilePath=%~dp0OSService.exe
+set serviceDescription=netCore-os-service
+
+echo %serviceFilePath%
+
+sc create %servicename%  binpath=%servicefilepath%
+sc config %servicename%  start=auto  
+sc description %servicename%  %servicedescription%
+sc start  %servicename%
+pause
