@@ -10,13 +10,19 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers().AddNewtonsoftJson(options =>
 {
     options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver(); // 首字母小写（驼峰样式）
-    //options.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss"; // 时间格式化
+    
     //options.SerializerSettings.MetadataPropertyHandling = MetadataPropertyHandling.Ignore;
+    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore; // 忽略循环引用
+    
     // options.SerializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Local;
     options.SerializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Unspecified;
+    
     //options.SerializerSettings.DateParseHandling = DateParseHandling.None;
-    //options.SerializerSettings.Converters.Add(new IsoDateTimeConverter { DateTimeStyles = DateTimeStyles.AssumeUniversal });
-    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore; // 忽略循环引用
+    //options.SerializerSettings.DateParseHandling = DateParseHandling.DateTime;
+    //options.SerializerSettings.DateParseHandling = DateParseHandling.DateTimeOffset;
+    
+    //options.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss"; // 时间格式化
+    options.SerializerSettings.Converters.Add(new IsoDateTimeConverter { DateTimeStyles = DateTimeStyles.AssumeUniversal });
     // options.SerializerSettings.Converters.Add(new LongJsonConverter()); // long转string（防止js精度溢出） 超过16位开启
     // options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore; // 忽略空值
 });
