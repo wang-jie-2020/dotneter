@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="../../build/public.props" />
+  <Import Project="../../build/version.props" />
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <RootNamespace>osharp</RootNamespace>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="OSharp.Hosting.Core" Version="7.0.11" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Identity/IdentityService.*.cs">
+      <DependentUpon>IdentityService.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Infos/InfosService.*.cs">
+      <DependentUpon>InfosService.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Infos/InfosService.*.generated.cs">
+      <DependentUpon>InfosService.generated.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Infos/InfosServiceBase.*.generated.cs">
+      <DependentUpon>InfosServiceBase.generated.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+</Project>

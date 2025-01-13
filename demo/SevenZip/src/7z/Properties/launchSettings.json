@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "7z": {
+      "commandName": "Project",
+      "commandLineArgs": "e C:\\Users\\jie.wang21\\Desktop\\tmp\\package-lock.json C:\\Users\\jie.wang21\\Desktop\\tmp\\tmp.7z"
+    }
+  }
+}

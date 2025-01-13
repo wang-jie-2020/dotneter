@@ -1,0 +1,1 @@
+代码来自于:https://github.com/yangzhongke/RuPeng.HystrixCore,指定到netstandard2.0

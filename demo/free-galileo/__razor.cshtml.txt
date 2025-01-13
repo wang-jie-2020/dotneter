@@ -1,0 +1,63 @@
+﻿@{
+var gen = Model as RazorModel;
+
+Func<string, string> GetAttributeString = attr => {
+	if (string.IsNullOrEmpty(attr)) return "";
+	return string.Concat(", ", attr.Trim('[', ']'));
+};
+Func<string, string> GetDefaultValue = defval => {
+    if (string.IsNullOrEmpty(defval)) return "";
+    return " = " + defval + ";";
+};
+Func<dynamic, string> GetDefaultType = (col) => {
+	if (col.DbTypeTextFull.ToLower() == "number(18)"
+		|| col.DbTypeTextFull.ToLower() == "number(17)"
+		|| col.DbTypeTextFull.ToLower() == "number(16)"
+		|| col.DbTypeTextFull.ToLower() == "number(15)"
+		|| col.DbTypeTextFull.ToLower() == "number(14)"
+		|| col.DbTypeTextFull.ToLower() == "number(13)"
+		|| col.DbTypeTextFull.ToLower() == "number(12)"
+		|| col.DbTypeTextFull.ToLower() == "number(11)"
+		|| col.DbTypeTextFull.ToLower() == "number(10)")
+	{
+		return (col.IsNullable ? "long?" : "long");
+	}
+	
+		if (col.DbTypeTextFull.ToLower() == "number(9)"
+		|| col.DbTypeTextFull.ToLower() == "number(8)"
+		|| col.DbTypeTextFull.ToLower() == "number(7)"
+		|| col.DbTypeTextFull.ToLower() == "number(6)"
+		|| col.DbTypeTextFull.ToLower() == "number(5)"
+		|| col.DbTypeTextFull.ToLower() == "number(4)"
+		|| col.DbTypeTextFull.ToLower() == "number(3)"
+		|| col.DbTypeTextFull.ToLower() == "number(2)")
+	{
+		return (col.IsNullable ? "int?" : "int");
+	}
+	
+    return gen.GetCsType(col);
+};
+}
+namespace @gen.NameSpace 
+{
+@if (string.IsNullOrEmpty(gen.table.Comment) == false) {
+	@:/// <summary>
+	@:/// @gen.table.Comment.Replace("\r\n", "\n").Replace("\n", "\r\n		/// ")
+	@:/// </summary>
+}
+	[SugarTable("@gen.FullTableName")]
+	public class @gen.GetCsName(gen.FullTableName) 
+	{
+	@foreach (var col in gen.columns) {
+
+		if (string.IsNullOrEmpty(col.Comment) == false) {
+		@:/// <summary>
+		@:/// @col.Comment.Replace("\r\n", "\n").Replace("\n", "\r\n		/// ")
+		@:/// </summary>
+		}
+		@:[SugarColumn(ColumnName = "@col.Name")]
+		@:public @GetDefaultType(col) @gen.GetCsName(col.Name) { get; set; }@GetDefaultValue(gen.GetColumnDefaultValue(col, false))
+@:
+	}
+	}
+}
