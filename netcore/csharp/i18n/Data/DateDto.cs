@@ -15,6 +15,19 @@ public class DateTimeDto
 
 }
 
+public class InputDateTime
+{
+    [JsonProperty(Order = 1)]
+    public DateTime DateTime1 { get; set; }
+    
+    [JsonProperty(Order = 2)]
+    public DateTime DateTime2 { get; set; }
+    
+    [JsonProperty(Order = 3)]
+    public DateTime DateTime3 { get; set; }
+
+}
+
 public class DateTimeOffsetDto
 {
     [JsonProperty(Order = 1)]

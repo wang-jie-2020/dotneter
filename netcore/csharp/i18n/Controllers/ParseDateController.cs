@@ -9,15 +9,21 @@ public class ParseDateController : ControllerBase
     public ParseDateController()
     {
     }
-
-    [HttpGet]
-    public object InputDateTime([FromQuery] DateTimeDto input)
+    
+    [HttpPost]
+    public object InputQueryDateTime([FromQuery] InputDateTime input)
+    {
+        return input;
+    }
+    
+    [HttpPost]
+    public object InputFormDateTime([FromForm] InputDateTime input)
     {
         return input;
     }
 
-    [HttpGet]
-    public object InputDateTimeOffset([FromQuery] DateTimeOffsetDto input)
+    [HttpPost]
+    public object InputBodyDateTime([FromBody] InputDateTime input)
     {
         return input;
     }
