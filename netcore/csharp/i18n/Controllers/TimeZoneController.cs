@@ -20,14 +20,8 @@ public class TimeZoneController : ControllerBase
     [HttpGet]
     public object Cultures()
     {
-        var culture = CultureInfo.CurrentCulture;
-
-        CultureInfo.CurrentCulture = new CultureInfo("en-US");
-
         return CultureInfo.CurrentCulture;
     }
-    
-    
     
     [HttpGet]
     public object TimeZones()
