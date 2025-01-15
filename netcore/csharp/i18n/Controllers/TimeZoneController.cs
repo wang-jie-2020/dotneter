@@ -18,14 +18,28 @@ public class TimeZoneController : ControllerBase
     }
 
     [HttpGet]
+    public object Cultures()
+    {
+        var culture = CultureInfo.CurrentCulture;
+
+        CultureInfo.CurrentCulture = new CultureInfo("en-US");
+
+        return CultureInfo.CurrentCulture;
+    }
+    
+    
+    
+    [HttpGet]
     public object TimeZones()
     {
+        var local = TimeZoneInfo.Local;
         var cn = TimeZoneInfo.FindSystemTimeZoneById(TimeZoneConst.CN);
         var us = TimeZoneInfo.FindSystemTimeZoneById(TimeZoneConst.US);
         var jp = TimeZoneInfo.FindSystemTimeZoneById(TimeZoneConst.JP);
 
         return new
         {
+            local,
             cn,
             us,
             jp
