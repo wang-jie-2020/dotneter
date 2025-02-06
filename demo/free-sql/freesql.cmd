@@ -1,0 +1,1 @@
+FreeSql.Generator -Razor 1 -NameOptions 0,0,0,1 -NameSpace AESC.JY.DataBase.Domain -DB “PostgreSQL,User ID=postgres; Password=root; Host=119.45.238.187; Port=5432; Database=postgres; Pooling=true; Min Pool Size=0; Max Pool Size=100; Connection Lifetime=0” -FileName “{name}.cs”
