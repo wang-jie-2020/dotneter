@@ -1,0 +1,7 @@
+@echo off
+set serviceName=OSService
+
+sc stop   %serviceName% 
+sc delete %serviceName% 
+
+pause
