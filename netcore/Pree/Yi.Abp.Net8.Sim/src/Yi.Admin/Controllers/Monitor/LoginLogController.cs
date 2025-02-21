@@ -10,15 +10,15 @@ namespace Yi.Admin.Controllers.Monitor;
 [Route("api/monitor/login-log")]
 public class LoginLogController : AbpController
 {
-    private readonly ISqlSugarRepository<LoginLogEntity, Guid> _repository;
+    private readonly ISqlSugarRepository<LoginLogEntity, long> _repository;
 
-    public LoginLogController(ISqlSugarRepository<LoginLogEntity, Guid> repository)
+    public LoginLogController(ISqlSugarRepository<LoginLogEntity, long> repository)
     {
         _repository = repository;
     }
 
     [HttpGet("{id}")]
-    public async Task<LoginLogGetListOutputDto> GetAsync(Guid id)
+    public async Task<LoginLogGetListOutputDto> GetAsync(long id)
     {
         var entity = await _repository.GetAsync(id);
         return entity.Adapt<LoginLogGetListOutputDto>();

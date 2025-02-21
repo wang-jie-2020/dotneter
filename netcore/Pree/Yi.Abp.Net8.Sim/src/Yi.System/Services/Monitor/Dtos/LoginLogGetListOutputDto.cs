@@ -1,9 +1,9 @@
-﻿namespace Yi.Sys.Services.Monitor.Dtos;
+﻿using Yi.AspNetCore.System.Entities;
 
-public class LoginLogGetListOutputDto 
+namespace Yi.Sys.Services.Monitor.Dtos;
+
+public class LoginLogGetListOutputDto : SimpleEntity<long>
 {
-    public Guid Id { get; set; }
-    
     public DateTime CreationTime { get; set; }
 
     public string? LoginUser { get; set; }
