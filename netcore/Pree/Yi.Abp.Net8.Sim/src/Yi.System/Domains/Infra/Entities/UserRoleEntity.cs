@@ -6,7 +6,7 @@ namespace Yi.Sys.Domains.Infra.Entities;
 ///     用户角色关系表
 /// </summary>
 [SugarTable("Sys_UserRole")]
-public class UserRoleEntity : SimpleEntity<Guid>
+public class UserRoleEntity : SimpleEntity<long>
 {
     /// <summary>
     ///     角色id

@@ -35,6 +35,7 @@ public class UserUpdateInput
     public SexEnum? Sex { get; set; }
     
     public Guid? DeptId { get; set; }
+    
     public List<Guid>? PostIds { get; set; }
 
     public List<Guid>? RoleIds { get; set; }
