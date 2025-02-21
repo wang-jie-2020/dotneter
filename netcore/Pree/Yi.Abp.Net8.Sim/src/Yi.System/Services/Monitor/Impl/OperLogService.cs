@@ -8,14 +8,14 @@ namespace Yi.Sys.Services.Monitor.Impl;
 
 public class OperLogService : ApplicationService, IOperLogService
 {
-    private readonly ISqlSugarRepository<OperLogEntity, Guid> _repository;
+    private readonly ISqlSugarRepository<OperLogEntity, long> _repository;
 
-    public OperLogService(ISqlSugarRepository<OperLogEntity, Guid> repository)
+    public OperLogService(ISqlSugarRepository<OperLogEntity, long> repository)
     {
         _repository = repository;
     }
 
-    public async Task<OperLogDto> GetAsync(Guid id)
+    public async Task<OperLogDto> GetAsync(long id)
     {
         var entity = await _repository.GetAsync(id);
         return entity.Adapt<OperLogDto>();
@@ -35,7 +35,7 @@ public class OperLogService : ApplicationService, IOperLogService
         return new PagedResultDto<OperLogDto>(total, entities.Adapt<List<OperLogDto>>());
     }
 
-    public async Task DeleteAsync([FromBody] IEnumerable<Guid> id)
+    public async Task DeleteAsync([FromBody] IEnumerable<long> id)
     {
         await _repository.DeleteManyAsync(id);
     }

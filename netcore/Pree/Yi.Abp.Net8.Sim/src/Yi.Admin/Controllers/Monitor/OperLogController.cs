@@ -18,7 +18,7 @@ public class OperLogController : AbpController
     }
 
     [HttpGet("{id}")]
-    public async Task<OperLogDto> GetAsync(Guid id)
+    public async Task<OperLogDto> GetAsync(long id)
     {
         return await _operLogService.GetAsync(id);
     }
@@ -30,7 +30,7 @@ public class OperLogController : AbpController
     }
 
     [HttpDelete]
-    public async Task DeleteAsync([FromBody] IEnumerable<Guid> id)
+    public async Task DeleteAsync([FromBody] IEnumerable<long> id)
     {
         await _operLogService.DeleteAsync(id);
     }

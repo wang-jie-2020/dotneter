@@ -8,7 +8,7 @@ namespace Yi.Sys.Domains.Monitor.Entities;
 ///     操作日志表
 /// </summary>
 [SugarTable("Sys_OperLog")]
-public class OperLogEntity : SimpleEntity<Guid>, IMultiTenant
+public class OperLogEntity : SimpleEntity<long>, IMultiTenant
 {
     /// <summary>
     ///     操作模块

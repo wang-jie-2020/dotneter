@@ -1,11 +1,10 @@
+using Yi.AspNetCore.System.Entities;
 using Yi.AspNetCore.System.Loggings;
 
 namespace Yi.Sys.Services.Monitor.Dtos;
 
-public class OperLogDto 
+public class OperLogDto : SimpleEntity<long>
 {
-    public Guid Id { get; set; }
-    
     public string? Title { get; set; }
     
     public OperLogEnum OperType { get; set; }
