@@ -12,7 +12,7 @@ namespace web
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            //UseSettingÖ¸¶¨Æô¶¯³ÌĞò¼¯²»ÔÙÖ§³Ö,´úÂë³öÀ´Ò²ÊÇ±¨´íµÄ
+            //UseSettingæŒ‡å®šå¯åŠ¨ç¨‹åºé›†ä¸å†æ”¯æŒ,ä»£ç å‡ºæ¥ä¹Ÿæ˜¯æŠ¥é”™çš„
             //builder.WebHost.UseSetting(WebHostDefaults.HostingStartupAssembliesKey, $"HostingStartupAssemblies;{Assembly.GetEntryAssembly()?.GetName().Name ?? string.Empty}");
             //builder.WebHost.UseSetting(WebHostDefaults.HostingStartupAssembliesKey, $"HostingStartupAssemblies");
 
@@ -42,7 +42,7 @@ namespace web
 
             app.UseAuthorization();
 
-            //Console.WriteLine("--ÇĞÈë--");
+            //Console.WriteLine("--åˆ‡å…¥--");
             //using (var scope = app.Services.CreateScope())
             //{
             //    var congigurationExtra = app.Configuration["extra-service-name"]?.ToString();

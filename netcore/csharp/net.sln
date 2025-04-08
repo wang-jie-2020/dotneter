@@ -15,8 +15,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "web3", "web3\web3.csproj", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HostingStartupAssemblies", "HostingStartupAssemblies\HostingStartupAssemblies.csproj", "{24D74719-F3A0-41C2-933D-E54CB088E193}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "winforms", "winforms\winforms.csproj", "{DF5414E6-C9A1-465A-B9B3-B6D41195D366}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "consoles", "consoles\consoles.csproj", "{83511C1B-D672-4722-8447-6813CEBC9401}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "abp-app", "abp-app\abp-app.csproj", "{180D4477-D50F-4437-BEE6-729A047C7794}"
@@ -80,10 +78,6 @@ Global
 		{24D74719-F3A0-41C2-933D-E54CB088E193}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24D74719-F3A0-41C2-933D-E54CB088E193}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24D74719-F3A0-41C2-933D-E54CB088E193}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DF5414E6-C9A1-465A-B9B3-B6D41195D366}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DF5414E6-C9A1-465A-B9B3-B6D41195D366}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DF5414E6-C9A1-465A-B9B3-B6D41195D366}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DF5414E6-C9A1-465A-B9B3-B6D41195D366}.Release|Any CPU.Build.0 = Release|Any CPU
 		{83511C1B-D672-4722-8447-6813CEBC9401}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{83511C1B-D672-4722-8447-6813CEBC9401}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{83511C1B-D672-4722-8447-6813CEBC9401}.Release|Any CPU.ActiveCfg = Release|Any CPU
