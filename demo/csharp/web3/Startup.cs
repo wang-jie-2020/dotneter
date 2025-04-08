@@ -43,7 +43,7 @@ namespace web3
                 endpoints.MapControllers();
             });
 
-            Console.WriteLine("--«–»Î--");
+            Console.WriteLine("--????--");
             using (var scope = app.ApplicationServices.CreateScope())
             {
                 var services = scope.ServiceProvider;

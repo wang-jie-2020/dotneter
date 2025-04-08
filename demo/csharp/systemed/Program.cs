@@ -32,8 +32,8 @@ namespace Demo
                 {
                     services.AddHostedService<Worker>();
                 })
-                .UseWindowsService()
-                .UseSystemd();
+                .UseWindowsService()    //windows
+                .UseSystemd();  //linux
 
         public static IHostBuilder CreateWebHostBuilder(string[] args)
         {

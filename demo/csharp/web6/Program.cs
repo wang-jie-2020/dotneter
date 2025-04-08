@@ -1,5 +1,8 @@
+using Microsoft.Extensions.Options;
+using System.Globalization;
 using System.Reflection;
 using System.Reflection.PortableExecutable;
+using System.Security.Cryptography.X509Certificates;
 
 namespace web
 {
@@ -9,7 +12,7 @@ namespace web
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            //UseSettingÖ¸¶¨Æô¶¯³ÌÐò¼¯²»ÔÙÖ§³Ö,´úÂë³öÀ´Ò²ÊÇ±¨´íµÄ
+            //UseSettingæŒ‡å®šå¯åŠ¨ç¨‹åºé›†ä¸å†æ”¯æŒ,ä»£ç å‡ºæ¥ä¹Ÿæ˜¯æŠ¥é”™çš„
             //builder.WebHost.UseSetting(WebHostDefaults.HostingStartupAssembliesKey, $"HostingStartupAssemblies;{Assembly.GetEntryAssembly()?.GetName().Name ?? string.Empty}");
             //builder.WebHost.UseSetting(WebHostDefaults.HostingStartupAssembliesKey, $"HostingStartupAssemblies");
 
@@ -20,16 +23,26 @@ namespace web
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            var app = builder.Build();
-            if (app.Environment.IsDevelopment())
+            builder.Services.AddMemoryCache();
+
+            builder.Services.AddRouting(o =>
             {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
+                o.LowercaseUrls = true;
+                o.LowercaseQueryStrings = true;
+            });
+
+            builder.Services.Configure<RequestLocalizationOptions>(options =>
+            {
+
+            });
+
+            var app = builder.Build();
+            app.UseSwagger();
+            app.UseSwaggerUI();
 
             app.UseAuthorization();
-            
-            //Console.WriteLine("--ÇÐÈë--");
+
+            //Console.WriteLine("--åˆ‡å…¥--");
             //using (var scope = app.Services.CreateScope())
             //{
             //    var congigurationExtra = app.Configuration["extra-service-name"]?.ToString();
@@ -44,6 +57,13 @@ namespace web
             //     await next.Invoke();
             // });
 
+            using (var scope = app.Services.CreateScope())
+            {
+                var options = scope.ServiceProvider.GetRequiredService<IOptions<RequestLocalizationOptions>>().Value;
+            }
+
+            Console.Out.WriteLineAsync($"{CultureInfo.CurrentCulture}---{DateTime.Now}");
+
             app.Map("/ping", app =>
             {
                 app.Run(async context =>
@@ -51,9 +71,24 @@ namespace web
                     await context.Response.WriteAsync("pong");
                 });
             });
-            
+
             app.MapControllers();
-            
+
+            //var url = @"https://10.202.66.13:9545/oauth/oauth/token?client_id=client&client_secret=secret&grant_type=client_credentials";
+
+            //var handler = new HttpClientHandler
+            //{
+            //    ServerCertificateCustomValidationCallback = (message, certificate2, arg3, arg4) => true,
+            //    ClientCertificateOptions = ClientCertificateOption.Manual,
+
+            //};
+
+            //var webRequest = new HttpClient(handler);
+            //var result = webRequest.PostAsync(url, null).Result;
+
+            //var token = result.Content.ReadAsStringAsync();
+
+
             app.Run();
         }
     }

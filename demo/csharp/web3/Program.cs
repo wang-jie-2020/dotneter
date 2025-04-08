@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace web3
 {
     public class Program
@@ -20,14 +21,14 @@ namespace web3
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    //1.±àÂë
+                    //1.ç¼–ç 
                     webBuilder.UseSetting(WebHostDefaults.HostingStartupAssembliesKey, "HostingStartupAssemblies");
-                    //2.»·¾³±äÁ¿ ¼ûlaunchSettings.json
-                    //3.ÃüÁî²ÎÊı ºÃÏñ²»Ö§³Ö???
+                    //2.ç¯å¢ƒå˜é‡ è§launchSettings.json
+                    //3.å‘½ä»¤å‚æ•° å¥½åƒä¸æ”¯æŒ???
 
                     webBuilder.UseStartup<Startup>();
 
-                    //Í¨¹ıUseSettingµÄ·½Ê½Ö¸¶¨³ÌĞò¼¯µÄÃû³Æ
+                    //é€šè¿‡UseSettingçš„æ–¹å¼æŒ‡å®šç¨‹åºé›†çš„åç§°
                     //webBuilder.UseSetting(WebHostDefaults.HostingStartupAssembliesKey, "HostStartupLib");
                     //webBuilder.UseSetting(WebHostDefaults.HostingStartupAssembliesKey, "HostStartupLib;HostStartupLib2");
                 });
