@@ -22,6 +22,18 @@ else
     builder.Configuration.AddNacosV2Configuration(builder.Configuration.GetSection("Nacos_dev"));
 }
 
+// builder.Configuration.AddNacosV2Configuration(nacos =>
+// {
+//     nacos.ServerAddresses = ["127.0.0.1"];
+//     nacos.Namespace = "nacos";
+//     nacos.Listeners =
+//     [
+//         new() { DataId = "", Group = "", Optional = true },
+//         new() { DataId = "", Group = "", Optional = true },
+//         new() { DataId = "", Group = "", Optional = true }
+//     ];
+// });
+
 builder.Services.Configure<Email>(builder.Configuration.GetSection("Email"));
 // 等效于
 //builder.Services.Configure<Email>(a =>
@@ -29,8 +41,6 @@ builder.Services.Configure<Email>(builder.Configuration.GetSection("Email"));
 //    a.Address = builder.Configuration["Email:Address"];
 //    a.Name = builder.Configuration["Email:Name"];
 //});
-
-
 
 //通常只会要求读Nacos,而不会要求写Nacos,这里就足够
 //builder.Services.AddNacosAspNet(builder.Configuration, section: "Nacos"); //服务发现部分

@@ -30,7 +30,7 @@ builder.Services.AddControllers()
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddApplication<BlankModule>();
+builder.Services.AddApplication<MainModule>();
 
 var app = builder.Build();
 
@@ -47,6 +47,7 @@ await app.InitializeAsync();
 
 app.Run();
 
-internal class BlankModule : AbpModule
+internal class MainModule : AbpModule
 {
+    
 }
