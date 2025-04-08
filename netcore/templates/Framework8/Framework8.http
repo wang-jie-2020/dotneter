@@ -1,0 +1,6 @@
+@Framework8_HostAddress = http://localhost:5119
+
+GET {{Framework8_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
