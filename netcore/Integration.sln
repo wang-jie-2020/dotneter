@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grammar", "samples\Grammar\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineEditorsServer", "utils\OnlineEditorsServer\OnlineEditorsServer.csproj", "{5B0FC890-34E7-443D-9ECE-71C4D97BA41E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nacos.Extensions.DiscoveryHandler", "utils\Nacos.Extensions.DiscoveryHandler\Nacos.Extensions.DiscoveryHandler.csproj", "{38F36364-D237-4754-B6ED-BBFB89413257}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,10 @@ Global
 		{5B0FC890-34E7-443D-9ECE-71C4D97BA41E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B0FC890-34E7-443D-9ECE-71C4D97BA41E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5B0FC890-34E7-443D-9ECE-71C4D97BA41E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38F36364-D237-4754-B6ED-BBFB89413257}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38F36364-D237-4754-B6ED-BBFB89413257}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38F36364-D237-4754-B6ED-BBFB89413257}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38F36364-D237-4754-B6ED-BBFB89413257}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -83,6 +89,7 @@ Global
 		{5B73C4A1-E0EC-405C-A115-C19376AD177B} = {877F0037-93FF-4E52-B59A-12819A2DEDCE}
 		{AE3AF9EB-CC6D-458B-A849-8EB330B3BC3D} = {D8F0B07B-1D86-4D52-9471-AAF2761CB610}
 		{5B0FC890-34E7-443D-9ECE-71C4D97BA41E} = {877F0037-93FF-4E52-B59A-12819A2DEDCE}
+		{38F36364-D237-4754-B6ED-BBFB89413257} = {877F0037-93FF-4E52-B59A-12819A2DEDCE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {95A0A211-6F5A-45ED-8389-98B4E03AC030}
