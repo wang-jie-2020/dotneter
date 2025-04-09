@@ -21,6 +21,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework9", "templates\Fra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinIO", "utils\MinIO\MinIO.csproj", "{5B73C4A1-E0EC-405C-A115-C19376AD177B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{D8F0B07B-1D86-4D52-9471-AAF2761CB610}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grammar", "samples\Grammar\Grammar.csproj", "{AE3AF9EB-CC6D-458B-A849-8EB330B3BC3D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +59,10 @@ Global
 		{5B73C4A1-E0EC-405C-A115-C19376AD177B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B73C4A1-E0EC-405C-A115-C19376AD177B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5B73C4A1-E0EC-405C-A115-C19376AD177B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE3AF9EB-CC6D-458B-A849-8EB330B3BC3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE3AF9EB-CC6D-458B-A849-8EB330B3BC3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE3AF9EB-CC6D-458B-A849-8EB330B3BC3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE3AF9EB-CC6D-458B-A849-8EB330B3BC3D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,6 +75,7 @@ Global
 		{AF60ACA9-932D-4A34-ACA1-04A244B2C723} = {B5C84E9D-5AC5-4125-8344-296E9BB151D2}
 		{9150A74E-9E14-442C-99CA-6DCB9B16CF41} = {B5C84E9D-5AC5-4125-8344-296E9BB151D2}
 		{5B73C4A1-E0EC-405C-A115-C19376AD177B} = {877F0037-93FF-4E52-B59A-12819A2DEDCE}
+		{AE3AF9EB-CC6D-458B-A849-8EB330B3BC3D} = {D8F0B07B-1D86-4D52-9471-AAF2761CB610}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {95A0A211-6F5A-45ED-8389-98B4E03AC030}
