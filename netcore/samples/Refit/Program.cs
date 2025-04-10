@@ -1,37 +1,43 @@
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+using Nacos.AspNetCore.V2;
+using Nacos.Extensions.DiscoveryHandler;
+using Nacos.V2;
 using Refit;
-using Volo.Abp;
-using Volo.Abp.Autofac;
-using Volo.Abp.Modularity;
+using RefitDiscovery.Controllers;
 
-var builder = Host.CreateApplicationBuilder(args);
-builder.ConfigureContainer(builder.Services.AddAutofacServiceProviderFactory());  
-await builder.Services.AddApplicationAsync<MainModule>();
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddRouting(options =>
+{
+    options.LowercaseUrls = true;
+    options.LowercaseQueryStrings = true;
+});
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+builder.Services.AddNacosAspNet(builder.Configuration, section: "Nacos");
+
+builder.Services
+    .AddRefitClient<UseRefitController.IGitHubApi2>()
+    .ConfigureHttpClient(c => c.BaseAddress = new Uri("https://api.github.com"));
+
+// new Uri(builder.Configuration.GetSection("Nacos:ServerAddresses").Get<string[]>()[0]
+builder.Services
+    .AddRefitClient<UseRefitController.IWeatherForecast>()
+    .ConfigureHttpClient(c => c.BaseAddress = new Uri("http://app"))
+    .ConfigurePrimaryHttpMessageHandler(provider =>
+    {
+        var svc = provider.GetRequiredService<INacosNamingService>();
+        var loggerFactory = provider.GetService<ILoggerFactory>();
+        return new NacosDiscoveryHandler(svc, "DEFAULT_GROUP", "DEFAULT", loggerFactory);
+    });
 
 var app = builder.Build();
-await app.InitializeAsync();
-app.Run();
-
-[DependsOn(typeof(AbpAutofacModule))]
-internal class MainModule : AbpModule
+if (app.Environment.IsDevelopment())
 {
-    public override void ConfigureServices(ServiceConfigurationContext context)
-    {
-        // var gitHubApi = RestService.For<IGitHubApi>("https://api.github.com");
-        // var octocat = await gitHubApi.GetUser("octocat");
-
-        // context.Services
-        //     .AddRefitClient<IGitHubApi>()
-        //     .ConfigureHttpClient(c => c.BaseAddress = new Uri("https://api.github.com"));
-
-        //var octocat = await gitHubApi.GetUser("octocat");
-        // builder.Services.AddRefitClient<IGitHubApi>().ConfigurePrimaryHttpMessageHandler<NacosDiscoveryHttpClientHandler>();
-    }
-    
-    public override async Task OnApplicationInitializationAsync(ApplicationInitializationContext context)
-    {
-        var sc = context.ServiceProvider.GetService<IGitHubApi>();
-        await sc.GetUser("octocat");
-    }
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
+
+app.UseAuthorization();
+app.MapControllers();
+app.Run();

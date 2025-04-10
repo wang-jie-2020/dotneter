@@ -9,7 +9,7 @@ using System.Threading;
 
 namespace Nacos.Extensions.DiscoveryHandler
 {
-    public class NacosDiscoveryHttpClientHandler : HttpClientHandler
+    public class NacosDiscoveryHandler : HttpClientHandler
     {
         private static readonly string HTTP = "http://";
         private static readonly string HTTPS = "https://";
@@ -20,14 +20,14 @@ namespace Nacos.Extensions.DiscoveryHandler
         private readonly string _groupName;
         private readonly string _cluster;
 
-        public NacosDiscoveryHttpClientHandler(INacosNamingService namingService, string group = null, string cluster = null, ILoggerFactory loggerFactory = null)
+        public NacosDiscoveryHandler(INacosNamingService namingService, string group = null, string cluster = null, ILoggerFactory loggerFactory = null)
         {
             _namingService = namingService;
 
             _groupName = group ?? Nacos.V2.Common.Constants.DEFAULT_GROUP;
             _cluster = cluster ?? Nacos.V2.Common.Constants.DEFAULT_CLUSTER_NAME;
 
-            _logger = loggerFactory?.CreateLogger<NacosDiscoveryHttpClientHandler>();
+            _logger = loggerFactory?.CreateLogger<NacosDiscoveryHandler>();
         }
 
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
@@ -56,7 +56,8 @@ namespace Nacos.Extensions.DiscoveryHandler
             // Call SelectOneHealthyInstance with subscribe
             // And the host of Uri will always be lowercase, it means that the services name must be lowercase!!!!
             var instance = await _namingService
-                .SelectOneHealthyInstance(request.Host, _groupName, new List<string> { _cluster }, true).ConfigureAwait(false);
+                .SelectOneHealthyInstance(request.Host, _groupName, new List<string> { _cluster }, true)
+                .ConfigureAwait(false);
 
             if (instance != null)
             {
