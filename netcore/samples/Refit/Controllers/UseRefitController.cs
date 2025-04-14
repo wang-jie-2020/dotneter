@@ -15,7 +15,7 @@ public class UseRefitController : ControllerBase
         _gitHubApi2 = gitHubApi2;
         _weatherForecast = weatherForecast;
     }
-
+    
     [HttpGet("github-user")]
     public async Task<object> GithubUser()
     {

@@ -1,4 +1,5 @@
 using System.Reflection;
+using System.Text;
 
 namespace Grammar
 {
@@ -6,6 +7,7 @@ namespace Grammar
     {
         static void Main(string[] args)
         {
+            Run(typeof(HttpClientEx));
         }
 
         static void Run(Type type)
