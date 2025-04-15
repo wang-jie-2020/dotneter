@@ -5,12 +5,12 @@ using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
 
-namespace Helpers.System;
+namespace Helpers;
 
 /// <summary>
 /// Extension methods for all objects.
 /// </summary>
-public static class AbpObjectExtensions
+public static class ObjectExtensions
 {
     /// <summary>
     /// Used to simplify and beautify casting an object to a type.

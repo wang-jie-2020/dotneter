@@ -5,9 +5,9 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
+using Helpers.Collections.Generic;
 using Helpers.Localization;
-using Helpers.System;
-using Helpers.System.Collections.Generic;
+using Helpers.Text;
 using JetBrains.Annotations;
 
 namespace Helpers.Reflection;

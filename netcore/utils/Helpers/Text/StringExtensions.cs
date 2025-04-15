@@ -3,15 +3,15 @@ using System.Globalization;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
-using Helpers.System.Collections.Generic;
+using Helpers.Collections.Generic;
 using JetBrains.Annotations;
 
-namespace Helpers.System;
+namespace Helpers.Text;
 
 /// <summary>
 /// Extension methods for String class.
 /// </summary>
-public static class AbpStringExtensions
+public static class StringExtensions
 {
     /// <summary>
     /// Adds a char to end of given string if it does not ends with the char.

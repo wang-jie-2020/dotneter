@@ -1,6 +1,6 @@
 using System;
 using System.Globalization;
-using Helpers.System;
+using Helpers.Text;
 using JetBrains.Annotations;
 
 namespace Helpers.Localization;

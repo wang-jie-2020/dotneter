@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 using System.Linq.Expressions;
 using JetBrains.Annotations;
 
-namespace Helpers.System.Linq;
+namespace Helpers.Linq;
 
 // Codes below are taken from https://github.com/scottksmith95/LINQKit project.
 

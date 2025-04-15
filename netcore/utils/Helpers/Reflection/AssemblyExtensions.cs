@@ -1,9 +1,9 @@
 ﻿using System.Diagnostics;
 using System.Reflection;
 
-namespace Helpers.System.Reflection;
+namespace Helpers.Reflection;
 
-public static class AbpAssemblyExtensions
+public static class AssemblyExtensions
 {
     public static string GetFileVersion(this Assembly assembly)
     {

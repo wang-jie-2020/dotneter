@@ -2,12 +2,12 @@
 using System.Linq;
 using System.Reflection;
 
-namespace Helpers.System.Reflection;
+namespace Helpers.Reflection;
 
 /// <summary>
 /// Extensions to <see cref="MemberInfo"/>.
 /// </summary>
-public static class AbpMemberInfoExtensions
+public static class MemberInfoExtensions
 {
     /// <summary>
     /// Gets a single attribute for a member.

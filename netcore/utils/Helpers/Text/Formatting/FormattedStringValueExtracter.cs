@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using Helpers.System.Collections.Generic;
+using Helpers.Collections.Generic;
 
 namespace Helpers.Text.Formatting;
 

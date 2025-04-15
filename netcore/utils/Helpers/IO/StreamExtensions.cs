@@ -2,9 +2,9 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Helpers.System.IO;
+namespace Helpers.IO;
 
-public static class AbpStreamExtensions
+public static class StreamExtensions
 {
     public static byte[] GetAllBytes(this Stream stream)
     {

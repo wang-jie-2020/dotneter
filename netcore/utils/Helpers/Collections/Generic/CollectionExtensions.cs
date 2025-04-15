@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 
-namespace Helpers.System.Collections.Generic;
+namespace Helpers.Collections.Generic;
 
 /// <summary>
 /// Extension methods for Collections.
 /// </summary>
-public static class AbpCollectionExtensions
+public static class CollectionExtensions
 {
     /// <summary>
     /// Checks whatever given collection object is null or has no item.

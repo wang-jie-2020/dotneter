@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using JetBrains.Annotations;
 
-namespace Helpers.System;
+namespace Helpers.Reflection;
 
-public static class AbpTypeExtensions
+public static class TypeExtensions
 {
     public static string GetFullNameWithAssemblyName(this Type type)
     {
