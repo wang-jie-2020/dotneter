@@ -1,7 +1,8 @@
-using Serilog.Events;
-using Serilog;
-using Serilog.Sinks.SystemConsole.Themes;
 using Newtonsoft.Json.Converters;
+using OnlineEditorsServer;
+using Serilog;
+using Serilog.Events;
+using Serilog.Sinks.SystemConsole.Themes;
 using Volo.Abp.Modularity;
 
 Log.Logger = new LoggerConfiguration()
@@ -47,7 +48,10 @@ await app.InitializeAsync();
 
 app.Run();
 
-internal class MainModule : AbpModule
+namespace OnlineEditorsServer
 {
+    internal class MainModule : AbpModule
+    {
     
+    }
 }

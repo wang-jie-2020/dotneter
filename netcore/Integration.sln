@@ -39,6 +39,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NacosConfiguration", "sampl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NacosDiscovery", "samples\NacosDiscovery\NacosDiscovery.csproj", "{FDE56E38-18B2-40CA-9930-91B8FD4DA224}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Helpers", "utils\Helpers\Helpers.csproj", "{74EB29A8-F4CB-4B15-9485-4E84C963AF47}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -105,6 +107,10 @@ Global
 		{FDE56E38-18B2-40CA-9930-91B8FD4DA224}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FDE56E38-18B2-40CA-9930-91B8FD4DA224}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FDE56E38-18B2-40CA-9930-91B8FD4DA224}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74EB29A8-F4CB-4B15-9485-4E84C963AF47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74EB29A8-F4CB-4B15-9485-4E84C963AF47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74EB29A8-F4CB-4B15-9485-4E84C963AF47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74EB29A8-F4CB-4B15-9485-4E84C963AF47}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -125,6 +131,7 @@ Global
 		{8AE92F1E-D0E6-491B-B77A-D2709C36272F} = {B5C84E9D-5AC5-4125-8344-296E9BB151D2}
 		{028DFCAA-BC4B-4DC7-BF9F-AFD4B63A31DC} = {D8F0B07B-1D86-4D52-9471-AAF2761CB610}
 		{FDE56E38-18B2-40CA-9930-91B8FD4DA224} = {D8F0B07B-1D86-4D52-9471-AAF2761CB610}
+		{74EB29A8-F4CB-4B15-9485-4E84C963AF47} = {877F0037-93FF-4E52-B59A-12819A2DEDCE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {95A0A211-6F5A-45ED-8389-98B4E03AC030}
