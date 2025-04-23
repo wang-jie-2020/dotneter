@@ -149,6 +149,7 @@ public static class ReflectionHelper
                 {
                     value = property.GetValue(value, null);
                 }
+
                 currentType = property.PropertyType;
             }
             else
@@ -195,7 +196,6 @@ public static class ReflectionHelper
         property.SetValue(obj, value);
     }
 
-
     /// <summary>
     /// Get all the constant values in the specified type (including the base type).
     /// </summary>
@@ -229,5 +229,18 @@ public static class ReflectionHelper
         Recursively(publicConstants, type, 1);
 
         return publicConstants.ToArray();
+    }
+
+    public static bool HasAttribute<TAttribute>(Type type)
+        where TAttribute : class
+    {
+        if (type.GetTypeInfo().IsDefined(typeof(TAttribute), true))
+        {
+            return true;
+        }
+        
+        return type
+            .GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
+            .Any(m => m.IsDefined(typeof(TAttribute), true));
     }
 }
