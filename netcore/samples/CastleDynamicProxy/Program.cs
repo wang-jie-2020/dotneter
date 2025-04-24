@@ -7,7 +7,8 @@ namespace CastleDynamicProxy
         static void Main(string[] args)
         {
             //Run(typeof(InterceptorSamples));
-            Run(typeof(DynamicProxySamples));
+            // Run(typeof(DynamicProxySamples));
+            Run(typeof(PipelineSamples));
         }
 
         static void Run(Type type)
