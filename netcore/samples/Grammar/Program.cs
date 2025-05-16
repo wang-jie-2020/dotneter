@@ -7,7 +7,7 @@ namespace Grammar
     {
         static void Main(string[] args)
         {
-            Run(typeof(HttpClientEx));
+            Run(typeof(NwJson));
         }
 
         static void Run(Type type)

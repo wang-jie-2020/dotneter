@@ -1,0 +1,4 @@
+# For more info on HTTP files go to https://aka.ms/vs/httpfile
+@HOST = http://localhost:5174
+
+GET {{HOST}}/userefit/github-user
