@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+    <Import Project="..\..\common.props" />
+
+    <ItemGroup>
+        <PackageReference Include="FreeRedis" Version="1.2.14" />
+        <PackageReference Include="FreeRedis.DistributedCache" Version="1.2.5" />
+        <PackageReference Include="Mapster" Version="7.4.0" />
+        <PackageReference Include="MiniProfiler.AspNetCore.Mvc" Version="4.3.8" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+        <PackageReference Include="SqlSugarCore" Version="$(SqlSugarVersion)" />
+        <PackageReference Include="SqlSugarCoreNoDrive" Version="$(SqlSugarVersion)" />
+        <PackageReference Include="SkyAPM.Agent.AspNetCore" Version="2.2.0" />
+        <PackageReference Include="IPTools.China" Version="1.6.0" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.8.0" />
+        <PackageReference Include="UAParser" Version="3.1.47" />
+        <PackageReference Include="Magicodes.IE.Excel" Version="2.7.5.2" />
+        <PackageReference Include="MiniExcel" Version="1.31.3" />
+        <PackageReference Include="Cronos" Version="0.8.4" />
+        <PackageReference Include="Yitter.IdGenerator" Version="1.0.14" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Volo.Abp.AspNetCore.Authentication.JwtBearer" Version="$(AbpVersion)" />
+        <PackageReference Include="Volo.Abp.AspNetCore.MultiTenancy" Version="$(AbpVersion)" />
+        <PackageReference Include="Volo.Abp.AspNetCore.Mvc" Version="$(AbpVersion)" />
+        <PackageReference Include="Volo.Abp.AspNetCore.Serilog" Version="$(AbpVersion)" />
+        <PackageReference Include="Volo.Abp.AspNetCore.SignalR" Version="$(AbpVersion)" />
+        <PackageReference Include="Volo.Abp.Autofac" Version="$(AbpVersion)" />
+        <PackageReference Include="Volo.Abp.BackgroundWorkers.Quartz" Version="$(AbpVersion)" />
+        <PackageReference Include="Volo.Abp.Caching" Version="$(AbpVersion)" />
+        <PackageReference Include="Volo.Abp.Core" Version="$(AbpVersion)" />
+        <PackageReference Include="Volo.Abp.Ddd.Application" Version="$(AbpVersion)" />
+        <PackageReference Include="Volo.Abp.Ddd.Application.Contracts" Version="$(AbpVersion)" />
+        <PackageReference Include="Volo.Abp.Ddd.Domain" Version="$(AbpVersion)" />
+        <PackageReference Include="Volo.Abp.Json" Version="$(AbpVersion)" />
+        <PackageReference Include="Volo.Abp.ObjectMapping" Version="$(AbpVersion)" />
+    </ItemGroup>
+</Project>

@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>Yi.Sys</RootNamespace>
+    </PropertyGroup>
+    <Import Project="..\..\common.props" />
+    
+    <ItemGroup>
+        <PackageReference Include="Lazy.Captcha.Core" Version="2.0.7" />
+        <PackageReference Include="SkiaSharp.NativeAssets.Linux.NoDependencies" Version="2.88.7" />
+    </ItemGroup>
+    
+    <ItemGroup>
+      <ProjectReference Include="..\Utils.Minio\Utils.Minio.csproj" />
+      <ProjectReference Include="..\Yi.AspNetCore\Yi.AspNetCore.csproj" />
+    </ItemGroup>
+</Project>

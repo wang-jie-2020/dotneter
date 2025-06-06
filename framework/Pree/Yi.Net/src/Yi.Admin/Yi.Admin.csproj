@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+    <Import Project="..\..\common.props" />
+    
+    <ItemGroup>
+        <ProjectReference Include="..\Yi.AspNetCore\Yi.AspNetCore.csproj" />
+        <ProjectReference Include="..\Yi.System\Yi.System.csproj" />
+    </ItemGroup>
+</Project>
