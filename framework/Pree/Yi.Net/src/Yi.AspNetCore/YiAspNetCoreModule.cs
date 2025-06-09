@@ -18,7 +18,6 @@ using Volo.Abp.AspNetCore.Serilog;
 using Volo.Abp.AspNetCore.SignalR;
 using Volo.Abp.Auditing;
 using Volo.Abp.Autofac;
-using Volo.Abp.BackgroundWorkers.Quartz;
 using Volo.Abp.Caching;
 using Volo.Abp.Data;
 using Volo.Abp.Domain;
@@ -47,7 +46,6 @@ namespace Yi.AspNetCore;
     typeof(AbpAspNetCoreSerilogModule),
     typeof(AbpAspNetCoreSignalRModule),
     typeof(AbpAutofacModule),
-    typeof(AbpBackgroundWorkersQuartzModule),
     typeof(AbpCachingModule),
     typeof(AbpDddApplicationModule),
     typeof(AbpDddDomainModule),
