@@ -37,6 +37,5 @@ public class YiSystemModule : AbpModule
         context.Services.AddTransient<IAuditLogInfoToAuditLogConverter, AuditLogInfoToAuditLogConverter>();
         
         context.Services.AddCaptcha();
-        context.Services.TryAddYiDbContext<YiDataScopedDbContext>();
     }
 }
