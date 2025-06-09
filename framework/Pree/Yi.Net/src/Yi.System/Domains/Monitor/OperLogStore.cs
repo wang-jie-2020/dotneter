@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using Volo.Abp.Domain.Repositories;
-using Yi.AspNetCore.System.Loggings;
+using Yi.AspNetCore.Core.Loggings;
 using Yi.Sys.Domains.Monitor.Entities;
 
 namespace Yi.Sys.Domains.Monitor;

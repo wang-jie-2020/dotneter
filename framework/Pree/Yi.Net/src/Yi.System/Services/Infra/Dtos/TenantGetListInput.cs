@@ -1,4 +1,4 @@
-﻿using Yi.AspNetCore.System;
+﻿using Yi.AspNetCore.Core;
 
 namespace Yi.Sys.Services.Infra.Dtos;
 

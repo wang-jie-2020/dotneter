@@ -1,4 +1,4 @@
-﻿namespace Yi.AspNetCore.System;
+﻿namespace Yi.AspNetCore.Core;
 
 [Serializable]
 public class PagedInput

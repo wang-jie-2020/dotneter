@@ -6,7 +6,7 @@ using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Data;
 using Volo.Abp.Uow;
-using Yi.AspNetCore.System;
+using Yi.AspNetCore.Core;
 using Yi.Sys.Domains.Infra.Consts;
 using Yi.Sys.Domains.Infra.Entities;
 using Yi.Sys.Services.Infra.Dtos;

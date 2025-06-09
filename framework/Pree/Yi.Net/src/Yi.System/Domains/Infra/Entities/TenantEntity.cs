@@ -1,5 +1,5 @@
 ﻿using JetBrains.Annotations;
-using Yi.AspNetCore.System.Entities;
+using Yi.AspNetCore.Core.Entities;
 using Check = Volo.Abp.Check;
 
 namespace Yi.Sys.Domains.Infra.Entities;

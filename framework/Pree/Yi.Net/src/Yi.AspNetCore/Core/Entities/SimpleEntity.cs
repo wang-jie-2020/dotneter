@@ -1,7 +1,7 @@
 ﻿using SqlSugar;
 using Volo.Abp.Domain.Entities;
 
-namespace Yi.AspNetCore.System.Entities;
+namespace Yi.AspNetCore.Core.Entities;
 
 public class SimpleEntity<T> : IEntity<T>
 {

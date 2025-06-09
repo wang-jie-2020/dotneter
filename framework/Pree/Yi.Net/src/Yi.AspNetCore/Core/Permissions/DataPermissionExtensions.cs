@@ -1,6 +1,6 @@
 ﻿using Volo.Abp.Data;
 
-namespace Yi.AspNetCore.System.Permissions;
+namespace Yi.AspNetCore.Core.Permissions;
 
 public static class DataPermissionExtensions
 {

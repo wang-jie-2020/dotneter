@@ -1,5 +1,5 @@
-using Yi.AspNetCore.System.Entities;
-using Yi.AspNetCore.System.Loggings;
+using Yi.AspNetCore.Core.Entities;
+using Yi.AspNetCore.Core.Loggings;
 
 namespace Yi.Sys.Services.Monitor.Dtos;
 

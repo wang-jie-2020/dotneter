@@ -2,7 +2,7 @@
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.EventBus;
-using Yi.AspNetCore.System.Events;
+using Yi.AspNetCore.Core.Events;
 using Yi.Sys.Domains.Monitor.Entities;
 
 namespace Yi.Sys.Domains.Monitor;

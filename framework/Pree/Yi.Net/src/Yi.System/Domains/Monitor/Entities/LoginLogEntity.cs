@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Http;
 using UAParser;
 using Volo.Abp.Auditing;
+using Yi.AspNetCore.Core.Entities;
 using Yi.AspNetCore.Extensions;
-using Yi.AspNetCore.System.Entities;
 
 namespace Yi.Sys.Domains.Monitor.Entities;
 

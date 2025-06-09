@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http;
 using UAParser;
 using Yi.AspNetCore.Extensions;
 
-namespace Yi.AspNetCore.System.Events;
+namespace Yi.AspNetCore.Core.Events;
 
 public class LoginEventArgs
 {

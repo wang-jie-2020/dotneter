@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 using Volo.Abp.DynamicProxy;
 using Volo.Abp.Users;
 
-namespace Yi.AspNetCore.System.Loggings;
+namespace Yi.AspNetCore.Core.Loggings;
 
 public class OperLogInterceptor : AbpInterceptor
 {

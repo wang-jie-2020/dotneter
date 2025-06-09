@@ -17,9 +17,9 @@ using Volo.Abp.MultiTenancy;
 using Volo.Abp.VirtualFileSystem;
 using Yi.Admin;
 using Yi.AspNetCore;
+using Yi.AspNetCore.Core.Permissions;
 using Yi.AspNetCore.Extensions;
 using Yi.AspNetCore.SqlSugarCore;
-using Yi.AspNetCore.System.Permissions;
 using Yi.Sys;
 using Yi.Sys.Options;
 

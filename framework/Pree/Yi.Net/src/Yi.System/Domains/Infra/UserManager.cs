@@ -7,7 +7,7 @@ using Volo.Abp.Caching;
 using Volo.Abp.Domain.Services;
 using Volo.Abp.EventBus.Local;
 using Volo.Abp.Guids;
-using Yi.AspNetCore.System;
+using Yi.AspNetCore.Core;
 using Yi.Sys.Domains.Infra.Consts;
 using Yi.Sys.Domains.Infra.Entities;
 using Yi.Sys.Domains.Infra.Repositories;

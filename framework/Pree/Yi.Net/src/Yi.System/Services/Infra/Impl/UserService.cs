@@ -3,7 +3,7 @@ using MiniExcelLibs;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Entities;
-using Yi.AspNetCore.System;
+using Yi.AspNetCore.Core;
 using Yi.Sys.Domains.Infra;
 using Yi.Sys.Domains.Infra.Consts;
 using Yi.Sys.Domains.Infra.Entities;

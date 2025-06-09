@@ -1,4 +1,4 @@
-﻿namespace Yi.AspNetCore.System.Permissions;
+﻿namespace Yi.AspNetCore.Core.Permissions;
 
 /// <summary>
 ///     数据权限过滤接口

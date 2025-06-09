@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Logging;
 using Volo.Abp.AspNetCore.SignalR;
-using Yi.AspNetCore.System.Events;
+using Yi.AspNetCore.Core.Events;
 
 namespace Yi.Admin.Hubs;
 

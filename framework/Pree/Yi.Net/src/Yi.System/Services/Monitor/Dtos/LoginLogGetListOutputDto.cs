@@ -1,4 +1,4 @@
-﻿using Yi.AspNetCore.System.Entities;
+﻿using Yi.AspNetCore.Core.Entities;
 
 namespace Yi.Sys.Services.Monitor.Dtos;
 

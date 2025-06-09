@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Volo.Abp.Users;
-using Yi.AspNetCore.System.Permissions;
+using Yi.AspNetCore.Core.Permissions;
 using Yi.Sys.Domains.Infra;
 
 namespace Yi.Sys.Services.Infra.Impl;
