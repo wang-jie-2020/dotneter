@@ -1,12 +1,11 @@
 ﻿using FreeRedis;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.Caching;
 using Yi.Sys.Services.Monitor.Dtos;
 
-namespace Yi.Admin.Controllers.Monitor;
+namespace Yi.Web.Controllers.Monitor;
 
 [ApiController]
 [Route("api/monitor/cache")]

@@ -1,12 +1,10 @@
 ﻿using System.Diagnostics;
 using System.Runtime.InteropServices;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Volo.Abp.AspNetCore.Mvc;
 using Yi.AspNetCore.Helpers;
 
-namespace Yi.Admin.Controllers.Monitor;
+namespace Yi.Web.Controllers.Monitor;
 
 [ApiController]
 [Route("api/monitor/server")]

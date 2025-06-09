@@ -1,11 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
-using Microsoft.Extensions.Logging;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.AspNetCore.Mvc;
 using Yi.Admin.Hubs;
 
-namespace Yi.Admin.Controllers.Monitor;
+namespace Yi.Web.Controllers.Monitor;
 
 [ApiController]
 [Route("api/monitor/online")]

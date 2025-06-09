@@ -4,7 +4,7 @@ using Volo.Abp.AspNetCore.Mvc;
 using Yi.Sys.Services.Monitor;
 using Yi.Sys.Services.Monitor.Dtos;
 
-namespace Yi.Admin.Controllers.Monitor;
+namespace Yi.Web.Controllers.Monitor;
 
 [ApiController]
 [Route("api/monitor/oper-log")]

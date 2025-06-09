@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Options;
 using Volo.Abp.AspNetCore.Mvc;
-using Volo.Abp.Authorization;
 using Volo.Abp.Caching;
 using Volo.Abp.Guids;
 using Volo.Abp.Uow;
@@ -20,7 +19,7 @@ using Yi.Sys.Options;
 using Yi.Sys.Services.Infra.Dtos;
 using Yi.Sys.Services.Infra.Impl;
 
-namespace Yi.Admin.Controllers.Sys;
+namespace Yi.Web.Controllers.System;
 
 [ApiController]
 [Route("api/system/account")]

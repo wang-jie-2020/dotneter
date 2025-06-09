@@ -1,10 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Utils.Minio;
 using Volo.Abp.AspNetCore.Mvc;
 using Yitter.IdGenerator;
 
-namespace Yi.Admin.Controllers.Sys;
+namespace Yi.Web.Controllers.System;
 
 [ApiController]
 [Route("api/system/file")]

@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.AspNetCore.Mvc;
@@ -7,7 +6,7 @@ using Yi.AspNetCore.System.Permissions;
 using Yi.Sys.Services.Infra;
 using Yi.Sys.Services.Infra.Dtos;
 
-namespace Yi.Admin.Controllers.Sys;
+namespace Yi.Web.Controllers.System;
 
 [ApiController]
 [Route("api/system/user")]

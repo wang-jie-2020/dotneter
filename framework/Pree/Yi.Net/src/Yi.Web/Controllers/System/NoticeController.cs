@@ -6,7 +6,7 @@ using Yi.Admin.Hubs;
 using Yi.Sys.Services.Infra;
 using Yi.Sys.Services.Infra.Dtos;
 
-namespace Yi.Admin.Controllers.Sys;
+namespace Yi.Web.Controllers.System;
 
 [ApiController]
 [Route("api/system/notice")]
