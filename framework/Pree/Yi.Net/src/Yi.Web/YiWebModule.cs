@@ -20,8 +20,8 @@ using Yi.AspNetCore;
 using Yi.AspNetCore.Core.Permissions;
 using Yi.AspNetCore.Extensions;
 using Yi.AspNetCore.SqlSugarCore;
-using Yi.Sys;
-using Yi.Sys.Options;
+using Yi.System;
+using Yi.System.Options;
 
 namespace Yi.Web;
 

@@ -1,11 +1,11 @@
 ﻿using Volo.Abp.DependencyInjection;
 using Yi.AspNetCore.Core.Permissions;
-using Yi.Sys.Domains.Infra;
-using Yi.Sys.Domains.Infra.Consts;
-using Yi.Sys.Domains.Infra.Entities;
-using Yi.Sys.Services.Infra.Impl;
+using Yi.System.Domains;
+using Yi.System.Domains.Consts;
+using Yi.System.Domains.Entities;
+using Yi.System.Services.Impl;
 
-namespace Yi.Sys;
+namespace Yi.System;
 
 public class YiDataScopedDbContext : SqlSugarDbContext
 {

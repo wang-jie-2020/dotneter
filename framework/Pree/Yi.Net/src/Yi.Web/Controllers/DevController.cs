@@ -10,8 +10,8 @@ using Volo.Abp.Localization;
 using Volo.Abp.VirtualFileSystem;
 using Yi.AspNetCore.Core;
 using Yi.AspNetCore.Core.Events;
-using Yi.Sys.Domains.Infra.Consts;
-using Yi.Sys.Services.Infra.Dtos;
+using Yi.System.Domains.Consts;
+using Yi.System.Services.Dtos;
 
 namespace Yi.Web.Controllers;
 

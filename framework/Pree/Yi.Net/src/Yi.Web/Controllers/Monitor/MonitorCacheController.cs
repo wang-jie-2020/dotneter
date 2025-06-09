@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.Caching;
-using Yi.Sys.Services.Monitor.Dtos;
+using Yi.System.Monitor.Dtos;
 
 namespace Yi.Web.Controllers.Monitor;
 

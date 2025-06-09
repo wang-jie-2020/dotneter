@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.SignalR;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.AspNetCore.Mvc;
 using Yi.Admin.Hubs;
-using Yi.Sys.Services.Infra;
-using Yi.Sys.Services.Infra.Dtos;
+using Yi.System.Services;
+using Yi.System.Services.Dtos;
 
 namespace Yi.Web.Controllers.System;
 

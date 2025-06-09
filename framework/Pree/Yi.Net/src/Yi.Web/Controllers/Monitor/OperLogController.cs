@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.AspNetCore.Mvc;
-using Yi.Sys.Services.Monitor;
-using Yi.Sys.Services.Monitor.Dtos;
+using Yi.System.Monitor;
+using Yi.System.Monitor.Dtos;
 
 namespace Yi.Web.Controllers.Monitor;
 
