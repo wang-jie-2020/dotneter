@@ -80,7 +80,7 @@ public class UserDataSeed : IDataSeedContributor, ITransientDependency
             user3.BuildPassword();
             entities.Add(user3);
 
-            await _repository.InsertManyAsync(entities);
+            await _repository.InsertRangeAsync(entities);
         }
     }
 }

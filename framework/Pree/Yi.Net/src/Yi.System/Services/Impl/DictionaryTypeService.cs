@@ -40,7 +40,7 @@ public class DictionaryTypeService : ApplicationService, IDictionaryTypeService
     public async Task<DictionaryTypeDto> CreateAsync(DictionaryTypeCreateInput input)
     {
         var entity = input.Adapt<DictionaryTypeEntity>();
-        await _repository.InsertAsync(entity, autoSave: true);
+        await _repository.InsertAsync(entity);
 
         return entity.Adapt<DictionaryTypeDto>();
     }
@@ -49,7 +49,7 @@ public class DictionaryTypeService : ApplicationService, IDictionaryTypeService
     {
         var entity = await _repository.GetAsync(id);
         input.Adapt(entity);
-        await _repository.UpdateAsync(entity, autoSave: true);
+        await _repository.UpdateAsync(entity);
 
         return entity.Adapt<DictionaryTypeDto>();
     }

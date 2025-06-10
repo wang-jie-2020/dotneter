@@ -35,7 +35,7 @@ public class NoticeService : ApplicationService, INoticeService
     public async Task<NoticeDto> CreateAsync(NoticeCreateInput input)
     {
         var entity = input.Adapt<NoticeEntity>();
-        await _repository.InsertAsync(entity, autoSave: true);
+        await _repository.InsertAsync(entity);
 
         return entity.Adapt<NoticeDto>();
     }
@@ -44,7 +44,7 @@ public class NoticeService : ApplicationService, INoticeService
     {
         var entity = await _repository.GetAsync(id);
         input.Adapt(entity);
-        await _repository.UpdateAsync(entity, autoSave: true);
+        await _repository.UpdateAsync(entity);
 
         return entity.Adapt<NoticeDto>();
     }

@@ -50,7 +50,7 @@ public class TenantService : ApplicationService, ITenantService
         }
 
         var entity = input.Adapt<TenantEntity>();
-        await _repository.InsertAsync(entity, autoSave: true);
+        await _repository.InsertAsync(entity);
 
         return entity.Adapt<TenantDto>();
     }
@@ -62,7 +62,7 @@ public class TenantService : ApplicationService, ITenantService
 
         var entity = await _repository.GetAsync(id);
         input.Adapt(entity);
-        await _repository.UpdateAsync(entity, autoSave: true);
+        await _repository.UpdateAsync(entity);
 
         return entity.Adapt<TenantDto>();
     }

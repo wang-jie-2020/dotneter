@@ -17,7 +17,7 @@ public class DictionaryDataSeed : IDataSeedContributor, ITransientDependency
     {
         if (!await _repository.IsAnyAsync(x => true))
         {
-            await _repository.InsertManyAsync(GetSeedData());
+            await _repository.InsertRangeAsync(GetSeedData());
         }
     }
 

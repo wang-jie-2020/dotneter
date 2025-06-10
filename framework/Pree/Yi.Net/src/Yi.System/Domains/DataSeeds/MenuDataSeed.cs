@@ -18,7 +18,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
 
     public async Task SeedAsync(DataSeedContext context)
     {
-        if (!await _repository.IsAnyAsync(x => x.MenuName == "系统管理")) await _repository.InsertManyAsync(GetSeedData());
+        if (!await _repository.IsAnyAsync(x => x.MenuName == "系统管理")) await _repository.InsertRangeAsync(GetSeedData());
     }
 
     public List<MenuEntity> GetSeedData()

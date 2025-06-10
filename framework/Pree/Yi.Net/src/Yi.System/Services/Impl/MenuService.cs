@@ -36,7 +36,7 @@ public class MenuService : ApplicationService, IMenuService
     public async Task<MenuDto> CreateAsync(MenuCreateInput input)
     {
         var entity = input.Adapt<MenuEntity>();
-        await _repository.InsertAsync(entity, autoSave: true);
+        await _repository.InsertAsync(entity);
 
         return entity.Adapt<MenuDto>();
     }
@@ -45,7 +45,7 @@ public class MenuService : ApplicationService, IMenuService
     {
         var entity = await _repository.GetAsync(id);
         input.Adapt(entity);
-        await _repository.UpdateAsync(entity, autoSave: true);
+        await _repository.UpdateAsync(entity);
 
         return entity.Adapt<MenuDto>();
     }

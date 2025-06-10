@@ -35,7 +35,7 @@ public class PostService : ApplicationService, IPostService
     public async Task<PostDto> CreateAsync(PostCreateInput input)
     {
         var entity = input.Adapt<PostEntity>();
-        await _repository.InsertAsync(entity, autoSave: true);
+        await _repository.InsertAsync(entity);
 
         return entity.Adapt<PostDto>();
     }
@@ -44,7 +44,7 @@ public class PostService : ApplicationService, IPostService
     {
         var entity = await _repository.GetAsync(id);
         input.Adapt(entity);
-        await _repository.UpdateAsync(entity, autoSave: true);
+        await _repository.UpdateAsync(entity);
 
         return entity.Adapt<PostDto>();
     }
