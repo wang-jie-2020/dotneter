@@ -11,7 +11,6 @@ using Volo.Abp.Auditing;
 using Volo.Abp.Authorization;
 using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
-using Volo.Abp.Features;
 using Volo.Abp.GlobalFeatures;
 using Volo.Abp.Guids;
 using Volo.Abp.Linq;
@@ -26,23 +25,9 @@ using Volo.Abp.Validation;
 
 namespace Volo.Abp.Application.Services;
 
-public abstract class ApplicationService :
-    IApplicationService,
-    IAvoidDuplicateCrossCuttingConcerns,
-    IValidationEnabled,
-    IUnitOfWorkEnabled,
-    IAuditingEnabled,
-    IGlobalFeatureCheckingEnabled,
-    ITransientDependency
+public abstract class ApplicationService : ITransientDependency
 {
     public IAbpLazyServiceProvider LazyServiceProvider { get; set; } = default!;
-
-    [Obsolete("Use LazyServiceProvider instead.")]
-    public IServiceProvider ServiceProvider { get; set; } = default!;
-
-    public static string[] CommonPostfixes { get; set; } = { "AppService", "ApplicationService", "Service" };
-
-    public List<string> AppliedCrossCuttingConcerns { get; } = new();
 
     protected IUnitOfWorkManager UnitOfWorkManager => LazyServiceProvider.LazyGetRequiredService<IUnitOfWorkManager>();
 
@@ -54,8 +39,6 @@ public abstract class ApplicationService :
             ? provider.GetRequiredService<IObjectMapper>()
             : (IObjectMapper)provider.GetRequiredService(typeof(IObjectMapper<>).MakeGenericType(ObjectMapperContext)));
 
-    protected IGuidGenerator GuidGenerator => LazyServiceProvider.LazyGetService<IGuidGenerator>(SimpleGuidGenerator.Instance);
-
     protected ILoggerFactory LoggerFactory => LazyServiceProvider.LazyGetRequiredService<ILoggerFactory>();
 
     protected ICurrentTenant CurrentTenant => LazyServiceProvider.LazyGetRequiredService<ICurrentTenant>();
@@ -64,13 +47,9 @@ public abstract class ApplicationService :
 
     protected ICurrentUser CurrentUser => LazyServiceProvider.LazyGetRequiredService<ICurrentUser>();
 
-    protected ISettingProvider SettingProvider => LazyServiceProvider.LazyGetRequiredService<ISettingProvider>();
-
     protected IClock Clock => LazyServiceProvider.LazyGetRequiredService<IClock>();
 
     protected IAuthorizationService AuthorizationService => LazyServiceProvider.LazyGetRequiredService<IAuthorizationService>();
-
-    protected IFeatureChecker FeatureChecker => LazyServiceProvider.LazyGetRequiredService<IFeatureChecker>();
 
     protected IStringLocalizerFactory StringLocalizerFactory => LazyServiceProvider.LazyGetRequiredService<IStringLocalizerFactory>();
 

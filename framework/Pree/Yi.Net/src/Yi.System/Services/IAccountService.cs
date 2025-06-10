@@ -3,7 +3,7 @@ using Yi.System.Services.Dtos;
 
 namespace Yi.System.Services;
 
-public interface IAccountService : IApplicationService
+public interface IAccountService
 {
     Task<UserRoleMenuDto> GetAsync();
     

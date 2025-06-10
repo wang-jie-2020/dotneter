@@ -3,9 +3,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Volo.Abp.Application.Dtos;
 
-/// <summary>
-/// Simply implements <see cref="IPagedAndSortedResultRequest"/>.
-/// </summary>
 [Serializable]
 public class PagedAndSortedResultRequestDto
 {
