@@ -17,7 +17,6 @@ using Volo.Abp.AspNetCore.ExceptionHandling;
 using Volo.Abp.AspNetCore.MultiTenancy;
 using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.AspNetCore.Mvc.ExceptionHandling;
-using Volo.Abp.AspNetCore.Serilog;
 using Volo.Abp.AspNetCore.SignalR;
 using Volo.Abp.Auditing;
 using Volo.Abp.Autofac;
@@ -45,13 +44,10 @@ using SequentialGuidGenerator = Yi.AspNetCore.Helpers.SequentialGuidGenerator;
 namespace Yi.AspNetCore;
 
 [DependsOn(
-    typeof(AbpAuditingModule),
     typeof(AbpAspNetCoreAuthenticationJwtBearerModule),
     typeof(AbpAspNetCoreMultiTenancyModule),
-    typeof(AbpAspNetCoreSerilogModule),
     typeof(AbpAspNetCoreSignalRModule),
     typeof(AbpAutofacModule),
-    typeof(AbpCachingModule),
     typeof(AbpEventBusModule),
     typeof(AbpObjectMappingModule)
 )]

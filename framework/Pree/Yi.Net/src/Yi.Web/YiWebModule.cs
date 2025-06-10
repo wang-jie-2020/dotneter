@@ -309,9 +309,6 @@ public class YiWebModule : AbpModule
         //审计日志
         app.UseAuditing();
 
-        //日志记录
-        app.UseAbpSerilogEnrichers();
-
         //终节点
         app.UseConfiguredEndpoints();
 
