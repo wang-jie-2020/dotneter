@@ -8,9 +8,9 @@ namespace Yi.System.Monitor;
 public class OperLogStore : IOperLogStore
 {
     private readonly ILogger<OperLogStore> _logger;
-    private readonly IRepository<OperLogEntity> _repository;
+    private readonly ISqlSugarRepository<OperLogEntity> _repository;
 
-    public OperLogStore(ILogger<OperLogStore> logger, IRepository<OperLogEntity> repository)
+    public OperLogStore(ILogger<OperLogStore> logger, ISqlSugarRepository<OperLogEntity> repository)
     {
         _logger = logger;
         _repository = repository;

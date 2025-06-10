@@ -10,9 +10,9 @@ namespace Yi.System.Monitor;
 public class LoginEventHandler : ILocalEventHandler<LoginEventArgs>, ITransientDependency
 {
     private readonly ILogger<LoginEventHandler> _logger;
-    private readonly IRepository<LoginLogEntity> _loginLogRepository;
+    private readonly ISqlSugarRepository<LoginLogEntity> _loginLogRepository;
 
-    public LoginEventHandler(ILogger<LoginEventHandler> logger, IRepository<LoginLogEntity> loginLogRepository)
+    public LoginEventHandler(ILogger<LoginEventHandler> logger, ISqlSugarRepository<LoginLogEntity> loginLogRepository)
     {
         _logger = logger;
         _loginLogRepository = loginLogRepository;

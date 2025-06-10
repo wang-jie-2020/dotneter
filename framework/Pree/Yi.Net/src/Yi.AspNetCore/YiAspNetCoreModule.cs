@@ -83,8 +83,6 @@ public class YiAspNetCoreModule : AbpModule
         Configure<DbConnOptions>(configuration.GetSection("DbConnOptions"));
 
         context.Services.TryAddScoped<ISqlSugarDbContext, SqlSugarDbContext>();
-        context.Services.AddTransient(typeof(IRepository<>), typeof(SqlSugarRepository<>));
-        context.Services.AddTransient(typeof(IRepository<,>), typeof(SqlSugarRepository<,>));
         context.Services.AddTransient(typeof(ISqlSugarRepository<>), typeof(SqlSugarRepository<>));
         context.Services.AddTransient(typeof(ISqlSugarRepository<,>), typeof(SqlSugarRepository<,>));
         context.Services.AddTransient(typeof(ISugarDbContextProvider<>), typeof(UnitOfWorkSqlSugarDbContextProvider<>));
