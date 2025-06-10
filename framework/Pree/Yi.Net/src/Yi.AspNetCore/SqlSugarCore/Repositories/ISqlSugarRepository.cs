@@ -3,14 +3,14 @@ using SqlSugar;
 using Volo.Abp.Domain.Entities;
 using Volo.Abp.Domain.Repositories;
 
-namespace Yi.AspNetCore.SqlSugarCore;
+namespace Yi.AspNetCore.SqlSugarCore.Repositories;
 
 public interface ISqlSugarRepository<TEntity> : IRepository<TEntity> where TEntity : class, IEntity, new()
 {
     ISqlSugarClient Db { get; }
     ISugarQueryable<TEntity> DbQueryable { get; }
     Task<ISqlSugarClient> GetDbContextAsync();
-    
+
     Task<IDeleteable<TEntity>> AsDeletable();
     Task<IInsertable<TEntity>> AsInsertable(List<TEntity> insertObjs);
     Task<IInsertable<TEntity>> AsInsertable(TEntity insertObj);
@@ -33,7 +33,7 @@ public interface ISqlSugarRepository<TEntity> : IRepository<TEntity> where TEnti
     Task<int> CountAsync(Expression<Func<TEntity, bool>> whereExpression);
 
     #endregion
-    
+
     #region 多查
 
     //多查
@@ -41,7 +41,7 @@ public interface ISqlSugarRepository<TEntity> : IRepository<TEntity> where TEnti
     Task<List<TEntity>> GetListAsync(Expression<Func<TEntity, bool>> whereExpression);
 
     #endregion
-    
+
     #region 分页查
 
     //分页查
@@ -65,7 +65,7 @@ public interface ISqlSugarRepository<TEntity> : IRepository<TEntity> where TEnti
     Task<bool> InsertRangeAsync(List<TEntity> insertObjs);
 
     #endregion
-    
+
     #region 更新
 
     //更新

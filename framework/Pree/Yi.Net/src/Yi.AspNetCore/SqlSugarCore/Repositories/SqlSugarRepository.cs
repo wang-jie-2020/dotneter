@@ -6,7 +6,7 @@ using Volo.Abp.Linq;
 
 namespace Yi.AspNetCore.SqlSugarCore.Repositories;
 
-public class SqlSugarRepository<TEntity> : ISqlSugarRepository<TEntity>, IRepository<TEntity>
+public class SqlSugarRepository<TEntity> : ISqlSugarRepository<TEntity>
     where TEntity : class, IEntity, new()
 {
     private readonly ISugarDbContextProvider<ISqlSugarDbContext> _sugarDbContextProvider;
@@ -383,8 +383,8 @@ public class SqlSugarRepository<TEntity> : ISqlSugarRepository<TEntity>, IReposi
     #endregion
 }
 
-public class SqlSugarRepository<TEntity, TKey> : SqlSugarRepository<TEntity>, ISqlSugarRepository<TEntity, TKey>,
-    IRepository<TEntity, TKey> where TEntity : class, IEntity<TKey>, new()
+public class SqlSugarRepository<TEntity, TKey> : SqlSugarRepository<TEntity>, ISqlSugarRepository<TEntity, TKey>
+     where TEntity : class, IEntity<TKey>, new()
 {
     public SqlSugarRepository(ISugarDbContextProvider<ISqlSugarDbContext> sugarDbContextProvider) : base(
         sugarDbContextProvider)
