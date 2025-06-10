@@ -265,6 +265,7 @@ public class YiWebModule : AbpModule
         //app.UseRefreshToken();
 
         //鉴权
+        
         app.UseAuthentication();
 
         //多租户
