@@ -16,7 +16,7 @@ public class ConfigService : ApplicationService, IConfigService
 
     public async Task<ConfigGetOutputDto> GetAsync(Guid id)
     {
-        var entity = await _repository.GetAsync(id);
+        var entity = await _repository.GetByIdAsync(id);
         return entity.Adapt<ConfigGetOutputDto>();
     }
 
@@ -35,16 +35,16 @@ public class ConfigService : ApplicationService, IConfigService
     public async Task<ConfigGetOutputDto> CreateAsync(ConfigCreateInputVo input)
     {
         var entity = input.Adapt<ConfigEntity>();
-        await _repository.InsertAsync(entity, autoSave: true);
+        await _repository.InsertAsync(entity);
 
         return entity.Adapt<ConfigGetOutputDto>();
     }
 
     public async Task<ConfigGetOutputDto> UpdateAsync(Guid id, ConfigUpdateInput input)
     {
-        var entity = await _repository.GetAsync(id);
+        var entity = await _repository.GetByIdAsync(id);
         input.Adapt(entity);
-        await _repository.UpdateAsync(entity, autoSave: true);
+        await _repository.UpdateAsync(entity);
 
         return entity.Adapt<ConfigGetOutputDto>();
     }

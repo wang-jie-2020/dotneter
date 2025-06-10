@@ -1,16 +1,10 @@
-﻿using Volo.Abp.Auditing;
-using Volo.Abp.Domain.Entities;
+﻿using Yi.AspNetCore.Core.Entities;
 
 namespace Yi.System.Domains.Entities;
 
 [SugarTable("Sys_Dictionary")]
-public class DictionaryEntity : Entity<Guid>, IAuditedObject, ISoftDelete
+public class DictionaryEntity : BizEntity<Guid>
 {
-    /// <summary>
-    ///     主键
-    /// </summary>
-    [SugarColumn(IsPrimaryKey = true)]
-    public override Guid Id { get; protected set; }
 
     /// <summary>
     ///     描述
@@ -54,24 +48,11 @@ public class DictionaryEntity : Entity<Guid>, IAuditedObject, ISoftDelete
     [SugarColumn(ColumnName = "IsDefault")]
     public bool IsDefault { get; set; }
 
-    public DateTime CreationTime { get; set; }
-
-    public Guid? CreatorId { get; set; }
-
-    public Guid? LastModifierId { get; set; }
-
-    public DateTime? LastModificationTime { get; set; }
-
     /// <summary>
     ///     排序
     /// </summary>
     public int OrderNum { get; set; } = 0;
-    
-    /// <summary>
-    ///     逻辑删除
-    /// </summary>
-    public bool IsDeleted { get; set; }
-
+   
     /// <summary>
     ///     状态
     /// </summary>

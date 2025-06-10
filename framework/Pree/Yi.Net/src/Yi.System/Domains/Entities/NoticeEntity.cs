@@ -1,14 +1,12 @@
 ﻿using Volo.Abp.Auditing;
 using Volo.Abp.Domain.Entities;
+using Yi.AspNetCore.Core.Entities;
 
 namespace Yi.System.Domains.Entities;
 
 [SugarTable("Sys_Notice")]
-public class NoticeEntity : AggregateRoot<Guid>, ISoftDelete, IAuditedObject
+public class NoticeEntity : BizEntity<Guid>
 {
-    [SugarColumn(IsPrimaryKey = true)] 
-    public override Guid Id { get; protected set; }
-
     /// <summary>
     ///     公告标题
     /// </summary>
@@ -25,17 +23,7 @@ public class NoticeEntity : AggregateRoot<Guid>, ISoftDelete, IAuditedObject
     [SugarColumn(ColumnDataType = StaticConfig.CodeFirst_BigString)]
     public string Content { get; set; }
 
-    public DateTime CreationTime { get; set; }
-
-    public Guid? CreatorId { get; set; }
-
-    public Guid? LastModifierId { get; set; }
-
-    public DateTime? LastModificationTime { get; set; }
-
     public int OrderNum { get; set; }
-
-    public bool IsDeleted { get; set; }
     
     public bool State { get; set; }
 }

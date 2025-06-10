@@ -1,9 +1,8 @@
-﻿using Volo.Abp.Domain.Services;
-using Yi.System.Domains.Entities;
+﻿using Yi.System.Domains.Entities;
 
 namespace Yi.System.Domains;
 
-public interface IAccountManager : IDomainService
+public interface IAccountManager
 {
     string CreateRefreshToken(Guid userId);
     

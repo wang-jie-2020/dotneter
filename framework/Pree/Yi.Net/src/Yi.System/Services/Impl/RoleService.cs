@@ -91,7 +91,7 @@ public class RoleService : ApplicationService, IRoleService
         }
 
         var entity = new RoleEntity { DataScope = input.DataScope };
-        EntityHelper.TrySetId(entity, () => input.RoleId);
+        entity.Id = input.RoleId;
 
         await _repository.Db.Updateable(entity).UpdateColumns(x => x.DataScope).ExecuteCommandAsync();
     }
