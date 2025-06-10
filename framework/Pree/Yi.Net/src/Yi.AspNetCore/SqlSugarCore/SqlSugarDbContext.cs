@@ -63,8 +63,6 @@ public class SqlSugarDbContext : ISqlSugarDbContext
 
     protected virtual bool IsSoftDeleteFilterEnabled => DataFilter?.IsEnabled<ISoftDelete>() ?? false;
 
-    public IEntityChangeEventHelper EntityChangeEventHelper => LazyServiceProvider.LazyGetService<IEntityChangeEventHelper>(NullEntityChangeEventHelper.Instance);
-
     public AbpDbConnectionOptions ConnectionOptions => LazyServiceProvider.LazyGetRequiredService<IOptions<AbpDbConnectionOptions>>().Value;
 
     /// <summary>
@@ -239,50 +237,6 @@ public class SqlSugarDbContext : ISqlSugarDbContext
                     if (CurrentTenant is not null)
                     {
                         entityInfo.SetValue(CurrentTenant.Id);
-                    }
-                }
-
-                break;
-        }
-
-        //领域事件
-        switch (entityInfo.OperationType)
-        {
-            case DataFilterType.InsertByObject:
-                if (entityInfo.PropertyName == nameof(IEntity<object>.Id))
-                {
-                    EntityChangeEventHelper.PublishEntityCreatedEvent(entityInfo.EntityValue);
-                }
-
-                break;
-            case DataFilterType.UpdateByObject:
-                if (entityInfo.PropertyName == nameof(IEntity<object>.Id))
-                {
-                    //软删除，发布的是删除事件
-                    if (entityInfo.EntityValue is ISoftDelete softDelete)
-                    {
-                        if (softDelete.IsDeleted)
-                        {
-                            EntityChangeEventHelper.PublishEntityDeletedEvent(entityInfo.EntityValue);
-                        }
-                    }
-                    else
-                    {
-                        EntityChangeEventHelper.PublishEntityUpdatedEvent(entityInfo.EntityValue);
-                    }
-                }
-
-                break;
-            case DataFilterType.DeleteByObject:
-                if (entityInfo.PropertyName == nameof(IEntity<object>.Id))
-                {
-                    //这里sqlsugar有个特殊，删除会返回批量的结果
-                    if (entityInfo.EntityValue is IEnumerable entityValues)
-                    {
-                        foreach (var entityValue in entityValues)
-                        {
-                            EntityChangeEventHelper.PublishEntityDeletedEvent(entityValue);
-                        }
                     }
                 }
 
