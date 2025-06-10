@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Logging;
-using Volo.Abp.Domain.Repositories;
 using Yi.AspNetCore.Core.Loggings;
 using Yi.System.Monitor.Entities;
 
