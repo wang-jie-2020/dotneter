@@ -16,7 +16,9 @@ using Volo.Abp.AspNetCore.Authentication.JwtBearer;
 using Volo.Abp.AspNetCore.ExceptionHandling;
 using Volo.Abp.AspNetCore.MultiTenancy;
 using Volo.Abp.AspNetCore.Mvc;
+using Volo.Abp.AspNetCore.Mvc.Auditing;
 using Volo.Abp.AspNetCore.Mvc.ExceptionHandling;
+using Volo.Abp.AspNetCore.Mvc.Uow;
 using Volo.Abp.AspNetCore.SignalR;
 using Volo.Abp.Auditing;
 using Volo.Abp.Autofac;
@@ -96,6 +98,11 @@ public class YiAspNetCoreModule : AbpModule
 
         context.Services.AddTransient<YiExceptionFilter>();
         context.Services.Replace(ServiceDescriptor.Transient<IExceptionToErrorInfoConverter, YiExceptionToErrorInfoConverter>());
+        
+        // todo 
+        context.Services.AddMvc().AddDataAnnotationsLocalization().AddViewLocalization();
+        context.Services.TryAddSingleton<IActionContextAccessor, ActionContextAccessor>();
+        
         context.Services.Configure<MvcOptions>(options =>
         {
             // 权限过滤器
@@ -111,13 +118,9 @@ public class YiAspNetCoreModule : AbpModule
                 options.Filters.Remove(abpExceptionFilter);
             }
             
-            var abpExceptionPageFilter = options.Filters.FirstOrDefault(metadata => (metadata as ServiceFilterAttribute)?.ServiceType == typeof(AbpExceptionPageFilter));
-            if (abpExceptionPageFilter != null)
-            {
-                options.Filters.Remove(abpExceptionPageFilter);
-            }
-            
             options.Filters.AddService<YiExceptionFilter>();
+            options.Filters.AddService<AbpUowActionFilter>();
+            options.Filters.AddService<AbpAuditActionFilter>();
         });
 
         // 雪花Id
@@ -132,33 +135,6 @@ public class YiAspNetCoreModule : AbpModule
         // profiler
         context.Services.AddSingleton<IMiniProfilerDiagnosticListener, SqlSugarDiagnosticListener>();
         context.Services.AddSingleton<ITracingDiagnosticProcessor, SqlSugarTracingDiagnosticProcessor>();
-
-        // todo 
-        var mvcBuilder = context.Services.AddMvc().AddDataAnnotationsLocalization().AddViewLocalization();
-        context.Services.TryAddSingleton<IActionContextAccessor, ActionContextAccessor>();
-        mvcBuilder.AddControllersAsServices();
-        mvcBuilder.AddViewComponentsAsServices();
-        context.Services.AddOptions<MvcOptions>()
-           .Configure<IServiceProvider>((mvcOptions, serviceProvider) =>
-           {
-               mvcOptions.AddAbp(context.Services);
-
-               // serviceProvider is root service provider.
-               var stringLocalizer = serviceProvider.GetRequiredService<IStringLocalizer<AbpValidationResource>>();
-               mvcOptions.ModelBindingMessageProvider.SetValueIsInvalidAccessor(_ => stringLocalizer["The value '{0}' is invalid."]);
-               mvcOptions.ModelBindingMessageProvider.SetNonPropertyValueMustBeANumberAccessor(() => stringLocalizer["The field must be a number."]);
-               mvcOptions.ModelBindingMessageProvider.SetValueMustBeANumberAccessor(value => stringLocalizer["The field {0} must be a number.", value]);
-           });
-
-        Configure<AbpEndpointRouterOptions>(options =>
-        {
-            options.EndpointConfigureActions.Add(endpointContext =>
-            {
-                endpointContext.Endpoints.MapControllerRoute("defaultWithArea", "{area}/{controller=Home}/{action=Index}/{id?}");
-                endpointContext.Endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
-                endpointContext.Endpoints.MapRazorPages();
-            });
-        });
     }
 
     public override async Task OnPreApplicationInitializationAsync(ApplicationInitializationContext context)

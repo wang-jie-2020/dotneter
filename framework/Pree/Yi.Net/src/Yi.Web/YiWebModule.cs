@@ -265,7 +265,6 @@ public class YiWebModule : AbpModule
         //app.UseRefreshToken();
 
         //鉴权
-        
         app.UseAuthentication();
 
         //多租户
@@ -311,8 +310,15 @@ public class YiWebModule : AbpModule
         app.UseAuditing();
 
         //终节点
-        app.UseConfiguredEndpoints();
-
+        app.UseEndpoints(endpoints =>
+        {
+            endpoints.MapControllerRoute(
+                name: "default",
+                pattern: "{controller=Home}/{action=Index}/{id?}");
+            
+            endpoints.MapRazorPages();
+        });
+        
         return Task.CompletedTask;
     }
 }
