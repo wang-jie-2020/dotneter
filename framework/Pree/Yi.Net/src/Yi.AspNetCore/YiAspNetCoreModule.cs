@@ -16,8 +16,6 @@ using Volo.Abp.AspNetCore.Authentication.JwtBearer;
 using Volo.Abp.AspNetCore.ExceptionHandling;
 using Volo.Abp.AspNetCore.MultiTenancy;
 using Volo.Abp.AspNetCore.Mvc;
-using Volo.Abp.AspNetCore.Mvc.Auditing;
-using Volo.Abp.AspNetCore.Mvc.ExceptionHandling;
 using Volo.Abp.AspNetCore.Mvc.Uow;
 using Volo.Abp.AspNetCore.SignalR;
 using Volo.Abp.Auditing;
@@ -31,6 +29,7 @@ using Volo.Abp.EventBus.Local;
 using Volo.Abp.Guids;
 using Volo.Abp.ObjectMapping;
 using Volo.Abp.Validation.Localization;
+using Yi.AspNetCore.Abp;
 using Yi.AspNetCore.Caching.FreeRedis;
 using Yi.AspNetCore.Core.Loggings;
 using Yi.AspNetCore.Core.Permissions;
@@ -99,7 +98,6 @@ public class YiAspNetCoreModule : AbpModule
         context.Services.AddTransient<YiExceptionFilter>();
         context.Services.Replace(ServiceDescriptor.Transient<IExceptionToErrorInfoConverter, YiExceptionToErrorInfoConverter>());
         
-        // todo 
         context.Services.AddMvc()
             .AddDataAnnotationsLocalization().AddViewLocalization()
             .AddControllersAsServices().AddViewComponentsAsServices();
@@ -114,13 +112,13 @@ public class YiAspNetCoreModule : AbpModule
             options.Filters.AddService<OperLogFilter>();
 
             // 错误过滤器
-            var abpExceptionFilter = options.Filters.FirstOrDefault(metadata => (metadata as ServiceFilterAttribute)?.ServiceType == typeof(AbpExceptionFilter));
-            if (abpExceptionFilter != null)
-            {
-                options.Filters.Remove(abpExceptionFilter);
-            }
-            
+            //var abpExceptionFilter = options.Filters.FirstOrDefault(metadata => (metadata as ServiceFilterAttribute)?.ServiceType == typeof(AbpExceptionFilter));
+            //if (abpExceptionFilter != null)
+            //{
+            //    options.Filters.Remove(abpExceptionFilter);
+            //}
             options.Filters.AddService<YiExceptionFilter>();
+
             options.Filters.AddService<AbpUowActionFilter>();
             options.Filters.AddService<AbpAuditActionFilter>();
         });

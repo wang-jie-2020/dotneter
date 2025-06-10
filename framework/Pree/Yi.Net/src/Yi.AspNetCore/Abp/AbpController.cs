@@ -20,7 +20,7 @@ using Volo.Abp.Users;
 
 namespace Volo.Abp.AspNetCore.Mvc;
 
-public abstract class AbpController : Controller, IAvoidDuplicateCrossCuttingConcerns
+public abstract class AbpController : Controller
 {
     public IAbpLazyServiceProvider LazyServiceProvider { get; set; } = default!;
 
@@ -31,9 +31,7 @@ public abstract class AbpController : Controller, IAvoidDuplicateCrossCuttingCon
         ObjectMapperContext == null
             ? provider.GetRequiredService<IObjectMapper>()
             : (IObjectMapper)provider.GetRequiredService(typeof(IObjectMapper<>).MakeGenericType(ObjectMapperContext)));
-
-    protected IGuidGenerator GuidGenerator => LazyServiceProvider.LazyGetService<IGuidGenerator>(SimpleGuidGenerator.Instance);
-
+    
     protected ILoggerFactory LoggerFactory => LazyServiceProvider.LazyGetRequiredService<ILoggerFactory>();
 
     protected ILogger Logger => LazyServiceProvider.LazyGetService<ILogger>(provider => LoggerFactory?.CreateLogger(GetType().FullName!) ?? NullLogger.Instance);
@@ -43,15 +41,9 @@ public abstract class AbpController : Controller, IAvoidDuplicateCrossCuttingCon
     protected ICurrentTenant CurrentTenant => LazyServiceProvider.LazyGetRequiredService<ICurrentTenant>();
 
     protected IAuthorizationService AuthorizationService => LazyServiceProvider.LazyGetRequiredService<IAuthorizationService>();
-
-    protected IUnitOfWork? CurrentUnitOfWork => UnitOfWorkManager?.Current;
-
+    
     protected IClock Clock => LazyServiceProvider.LazyGetRequiredService<IClock>();
-
-    protected IModelStateValidator ModelValidator => LazyServiceProvider.LazyGetRequiredService<IModelStateValidator>();
-
-    protected IFeatureChecker FeatureChecker => LazyServiceProvider.LazyGetRequiredService<IFeatureChecker>();
-
+    
     protected IStringLocalizerFactory StringLocalizerFactory => LazyServiceProvider.LazyGetRequiredService<IStringLocalizerFactory>();
 
     protected IStringLocalizer L {
@@ -75,8 +67,6 @@ public abstract class AbpController : Controller, IAvoidDuplicateCrossCuttingCon
     }
     private Type? _localizationResource = typeof(DefaultResource);
 
-    public List<string> AppliedCrossCuttingConcerns { get; } = new List<string>();
-
     protected virtual IStringLocalizer CreateLocalizer()
     {
         if (LocalizationResource != null)
@@ -91,10 +81,5 @@ public abstract class AbpController : Controller, IAvoidDuplicateCrossCuttingCon
         }
 
         return localizer;
-    }
-
-    protected virtual void ValidateModel()
-    {
-        ModelValidator?.Validate(ModelState);
     }
 }

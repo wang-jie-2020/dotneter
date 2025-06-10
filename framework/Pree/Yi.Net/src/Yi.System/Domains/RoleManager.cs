@@ -1,4 +1,5 @@
-﻿using Volo.Abp.Domain.Services;
+﻿using Yi.AspNetCore.Abp;
+using Yi.AspNetCore.Core;
 using Yi.System.Domains.Entities;
 
 namespace Yi.System.Domains;

@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using Volo.Abp.Domain.Services;
 using Volo.Abp.EventBus.Local;
 using Volo.Abp.Security.Claims;
+using Yi.AspNetCore.Abp;
 using Yi.AspNetCore.Core;
 using Yi.AspNetCore.Core.Events;
 using Yi.AspNetCore.Core.Loggings;

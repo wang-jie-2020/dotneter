@@ -7,6 +7,7 @@ using Microsoft.Extensions.Options;
 using Volo.Abp.AspNetCore.Filters;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Uow;
+using Yi.AspNetCore.Abp;
 
 namespace Volo.Abp.AspNetCore.Mvc.Uow;
 

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Volo.Abp.AspNetCore.Mvc;
+namespace Yi.AspNetCore.Abp;
 
 public static class AbpActionContextExtensions
 {
