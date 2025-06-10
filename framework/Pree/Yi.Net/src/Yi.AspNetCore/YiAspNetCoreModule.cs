@@ -1,14 +1,17 @@
 ﻿using System.Reflection;
 using FreeRedis;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Options;
 using SkyApm;
 using SqlSugar;
 using StackExchange.Profiling.Internal;
-using Volo.Abp.Application;
 using Volo.Abp.AspNetCore.Authentication.JwtBearer;
 using Volo.Abp.AspNetCore.ExceptionHandling;
 using Volo.Abp.AspNetCore.MultiTenancy;
@@ -22,8 +25,11 @@ using Volo.Abp.Caching;
 using Volo.Abp.Data;
 using Volo.Abp.Domain;
 using Volo.Abp.Domain.Repositories;
+using Volo.Abp.EventBus;
+using Volo.Abp.EventBus.Local;
 using Volo.Abp.Guids;
 using Volo.Abp.ObjectMapping;
+using Volo.Abp.Validation.Localization;
 using Yi.AspNetCore.Caching.FreeRedis;
 using Yi.AspNetCore.Core.Loggings;
 using Yi.AspNetCore.Core.Permissions;
@@ -42,14 +48,11 @@ namespace Yi.AspNetCore;
     typeof(AbpAuditingModule),
     typeof(AbpAspNetCoreAuthenticationJwtBearerModule),
     typeof(AbpAspNetCoreMultiTenancyModule),
-    typeof(AbpAspNetCoreMvcModule),
     typeof(AbpAspNetCoreSerilogModule),
     typeof(AbpAspNetCoreSignalRModule),
     typeof(AbpAutofacModule),
     typeof(AbpCachingModule),
-    typeof(AbpDddApplicationModule),
-    typeof(AbpDddDomainModule),
-    typeof(AbpDddDomainSharedModule),
+    typeof(AbpEventBusModule),
     typeof(AbpObjectMappingModule)
 )]
 public class YiAspNetCoreModule : AbpModule
@@ -133,6 +136,33 @@ public class YiAspNetCoreModule : AbpModule
         // profiler
         context.Services.AddSingleton<IMiniProfilerDiagnosticListener, SqlSugarDiagnosticListener>();
         context.Services.AddSingleton<ITracingDiagnosticProcessor, SqlSugarTracingDiagnosticProcessor>();
+
+        // todo 
+        var mvcBuilder = context.Services.AddMvc().AddDataAnnotationsLocalization().AddViewLocalization();
+        context.Services.TryAddSingleton<IActionContextAccessor, ActionContextAccessor>();
+        mvcBuilder.AddControllersAsServices();
+        mvcBuilder.AddViewComponentsAsServices();
+        context.Services.AddOptions<MvcOptions>()
+           .Configure<IServiceProvider>((mvcOptions, serviceProvider) =>
+           {
+               mvcOptions.AddAbp(context.Services);
+
+               // serviceProvider is root service provider.
+               var stringLocalizer = serviceProvider.GetRequiredService<IStringLocalizer<AbpValidationResource>>();
+               mvcOptions.ModelBindingMessageProvider.SetValueIsInvalidAccessor(_ => stringLocalizer["The value '{0}' is invalid."]);
+               mvcOptions.ModelBindingMessageProvider.SetNonPropertyValueMustBeANumberAccessor(() => stringLocalizer["The field must be a number."]);
+               mvcOptions.ModelBindingMessageProvider.SetValueMustBeANumberAccessor(value => stringLocalizer["The field {0} must be a number.", value]);
+           });
+
+        Configure<AbpEndpointRouterOptions>(options =>
+        {
+            options.EndpointConfigureActions.Add(endpointContext =>
+            {
+                endpointContext.Endpoints.MapControllerRoute("defaultWithArea", "{area}/{controller=Home}/{action=Index}/{id?}");
+                endpointContext.Endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+                endpointContext.Endpoints.MapRazorPages();
+            });
+        });
     }
 
     public override async Task OnPreApplicationInitializationAsync(ApplicationInitializationContext context)

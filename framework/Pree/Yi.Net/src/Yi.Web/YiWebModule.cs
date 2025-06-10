@@ -9,7 +9,6 @@ using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Converters;
 using Utils.Minio;
 using Volo.Abp.AspNetCore.MultiTenancy;
-using Volo.Abp.AspNetCore.Mvc.AntiForgery;
 using Volo.Abp.Auditing;
 using Volo.Abp.Caching;
 using Volo.Abp.Localization;
@@ -56,11 +55,6 @@ public class YiWebModule : AbpModule
             cacheOptions.GlobalCacheEntryOptions.SlidingExpiration = null;
             //缓存key前缀
             cacheOptions.KeyPrefix = "Yi:";
-        });
-
-        Configure<AbpAntiForgeryOptions>(options =>
-        {
-            options.AutoValidate = false;
         });
 
         //配置多租户
