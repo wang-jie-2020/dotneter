@@ -3,13 +3,16 @@ using System.Collections.Generic;
 
 namespace Volo.Abp.Application.Dtos;
 
-/// <summary>
-/// Implements <see cref="IPagedResult{T}"/>.
-/// </summary>
-/// <typeparam name="T">Type of the items in the <see cref="ListResultDto{T}.Items"/> list</typeparam>
 [Serializable]
-public class PagedResultDto<T> : ListResultDto<T>, IPagedResult<T>
+public class PagedResultDto<T>
 {
+    public IReadOnlyList<T> Items
+    {
+        get { return _items ?? (_items = new List<T>()); }
+        set { _items = value; }
+    }
+    private IReadOnlyList<T>? _items;
+
     /// <inheritdoc />
     public long TotalCount { get; set; } //TODO: Can be a long value..?
 
@@ -27,38 +30,8 @@ public class PagedResultDto<T> : ListResultDto<T>, IPagedResult<T>
     /// <param name="totalCount">Total count of Items</param>
     /// <param name="items">List of items in current page</param>
     public PagedResultDto(long totalCount, IReadOnlyList<T> items)
-        : base(items)
     {
         TotalCount = totalCount;
-    }
-}
-
-/// <summary>
-/// Implements <see cref="IPagedResult{T}"/>.
-/// </summary>
-/// <typeparam name="T">Type of the items in the <see cref="ListResultDto{T}.Items"/> list</typeparam>
-[Serializable]
-public class ExtensiblePagedResultDto<T> : ExtensibleListResultDto<T>, IPagedResult<T>
-{
-    /// <inheritdoc />
-    public long TotalCount { get; set; } //TODO: Can be a long value..?
-
-    /// <summary>
-    /// Creates a new <see cref="PagedResultDto{T}"/> object.
-    /// </summary>
-    public ExtensiblePagedResultDto()
-    {
-
-    }
-
-    /// <summary>
-    /// Creates a new <see cref="PagedResultDto{T}"/> object.
-    /// </summary>
-    /// <param name="totalCount">Total count of Items</param>
-    /// <param name="items">List of items in current page</param>
-    public ExtensiblePagedResultDto(long totalCount, IReadOnlyList<T> items)
-        : base(items)
-    {
-        TotalCount = totalCount;
+        Items = items;
     }
 }
