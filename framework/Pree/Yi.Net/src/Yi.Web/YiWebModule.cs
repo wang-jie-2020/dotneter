@@ -44,7 +44,7 @@ public class YiWebModule : AbpModule
         Configure<AbpAuditingOptions>(options =>
         {
             //默认关闭，开启会有大量的审计日志
-            options.IsEnabled = false;
+            options.IsEnabled = true;
             //审计日志过滤器
             options.AlwaysLogSelectors.Add(x => Task.FromResult(true));
         });

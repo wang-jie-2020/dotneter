@@ -100,7 +100,9 @@ public class YiAspNetCoreModule : AbpModule
         context.Services.Replace(ServiceDescriptor.Transient<IExceptionToErrorInfoConverter, YiExceptionToErrorInfoConverter>());
         
         // todo 
-        context.Services.AddMvc().AddDataAnnotationsLocalization().AddViewLocalization();
+        context.Services.AddMvc()
+            .AddDataAnnotationsLocalization().AddViewLocalization()
+            .AddControllersAsServices().AddViewComponentsAsServices();
         context.Services.TryAddSingleton<IActionContextAccessor, ActionContextAccessor>();
         
         context.Services.Configure<MvcOptions>(options =>

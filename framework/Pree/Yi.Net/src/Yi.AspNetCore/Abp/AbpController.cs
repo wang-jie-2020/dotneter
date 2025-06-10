@@ -20,7 +20,7 @@ using Volo.Abp.Users;
 
 namespace Volo.Abp.AspNetCore.Mvc;
 
-public abstract class AbpController : ControllerBase, IAvoidDuplicateCrossCuttingConcerns
+public abstract class AbpController : Controller, IAvoidDuplicateCrossCuttingConcerns
 {
     public IAbpLazyServiceProvider LazyServiceProvider { get; set; } = default!;
 
