@@ -1,7 +1,4 @@
-﻿using Volo.Abp.Auditing;
-using Volo.Abp.Data;
-using Volo.Abp.Domain.Entities;
-using Yi.AspNetCore.Core.Entities;
+﻿using Yi.AspNetCore.Core.Entities;
 
 namespace Yi.System.Domains.Entities;
 

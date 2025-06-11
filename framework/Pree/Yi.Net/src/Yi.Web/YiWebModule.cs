@@ -14,11 +14,9 @@ using Volo.Abp.Caching;
 using Volo.Abp.Localization;
 using Volo.Abp.MultiTenancy;
 using Volo.Abp.VirtualFileSystem;
-using Yi.Admin;
 using Yi.AspNetCore;
 using Yi.AspNetCore.Core.Permissions;
 using Yi.AspNetCore.Extensions;
-using Yi.AspNetCore.SqlSugarCore;
 using Yi.System;
 using Yi.System.Options;
 

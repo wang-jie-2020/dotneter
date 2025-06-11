@@ -1,5 +1,4 @@
 ﻿using SqlSugar;
-using Volo.Abp.Domain.Entities;
 
 namespace Yi.AspNetCore.Core.Entities;
 

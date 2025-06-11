@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Utils.Minio;
-using Volo.Abp.AspNetCore.Mvc;
 using Yi.AspNetCore.Core;
 using Yitter.IdGenerator;
 

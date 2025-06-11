@@ -1,6 +1,5 @@
 ﻿using System.Linq.Expressions;
 using SqlSugar;
-using Volo.Abp.Domain.Entities;
 using Volo.Abp.Linq;
 using Yi.AspNetCore.Core.Entities;
 

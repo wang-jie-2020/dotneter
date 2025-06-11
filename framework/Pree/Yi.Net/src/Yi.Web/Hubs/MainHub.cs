@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.SignalR;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.AspNetCore.SignalR;
 using Volo.Abp.AspNetCore.SignalR;
 using Yi.AspNetCore.Core.Events;
 

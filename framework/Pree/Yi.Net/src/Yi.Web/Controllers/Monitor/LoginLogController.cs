@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Volo.Abp.AspNetCore.Mvc;
 using Yi.AspNetCore.Core;
 using Yi.System.Monitor.Dtos;
 using Yi.System.Monitor.Entities;

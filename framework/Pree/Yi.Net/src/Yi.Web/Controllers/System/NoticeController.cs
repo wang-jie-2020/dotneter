@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
-using Volo.Abp.AspNetCore.Mvc;
 using Yi.Admin.Hubs;
 using Yi.AspNetCore.Core;
 using Yi.System.Services;

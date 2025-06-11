@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Options;
-using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.Caching;
 using Volo.Abp.Guids;
 using Volo.Abp.Uow;
