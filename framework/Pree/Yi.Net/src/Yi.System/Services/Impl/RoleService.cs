@@ -146,7 +146,7 @@ public class RoleService : ApplicationService, IRoleService
             .WhereIF(!string.IsNullOrEmpty(input.UserName), (ur, u) => u.UserName.Contains(input.UserName))
             .WhereIF(input.Phone is not null, (ur, u) => u.Phone.ToString().Contains(input.Phone.ToString()))
             .Select((ur, u) => new UserGetListOutputDto { Id = u.Id }, true)
-            .ToPageListAsync(input.SkipCount, input.MaxResultCount, total);
+            .ToPageListAsync(input.PageSize, input.PageNum, total);
 
         return new PagedResultDto<UserGetListOutputDto>(total, output);
     }
@@ -160,7 +160,7 @@ public class RoleService : ApplicationService, IRoleService
                 .Where(x => x.UserId == u.Id).NotAny())
             .WhereIF(!string.IsNullOrEmpty(input.UserName), u => u.UserName.Contains(input.UserName))
             .WhereIF(input.Phone is not null, u => u.Phone.ToString().Contains(input.Phone.ToString()))
-            .ToPageListAsync(input.SkipCount, input.MaxResultCount, total);
+            .ToPageListAsync(input.PageSize, input.PageNum, total);
 
         var output = entities.Adapt<List<UserGetListOutputDto>>();
         return new PagedResultDto<UserGetListOutputDto>(total, output);

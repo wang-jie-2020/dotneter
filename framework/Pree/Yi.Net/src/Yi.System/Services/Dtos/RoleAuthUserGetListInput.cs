@@ -1,8 +1,9 @@
 ﻿using Volo.Abp.Application.Dtos;
+using Yi.AspNetCore.Core;
 
 namespace Yi.System.Services.Dtos;
 
-public class RoleAuthUserGetListInput : PagedAndSortedResultRequestDto
+public class RoleAuthUserGetListInput : PagedInput
 {
     public string? UserName { get; set; }
 

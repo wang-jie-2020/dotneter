@@ -28,7 +28,7 @@ public class DictionaryService : ApplicationService, IDictionaryService
             .WhereIF(input.DictType is not null, x => x.DictType == input.DictType)
             .WhereIF(input.DictLabel is not null, x => x.DictLabel!.Contains(input.DictLabel!))
             .WhereIF(input.State is not null, x => x.State == input.State)
-            .ToPageListAsync(input.SkipCount, input.MaxResultCount, total);
+            .ToPageListAsync(input.PageNum, input.PageSize, total);
         return new PagedResultDto<DictionaryDto>
         {
             TotalCount = total,

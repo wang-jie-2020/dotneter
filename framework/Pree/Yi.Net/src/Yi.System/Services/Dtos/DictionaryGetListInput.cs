@@ -1,8 +1,9 @@
 using Volo.Abp.Application.Dtos;
+using Yi.AspNetCore.Core;
 
 namespace Yi.System.Services.Dtos;
 
-public class DictionaryGetListInput : PagedAndSortedResultRequestDto
+public class DictionaryGetListInput : PagedInput
 {
     public string? DictType { get; set; }
     
