@@ -4,6 +4,7 @@ using System.Threading.RateLimiting;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Converters;
@@ -315,6 +316,21 @@ public class WebModule : AbpModule
                 pattern: "{controller=Home}/{action=Index}/{id?}");
             
             endpoints.MapRazorPages();
+
+            using (var scope = app.ApplicationServices.CreateScope())
+            {
+                var options = app.ApplicationServices
+                    .GetRequiredService<IOptions<AbpEndpointRouterOptions>>()
+                    .Value;
+                if (options.EndpointConfigureActions.Any())
+                {
+                    var endpointRouteBuilderContext = new EndpointRouteBuilderContext(endpoints, scope.ServiceProvider);
+                    foreach (var configureAction in options.EndpointConfigureActions)
+                    {
+                        configureAction(endpointRouteBuilderContext);
+                    }
+                }
+            }
         });
         
         return Task.CompletedTask;
