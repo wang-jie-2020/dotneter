@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
-using Volo.Abp.Application.Dtos;
 using Volo.Abp.AspNetCore.Mvc;
 using Yi.Admin.Hubs;
+using Yi.AspNetCore.Core;
 
 namespace Yi.Web.Controllers.Monitor;
 
@@ -20,7 +20,7 @@ public class OnlineController : AbpController
     }
 
     [HttpGet]
-    public Task<PagedResultDto<OnlineUser>> GetListAsync([FromQuery] OnlineUser online)
+    public Task<PagedResult<OnlineUser>> GetListAsync([FromQuery] OnlineUser online)
     {
         var data = MainHub.ClientUsers;
         var dataWhere = data.AsEnumerable();
@@ -35,7 +35,7 @@ public class OnlineController : AbpController
             dataWhere = dataWhere.Where(u => u.UserName!.Contains(online.UserName));
         }
 
-        return Task.FromResult(new PagedResultDto<OnlineUser> { TotalCount = data.Count, Items = dataWhere.ToList() });
+        return Task.FromResult(new PagedResult<OnlineUser> { TotalCount = data.Count, Items = dataWhere.ToList() });
     }
     
     /// <summary>

@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using Volo.Abp.Application.Dtos;
 using Volo.Abp.AspNetCore.Mvc;
+using Yi.AspNetCore.Core;
 using Yi.System.Services;
 using Yi.System.Services.Dtos;
 
@@ -24,7 +24,7 @@ public class RoleController : AbpController
     }
 
     [HttpGet]
-    public async Task<PagedResultDto<RoleDto>> GetListAsync([FromQuery] RoleGetListInput input)
+    public async Task<PagedResult<RoleDto>> GetListAsync([FromQuery] RoleGetListInput input)
     {
         return await _roleService.GetListAsync(input);
     }
@@ -73,7 +73,7 @@ public class RoleController : AbpController
     /// <param name="isAllocated">是否在该角色下</param>
     /// <returns></returns>
     [HttpGet("auth-user/{roleId}/{isAllocated}")]
-    public async Task<PagedResultDto<UserGetListOutputDto>> GetAuthUserByRoleIdAsync([FromRoute] Guid roleId, [FromRoute] bool isAllocated, [FromQuery] RoleAuthUserGetListInput input)
+    public async Task<PagedResult<UserGetListOutputDto>> GetAuthUserByRoleIdAsync([FromRoute] Guid roleId, [FromRoute] bool isAllocated, [FromQuery] RoleAuthUserGetListInput input)
     {
         return await _roleService.GetAuthUserByRoleIdAsync(roleId, isAllocated, input);
     }

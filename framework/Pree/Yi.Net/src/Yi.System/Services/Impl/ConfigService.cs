@@ -1,5 +1,5 @@
-using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
+using Yi.AspNetCore.Core;
 using Yi.System.Domains.Entities;
 using Yi.System.Services.Dtos;
 
@@ -20,7 +20,7 @@ public class ConfigService : ApplicationService, IConfigService
         return entity.Adapt<ConfigGetOutputDto>();
     }
 
-    public async Task<PagedResultDto<ConfigGetListOutputDto>> GetListAsync(ConfigGetListInputVo input)
+    public async Task<PagedResult<ConfigGetListOutputDto>> GetListAsync(ConfigGetListInputVo input)
     {
         RefAsync<int> total = 0;
 
@@ -29,7 +29,7 @@ public class ConfigService : ApplicationService, IConfigService
             .WhereIF(input.StartTime is not null && input.EndTime is not null, x => x.CreationTime >= input.StartTime && x.CreationTime <= input.EndTime)
             .ToPageListAsync(input.PageNum, input.PageSize, total);
 
-        return new PagedResultDto<ConfigGetListOutputDto>(total, entities.Adapt<List<ConfigGetListOutputDto>>());
+        return new PagedResult<ConfigGetListOutputDto>(total, entities.Adapt<List<ConfigGetListOutputDto>>());
     }
 
     public async Task<ConfigGetOutputDto> CreateAsync(ConfigCreateInputVo input)

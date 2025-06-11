@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using Volo.Abp.Application.Dtos;
 using Volo.Abp.AspNetCore.Mvc;
+using Yi.AspNetCore.Core;
 using Yi.AspNetCore.Core.Loggings;
 using Yi.AspNetCore.Core.Permissions;
 using Yi.System.Services;
@@ -27,7 +27,7 @@ public class UserController : AbpController
 
     [HttpGet]
     [Permission("system:user:list")]
-    public async Task<PagedResultDto<UserGetListOutputDto>> GetListAsync([FromQuery] UserGetListInput input)
+    public async Task<PagedResult<UserGetListOutputDto>> GetListAsync([FromQuery] UserGetListInput input)
     {
         return await _userService.GetListAsync(input);
     }

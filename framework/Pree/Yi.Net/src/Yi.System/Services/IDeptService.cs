@@ -1,4 +1,4 @@
-using Volo.Abp.Application.Dtos;
+using Yi.AspNetCore.Core;
 using Yi.System.Services.Dtos;
 
 namespace Yi.System.Services;
@@ -7,7 +7,7 @@ public interface IDeptService
 {
     Task<DeptGetOutputDto> GetAsync(Guid id);
 
-    Task<PagedResultDto<DeptGetListOutputDto>> GetListAsync(DeptGetListInput input);
+    Task<PagedResult<DeptGetListOutputDto>> GetListAsync(DeptGetListInput input);
 
     Task<DeptGetOutputDto> CreateAsync(DeptCreateInput input);
 

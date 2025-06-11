@@ -1,4 +1,4 @@
-using Volo.Abp.Application.Dtos;
+using Yi.AspNetCore.Core;
 using Yi.System.Services.Dtos;
 
 namespace Yi.System.Services;
@@ -7,7 +7,7 @@ public interface IMenuService
 {
     Task<MenuDto> GetAsync(Guid id);
 
-    Task<PagedResultDto<MenuDto>> GetListAsync(MenuGetListInput input);
+    Task<PagedResult<MenuDto>> GetListAsync(MenuGetListInput input);
 
     Task<MenuDto> CreateAsync(MenuCreateInput input);
 

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Volo.Abp.Application.Dtos;
 using Volo.Abp.AspNetCore.Mvc;
+using Yi.AspNetCore.Core;
 using Yi.System.Services;
 using Yi.System.Services.Dtos;
 
@@ -24,7 +24,7 @@ public class TenantController : AbpController
     }
 
     [HttpGet]
-    public async Task<PagedResultDto<TenantDto>> GetListAsync([FromQuery] TenantGetListInput input)
+    public async Task<PagedResult<TenantDto>> GetListAsync([FromQuery] TenantGetListInput input)
     {
         return await _tenantService.GetListAsync(input);
     }

@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using Volo.Abp.Application.Dtos;
 using Volo.Abp.AspNetCore.Mvc;
+using Yi.AspNetCore.Core;
 using Yi.System.Services;
 using Yi.System.Services.Dtos;
 
@@ -24,7 +24,7 @@ public class MenuController : AbpController
     }
 
     [HttpGet]
-    public async Task<PagedResultDto<MenuDto>> GetListAsync([FromQuery] MenuGetListInput input)
+    public async Task<PagedResult<MenuDto>> GetListAsync([FromQuery] MenuGetListInput input)
     {
         return await _menuService.GetListAsync(input);
     }

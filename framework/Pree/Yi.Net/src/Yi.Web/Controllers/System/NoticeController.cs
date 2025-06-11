@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
-using Volo.Abp.Application.Dtos;
 using Volo.Abp.AspNetCore.Mvc;
 using Yi.Admin.Hubs;
+using Yi.AspNetCore.Core;
 using Yi.System.Services;
 using Yi.System.Services.Dtos;
 
@@ -28,7 +28,7 @@ public class NoticeController : AbpController
     }
 
     [HttpGet]
-    public async Task<PagedResultDto<NoticeDto>> GetListAsync([FromQuery] NoticeGetListInput input)
+    public async Task<PagedResult<NoticeDto>> GetListAsync([FromQuery] NoticeGetListInput input)
     {
         return await _noticeService.GetListAsync(input);
     }

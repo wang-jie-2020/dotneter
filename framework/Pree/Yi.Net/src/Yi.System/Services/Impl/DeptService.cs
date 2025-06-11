@@ -1,5 +1,5 @@
-using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
+using Yi.AspNetCore.Core;
 using Yi.System.Domains.Entities;
 using Yi.System.Domains.Repositories;
 using Yi.System.Services.Dtos;
@@ -21,7 +21,7 @@ public class DeptService : ApplicationService, IDeptService
         return entity.Adapt<DeptGetOutputDto>();
     }
 
-    public async Task<PagedResultDto<DeptGetListOutputDto>> GetListAsync(DeptGetListInput input)
+    public async Task<PagedResult<DeptGetListOutputDto>> GetListAsync(DeptGetListInput input)
     {
         RefAsync<int> total = 0;
         var entities = await _repository.DbQueryable
@@ -30,7 +30,7 @@ public class DeptService : ApplicationService, IDeptService
             .OrderBy(u => u.OrderNum)
             .ToPageListAsync(input.PageNum, input.PageSize, total);
 
-        return new PagedResultDto<DeptGetListOutputDto>
+        return new PagedResult<DeptGetListOutputDto>
         {
             TotalCount = total,
             Items = entities.Adapt<List<DeptGetListOutputDto>>()

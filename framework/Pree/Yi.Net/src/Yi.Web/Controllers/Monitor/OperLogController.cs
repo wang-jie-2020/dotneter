@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Volo.Abp.Application.Dtos;
 using Volo.Abp.AspNetCore.Mvc;
+using Yi.AspNetCore.Core;
 using Yi.System.Monitor;
 using Yi.System.Monitor.Dtos;
 
@@ -24,7 +24,7 @@ public class OperLogController : AbpController
     }
 
     [HttpGet]
-    public async Task<PagedResultDto<OperLogDto>> GetListAsync([FromQuery] OperLogGetListInput input)
+    public async Task<PagedResult<OperLogDto>> GetListAsync([FromQuery] OperLogGetListInput input)
     {
         return await _operLogService.GetListAsync(input);
     }

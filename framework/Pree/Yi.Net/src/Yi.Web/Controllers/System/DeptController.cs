@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using Volo.Abp.Application.Dtos;
 using Volo.Abp.AspNetCore.Mvc;
+using Yi.AspNetCore.Core;
 using Yi.System.Services;
 using Yi.System.Services.Dtos;
 
@@ -24,7 +24,7 @@ public class DeptController : AbpController
     }
 
     [HttpGet]
-    public async Task<PagedResultDto<DeptGetListOutputDto>> GetListAsync([FromQuery] DeptGetListInput input)
+    public async Task<PagedResult<DeptGetListOutputDto>> GetListAsync([FromQuery] DeptGetListInput input)
     {
         return await _deptService.GetListAsync(input);
     }

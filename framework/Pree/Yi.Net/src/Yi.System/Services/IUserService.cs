@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using Volo.Abp.Application.Dtos;
+using Yi.AspNetCore.Core;
 using Yi.System.Services.Dtos;
 
 namespace Yi.System.Services;
@@ -8,7 +8,7 @@ public interface IUserService
 {
     Task<UserGetOutputDto> GetAsync(Guid id);
 
-    Task<PagedResultDto<UserGetListOutputDto>> GetListAsync(UserGetListInput input);
+    Task<PagedResult<UserGetListOutputDto>> GetListAsync(UserGetListInput input);
 
     Task<UserGetOutputDto> CreateAsync(UserCreateInput input);
 

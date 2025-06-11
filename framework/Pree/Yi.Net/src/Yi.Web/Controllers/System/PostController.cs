@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using Volo.Abp.Application.Dtos;
 using Volo.Abp.AspNetCore.Mvc;
+using Yi.AspNetCore.Core;
 using Yi.System.Services;
 using Yi.System.Services.Dtos;
 
@@ -24,7 +24,7 @@ public class PostController : AbpController
     }
 
     [HttpGet]
-    public async Task<PagedResultDto<PostDto>> GetListAsync([FromQuery] PostGetListInput input)
+    public async Task<PagedResult<PostDto>> GetListAsync([FromQuery] PostGetListInput input)
     {
         return await _postService.GetListAsync(input);
     }

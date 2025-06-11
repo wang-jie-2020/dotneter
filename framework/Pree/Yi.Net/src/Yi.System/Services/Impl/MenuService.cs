@@ -1,5 +1,5 @@
-using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
+using Yi.AspNetCore.Core;
 using Yi.System.Domains.Entities;
 using Yi.System.Services.Dtos;
 
@@ -20,7 +20,7 @@ public class MenuService : ApplicationService, IMenuService
         return entity.Adapt<MenuDto>();
     }
 
-    public async Task<PagedResultDto<MenuDto>> GetListAsync(MenuGetListInput input)
+    public async Task<PagedResult<MenuDto>> GetListAsync(MenuGetListInput input)
     {
         RefAsync<int> total = 0;
 
@@ -30,7 +30,7 @@ public class MenuService : ApplicationService, IMenuService
             .OrderByDescending(x => x.OrderNum)
             .ToListAsync();
 
-        return new PagedResultDto<MenuDto>(total, entities.Adapt<List<MenuDto>>());
+        return new PagedResult<MenuDto>(total, entities.Adapt<List<MenuDto>>());
     }
 
     public async Task<MenuDto> CreateAsync(MenuCreateInput input)

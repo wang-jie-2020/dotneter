@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
+using Yi.AspNetCore.Core;
 using Yi.System.Monitor.Dtos;
 using Yi.System.Monitor.Entities;
 
@@ -21,7 +21,7 @@ public class OperLogService : ApplicationService, IOperLogService
         return entity.Adapt<OperLogDto>();
     }
 
-    public async Task<PagedResultDto<OperLogDto>> GetListAsync(OperLogGetListInput input)
+    public async Task<PagedResult<OperLogDto>> GetListAsync(OperLogGetListInput input)
     {
         RefAsync<int> total = 0;
 
@@ -32,7 +32,7 @@ public class OperLogService : ApplicationService, IOperLogService
                 x => x.ExecutionTime >= input.StartTime && x.ExecutionTime <= input.EndTime)
             .ToPageListAsync(input.PageNum, input.PageSize, total);
 
-        return new PagedResultDto<OperLogDto>(total, entities.Adapt<List<OperLogDto>>());
+        return new PagedResult<OperLogDto>(total, entities.Adapt<List<OperLogDto>>());
     }
 
     public async Task DeleteAsync([FromBody] IEnumerable<long> id)

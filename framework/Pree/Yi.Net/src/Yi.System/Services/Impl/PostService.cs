@@ -1,5 +1,5 @@
-using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
+using Yi.AspNetCore.Core;
 using Yi.System.Domains.Entities;
 using Yi.System.Services.Dtos;
 
@@ -20,7 +20,7 @@ public class PostService : ApplicationService, IPostService
         return entity.Adapt<PostDto>();
     }
 
-    public async Task<PagedResultDto<PostDto>> GetListAsync(PostGetListInput input)
+    public async Task<PagedResult<PostDto>> GetListAsync(PostGetListInput input)
     {
         RefAsync<int> total = 0;
 
@@ -29,7 +29,7 @@ public class PostService : ApplicationService, IPostService
             .WhereIF(!string.IsNullOrEmpty(input.PostCode), x => x.PostCode.Contains(input.PostCode!))
             .WhereIF(input.State is not null, x => x.State == input.State)
             .ToPageListAsync(input.PageNum, input.PageSize, total);
-        return new PagedResultDto<PostDto>(total, entities.Adapt<List<PostDto>>());
+        return new PagedResult<PostDto>(total, entities.Adapt<List<PostDto>>());
     }
 
     public async Task<PostDto> CreateAsync(PostCreateInput input)

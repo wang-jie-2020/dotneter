@@ -1,6 +1,6 @@
-using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Entities;
+using Yi.AspNetCore.Core;
 using Yi.System.Domains;
 using Yi.System.Domains.Entities;
 using Yi.System.Services.Dtos;
@@ -30,7 +30,7 @@ public class RoleService : ApplicationService, IRoleService
         return entity.Adapt<RoleDto>();
     }
 
-    public async Task<PagedResultDto<RoleDto>> GetListAsync(RoleGetListInput input)
+    public async Task<PagedResult<RoleDto>> GetListAsync(RoleGetListInput input)
     {
         RefAsync<int> total = 0;
 
@@ -39,7 +39,7 @@ public class RoleService : ApplicationService, IRoleService
             .WhereIF(!string.IsNullOrEmpty(input.RoleName), x => x.RoleName.Contains(input.RoleName!))
             .WhereIF(input.State is not null, x => x.State == input.State)
             .ToPageListAsync(input.PageNum, input.PageSize, total);
-        return new PagedResultDto<RoleDto>(total, entities.Adapt<List<RoleDto>>());
+        return new PagedResult<RoleDto>(total, entities.Adapt<List<RoleDto>>());
     }
 
     /// <summary>
@@ -119,9 +119,9 @@ public class RoleService : ApplicationService, IRoleService
     /// <param name="input"></param>
     /// <param name="isAllocated">是否在该角色下</param>
     /// <returns></returns>
-    public async Task<PagedResultDto<UserGetListOutputDto>> GetAuthUserByRoleIdAsync(Guid roleId, bool isAllocated, RoleAuthUserGetListInput input)
+    public async Task<PagedResult<UserGetListOutputDto>> GetAuthUserByRoleIdAsync(Guid roleId, bool isAllocated, RoleAuthUserGetListInput input)
     {
-        PagedResultDto<UserGetListOutputDto> output;
+        PagedResult<UserGetListOutputDto> output;
         //角色下已授权用户
         if (isAllocated)
         {
@@ -136,7 +136,7 @@ public class RoleService : ApplicationService, IRoleService
         return output;
     }
 
-    private async Task<PagedResultDto<UserGetListOutputDto>> GetAllocatedAuthUserByRoleIdAsync(Guid roleId, RoleAuthUserGetListInput input)
+    private async Task<PagedResult<UserGetListOutputDto>> GetAllocatedAuthUserByRoleIdAsync(Guid roleId, RoleAuthUserGetListInput input)
     {
         RefAsync<int> total = 0;
 
@@ -148,10 +148,10 @@ public class RoleService : ApplicationService, IRoleService
             .Select((ur, u) => new UserGetListOutputDto { Id = u.Id }, true)
             .ToPageListAsync(input.PageSize, input.PageNum, total);
 
-        return new PagedResultDto<UserGetListOutputDto>(total, output);
+        return new PagedResult<UserGetListOutputDto>(total, output);
     }
 
-    private async Task<PagedResultDto<UserGetListOutputDto>> GetNotAllocatedAuthUserByRoleIdAsync(Guid roleId, RoleAuthUserGetListInput input)
+    private async Task<PagedResult<UserGetListOutputDto>> GetNotAllocatedAuthUserByRoleIdAsync(Guid roleId, RoleAuthUserGetListInput input)
     {
         RefAsync<int> total = 0;
 
@@ -163,7 +163,7 @@ public class RoleService : ApplicationService, IRoleService
             .ToPageListAsync(input.PageSize, input.PageNum, total);
 
         var output = entities.Adapt<List<UserGetListOutputDto>>();
-        return new PagedResultDto<UserGetListOutputDto>(total, output);
+        return new PagedResult<UserGetListOutputDto>(total, output);
     }
 
     /// <summary>

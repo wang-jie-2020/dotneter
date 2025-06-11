@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Volo.Abp.Application.Dtos;
 using Volo.Abp.AspNetCore.Mvc;
+using Yi.AspNetCore.Core;
 using Yi.System.Monitor.Dtos;
 using Yi.System.Monitor.Entities;
 
@@ -25,7 +25,7 @@ public class LoginLogController : AbpController
     }
 
     [HttpGet]
-    public async Task<PagedResultDto<LoginLogGetListOutputDto>> GetListAsync([FromQuery] LoginLogGetListInputVo input)
+    public async Task<PagedResult<LoginLogGetListOutputDto>> GetListAsync([FromQuery] LoginLogGetListInputVo input)
     {
         RefAsync<int> total = 0;
 
@@ -36,6 +36,6 @@ public class LoginLogController : AbpController
                 x => x.CreationTime >= input.StartTime && x.CreationTime <= input.EndTime)
             .ToPageListAsync(input.PageNum, input.PageSize, total);
         
-        return new PagedResultDto<LoginLogGetListOutputDto>(total, entities.Adapt<List<LoginLogGetListOutputDto>>());
+        return new PagedResult<LoginLogGetListOutputDto>(total, entities.Adapt<List<LoginLogGetListOutputDto>>());
     }
 }

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Volo.Abp.Application.Dtos;
 using Volo.Abp.AspNetCore.Mvc;
+using Yi.AspNetCore.Core;
 using Yi.System.Services;
 using Yi.System.Services.Dtos;
 
@@ -25,7 +25,7 @@ public class DictionaryTypeController : AbpController
     }
 
     [HttpGet]
-    public async Task<PagedResultDto<DictionaryTypeDto>> GetListAsync([FromQuery] DictionaryTypeGetListInput input)
+    public async Task<PagedResult<DictionaryTypeDto>> GetListAsync([FromQuery] DictionaryTypeGetListInput input)
     {
         return await _dictionaryTypeService.GetListAsync(input);
     }

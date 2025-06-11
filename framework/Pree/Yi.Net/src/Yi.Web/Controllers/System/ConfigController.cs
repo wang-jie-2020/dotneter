@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Volo.Abp.Application.Dtos;
 using Volo.Abp.AspNetCore.Mvc;
+using Yi.AspNetCore.Core;
 using Yi.System.Services;
 using Yi.System.Services.Dtos;
 
@@ -24,7 +24,7 @@ public class ConfigController : AbpController
     }
 
     [HttpGet]
-    public async Task<PagedResultDto<ConfigGetListOutputDto>> GetListAsync([FromQuery] ConfigGetListInputVo input)
+    public async Task<PagedResult<ConfigGetListOutputDto>> GetListAsync([FromQuery] ConfigGetListInputVo input)
     {
         return await _configService.GetListAsync(input);
     }

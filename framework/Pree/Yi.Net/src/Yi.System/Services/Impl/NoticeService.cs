@@ -1,5 +1,5 @@
-using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
+using Yi.AspNetCore.Core;
 using Yi.System.Domains.Entities;
 using Yi.System.Services.Dtos;
 
@@ -20,7 +20,7 @@ public class NoticeService : ApplicationService, INoticeService
         return entity.Adapt<NoticeDto>();
     }
 
-    public async Task<PagedResultDto<NoticeDto>> GetListAsync(NoticeGetListInput input)
+    public async Task<PagedResult<NoticeDto>> GetListAsync(NoticeGetListInput input)
     {
         RefAsync<int> total = 0;
 
@@ -29,7 +29,7 @@ public class NoticeService : ApplicationService, INoticeService
             .WhereIF(input.StartTime is not null && input.EndTime is not null, x => x.CreationTime >= input.StartTime && x.CreationTime <= input.EndTime)
             .ToPageListAsync(input.PageNum, input.PageSize, total);
 
-        return new PagedResultDto<NoticeDto>(total, entities.Adapt<List<NoticeDto>>());
+        return new PagedResult<NoticeDto>(total, entities.Adapt<List<NoticeDto>>());
     }
 
     public async Task<NoticeDto> CreateAsync(NoticeCreateInput input)

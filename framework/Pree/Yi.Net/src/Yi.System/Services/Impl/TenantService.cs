@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using MiniExcelLibs;
-using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Data;
 using Volo.Abp.Uow;
@@ -30,7 +29,7 @@ public class TenantService : ApplicationService, ITenantService
         return entity.Adapt<TenantDto>();
     }
 
-    public async Task<PagedResultDto<TenantDto>> GetListAsync(TenantGetListInput input)
+    public async Task<PagedResult<TenantDto>> GetListAsync(TenantGetListInput input)
     {
         RefAsync<int> total = 0;
 
@@ -39,7 +38,7 @@ public class TenantService : ApplicationService, ITenantService
             .WhereIF(input.StartTime is not null && input.EndTime is not null, x => x.CreationTime >= input.StartTime && x.CreationTime <= input.EndTime)
             .ToPageListAsync(input.PageNum, input.PageSize, total);
 
-        return new PagedResultDto<TenantDto>(total, entities.Adapt<List<TenantDto>>());
+        return new PagedResult<TenantDto>(total, entities.Adapt<List<TenantDto>>());
     }
 
     public async Task<TenantDto> CreateAsync(TenantCreateInput input)

@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using MiniExcelLibs;
-using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Yi.AspNetCore.Core;
 using Yi.System.Domains;
@@ -37,7 +36,7 @@ public class UserService : ApplicationService, IUserService
         return entity.Adapt<UserGetOutputDto>();
     }
 
-    public async Task<PagedResultDto<UserGetListOutputDto>> GetListAsync(UserGetListInput input)
+    public async Task<PagedResult<UserGetListOutputDto>> GetListAsync(UserGetListInput input)
     {
         RefAsync<int> total = 0;
 
@@ -64,7 +63,7 @@ public class UserService : ApplicationService, IUserService
             .Select((user, dept) => new UserGetListOutputDto(), true)
             .ToPageListAsync(input.PageNum, input.PageSize, total);
 
-        var result = new PagedResultDto<UserGetListOutputDto>
+        var result = new PagedResult<UserGetListOutputDto>
         {
             Items = outPut,
             TotalCount = total

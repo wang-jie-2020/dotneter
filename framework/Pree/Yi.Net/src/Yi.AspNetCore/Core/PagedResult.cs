@@ -1,10 +1,7 @@
-using System;
-using System.Collections.Generic;
-
-namespace Volo.Abp.Application.Dtos;
+namespace Yi.AspNetCore.Core;
 
 [Serializable]
-public class PagedResultDto<T>
+public class PagedResult<T>
 {
     public IReadOnlyList<T> Items
     {
@@ -17,19 +14,19 @@ public class PagedResultDto<T>
     public long TotalCount { get; set; } //TODO: Can be a long value..?
 
     /// <summary>
-    /// Creates a new <see cref="PagedResultDto{T}"/> object.
+    /// Creates a new <see cref="PagedResult{T}"/> object.
     /// </summary>
-    public PagedResultDto()
+    public PagedResult()
     {
 
     }
 
     /// <summary>
-    /// Creates a new <see cref="PagedResultDto{T}"/> object.
+    /// Creates a new <see cref="PagedResult{T}"/> object.
     /// </summary>
     /// <param name="totalCount">Total count of Items</param>
     /// <param name="items">List of items in current page</param>
-    public PagedResultDto(long totalCount, IReadOnlyList<T> items)
+    public PagedResult(long totalCount, IReadOnlyList<T> items)
     {
         TotalCount = totalCount;
         Items = items;

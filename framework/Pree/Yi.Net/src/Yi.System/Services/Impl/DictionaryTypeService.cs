@@ -1,5 +1,5 @@
-using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
+using Yi.AspNetCore.Core;
 using Yi.System.Domains.Entities;
 using Yi.System.Services.Dtos;
 
@@ -20,7 +20,7 @@ public class DictionaryTypeService : ApplicationService, IDictionaryTypeService
         return entity.Adapt<DictionaryTypeDto>();
     }
 
-    public async Task<PagedResultDto<DictionaryTypeDto>> GetListAsync(DictionaryTypeGetListInput input)
+    public async Task<PagedResult<DictionaryTypeDto>> GetListAsync(DictionaryTypeGetListInput input)
     {
         RefAsync<int> total = 0;
         var entities = await _repository.DbQueryable
@@ -30,7 +30,7 @@ public class DictionaryTypeService : ApplicationService, IDictionaryTypeService
             .WhereIF(input.StartTime is not null && input.EndTime is not null, x => x.CreationTime >= input.StartTime && x.CreationTime <= input.EndTime)
             .ToPageListAsync(input.PageNum, input.PageSize, total);
 
-        return new PagedResultDto<DictionaryTypeDto>
+        return new PagedResult<DictionaryTypeDto>
         {
             TotalCount = total,
             Items = entities.Adapt<List<DictionaryTypeDto>>()

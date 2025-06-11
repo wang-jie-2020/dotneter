@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using Volo.Abp.Application.Dtos;
+using Yi.AspNetCore.Core;
 using Yi.System.Services.Dtos;
 
 namespace Yi.System.Services;
@@ -8,7 +8,7 @@ public interface IRoleService
 {
     Task<RoleDto> GetAsync(Guid id);
 
-    Task<PagedResultDto<RoleDto>> GetListAsync(RoleGetListInput input);
+    Task<PagedResult<RoleDto>> GetListAsync(RoleGetListInput input);
 
     Task<RoleDto> CreateAsync(RoleCreateInput input);
 
@@ -27,7 +27,7 @@ public interface IRoleService
     /// <param name="input"></param>
     /// <param name="isAllocated">是否在该角色下</param>
     /// <returns></returns>
-    Task<PagedResultDto<UserGetListOutputDto>> GetAuthUserByRoleIdAsync([FromRoute] Guid roleId,
+    Task<PagedResult<UserGetListOutputDto>> GetAuthUserByRoleIdAsync([FromRoute] Guid roleId,
         [FromRoute] bool isAllocated, [FromQuery] RoleAuthUserGetListInput input);
 
     /// <summary>

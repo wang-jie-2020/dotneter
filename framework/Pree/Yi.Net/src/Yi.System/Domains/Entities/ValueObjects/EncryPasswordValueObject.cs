@@ -1,4 +1,4 @@
-﻿using Volo.Abp.Domain.Values;
+﻿using Yi.AspNetCore.Core;
 
 namespace Yi.System.Domains.Entities.ValueObjects;
 

@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
+using Yi.AspNetCore.Core;
 using Yi.System.Domains.Entities;
 using Yi.System.Services.Dtos;
 
@@ -21,7 +21,7 @@ public class DictionaryService : ApplicationService, IDictionaryService
         return entity.Adapt<DictionaryDto>();
     }
 
-    public async Task<PagedResultDto<DictionaryDto>> GetListAsync(DictionaryGetListInput input)
+    public async Task<PagedResult<DictionaryDto>> GetListAsync(DictionaryGetListInput input)
     {
         RefAsync<int> total = 0;
         var entities = await _repository.DbQueryable
@@ -29,7 +29,7 @@ public class DictionaryService : ApplicationService, IDictionaryService
             .WhereIF(input.DictLabel is not null, x => x.DictLabel!.Contains(input.DictLabel!))
             .WhereIF(input.State is not null, x => x.State == input.State)
             .ToPageListAsync(input.PageNum, input.PageSize, total);
-        return new PagedResultDto<DictionaryDto>
+        return new PagedResult<DictionaryDto>
         {
             TotalCount = total,
             Items = entities.Adapt<List<DictionaryDto>>()

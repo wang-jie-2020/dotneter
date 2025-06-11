@@ -1,4 +1,4 @@
-using Volo.Abp.Application.Dtos;
+using Yi.AspNetCore.Core;
 using Yi.System.Services.Dtos;
 
 namespace Yi.System.Services;
@@ -7,7 +7,7 @@ public interface IDictionaryService
 {
     Task<DictionaryDto> GetAsync(Guid id);
 
-    Task<PagedResultDto<DictionaryDto>> GetListAsync(DictionaryGetListInput input);
+    Task<PagedResult<DictionaryDto>> GetListAsync(DictionaryGetListInput input);
 
     Task<DictionaryDto> CreateAsync(DictionaryCreateInput input);
 

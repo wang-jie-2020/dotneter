@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Volo.Abp.Application.Dtos;
+using Yi.AspNetCore.Core;
 using Yi.System.Services.Dtos;
 
 namespace Yi.System.Services;
@@ -8,7 +8,7 @@ public interface ITenantService
 {
     Task<TenantDto> GetAsync(Guid id);
 
-    Task<PagedResultDto<TenantDto>> GetListAsync(TenantGetListInput input);
+    Task<PagedResult<TenantDto>> GetListAsync(TenantGetListInput input);
 
     Task<TenantDto> CreateAsync(TenantCreateInput input);
 
