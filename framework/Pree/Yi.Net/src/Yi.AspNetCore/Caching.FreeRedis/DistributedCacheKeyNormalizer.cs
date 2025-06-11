@@ -4,9 +4,9 @@ using Volo.Abp.MultiTenancy;
 
 namespace Yi.AspNetCore.Caching.FreeRedis;
 
-public class YiDistributedCacheKeyNormalizer : IDistributedCacheKeyNormalizer
+public class DistributedCacheKeyNormalizer : IDistributedCacheKeyNormalizer
 {
-    public YiDistributedCacheKeyNormalizer(ICurrentTenant currentTenant, IOptions<AbpDistributedCacheOptions> distributedCacheOptions)
+    public DistributedCacheKeyNormalizer(ICurrentTenant currentTenant, IOptions<AbpDistributedCacheOptions> distributedCacheOptions)
     {
         CurrentTenant = currentTenant;
         DistributedCacheOptions = distributedCacheOptions.Value;

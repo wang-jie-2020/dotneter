@@ -5,14 +5,14 @@ using Yi.System.Domains.Consts;
 using Yi.System.Domains.Entities;
 using Yi.System.Services.Impl;
 
-namespace Yi.System;
+namespace Yi.Web;
 
-public class YiDataScopedDbContext : SqlSugarDbContext
+public class WebDbContext: SqlSugarDbContext
 {
-    public YiDataScopedDbContext(IAbpLazyServiceProvider lazyServiceProvider) : base(lazyServiceProvider)
+    public WebDbContext(IAbpLazyServiceProvider lazyServiceProvider) : base(lazyServiceProvider)
     {
     }
-
+    
     protected override void CustomDataFilter(ISqlSugarClient sqlSugarClient)
     {
         if (DataFilter.IsEnabled<IDataPermission>()) DataPermissionFilter(sqlSugarClient);

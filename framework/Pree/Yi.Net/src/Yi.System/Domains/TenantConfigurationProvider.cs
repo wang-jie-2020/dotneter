@@ -4,9 +4,9 @@ using Volo.Abp.MultiTenancy.Localization;
 
 namespace Yi.System.Domains;
 
-public class YiTenantConfigurationProvider : ITenantConfigurationProvider
+public class TenantConfigurationProvider : ITenantConfigurationProvider
 {
-    public YiTenantConfigurationProvider(
+    public TenantConfigurationProvider(
         ITenantResolver tenantResolver,
         ITenantStore tenantStore,
         ITenantResolveResultAccessor tenantResolveResultAccessor,

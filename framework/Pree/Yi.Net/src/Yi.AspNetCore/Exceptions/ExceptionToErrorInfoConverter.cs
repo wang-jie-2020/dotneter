@@ -20,14 +20,14 @@ namespace Yi.AspNetCore.Exceptions;
 ///  <see cref="DefaultExceptionToErrorInfoConverter"/>
 ///     LocalizationResourceType Fallback With DefaultResource 
 /// </summary>
-public class YiExceptionToErrorInfoConverter : IExceptionToErrorInfoConverter
+public class ExceptionToErrorInfoConverter : IExceptionToErrorInfoConverter
 {
     protected AbpExceptionLocalizationOptions LocalizationOptions { get; }
     protected IStringLocalizerFactory StringLocalizerFactory { get; }
     protected IStringLocalizer<AbpExceptionHandlingResource> L { get; }
     protected IServiceProvider ServiceProvider { get; }
 
-    public YiExceptionToErrorInfoConverter(
+    public ExceptionToErrorInfoConverter(
         IOptions<AbpExceptionLocalizationOptions> localizationOptions,
         IStringLocalizerFactory stringLocalizerFactory,
         IStringLocalizer<AbpExceptionHandlingResource> stringLocalizer,

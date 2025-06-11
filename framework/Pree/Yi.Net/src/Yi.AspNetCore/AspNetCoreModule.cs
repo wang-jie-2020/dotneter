@@ -42,7 +42,7 @@ namespace Yi.AspNetCore;
     typeof(AbpEventBusModule),
     typeof(AbpObjectMappingModule)
 )]
-public class YiAspNetCoreModule : AbpModule
+public class AspNetCoreModule : AbpModule
 {
     public override void PreConfigureServices(ServiceConfigurationContext context)
     {
@@ -66,7 +66,7 @@ public class YiAspNetCoreModule : AbpModule
 
             context.Services.AddSingleton<IRedisClient>(redisClient);
             context.Services.Replace(ServiceDescriptor.Singleton<IDistributedCache>(new DistributedCache(redisClient)));
-            context.Services.Replace(ServiceDescriptor.Transient<IDistributedCacheKeyNormalizer, YiDistributedCacheKeyNormalizer>());
+            context.Services.Replace(ServiceDescriptor.Transient<IDistributedCacheKeyNormalizer, Caching.FreeRedis.DistributedCacheKeyNormalizer>());
         }
 
         //SqlSugar
@@ -83,8 +83,8 @@ public class YiAspNetCoreModule : AbpModule
         context.Services.AddTransient<PermissionFilter>();
         context.Services.AddSingleton<IOperLogStore, SimpleOperLogStore>();
 
-        context.Services.AddTransient<YiExceptionFilter>();
-        context.Services.Replace(ServiceDescriptor.Transient<IExceptionToErrorInfoConverter, YiExceptionToErrorInfoConverter>());
+        context.Services.AddTransient<ExceptionFilter>();
+        context.Services.Replace(ServiceDescriptor.Transient<IExceptionToErrorInfoConverter, ExceptionToErrorInfoConverter>());
         
         context.Services.AddMvc()
             .AddDataAnnotationsLocalization().AddViewLocalization()
@@ -105,7 +105,7 @@ public class YiAspNetCoreModule : AbpModule
             //{
             //    options.Filters.Remove(abpExceptionFilter);
             //}
-            options.Filters.AddService<YiExceptionFilter>();
+            options.Filters.AddService<ExceptionFilter>();
 
             options.Filters.AddService<UowActionFilter>();
             options.Filters.AddService<AuditActionFilter>();

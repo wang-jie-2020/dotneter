@@ -5,12 +5,12 @@ using Volo.Abp.MultiTenancy;
 
 namespace Yi.System.Domains;
 
-public class YiMultiTenantConnectionStringResolver : DefaultConnectionStringResolver
+public class MultiTenantConnectionStringResolver : DefaultConnectionStringResolver
 {
     private readonly ICurrentTenant _currentTenant;
     private readonly IServiceProvider _serviceProvider;
 
-    public YiMultiTenantConnectionStringResolver(
+    public MultiTenantConnectionStringResolver(
         IOptionsMonitor<AbpDbConnectionOptions> options,
         ICurrentTenant currentTenant,
         IServiceProvider serviceProvider)

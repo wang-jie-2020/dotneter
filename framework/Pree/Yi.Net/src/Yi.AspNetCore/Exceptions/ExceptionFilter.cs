@@ -16,10 +16,9 @@ using Yi.AspNetCore.Core;
 namespace Yi.AspNetCore.Exceptions;
 
 /// <summary>
-///   <see cref="AbpExceptionFilter"/>
 ///     RemoteServiceErrorResponse -> AjaxResult
 /// </summary>
-public class YiExceptionFilter : IAsyncExceptionFilter
+public class ExceptionFilter : IAsyncExceptionFilter
 {
     public async Task OnExceptionAsync(ExceptionContext context)
     {
@@ -104,7 +103,7 @@ public class YiExceptionFilter : IAsyncExceptionFilter
         remoteServiceErrorInfoBuilder.AppendLine($"---------- {nameof(RemoteServiceErrorInfo)} ----------");
         remoteServiceErrorInfoBuilder.AppendLine(context.GetRequiredService<IJsonSerializer>().Serialize(remoteServiceErrorInfo, indented: true));
 
-        var logger = context.GetService<ILogger<YiExceptionFilter>>(NullLogger<YiExceptionFilter>.Instance)!;
+        var logger = context.GetService<ILogger<ExceptionFilter>>(NullLogger<ExceptionFilter>.Instance)!;
         var logLevel = context.Exception.GetLogLevel();
         logger.LogWithLevel(logLevel, remoteServiceErrorInfoBuilder.ToString());
         logger.LogException(context.Exception, logLevel);

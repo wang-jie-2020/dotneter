@@ -13,8 +13,8 @@ using Yi.System.Options;
 
 namespace Yi.System;
 
-[DependsOn(typeof(YiAspNetCoreModule))]
-public class YiSystemModule : AbpModule
+[DependsOn(typeof(AspNetCoreModule))]
+public class SystemModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
@@ -26,8 +26,8 @@ public class YiSystemModule : AbpModule
         
         //Tenant
         context.Services.Replace(new ServiceDescriptor(typeof(ITenantStore), typeof(SqlSugarAndConfigurationTenantStore), ServiceLifetime.Transient));
-        context.Services.Replace(new ServiceDescriptor(typeof(IConnectionStringResolver), typeof(YiMultiTenantConnectionStringResolver), ServiceLifetime.Transient));
-        context.Services.Replace(new ServiceDescriptor(typeof(ITenantConfigurationProvider), typeof(YiTenantConfigurationProvider), ServiceLifetime.Transient));
+        context.Services.Replace(new ServiceDescriptor(typeof(IConnectionStringResolver), typeof(Domains.MultiTenantConnectionStringResolver), ServiceLifetime.Transient));
+        context.Services.Replace(new ServiceDescriptor(typeof(ITenantConfigurationProvider), typeof(Domains.TenantConfigurationProvider), ServiceLifetime.Transient));
         
         //System
         context.Services.Replace(new ServiceDescriptor(typeof(IAuditingStore), typeof(AuditingStore), ServiceLifetime.Singleton));
