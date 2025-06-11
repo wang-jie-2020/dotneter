@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Yi.AspNetCore.Exceptions;
+namespace Yi.AspNetCore.Extensions;
 
 public static class ActionContextExtensions
 {

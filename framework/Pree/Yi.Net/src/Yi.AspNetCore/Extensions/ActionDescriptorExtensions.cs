@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.Abstractions;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Yi.AspNetCore.Exceptions;
+namespace Yi.AspNetCore.Extensions;
 
 public static class ActionDescriptorExtensions
 {

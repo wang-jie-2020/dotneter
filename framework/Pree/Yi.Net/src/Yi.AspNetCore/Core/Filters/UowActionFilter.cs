@@ -5,8 +5,9 @@ using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Uow;
 using Yi.AspNetCore.Exceptions;
+using Yi.AspNetCore.Extensions;
 
-namespace Yi.AspNetCore.Core;
+namespace Yi.AspNetCore.Core.Filters;
 
 public class UowActionFilter : IAsyncActionFilter, IAbpFilter, ITransientDependency
 {

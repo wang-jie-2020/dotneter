@@ -21,6 +21,7 @@ using Volo.Abp.Guids;
 using Volo.Abp.ObjectMapping;
 using Yi.AspNetCore.Caching.FreeRedis;
 using Yi.AspNetCore.Core;
+using Yi.AspNetCore.Core.Filters;
 using Yi.AspNetCore.Core.Loggings;
 using Yi.AspNetCore.Core.Permissions;
 using Yi.AspNetCore.Exceptions;
