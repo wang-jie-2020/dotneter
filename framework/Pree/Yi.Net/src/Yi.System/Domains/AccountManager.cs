@@ -8,7 +8,6 @@ using Newtonsoft.Json;
 using Volo.Abp.EventBus.Local;
 using Volo.Abp.Security.Claims;
 using Yi.AspNetCore.Core;
-using Yi.AspNetCore.Core.Events;
 using Yi.AspNetCore.Core.Loggings;
 using Yi.AspNetCore.Core.Permissions;
 using Yi.AspNetCore.Helpers;

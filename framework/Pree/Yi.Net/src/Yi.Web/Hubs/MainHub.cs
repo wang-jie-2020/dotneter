@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 using Volo.Abp.AspNetCore.SignalR;
-using Yi.AspNetCore.Core.Events;
+using Yi.System.Domains;
 
 namespace Yi.Admin.Hubs;
 

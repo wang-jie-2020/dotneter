@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.EventBus;
-using Yi.AspNetCore.Core.Events;
+using Yi.System.Domains;
 using Yi.System.Monitor.Entities;
 
 namespace Yi.System.Monitor;

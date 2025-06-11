@@ -8,7 +8,7 @@ using Volo.Abp.ExceptionHandling.Localization;
 using Volo.Abp.Localization;
 using Volo.Abp.VirtualFileSystem;
 using Yi.AspNetCore.Core;
-using Yi.AspNetCore.Core.Events;
+using Yi.System.Domains;
 using Yi.System.Domains.Consts;
 using Yi.System.Services.Dtos;
 

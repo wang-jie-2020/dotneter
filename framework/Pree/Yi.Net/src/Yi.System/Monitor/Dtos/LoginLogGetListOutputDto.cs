@@ -2,8 +2,10 @@
 
 namespace Yi.System.Monitor.Dtos;
 
-public class LoginLogGetListOutputDto : SimpleEntity<long>
+public class LoginLogGetListOutputDto
 {
+    public long Id { get; set; }
+
     public DateTime CreationTime { get; set; }
 
     public string? LoginUser { get; set; }

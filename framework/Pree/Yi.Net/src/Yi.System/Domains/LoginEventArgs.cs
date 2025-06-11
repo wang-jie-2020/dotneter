@@ -3,14 +3,14 @@ using Microsoft.AspNetCore.Http;
 using UAParser;
 using Yi.AspNetCore.Extensions;
 
-namespace Yi.AspNetCore.Core.Events;
+namespace Yi.System.Domains;
 
 public class LoginEventArgs
 {
     public Guid UserId { get; set; }
-    
+
     public string UserName { get; set; }
-    
+
     public DateTime CreationTime { get; set; }
 
     /// <summary>
@@ -38,7 +38,7 @@ public class LoginEventArgs
     ///     登录信息
     /// </summary>
     public string? LogMsg { get; set; }
-    
+
     public LoginEventArgs GetInfoByHttpContext(HttpContext context)
     {
         ClientInfo GetClientInfo(HttpContext context)
@@ -73,7 +73,7 @@ public class LoginEventArgs
             LoginIp = ipAddr,
             LoginLocation = location.Province + "-" + location.City
         };
-        
+
         return entity;
     }
 }

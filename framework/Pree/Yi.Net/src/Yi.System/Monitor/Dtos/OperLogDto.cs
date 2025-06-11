@@ -3,8 +3,10 @@ using Yi.AspNetCore.Core.Loggings;
 
 namespace Yi.System.Monitor.Dtos;
 
-public class OperLogDto : SimpleEntity<long>
+public class OperLogDto
 {
+    public long Id { get; set; }
+
     public string? Title { get; set; }
     
     public OperLogEnum OperType { get; set; }
