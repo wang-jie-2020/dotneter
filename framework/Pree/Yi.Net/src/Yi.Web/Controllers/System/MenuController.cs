@@ -8,7 +8,7 @@ namespace Yi.Web.Controllers.System;
 
 [ApiController]
 [Route(("api/system/menu"))]
-public class MenuController : AbpController
+public class MenuController : BaseController
 {
     private readonly IMenuService _menuService;
 

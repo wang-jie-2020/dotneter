@@ -1,12 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
-using Volo.Abp.Application.Services;
 using Yi.AspNetCore.Core;
 using Yi.System.Domains.Entities;
 using Yi.System.Services.Dtos;
 
 namespace Yi.System.Services.Impl;
 
-public class DictionaryService : ApplicationService, IDictionaryService
+public class DictionaryService : BaseService, IDictionaryService
 {
     private readonly ISqlSugarRepository<DictionaryEntity, Guid> _repository;
 

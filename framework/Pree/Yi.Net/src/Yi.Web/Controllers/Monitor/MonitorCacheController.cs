@@ -3,13 +3,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.Caching;
+using Yi.AspNetCore.Core;
 using Yi.System.Monitor.Dtos;
 
 namespace Yi.Web.Controllers.Monitor;
 
 [ApiController]
 [Route("api/monitor/cache")]
-public class MonitorCacheController : AbpController
+public class MonitorCacheController : BaseController
 {
     /// <summary>
     ///     缓存前缀

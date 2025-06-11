@@ -15,6 +15,7 @@ using Volo.Abp.Domain.Entities.Events;
 using Volo.Abp.Guids;
 using Volo.Abp.MultiTenancy;
 using Volo.Abp.Users;
+using Yi.AspNetCore.Core.Entities;
 using Yi.AspNetCore.SqlSugarCore.Profilers;
 using Yitter.IdGenerator;
 using Check = Volo.Abp.Check;

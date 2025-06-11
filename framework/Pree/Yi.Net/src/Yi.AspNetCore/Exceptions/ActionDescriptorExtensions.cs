@@ -1,11 +1,11 @@
-﻿using System;
-using System.Reflection;
+﻿using System.Reflection;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Abstractions;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Volo.Abp;
 using Volo.Abp.AspNetCore.Mvc;
 
-namespace Microsoft.AspNetCore.Mvc.Abstractions;
+namespace Yi.AspNetCore.Exceptions;
 
 public static class ActionDescriptorExtensions
 {
@@ -31,7 +31,21 @@ public static class ActionDescriptorExtensions
 
     public static bool HasObjectResult(this ActionDescriptor actionDescriptor)
     {
-        return ActionResultHelper.IsObjectResult(actionDescriptor.GetReturnType());
+        var returnType = actionDescriptor.GetReturnType();
+        
+        if (!typeof(IActionResult).IsAssignableFrom(returnType))
+        {
+            return true;
+        }
+        
+        var objectResultTypes = new List<Type>
+        {
+            typeof(JsonResult),
+            typeof(ObjectResult),
+            typeof(NoContentResult)
+        };
+        
+        return objectResultTypes.Any(t => t.IsAssignableFrom(returnType));
     }
 
     public static bool IsControllerAction(this ActionDescriptor actionDescriptor)

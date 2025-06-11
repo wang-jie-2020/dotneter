@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using MiniExcelLibs;
-using Volo.Abp.Application.Services;
 using Yi.AspNetCore.Core;
 using Yi.System.Domains;
 using Yi.System.Domains.Consts;
@@ -9,7 +8,7 @@ using Yi.System.Services.Dtos;
 
 namespace Yi.System.Services.Impl;
 
-public class UserService : ApplicationService, IUserService
+public class UserService : BaseService, IUserService
 {
     private readonly ISqlSugarRepository<UserEntity, Guid> _repository;
     private readonly UserManager _userManager;

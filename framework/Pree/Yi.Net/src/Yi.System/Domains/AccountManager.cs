@@ -7,7 +7,6 @@ using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using Volo.Abp.EventBus.Local;
 using Volo.Abp.Security.Claims;
-using Yi.AspNetCore.Abp;
 using Yi.AspNetCore.Core;
 using Yi.AspNetCore.Core.Events;
 using Yi.AspNetCore.Core.Loggings;
@@ -24,7 +23,7 @@ namespace Yi.System.Domains;
 /// <summary>
 ///     用户领域服务
 /// </summary>
-public class AccountManager : DomainService, IAccountManager
+public class AccountManager : BaseDomain, IAccountManager
 {
     private readonly JwtOptions _jwtOptions;
     private readonly ILocalEventBus _localEventBus;

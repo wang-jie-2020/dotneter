@@ -5,9 +5,9 @@ using Volo.Abp.Linq;
 using Volo.Abp.MultiTenancy;
 using Volo.Abp.Timing;
 
-namespace Yi.AspNetCore.Abp;
+namespace Yi.AspNetCore.Core;
 
-public abstract class DomainService : ITransientDependency
+public abstract class BaseDomain : ITransientDependency
 {
     public IAbpLazyServiceProvider LazyServiceProvider { get; set; } = default!;
 

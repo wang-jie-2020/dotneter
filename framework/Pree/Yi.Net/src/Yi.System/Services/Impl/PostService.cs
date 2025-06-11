@@ -1,11 +1,10 @@
-using Volo.Abp.Application.Services;
 using Yi.AspNetCore.Core;
 using Yi.System.Domains.Entities;
 using Yi.System.Services.Dtos;
 
 namespace Yi.System.Services.Impl;
 
-public class PostService : ApplicationService, IPostService
+public class PostService : BaseService, IPostService
 {
     private readonly ISqlSugarRepository<PostEntity, Guid> _repository;
 

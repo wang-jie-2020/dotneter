@@ -8,7 +8,7 @@ namespace Yi.Web.Controllers.System;
 
 [ApiController]
 [Route("api/system/dept")]
-public class DeptController : AbpController
+public class DeptController : BaseController
 {
     private readonly IDeptService _deptService;
 

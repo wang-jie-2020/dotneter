@@ -8,7 +8,7 @@ namespace Yi.Web.Controllers.System;
 
 [ApiController]
 [Route("api/system/tenant")]
-public class TenantController : AbpController
+public class TenantController : BaseController
 {
     private readonly ITenantService _tenantService;
 

@@ -1,11 +1,10 @@
-using Volo.Abp.Application.Services;
 using Yi.AspNetCore.Core;
 using Yi.System.Domains.Entities;
 using Yi.System.Services.Dtos;
 
 namespace Yi.System.Services.Impl;
 
-public class NoticeService : ApplicationService, INoticeService
+public class NoticeService : BaseService, INoticeService
 {
     private readonly ISqlSugarRepository<NoticeEntity, Guid> _repository;
 

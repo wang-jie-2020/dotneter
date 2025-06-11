@@ -8,7 +8,7 @@ namespace Yi.Web.Controllers.Monitor;
 
 [ApiController]
 [Route("api/monitor/login-log")]
-public class LoginLogController : AbpController
+public class LoginLogController : BaseController
 {
     private readonly ISqlSugarRepository<LoginLogEntity, long> _repository;
 

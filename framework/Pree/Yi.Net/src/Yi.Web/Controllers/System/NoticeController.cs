@@ -10,7 +10,7 @@ namespace Yi.Web.Controllers.System;
 
 [ApiController]
 [Route("api/system/notice")]
-public class NoticeController : AbpController
+public class NoticeController : BaseController
 {
     private readonly INoticeService _noticeService;
     private readonly IHubContext<MainHub> _hubContext;

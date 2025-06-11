@@ -2,13 +2,14 @@
 using System.Runtime.InteropServices;
 using Microsoft.AspNetCore.Mvc;
 using Volo.Abp.AspNetCore.Mvc;
+using Yi.AspNetCore.Core;
 using Yi.AspNetCore.Helpers;
 
 namespace Yi.Web.Controllers.Monitor;
 
 [ApiController]
 [Route("api/monitor/server")]
-public class MonitorServerController : AbpController
+public class MonitorServerController : BaseController
 {
     private readonly IWebHostEnvironment _hostEnvironment;
     private readonly IHttpContextAccessor _httpContextAccessor;

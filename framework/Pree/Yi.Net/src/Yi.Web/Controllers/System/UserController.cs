@@ -10,7 +10,7 @@ namespace Yi.Web.Controllers.System;
 
 [ApiController]
 [Route("api/system/user")]
-public class UserController : AbpController
+public class UserController : BaseController
 {
     private readonly IUserService _userService;
 

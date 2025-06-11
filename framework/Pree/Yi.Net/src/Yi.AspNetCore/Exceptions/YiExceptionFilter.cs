@@ -14,7 +14,6 @@ using Volo.Abp.Authorization;
 using Volo.Abp.ExceptionHandling;
 using Volo.Abp.Http;
 using Volo.Abp.Json;
-using Yi.AspNetCore.Abp;
 using Yi.AspNetCore.Core;
 
 namespace Yi.AspNetCore.Exceptions;

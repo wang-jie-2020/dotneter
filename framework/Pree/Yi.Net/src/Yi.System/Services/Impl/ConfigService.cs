@@ -1,11 +1,10 @@
-using Volo.Abp.Application.Services;
 using Yi.AspNetCore.Core;
 using Yi.System.Domains.Entities;
 using Yi.System.Services.Dtos;
 
 namespace Yi.System.Services.Impl;
 
-public class ConfigService : ApplicationService, IConfigService
+public class ConfigService : BaseService, IConfigService
 {
     private readonly ISqlSugarRepository<ConfigEntity, Guid> _repository;
 

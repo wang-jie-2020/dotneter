@@ -23,7 +23,7 @@ namespace Yi.Web.Controllers.System;
 
 [ApiController]
 [Route("api/system/account")]
-public class AccountController : AbpController
+public class AccountController : BaseController
 {
     private readonly ICaptcha _captcha;
     private readonly IGuidGenerator _guidGenerator;

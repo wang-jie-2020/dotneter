@@ -16,7 +16,6 @@ using Volo.Abp.AspNetCore.Authentication.JwtBearer;
 using Volo.Abp.AspNetCore.ExceptionHandling;
 using Volo.Abp.AspNetCore.MultiTenancy;
 using Volo.Abp.AspNetCore.Mvc;
-using Volo.Abp.AspNetCore.Mvc.Uow;
 using Volo.Abp.AspNetCore.SignalR;
 using Volo.Abp.Auditing;
 using Volo.Abp.Autofac;
@@ -28,8 +27,8 @@ using Volo.Abp.EventBus.Local;
 using Volo.Abp.Guids;
 using Volo.Abp.ObjectMapping;
 using Volo.Abp.Validation.Localization;
-using Yi.AspNetCore.Abp;
 using Yi.AspNetCore.Caching.FreeRedis;
+using Yi.AspNetCore.Core;
 using Yi.AspNetCore.Core.Loggings;
 using Yi.AspNetCore.Core.Permissions;
 using Yi.AspNetCore.Exceptions;
@@ -116,8 +115,8 @@ public class YiAspNetCoreModule : AbpModule
             //}
             options.Filters.AddService<YiExceptionFilter>();
 
-            options.Filters.AddService<AbpUowActionFilter>();
-            options.Filters.AddService<AbpAuditActionFilter>();
+            options.Filters.AddService<UowActionFilter>();
+            options.Filters.AddService<AuditActionFilter>();
         });
 
         // 雪花Id

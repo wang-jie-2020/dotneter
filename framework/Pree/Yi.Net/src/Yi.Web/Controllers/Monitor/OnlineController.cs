@@ -8,7 +8,7 @@ namespace Yi.Web.Controllers.Monitor;
 
 [ApiController]
 [Route("api/monitor/online")]
-public class OnlineController : AbpController
+public class OnlineController : BaseController
 {
     private readonly ILogger<OnlineController> _logger;
     private readonly IHubContext<MainHub> _hub;

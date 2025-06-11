@@ -1,12 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
-using Volo.Abp.Application.Services;
 using Yi.AspNetCore.Core;
 using Yi.System.Monitor.Dtos;
 using Yi.System.Monitor.Entities;
 
 namespace Yi.System.Monitor.Impl;
 
-public class OperLogService : ApplicationService, IOperLogService
+public class OperLogService : BaseService, IOperLogService
 {
     private readonly ISqlSugarRepository<OperLogEntity, long> _repository;
 

@@ -1,4 +1,3 @@
-using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Entities;
 using Yi.AspNetCore.Core;
 using Yi.System.Domains;
@@ -7,7 +6,7 @@ using Yi.System.Services.Dtos;
 
 namespace Yi.System.Services.Impl;
 
-public class RoleService : ApplicationService, IRoleService
+public class RoleService : BaseService, IRoleService
 {
     private readonly RoleManager _roleManager;
 

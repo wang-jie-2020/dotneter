@@ -8,7 +8,7 @@ namespace Yi.Web.Controllers.Monitor;
 
 [ApiController]
 [Route("api/monitor/oper-log")]
-public class OperLogController : AbpController
+public class OperLogController : BaseController
 {
     private readonly IOperLogService _operLogService;
 

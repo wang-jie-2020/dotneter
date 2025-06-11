@@ -17,7 +17,7 @@ namespace Yi.Web.Controllers;
 
 [ApiController]
 [Route("dev-api")]
-public class DevController : AbpController
+public class DevController : BaseController
 {
     public DevController()
     {

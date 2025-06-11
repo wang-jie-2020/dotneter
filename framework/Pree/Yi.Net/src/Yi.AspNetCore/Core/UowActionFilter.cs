@@ -1,17 +1,14 @@
-using System;
-using System.Net.Http;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc.Abstractions;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Options;
 using Volo.Abp.AspNetCore.Filters;
+using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Uow;
-using Yi.AspNetCore.Abp;
+using Yi.AspNetCore.Exceptions;
 
-namespace Volo.Abp.AspNetCore.Mvc.Uow;
+namespace Yi.AspNetCore.Core;
 
-public class AbpUowActionFilter : IAsyncActionFilter, IAbpFilter, ITransientDependency
+public class UowActionFilter : IAsyncActionFilter, IAbpFilter, ITransientDependency
 {
     public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
     {

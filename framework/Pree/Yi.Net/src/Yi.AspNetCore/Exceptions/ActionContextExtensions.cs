@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Yi.AspNetCore.Abp;
+namespace Yi.AspNetCore.Exceptions;
 
-public static class AbpActionContextExtensions
+public static class ActionContextExtensions
 {
     public static T GetRequiredService<T>(this FilterContext context)
         where T : class

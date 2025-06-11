@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using MiniExcelLibs;
-using Volo.Abp.Application.Services;
 using Volo.Abp.Data;
 using Volo.Abp.Uow;
 using Yi.AspNetCore.Core;
@@ -12,7 +11,7 @@ using Yi.System.Services.Dtos;
 
 namespace Yi.System.Services.Impl;
 
-public class TenantService : ApplicationService, ITenantService
+public class TenantService : BaseService, ITenantService
 {
     private readonly IDataSeeder _dataSeeder;
     private readonly ISqlSugarRepository<TenantEntity, Guid> _repository;

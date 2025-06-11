@@ -1,10 +1,9 @@
-﻿using Yi.AspNetCore.Abp;
-using Yi.AspNetCore.Core;
+﻿using Yi.AspNetCore.Core;
 using Yi.System.Domains.Entities;
 
 namespace Yi.System.Domains;
 
-public class RoleManager : DomainService
+public class RoleManager : BaseDomain
 {
     private ISqlSugarRepository<RoleEntity> _repository;
     private readonly ISqlSugarRepository<RoleMenuEntity> _roleMenuRepository;

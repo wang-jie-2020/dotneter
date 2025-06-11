@@ -6,10 +6,11 @@ using Volo.Abp.Aspects;
 using Volo.Abp.AspNetCore.Filters;
 using Volo.Abp.Auditing;
 using Volo.Abp.DependencyInjection;
+using Yi.AspNetCore.Exceptions;
 
-namespace Yi.AspNetCore.Abp;
+namespace Yi.AspNetCore.Core;
 
-public class AbpAuditActionFilter : IAsyncActionFilter, IAbpFilter, ITransientDependency
+public class AuditActionFilter : IAsyncActionFilter, IAbpFilter, ITransientDependency
 {
     public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
     {

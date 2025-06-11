@@ -8,7 +8,7 @@ namespace Yi.Web.Controllers.System;
 
 [ApiController]
 [Route("api/system/dictionary-type")]
-public class DictionaryTypeController : AbpController
+public class DictionaryTypeController : BaseController
 {
     private readonly IDictionaryTypeService _dictionaryTypeService;
 

@@ -1,13 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Utils.Minio;
 using Volo.Abp.AspNetCore.Mvc;
+using Yi.AspNetCore.Core;
 using Yitter.IdGenerator;
 
 namespace Yi.Web.Controllers.System;
 
 [ApiController]
 [Route("api/system/file")]
-public class FileController : AbpController
+public class FileController : BaseController
 {
     private readonly IMinioContainer<DefaultContainer> _container;
 

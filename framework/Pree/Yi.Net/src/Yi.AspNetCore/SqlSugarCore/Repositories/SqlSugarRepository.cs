@@ -2,6 +2,7 @@
 using SqlSugar;
 using Volo.Abp.Domain.Entities;
 using Volo.Abp.Linq;
+using Yi.AspNetCore.Core.Entities;
 
 namespace Yi.AspNetCore.SqlSugarCore.Repositories;
 

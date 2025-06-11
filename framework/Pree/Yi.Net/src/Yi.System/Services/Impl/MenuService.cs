@@ -1,11 +1,10 @@
-using Volo.Abp.Application.Services;
 using Yi.AspNetCore.Core;
 using Yi.System.Domains.Entities;
 using Yi.System.Services.Dtos;
 
 namespace Yi.System.Services.Impl;
 
-public class MenuService : ApplicationService, IMenuService
+public class MenuService : BaseService, IMenuService
 {
     private readonly ISqlSugarRepository<MenuEntity, Guid> _repository;
 

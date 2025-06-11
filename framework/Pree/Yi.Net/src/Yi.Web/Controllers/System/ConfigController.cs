@@ -8,7 +8,7 @@ namespace Yi.Web.Controllers.System;
 
 [ApiController]
 [Route("api/system/config")]
-public class ConfigController : AbpController
+public class ConfigController : BaseController
 {
     private readonly IConfigService _configService;
 

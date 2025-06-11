@@ -1,6 +1,7 @@
 ﻿using System.Linq.Expressions;
 using SqlSugar;
 using Volo.Abp.Domain.Entities;
+using Yi.AspNetCore.Core.Entities;
 
 namespace Yi.AspNetCore.SqlSugarCore.Repositories;
 

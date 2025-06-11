@@ -1,4 +1,3 @@
-using Volo.Abp.Application.Services;
 using Yi.AspNetCore.Core;
 using Yi.System.Domains.Entities;
 using Yi.System.Domains.Repositories;
@@ -6,7 +5,7 @@ using Yi.System.Services.Dtos;
 
 namespace Yi.System.Services.Impl;
 
-public class DeptService : ApplicationService, IDeptService
+public class DeptService : BaseService, IDeptService
 {
     private readonly IDeptRepository _repository;
 

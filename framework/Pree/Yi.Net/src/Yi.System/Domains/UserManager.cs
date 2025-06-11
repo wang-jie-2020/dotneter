@@ -6,7 +6,6 @@ using Volo.Abp.Authorization;
 using Volo.Abp.Caching;
 using Volo.Abp.EventBus.Local;
 using Volo.Abp.Guids;
-using Yi.AspNetCore.Abp;
 using Yi.AspNetCore.Core;
 using Yi.System.Domains.Consts;
 using Yi.System.Domains.Entities;
@@ -17,7 +16,7 @@ using Yi.System.Services.Impl;
 
 namespace Yi.System.Domains;
 
-public class UserManager : DomainService
+public class UserManager : BaseDomain
 {
     private readonly IGuidGenerator _guidGenerator;
     private readonly ISqlSugarRepository<UserEntity> _repository;

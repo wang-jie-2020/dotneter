@@ -8,7 +8,7 @@ namespace Yi.Web.Controllers.System;
 
 [ApiController]
 [Route("api/system/post")]
-public class PostController : AbpController
+public class PostController : BaseController
 {
     private readonly IPostService _postService;
 

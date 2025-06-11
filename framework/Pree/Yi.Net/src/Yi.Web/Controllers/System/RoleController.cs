@@ -8,7 +8,7 @@ namespace Yi.Web.Controllers.System;
 
 [ApiController]
 [Route("api/system/role")]
-public class RoleController : AbpController
+public class RoleController : BaseController
 {
     private readonly IRoleService _roleService;
 
