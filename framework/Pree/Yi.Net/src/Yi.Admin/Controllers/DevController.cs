@@ -4,7 +4,6 @@ using Microsoft.Extensions.Options;
 using MiniExcelLibs;
 using StackExchange.Profiling;
 using Volo.Abp.Authorization;
-using Volo.Abp.ExceptionHandling.Localization;
 using Volo.Abp.Localization;
 using Volo.Abp.VirtualFileSystem;
 using Yi.AspNetCore.Core;
@@ -98,7 +97,7 @@ public class DevController : BaseController
     [HttpGet("lang2")]
     public object Lang2()
     {
-        var localizer = StringLocalizerFactory.Create(typeof(AbpExceptionHandlingResource));
+        var localizer = StringLocalizerFactory.Create(typeof(DevController));
         return localizer.GetAllStrings(true);
     }
 

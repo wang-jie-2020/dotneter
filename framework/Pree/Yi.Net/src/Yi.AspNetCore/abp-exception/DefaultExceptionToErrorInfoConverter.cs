@@ -1,10 +1,13 @@
-﻿using System.Text;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Options;
-using Volo.Abp.AspNetCore.ExceptionHandling;
 using Volo.Abp.Authorization;
 using Volo.Abp.Data;
+using Volo.Abp.DependencyInjection;
 using Volo.Abp.Domain.Entities;
 using Volo.Abp.ExceptionHandling;
 using Volo.Abp.Http;
@@ -13,19 +16,15 @@ using Volo.Abp.Localization;
 using Volo.Abp.Localization.ExceptionHandling;
 using Volo.Abp.Validation;
 
-namespace Yi.AspNetCore.Exceptions;
+namespace Volo.Abp.AspNetCore.ExceptionHandling;
 
-/// <summary>
-///  <see cref="DefaultExceptionToErrorInfoConverter"/>
-///     LocalizationResourceType Fallback With DefaultResource 
-/// </summary>
-public class ExceptionToErrorInfoConverter : IExceptionToErrorInfoConverter
+public class DefaultExceptionToErrorInfoConverter : IExceptionToErrorInfoConverter, ITransientDependency
 {
     protected AbpExceptionLocalizationOptions LocalizationOptions { get; }
     protected IStringLocalizerFactory StringLocalizerFactory { get; }
     protected IServiceProvider ServiceProvider { get; }
 
-    public ExceptionToErrorInfoConverter(
+    public DefaultExceptionToErrorInfoConverter(
         IOptions<AbpExceptionLocalizationOptions> localizationOptions,
         IStringLocalizerFactory stringLocalizerFactory,
         IServiceProvider serviceProvider)
@@ -83,7 +82,6 @@ public class ExceptionToErrorInfoConverter : IExceptionToErrorInfoConverter
         if (exception is AbpDbConcurrencyException)
         {
             //return new RemoteServiceErrorInfo(L["AbpDbConcurrencyErrorMessage"]);
-            return new RemoteServiceErrorInfo("AbpDbConcurrencyErrorMessage");
         }
 
         if (exception is EntityNotFoundException)
@@ -143,21 +141,19 @@ public class ExceptionToErrorInfoConverter : IExceptionToErrorInfoConverter
             return;
         }
 
-        // if (exceptionWithErrorCode.Code.IsNullOrWhiteSpace() ||
-        //     !exceptionWithErrorCode.Code!.Contains(":"))
-        // {
-        //     return;
-        // }
-        //
-        // var codeNamespace = exceptionWithErrorCode.Code.Split(':')[0];
-        //
-        // var localizationResourceType = LocalizationOptions.ErrorCodeNamespaceMappings.GetOrDefault(codeNamespace);
-        // if (localizationResourceType == null)
-        // {
-        //     return;
-        // }
+        if (exceptionWithErrorCode.Code.IsNullOrWhiteSpace() ||
+            !exceptionWithErrorCode.Code!.Contains(":"))
+        {
+            return;
+        }
 
-        var localizationResourceType = GetLocalizationResourceType(exceptionWithErrorCode);
+        var codeNamespace = exceptionWithErrorCode.Code.Split(':')[0];
+
+        var localizationResourceType = LocalizationOptions.ErrorCodeNamespaceMappings.GetOrDefault(codeNamespace);
+        if (localizationResourceType == null)
+        {
+            return;
+        }
 
         var stringLocalizer = StringLocalizerFactory.Create(localizationResourceType);
         var localizedString = stringLocalizer[exceptionWithErrorCode.Code];
@@ -179,25 +175,6 @@ public class ExceptionToErrorInfoConverter : IExceptionToErrorInfoConverter
         errorInfo.Message = localizedValue;
     }
 
-    protected virtual Type GetLocalizationResourceType(IHasErrorCode exceptionWithErrorCode)
-    {
-        if (exceptionWithErrorCode.Code.IsNullOrWhiteSpace() ||
-            !exceptionWithErrorCode.Code!.Contains(":"))
-        {
-            return typeof(DefaultResource);
-        }
-
-        var codeNamespace = exceptionWithErrorCode.Code.Split(':')[0];
-
-        var localizationResourceType = LocalizationOptions.ErrorCodeNamespaceMappings.GetOrDefault(codeNamespace);
-        if (localizationResourceType == null)
-        {
-            return typeof(DefaultResource);
-        }
-
-        return localizationResourceType;
-    }
-    
     protected virtual RemoteServiceErrorInfo CreateEntityNotFoundError(EntityNotFoundException exception)
     {
         if (exception.EntityType != null)
