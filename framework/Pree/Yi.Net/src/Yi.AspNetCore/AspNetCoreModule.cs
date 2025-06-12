@@ -9,7 +9,6 @@ using Microsoft.Extensions.Options;
 using SkyApm;
 using SqlSugar;
 using StackExchange.Profiling.Internal;
-using Volo.Abp.AspNetCore.Authentication.JwtBearer;
 using Volo.Abp.AspNetCore.ExceptionHandling;
 using Volo.Abp.AspNetCore.MultiTenancy;
 using Volo.Abp.AspNetCore.SignalR;
@@ -36,12 +35,12 @@ using SequentialGuidGenerator = Yi.AspNetCore.Helpers.SequentialGuidGenerator;
 namespace Yi.AspNetCore;
 
 [DependsOn(
-    typeof(AbpAspNetCoreAuthenticationJwtBearerModule),
     typeof(AbpAspNetCoreMultiTenancyModule),
     typeof(AbpAspNetCoreSignalRModule),
     typeof(AbpAutofacModule),
     typeof(AbpEventBusModule),
-    typeof(AbpObjectMappingModule)
+    typeof(AbpObjectMappingModule),
+    typeof(AbpCachingModule)
 )]
 public class AspNetCoreModule : AbpModule
 {
