@@ -11,7 +11,6 @@ using SqlSugar;
 using StackExchange.Profiling.Internal;
 using Volo.Abp.AspNetCore.ExceptionHandling;
 using Volo.Abp.AspNetCore.MultiTenancy;
-using Volo.Abp.AspNetCore.SignalR;
 using Volo.Abp.Autofac;
 using Volo.Abp.Caching;
 using Volo.Abp.Data;
@@ -36,7 +35,6 @@ namespace Yi.AspNetCore;
 
 [DependsOn(
     typeof(AbpAspNetCoreMultiTenancyModule),
-    typeof(AbpAspNetCoreSignalRModule),
     typeof(AbpAutofacModule),
     typeof(AbpEventBusModule),
     typeof(AbpObjectMappingModule),

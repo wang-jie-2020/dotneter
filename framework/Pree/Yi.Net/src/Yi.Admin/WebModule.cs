@@ -317,20 +317,20 @@ public class WebModule : AbpModule
             
             endpoints.MapRazorPages();
 
-            using (var scope = app.ApplicationServices.CreateScope())
-            {
-                var options = app.ApplicationServices
-                    .GetRequiredService<IOptions<AbpEndpointRouterOptions>>()
-                    .Value;
-                if (options.EndpointConfigureActions.Any())
-                {
-                    var endpointRouteBuilderContext = new EndpointRouteBuilderContext(endpoints, scope.ServiceProvider);
-                    foreach (var configureAction in options.EndpointConfigureActions)
-                    {
-                        configureAction(endpointRouteBuilderContext);
-                    }
-                }
-            }
+            //using (var scope = app.ApplicationServices.CreateScope())
+            //{
+            //    var options = app.ApplicationServices
+            //        .GetRequiredService<IOptions<AbpEndpointRouterOptions>>()
+            //        .Value;
+            //    if (options.EndpointConfigureActions.Any())
+            //    {
+            //        var endpointRouteBuilderContext = new EndpointRouteBuilderContext(endpoints, scope.ServiceProvider);
+            //        foreach (var configureAction in options.EndpointConfigureActions)
+            //        {
+            //            configureAction(endpointRouteBuilderContext);
+            //        }
+            //    }
+            //}
         });
         
         return Task.CompletedTask;
