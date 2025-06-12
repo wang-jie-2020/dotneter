@@ -10,7 +10,6 @@ using SkyApm;
 using SqlSugar;
 using StackExchange.Profiling.Internal;
 using Volo.Abp.AspNetCore.ExceptionHandling;
-using Volo.Abp.AspNetCore.MultiTenancy;
 using Volo.Abp.Autofac;
 using Volo.Abp.Caching;
 using Volo.Abp.Data;
@@ -34,7 +33,6 @@ using SequentialGuidGenerator = Yi.AspNetCore.Helpers.SequentialGuidGenerator;
 namespace Yi.AspNetCore;
 
 [DependsOn(
-    typeof(AbpAspNetCoreMultiTenancyModule),
     typeof(AbpAutofacModule),
     typeof(AbpEventBusModule),
     typeof(AbpObjectMappingModule),

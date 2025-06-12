@@ -26,7 +26,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Volo.Abp.AspNetCore.MultiTenancy" Version="$(AbpVersion)" />
+        <PackageReference Include="Volo.Abp.AspNetCore" Version="$(AbpVersion)" />
         <PackageReference Include="Volo.Abp.Autofac" Version="$(AbpVersion)" />
 		<PackageReference Include="Volo.Abp.ObjectMapping" Version="$(AbpVersion)" />
 		<PackageReference Include="Volo.Abp.EventBus" Version="$(AbpVersion)" />
