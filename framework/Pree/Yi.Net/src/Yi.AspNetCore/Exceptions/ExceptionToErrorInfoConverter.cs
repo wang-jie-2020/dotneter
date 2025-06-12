@@ -10,7 +10,6 @@ using Volo.Abp.ExceptionHandling;
 using Volo.Abp.Http;
 using Volo.Abp.Http.Client;
 using Volo.Abp.Localization;
-using Volo.Abp.Localization.ExceptionHandling;
 using Volo.Abp.Validation;
 
 namespace Yi.AspNetCore.Exceptions;
@@ -21,18 +20,15 @@ namespace Yi.AspNetCore.Exceptions;
 /// </summary>
 public class ExceptionToErrorInfoConverter : IExceptionToErrorInfoConverter
 {
-    protected AbpExceptionLocalizationOptions LocalizationOptions { get; }
     protected IStringLocalizerFactory StringLocalizerFactory { get; }
     protected IServiceProvider ServiceProvider { get; }
 
     public ExceptionToErrorInfoConverter(
-        IOptions<AbpExceptionLocalizationOptions> localizationOptions,
         IStringLocalizerFactory stringLocalizerFactory,
         IServiceProvider serviceProvider)
     {
         ServiceProvider = serviceProvider;
         StringLocalizerFactory = stringLocalizerFactory;
-        LocalizationOptions = localizationOptions.Value;
     }
 
     public RemoteServiceErrorInfo Convert(Exception exception, bool includeSensitiveDetails)
@@ -181,21 +177,22 @@ public class ExceptionToErrorInfoConverter : IExceptionToErrorInfoConverter
 
     protected virtual Type GetLocalizationResourceType(IHasErrorCode exceptionWithErrorCode)
     {
-        if (exceptionWithErrorCode.Code.IsNullOrWhiteSpace() ||
-            !exceptionWithErrorCode.Code!.Contains(":"))
-        {
-            return typeof(DefaultResource);
-        }
+        throw new NotImplementedException();
+        //if (exceptionWithErrorCode.Code.IsNullOrWhiteSpace() ||
+        //    !exceptionWithErrorCode.Code!.Contains(":"))
+        //{
+        //    return typeof(DefaultResource);
+        //}
 
-        var codeNamespace = exceptionWithErrorCode.Code.Split(':')[0];
+        //var codeNamespace = exceptionWithErrorCode.Code.Split(':')[0];
 
-        var localizationResourceType = LocalizationOptions.ErrorCodeNamespaceMappings.GetOrDefault(codeNamespace);
-        if (localizationResourceType == null)
-        {
-            return typeof(DefaultResource);
-        }
+        //var localizationResourceType = LocalizationOptions.ErrorCodeNamespaceMappings.GetOrDefault(codeNamespace);
+        //if (localizationResourceType == null)
+        //{
+        //    return typeof(DefaultResource);
+        //}
 
-        return localizationResourceType;
+        //return localizationResourceType;
     }
     
     protected virtual RemoteServiceErrorInfo CreateEntityNotFoundError(EntityNotFoundException exception)

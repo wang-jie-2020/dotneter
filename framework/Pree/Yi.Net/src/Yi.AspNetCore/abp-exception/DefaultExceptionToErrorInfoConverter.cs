@@ -13,25 +13,21 @@ using Volo.Abp.ExceptionHandling;
 using Volo.Abp.Http;
 using Volo.Abp.Http.Client;
 using Volo.Abp.Localization;
-using Volo.Abp.Localization.ExceptionHandling;
 using Volo.Abp.Validation;
 
 namespace Volo.Abp.AspNetCore.ExceptionHandling;
 
 public class DefaultExceptionToErrorInfoConverter : IExceptionToErrorInfoConverter, ITransientDependency
 {
-    protected AbpExceptionLocalizationOptions LocalizationOptions { get; }
     protected IStringLocalizerFactory StringLocalizerFactory { get; }
     protected IServiceProvider ServiceProvider { get; }
 
     public DefaultExceptionToErrorInfoConverter(
-        IOptions<AbpExceptionLocalizationOptions> localizationOptions,
         IStringLocalizerFactory stringLocalizerFactory,
         IServiceProvider serviceProvider)
     {
         ServiceProvider = serviceProvider;
         StringLocalizerFactory = stringLocalizerFactory;
-        LocalizationOptions = localizationOptions.Value;
     }
 
     public RemoteServiceErrorInfo Convert(Exception exception, bool includeSensitiveDetails)
@@ -149,30 +145,31 @@ public class DefaultExceptionToErrorInfoConverter : IExceptionToErrorInfoConvert
 
         var codeNamespace = exceptionWithErrorCode.Code.Split(':')[0];
 
-        var localizationResourceType = LocalizationOptions.ErrorCodeNamespaceMappings.GetOrDefault(codeNamespace);
-        if (localizationResourceType == null)
-        {
-            return;
-        }
+        //var localizationResourceType = LocalizationOptions.ErrorCodeNamespaceMappings.GetOrDefault(codeNamespace);
+        //if (localizationResourceType == null)
+        //{
+        //    return;
+        //}
 
-        var stringLocalizer = StringLocalizerFactory.Create(localizationResourceType);
-        var localizedString = stringLocalizer[exceptionWithErrorCode.Code];
-        if (localizedString.ResourceNotFound)
-        {
-            return;
-        }
+        //var stringLocalizer = StringLocalizerFactory.Create(localizationResourceType);
+        //var localizedString = stringLocalizer[exceptionWithErrorCode.Code];
+        //if (localizedString.ResourceNotFound)
+        //{
+        //    return;
+        //}
 
-        var localizedValue = localizedString.Value;
+        //var localizedValue = localizedString.Value;
 
         if (exception.Data != null && exception.Data.Count > 0)
         {
             foreach (var key in exception.Data.Keys)
             {
-                localizedValue = localizedValue.Replace("{" + key + "}", exception.Data[key]?.ToString());
+                //localizedValue = localizedValue.Replace("{" + key + "}", exception.Data[key]?.ToString());
             }
         }
 
-        errorInfo.Message = localizedValue;
+        throw new NotImplementedException();
+        //errorInfo.Message = localizedValue;
     }
 
     protected virtual RemoteServiceErrorInfo CreateEntityNotFoundError(EntityNotFoundException exception)

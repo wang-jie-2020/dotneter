@@ -25,7 +25,7 @@ public class DevController : BaseController
     public object MvcOptions()
     {
         var mvcOptions = LazyServiceProvider.LazyGetRequiredService<IOptions<MvcOptions>>().Value;
-        var abpLocalizationOptions = LazyServiceProvider.LazyGetRequiredService<IOptions<AbpLocalizationOptions>>().Value;
+        //var abpLocalizationOptions = LazyServiceProvider.LazyGetRequiredService<IOptions<AbpLocalizationOptions>>().Value;
 
         var miniProfiler = MiniProfiler.Current.RenderIncludes(HttpContext).ToString();
         
@@ -34,7 +34,7 @@ public class DevController : BaseController
             mvcOptions.Filters,
             mvcOptions.Conventions,
             mvcOptions.ModelBinderProviders,
-            abpLocalizationOptions,
+            //abpLocalizationOptions,
             miniProfiler
         };
     }

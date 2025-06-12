@@ -60,11 +60,11 @@ public class WebModule : AbpModule
             options.FileSets.ReplaceEmbeddedByPhysical<WebModule>(AppContext.BaseDirectory);
         });
 
-        Configure<AbpLocalizationOptions>(options =>
-        {
-            options.Resources.Get<DefaultResource>()
-                .AddVirtualJson("/Resources");
-        });
+        //Configure<AbpLocalizationOptions>(options =>
+        //{
+        //    options.Resources.Get<DefaultResource>()
+        //        .AddVirtualJson("/Resources");
+        //});
 
         // Configure<AbpExceptionHandlingOptions>(options =>
         // {

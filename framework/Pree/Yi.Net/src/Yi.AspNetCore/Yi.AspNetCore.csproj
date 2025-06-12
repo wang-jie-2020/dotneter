@@ -29,10 +29,10 @@
         <PackageReference Include="Volo.Abp.Autofac" Version="$(AbpVersion)" />
 		<PackageReference Include="Volo.Abp.ObjectMapping" Version="$(AbpVersion)" />
 		<PackageReference Include="Volo.Abp.Guids" Version="$(AbpVersion)" />
-		<PackageReference Include="Volo.Abp.MultiTenancy" Version="$(AbpVersion)" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="abp-local\" />
+		<PackageReference Include="Volo.Abp.Uow" Version="$(AbpVersion)" />
+		<PackageReference Include="Volo.Abp.Security" Version="$(AbpVersion)" />
+		<PackageReference Include="Volo.Abp.Data" Version="$(AbpVersion)" />
+		<PackageReference Include="Volo.Abp.Threading" Version="$(AbpVersion)" />
+		<PackageReference Include="Volo.Abp.VirtualFileSystem" Version="$(AbpVersion)" />
     </ItemGroup>
 </Project>

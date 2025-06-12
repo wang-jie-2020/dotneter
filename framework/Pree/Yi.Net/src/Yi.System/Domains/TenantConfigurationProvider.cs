@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Localization;
 using Volo.Abp.MultiTenancy;
-using Volo.Abp.MultiTenancy.Localization;
 
 namespace Yi.System.Domains;
 
@@ -9,19 +8,16 @@ public class TenantConfigurationProvider : ITenantConfigurationProvider
     public TenantConfigurationProvider(
         ITenantResolver tenantResolver,
         ITenantStore tenantStore,
-        ITenantResolveResultAccessor tenantResolveResultAccessor,
-        IStringLocalizer<AbpMultiTenancyResource> stringLocalizer)
+        ITenantResolveResultAccessor tenantResolveResultAccessor)
     {
         TenantResolver = tenantResolver;
         TenantStore = tenantStore;
         TenantResolveResultAccessor = tenantResolveResultAccessor;
-        StringLocalizer = stringLocalizer;
     }
 
     protected virtual ITenantResolver TenantResolver { get; }
     protected virtual ITenantStore TenantStore { get; }
     protected virtual ITenantResolveResultAccessor TenantResolveResultAccessor { get; }
-    protected virtual IStringLocalizer<AbpMultiTenancyResource> StringLocalizer { get; }
 
     public virtual async Task<TenantConfiguration?> GetAsync(bool saveResolveResult = false)
     {
@@ -42,18 +38,18 @@ public class TenantConfigurationProvider : ITenantConfigurationProvider
             if (tenant == null)
             {
                 throw new BusinessException(
-                    "Volo.AbpIo.MultiTenancy:010001",
-                    StringLocalizer["TenantNotFoundMessage"],
-                    StringLocalizer["TenantNotFoundDetails", resolveResult.TenantIdOrName]
+                    "Volo.AbpIo.MultiTenancy:010001"
+                    //StringLocalizer["TenantNotFoundMessage"],
+                    //StringLocalizer["TenantNotFoundDetails", resolveResult.TenantIdOrName]
                 );
             }
 
             if (!tenant.IsActive)
             {
                 throw new BusinessException(
-                    "Volo.AbpIo.MultiTenancy:010002",
-                    StringLocalizer["TenantNotActiveMessage"],
-                    StringLocalizer["TenantNotActiveDetails", resolveResult.TenantIdOrName]
+                    "Volo.AbpIo.MultiTenancy:010002"
+                    //StringLocalizer["TenantNotActiveMessage"],
+                    //StringLocalizer["TenantNotActiveDetails", resolveResult.TenantIdOrName]
                 );
             }
         }
