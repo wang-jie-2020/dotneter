@@ -4,7 +4,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Volo.Abp.Authorization;
 using Volo.Abp.Caching;
-using Volo.Abp.EventBus.Local;
 using Volo.Abp.Guids;
 using Yi.AspNetCore.Core;
 using Yi.System.Domains.Consts;
@@ -23,20 +22,19 @@ public class UserManager : BaseDomain
     private readonly ISqlSugarRepository<UserPostEntity> _repositoryUserPost;
     private readonly ISqlSugarRepository<UserRoleEntity> _repositoryUserRole;
     private readonly ISqlSugarRepository<RoleEntity> _roleRepository;
-    private readonly ILocalEventBus _localEventBus;
     private readonly IDistributedCache<UserInfoCacheItem, UserInfoCacheKey> _userCache;
     private readonly IUserRepository _userRepository;
 
     public UserManager(ISqlSugarRepository<UserEntity> repository,
         ISqlSugarRepository<UserRoleEntity> repositoryUserRole, ISqlSugarRepository<UserPostEntity> repositoryUserPost,
         IGuidGenerator guidGenerator, IDistributedCache<UserInfoCacheItem, UserInfoCacheKey> userCache,
-        IUserRepository userRepository, ILocalEventBus localEventBus,
+        IUserRepository userRepository, 
         ISqlSugarRepository<RoleEntity> roleRepository)
     {
         (_repository, _repositoryUserRole, _repositoryUserPost, _guidGenerator, _userCache, _userRepository,
-                _localEventBus, _roleRepository) =
+                 _roleRepository) =
             (repository, repositoryUserRole, repositoryUserPost, guidGenerator, userCache, userRepository,
-                localEventBus, roleRepository);
+                 roleRepository);
     }
 
     /// <summary>

@@ -6,7 +6,7 @@ using Volo.Abp.Data;
 namespace Volo.Abp.Auditing;
 
 [Serializable]
-public class EntityChangeInfo : IHasExtraProperties
+public class EntityChangeInfo 
 {
     public DateTime ChangeTime { get; set; }
 
@@ -25,13 +25,11 @@ public class EntityChangeInfo : IHasExtraProperties
 
     public List<EntityPropertyChangeInfo> PropertyChanges { get; set; } = default!;
 
-    public ExtraPropertyDictionary ExtraProperties { get; }
-
     public virtual object EntityEntry { get; set; } = default!; //TODO: Try to remove since it breaks serializability
 
     public EntityChangeInfo()
     {
-        ExtraProperties = new ExtraPropertyDictionary();
+
     }
 
     public virtual void Merge(EntityChangeInfo changeInfo)
@@ -47,17 +45,6 @@ public class EntityChangeInfo : IHasExtraProperties
             {
                 existingChange.NewValue = propertyChange.NewValue;
             }
-        }
-
-        foreach (var extraProperty in changeInfo.ExtraProperties)
-        {
-            var key = extraProperty.Key;
-            if (ExtraProperties.ContainsKey(key))
-            {
-                key = InternalUtils.AddCounter(key);
-            }
-
-            ExtraProperties[key] = extraProperty.Value;
         }
     }
 }

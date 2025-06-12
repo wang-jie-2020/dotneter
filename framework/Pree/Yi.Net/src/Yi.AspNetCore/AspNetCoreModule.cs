@@ -17,7 +17,6 @@ using Volo.Abp.Auditing;
 using Volo.Abp.Autofac;
 using Volo.Abp.Caching;
 using Volo.Abp.Data;
-using Volo.Abp.EventBus;
 using Volo.Abp.Guids;
 using Volo.Abp.ObjectMapping;
 using Yi.AspNetCore.Core;

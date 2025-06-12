@@ -5,7 +5,7 @@ using Volo.Abp.Data;
 namespace Volo.Abp.Auditing;
 
 [Serializable]
-public class AuditLogActionInfo : IHasExtraProperties
+public class AuditLogActionInfo
 {
     public string ServiceName { get; set; } = default!;
 
@@ -17,10 +17,8 @@ public class AuditLogActionInfo : IHasExtraProperties
 
     public int ExecutionDuration { get; set; }
 
-    public ExtraPropertyDictionary ExtraProperties { get; }
-
     public AuditLogActionInfo()
     {
-        ExtraProperties = new ExtraPropertyDictionary();
+
     }
 }

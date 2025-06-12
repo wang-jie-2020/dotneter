@@ -7,7 +7,7 @@ using Volo.Abp.Data;
 namespace Volo.Abp.Auditing;
 
 [Serializable]
-public class AuditLogInfo : IHasExtraProperties
+public class AuditLogInfo
 {
     public string? ApplicationName { get; set; }
 
@@ -51,8 +51,6 @@ public class AuditLogInfo : IHasExtraProperties
 
     public List<Exception> Exceptions { get; }
 
-    public ExtraPropertyDictionary ExtraProperties { get; }
-
     public List<EntityChangeInfo> EntityChanges { get; }
 
     public List<string> Comments { get; set; }
@@ -61,7 +59,6 @@ public class AuditLogInfo : IHasExtraProperties
     {
         Actions = new List<AuditLogActionInfo>();
         Exceptions = new List<Exception>();
-        ExtraProperties = new ExtraPropertyDictionary();
         EntityChanges = new List<EntityChangeInfo>();
         Comments = new List<string>();
     }

@@ -296,11 +296,6 @@ public class SqlSugarDbContext : ISqlSugarDbContext
             column.IsIgnore = true;
         }
 
-        if (property.PropertyType == typeof(ExtraPropertyDictionary))
-        {
-            column.IsIgnore = true;
-        }
-
         if (property.Name == nameof(IEntity<object>.Id))
         {
             column.IsPrimarykey = true;

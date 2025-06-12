@@ -31,7 +31,6 @@
 		<PackageReference Include="Volo.Abp.Guids" Version="$(AbpVersion)" />
 		<PackageReference Include="Volo.Abp.Uow" Version="$(AbpVersion)" />
 		<PackageReference Include="Volo.Abp.Security" Version="$(AbpVersion)" />
-		<PackageReference Include="Volo.Abp.Data" Version="$(AbpVersion)" />
 		<PackageReference Include="Volo.Abp.Threading" Version="$(AbpVersion)" />
 		<PackageReference Include="Volo.Abp.VirtualFileSystem" Version="$(AbpVersion)" />
     </ItemGroup>

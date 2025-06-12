@@ -76,11 +76,11 @@ public class ExceptionToErrorInfoConverter : IExceptionToErrorInfoConverter
             return remoteCallException.Error;
         }
 
-        if (exception is AbpDbConcurrencyException)
-        {
-            //return new RemoteServiceErrorInfo(L["AbpDbConcurrencyErrorMessage"]);
-            return new RemoteServiceErrorInfo("AbpDbConcurrencyErrorMessage");
-        }
+        //if (exception is AbpDbConcurrencyException)
+        //{
+        //    //return new RemoteServiceErrorInfo(L["AbpDbConcurrencyErrorMessage"]);
+        //    return new RemoteServiceErrorInfo("AbpDbConcurrencyErrorMessage");
+        //}
 
         if (exception is EntityNotFoundException)
         {

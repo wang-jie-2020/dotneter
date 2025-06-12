@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
-using Volo.Abp.EventBus.Local;
 using Volo.Abp.Security.Claims;
 using Yi.AspNetCore.Core;
 using Yi.AspNetCore.Core.Loggings;
@@ -14,6 +13,8 @@ using Yi.AspNetCore.Helpers;
 using Yi.System.Domains.Consts;
 using Yi.System.Domains.Entities;
 using Yi.System.Domains.Repositories;
+using Yi.System.Monitor.Entities;
+using Yi.System.Monitor;
 using Yi.System.Options;
 using Yi.System.Services.Dtos;
 
@@ -25,30 +26,30 @@ namespace Yi.System.Domains;
 public class AccountManager : BaseDomain, IAccountManager
 {
     private readonly JwtOptions _jwtOptions;
-    private readonly ILocalEventBus _localEventBus;
     private readonly RbacOptions _options;
     private readonly IUserRepository _repository;
     private readonly IHttpContextAccessor _httpContextAccessor;
     private readonly RefreshJwtOptions _refreshJwtOptions;
     private ISqlSugarRepository<RoleEntity> _roleRepository;
+    private readonly ISqlSugarRepository<LoginLogEntity> _loginLogRepository;
     private readonly UserManager _userManager;
 
     public AccountManager(IUserRepository repository
         , IHttpContextAccessor httpContextAccessor
         , IOptions<JwtOptions> jwtOptions
-        , ILocalEventBus localEventBus
         , UserManager userManager
         , IOptions<RefreshJwtOptions> refreshJwtOptions
         , ISqlSugarRepository<RoleEntity> roleRepository
+        , ISqlSugarRepository<LoginLogEntity> loginLogRepository
         , IOptions<RbacOptions> options)
     {
         _repository = repository;
         _httpContextAccessor = httpContextAccessor;
         _jwtOptions = jwtOptions.Value;
-        _localEventBus = localEventBus;
         _userManager = userManager;
         _roleRepository = roleRepository;
         _refreshJwtOptions = refreshJwtOptions.Value;
+        _loginLogRepository = loginLogRepository;
         _options = options.Value;
     }
 
@@ -86,7 +87,12 @@ public class AccountManager : BaseDomain, IAccountManager
             var loginEto = new LoginEventArgs().GetInfoByHttpContext(_httpContextAccessor.HttpContext);
             loginEto.UserName = userInfo.User.UserName;
             loginEto.UserId = userInfo.User.Id;
-            await _localEventBus.PublishAsync(loginEto);
+
+            var loginLogEntity = loginEto.Adapt<LoginLogEntity>();
+            loginLogEntity.LogMsg = loginEto.UserName + "登录系统";
+            loginLogEntity.LoginUser = loginEto.UserName;
+            loginLogEntity.CreatorId = loginEto.UserId;
+            await _loginLogRepository.InsertAsync(loginLogEntity);
         }
 
         var accessToken = CreateToken(UserInfoToClaim(userInfo));
@@ -252,12 +258,12 @@ public class AccountManager : BaseDomain, IAccountManager
         var claims = new List<KeyValuePair<string, string>>();
         AddToClaim(claims, AbpClaimTypes.UserId, dto.User.Id.ToString());
         AddToClaim(claims, AbpClaimTypes.UserName, dto.User.UserName);
-        
+
         if (dto.User.DeptId is not null)
         {
             AddToClaim(claims, TokenClaimConst.DeptId, dto.User.DeptId.ToString());
         }
-        
+
         // if (dto.User.Email is not null)
         // {
         //     AddToClaim(claims, AbpClaimTypes.Email, dto.User.Email);
@@ -267,14 +273,14 @@ public class AccountManager : BaseDomain, IAccountManager
         // {
         //     AddToClaim(claims, AbpClaimTypes.PhoneNumber, dto.User.Phone.ToString());
         // }
-        
+
         if (dto.Roles.Count > 0)
         {
             AddToClaim(claims, TokenClaimConst.RoleInfo,
                 JsonConvert.SerializeObject(dto.Roles.Select(x => new RoleTokenInfo
-                    { Id = x.Id, DataScope = x.DataScope })));
+                { Id = x.Id, DataScope = x.DataScope })));
         }
-        
+
         if (AccountConst.Admin.Equals(dto.User.UserName))
         {
             //AddToClaim(claims, TokenClaimConst.Permission, UserConst.AdminPermissionCode);
