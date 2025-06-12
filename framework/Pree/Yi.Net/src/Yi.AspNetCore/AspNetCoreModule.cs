@@ -20,7 +20,6 @@ using Volo.Abp.Data;
 using Volo.Abp.EventBus;
 using Volo.Abp.Guids;
 using Volo.Abp.ObjectMapping;
-using Yi.AspNetCore.Caching.FreeRedis;
 using Yi.AspNetCore.Core;
 using Yi.AspNetCore.Core.Filters;
 using Yi.AspNetCore.Core.Loggings;
@@ -38,9 +37,7 @@ namespace Yi.AspNetCore;
 
 [DependsOn(
     typeof(AbpAutofacModule),
-    typeof(AbpEventBusModule),
-    typeof(AbpObjectMappingModule),
-    typeof(AbpCachingModule)
+    typeof(AbpObjectMappingModule)
 )]
 public class AspNetCoreModule : AbpModule
 {
@@ -58,6 +55,11 @@ public class AspNetCoreModule : AbpModule
         context.Services.AddTransient<IAutoObjectMappingProvider, MapsterAutoObjectMappingProvider>();
 
         //Redis
+        context.Services.AddMemoryCache();
+        context.Services.AddDistributedMemoryCache();
+        context.Services.AddSingleton(typeof(IDistributedCache<>), typeof(DistributedCache<>));
+        context.Services.AddSingleton(typeof(IDistributedCache<,>), typeof(DistributedCache<,>));
+
         var redisEnabled = configuration["Redis:IsEnabled"];
         if (redisEnabled.IsNullOrEmpty() || bool.Parse(redisEnabled))
         {
@@ -66,7 +68,6 @@ public class AspNetCoreModule : AbpModule
 
             context.Services.AddSingleton<IRedisClient>(redisClient);
             context.Services.Replace(ServiceDescriptor.Singleton<IDistributedCache>(new DistributedCache(redisClient)));
-            context.Services.Replace(ServiceDescriptor.Transient<IDistributedCacheKeyNormalizer, Caching.FreeRedis.DistributedCacheKeyNormalizer>());
         }
 
         //SqlSugar

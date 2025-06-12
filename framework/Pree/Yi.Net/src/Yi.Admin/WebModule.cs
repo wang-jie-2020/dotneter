@@ -9,7 +9,6 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Converters;
 using Volo.Abp.Auditing;
-using Volo.Abp.Caching;
 using Volo.Abp.Localization;
 using Volo.Abp.MultiTenancy;
 using Volo.Abp.VirtualFileSystem;
@@ -45,14 +44,6 @@ public class WebModule : AbpModule
             options.IsEnabled = true;
             //审计日志过滤器
             options.AlwaysLogSelectors.Add(x => Task.FromResult(true));
-        });
-
-        //设置缓存不要过期，默认滑动20分钟
-        Configure<AbpDistributedCacheOptions>(cacheOptions =>
-        {
-            cacheOptions.GlobalCacheEntryOptions.SlidingExpiration = null;
-            //缓存key前缀
-            cacheOptions.KeyPrefix = "Yi:";
         });
 
         //配置多租户
