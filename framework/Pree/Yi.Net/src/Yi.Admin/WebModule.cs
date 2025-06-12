@@ -59,13 +59,8 @@ public class WebModule : AbpModule
         //配置多租户
         Configure<AbpTenantResolveOptions>(options =>
         {
-            //基于cookie jwt不好用，有坑
-            options.TenantResolvers.Clear();
             options.TenantResolvers.Add(new HeaderTenantResolveContributor());
-            //options.TenantResolvers.Add(new HeaderTenantResolveContributor());
-            //options.TenantResolvers.Add(new CookieTenantResolveContributor());
-
-            //options.TenantResolvers.RemoveAll(x => x.Name == CookieTenantResolveContributor.ContributorName);
+            options.TenantResolvers.Add(new RouteTenantResolveContributor());
         });
 
         Configure<AbpVirtualFileSystemOptions>(options =>
