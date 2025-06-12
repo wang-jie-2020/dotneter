@@ -1,10 +1,8 @@
-﻿using System;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 using Volo.Abp.MultiTenancy;
 
-namespace Volo.Abp.AspNetCore.MultiTenancy;
+namespace Yi.AspNetCore.MultiTenancy;
 
 public class RouteTenantResolveContributor : HttpTenantResolveContributorBase
 {
@@ -14,7 +12,7 @@ public class RouteTenantResolveContributor : HttpTenantResolveContributorBase
 
     protected override Task<string?> GetTenantIdOrNameFromHttpContextOrNullAsync(ITenantResolveContext context, HttpContext httpContext)
     {
-        var tenantId = httpContext.GetRouteValue(context.GetAbpAspNetCoreMultiTenancyOptions().TenantKey);
+        var tenantId = httpContext.GetRouteValue(TenantResolverConsts.DefaultTenantKey);
         return Task.FromResult(tenantId != null ? Convert.ToString(tenantId) : null);
     }
 }

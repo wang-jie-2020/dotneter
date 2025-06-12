@@ -9,7 +9,6 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Converters;
 using Utils.Minio;
-using Volo.Abp.AspNetCore.MultiTenancy;
 using Volo.Abp.Auditing;
 using Volo.Abp.Caching;
 using Volo.Abp.Localization;
@@ -18,6 +17,7 @@ using Volo.Abp.VirtualFileSystem;
 using Yi.AspNetCore;
 using Yi.AspNetCore.Core.Permissions;
 using Yi.AspNetCore.Extensions;
+using Yi.AspNetCore.MultiTenancy;
 using Yi.System;
 using Yi.System.Options;
 

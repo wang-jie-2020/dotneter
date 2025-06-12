@@ -1,12 +1,10 @@
-using System;
-using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Volo.Abp.MultiTenancy;
 
-namespace Volo.Abp.AspNetCore.MultiTenancy;
+namespace Yi.AspNetCore.MultiTenancy;
 
 public abstract class HttpTenantResolveContributorBase : TenantResolveContributorBase
 {
