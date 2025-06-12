@@ -10,7 +10,6 @@ using Volo.Abp.Linq;
 using Volo.Abp.Localization;
 using Volo.Abp.MultiTenancy;
 using Volo.Abp.ObjectMapping;
-using Volo.Abp.Timing;
 using Volo.Abp.Uow;
 using Volo.Abp.Users;
 
@@ -37,8 +36,6 @@ public abstract class BaseService : ITransientDependency
     protected IDataFilter DataFilter => LazyServiceProvider.LazyGetRequiredService<IDataFilter>();
 
     protected ICurrentUser CurrentUser => LazyServiceProvider.LazyGetRequiredService<ICurrentUser>();
-
-    protected IClock Clock => LazyServiceProvider.LazyGetRequiredService<IClock>();
 
     protected IAuthorizationService AuthorizationService => LazyServiceProvider.LazyGetRequiredService<IAuthorizationService>();
 

@@ -6,12 +6,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.Net.Http.Headers;
+using Newtonsoft.Json;
 using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.Authorization;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.ExceptionHandling;
 using Volo.Abp.Http;
-using Volo.Abp.Json;
 
 namespace Volo.Abp.AspNetCore.ExceptionHandling;
 
@@ -68,7 +68,6 @@ public class AbpExceptionHandlingMiddleware : IMiddleware, ITransientDependency
             );
 
         var errorInfoConverter = httpContext.RequestServices.GetRequiredService<IExceptionToErrorInfoConverter>();
-        var jsonSerializer = httpContext.RequestServices.GetRequiredService<IJsonSerializer>();
         var exceptionHandlingOptions = httpContext.RequestServices.GetRequiredService<IOptions<AbpExceptionHandlingOptions>>().Value;
 
         httpContext.Response.Clear();
@@ -78,7 +77,7 @@ public class AbpExceptionHandlingMiddleware : IMiddleware, ITransientDependency
         httpContext.Response.Headers.Add("Content-Type", "application/json");
 
         await httpContext.Response.WriteAsync(
-            jsonSerializer.Serialize(
+            JsonConvert.SerializeObject(
                 new RemoteServiceErrorResponse(
                     errorInfoConverter.Convert(exception, options =>
                     {

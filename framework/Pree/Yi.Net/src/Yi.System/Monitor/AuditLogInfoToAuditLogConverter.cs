@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 using Volo.Abp.AspNetCore.ExceptionHandling;
 using Volo.Abp.Auditing;
 using Volo.Abp.Guids;
 using Volo.Abp.Http;
-using Volo.Abp.Json;
 using Yi.System.Monitor.Entities;
 
 namespace Yi.System.Monitor;
@@ -11,18 +11,16 @@ namespace Yi.System.Monitor;
 public class AuditLogInfoToAuditLogConverter : IAuditLogInfoToAuditLogConverter
 {
     public AuditLogInfoToAuditLogConverter(IGuidGenerator guidGenerator,
-        IExceptionToErrorInfoConverter exceptionToErrorInfoConverter, IJsonSerializer jsonSerializer,
+        IExceptionToErrorInfoConverter exceptionToErrorInfoConverter, 
         IOptions<AbpExceptionHandlingOptions> exceptionHandlingOptions)
     {
         GuidGenerator = guidGenerator;
         ExceptionToErrorInfoConverter = exceptionToErrorInfoConverter;
-        JsonSerializer = jsonSerializer;
         ExceptionHandlingOptions = exceptionHandlingOptions.Value;
     }
 
     protected IGuidGenerator GuidGenerator { get; }
     protected IExceptionToErrorInfoConverter ExceptionToErrorInfoConverter { get; }
-    protected IJsonSerializer JsonSerializer { get; }
     protected AbpExceptionHandlingOptions ExceptionHandlingOptions { get; }
 
     public virtual Task<AuditLogEntity> ConvertAsync(AuditLogInfo auditLogInfo)
@@ -53,7 +51,7 @@ public class AuditLogInfoToAuditLogConverter : IAuditLogInfoToAuditLogConverter
                                       ?? new List<RemoteServiceErrorInfo>();
 
         var exceptions = remoteServiceErrorInfos.Any()
-            ? JsonSerializer.Serialize(remoteServiceErrorInfos, indented: true)
+            ? JsonConvert.SerializeObject(remoteServiceErrorInfos)
             : null;
 
         var comments = auditLogInfo

@@ -7,11 +7,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 using Volo.Abp.AspNetCore.ExceptionHandling;
 using Volo.Abp.Authorization;
 using Volo.Abp.ExceptionHandling;
 using Volo.Abp.Http;
-using Volo.Abp.Json;
 using Yi.AspNetCore.Core;
 using Yi.AspNetCore.Extensions;
 
@@ -83,7 +83,7 @@ public class ExceptionFilter : IAsyncExceptionFilter
 
         var remoteServiceErrorInfoBuilder = new StringBuilder();
         remoteServiceErrorInfoBuilder.AppendLine($"---------- {nameof(RemoteServiceErrorInfo)} ----------");
-        remoteServiceErrorInfoBuilder.AppendLine(context.GetRequiredService<IJsonSerializer>().Serialize(remoteServiceErrorInfo, indented: true));
+        remoteServiceErrorInfoBuilder.AppendLine(JsonConvert.SerializeObject(remoteServiceErrorInfo));
 
         var logger = context.GetService<ILogger<ExceptionFilter>>(NullLogger<ExceptionFilter>.Instance)!;
         var logLevel = context.Exception.GetLogLevel();

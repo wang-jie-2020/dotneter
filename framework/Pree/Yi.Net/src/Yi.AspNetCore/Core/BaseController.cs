@@ -8,7 +8,6 @@ using Volo.Abp.DependencyInjection;
 using Volo.Abp.Localization;
 using Volo.Abp.MultiTenancy;
 using Volo.Abp.ObjectMapping;
-using Volo.Abp.Timing;
 using Volo.Abp.Uow;
 using Volo.Abp.Users;
 
@@ -35,8 +34,6 @@ public abstract class BaseController : Controller
     protected ICurrentTenant CurrentTenant => LazyServiceProvider.LazyGetRequiredService<ICurrentTenant>();
 
     protected IAuthorizationService AuthorizationService => LazyServiceProvider.LazyGetRequiredService<IAuthorizationService>();
-    
-    protected IClock Clock => LazyServiceProvider.LazyGetRequiredService<IClock>();
     
     protected IStringLocalizerFactory StringLocalizerFactory => LazyServiceProvider.LazyGetRequiredService<IStringLocalizerFactory>();
 
