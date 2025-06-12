@@ -15,7 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yi.Web", "src\Yi.Web\Yi.Web.csproj", "{50E9998F-00AE-47CA-9BC6-CB65D7588031}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yi.Admin", "src\Yi.Admin\Yi.Admin.csproj", "{50E9998F-00AE-47CA-9BC6-CB65D7588031}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yi.AspNetCore", "src\Yi.AspNetCore\Yi.AspNetCore.csproj", "{85082B72-9C6B-4611-B802-59067506EB45}"
 EndProject
