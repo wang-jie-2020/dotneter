@@ -69,21 +69,6 @@ public abstract class BaseService : ITransientDependency
 
     protected ILogger Logger => LazyServiceProvider.LazyGetService<ILogger>(provider => LoggerFactory?.CreateLogger(GetType().FullName!) ?? NullLogger.Instance);
 
-    /// <summary>
-    /// Checks for given <paramref name="policyName"/>.
-    /// Throws <see cref="AbpAuthorizationException"/> if given policy has not been granted.
-    /// </summary>
-    /// <param name="policyName">The policy name. This method does nothing if given <paramref name="policyName"/> is null or empty.</param>
-    protected virtual async Task CheckPolicyAsync(string? policyName)
-    {
-        if (string.IsNullOrEmpty(policyName))
-        {
-            return;
-        }
-
-        await AuthorizationService.CheckAsync(policyName!);
-    }
-
     protected virtual IStringLocalizer CreateLocalizer()
     {
         if (LocalizationResource != null)

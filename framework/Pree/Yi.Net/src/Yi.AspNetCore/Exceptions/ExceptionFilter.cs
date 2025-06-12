@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Net;
+using System.Text;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -31,7 +32,7 @@ public class ExceptionFilter : IAsyncExceptionFilter
 
         await HandleAndWrapException(context);
     }
-    
+
     protected virtual bool ShouldHandleException(ExceptionContext context)
     {
         if (context.ExceptionHandled)
@@ -45,16 +46,6 @@ public class ExceptionFilter : IAsyncExceptionFilter
             return true;
         }
 
-        if (context.HttpContext.Request.CanAccept(MimeTypes.Application.Json))
-        {
-            return true;
-        }
-
-        if (context.HttpContext.Request.IsAjax())
-        {
-            return true;
-        }
-
         return false;
     }
 
@@ -64,28 +55,18 @@ public class ExceptionFilter : IAsyncExceptionFilter
 
         await context.GetRequiredService<IExceptionNotifier>().NotifyAsync(new ExceptionNotificationContext(context.Exception));
 
-        if (context.Exception is AbpAuthorizationException)
-        {
-            await context.HttpContext.RequestServices.GetRequiredService<IAbpAuthorizationExceptionHandler>()
-                .HandleAsync(context.Exception.As<AbpAuthorizationException>(), context.HttpContext);
-        }
-        else
-        {
-            context.HttpContext.Response.Headers.Add(AbpHttpConsts.AbpErrorFormat, "true");
-            context.HttpContext.Response.StatusCode = (int)context
-                .GetRequiredService<IHttpExceptionStatusCodeFinder>()
-                .GetStatusCode(context.HttpContext, context.Exception);
+        context.HttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
-            //abp RemoteServiceErrorResponse
-            //context.Result = new ObjectResult(new RemoteServiceErrorResponse(remoteServiceErrorInfo));
-            
-            //AjaxResult
-            // if (context.Exception is IBusinessException)
-            // {
-            //     context.HttpContext.Response.StatusCode = (int)HttpStatusCode.OK;
-            // }
-            context.Result = new ObjectResult(AjaxResult.Error(remoteServiceErrorInfo.Code, remoteServiceErrorInfo.Message, remoteServiceErrorInfo.Details));
-        }
+        //abp RemoteServiceErrorResponse
+        //context.Result = new ObjectResult(new RemoteServiceErrorResponse(remoteServiceErrorInfo));
+
+        //AjaxResult
+        // if (context.Exception is IBusinessException)
+        // {
+        //     context.HttpContext.Response.StatusCode = (int)HttpStatusCode.OK;
+        // }
+        context.Result = new ObjectResult(AjaxResult.Error(remoteServiceErrorInfo.Code, remoteServiceErrorInfo.Message, remoteServiceErrorInfo.Details));
+
 
         context.ExceptionHandled = true; //Handled!
     }

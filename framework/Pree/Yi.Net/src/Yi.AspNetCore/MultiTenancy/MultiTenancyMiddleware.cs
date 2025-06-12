@@ -1,13 +1,12 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
-using Volo.Abp.AspNetCore.Middleware;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.MultiTenancy;
 
 namespace Yi.AspNetCore.MultiTenancy;
 
-public class MultiTenancyMiddleware : AbpMiddlewareBase, ITransientDependency
+public class MultiTenancyMiddleware : IMiddleware, ITransientDependency
 {
     public ILogger<MultiTenancyMiddleware> Logger { get; set; }
 
@@ -27,7 +26,7 @@ public class MultiTenancyMiddleware : AbpMiddlewareBase, ITransientDependency
         _tenantResolveResultAccessor = tenantResolveResultAccessor;
     }
 
-    public override async Task InvokeAsync(HttpContext context, RequestDelegate next)
+    public async Task InvokeAsync(HttpContext context, RequestDelegate next)
     {
         TenantConfiguration? tenant = null;
         try

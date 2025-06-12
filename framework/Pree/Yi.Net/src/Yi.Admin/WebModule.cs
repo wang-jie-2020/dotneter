@@ -100,7 +100,6 @@ public class WebModule : AbpModule
                             .Select(o => o.RemovePostFix("/"))
                             .ToArray()
                     )
-                    .WithAbpExposedHeaders()
                     .SetIsOriginAllowedToAllowWildcardSubdomains()
                     .AllowAnyHeader()
                     .AllowAnyMethod()
@@ -292,9 +291,6 @@ public class WebModule : AbpModule
                 new("zh-Hans")
             };
         });
-
-        //工作单元
-        app.UseUnitOfWork();
 
         //授权
         app.UseAuthorization();

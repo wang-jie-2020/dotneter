@@ -26,10 +26,12 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Volo.Abp.AspNetCore" Version="$(AbpVersion)" />
         <PackageReference Include="Volo.Abp.Autofac" Version="$(AbpVersion)" />
 		<PackageReference Include="Volo.Abp.ObjectMapping" Version="$(AbpVersion)" />
 		<PackageReference Include="Volo.Abp.EventBus" Version="$(AbpVersion)" />
 		<PackageReference Include="Volo.Abp.Caching" Version="$(AbpVersion)" />
+
+		<PackageReference Include="Volo.Abp.ExceptionHandling" Version="$(AbpVersion)" />
+		<PackageReference Include="Volo.Abp.Auditing" Version="$(AbpVersion)" />
     </ItemGroup>
 </Project>

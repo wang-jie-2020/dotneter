@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Options;
-using Volo.Abp.AspNetCore.Filters;
 using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Uow;
@@ -9,7 +8,7 @@ using Yi.AspNetCore.Extensions;
 
 namespace Yi.AspNetCore.Core.Filters;
 
-public class UowActionFilter : IAsyncActionFilter, IAbpFilter, ITransientDependency
+public class UowActionFilter : IAsyncActionFilter, ITransientDependency
 {
     public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
     {
