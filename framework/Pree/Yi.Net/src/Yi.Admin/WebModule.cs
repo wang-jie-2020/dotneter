@@ -8,7 +8,6 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Converters;
-using Utils.Minio;
 using Volo.Abp.Auditing;
 using Volo.Abp.Caching;
 using Volo.Abp.Localization;
@@ -219,23 +218,23 @@ public class WebModule : AbpModule
         });
 
         //minio
-        if (configuration["Minio:IsEnabled"].To<bool>())
-        {
-            context.Services.UseMinio(options =>
-            {
-                options.Containers.ConfigureAll((containerName, containerConfiguration) =>
-                {
-                    containerConfiguration.Bucket(bucket =>
-                    {
-                        bucket.EndPoint = configuration["Minio:Default:EndPoint"];
-                        bucket.AccessKey = configuration["Minio:Default:User"];
-                        bucket.SecretKey = configuration["Minio:Default:Pwd"];
-                        bucket.BucketName = configuration["Minio:Default:BucketName"];
-                        bucket.WithSSL = configuration["Minio:Default:WithSSL"].To<bool>();
-                    });
-                });
-            });
-        }
+        //if (configuration["Minio:IsEnabled"].To<bool>())
+        //{
+        //    context.Services.UseMinio(options =>
+        //    {
+        //        options.Containers.ConfigureAll((containerName, containerConfiguration) =>
+        //        {
+        //            containerConfiguration.Bucket(bucket =>
+        //            {
+        //                bucket.EndPoint = configuration["Minio:Default:EndPoint"];
+        //                bucket.AccessKey = configuration["Minio:Default:User"];
+        //                bucket.SecretKey = configuration["Minio:Default:Pwd"];
+        //                bucket.BucketName = configuration["Minio:Default:BucketName"];
+        //                bucket.WithSSL = configuration["Minio:Default:WithSSL"].To<bool>();
+        //            });
+        //        });
+        //    });
+        //}
 
         return Task.CompletedTask;
     }
