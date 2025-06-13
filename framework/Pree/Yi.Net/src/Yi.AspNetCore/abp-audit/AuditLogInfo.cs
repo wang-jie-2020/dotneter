@@ -51,15 +51,12 @@ public class AuditLogInfo
 
     public List<Exception> Exceptions { get; }
 
-    public List<EntityChangeInfo> EntityChanges { get; }
-
     public List<string> Comments { get; set; }
 
     public AuditLogInfo()
     {
         Actions = new List<AuditLogActionInfo>();
         Exceptions = new List<Exception>();
-        EntityChanges = new List<EntityChangeInfo>();
         Comments = new List<string>();
     }
 
@@ -89,19 +86,6 @@ public class AuditLogInfo
             {
                 sb.AppendLine($"  - {exception.Message}");
                 sb.AppendLine($"    {exception}");
-            }
-        }
-
-        if (EntityChanges.Any())
-        {
-            sb.AppendLine("- Entity Changes:");
-            foreach (var entityChange in EntityChanges)
-            {
-                sb.AppendLine($"  - [{entityChange.ChangeType}] {entityChange.EntityTypeFullName}, Id = {entityChange.EntityId}");
-                foreach (var propertyChange in entityChange.PropertyChanges)
-                {
-                    sb.AppendLine($"    {propertyChange.PropertyName}: {propertyChange.OriginalValue} -> {propertyChange.NewValue}");
-                }
             }
         }
 

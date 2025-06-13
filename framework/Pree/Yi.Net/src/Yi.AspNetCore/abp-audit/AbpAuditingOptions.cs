@@ -51,14 +51,6 @@ public class AbpAuditingOptions
 
     public List<Type> IgnoredTypes { get; }
 
-    public IEntityHistorySelectorList EntityHistorySelectors { get; }
-
-    /// <summary>
-    /// Default: true.
-    /// Save entity changes to audit log when any navigation property changes.
-    /// </summary>
-    public bool SaveEntityHistoryWhenNavigationChanges { get; set; } = true;
-
     //TODO: Move this to asp.net core layer or convert it to a more dynamic strategy?
     /// <summary>
     /// Default: false.
@@ -87,6 +79,5 @@ public class AbpAuditingOptions
                 typeof(CancellationToken)
             };
 
-        EntityHistorySelectors = new EntityHistorySelectorList();
     }
 }

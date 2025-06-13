@@ -114,11 +114,6 @@ public class AuditingHelper : IAuditingHelper, ITransientDependency
             return false;
         }
 
-        if (Options.EntityHistorySelectors.Any(selector => selector.Predicate(entityType)))
-        {
-            return true;
-        }
-
         return defaultValue;
     }
 

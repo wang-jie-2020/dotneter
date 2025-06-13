@@ -77,37 +77,6 @@ public class AuditingManager : IAuditingManager, ITransientDependency
         saveHandle.StopWatch.Stop();
         saveHandle.AuditLog.ExecutionDuration = Convert.ToInt32(saveHandle.StopWatch.Elapsed.TotalMilliseconds);
         ExecutePostContributors(saveHandle.AuditLog);
-        MergeEntityChanges(saveHandle.AuditLog);
-    }
-
-    protected virtual void MergeEntityChanges(AuditLogInfo auditLog)
-    {
-        var changeGroups = auditLog.EntityChanges
-            .Where(e => e.ChangeType == EntityChangeType.Updated)
-            .GroupBy(e => new { e.EntityTypeFullName, e.EntityId })
-            .ToList();
-
-        foreach (var changeGroup in changeGroups)
-        {
-            if (changeGroup.Count() <= 1)
-            {
-                continue;
-            }
-
-            var firstEntityChange = changeGroup.First();
-
-            foreach (var entityChangeInfo in changeGroup)
-            {
-                if (entityChangeInfo == firstEntityChange)
-                {
-                    continue;
-                }
-
-                firstEntityChange.Merge(entityChangeInfo);
-
-                auditLog.EntityChanges.Remove(entityChangeInfo);
-            }
-        }
     }
 
     protected virtual async Task SaveAsync(DisposableSaveHandle saveHandle)
