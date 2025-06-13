@@ -7,9 +7,9 @@ using Yi.System.Services.Impl;
 
 namespace Yi.Web;
 
-public class WebDbContext: SqlSugarDbContext
+public class AdminDbContext: SqlSugarDbContext
 {
-    public WebDbContext(IAbpLazyServiceProvider lazyServiceProvider) : base(lazyServiceProvider)
+    public AdminDbContext(IAbpLazyServiceProvider lazyServiceProvider) : base(lazyServiceProvider)
     {
     }
     

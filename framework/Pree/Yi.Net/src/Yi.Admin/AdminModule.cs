@@ -25,7 +25,7 @@ namespace Yi.Web;
     typeof(AspNetCoreModule),
     typeof(SystemModule)
 )]
-public class WebModule : AbpModule
+public class AdminModule : AbpModule
 {
     private const string DefaultCorsPolicyName = "Default";
 
@@ -34,7 +34,7 @@ public class WebModule : AbpModule
         var configuration = context.Services.GetConfiguration();
         var host = context.Services.GetHostingEnvironment();
 
-        context.Services.AddYiDbContext<WebDbContext>();
+        context.Services.AddYiDbContext<AdminDbContext>();
         context.Services.AddTransient(x => x.GetRequiredService<ISqlSugarDbContext>().SqlSugarClient);
 
         //请求日志
@@ -56,8 +56,8 @@ public class WebModule : AbpModule
         Configure<AbpVirtualFileSystemOptions>(options =>
         {
             //在项目下也许并不适合资源嵌入
-            options.FileSets.AddEmbedded<WebModule>();
-            options.FileSets.ReplaceEmbeddedByPhysical<WebModule>(AppContext.BaseDirectory);
+            options.FileSets.AddEmbedded<AdminModule>();
+            options.FileSets.ReplaceEmbeddedByPhysical<AdminModule>(AppContext.BaseDirectory);
         });
 
         //Configure<AbpLocalizationOptions>(options =>
@@ -196,7 +196,7 @@ public class WebModule : AbpModule
         context.Services.AddAuthorization();
 
         //Swagger
-        context.Services.AddYiSwaggerGen<WebModule>(options =>
+        context.Services.AddYiSwaggerGen<AdminModule>(options =>
         {
             options.SwaggerDoc("default", new OpenApiInfo { Title = "Yi", Version = "v1", Description = "Yi" });
         });
