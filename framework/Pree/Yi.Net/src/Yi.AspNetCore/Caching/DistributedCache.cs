@@ -8,11 +8,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.Extensions.Options;
+using Volo.Abp.Caching;
 using Volo.Abp.ExceptionHandling;
 using Volo.Abp.Threading;
 using Volo.Abp.Uow;
 
-namespace Volo.Abp.Caching;
+namespace Yi.AspNetCore.Caching;
 
 /// <summary>
 /// Represents a distributed cache of <typeparamref name="TCacheItem" /> type.

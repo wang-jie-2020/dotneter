@@ -2,7 +2,7 @@
 using System.Text;
 using Volo.Abp.DependencyInjection;
 
-namespace Volo.Abp.Caching;
+namespace Yi.AspNetCore.Caching;
 
 public class Utf8JsonDistributedCacheSerializer : IDistributedCacheSerializer, ITransientDependency
 {

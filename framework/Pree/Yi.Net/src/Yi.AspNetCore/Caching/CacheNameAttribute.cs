@@ -2,7 +2,7 @@
 using System.Linq;
 using JetBrains.Annotations;
 
-namespace Volo.Abp.Caching;
+namespace Yi.AspNetCore.Caching;
 
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Interface | AttributeTargets.Struct)]
 public class CacheNameAttribute : Attribute
@@ -20,7 +20,7 @@ public class CacheNameAttribute : Attribute
     {
         return GetCacheName(typeof(TCacheItem));
     }
-    
+
     public static string GetCacheName(Type cacheItemType)
     {
         var cacheNameAttribute = cacheItemType

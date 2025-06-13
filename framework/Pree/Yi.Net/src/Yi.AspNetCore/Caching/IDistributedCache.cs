@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Microsoft.Extensions.Caching.Distributed;
 
-namespace Volo.Abp.Caching;
+namespace Yi.AspNetCore.Caching;
 
 /// <summary>
 /// Represents a distributed cache of <typeparamref name="TCacheItem" /> type.

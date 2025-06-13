@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.Extensions.Caching.Distributed;
 
-namespace Volo.Abp.Caching;
+namespace Yi.AspNetCore.Caching;
 
 public class AbpDistributedCacheOptions
 {
@@ -38,12 +38,12 @@ public class AbpDistributedCacheOptions
     {
         ConfigureCache(typeof(TCacheItem), options);
     }
-    
+
     public void ConfigureCache(Type cacheItemType, DistributedCacheEntryOptions? options)
     {
         ConfigureCache(CacheNameAttribute.GetCacheName(cacheItemType), options);
     }
-    
+
     public void ConfigureCache(string cacheName, DistributedCacheEntryOptions? options)
     {
         CacheConfigurators.Add(name => cacheName != name ? null : options);

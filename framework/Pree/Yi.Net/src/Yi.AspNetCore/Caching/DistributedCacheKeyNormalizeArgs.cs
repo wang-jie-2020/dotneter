@@ -1,4 +1,4 @@
-﻿namespace Volo.Abp.Caching;
+﻿namespace Yi.AspNetCore.Caching;
 
 public class DistributedCacheKeyNormalizeArgs
 {

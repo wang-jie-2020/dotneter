@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Options;
-using Volo.Abp.Caching;
 using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
+using Yi.AspNetCore.Caching;
 using Yi.AspNetCore.MultiTenancy;
 using Yi.System.Domains.Entities;
 using Yi.System.Domains.Repositories;
