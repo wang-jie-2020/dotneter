@@ -27,37 +27,6 @@ public interface IAuditLogRepository : ISqlSugarRepository<AuditLogEntity, Guid>
         HttpStatusCode? httpStatusCode = null,
         CancellationToken cancellationToken = default);
 
-    Task<EntityChangeEntity> GetEntityChange(Guid entityChangeId, CancellationToken cancellationToken = default);
-
-    Task<long> GetEntityChangeCountAsync(
-        Guid? auditLogId = null, 
-        DateTime? startTime = null, 
-        DateTime? endTime = null,
-        EntityChangeType? changeType = null,
-        string? entityId = null,
-        string? entityTypeFullName = null,
-        CancellationToken cancellationToken = default);
-
-    Task<List<EntityChangeEntity>> GetEntityChangeListAsync(
-        string? sorting = null,
-        int maxResultCount = 50,
-        int skipCount = 0, 
-        Guid? auditLogId = null, 
-        DateTime? startTime = null,
-        DateTime? endTime = null,
-        EntityChangeType? changeType = null,
-        string? entityId = null, 
-        string? entityTypeFullName = null,
-        bool includeDetails = false,
-        CancellationToken cancellationToken = default);
-
-    Task<List<EntityChangeWithUsername>> GetEntityChangesWithUsernameAsync(
-        string entityId,
-        string entityTypeFullName,
-        CancellationToken cancellationToken = default);
-
-    Task<EntityChangeWithUsername> GetEntityChangeWithUsernameAsync(Guid entityChangeId);
-
     Task<List<AuditLogEntity>> GetListAsync(
         string? sorting = null, 
         int maxResultCount = 50,

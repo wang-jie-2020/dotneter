@@ -122,85 +122,6 @@ public class SqlSugarCoreAuditLogRepository : SqlSugarRepository<AuditLogEntity,
         return result.ToDictionary(element => element.Day.Value.ClearTime(), element => (double)element.avgExecutionTime);
     }
 
-    public virtual async Task<EntityChangeEntity> GetEntityChange(
-        Guid entityChangeId,
-        CancellationToken cancellationToken = default)
-    {
-        var entityChange = await (await GetDbContextAsync()).Queryable<EntityChangeEntity>()
-            .Where(x => x.Id == entityChangeId)
-            .OrderBy(x => x.Id)
-            .FirstAsync();
-
-        if (entityChange == null) throw new ArgumentOutOfRangeException();
-
-        return entityChange;
-    }
-
-    public virtual async Task<List<EntityChangeEntity>> GetEntityChangeListAsync(
-        string? sorting = null,
-        int maxResultCount = 50,
-        int skipCount = 0,
-        Guid? auditLogId = null,
-        DateTime? startTime = null,
-        DateTime? endTime = null,
-        EntityChangeType? changeType = null,
-        string? entityId = null,
-        string? entityTypeFullName = null,
-        bool includeDetails = false,
-        CancellationToken cancellationToken = default)
-    {
-        var query = await GetEntityChangeListQueryAsync(auditLogId, startTime, endTime, changeType, entityId,
-            entityTypeFullName, includeDetails);
-
-        return await query
-            .OrderBy(sorting.IsNullOrWhiteSpace() ? nameof(EntityChangeEntity.ChangeTime) + " DESC" : sorting)
-            .ToPageListAsync(skipCount, maxResultCount);
-    }
-
-    public virtual async Task<long> GetEntityChangeCountAsync(
-        Guid? auditLogId = null,
-        DateTime? startTime = null,
-        DateTime? endTime = null,
-        EntityChangeType? changeType = null,
-        string? entityId = null,
-        string? entityTypeFullName = null,
-        CancellationToken cancellationToken = default)
-    {
-        var query = await GetEntityChangeListQueryAsync(auditLogId, startTime, endTime, changeType, entityId,
-            entityTypeFullName);
-
-        var totalCount = await query.CountAsync();
-
-        return totalCount;
-    }
-
-    public virtual async Task<EntityChangeWithUsername> GetEntityChangeWithUsernameAsync(
-        Guid entityChangeId)
-    {
-        var auditLog = await DbQueryable
-            .Where(x => x.EntityChanges.Any(y => y.Id == entityChangeId)).FirstAsync();
-
-        return new EntityChangeWithUsername
-        {
-            EntityChange = auditLog.EntityChanges.First(x => x.Id == entityChangeId),
-            UserName = auditLog.UserName
-        };
-    }
-
-    public virtual async Task<List<EntityChangeWithUsername>> GetEntityChangesWithUsernameAsync(
-        string entityId,
-        string entityTypeFullName,
-        CancellationToken cancellationToken = default)
-    {
-        var dbContext = await GetDbContextAsync();
-
-        var query = dbContext.Queryable<EntityChangeEntity>()
-            .Where(x => x.EntityId == entityId && x.EntityTypeFullName == entityTypeFullName);
-        return await query.LeftJoin<AuditLogEntity>((x, audit) => x.AuditLogId == audit.Id)
-            .Select((x, audit) => new EntityChangeWithUsername { EntityChange = x, UserName = audit.UserName })
-            .OrderByDescending(x => x.EntityChange.ChangeTime).ToListAsync();
-    }
-
     protected virtual async Task<ISugarQueryable<AuditLogEntity>> GetListQueryAsync(
         DateTime? startTime = null,
         DateTime? endTime = null,
@@ -239,25 +160,5 @@ public class SqlSugarCoreAuditLogRepository : SqlSugarRepository<AuditLogEntity,
                 auditLog => auditLog.ExecutionDuration <= maxExecutionDuration)
             .WhereIF(minExecutionDuration != null && minExecutionDuration.Value > 0,
                 auditLog => auditLog.ExecutionDuration >= minExecutionDuration);
-    }
-
-    protected virtual async Task<ISugarQueryable<EntityChangeEntity>> GetEntityChangeListQueryAsync(
-        Guid? auditLogId = null,
-        DateTime? startTime = null,
-        DateTime? endTime = null,
-        EntityChangeType? changeType = null,
-        string entityId = null,
-        string entityTypeFullName = null,
-        bool includeDetails = false)
-    {
-        return (await GetDbContextAsync())
-            .Queryable<EntityChangeEntity>()
-            .WhereIF(auditLogId.HasValue, e => e.AuditLogId == auditLogId)
-            .WhereIF(startTime.HasValue, e => e.ChangeTime >= startTime)
-            .WhereIF(endTime.HasValue, e => e.ChangeTime <= endTime)
-            .WhereIF(changeType.HasValue, e => e.ChangeType == changeType)
-            .WhereIF(!string.IsNullOrWhiteSpace(entityId), e => e.EntityId == entityId)
-            .WhereIF(!string.IsNullOrWhiteSpace(entityTypeFullName),
-                e => e.EntityTypeFullName.Contains(entityTypeFullName));
     }
 }

@@ -19,14 +19,6 @@ public class AuditLogInfoToAuditLogConverter : IAuditLogInfoToAuditLogConverter
     public virtual Task<AuditLogEntity> ConvertAsync(AuditLogInfo auditLogInfo)
     {
         var auditLogId = GuidGenerator.Create();
-        
-        var entityChanges = auditLogInfo.EntityChanges?
-            .Select(entityChangeInfo => new EntityChangeEntity(
-                GuidGenerator,
-                auditLogId,
-                entityChangeInfo,
-                auditLogInfo.TenantId))
-            .ToList() ?? new List<EntityChangeEntity>();
 
         var actions = auditLogInfo.Actions?
             .Select(auditLogActionInfo => new AuditLogActionEntity(GuidGenerator.Create(), auditLogId,
@@ -58,7 +50,6 @@ public class AuditLogInfoToAuditLogConverter : IAuditLogInfoToAuditLogConverter
             auditLogInfo.ImpersonatorUserName,
             auditLogInfo.ImpersonatorTenantId,
             auditLogInfo.ImpersonatorTenantName,
-            entityChanges,
             actions,
             string.Empty,
             comments

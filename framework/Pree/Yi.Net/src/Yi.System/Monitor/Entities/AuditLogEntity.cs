@@ -38,7 +38,6 @@ public class AuditLogEntity : SimpleEntity<Guid>, IMultiTenant
         string impersonatorUserName,
         Guid? impersonatorTenantId,
         string impersonatorTenantName,
-        List<EntityChangeEntity> entityChanges,
         List<AuditLogActionEntity> actions,
         string exceptions,
         string comments)
@@ -63,7 +62,6 @@ public class AuditLogEntity : SimpleEntity<Guid>, IMultiTenant
         ImpersonatorUserName = impersonatorUserName.Truncate(AuditLogConsts.MaxUserNameLength);
         ImpersonatorTenantId = impersonatorTenantId;
         ImpersonatorTenantName = impersonatorTenantName.Truncate(AuditLogConsts.MaxTenantNameLength);
-        EntityChanges = entityChanges;
         Actions = actions;
         Exceptions = exceptions;
         Comments = comments.Truncate(AuditLogConsts.MaxCommentsLength);
@@ -108,10 +106,6 @@ public class AuditLogEntity : SimpleEntity<Guid>, IMultiTenant
     public virtual string? Comments { get; protected set; }
 
     public virtual int? HttpStatusCode { get; set; }
-
-    //导航属性
-    [Navigate(NavigateType.OneToMany, nameof(EntityChangeEntity.AuditLogId))]
-    public virtual List<EntityChangeEntity> EntityChanges { get; protected set; }
 
     //导航属性
     [Navigate(NavigateType.OneToMany, nameof(AuditLogActionEntity.AuditLogId))]
