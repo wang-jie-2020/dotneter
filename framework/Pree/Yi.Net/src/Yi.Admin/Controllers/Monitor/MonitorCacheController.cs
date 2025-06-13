@@ -11,11 +11,6 @@ namespace Yi.Web.Controllers.Monitor;
 [Route("api/monitor/cache")]
 public class MonitorCacheController : BaseController
 {
-    /// <summary>
-    ///     缓存前缀
-    /// </summary>
-    private string CacheKeyPrefix => LazyServiceProvider.LazyGetRequiredService<IOptions<AbpDistributedCacheOptions>>().Value.KeyPrefix;
-
     private bool EnableRedisCache
     {
         get
@@ -38,7 +33,7 @@ public class MonitorCacheController : BaseController
     public List<MonitorCacheNameGetListOutputDto> GetName()
     {
         VerifyRedisCacheEnable();
-        var keys = RedisClient.Keys(CacheKeyPrefix + "*");
+        var keys = RedisClient.Keys("*");
         var result = GroupedKeys(keys.ToList());
         var output = result.Select(x => new MonitorCacheNameGetListOutputDto { CacheName = x }).ToList();
         return output;
