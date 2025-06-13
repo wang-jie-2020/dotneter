@@ -9,7 +9,7 @@ namespace Yi.System.Monitor.Entities;
 
 [SugarTable("Sys_LoginLog")]
 [SugarIndex($"index_{nameof(LoginUser)}", nameof(LoginUser), OrderByType.Asc)]
-public class LoginLogEntity : SimpleEntity<long>, ICreationAuditedObject
+public class LoginLogEntity : SimpleEntity<long>
 {
     /// <summary>
     ///     登录用户

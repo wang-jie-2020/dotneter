@@ -1,6 +1,4 @@
-﻿using Volo.Abp.Auditing;
-
-namespace Yi.AspNetCore.Core.Entities;
+﻿namespace Yi.AspNetCore.Core.Entities;
 
 public class BizEntity<T> : SimpleEntity<T>, ISoftDelete, IAuditedObject
 {
