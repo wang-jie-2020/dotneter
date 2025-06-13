@@ -5,6 +5,8 @@ using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using NetTaste;
+using Newtonsoft.Json;
 using Volo.Abp.Clients;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Tracing;
@@ -22,12 +24,10 @@ public class AuditingHelper : IAuditingHelper, ITransientDependency
     protected ICurrentClient CurrentClient { get; }
 
     protected AbpAuditingOptions Options;
-    protected IAuditSerializer AuditSerializer;
     protected IServiceProvider ServiceProvider;
     protected ICorrelationIdProvider CorrelationIdProvider { get; }
 
     public AuditingHelper(
-        IAuditSerializer auditSerializer,
         IOptions<AbpAuditingOptions> options,
         ICurrentUser currentUser,
         ICurrentTenant currentTenant,
@@ -38,7 +38,6 @@ public class AuditingHelper : IAuditingHelper, ITransientDependency
         ICorrelationIdProvider correlationIdProvider)
     {
         Options = options.Value;
-        AuditSerializer = auditSerializer;
         CurrentUser = currentUser;
         CurrentTenant = currentTenant;
         CurrentClient = currentClient;
@@ -163,7 +162,7 @@ public class AuditingHelper : IAuditingHelper, ITransientDependency
                 dictionary[argument.Key] = argument.Value;
             }
 
-            return AuditSerializer.Serialize(dictionary);
+            return JsonConvert.SerializeObject(dictionary);
         }
         catch (Exception ex)
         {
