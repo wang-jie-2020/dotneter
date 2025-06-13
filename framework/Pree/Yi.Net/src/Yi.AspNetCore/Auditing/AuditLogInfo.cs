@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Volo.Abp.Data;
+﻿using System.Text;
 
-namespace Volo.Abp.Auditing;
+namespace Yi.AspNetCore.Auditing;
 
 [Serializable]
 public class AuditLogInfo

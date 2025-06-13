@@ -1,8 +1,6 @@
-using System;
-using System.Collections.Generic;
 using System.Reflection;
 
-namespace Volo.Abp.Auditing;
+namespace Yi.AspNetCore.Auditing;
 
 //TODO: Move ShouldSaveAudit & IsEntityHistoryEnabled and rename to IAuditingFactory
 public interface IAuditingHelper

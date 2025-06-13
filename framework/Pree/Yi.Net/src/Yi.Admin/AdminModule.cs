@@ -8,7 +8,6 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Converters;
-using Volo.Abp.Auditing;
 using Volo.Abp.Localization;
 using Volo.Abp.VirtualFileSystem;
 using Yi.AspNetCore;

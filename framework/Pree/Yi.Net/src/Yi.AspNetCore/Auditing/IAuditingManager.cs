@@ -1,4 +1,4 @@
-﻿namespace Volo.Abp.Auditing;
+﻿namespace Yi.AspNetCore.Auditing;
 
 public interface IAuditingManager
 {

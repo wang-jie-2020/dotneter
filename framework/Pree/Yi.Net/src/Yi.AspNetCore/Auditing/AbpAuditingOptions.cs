@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq.Expressions;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace Volo.Abp.Auditing;
+﻿namespace Yi.AspNetCore.Auditing;
 
 public class AbpAuditingOptions
 {

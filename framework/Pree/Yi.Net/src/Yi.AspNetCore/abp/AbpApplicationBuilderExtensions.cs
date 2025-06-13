@@ -5,9 +5,9 @@ using Microsoft.AspNetCore.RequestLocalization;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Volo.Abp;
-using Volo.Abp.AspNetCore.Auditing;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Threading;
+using Yi.AspNetCore.Auditing;
 
 namespace Microsoft.AspNetCore.Builder;
 

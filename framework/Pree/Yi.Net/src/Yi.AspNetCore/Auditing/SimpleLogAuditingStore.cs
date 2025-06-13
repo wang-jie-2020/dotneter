@@ -1,9 +1,8 @@
-﻿using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 using Volo.Abp.DependencyInjection;
 
-namespace Volo.Abp.Auditing;
+namespace Yi.AspNetCore.Auditing;
 
 [Dependency(TryRegister = true)]
 public class SimpleLogAuditingStore : IAuditingStore, ISingletonDependency

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-
-namespace Volo.Abp.Auditing;
+﻿namespace Yi.AspNetCore.Auditing;
 
 public interface IAuditLogSaveHandle : IDisposable
 {

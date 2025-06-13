@@ -1,11 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using NetTaste;
 using Newtonsoft.Json;
 using Volo.Abp.Clients;
 using Volo.Abp.DependencyInjection;
@@ -13,7 +9,7 @@ using Volo.Abp.Tracing;
 using Volo.Abp.Users;
 using Yi.AspNetCore.MultiTenancy;
 
-namespace Volo.Abp.Auditing;
+namespace Yi.AspNetCore.Auditing;
 
 public class AuditingHelper : IAuditingHelper, ITransientDependency
 {

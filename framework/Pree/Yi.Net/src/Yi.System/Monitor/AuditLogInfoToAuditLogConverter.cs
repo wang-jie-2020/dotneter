@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
-using Volo.Abp.Auditing;
 using Volo.Abp.Guids;
 using Volo.Abp.Http;
+using Yi.AspNetCore.Auditing;
 using Yi.System.Monitor.Entities;
 
 namespace Yi.System.Monitor;

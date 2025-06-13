@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using Volo.Abp.Auditing;
 using Volo.Abp.Data;
 using Yi.AspNetCore;
+using Yi.AspNetCore.Auditing;
 using Yi.AspNetCore.Core.Loggings;
 using Yi.AspNetCore.Core.Permissions;
 using Yi.AspNetCore.MultiTenancy;

@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Mvc.Abstractions;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Options;
 using Volo.Abp.Aspects;
-using Volo.Abp.Auditing;
 using Volo.Abp.DependencyInjection;
+using Yi.AspNetCore.Auditing;
 using Yi.AspNetCore.Exceptions;
 using Yi.AspNetCore.Extensions;
 

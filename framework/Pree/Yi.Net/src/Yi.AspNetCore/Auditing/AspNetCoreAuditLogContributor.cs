@@ -1,15 +1,11 @@
-﻿using System;
-using System.Linq;
-using System.Net;
+﻿using System.Net;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
-using Volo.Abp.Auditing;
 using Volo.Abp.DependencyInjection;
-using Volo.Abp.ExceptionHandling;
 
-namespace Volo.Abp.AspNetCore.Auditing;
+namespace Yi.AspNetCore.Auditing;
 
 public class AspNetCoreAuditLogContributor : AuditLogContributor, ITransientDependency
 {

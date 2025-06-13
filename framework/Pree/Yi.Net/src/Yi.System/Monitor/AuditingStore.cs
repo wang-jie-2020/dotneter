@@ -3,8 +3,8 @@ using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using Volo.Abp.Auditing;
 using Volo.Abp.Uow;
+using Yi.AspNetCore.Auditing;
 using Yi.System.Monitor.Repositories;
 
 namespace Yi.System.Monitor;
