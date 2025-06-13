@@ -148,7 +148,7 @@ public class DistributedCache<TCacheItem, TCacheKey> : IDistributedCache<TCacheI
 
     protected string CacheName { get; set; } = default!;
 
-    protected bool IgnoreMultiTenancy { get; set; }
+    protected bool IgnoreMultiTenancy { get; set; } = true;
 
     protected IDistributedCache Cache { get; }
 
@@ -209,9 +209,6 @@ public class DistributedCache<TCacheItem, TCacheKey> : IDistributedCache<TCacheI
     protected virtual void SetDefaultOptions()
     {
         CacheName = CacheNameAttribute.GetCacheName(typeof(TCacheItem));
-
-        //IgnoreMultiTenancy
-        IgnoreMultiTenancy = typeof(TCacheItem).IsDefined(typeof(IgnoreMultiTenancyAttribute), true);
 
         //Configure default cache entry options
         DefaultCacheOptions = GetDefaultCacheEntryOptions();

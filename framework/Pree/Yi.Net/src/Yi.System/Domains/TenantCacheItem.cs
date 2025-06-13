@@ -3,7 +3,6 @@
 namespace Yi.System.Domains;
 
 [Serializable]
-[IgnoreMultiTenancy]
 public class TenantCacheItem
 {
     private const string CacheKeyFormat = "i:{0},n:{1}";

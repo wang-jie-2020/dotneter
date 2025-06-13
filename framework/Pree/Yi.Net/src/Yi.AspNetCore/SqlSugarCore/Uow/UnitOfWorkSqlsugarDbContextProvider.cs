@@ -116,12 +116,6 @@ public class UnitOfWorkSqlSugarDbContextProvider<TDbContext> : ISugarDbContextPr
     
     protected virtual async Task<string> ResolveConnectionStringAsync(string connectionStringName)
     {
-        if (typeof(TDbContext).IsDefined(typeof(IgnoreMultiTenancyAttribute), false))
-            using (CurrentTenant.Change(null))
-            {
-                return await ConnectionStringResolver.ResolveAsync(connectionStringName);
-            }
-
         return await ConnectionStringResolver.ResolveAsync(connectionStringName);
     }
 }
