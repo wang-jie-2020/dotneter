@@ -9,8 +9,6 @@ public interface IAuditingHelper
 {
     bool ShouldSaveAudit(MethodInfo? methodInfo, bool defaultValue = false, bool ignoreIntegrationServiceAttribute = false);
 
-    bool IsEntityHistoryEnabled(Type entityType, bool defaultValue = false);
-
     AuditLogInfo CreateAuditLogInfo();
 
     AuditLogActionInfo CreateAuditLogAction(

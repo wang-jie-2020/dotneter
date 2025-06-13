@@ -69,25 +69,23 @@ public class AbpAuditingMiddleware : IMiddleware, ITransientDependency
             }
             finally
             {
-                if (await ShouldWriteAuditLogAsync(_auditingManager.Current.Log, context, hasError))
+                if (UnitOfWorkManager.Current != null)
                 {
-                    if (UnitOfWorkManager.Current != null)
+                    try
                     {
-                        try
+                        await UnitOfWorkManager.Current.SaveChangesAsync();
+                    }
+                    catch (Exception ex)
+                    {
+                        if (!_auditingManager.Current.Log.Exceptions.Contains(ex))
                         {
-                            await UnitOfWorkManager.Current.SaveChangesAsync();
-                        }
-                        catch (Exception ex)
-                        {
-                            if (!_auditingManager.Current.Log.Exceptions.Contains(ex))
-                            {
-                                _auditingManager.Current.Log.Exceptions.Add(ex);
-                            }
+                            _auditingManager.Current.Log.Exceptions.Add(ex);
                         }
                     }
-
-                    await saveHandle.SaveAsync();
                 }
+
+                await saveHandle.SaveAsync();
+
             }
         }
     }
@@ -99,47 +97,11 @@ public class AbpAuditingMiddleware : IMiddleware, ITransientDependency
             return false;
         }
 
-        if (!AuditingOptions.IsEnabledForIntegrationServices &&
-            context.Request.Path.Value.StartsWith($"/{AbpAspNetCoreConsts.DefaultIntegrationServiceApiPrefix}/", StringComparison.OrdinalIgnoreCase))
-        {
-            return true;
-        }
-
         if (AspNetCoreAuditingOptions.IgnoredUrls.Any(x => context.Request.Path.Value.StartsWith(x, StringComparison.OrdinalIgnoreCase)))
         {
             return true;
         }
 
         return false;
-    }
-
-    private async Task<bool> ShouldWriteAuditLogAsync(AuditLogInfo auditLogInfo, HttpContext httpContext, bool hasError)
-    {
-        foreach (var selector in AuditingOptions.AlwaysLogSelectors)
-        {
-            if (await selector(auditLogInfo))
-            {
-                return true;
-            }
-        }
-
-        if (AuditingOptions.AlwaysLogOnException && hasError)
-        {
-            return true;
-        }
-
-        if (!AuditingOptions.IsEnabledForAnonymousUsers && !CurrentUser.IsAuthenticated)
-        {
-            return false;
-        }
-
-        if (!AuditingOptions.IsEnabledForGetRequests &&
-            (string.Equals(httpContext.Request.Method, HttpMethods.Get, StringComparison.OrdinalIgnoreCase) ||
-             string.Equals(httpContext.Request.Method, HttpMethods.Head, StringComparison.OrdinalIgnoreCase)))
-        {
-            return false;
-        }
-
-        return true;
     }
 }

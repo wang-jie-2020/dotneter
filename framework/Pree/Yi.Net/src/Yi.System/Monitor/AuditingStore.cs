@@ -33,12 +33,6 @@ public class AuditingStore : IAuditingStore
 
     public virtual async Task SaveAsync(AuditLogInfo auditInfo)
     {
-        if (!Options.HideErrors)
-        {
-            await SaveLogAsync(auditInfo);
-            return;
-        }
-
         try
         {
             await SaveLogAsync(auditInfo);

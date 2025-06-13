@@ -85,16 +85,13 @@ public class AuditActionFilter : IAsyncActionFilter, ITransientDependency
         }
 
         auditLog = auditLogScope.Log;
+        auditLogAction = auditingHelper.CreateAuditLogAction(
+            auditLog,
+            context.ActionDescriptor.AsControllerActionDescriptor().ControllerTypeInfo.AsType(),
+            context.ActionDescriptor.AsControllerActionDescriptor().MethodInfo,
+            context.ActionArguments
+        );
 
-        if (!options.DisableLogActionInfo)
-        {
-            auditLogAction = auditingHelper.CreateAuditLogAction(
-                auditLog,
-                context.ActionDescriptor.AsControllerActionDescriptor().ControllerTypeInfo.AsType(),
-                context.ActionDescriptor.AsControllerActionDescriptor().MethodInfo,
-                context.ActionArguments
-            );
-        }
 
         return true;
     }
@@ -103,16 +100,6 @@ public class AuditActionFilter : IAsyncActionFilter, ITransientDependency
         AbpAuditingOptions abpAuditingOptions,
         ActionDescriptor actionDescriptor)
     {
-        if (!abpAuditingOptions.IsEnabledForIntegrationServices &&
-            IntegrationServiceAttribute.IsDefinedOrInherited(
-                actionDescriptor
-                    .AsControllerActionDescriptor()
-                    .ControllerTypeInfo)
-            )
-        {
-            return false;
-        }
-
         return true;
     }
 }

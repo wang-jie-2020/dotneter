@@ -34,27 +34,6 @@ public class JsonAuditSerializer : IAuditSerializer, ITransientDependency
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
                 TypeInfoResolver = new DefaultJsonTypeInfoResolver()
                 {
-                    Modifiers =
-                    {
-                        jsonTypeInfo =>
-                        {
-                            if (Options.IgnoredTypes.Any(ignoredType => ignoredType.IsAssignableFrom(jsonTypeInfo.Type)))
-                            {
-                                if (jsonTypeInfo.Kind == JsonTypeInfoKind.Object)
-                                {
-                                    jsonTypeInfo.Properties.Clear();
-                                }
-                            }
-
-                            foreach (var property in jsonTypeInfo.Properties)
-                            {
-                                if (Options.IgnoredTypes.Any(ignoredType => ignoredType.IsAssignableFrom(property.PropertyType)))
-                                {
-                                    property.ShouldSerialize = (_, _) => false;
-                                }
-                            }
-                        }
-                    }
                 }
             };
 

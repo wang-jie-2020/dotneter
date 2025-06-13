@@ -37,15 +37,6 @@ public class AdminModule : AbpModule
         context.Services.AddYiDbContext<AdminDbContext>();
         context.Services.AddTransient(x => x.GetRequiredService<ISqlSugarDbContext>().SqlSugarClient);
 
-        //请求日志
-        Configure<AbpAuditingOptions>(options =>
-        {
-            //默认关闭，开启会有大量的审计日志
-            options.IsEnabled = true;
-            //审计日志过滤器
-            options.AlwaysLogSelectors.Add(x => Task.FromResult(true));
-        });
-
         Configure<AbpVirtualFileSystemOptions>(options =>
         {
             //在项目下也许并不适合资源嵌入

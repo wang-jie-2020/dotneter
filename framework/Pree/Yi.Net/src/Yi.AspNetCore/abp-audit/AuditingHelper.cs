@@ -71,11 +71,6 @@ public class AuditingHelper : IAuditingHelper, ITransientDependency
             return false;
         }
 
-        if (Options.IgnoredTypes.Any(t => t.IsAssignableFrom(entityType)))
-        {
-            return false;
-        }
-
         return defaultValue;
     }
 
@@ -165,14 +160,7 @@ public class AuditingHelper : IAuditingHelper, ITransientDependency
 
             foreach (var argument in arguments)
             {
-                if (argument.Value != null && Options.IgnoredTypes.Any(t => t.IsInstanceOfType(argument.Value)))
-                {
-                    dictionary[argument.Key] = null;
-                }
-                else
-                {
-                    dictionary[argument.Key] = argument.Value;
-                }
+                dictionary[argument.Key] = argument.Value;
             }
 
             return AuditSerializer.Serialize(dictionary);
