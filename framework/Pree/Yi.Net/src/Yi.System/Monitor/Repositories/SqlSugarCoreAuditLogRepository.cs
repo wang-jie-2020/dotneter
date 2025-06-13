@@ -1,6 +1,5 @@
 ﻿using System.Net;
 using Volo.Abp.Auditing;
-using Volo.Abp.Domain.Entities;
 using Yi.System.Monitor.Entities;
 
 namespace Yi.System.Monitor.Repositories;
@@ -132,7 +131,7 @@ public class SqlSugarCoreAuditLogRepository : SqlSugarRepository<AuditLogEntity,
             .OrderBy(x => x.Id)
             .FirstAsync();
 
-        if (entityChange == null) throw new EntityNotFoundException(typeof(EntityChangeEntity));
+        if (entityChange == null) throw new ArgumentOutOfRangeException();
 
         return entityChange;
     }

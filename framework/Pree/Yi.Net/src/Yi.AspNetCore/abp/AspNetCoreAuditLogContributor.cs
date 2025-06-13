@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
-using Volo.Abp.AspNetCore.ExceptionHandling;
 using Volo.Abp.Auditing;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.ExceptionHandling;

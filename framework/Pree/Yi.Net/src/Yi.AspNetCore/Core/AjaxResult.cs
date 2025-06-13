@@ -94,7 +94,7 @@ public class AjaxResult<T> : AjaxResult
         return new AjaxResult<T>()
         {
             Code = 0,
-            Type = "success",
+            Type = "",
             Message = "",
             Details = "",
             Time = DateTime.Now,

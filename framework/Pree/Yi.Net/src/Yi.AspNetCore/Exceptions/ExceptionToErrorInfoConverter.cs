@@ -1,26 +1,15 @@
-﻿using System.Text;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Localization;
-using Microsoft.Extensions.Options;
-using Volo.Abp.AspNetCore.ExceptionHandling;
-using Volo.Abp.Authorization;
-using Volo.Abp.Data;
-using Volo.Abp.Domain.Entities;
+﻿using Microsoft.Extensions.Localization;
+using Volo.Abp.DependencyInjection;
 using Volo.Abp.ExceptionHandling;
-using Volo.Abp.Http;
-using Volo.Abp.Http.Client;
-using Volo.Abp.Localization;
-using Volo.Abp.Validation;
+using Yi.AspNetCore.Core;
 
 namespace Yi.AspNetCore.Exceptions;
 
-/// <summary>
-///  <see cref="DefaultExceptionToErrorInfoConverter"/>
-///     LocalizationResourceType Fallback With DefaultResource 
-/// </summary>
-public class ExceptionToErrorInfoConverter : IExceptionToErrorInfoConverter
+public class ExceptionToErrorInfoConverter : ITransientDependency
 {
     protected IStringLocalizerFactory StringLocalizerFactory { get; }
+
+    //protected IStringLocalizer<AbpExceptionHandlingResource> L { get; } //todo i18n
     protected IServiceProvider ServiceProvider { get; }
 
     public ExceptionToErrorInfoConverter(
@@ -31,89 +20,35 @@ public class ExceptionToErrorInfoConverter : IExceptionToErrorInfoConverter
         StringLocalizerFactory = stringLocalizerFactory;
     }
 
-    public RemoteServiceErrorInfo Convert(Exception exception, bool includeSensitiveDetails)
+    public AjaxResult Convert(Exception exception)
     {
-        var exceptionHandlingOptions = CreateDefaultOptions();
-        exceptionHandlingOptions.SendExceptionsDetailsToClients = includeSensitiveDetails;
-        exceptionHandlingOptions.SendStackTraceToClients = includeSensitiveDetails;
-
-        var errorInfo = CreateErrorInfoWithoutCode(exception, exceptionHandlingOptions);
+        var errorInfo = CreateErrorInfoWithoutCode(exception);
 
         if (exception is IHasErrorCode hasErrorCodeException)
         {
-            errorInfo.Code = hasErrorCodeException.Code;
+            errorInfo.Type = hasErrorCodeException.Code;
         }
 
         return errorInfo;
     }
 
-    public RemoteServiceErrorInfo Convert(Exception exception, Action<AbpExceptionHandlingOptions>? options = null)
+    protected virtual AjaxResult CreateErrorInfoWithoutCode(Exception exception)
     {
-        var exceptionHandlingOptions = CreateDefaultOptions();
-        options?.Invoke(exceptionHandlingOptions);
-
-        var errorInfo = CreateErrorInfoWithoutCode(exception, exceptionHandlingOptions);
-
-        if (exception is IHasErrorCode hasErrorCodeException)
-        {
-            errorInfo.Code = hasErrorCodeException.Code;
-        }
-
-        return errorInfo;
-    }
-
-    protected virtual RemoteServiceErrorInfo CreateErrorInfoWithoutCode(Exception exception, AbpExceptionHandlingOptions options)
-    {
-        if (options.SendExceptionsDetailsToClients)
-        {
-            return CreateDetailedErrorInfoFromException(exception, options.SendStackTraceToClients);
-        }
-
         exception = TryToGetActualException(exception);
 
-        if (exception is AbpRemoteCallException remoteCallException && remoteCallException.Error != null)
-        {
-            return remoteCallException.Error;
-        }
+        var errorInfo = new AjaxResult();
 
-        //if (exception is AbpDbConcurrencyException)
-        //{
-        //    //return new RemoteServiceErrorInfo(L["AbpDbConcurrencyErrorMessage"]);
-        //    return new RemoteServiceErrorInfo("AbpDbConcurrencyErrorMessage");
-        //}
-
-        if (exception is EntityNotFoundException)
-        {
-            return CreateEntityNotFoundError((exception as EntityNotFoundException)!);
-        }
-
-        var errorInfo = new RemoteServiceErrorInfo();
-
-        if (exception is IUserFriendlyException || exception is AbpRemoteCallException)
+        if (exception is IUserFriendlyException)
         {
             errorInfo.Message = exception.Message;
             errorInfo.Details = (exception as IHasErrorDetails)?.Details;
-        }
-
-        if (exception is IHasValidationErrors)
-        {
-            if (errorInfo.Message.IsNullOrEmpty())
-            {
-                //errorInfo.Message = L["ValidationErrorMessage"];
-            }
-
-            if (errorInfo.Details.IsNullOrEmpty())
-            {
-                errorInfo.Details = GetValidationErrorNarrative((exception as IHasValidationErrors)!);
-            }
-
-            errorInfo.ValidationErrors = GetValidationErrorInfos((exception as IHasValidationErrors)!);
         }
 
         TryToLocalizeExceptionMessage(exception, errorInfo);
 
         if (errorInfo.Message.IsNullOrEmpty())
         {
+            //todo i18n
             //errorInfo.Message = L["InternalServerErrorMessage"];
         }
 
@@ -122,48 +57,23 @@ public class ExceptionToErrorInfoConverter : IExceptionToErrorInfoConverter
         return errorInfo;
     }
 
-    protected virtual void TryToLocalizeExceptionMessage(Exception exception, RemoteServiceErrorInfo errorInfo)
+    protected virtual void TryToLocalizeExceptionMessage(Exception exception, AjaxResult errorInfo)
     {
-        if (exception is ILocalizeErrorMessage localizeErrorMessageException)
-        {
-            using (var scope = ServiceProvider.CreateScope())
-            {
-                errorInfo.Message = localizeErrorMessageException.LocalizeMessage(new LocalizationContext(scope.ServiceProvider));
-            }
-
-            return;
-        }
-
         if (!(exception is IHasErrorCode exceptionWithErrorCode))
         {
             return;
         }
 
-        // if (exceptionWithErrorCode.Code.IsNullOrWhiteSpace() ||
-        //     !exceptionWithErrorCode.Code!.Contains(":"))
-        // {
-        //     return;
-        // }
-        //
-        // var codeNamespace = exceptionWithErrorCode.Code.Split(':')[0];
-        //
-        // var localizationResourceType = LocalizationOptions.ErrorCodeNamespaceMappings.GetOrDefault(codeNamespace);
-        // if (localizationResourceType == null)
+        //todo i18n
+        //var stringLocalizer = StringLocalizerFactory.Create();
+        //var localizedString = stringLocalizer[exceptionWithErrorCode.Code];
+        // if (localizedString.ResourceNotFound)
         // {
         //     return;
         // }
 
-        var localizationResourceType = GetLocalizationResourceType(exceptionWithErrorCode);
-
-        var stringLocalizer = StringLocalizerFactory.Create(localizationResourceType);
-        var localizedString = stringLocalizer[exceptionWithErrorCode.Code];
-        if (localizedString.ResourceNotFound)
-        {
-            return;
-        }
-
-        var localizedValue = localizedString.Value;
-
+        //var localizedValue = localizedString.Value;
+        var localizedValue = "TODO";
         if (exception.Data != null && exception.Data.Count > 0)
         {
             foreach (var key in exception.Data.Keys)
@@ -175,165 +85,13 @@ public class ExceptionToErrorInfoConverter : IExceptionToErrorInfoConverter
         errorInfo.Message = localizedValue;
     }
 
-    protected virtual Type GetLocalizationResourceType(IHasErrorCode exceptionWithErrorCode)
-    {
-        throw new NotImplementedException();
-        //if (exceptionWithErrorCode.Code.IsNullOrWhiteSpace() ||
-        //    !exceptionWithErrorCode.Code!.Contains(":"))
-        //{
-        //    return typeof(DefaultResource);
-        //}
-
-        //var codeNamespace = exceptionWithErrorCode.Code.Split(':')[0];
-
-        //var localizationResourceType = LocalizationOptions.ErrorCodeNamespaceMappings.GetOrDefault(codeNamespace);
-        //if (localizationResourceType == null)
-        //{
-        //    return typeof(DefaultResource);
-        //}
-
-        //return localizationResourceType;
-    }
-    
-    protected virtual RemoteServiceErrorInfo CreateEntityNotFoundError(EntityNotFoundException exception)
-    {
-        if (exception.EntityType != null)
-        {
-            return new RemoteServiceErrorInfo(
-                string.Format(
-                    //L["EntityNotFoundErrorMessage"],
-                    exception.EntityType.Name,
-                    exception.Id
-                )
-            );
-        }
-
-        return new RemoteServiceErrorInfo(exception.Message);
-    }
-
     protected virtual Exception TryToGetActualException(Exception exception)
     {
         if (exception is AggregateException aggException && aggException.InnerException != null)
         {
-            if (aggException.InnerException is AbpValidationException ||
-                aggException.InnerException is AbpAuthorizationException ||
-                aggException.InnerException is EntityNotFoundException ||
-                aggException.InnerException is IBusinessException)
-            {
-                return aggException.InnerException;
-            }
+            return aggException.InnerException;
         }
 
         return exception;
-    }
-
-    protected virtual RemoteServiceErrorInfo CreateDetailedErrorInfoFromException(Exception exception, bool sendStackTraceToClients)
-    {
-        var detailBuilder = new StringBuilder();
-
-        AddExceptionToDetails(exception, detailBuilder, sendStackTraceToClients);
-
-        var errorInfo = new RemoteServiceErrorInfo(exception.Message, detailBuilder.ToString(), data: exception.Data);
-
-        if (exception is AbpValidationException)
-        {
-            errorInfo.ValidationErrors = GetValidationErrorInfos((exception as AbpValidationException)!);
-        }
-
-        return errorInfo;
-    }
-
-    protected virtual void AddExceptionToDetails(Exception exception, StringBuilder detailBuilder, bool sendStackTraceToClients)
-    {
-        //Exception Message
-        detailBuilder.AppendLine(exception.GetType().Name + ": " + exception.Message);
-
-        //Additional info for UserFriendlyException
-        if (exception is IUserFriendlyException &&
-            exception is IHasErrorDetails)
-        {
-            var details = ((IHasErrorDetails)exception).Details;
-            if (!details.IsNullOrEmpty())
-            {
-                detailBuilder.AppendLine(details);
-            }
-        }
-
-        //Additional info for AbpValidationException
-        if (exception is AbpValidationException validationException)
-        {
-            if (validationException.ValidationErrors.Count > 0)
-            {
-                detailBuilder.AppendLine(GetValidationErrorNarrative(validationException));
-            }
-        }
-
-        //Exception StackTrace
-        if (sendStackTraceToClients && !string.IsNullOrEmpty(exception.StackTrace))
-        {
-            detailBuilder.AppendLine("STACK TRACE: " + exception.StackTrace);
-        }
-
-        //Inner exception
-        if (exception.InnerException != null)
-        {
-            AddExceptionToDetails(exception.InnerException, detailBuilder, sendStackTraceToClients);
-        }
-
-        //Inner exceptions for AggregateException
-        if (exception is AggregateException aggException)
-        {
-            if (aggException.InnerExceptions.IsNullOrEmpty())
-            {
-                return;
-            }
-
-            foreach (var innerException in aggException.InnerExceptions)
-            {
-                AddExceptionToDetails(innerException, detailBuilder, sendStackTraceToClients);
-            }
-        }
-    }
-
-    protected virtual RemoteServiceValidationErrorInfo[] GetValidationErrorInfos(IHasValidationErrors validationException)
-    {
-        var validationErrorInfos = new List<RemoteServiceValidationErrorInfo>();
-
-        foreach (var validationResult in validationException.ValidationErrors)
-        {
-            var validationError = new RemoteServiceValidationErrorInfo(validationResult.ErrorMessage!);
-
-            if (validationResult.MemberNames != null && validationResult.MemberNames.Any())
-            {
-                validationError.Members = validationResult.MemberNames.Select(m => m.ToCamelCase()).ToArray();
-            }
-
-            validationErrorInfos.Add(validationError);
-        }
-
-        return validationErrorInfos.ToArray();
-    }
-
-    protected virtual string GetValidationErrorNarrative(IHasValidationErrors validationException)
-    {
-        var detailBuilder = new StringBuilder();
-        //detailBuilder.AppendLine(L["ValidationNarrativeErrorMessageTitle"]);
-
-        foreach (var validationResult in validationException.ValidationErrors)
-        {
-            detailBuilder.AppendFormat(" - {0}", validationResult.ErrorMessage);
-            detailBuilder.AppendLine();
-        }
-
-        return detailBuilder.ToString();
-    }
-
-    protected virtual AbpExceptionHandlingOptions CreateDefaultOptions()
-    {
-        return new AbpExceptionHandlingOptions
-        {
-            SendExceptionsDetailsToClients = false,
-            SendStackTraceToClients = true
-        };
     }
 }

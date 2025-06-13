@@ -12,7 +12,6 @@ using SkyApm;
 using SqlSugar;
 using StackExchange.Profiling.Internal;
 using Volo.Abp.AspNetCore.Auditing;
-using Volo.Abp.AspNetCore.ExceptionHandling;
 using Volo.Abp.Auditing;
 using Volo.Abp.Autofac;
 using Volo.Abp.Caching;
@@ -121,7 +120,7 @@ public class AspNetCoreModule : AbpModule
         context.Services.AddSingleton<IOperLogStore, SimpleOperLogStore>();
 
         context.Services.AddTransient<ExceptionFilter>();
-        context.Services.Replace(ServiceDescriptor.Transient<IExceptionToErrorInfoConverter, ExceptionToErrorInfoConverter>());
+        context.Services.AddTransient<ExceptionToErrorInfoConverter>();
         
         context.Services.AddMvc()
             .AddDataAnnotationsLocalization().AddViewLocalization()

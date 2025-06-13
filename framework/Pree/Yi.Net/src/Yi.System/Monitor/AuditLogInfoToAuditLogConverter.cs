@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
-using Volo.Abp.AspNetCore.ExceptionHandling;
 using Volo.Abp.Auditing;
 using Volo.Abp.Guids;
 using Volo.Abp.Http;
@@ -10,18 +9,12 @@ namespace Yi.System.Monitor;
 
 public class AuditLogInfoToAuditLogConverter : IAuditLogInfoToAuditLogConverter
 {
-    public AuditLogInfoToAuditLogConverter(IGuidGenerator guidGenerator,
-        IExceptionToErrorInfoConverter exceptionToErrorInfoConverter, 
-        IOptions<AbpExceptionHandlingOptions> exceptionHandlingOptions)
+    public AuditLogInfoToAuditLogConverter(IGuidGenerator guidGenerator)
     {
         GuidGenerator = guidGenerator;
-        ExceptionToErrorInfoConverter = exceptionToErrorInfoConverter;
-        ExceptionHandlingOptions = exceptionHandlingOptions.Value;
     }
 
     protected IGuidGenerator GuidGenerator { get; }
-    protected IExceptionToErrorInfoConverter ExceptionToErrorInfoConverter { get; }
-    protected AbpExceptionHandlingOptions ExceptionHandlingOptions { get; }
 
     public virtual Task<AuditLogEntity> ConvertAsync(AuditLogInfo auditLogInfo)
     {
@@ -39,20 +32,6 @@ public class AuditLogInfoToAuditLogConverter : IAuditLogInfoToAuditLogConverter
             .Select(auditLogActionInfo => new AuditLogActionEntity(GuidGenerator.Create(), auditLogId,
                 auditLogActionInfo, auditLogInfo.TenantId))
             .ToList() ?? new List<AuditLogActionEntity>();
-
-        var remoteServiceErrorInfos = auditLogInfo.Exceptions?.Select(exception =>
-                                          ExceptionToErrorInfoConverter.Convert(exception, options =>
-                                          {
-                                              options.SendExceptionsDetailsToClients = ExceptionHandlingOptions
-                                                  .SendExceptionsDetailsToClients;
-                                              options.SendStackTraceToClients =
-                                                  ExceptionHandlingOptions.SendStackTraceToClients;
-                                          }))
-                                      ?? new List<RemoteServiceErrorInfo>();
-
-        var exceptions = remoteServiceErrorInfos.Any()
-            ? JsonConvert.SerializeObject(remoteServiceErrorInfos)
-            : null;
 
         var comments = auditLogInfo
             .Comments?
@@ -81,7 +60,7 @@ public class AuditLogInfoToAuditLogConverter : IAuditLogInfoToAuditLogConverter
             auditLogInfo.ImpersonatorTenantName,
             entityChanges,
             actions,
-            exceptions,
+            string.Empty,
             comments
         );
 

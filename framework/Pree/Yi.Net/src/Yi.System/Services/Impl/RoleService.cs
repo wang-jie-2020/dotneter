@@ -1,4 +1,3 @@
-using Volo.Abp.Domain.Entities;
 using Yi.AspNetCore.Core;
 using Yi.System.Domains;
 using Yi.System.Domains.Entities;
@@ -104,7 +103,7 @@ public class RoleService : BaseService, IRoleService
     public async Task<RoleDto> UpdateStateAsync(Guid id, bool state)
     {
         var entity = await _repository.GetByIdAsync(id);
-        if (entity is null) throw new EntityNotFoundException();
+        if (entity is null) throw new ArgumentOutOfRangeException();
 
         entity.State = state;
         await _repository.UpdateAsync(entity);

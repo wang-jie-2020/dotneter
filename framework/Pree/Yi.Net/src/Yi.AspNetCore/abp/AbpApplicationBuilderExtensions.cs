@@ -6,7 +6,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Volo.Abp;
 using Volo.Abp.AspNetCore.Auditing;
-using Volo.Abp.AspNetCore.ExceptionHandling;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Threading;
 
@@ -62,16 +61,5 @@ public static class AbpApplicationBuilderExtensions
     {
         return app
             .UseMiddleware<AbpAuditingMiddleware>();
-    }
-
-    public static IApplicationBuilder UseAbpExceptionHandling(this IApplicationBuilder app)
-    {
-        if (app.Properties.ContainsKey(ExceptionHandlingMiddlewareMarker))
-        {
-            return app;
-        }
-
-        app.Properties[ExceptionHandlingMiddlewareMarker] = true;
-        return app.UseMiddleware<AbpExceptionHandlingMiddleware>();
     }
 }
