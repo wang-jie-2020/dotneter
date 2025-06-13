@@ -9,10 +9,8 @@ using Microsoft.Extensions.Options;
 using SkyApm;
 using SqlSugar;
 using StackExchange.Profiling.Internal;
-using Volo.Abp.AspNetCore.Authentication.JwtBearer;
 using Volo.Abp.AspNetCore.ExceptionHandling;
 using Volo.Abp.AspNetCore.MultiTenancy;
-using Volo.Abp.AspNetCore.SignalR;
 using Volo.Abp.Autofac;
 using Volo.Abp.Caching;
 using Volo.Abp.Data;
@@ -21,6 +19,7 @@ using Volo.Abp.Guids;
 using Volo.Abp.ObjectMapping;
 using Yi.AspNetCore.Caching.FreeRedis;
 using Yi.AspNetCore.Core;
+using Yi.AspNetCore.Core.Filters;
 using Yi.AspNetCore.Core.Loggings;
 using Yi.AspNetCore.Core.Permissions;
 using Yi.AspNetCore.Exceptions;
@@ -35,12 +34,11 @@ using SequentialGuidGenerator = Yi.AspNetCore.Helpers.SequentialGuidGenerator;
 namespace Yi.AspNetCore;
 
 [DependsOn(
-    typeof(AbpAspNetCoreAuthenticationJwtBearerModule),
     typeof(AbpAspNetCoreMultiTenancyModule),
-    typeof(AbpAspNetCoreSignalRModule),
     typeof(AbpAutofacModule),
     typeof(AbpEventBusModule),
-    typeof(AbpObjectMappingModule)
+    typeof(AbpObjectMappingModule),
+    typeof(AbpCachingModule)
 )]
 public class AspNetCoreModule : AbpModule
 {

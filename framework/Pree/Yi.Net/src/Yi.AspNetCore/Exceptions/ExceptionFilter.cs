@@ -12,6 +12,7 @@ using Volo.Abp.ExceptionHandling;
 using Volo.Abp.Http;
 using Volo.Abp.Json;
 using Yi.AspNetCore.Core;
+using Yi.AspNetCore.Extensions;
 
 namespace Yi.AspNetCore.Exceptions;
 

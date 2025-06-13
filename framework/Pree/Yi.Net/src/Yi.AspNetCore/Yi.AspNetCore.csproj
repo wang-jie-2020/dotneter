@@ -10,6 +10,7 @@
         <PackageReference Include="FreeRedis" Version="1.2.14" />
         <PackageReference Include="FreeRedis.DistributedCache" Version="1.2.5" />
         <PackageReference Include="Mapster" Version="7.4.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.4" />
         <PackageReference Include="MiniProfiler.AspNetCore.Mvc" Version="4.3.8" />
         <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
         <PackageReference Include="SqlSugarCore" Version="$(SqlSugarVersion)" />
@@ -25,11 +26,10 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Volo.Abp.AspNetCore.Authentication.JwtBearer" Version="$(AbpVersion)" />
         <PackageReference Include="Volo.Abp.AspNetCore.MultiTenancy" Version="$(AbpVersion)" />
-        <PackageReference Include="Volo.Abp.AspNetCore.SignalR" Version="$(AbpVersion)" />
         <PackageReference Include="Volo.Abp.Autofac" Version="$(AbpVersion)" />
 		<PackageReference Include="Volo.Abp.ObjectMapping" Version="$(AbpVersion)" />
 		<PackageReference Include="Volo.Abp.EventBus" Version="$(AbpVersion)" />
+		<PackageReference Include="Volo.Abp.Caching" Version="$(AbpVersion)" />
     </ItemGroup>
 </Project>
