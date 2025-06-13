@@ -13,7 +13,7 @@ public class AuditingManager : IAuditingManager, ITransientDependency
     private const string AmbientContextKey = "Volo.Abp.Auditing.IAuditLogScope";
 
     protected IServiceProvider ServiceProvider { get; }
-    protected AbpAuditingOptions Options { get; }
+    protected AuditingOptions Options { get; }
     protected ILogger<AuditingManager> Logger { get; set; }
     private readonly IAmbientScopeProvider<IAuditLogScope> _ambientScopeProvider;
     private readonly IAuditingHelper _auditingHelper;
@@ -24,7 +24,7 @@ public class AuditingManager : IAuditingManager, ITransientDependency
         IAuditingHelper auditingHelper,
         IAuditingStore auditingStore,
         IServiceProvider serviceProvider,
-        IOptions<AbpAuditingOptions> options)
+        IOptions<AuditingOptions> options)
     {
         ServiceProvider = serviceProvider;
         Options = options.Value;

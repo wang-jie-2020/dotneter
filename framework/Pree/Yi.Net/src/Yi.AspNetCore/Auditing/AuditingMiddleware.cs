@@ -7,17 +7,17 @@ using Volo.Abp.Users;
 
 namespace Yi.AspNetCore.Auditing;
 
-public class AbpAuditingMiddleware : IMiddleware, ITransientDependency
+public class AuditingMiddleware : IMiddleware, ITransientDependency
 {
     private readonly IAuditingManager _auditingManager;
-    protected AbpAuditingOptions AuditingOptions { get; }
+    protected AuditingOptions AuditingOptions { get; }
     protected ICurrentUser CurrentUser { get; }
     protected IUnitOfWorkManager UnitOfWorkManager { get; }
 
-    public AbpAuditingMiddleware(
+    public AuditingMiddleware(
         IAuditingManager auditingManager,
         ICurrentUser currentUser,
-        IOptions<AbpAuditingOptions> auditingOptions,
+        IOptions<AuditingOptions> auditingOptions,
         IUnitOfWorkManager unitOfWorkManager)
     {
         _auditingManager = auditingManager;

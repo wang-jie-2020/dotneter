@@ -59,7 +59,7 @@ public class AuditActionFilter : IAsyncActionFilter, ITransientDependency
         auditLog = null;
         auditLogAction = null;
 
-        var options = context.GetRequiredService<IOptions<AbpAuditingOptions>>().Value;
+        var options = context.GetRequiredService<IOptions<AuditingOptions>>().Value;
         if (!options.IsEnabled)
         {
             return false;
@@ -97,7 +97,7 @@ public class AuditActionFilter : IAsyncActionFilter, ITransientDependency
     }
 
     private static bool GetDefaultAuditBehavior(
-        AbpAuditingOptions abpAuditingOptions,
+        AuditingOptions auditingOptions,
         ActionDescriptor actionDescriptor)
     {
         return true;

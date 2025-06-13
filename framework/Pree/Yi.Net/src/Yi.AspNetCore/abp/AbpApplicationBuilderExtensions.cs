@@ -60,6 +60,6 @@ public static class AbpApplicationBuilderExtensions
     public static IApplicationBuilder UseAuditing(this IApplicationBuilder app)
     {
         return app
-            .UseMiddleware<AbpAuditingMiddleware>();
+            .UseMiddleware<AuditingMiddleware>();
     }
 }

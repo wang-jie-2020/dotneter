@@ -109,7 +109,7 @@ public class AspNetCoreModule : AbpModule
         //AspNetCore
         context.Services.AddObjectAccessor<IApplicationBuilder>();
         context.Services.AddHttpContextAccessor();
-        Configure<AbpAuditingOptions>(options =>
+        Configure<AuditingOptions>(options =>
         {
             options.Contributors.Add(new AspNetCoreAuditLogContributor());
         });

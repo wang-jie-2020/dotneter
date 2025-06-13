@@ -14,7 +14,7 @@ public class AuditingStore : IAuditingStore
     public AuditingStore(
         IAuditLogRepository auditLogRepository,
         IUnitOfWorkManager unitOfWorkManager,
-        IOptions<AbpAuditingOptions> options,
+        IOptions<AuditingOptions> options,
         IAuditLogInfoToAuditLogConverter converter)
     {
         AuditLogRepository = auditLogRepository;
@@ -28,7 +28,7 @@ public class AuditingStore : IAuditingStore
     public ILogger<AuditingStore> Logger { get; set; }
     protected IAuditLogRepository AuditLogRepository { get; }
     protected IUnitOfWorkManager UnitOfWorkManager { get; }
-    protected AbpAuditingOptions Options { get; }
+    protected AuditingOptions Options { get; }
     protected IAuditLogInfoToAuditLogConverter Converter { get; }
 
     public virtual async Task SaveAsync(AuditLogInfo auditInfo)

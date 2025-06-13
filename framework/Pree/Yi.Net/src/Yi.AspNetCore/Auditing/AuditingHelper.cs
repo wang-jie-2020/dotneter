@@ -19,12 +19,12 @@ public class AuditingHelper : IAuditingHelper, ITransientDependency
     protected ICurrentTenant CurrentTenant { get; }
     protected ICurrentClient CurrentClient { get; }
 
-    protected AbpAuditingOptions Options;
+    protected AuditingOptions Options;
     protected IServiceProvider ServiceProvider;
     protected ICorrelationIdProvider CorrelationIdProvider { get; }
 
     public AuditingHelper(
-        IOptions<AbpAuditingOptions> options,
+        IOptions<AuditingOptions> options,
         ICurrentUser currentUser,
         ICurrentTenant currentTenant,
         ICurrentClient currentClient,

@@ -1,6 +1,6 @@
 ﻿namespace Yi.AspNetCore.Auditing;
 
-public class AbpAuditingOptions
+public class AuditingOptions
 {
     /// <summary>
     /// Default: true.
@@ -15,7 +15,7 @@ public class AbpAuditingOptions
 
     public List<AuditLogContributor> Contributors { get; }
 
-    public AbpAuditingOptions()
+    public AuditingOptions()
     {
         IsEnabled = true;
         Contributors = new List<AuditLogContributor>();
