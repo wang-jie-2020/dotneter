@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Volo.Abp.MultiTenancy;
 
-namespace Yi.AspNetCore.MultiTenancy;
+namespace Yi.AspNetCore.MultiTenancy.Resolver;
 
 public class HeaderTenantResolveContributor : HttpTenantResolveContributorBase
 {

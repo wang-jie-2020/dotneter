@@ -1,6 +1,4 @@
-using System.Collections.Generic;
-
-namespace Volo.Abp.MultiTenancy;
+namespace Yi.AspNetCore.MultiTenancy.Resolver;
 
 public class TenantResolveResult
 {

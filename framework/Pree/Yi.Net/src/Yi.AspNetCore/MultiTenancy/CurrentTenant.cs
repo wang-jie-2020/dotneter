@@ -1,12 +1,9 @@
-using System;
 using Volo.Abp.DependencyInjection;
 
-namespace Volo.Abp.MultiTenancy;
+namespace Yi.AspNetCore.MultiTenancy;
 
 public class CurrentTenant : ICurrentTenant, ITransientDependency
 {
-    public virtual bool IsAvailable => Id.HasValue;
-
     public virtual Guid? Id => _currentTenantAccessor.Current?.TenantId;
 
     public string? Name => _currentTenantAccessor.Current?.Name;

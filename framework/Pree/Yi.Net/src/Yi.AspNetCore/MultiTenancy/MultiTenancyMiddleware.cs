@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 using Volo.Abp.DependencyInjection;
-using Volo.Abp.MultiTenancy;
 
 namespace Yi.AspNetCore.MultiTenancy;
 
@@ -12,18 +11,15 @@ public class MultiTenancyMiddleware : IMiddleware, ITransientDependency
 
     private readonly ITenantConfigurationProvider _tenantConfigurationProvider;
     private readonly ICurrentTenant _currentTenant;
-    private readonly ITenantResolveResultAccessor _tenantResolveResultAccessor;
 
     public MultiTenancyMiddleware(
         ITenantConfigurationProvider tenantConfigurationProvider,
-        ICurrentTenant currentTenant,
-        ITenantResolveResultAccessor tenantResolveResultAccessor)
+        ICurrentTenant currentTenant)
     {
         Logger = NullLogger<MultiTenancyMiddleware>.Instance;
 
         _tenantConfigurationProvider = tenantConfigurationProvider;
         _currentTenant = currentTenant;
-        _tenantResolveResultAccessor = tenantResolveResultAccessor;
     }
 
     public async Task InvokeAsync(HttpContext context, RequestDelegate next)

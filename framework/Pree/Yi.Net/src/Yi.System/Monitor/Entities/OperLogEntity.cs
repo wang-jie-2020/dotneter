@@ -1,6 +1,6 @@
-﻿using Volo.Abp.MultiTenancy;
-using Yi.AspNetCore.Core.Entities;
+﻿using Yi.AspNetCore.Core.Entities;
 using Yi.AspNetCore.Core.Loggings;
+using Yi.AspNetCore.MultiTenancy;
 
 namespace Yi.System.Monitor.Entities;
 

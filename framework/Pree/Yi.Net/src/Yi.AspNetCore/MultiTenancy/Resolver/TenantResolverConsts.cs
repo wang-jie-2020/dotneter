@@ -1,4 +1,4 @@
-﻿namespace Volo.Abp.MultiTenancy;
+﻿namespace Yi.AspNetCore.MultiTenancy.Resolver;
 
 public class TenantResolverConsts
 {

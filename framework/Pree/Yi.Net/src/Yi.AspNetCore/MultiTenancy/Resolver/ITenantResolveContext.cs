@@ -1,7 +1,6 @@
-using JetBrains.Annotations;
 using Volo.Abp.DependencyInjection;
 
-namespace Volo.Abp.MultiTenancy;
+namespace Yi.AspNetCore.MultiTenancy.Resolver;
 
 public interface ITenantResolveContext : IServiceProviderAccessor
 {

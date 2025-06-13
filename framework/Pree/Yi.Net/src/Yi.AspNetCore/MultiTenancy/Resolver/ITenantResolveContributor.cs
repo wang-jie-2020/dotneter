@@ -1,6 +1,4 @@
-using System.Threading.Tasks;
-
-namespace Volo.Abp.MultiTenancy;
+namespace Yi.AspNetCore.MultiTenancy.Resolver;
 
 public interface ITenantResolveContributor
 {

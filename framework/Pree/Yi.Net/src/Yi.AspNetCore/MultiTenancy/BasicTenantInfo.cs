@@ -1,7 +1,4 @@
-﻿using System;
-using JetBrains.Annotations;
-
-namespace Volo.Abp.MultiTenancy;
+﻿namespace Yi.AspNetCore.MultiTenancy;
 
 public class BasicTenantInfo
 {

@@ -2,7 +2,7 @@
 using Volo.Abp.Caching;
 using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
-using Volo.Abp.MultiTenancy;
+using Yi.AspNetCore.MultiTenancy;
 using Yi.System.Domains.Entities;
 using Yi.System.Domains.Repositories;
 

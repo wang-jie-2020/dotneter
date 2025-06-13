@@ -1,6 +1,6 @@
 ﻿using Volo.Abp.Auditing;
-using Volo.Abp.MultiTenancy;
 using Yi.AspNetCore.Core.Entities;
+using Yi.AspNetCore.MultiTenancy;
 using Yi.System.Monitor.Consts;
 
 namespace Yi.System.Monitor.Entities;

@@ -1,7 +1,4 @@
-using System.Threading;
-using Volo.Abp.DependencyInjection;
-
-namespace Volo.Abp.MultiTenancy;
+namespace Yi.AspNetCore.MultiTenancy;
 
 public class AsyncLocalCurrentTenantAccessor : ICurrentTenantAccessor
 {

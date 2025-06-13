@@ -1,17 +1,15 @@
-using System;
-using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Volo.Abp.DependencyInjection;
 
-namespace Volo.Abp.MultiTenancy;
+namespace Yi.AspNetCore.MultiTenancy.Resolver;
 
 public class TenantResolver : ITenantResolver, ITransientDependency
 {
     private readonly IServiceProvider _serviceProvider;
-    private readonly AbpTenantResolveOptions _options;
+    private readonly TenantResolveOptions _options;
 
-    public TenantResolver(IOptions<AbpTenantResolveOptions> options, IServiceProvider serviceProvider)
+    public TenantResolver(IOptions<TenantResolveOptions> options, IServiceProvider serviceProvider)
     {
         _serviceProvider = serviceProvider;
         _options = options.Value;

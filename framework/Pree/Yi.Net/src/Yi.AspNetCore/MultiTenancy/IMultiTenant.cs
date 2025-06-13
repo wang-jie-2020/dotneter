@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Volo.Abp.MultiTenancy;
+﻿namespace Yi.AspNetCore.MultiTenancy;
 
 public interface IMultiTenant
 {

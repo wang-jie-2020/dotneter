@@ -8,10 +8,10 @@ using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Linq;
 using Volo.Abp.Localization;
-using Volo.Abp.MultiTenancy;
 using Volo.Abp.ObjectMapping;
 using Volo.Abp.Uow;
 using Volo.Abp.Users;
+using Yi.AspNetCore.MultiTenancy;
 
 namespace Yi.AspNetCore.Core;
 

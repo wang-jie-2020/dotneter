@@ -7,9 +7,9 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Volo.Abp.Clients;
 using Volo.Abp.DependencyInjection;
-using Volo.Abp.MultiTenancy;
 using Volo.Abp.Tracing;
 using Volo.Abp.Users;
+using Yi.AspNetCore.MultiTenancy;
 
 namespace Volo.Abp.Auditing;
 

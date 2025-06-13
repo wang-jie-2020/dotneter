@@ -1,6 +1,6 @@
 ﻿using Volo.Abp.DependencyInjection;
-using Volo.Abp.MultiTenancy;
 using Volo.Abp.Users;
+using Yi.AspNetCore.MultiTenancy;
 
 namespace Volo.Abp.Auditing;
 

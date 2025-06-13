@@ -2,10 +2,10 @@
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Volo.Abp.Auditing;
 using Volo.Abp.Data;
-using Volo.Abp.MultiTenancy;
 using Yi.AspNetCore;
 using Yi.AspNetCore.Core.Loggings;
 using Yi.AspNetCore.Core.Permissions;
+using Yi.AspNetCore.MultiTenancy;
 using Yi.System.Domains;
 using Yi.System.Monitor;
 using Yi.System.Monitor.Repositories;
@@ -26,8 +26,7 @@ public class SystemModule : AbpModule
         
         //Tenant
         context.Services.Replace(new ServiceDescriptor(typeof(ITenantStore), typeof(SqlSugarAndConfigurationTenantStore), ServiceLifetime.Transient));
-        context.Services.Replace(new ServiceDescriptor(typeof(IConnectionStringResolver), typeof(Domains.MultiTenantConnectionStringResolver), ServiceLifetime.Transient));
-        context.Services.Replace(new ServiceDescriptor(typeof(ITenantConfigurationProvider), typeof(Domains.TenantConfigurationProvider), ServiceLifetime.Transient));
+        context.Services.Replace(new ServiceDescriptor(typeof(IConnectionStringResolver), typeof(MultiTenantConnectionStringResolver), ServiceLifetime.Transient));
         
         //System
         context.Services.Replace(new ServiceDescriptor(typeof(IAuditingStore), typeof(AuditingStore), ServiceLifetime.Singleton));

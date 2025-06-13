@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
-using Volo.Abp.MultiTenancy;
 
-namespace Yi.AspNetCore.MultiTenancy;
+namespace Yi.AspNetCore.MultiTenancy.Resolver;
 
 public class RouteTenantResolveContributor : HttpTenantResolveContributorBase
 {

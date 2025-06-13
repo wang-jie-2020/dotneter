@@ -1,8 +1,7 @@
-using System;
 using JetBrains.Annotations;
 using Volo.Abp.Data;
 
-namespace Volo.Abp.MultiTenancy;
+namespace Yi.AspNetCore.MultiTenancy;
 
 [Serializable]
 public class TenantConfiguration

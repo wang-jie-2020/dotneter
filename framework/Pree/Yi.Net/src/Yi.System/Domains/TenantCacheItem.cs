@@ -1,4 +1,4 @@
-﻿using Volo.Abp.MultiTenancy;
+﻿using Yi.AspNetCore.MultiTenancy;
 
 namespace Yi.System.Domains;
 

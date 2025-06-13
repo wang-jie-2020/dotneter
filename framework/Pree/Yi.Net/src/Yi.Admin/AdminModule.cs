@@ -10,12 +10,12 @@ using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Converters;
 using Volo.Abp.Auditing;
 using Volo.Abp.Localization;
-using Volo.Abp.MultiTenancy;
 using Volo.Abp.VirtualFileSystem;
 using Yi.AspNetCore;
 using Yi.AspNetCore.Core.Permissions;
 using Yi.AspNetCore.Extensions;
 using Yi.AspNetCore.MultiTenancy;
+using Yi.AspNetCore.MultiTenancy.Resolver;
 using Yi.System;
 using Yi.System.Options;
 
@@ -44,13 +44,6 @@ public class AdminModule : AbpModule
             options.IsEnabled = true;
             //审计日志过滤器
             options.AlwaysLogSelectors.Add(x => Task.FromResult(true));
-        });
-
-        //配置多租户
-        Configure<AbpTenantResolveOptions>(options =>
-        {
-            options.TenantResolvers.Add(new HeaderTenantResolveContributor());
-            options.TenantResolvers.Add(new RouteTenantResolveContributor());
         });
 
         Configure<AbpVirtualFileSystemOptions>(options =>

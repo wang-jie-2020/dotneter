@@ -2,13 +2,14 @@ using JetBrains.Annotations;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Volo.Abp.MultiTenancy;
 
-namespace Yi.AspNetCore.MultiTenancy;
+namespace Yi.AspNetCore.MultiTenancy.Resolver;
 
-public abstract class HttpTenantResolveContributorBase : TenantResolveContributorBase
+public abstract class HttpTenantResolveContributorBase : ITenantResolveContributor
 {
-    public override async Task ResolveAsync(ITenantResolveContext context)
+    public abstract string Name { get; }
+
+    public async Task ResolveAsync(ITenantResolveContext context)
     {
         var httpContext = context.GetHttpContext();
         if (httpContext == null)
