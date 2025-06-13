@@ -64,16 +64,6 @@ public static class AbpApplicationBuilderExtensions
             .UseMiddleware<AbpAuditingMiddleware>();
     }
 
-    public static IApplicationBuilder UseAbpRequestLocalization(this IApplicationBuilder app,
-        Action<RequestLocalizationOptions>? optionsAction = null)
-    {
-        app.ApplicationServices
-            .GetRequiredService<IAbpRequestLocalizationOptionsProvider>()
-            .InitLocalizationOptions(optionsAction);
-
-        return app.UseMiddleware<AbpRequestLocalizationMiddleware>();
-    }
-
     public static IApplicationBuilder UseAbpExceptionHandling(this IApplicationBuilder app)
     {
         if (app.Properties.ContainsKey(ExceptionHandlingMiddlewareMarker))

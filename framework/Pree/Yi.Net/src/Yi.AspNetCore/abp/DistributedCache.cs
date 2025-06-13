@@ -156,8 +156,6 @@ public class DistributedCache<TCacheItem, TCacheKey> : IDistributedCache<TCacheI
 
     protected IDistributedCacheSerializer Serializer { get; }
 
-    protected IDistributedCacheKeyNormalizer KeyNormalizer { get; }
-
     protected IServiceScopeFactory ServiceScopeFactory { get; }
 
     protected IUnitOfWorkManager UnitOfWorkManager { get; }
@@ -173,7 +171,6 @@ public class DistributedCache<TCacheItem, TCacheKey> : IDistributedCache<TCacheI
         IDistributedCache cache,
         ICancellationTokenProvider cancellationTokenProvider,
         IDistributedCacheSerializer serializer,
-        IDistributedCacheKeyNormalizer keyNormalizer,
         IServiceScopeFactory serviceScopeFactory,
         IUnitOfWorkManager unitOfWorkManager)
     {
@@ -182,7 +179,6 @@ public class DistributedCache<TCacheItem, TCacheKey> : IDistributedCache<TCacheI
         CancellationTokenProvider = cancellationTokenProvider;
         Logger = NullLogger<DistributedCache<TCacheItem, TCacheKey>>.Instance;
         Serializer = serializer;
-        KeyNormalizer = keyNormalizer;
         ServiceScopeFactory = serviceScopeFactory;
         UnitOfWorkManager = unitOfWorkManager;
 
@@ -193,13 +189,7 @@ public class DistributedCache<TCacheItem, TCacheKey> : IDistributedCache<TCacheI
 
     protected virtual string NormalizeKey(TCacheKey key)
     {
-        return KeyNormalizer.NormalizeKey(
-            new DistributedCacheKeyNormalizeArgs(
-                key.ToString()!,
-                CacheName,
-                IgnoreMultiTenancy
-            )
-        );
+        return key.ToString()!;
     }
 
     protected virtual DistributedCacheEntryOptions GetDefaultCacheEntryOptions()
