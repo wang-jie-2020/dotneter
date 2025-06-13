@@ -61,26 +61,6 @@ public class AuditingHelper : IAuditingHelper, ITransientDependency
             return false;
         }
 
-        if (methodInfo.IsDefined(typeof(AuditedAttribute), true))
-        {
-            return true;
-        }
-
-        if (methodInfo.IsDefined(typeof(DisableAuditingAttribute), true))
-        {
-            return false;
-        }
-
-        var classType = methodInfo.DeclaringType;
-        if (classType != null)
-        {
-            var shouldAudit = AuditingInterceptorRegistrar.ShouldAuditTypeByDefaultOrNull(classType, ignoreIntegrationServiceAttribute);
-            if (shouldAudit != null)
-            {
-                return shouldAudit.Value;
-            }
-        }
-
         return defaultValue;
     }
 
@@ -92,24 +72,6 @@ public class AuditingHelper : IAuditingHelper, ITransientDependency
         }
 
         if (Options.IgnoredTypes.Any(t => t.IsAssignableFrom(entityType)))
-        {
-            return false;
-        }
-
-        if (entityType.IsDefined(typeof(AuditedAttribute), true))
-        {
-            return true;
-        }
-
-        foreach (var propertyInfo in entityType.GetProperties(BindingFlags.Instance | BindingFlags.Public))
-        {
-            if (propertyInfo.IsDefined(typeof(AuditedAttribute)))
-            {
-                return true;
-            }
-        }
-
-        if (entityType.IsDefined(typeof(DisableAuditingAttribute), true))
         {
             return false;
         }

@@ -1,6 +1,6 @@
 namespace Yi.AspNetCore.Core.Entities;
 
-public interface IAuditedObject
+public interface IAuditedEntity
 {
     Guid? LastModifierId { get; }
 

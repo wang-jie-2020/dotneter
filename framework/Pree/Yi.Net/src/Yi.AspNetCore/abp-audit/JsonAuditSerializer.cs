@@ -38,8 +38,7 @@ public class JsonAuditSerializer : IAuditSerializer, ITransientDependency
                     {
                         jsonTypeInfo =>
                         {
-                            if (Options.IgnoredTypes.Any(ignoredType => ignoredType.IsAssignableFrom(jsonTypeInfo.Type)) ||
-                                jsonTypeInfo.Type.GetCustomAttributes(typeof(DisableAuditingAttribute), false).Any())
+                            if (Options.IgnoredTypes.Any(ignoredType => ignoredType.IsAssignableFrom(jsonTypeInfo.Type)))
                             {
                                 if (jsonTypeInfo.Kind == JsonTypeInfoKind.Object)
                                 {
@@ -50,18 +49,6 @@ public class JsonAuditSerializer : IAuditSerializer, ITransientDependency
                             foreach (var property in jsonTypeInfo.Properties)
                             {
                                 if (Options.IgnoredTypes.Any(ignoredType => ignoredType.IsAssignableFrom(property.PropertyType)))
-                                {
-                                    property.ShouldSerialize = (_, _) => false;
-                                }
-
-                                if (property.AttributeProvider != null &&
-                                    property.AttributeProvider.GetCustomAttributes(typeof(DisableAuditingAttribute), false).Any())
-                                {
-                                    property.ShouldSerialize = (_, _) => false;
-                                }
-
-                                if (property.PropertyType.DeclaringType != null &&
-                                    property.PropertyType.DeclaringType.IsDefined(typeof(DisableAuditingAttribute)))
                                 {
                                     property.ShouldSerialize = (_, _) => false;
                                 }

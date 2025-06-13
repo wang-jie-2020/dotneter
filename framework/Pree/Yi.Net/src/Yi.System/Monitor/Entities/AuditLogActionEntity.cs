@@ -5,7 +5,6 @@ using Yi.System.Monitor.Consts;
 
 namespace Yi.System.Monitor.Entities;
 
-[DisableAuditing]
 [SugarTable("Sys_AuditLogAction")]
 [SugarIndex($"index_{nameof(AuditLogId)}", nameof(AuditLogId), OrderByType.Asc)]
 [SugarIndex($"index_{nameof(TenantId)}_{nameof(ExecutionTime)}", nameof(TenantId), OrderByType.Asc, nameof(ServiceName),
