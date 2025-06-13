@@ -18,7 +18,12 @@ using Volo.Abp.Autofac;
 using Volo.Abp.Caching;
 using Volo.Abp.Data;
 using Volo.Abp.Guids;
+using Volo.Abp.MultiTenancy;
 using Volo.Abp.ObjectMapping;
+using Volo.Abp.Security;
+using Volo.Abp.Threading;
+using Volo.Abp.Uow;
+using Volo.Abp.VirtualFileSystem;
 using Yi.AspNetCore.Core;
 using Yi.AspNetCore.Core.Filters;
 using Yi.AspNetCore.Core.Loggings;
@@ -36,13 +41,38 @@ namespace Yi.AspNetCore;
 
 [DependsOn(
     typeof(AbpAutofacModule),
-    typeof(AbpObjectMappingModule)
+    typeof(AbpObjectMappingModule),
+    typeof(AbpGuidsModule),
+    typeof(AbpUnitOfWorkModule),
+    typeof(AbpSecurityModule),
+    typeof(AbpThreadingModule),
+    typeof(AbpVirtualFileSystemModule)
 )]
 public class AspNetCoreModule : AbpModule
 {
     public override void PreConfigureServices(ServiceConfigurationContext context)
     {
         context.Services.OnRegistered(OperLogInterceptorRegistrar.RegisterIfNeeded);
+
+        AutoAddDataSeedContributors(context.Services);
+    }
+
+    private static void AutoAddDataSeedContributors(IServiceCollection services)
+    {
+        var contributors = new List<Type>();
+
+        services.OnRegistered(context =>
+        {
+            if (typeof(IDataSeedContributor).IsAssignableFrom(context.ImplementationType))
+            {
+                contributors.Add(context.ImplementationType);
+            }
+        });
+
+        services.Configure<AbpDataSeedOptions>(options =>
+        {
+            options.Contributors.AddIfNotContains(contributors);
+        });
     }
 
     public override void ConfigureServices(ServiceConfigurationContext context)
@@ -130,6 +160,10 @@ public class AspNetCoreModule : AbpModule
         // profiler
         context.Services.AddSingleton<IMiniProfilerDiagnosticListener, SqlSugarDiagnosticListener>();
         context.Services.AddSingleton<ITracingDiagnosticProcessor, SqlSugarTracingDiagnosticProcessor>();
+
+
+        context.Services.AddSingleton<ICurrentTenantAccessor>(AsyncLocalCurrentTenantAccessor.Instance);
+        context.Services.AddSingleton(typeof(IDataFilter<>), typeof(DataFilter<>));
     }
 
     public override async Task OnPreApplicationInitializationAsync(ApplicationInitializationContext context)
