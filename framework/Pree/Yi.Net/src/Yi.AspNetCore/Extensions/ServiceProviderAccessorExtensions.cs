@@ -2,8 +2,9 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.DependencyInjection;
+using Yi.AspNetCore.Extensions;
 
-namespace Volo.Abp;
+namespace Yi.AspNetCore.Extensions;
 
 public static class ServiceProviderAccessorExtensions
 {

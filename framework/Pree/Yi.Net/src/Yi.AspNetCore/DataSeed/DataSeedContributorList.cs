@@ -1,6 +1,6 @@
 ﻿using Volo.Abp.Collections;
 
-namespace Volo.Abp.Data;
+namespace Yi.AspNetCore.DataSeed;
 
 public class DataSeedContributorList : TypeList<IDataSeedContributor>
 {

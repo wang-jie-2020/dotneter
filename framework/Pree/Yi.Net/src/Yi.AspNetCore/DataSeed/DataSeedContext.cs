@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using JetBrains.Annotations;
 
-namespace Volo.Abp.Data;
+namespace Yi.AspNetCore.DataSeed;
 
 public class DataSeedContext
 {
@@ -16,7 +16,8 @@ public class DataSeedContext
     /// Returns the value in the <see cref="Properties"/> dictionary by given <paramref name="name"/>.
     /// Returns null if given <paramref name="name"/> is not present in the <see cref="Properties"/> dictionary.
     /// </returns>
-    public object? this[string name] {
+    public object? this[string name]
+    {
         get => Properties.GetOrDefault(name);
         set => Properties[name] = value;
     }

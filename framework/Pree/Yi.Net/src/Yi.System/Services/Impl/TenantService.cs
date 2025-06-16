@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using MiniExcelLibs;
-using Volo.Abp.Data;
 using Volo.Abp.Uow;
 using Yi.AspNetCore.Core;
+using Yi.AspNetCore.DataSeed;
 using Yi.System.Domains.Consts;
 using Yi.System.Domains.Entities;
 using Yi.System.Services.Dtos;

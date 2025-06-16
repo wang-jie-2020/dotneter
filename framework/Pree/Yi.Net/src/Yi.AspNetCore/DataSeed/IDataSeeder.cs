@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Volo.Abp.Data;
+namespace Yi.AspNetCore.DataSeed;
 
 public interface IDataSeeder
 {

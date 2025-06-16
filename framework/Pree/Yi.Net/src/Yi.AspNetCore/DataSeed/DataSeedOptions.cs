@@ -1,10 +1,10 @@
-﻿namespace Volo.Abp.Data;
+﻿namespace Yi.AspNetCore.DataSeed;
 
-public class AbpDataSeedOptions
+public class DataSeedOptions
 {
     public DataSeedContributorList Contributors { get; }
 
-    public AbpDataSeedOptions()
+    public DataSeedOptions()
     {
         Contributors = new DataSeedContributorList();
     }

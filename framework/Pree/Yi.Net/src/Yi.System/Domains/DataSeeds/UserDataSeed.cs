@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Options;
-using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
+using Yi.AspNetCore.DataSeed;
 using Yi.System.Domains.Entities;
 using Yi.System.Domains.Entities.ValueObjects;
 using Yi.System.Options;

@@ -6,16 +6,16 @@ using Microsoft.Extensions.Options;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Uow;
 
-namespace Volo.Abp.Data;
+namespace Yi.AspNetCore.DataSeed;
 
 //TODO: Create a Volo.Abp.Data.Seeding namespace?
 public class DataSeeder : IDataSeeder, ITransientDependency
 {
     protected IServiceScopeFactory ServiceScopeFactory { get; }
-    protected AbpDataSeedOptions Options { get; }
+    protected DataSeedOptions Options { get; }
 
     public DataSeeder(
-        IOptions<AbpDataSeedOptions> options,
+        IOptions<DataSeedOptions> options,
         IServiceScopeFactory serviceScopeFactory)
     {
         ServiceScopeFactory = serviceScopeFactory;
@@ -33,9 +33,9 @@ public class DataSeeder : IDataSeeder, ITransientDependency
                 foreach (var contributorType in Options.Contributors)
                 {
                     var options = context.Properties.TryGetValue(DataSeederExtensions.SeedInSeparateUowOptions, out var uowOptions)
-                        ? (AbpUnitOfWorkOptions) uowOptions!
+                        ? (AbpUnitOfWorkOptions)uowOptions!
                         : new AbpUnitOfWorkOptions();
-                    var requiresNew = context.Properties.TryGetValue(DataSeederExtensions.SeedInSeparateUowRequiresNew, out var obj) && (bool) obj!;
+                    var requiresNew = context.Properties.TryGetValue(DataSeederExtensions.SeedInSeparateUowRequiresNew, out var obj) && (bool)obj!;
 
                     using (var uow = manager.Begin(options, requiresNew))
                     {

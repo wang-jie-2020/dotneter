@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Volo.Abp.Uow;
 
-namespace Volo.Abp.Data;
+namespace Yi.AspNetCore.DataSeed;
 
 public static class DataSeederExtensions
 {

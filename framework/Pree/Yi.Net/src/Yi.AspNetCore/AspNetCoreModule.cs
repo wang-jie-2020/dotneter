@@ -25,6 +25,7 @@ using Yi.AspNetCore.Core;
 using Yi.AspNetCore.Core.Filters;
 using Yi.AspNetCore.Core.Loggings;
 using Yi.AspNetCore.Core.Permissions;
+using Yi.AspNetCore.DataSeed;
 using Yi.AspNetCore.Exceptions;
 using Yi.AspNetCore.Mapster;
 using Yi.AspNetCore.MultiTenancy;
@@ -67,7 +68,7 @@ public class AspNetCoreModule : AbpModule
             }
         });
 
-        services.Configure<AbpDataSeedOptions>(options =>
+        services.Configure<DataSeedOptions>(options =>
         {
             options.Contributors.AddIfNotContains(contributors);
         });
