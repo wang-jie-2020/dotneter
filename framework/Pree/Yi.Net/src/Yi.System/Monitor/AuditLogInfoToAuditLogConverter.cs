@@ -1,27 +1,24 @@
 ﻿using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
-using Volo.Abp.Guids;
 using Volo.Abp.Http;
 using Yi.AspNetCore.Auditing;
+using Yi.AspNetCore.Helpers;
 using Yi.System.Monitor.Entities;
 
 namespace Yi.System.Monitor;
 
 public class AuditLogInfoToAuditLogConverter : IAuditLogInfoToAuditLogConverter
 {
-    public AuditLogInfoToAuditLogConverter(IGuidGenerator guidGenerator)
+    public AuditLogInfoToAuditLogConverter()
     {
-        GuidGenerator = guidGenerator;
     }
-
-    protected IGuidGenerator GuidGenerator { get; }
 
     public virtual Task<AuditLogEntity> ConvertAsync(AuditLogInfo auditLogInfo)
     {
-        var auditLogId = GuidGenerator.Create();
+        var auditLogId = SequentialGuidGenerator.Create();
 
         var actions = auditLogInfo.Actions?
-            .Select(auditLogActionInfo => new AuditLogActionEntity(GuidGenerator.Create(), auditLogId,
+            .Select(auditLogActionInfo => new AuditLogActionEntity(SequentialGuidGenerator.Create(), auditLogId,
                 auditLogActionInfo, auditLogInfo.TenantId))
             .ToList() ?? new List<AuditLogActionEntity>();
 

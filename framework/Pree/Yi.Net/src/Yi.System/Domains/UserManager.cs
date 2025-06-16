@@ -3,7 +3,6 @@ using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Volo.Abp.Authorization;
-using Volo.Abp.Guids;
 using Yi.AspNetCore.Caching;
 using Yi.AspNetCore.Core;
 using Yi.System.Domains.Consts;
@@ -17,7 +16,6 @@ namespace Yi.System.Domains;
 
 public class UserManager : BaseDomain
 {
-    private readonly IGuidGenerator _guidGenerator;
     private readonly ISqlSugarRepository<UserEntity> _repository;
     private readonly ISqlSugarRepository<UserPostEntity> _repositoryUserPost;
     private readonly ISqlSugarRepository<UserRoleEntity> _repositoryUserRole;
@@ -27,13 +25,13 @@ public class UserManager : BaseDomain
 
     public UserManager(ISqlSugarRepository<UserEntity> repository,
         ISqlSugarRepository<UserRoleEntity> repositoryUserRole, ISqlSugarRepository<UserPostEntity> repositoryUserPost,
-        IGuidGenerator guidGenerator, IDistributedCache cache,
-        IUserRepository userRepository, 
+        IDistributedCache cache,
+        IUserRepository userRepository,
         ISqlSugarRepository<RoleEntity> roleRepository)
     {
-        (_repository, _repositoryUserRole, _repositoryUserPost, _guidGenerator, _cache, _userRepository,
+        (_repository, _repositoryUserRole, _repositoryUserPost, _cache, _userRepository,
                  _roleRepository) =
-            (repository, repositoryUserRole, repositoryUserPost, guidGenerator, cache, userRepository,
+            (repository, repositoryUserRole, repositoryUserPost, cache, userRepository,
                  roleRepository);
     }
 
@@ -189,7 +187,7 @@ public class UserManager : BaseDomain
 
         return output!;
     }
-    
+
     /// <summary>
     ///     批量查询用户信息
     /// </summary>
@@ -205,7 +203,7 @@ public class UserManager : BaseDomain
 
         return output;
     }
-    
+
     private UserRoleMenuDto EntityMapToDto(UserEntity user)
     {
         var userRoleMenu = new UserRoleMenuDto();

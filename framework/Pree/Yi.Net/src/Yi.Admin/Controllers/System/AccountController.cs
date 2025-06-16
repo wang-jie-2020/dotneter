@@ -4,12 +4,12 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Options;
-using Volo.Abp.Guids;
 using Volo.Abp.Uow;
 using Volo.Abp.Users;
 using Yi.AspNetCore.Caching;
 using Yi.AspNetCore.Core;
 using Yi.AspNetCore.Core.Permissions;
+using Yi.AspNetCore.Helpers;
 using Yi.System.Domains;
 using Yi.System.Domains.Consts;
 using Yi.System.Domains.Entities;
@@ -25,7 +25,6 @@ namespace Yi.Web.Controllers.System;
 public class AccountController : BaseController
 {
     private readonly ICaptcha _captcha;
-    private readonly IGuidGenerator _guidGenerator;
     private readonly RbacOptions _rbacOptions;
     private readonly IAccountManager _accountManager;
     private readonly ICurrentUser _currentUser;
@@ -40,7 +39,6 @@ public class AccountController : BaseController
         ISqlSugarRepository<MenuEntity> menuRepository,
         IDistributedCache cache,
         ICaptcha captcha,
-        IGuidGenerator guidGenerator,
         IOptions<RbacOptions> options,
         UserManager userManager)
     {
@@ -50,7 +48,6 @@ public class AccountController : BaseController
         _menuRepository = menuRepository;
         _cache = cache;
         _captcha = captcha;
-        _guidGenerator = guidGenerator;
         _rbacOptions = options.Value;
         _userManager = userManager;
     }
@@ -94,7 +91,7 @@ public class AccountController : BaseController
     [HttpGet("captcha-image")]
     public async Task<CaptchaImageDto> GetCaptchaImageAsync()
     {
-        var uuid = _guidGenerator.Create();
+        var uuid = SequentialGuidGenerator.Create();
         var captcha = _captcha.Generate(uuid.ToString());
         return new CaptchaImageDto { Img = captcha.Bytes, Uuid = uuid };
     }

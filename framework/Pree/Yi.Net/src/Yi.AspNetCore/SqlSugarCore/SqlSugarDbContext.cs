@@ -7,10 +7,10 @@ using Microsoft.Extensions.Options;
 using SqlSugar;
 using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
-using Volo.Abp.Guids;
 using Volo.Abp.Users;
 using Yi.AspNetCore.Core.Entities;
 using Yi.AspNetCore.DataFilter;
+using Yi.AspNetCore.Helpers;
 using Yi.AspNetCore.MultiTenancy;
 using Yi.AspNetCore.SqlSugarCore.Profilers;
 using Yitter.IdGenerator;
@@ -47,8 +47,6 @@ public class SqlSugarDbContext : ISqlSugarDbContext
     public ICurrentUser CurrentUser => LazyServiceProvider.GetRequiredService<ICurrentUser>();
 
     private IAbpLazyServiceProvider LazyServiceProvider { get; }
-
-    private IGuidGenerator GuidGenerator => LazyServiceProvider.LazyGetRequiredService<IGuidGenerator>();
 
     protected ILoggerFactory Logger => LazyServiceProvider.LazyGetRequiredService<ILoggerFactory>();
 
@@ -206,7 +204,7 @@ public class SqlSugarDbContext : ISqlSugarDbContext
                         //主键为空或者为默认最小值
                         if (Guid.Empty.Equals(oldValue))
                         {
-                            entityInfo.SetValue(GuidGenerator.Create());
+                            entityInfo.SetValue(SequentialGuidGenerator.Create());
                         }
                     }
                 }

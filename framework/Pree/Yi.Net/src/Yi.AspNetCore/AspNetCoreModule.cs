@@ -12,7 +12,6 @@ using SkyApm;
 using SqlSugar;
 using StackExchange.Profiling.Internal;
 using Volo.Abp.Autofac;
-using Volo.Abp.Guids;
 using Volo.Abp.ObjectMapping;
 using Volo.Abp.Security;
 using Volo.Abp.Threading;
@@ -40,7 +39,6 @@ namespace Yi.AspNetCore;
 [DependsOn(
     typeof(AbpAutofacModule),
     typeof(AbpObjectMappingModule),
-    typeof(AbpGuidsModule),
     typeof(AbpUnitOfWorkModule),
     typeof(AbpSecurityModule),
     typeof(AbpThreadingModule)
@@ -145,9 +143,6 @@ public class AspNetCoreModule : AbpModule
 
         // 雪花Id
         YitIdHelper.SetIdGenerator(new IdGeneratorOptions(0));
-
-        // uuid
-        context.Services.AddTransient<IGuidGenerator, SequentialGuidGenerator>();
 
         // interceptor
         context.Services.AddTransient<OperLogInterceptor>();
