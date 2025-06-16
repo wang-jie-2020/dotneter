@@ -52,17 +52,6 @@ public class MultiTenantConnectionStringResolver : DefaultConnectionStringResolv
             return connString!;
         }
 
-        //Fallback to the mapped database for the specific connection string
-        var database = Options.Databases.GetMappedDatabaseOrNull(connectionStringName);
-        if (database != null && database.IsUsedByTenants)
-        {
-            connString = tenant.ConnectionStrings?.GetOrDefault(database.DatabaseName);
-            if (!connString.IsNullOrWhiteSpace())
-            {
-                return connString!;
-            }
-        }
-
         //Fallback to tenant's default connection string if available
         if (!tenantDefaultConnectionString.IsNullOrWhiteSpace())
         {
