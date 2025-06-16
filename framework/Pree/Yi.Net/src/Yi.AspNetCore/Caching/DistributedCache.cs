@@ -30,34 +30,34 @@ public class DistributedCache<TCacheItem> :
         InternalCache = internalCache;
     }
 
-    public TCacheItem? Get(string key, bool? hideErrors = null, bool considerUow = false)
+    public TCacheItem? Get(string key)
     {
-        return InternalCache.Get(key, hideErrors, considerUow);
+        return InternalCache.Get(key);
     }
 
-    public Task<TCacheItem?> GetAsync(string key, bool? hideErrors = null, bool considerUow = false, CancellationToken token = default)
+    public Task<TCacheItem?> GetAsync(string key, CancellationToken token = default)
     {
-        return InternalCache.GetAsync(key, hideErrors, considerUow, token);
+        return InternalCache.GetAsync(key, token);
     }
 
-    public TCacheItem? GetOrAdd(string key, Func<TCacheItem> factory, Func<DistributedCacheEntryOptions>? optionsFactory = null, bool? hideErrors = null, bool considerUow = false)
+    public TCacheItem? GetOrAdd(string key, Func<TCacheItem> factory, Func<DistributedCacheEntryOptions>? optionsFactory = null)
     {
-        return InternalCache.GetOrAdd(key, factory, optionsFactory, hideErrors, considerUow);
+        return InternalCache.GetOrAdd(key, factory, optionsFactory);
     }
 
-    public Task<TCacheItem?> GetOrAddAsync(string key, Func<Task<TCacheItem>> factory, Func<DistributedCacheEntryOptions>? optionsFactory = null, bool? hideErrors = null, bool considerUow = false, CancellationToken token = default)
+    public Task<TCacheItem?> GetOrAddAsync(string key, Func<Task<TCacheItem>> factory, Func<DistributedCacheEntryOptions>? optionsFactory = null, CancellationToken token = default)
     {
-        return InternalCache.GetOrAddAsync(key, factory, optionsFactory, hideErrors, considerUow, token);
+        return InternalCache.GetOrAddAsync(key, factory, optionsFactory, token);
     }
 
-    public void Set(string key, TCacheItem value, DistributedCacheEntryOptions? options = null, bool? hideErrors = null, bool considerUow = false)
+    public void Set(string key, TCacheItem value, DistributedCacheEntryOptions? options = null)
     {
-        InternalCache.Set(key, value, options, hideErrors, considerUow);
+        InternalCache.Set(key, value, options);
     }
 
-    public Task SetAsync(string key, TCacheItem value, DistributedCacheEntryOptions? options = null, bool? hideErrors = null, bool considerUow = false, CancellationToken token = default)
+    public Task SetAsync(string key, TCacheItem value, DistributedCacheEntryOptions? options = null, CancellationToken token = default)
     {
-        return InternalCache.SetAsync(key, value, options, hideErrors, considerUow, token);
+        return InternalCache.SetAsync(key, value, options, token);
     }
 
     public void Refresh(string key, bool? hideErrors = null)
@@ -65,19 +65,19 @@ public class DistributedCache<TCacheItem> :
         InternalCache.Refresh(key, hideErrors);
     }
 
-    public Task RefreshAsync(string key, bool? hideErrors = null, CancellationToken token = default)
+    public Task RefreshAsync(string key,  CancellationToken token = default)
     {
-        return InternalCache.RefreshAsync(key, hideErrors, token);
+        return InternalCache.RefreshAsync(key,  token);
     }
 
-    public void Remove(string key, bool? hideErrors = null, bool considerUow = false)
+    public void Remove(string key)
     {
-        InternalCache.Remove(key, hideErrors, considerUow);
+        InternalCache.Remove(key);
     }
 
-    public Task RemoveAsync(string key, bool? hideErrors = null, bool considerUow = false, CancellationToken token = default)
+    public Task RemoveAsync(string key, CancellationToken token = default)
     {
-        return InternalCache.RemoveAsync(key, hideErrors, considerUow, token);
+        return InternalCache.RemoveAsync(key,token);
     }
 }
 
@@ -156,9 +156,7 @@ public class DistributedCache<TCacheItem, TCacheKey> : IDistributedCache<TCacheI
     /// <param name="considerUow">This will store the cache in the current unit of work until the end of the current unit of work does not really affect the cache.</param>
     /// <returns>The cache item, or null.</returns>
     public virtual TCacheItem? Get(
-        TCacheKey key,
-        bool? hideErrors = null,
-        bool considerUow = false)
+        TCacheKey key)
     {
         byte[]? cachedBytes = Cache.Get(NormalizeKey(key));
         return ToCacheItem(cachedBytes);
@@ -174,13 +172,11 @@ public class DistributedCache<TCacheItem, TCacheKey> : IDistributedCache<TCacheI
     /// <returns>The cache item, or null.</returns>
     public virtual async Task<TCacheItem?> GetAsync(
         TCacheKey key,
-        bool? hideErrors = null,
-        bool considerUow = false,
         CancellationToken token = default)
     {
         byte[]? cachedBytes = await Cache.GetAsync(
-                NormalizeKey(key),
-                CancellationTokenProvider.FallbackToProvider(token));
+            NormalizeKey(key),
+            CancellationTokenProvider.FallbackToProvider(token));
 
         if (cachedBytes == null)
         {
@@ -189,7 +185,7 @@ public class DistributedCache<TCacheItem, TCacheKey> : IDistributedCache<TCacheI
 
         return Serializer.Deserialize<TCacheItem>(cachedBytes);
     }
-
+    
     /// <summary>
     /// Gets or Adds a cache item with the given key. If no cache item is found for the given key then adds a cache item
     /// provided by <paramref name="factory" /> delegate and returns the provided cache item.
@@ -203,11 +199,9 @@ public class DistributedCache<TCacheItem, TCacheKey> : IDistributedCache<TCacheI
     public virtual TCacheItem? GetOrAdd(
         TCacheKey key,
         Func<TCacheItem> factory,
-        Func<DistributedCacheEntryOptions>? optionsFactory = null,
-        bool? hideErrors = null,
-        bool considerUow = false)
+        Func<DistributedCacheEntryOptions>? optionsFactory = null)
     {
-        var value = Get(key, hideErrors, considerUow);
+        var value = Get(key);
         if (value != null)
         {
             return value;
@@ -215,7 +209,7 @@ public class DistributedCache<TCacheItem, TCacheKey> : IDistributedCache<TCacheI
 
         using (SyncSemaphore.Lock())
         {
-            value = Get(key, hideErrors, considerUow);
+            value = Get(key);
             if (value != null)
             {
                 return value;
@@ -223,7 +217,7 @@ public class DistributedCache<TCacheItem, TCacheKey> : IDistributedCache<TCacheI
 
             value = factory();
 
-            Set(key, value, optionsFactory?.Invoke(), hideErrors, considerUow);
+            Set(key, value, optionsFactory?.Invoke());
         }
 
         return value;
@@ -244,12 +238,10 @@ public class DistributedCache<TCacheItem, TCacheKey> : IDistributedCache<TCacheI
         TCacheKey key,
         Func<Task<TCacheItem>> factory,
         Func<DistributedCacheEntryOptions>? optionsFactory = null,
-        bool? hideErrors = null,
-        bool considerUow = false,
         CancellationToken token = default)
     {
         token = CancellationTokenProvider.FallbackToProvider(token);
-        var value = await GetAsync(key, hideErrors, considerUow, token);
+        var value = await GetAsync(key, token);
         if (value != null)
         {
             return value;
@@ -257,7 +249,7 @@ public class DistributedCache<TCacheItem, TCacheKey> : IDistributedCache<TCacheI
 
         using (await SyncSemaphore.LockAsync(token))
         {
-            value = await GetAsync(key, hideErrors, considerUow, token);
+            value = await GetAsync(key, token);
             if (value != null)
             {
                 return value;
@@ -265,7 +257,7 @@ public class DistributedCache<TCacheItem, TCacheKey> : IDistributedCache<TCacheI
 
             value = await factory();
 
-            await SetAsync(key, value, optionsFactory?.Invoke(), hideErrors, considerUow, token);
+            await SetAsync(key, value, optionsFactory?.Invoke(), token);
         }
 
         return value;
@@ -282,9 +274,7 @@ public class DistributedCache<TCacheItem, TCacheKey> : IDistributedCache<TCacheI
     public virtual void Set(
         TCacheKey key,
         TCacheItem value,
-        DistributedCacheEntryOptions? options = null,
-        bool? hideErrors = null,
-        bool considerUow = false)
+        DistributedCacheEntryOptions? options = null)
     {
         Cache.Set(
             NormalizeKey(key),
@@ -292,6 +282,7 @@ public class DistributedCache<TCacheItem, TCacheKey> : IDistributedCache<TCacheI
             options ?? DefaultCacheOptions
         );
     }
+
     /// <summary>
     /// Sets the cache item value for the provided key.
     /// </summary>
@@ -306,8 +297,6 @@ public class DistributedCache<TCacheItem, TCacheKey> : IDistributedCache<TCacheI
         TCacheKey key,
         TCacheItem value,
         DistributedCacheEntryOptions? options = null,
-        bool? hideErrors = null,
-        bool considerUow = false,
         CancellationToken token = default)
     {
         await Cache.SetAsync(
@@ -318,14 +307,18 @@ public class DistributedCache<TCacheItem, TCacheKey> : IDistributedCache<TCacheI
         );
     }
 
+    public void Refresh(TCacheKey key, bool? hideErrors = null)
+    {
+        throw new NotImplementedException();
+    }
+
     /// <summary>
     /// Refreshes the cache value of the given key, and resets its sliding expiration timeout.
     /// </summary>
     /// <param name="key">The key of cached item to be retrieved from the cache.</param>
     /// <param name="hideErrors">Indicates to throw or hide the exceptions for the distributed cache.</param>
     public virtual void Refresh(
-        TCacheKey key,
-        bool? hideErrors = null)
+        TCacheKey key)
     {
         Cache.Refresh(NormalizeKey(key));
     }
@@ -339,7 +332,6 @@ public class DistributedCache<TCacheItem, TCacheKey> : IDistributedCache<TCacheI
     /// <returns>The <see cref="T:System.Threading.Tasks.Task" /> indicating that the operation is asynchronous.</returns>
     public virtual async Task RefreshAsync(
         TCacheKey key,
-        bool? hideErrors = null,
         CancellationToken token = default)
     {
         await Cache.RefreshAsync(NormalizeKey(key), CancellationTokenProvider.FallbackToProvider(token));
@@ -352,9 +344,7 @@ public class DistributedCache<TCacheItem, TCacheKey> : IDistributedCache<TCacheI
     /// <param name="considerUow">This will store the cache in the current unit of work until the end of the current unit of work does not really affect the cache.</param>
     /// <param name="hideErrors">Indicates to throw or hide the exceptions for the distributed cache.</param>
     public virtual void Remove(
-        TCacheKey key,
-        bool? hideErrors = null,
-        bool considerUow = false)
+        TCacheKey key)
     {
         Cache.Remove(NormalizeKey(key));
     }
@@ -369,8 +359,6 @@ public class DistributedCache<TCacheItem, TCacheKey> : IDistributedCache<TCacheI
     /// <returns>The <see cref="T:System.Threading.Tasks.Task" /> indicating that the operation is asynchronous.</returns>
     public virtual async Task RemoveAsync(
         TCacheKey key,
-        bool? hideErrors = null,
-        bool considerUow = false,
         CancellationToken token = default)
     {
         await Cache.RemoveAsync(NormalizeKey(key), CancellationTokenProvider.FallbackToProvider(token));
@@ -432,7 +420,8 @@ public class DistributedCache<TCacheItem, TCacheKey> : IDistributedCache<TCacheI
                     NormalizeKey(i.Key),
                     Serializer.Serialize(i.Value)
                 )
-            ).ToArray();
+            )
+            .ToArray();
     }
 
     private static KeyValuePair<TCacheKey, TCacheItem?>[] ToCacheItemsWithDefaultValues(TCacheKey[] keys)

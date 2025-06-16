@@ -47,7 +47,7 @@ public class SqlSugarAndConfigurationTenantStore : ITenantStore, ITransientDepen
     {
         var cacheKey = CalculateCacheKey(id, name);
 
-        var cacheItem = await Cache.GetAsync(cacheKey, considerUow: true);
+        var cacheItem = await Cache.GetAsync(cacheKey);
         if (cacheItem != null) return cacheItem;
 
         if (id.HasValue)
@@ -75,7 +75,7 @@ public class SqlSugarAndConfigurationTenantStore : ITenantStore, ITransientDepen
     {
         var tenantConfiguration = tenant != null ? MapToConfiguration(tenant) : null;
         var cacheItem = new TenantCacheItem(tenantConfiguration);
-        await Cache.SetAsync(cacheKey, cacheItem, considerUow: true);
+        await Cache.SetAsync(cacheKey, cacheItem);
         return cacheItem;
     }
 
