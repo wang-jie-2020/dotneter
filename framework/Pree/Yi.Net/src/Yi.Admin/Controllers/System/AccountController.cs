@@ -30,8 +30,7 @@ public class AccountController : BaseController
     private readonly IAccountManager _accountManager;
     private readonly ICurrentUser _currentUser;
     private readonly ISqlSugarRepository<MenuEntity> _menuRepository;
-    private readonly IDistributedCache<CaptchaPhoneCacheItem, CaptchaPhoneCacheKey> _phoneCache;
-    private readonly IDistributedCache<UserInfoCacheItem, UserInfoCacheKey> _userCache;
+    private readonly IDistributedCache _cache;
     private readonly UserManager _userManager;
     private readonly IUserRepository _userRepository;
 
@@ -39,8 +38,7 @@ public class AccountController : BaseController
         ICurrentUser currentUser,
         IAccountManager accountManager,
         ISqlSugarRepository<MenuEntity> menuRepository,
-        IDistributedCache<CaptchaPhoneCacheItem, CaptchaPhoneCacheKey> phoneCache,
-        IDistributedCache<UserInfoCacheItem, UserInfoCacheKey> userCache,
+        IDistributedCache cache,
         ICaptcha captcha,
         IGuidGenerator guidGenerator,
         IOptions<RbacOptions> options,
@@ -50,11 +48,10 @@ public class AccountController : BaseController
         _currentUser = currentUser;
         _accountManager = accountManager;
         _menuRepository = menuRepository;
-        _phoneCache = phoneCache;
+        _cache = cache;
         _captcha = captcha;
         _guidGenerator = guidGenerator;
         _rbacOptions = options.Value;
-        _userCache = userCache;
         _userManager = userManager;
     }
 
@@ -80,7 +77,7 @@ public class AccountController : BaseController
         await _accountManager.LoginValidationAsync(input.UserName, input.Password, x => user = x);
 
         //清缓存
-        await _userCache.RemoveAsync(new UserInfoCacheKey(user.Id));
+        await _cache.RemoveAsync(new UserInfoCacheKey(user.Id).ToString());
 
         //获取token
         var accessToken = await _accountManager.GetTokenByUserIdAsync(user.Id);
@@ -215,7 +212,7 @@ public class AccountController : BaseController
     public async Task<object> PostCaptchaPhone([FromBody] PhoneCaptchaImageDto input)
     {
         await ValidationPhone(input.Phone);
-        var value = await _phoneCache.GetAsync(new CaptchaPhoneCacheKey(input.Phone));
+        var value = await _cache.GetAsync<CaptchaPhoneCacheItem>(new CaptchaPhoneCacheKey(input.Phone).ToString());
 
         //防止暴刷
         if (value is not null)
@@ -231,8 +228,8 @@ public class AccountController : BaseController
         var uuid = Guid.NewGuid();
         // await _aliyunManger.SendSmsAsync(input.Phone, code);
 
-        await _phoneCache.SetAsync(
-            new CaptchaPhoneCacheKey(input.Phone),
+        await _cache.SetAsync(
+            new CaptchaPhoneCacheKey(input.Phone).ToString(),
             new CaptchaPhoneCacheItem(code),
             new DistributedCacheEntryOptions { SlidingExpiration = TimeSpan.FromMinutes(10) });
 
@@ -247,11 +244,11 @@ public class AccountController : BaseController
     /// </summary>
     private async Task ValidationPhoneCaptchaAsync(RegisterDto input)
     {
-        var item = await _phoneCache.GetAsync(new CaptchaPhoneCacheKey(input.Phone.ToString()));
+        var item = await _cache.GetAsync<CaptchaPhoneCacheItem>(new CaptchaPhoneCacheKey(input.Phone.ToString()).ToString());
         if (item is not null && item.Code.Equals($"{input.Code}"))
         {
             //成功，需要清空
-            await _phoneCache.RemoveAsync(new CaptchaPhoneCacheKey(input.Phone.ToString()));
+            await _cache.RemoveAsync(new CaptchaPhoneCacheKey(input.Phone.ToString()).ToString());
             return;
         }
 
@@ -300,7 +297,7 @@ public class AccountController : BaseController
             return false;
         }
 
-        await _userCache.RemoveAsync(new UserInfoCacheKey(userId.Value));
+        await _cache.RemoveAsync(new UserInfoCacheKey(userId.Value).ToString());
         return true;
     }
 

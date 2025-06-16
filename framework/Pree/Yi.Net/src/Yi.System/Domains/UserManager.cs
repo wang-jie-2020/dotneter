@@ -22,18 +22,18 @@ public class UserManager : BaseDomain
     private readonly ISqlSugarRepository<UserPostEntity> _repositoryUserPost;
     private readonly ISqlSugarRepository<UserRoleEntity> _repositoryUserRole;
     private readonly ISqlSugarRepository<RoleEntity> _roleRepository;
-    private readonly IDistributedCache<UserInfoCacheItem, UserInfoCacheKey> _userCache;
+    private readonly IDistributedCache _cache;
     private readonly IUserRepository _userRepository;
 
     public UserManager(ISqlSugarRepository<UserEntity> repository,
         ISqlSugarRepository<UserRoleEntity> repositoryUserRole, ISqlSugarRepository<UserPostEntity> repositoryUserPost,
-        IGuidGenerator guidGenerator, IDistributedCache<UserInfoCacheItem, UserInfoCacheKey> userCache,
+        IGuidGenerator guidGenerator, IDistributedCache cache,
         IUserRepository userRepository, 
         ISqlSugarRepository<RoleEntity> roleRepository)
     {
-        (_repository, _repositoryUserRole, _repositoryUserPost, _guidGenerator, _userCache, _userRepository,
+        (_repository, _repositoryUserRole, _repositoryUserPost, _guidGenerator, _cache, _userRepository,
                  _roleRepository) =
-            (repository, repositoryUserRole, repositoryUserPost, guidGenerator, userCache, userRepository,
+            (repository, repositoryUserRole, repositoryUserPost, guidGenerator, cache, userRepository,
                  roleRepository);
     }
 
@@ -163,7 +163,7 @@ public class UserManager : BaseDomain
         //此处优先从缓存中获取
         UserRoleMenuDto output = null;
         var tokenExpiresMinuteTime = LazyServiceProvider.GetRequiredService<IOptions<JwtOptions>>().Value.ExpiresMinuteTime;
-        var cacheData = await _userCache.GetOrAddAsync(new UserInfoCacheKey(userId),
+        var cacheData = await _cache.GetOrAddAsync(new UserInfoCacheKey(userId).ToString(),
             async () =>
             {
                 var user = await _userRepository.GetUserAllInfoAsync(userId);

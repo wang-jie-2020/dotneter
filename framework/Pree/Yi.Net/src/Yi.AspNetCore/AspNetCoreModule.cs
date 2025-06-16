@@ -84,8 +84,6 @@ public class AspNetCoreModule : AbpModule
         //Redis
         context.Services.AddMemoryCache();
         context.Services.AddDistributedMemoryCache();
-        context.Services.AddSingleton(typeof(IDistributedCache<>), typeof(DistributedCache<>));
-        context.Services.AddSingleton(typeof(IDistributedCache<,>), typeof(DistributedCache<,>));
 
         var redisEnabled = configuration["Redis:IsEnabled"];
         if (redisEnabled.IsNullOrEmpty() || bool.Parse(redisEnabled))

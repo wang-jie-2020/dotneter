@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Options;
 using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
 using Yi.AspNetCore.Caching;
@@ -11,7 +12,7 @@ namespace Yi.System.Domains;
 public class SqlSugarAndConfigurationTenantStore : ITenantStore, ITransientDependency
 {
     public SqlSugarAndConfigurationTenantStore(ISqlSugarTenantRepository repository,
-        IDistributedCache<TenantCacheItem> cache,
+        IDistributedCache cache,
         ICurrentTenant currentTenant)
     {
         TenantRepository = repository;
@@ -21,7 +22,7 @@ public class SqlSugarAndConfigurationTenantStore : ITenantStore, ITransientDepen
 
     private ISqlSugarTenantRepository TenantRepository { get; }
     protected ICurrentTenant CurrentTenant { get; }
-    protected IDistributedCache<TenantCacheItem> Cache { get; }
+    protected IDistributedCache Cache { get; }
 
     public TenantConfiguration? Find(string name)
     {
@@ -47,7 +48,7 @@ public class SqlSugarAndConfigurationTenantStore : ITenantStore, ITransientDepen
     {
         var cacheKey = CalculateCacheKey(id, name);
 
-        var cacheItem = await Cache.GetAsync(cacheKey);
+        var cacheItem = await Cache.GetAsync<TenantCacheItem>(cacheKey);
         if (cacheItem != null) return cacheItem;
 
         if (id.HasValue)
@@ -75,7 +76,7 @@ public class SqlSugarAndConfigurationTenantStore : ITenantStore, ITransientDepen
     {
         var tenantConfiguration = tenant != null ? MapToConfiguration(tenant) : null;
         var cacheItem = new TenantCacheItem(tenantConfiguration);
-        await Cache.SetAsync(cacheKey, cacheItem);
+        await Cache.SetAsync(cacheKey, cacheItem, new DistributedCacheEntryOptions());
         return cacheItem;
     }
 
