@@ -1,7 +1,6 @@
 using System;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
-using Microsoft.AspNetCore.RequestLocalization;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Volo.Abp;
@@ -13,8 +12,6 @@ namespace Microsoft.AspNetCore.Builder;
 
 public static class AbpApplicationBuilderExtensions
 {
-    private const string ExceptionHandlingMiddlewareMarker = "_AbpExceptionHandlingMiddleware_Added";
-
     public async static Task InitializeApplicationAsync([NotNull] this IApplicationBuilder app)
     {
         Check.NotNull(app, nameof(app));

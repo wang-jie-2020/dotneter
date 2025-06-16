@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Options;
-using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Uow;
 using Yi.AspNetCore.Exceptions;
@@ -20,11 +19,6 @@ public class UowActionFilter : IAsyncActionFilter, ITransientDependency
 
         var methodInfo = context.ActionDescriptor.GetMethodInfo();
         var unitOfWorkAttr = UnitOfWorkHelper.GetUnitOfWorkAttributeOrNull(methodInfo);
-
-        context.HttpContext.Items["_AbpActionInfo"] = new AbpActionInfoInHttpContext
-        {
-            IsObjectResult = context.ActionDescriptor.HasObjectResult()
-        };
 
         if (unitOfWorkAttr?.IsDisabled == true)
         {
