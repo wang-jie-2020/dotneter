@@ -28,6 +28,5 @@
     <ItemGroup>
         <PackageReference Include="Volo.Abp.Autofac" Version="$(AbpVersion)" />
 		<PackageReference Include="Volo.Abp.Uow" Version="$(AbpVersion)" />
-		<PackageReference Include="Volo.Abp.Security" Version="$(AbpVersion)" />
     </ItemGroup>
 </Project>

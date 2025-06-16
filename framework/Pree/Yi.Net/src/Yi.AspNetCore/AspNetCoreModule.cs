@@ -36,8 +36,7 @@ namespace Yi.AspNetCore;
 
 [DependsOn(
     typeof(AbpAutofacModule),
-    typeof(AbpUnitOfWorkModule),
-    typeof(AbpSecurityModule)
+    typeof(AbpUnitOfWorkModule)
 )]
 public class AspNetCoreModule : AbpModule
 {

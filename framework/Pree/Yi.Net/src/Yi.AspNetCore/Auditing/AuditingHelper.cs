@@ -3,7 +3,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
-using Volo.Abp.Clients;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Tracing;
 using Volo.Abp.Users;
@@ -17,7 +16,6 @@ public class AuditingHelper : IAuditingHelper, ITransientDependency
     protected IAuditingStore AuditingStore { get; }
     protected ICurrentUser CurrentUser { get; }
     protected ICurrentTenant CurrentTenant { get; }
-    protected ICurrentClient CurrentClient { get; }
 
     protected AuditingOptions Options;
     protected IServiceProvider ServiceProvider;
@@ -27,7 +25,6 @@ public class AuditingHelper : IAuditingHelper, ITransientDependency
         IOptions<AuditingOptions> options,
         ICurrentUser currentUser,
         ICurrentTenant currentTenant,
-        ICurrentClient currentClient,
         IAuditingStore auditingStore,
         ILogger<AuditingHelper> logger,
         IServiceProvider serviceProvider,
@@ -36,7 +33,6 @@ public class AuditingHelper : IAuditingHelper, ITransientDependency
         Options = options.Value;
         CurrentUser = currentUser;
         CurrentTenant = currentTenant;
-        CurrentClient = currentClient;
         AuditingStore = auditingStore;
 
         Logger = logger;
@@ -78,7 +74,7 @@ public class AuditingHelper : IAuditingHelper, ITransientDependency
             TenantName = CurrentTenant.Name,
             UserId = CurrentUser.Id,
             UserName = CurrentUser.UserName,
-            ClientId = CurrentClient.Id,
+            ClientId = "",
             CorrelationId = CorrelationIdProvider.Get(),
             ExecutionTime = DateTime.Now,
             ImpersonatorUserId = CurrentUser.FindImpersonatorUserId(),

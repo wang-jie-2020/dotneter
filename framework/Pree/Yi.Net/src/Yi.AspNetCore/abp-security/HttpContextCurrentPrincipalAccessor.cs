@@ -1,10 +1,11 @@
 ﻿using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
+using Volo.Abp.DependencyInjection;
 using Volo.Abp.Security.Claims;
 
 namespace Volo.Abp.AspNetCore.Security.Claims;
 
-public class HttpContextCurrentPrincipalAccessor : ThreadCurrentPrincipalAccessor
+public class HttpContextCurrentPrincipalAccessor : CurrentPrincipalAccessorBase, ISingletonDependency
 {
     private readonly IHttpContextAccessor _httpContextAccessor;
 
@@ -15,6 +16,6 @@ public class HttpContextCurrentPrincipalAccessor : ThreadCurrentPrincipalAccesso
 
     protected override ClaimsPrincipal GetClaimsPrincipal()
     {
-        return _httpContextAccessor.HttpContext?.User ?? base.GetClaimsPrincipal();
+        return _httpContextAccessor.HttpContext?.User ?? (Thread.CurrentPrincipal as ClaimsPrincipal)!;
     }
 }
