@@ -13,7 +13,7 @@ using Yi.System.Options;
 
 namespace Yi.System;
 
-[DependsOn(typeof(AspNetCoreModule))]
+[DependsOn(typeof(YiAspNetCoreModule))]
 public class SystemModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)

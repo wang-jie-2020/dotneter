@@ -1,5 +1,4 @@
 using JetBrains.Annotations;
-using Volo.Abp.Data;
 
 namespace Yi.AspNetCore.MultiTenancy;
 

@@ -1,4 +1,6 @@
-﻿namespace Volo.Abp.Data;
+﻿using Yi.AspNetCore;
+
+namespace Volo.Abp.Data;
 
 public class AbpDbConnectionOptions
 {

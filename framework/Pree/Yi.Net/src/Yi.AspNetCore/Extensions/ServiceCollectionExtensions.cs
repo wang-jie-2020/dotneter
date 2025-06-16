@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace Microsoft.Extensions.DependencyInjection;
+namespace Yi.AspNetCore.Extensions;
 
-public static class AbpAspNetCoreServiceCollectionExtensions
+public static class ServiceCollectionExtensions
 {
     public static IWebHostEnvironment GetHostingEnvironment(this IServiceCollection services)
     {

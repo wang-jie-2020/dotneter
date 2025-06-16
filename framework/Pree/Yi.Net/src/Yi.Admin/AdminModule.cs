@@ -15,7 +15,7 @@ using Yi.System.Options;
 namespace Yi.Web;
 
 [DependsOn(
-    typeof(AspNetCoreModule),
+    typeof(YiAspNetCoreModule),
     typeof(SystemModule)
 )]
 public class AdminModule : AbpModule

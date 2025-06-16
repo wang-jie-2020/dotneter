@@ -33,7 +33,7 @@ namespace Yi.AspNetCore;
     typeof(AbpAutofacModule),
     typeof(AbpUnitOfWorkModule)
 )]
-public class AspNetCoreModule : AbpModule
+public class YiAspNetCoreModule : AbpModule
 {
     public override void PreConfigureServices(ServiceConfigurationContext context)
     {
