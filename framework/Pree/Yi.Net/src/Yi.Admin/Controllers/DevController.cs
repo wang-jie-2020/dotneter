@@ -5,7 +5,6 @@ using MiniExcelLibs;
 using StackExchange.Profiling;
 using Volo.Abp.Authorization;
 using Volo.Abp.Localization;
-using Volo.Abp.VirtualFileSystem;
 using Yi.AspNetCore.Core;
 using Yi.System.Domains;
 using Yi.System.Domains.Consts;
@@ -73,19 +72,6 @@ public class DevController : BaseController
     public void MapBusinessException()
     {
         throw Oops.Oh(AccountConst.VerificationCode_Invalid);
-    }
-
-    [HttpGet("files")]
-    public object VirtualFile()
-    {
-        var virtualFileProvider = LazyServiceProvider.LazyGetRequiredService<IVirtualFileProvider>();
-
-        var all = virtualFileProvider.GetDirectoryContents("").ToList();
-        return new
-        {
-            embeds = virtualFileProvider.GetDirectoryContents("/Yi").ToList(),
-            resources = virtualFileProvider.GetDirectoryContents("/Resources").ToList(),
-        };
     }
 
     [HttpGet("lang")]

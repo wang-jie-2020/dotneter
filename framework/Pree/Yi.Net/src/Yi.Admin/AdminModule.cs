@@ -9,7 +9,6 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Converters;
 using Volo.Abp.Localization;
-using Volo.Abp.VirtualFileSystem;
 using Yi.AspNetCore;
 using Yi.AspNetCore.Core.Permissions;
 using Yi.AspNetCore.Extensions;
@@ -36,12 +35,6 @@ public class AdminModule : AbpModule
         context.Services.AddYiDbContext<AdminDbContext>();
         context.Services.AddTransient(x => x.GetRequiredService<ISqlSugarDbContext>().SqlSugarClient);
 
-        Configure<AbpVirtualFileSystemOptions>(options =>
-        {
-            //在项目下也许并不适合资源嵌入
-            options.FileSets.AddEmbedded<AdminModule>();
-            options.FileSets.ReplaceEmbeddedByPhysical<AdminModule>(AppContext.BaseDirectory);
-        });
 
         //Configure<AbpLocalizationOptions>(options =>
         //{

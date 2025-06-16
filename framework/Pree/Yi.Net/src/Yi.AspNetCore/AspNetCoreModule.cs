@@ -17,7 +17,6 @@ using Volo.Abp.ObjectMapping;
 using Volo.Abp.Security;
 using Volo.Abp.Threading;
 using Volo.Abp.Uow;
-using Volo.Abp.VirtualFileSystem;
 using Yi.AspNetCore.Auditing;
 using Yi.AspNetCore.Caching;
 using Yi.AspNetCore.Core;
@@ -44,8 +43,7 @@ namespace Yi.AspNetCore;
     typeof(AbpGuidsModule),
     typeof(AbpUnitOfWorkModule),
     typeof(AbpSecurityModule),
-    typeof(AbpThreadingModule),
-    typeof(AbpVirtualFileSystemModule)
+    typeof(AbpThreadingModule)
 )]
 public class AspNetCoreModule : AbpModule
 {
