@@ -7,7 +7,6 @@ using Volo.Abp.Authorization;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Linq;
 using Volo.Abp.Localization;
-using Volo.Abp.ObjectMapping;
 using Volo.Abp.Uow;
 using Volo.Abp.Users;
 using Yi.AspNetCore.DataFilter;
@@ -22,12 +21,6 @@ public abstract class BaseService : ITransientDependency
     protected IUnitOfWorkManager UnitOfWorkManager => LazyServiceProvider.LazyGetRequiredService<IUnitOfWorkManager>();
 
     protected IAsyncQueryableExecuter AsyncExecuter => LazyServiceProvider.LazyGetRequiredService<IAsyncQueryableExecuter>();
-
-    protected Type? ObjectMapperContext { get; set; }
-    protected IObjectMapper ObjectMapper => LazyServiceProvider.LazyGetService<IObjectMapper>(provider =>
-        ObjectMapperContext == null
-            ? provider.GetRequiredService<IObjectMapper>()
-            : (IObjectMapper)provider.GetRequiredService(typeof(IObjectMapper<>).MakeGenericType(ObjectMapperContext)));
 
     protected ILoggerFactory LoggerFactory => LazyServiceProvider.LazyGetRequiredService<ILoggerFactory>();
 

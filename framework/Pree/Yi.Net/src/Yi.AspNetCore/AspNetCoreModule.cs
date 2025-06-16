@@ -12,7 +12,6 @@ using SkyApm;
 using SqlSugar;
 using StackExchange.Profiling.Internal;
 using Volo.Abp.Autofac;
-using Volo.Abp.ObjectMapping;
 using Volo.Abp.Security;
 using Volo.Abp.Threading;
 using Volo.Abp.Uow;
@@ -25,7 +24,6 @@ using Yi.AspNetCore.Core.Permissions;
 using Yi.AspNetCore.DataFilter;
 using Yi.AspNetCore.DataSeed;
 using Yi.AspNetCore.Exceptions;
-using Yi.AspNetCore.Mapster;
 using Yi.AspNetCore.MultiTenancy;
 using Yi.AspNetCore.SqlSugarCore;
 using Yi.AspNetCore.SqlSugarCore.Profilers;
@@ -38,7 +36,6 @@ namespace Yi.AspNetCore;
 
 [DependsOn(
     typeof(AbpAutofacModule),
-    typeof(AbpObjectMappingModule),
     typeof(AbpUnitOfWorkModule),
     typeof(AbpSecurityModule),
     typeof(AbpThreadingModule)
@@ -73,10 +70,6 @@ public class AspNetCoreModule : AbpModule
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
         var configuration = context.Services.GetConfiguration();
-
-        //Mapster
-        context.Services.AddTransient<IObjectMapper, MapsterObjectMapper>();
-        context.Services.AddTransient<IAutoObjectMappingProvider, MapsterAutoObjectMappingProvider>();
 
         //Redis
         context.Services.AddMemoryCache();

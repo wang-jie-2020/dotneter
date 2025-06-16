@@ -164,7 +164,7 @@ public class UserService : BaseService, IUserService
     public async Task<UserGetOutputDto> UpdateProfileAsync(ProfileUpdateInput input)
     {
         var entity = await _repository.GetByIdAsync(CurrentUser.Id);
-        ObjectMapper.Map(input, entity);
+        input.Adapt(entity);
 
         await _repository.UpdateAsync(entity);
         return entity.Adapt<UserGetOutputDto>();

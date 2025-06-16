@@ -272,11 +272,11 @@ public class AccountController : BaseController
         //为超级管理员直接给全部路由
         if (AccountConst.Admin.Equals(data.User.UserName))
         {
-            menus = ObjectMapper.Map<List<MenuEntity>, List<MenuDto>>(await _menuRepository.GetListAsync());
+            menus = (await _menuRepository.GetListAsync()).Adapt<List<MenuDto>>();
         }
 
         //将后端菜单转换成前端路由，组件级别需要过滤
-        var routers = ObjectMapper.Map<List<MenuDto>, List<MenuEntity>>(menus).Vue3RouterBuild();
+        var routers = menus.Adapt<List<MenuEntity>>().Vue3RouterBuild();
         return routers;
     }
 
