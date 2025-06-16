@@ -1,12 +1,10 @@
-﻿using Yi.AspNetCore;
+﻿namespace Yi.AspNetCore.Data;
 
-namespace Volo.Abp.Data;
-
-public class AbpDbConnectionOptions
+public class DbConnectionOptions
 {
     public ConnectionStrings ConnectionStrings { get; set; }
 
-    public AbpDbConnectionOptions()
+    public DbConnectionOptions()
     {
         ConnectionStrings = new ConnectionStrings();
     }

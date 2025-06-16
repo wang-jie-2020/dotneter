@@ -9,7 +9,8 @@ using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Users;
 using Yi.AspNetCore.Core.Entities;
-using Yi.AspNetCore.DataFilter;
+using Yi.AspNetCore.Data;
+using Yi.AspNetCore.Data.Filtering;
 using Yi.AspNetCore.Helpers;
 using Yi.AspNetCore.MultiTenancy;
 using Yi.AspNetCore.SqlSugarCore.Profilers;
@@ -58,7 +59,7 @@ public class SqlSugarDbContext : ISqlSugarDbContext
 
     protected virtual bool IsSoftDeleteFilterEnabled => DataFilter?.IsEnabled<ISoftDelete>() ?? false;
 
-    public AbpDbConnectionOptions ConnectionOptions => LazyServiceProvider.LazyGetRequiredService<IOptions<AbpDbConnectionOptions>>().Value;
+    public DbConnectionOptions ConnectionOptions => LazyServiceProvider.LazyGetRequiredService<IOptions<DbConnectionOptions>>().Value;
 
     /// <summary>
     ///     SqlSugar 客户端

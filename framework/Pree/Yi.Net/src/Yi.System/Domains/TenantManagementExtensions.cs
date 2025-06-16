@@ -1,4 +1,4 @@
-﻿using Yi.AspNetCore;
+﻿using Yi.AspNetCore.Data;
 using Yi.AspNetCore.MultiTenancy;
 
 namespace Yi.System.Domains;

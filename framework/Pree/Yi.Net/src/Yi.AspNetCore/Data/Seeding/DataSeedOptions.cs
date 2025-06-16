@@ -1,4 +1,6 @@
-﻿namespace Yi.AspNetCore.DataSeed;
+﻿using Volo.Abp.Collections;
+
+namespace Yi.AspNetCore.Data.Seeding;
 
 public class DataSeedOptions
 {
@@ -8,4 +10,9 @@ public class DataSeedOptions
     {
         Contributors = new DataSeedContributorList();
     }
+}
+
+public class DataSeedContributorList : TypeList<IDataSeedContributor>
+{
+
 }

@@ -1,14 +1,15 @@
 using Microsoft.Extensions.Options;
 using Volo.Abp.DependencyInjection;
+using Yi.AspNetCore.Data;
 
 namespace Volo.Abp.Data;
 
 public class DefaultConnectionStringResolver : IConnectionStringResolver, ITransientDependency
 {
-    protected AbpDbConnectionOptions Options { get; }
+    protected DbConnectionOptions Options { get; }
 
     public DefaultConnectionStringResolver(
-        IOptionsMonitor<AbpDbConnectionOptions> options)
+        IOptionsMonitor<DbConnectionOptions> options)
     {
         Options = options.CurrentValue;
     }

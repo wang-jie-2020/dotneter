@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Options;
 using SqlSugar;
 using Volo.Abp.DependencyInjection;
+using Yi.AspNetCore.Data;
 
 namespace Yi.AspNetCore.SqlSugarCore;
 

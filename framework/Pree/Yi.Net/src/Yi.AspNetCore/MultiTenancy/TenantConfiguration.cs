@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using Yi.AspNetCore.Data;
 
 namespace Yi.AspNetCore.MultiTenancy;
 

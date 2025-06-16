@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 using Volo.Abp.Data;
 using Volo.Abp.Uow;
+using Yi.AspNetCore.Data;
 using Yi.AspNetCore.MultiTenancy;
 
 namespace Yi.AspNetCore.SqlSugarCore.Uow;

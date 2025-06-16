@@ -1,4 +1,4 @@
-﻿namespace Yi.AspNetCore.DataFilter;
+﻿namespace Yi.AspNetCore.Data.Filtering;
 
 public interface IDataFilter<TFilter>
     where TFilter : class
@@ -12,12 +12,12 @@ public interface IDataFilter<TFilter>
 
 public interface IDataFilter
 {
-    IDisposable Enable<TFilter>()
+    IDisposable Enable<TFilter>() 
         where TFilter : class;
 
-    IDisposable Disable<TFilter>()
+    IDisposable Disable<TFilter>() 
         where TFilter : class;
 
-    bool IsEnabled<TFilter>()
+    bool IsEnabled<TFilter>() 
         where TFilter : class;
 }

@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Options;
 using Volo.Abp.DependencyInjection;
-using Yi.AspNetCore.DataSeed;
+using Yi.AspNetCore.Data.Seeding;
 using Yi.System.Domains.Entities;
 using Yi.System.Domains.Entities.ValueObjects;
 using Yi.System.Options;
@@ -18,7 +18,7 @@ public class UserDataSeed : IDataSeedContributor, ITransientDependency
         _options = options.Value;
     }
 
-    public async Task SeedAsync(DataSeedContext context)
+    public async Task SeedAsync()
     {
         if (!await _repository.IsAnyAsync(x => true))
         {

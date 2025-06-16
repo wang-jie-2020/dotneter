@@ -1,4 +1,4 @@
-﻿namespace Yi.AspNetCore;
+﻿namespace Yi.AspNetCore.Data;
 
 [Serializable]
 public class ConnectionStrings : Dictionary<string, string?>

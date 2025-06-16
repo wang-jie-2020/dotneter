@@ -1,4 +1,4 @@
-﻿namespace Yi.AspNetCore.DataFilter;
+﻿namespace Yi.AspNetCore.Data.Filtering;
 
 public class DataFilterOptions
 {

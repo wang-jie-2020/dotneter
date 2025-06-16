@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging.Abstractions;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Uow;
 using Volo.Abp.Users;
-using Yi.AspNetCore.DataFilter;
+using Yi.AspNetCore.Data.Filtering;
 using Yi.AspNetCore.MultiTenancy;
 
 namespace Yi.AspNetCore.Core;

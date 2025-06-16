@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using MiniExcelLibs;
 using Volo.Abp.Uow;
 using Yi.AspNetCore.Core;
-using Yi.AspNetCore.DataSeed;
+using Yi.AspNetCore.Data.Seeding;
 using Yi.System.Domains.Consts;
 using Yi.System.Domains.Entities;
 using Yi.System.Services.Dtos;
@@ -103,12 +103,7 @@ public class TenantService : BaseService, ITenantService
     /// <returns></returns>
     public async Task InitAsync(Guid id)
     {
-        await CurrentUnitOfWork.SaveChangesAsync();
-        using (CurrentTenant.Change(id))
-        {
-            await CodeFirst(LazyServiceProvider);
-            await _dataSeeder.SeedAsync(id);
-        }
+        throw new NotImplementedException();
     }
 
     private async Task CodeFirst(IServiceProvider service)

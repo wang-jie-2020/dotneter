@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Volo.Abp.Data;
+using Yi.AspNetCore.Data;
 
 namespace Yi.AspNetCore.MultiTenancy;
 
@@ -10,7 +11,7 @@ public class MultiTenantConnectionStringResolver : DefaultConnectionStringResolv
     private readonly IServiceProvider _serviceProvider;
 
     public MultiTenantConnectionStringResolver(
-        IOptionsMonitor<AbpDbConnectionOptions> options,
+        IOptionsMonitor<DbConnectionOptions> options,
         ICurrentTenant currentTenant,
         IServiceProvider serviceProvider)
         : base(options)

@@ -1,4 +1,4 @@
-﻿using Yi.AspNetCore.DataFilter;
+﻿using Yi.AspNetCore.Data.Filtering;
 
 namespace Yi.AspNetCore.Core.Permissions;
 

@@ -1,5 +1,5 @@
 using Volo.Abp.DependencyInjection;
-using Yi.AspNetCore.DataSeed;
+using Yi.AspNetCore.Data.Seeding;
 using Yi.AspNetCore.Helpers;
 using Yi.System.Domains.Entities;
 
@@ -14,7 +14,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         _repository = repository;
     }
 
-    public async Task SeedAsync(DataSeedContext context)
+    public async Task SeedAsync()
     {
         if (!await _repository.IsAnyAsync(x => x.MenuName == "系统管理")) await _repository.InsertRangeAsync(GetSeedData());
     }

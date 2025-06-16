@@ -3,9 +3,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Volo.Abp.DependencyInjection;
 
-namespace Yi.AspNetCore.DataFilter;
+namespace Yi.AspNetCore.Data.Filtering;
 
-//TODO: Create a Volo.Abp.Data.Filtering namespace?
 public class DataFilter : IDataFilter, ISingletonDependency
 {
     private readonly ConcurrentDictionary<Type, object> _filters;

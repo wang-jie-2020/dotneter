@@ -1,5 +1,5 @@
 ﻿using Volo.Abp.DependencyInjection;
-using Yi.AspNetCore.DataSeed;
+using Yi.AspNetCore.Data.Seeding;
 using Yi.System.Domains.Entities;
 
 namespace Yi.System.Domains.DataSeeds;
@@ -13,7 +13,7 @@ public class DictionaryDataSeed : IDataSeedContributor, ITransientDependency
         _repository = repository;
     }
 
-    public async Task SeedAsync(DataSeedContext context)
+    public async Task SeedAsync()
     {
         if (!await _repository.IsAnyAsync(x => true))
         {
