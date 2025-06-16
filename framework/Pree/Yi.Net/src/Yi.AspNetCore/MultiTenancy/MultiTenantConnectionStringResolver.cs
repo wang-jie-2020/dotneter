@@ -1,9 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Volo.Abp.Data;
-using Yi.AspNetCore.MultiTenancy;
 
-namespace Yi.System.Domains;
+namespace Yi.AspNetCore.MultiTenancy;
 
 public class MultiTenantConnectionStringResolver : DefaultConnectionStringResolver
 {
