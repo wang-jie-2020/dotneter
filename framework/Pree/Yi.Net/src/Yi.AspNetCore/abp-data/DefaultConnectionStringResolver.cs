@@ -15,12 +15,6 @@ public class DefaultConnectionStringResolver : IConnectionStringResolver, ITrans
         Options = options.CurrentValue;
     }
 
-    [Obsolete("Use ResolveAsync method.")]
-    public virtual string Resolve(string? connectionStringName = null)
-    {
-        return ResolveInternal(connectionStringName)!;
-    }
-
     public virtual Task<string> ResolveAsync(string? connectionStringName = null)
     {
         return Task.FromResult(ResolveInternal(connectionStringName))!;
