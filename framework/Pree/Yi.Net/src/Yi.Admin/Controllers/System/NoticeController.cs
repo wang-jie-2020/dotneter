@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.SignalR;
 using Yi.AspNetCore.Core;
 using Yi.System.Services;
 using Yi.System.Services.Dtos;

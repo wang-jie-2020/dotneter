@@ -1,6 +1,4 @@
-﻿using Yi.AspNetCore.Core.Entities;
-
-namespace Yi.System.Monitor.Dtos;
+﻿namespace Yi.System.Monitor.Dtos;
 
 public class LoginLogGetListOutputDto
 {

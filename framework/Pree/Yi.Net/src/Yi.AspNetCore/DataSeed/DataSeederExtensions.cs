@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using Volo.Abp.Uow;
+﻿using Volo.Abp.Uow;
 
 namespace Yi.AspNetCore.DataSeed;
 

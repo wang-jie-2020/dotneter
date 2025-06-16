@@ -2,18 +2,13 @@
 using System.Text;
 using System.Threading.RateLimiting;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Cors;
-using Microsoft.AspNetCore.Localization;
-using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Converters;
-using Volo.Abp.Localization;
 using Yi.AspNetCore;
 using Yi.AspNetCore.Core.Permissions;
 using Yi.AspNetCore.Extensions;
 using Yi.AspNetCore.MultiTenancy;
-using Yi.AspNetCore.MultiTenancy.Resolver;
 using Yi.System;
 using Yi.System.Options;
 

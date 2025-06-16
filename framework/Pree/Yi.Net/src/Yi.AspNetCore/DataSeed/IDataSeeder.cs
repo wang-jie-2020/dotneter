@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-
-namespace Yi.AspNetCore.DataSeed;
+﻿namespace Yi.AspNetCore.DataSeed;
 
 public interface IDataSeeder
 {

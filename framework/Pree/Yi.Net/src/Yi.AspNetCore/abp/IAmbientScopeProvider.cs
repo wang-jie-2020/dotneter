@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Volo.Abp.Threading;
+﻿namespace Volo.Abp.Threading;
 
 public interface IAmbientScopeProvider<T>
 {

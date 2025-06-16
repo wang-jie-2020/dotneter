@@ -1,7 +1,5 @@
-﻿using System.Linq;
-using System.Security.Claims;
+﻿using System.Security.Claims;
 using JetBrains.Annotations;
-using Volo.Abp;
 using Volo.Abp.Security.Claims;
 
 namespace System.Security.Principal;

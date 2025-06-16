@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Yi.AspNetCore.DataFilter;
+﻿namespace Yi.AspNetCore.DataFilter;
 
 public interface IDataFilter<TFilter>
     where TFilter : class

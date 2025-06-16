@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using Autofac.Core;
 using FreeRedis;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
@@ -12,12 +11,9 @@ using SkyApm;
 using SqlSugar;
 using StackExchange.Profiling.Internal;
 using Volo.Abp.Autofac;
-using Volo.Abp.Security;
 using Volo.Abp.Threading;
 using Volo.Abp.Uow;
 using Yi.AspNetCore.Auditing;
-using Yi.AspNetCore.Caching;
-using Yi.AspNetCore.Core;
 using Yi.AspNetCore.Core.Filters;
 using Yi.AspNetCore.Core.Loggings;
 using Yi.AspNetCore.Core.Permissions;
@@ -30,7 +26,6 @@ using Yi.AspNetCore.SqlSugarCore.Profilers;
 using Yi.AspNetCore.SqlSugarCore.Repositories;
 using Yi.AspNetCore.SqlSugarCore.Uow;
 using Yitter.IdGenerator;
-using SequentialGuidGenerator = Yi.AspNetCore.Helpers.SequentialGuidGenerator;
 
 namespace Yi.AspNetCore;
 

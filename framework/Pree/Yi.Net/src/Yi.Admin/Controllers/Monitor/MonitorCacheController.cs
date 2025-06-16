@@ -1,7 +1,5 @@
 ﻿using FreeRedis;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
-using Yi.AspNetCore.Caching;
 using Yi.AspNetCore.Core;
 using Yi.System.Monitor.Dtos;
 

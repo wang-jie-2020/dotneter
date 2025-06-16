@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 using Volo.Abp.Data;
-using Volo.Abp.Threading;
 using Volo.Abp.Uow;
 using Yi.AspNetCore.MultiTenancy;
 

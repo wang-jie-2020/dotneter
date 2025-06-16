@@ -1,8 +1,6 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
 using Newtonsoft.Json;
-using SqlSugar;
 using System.Text;
-using Volo.Abp.Threading;
 
 namespace Yi.AspNetCore.Caching;
 

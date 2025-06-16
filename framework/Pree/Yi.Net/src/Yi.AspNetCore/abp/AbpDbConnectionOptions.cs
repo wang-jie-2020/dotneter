@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Volo.Abp.Data;
+﻿namespace Volo.Abp.Data;
 
 public class AbpDbConnectionOptions
 {

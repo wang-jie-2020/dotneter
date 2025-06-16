@@ -5,7 +5,6 @@ using Microsoft.Extensions.Options;
 using Volo.Abp.Aspects;
 using Volo.Abp.DependencyInjection;
 using Yi.AspNetCore.Auditing;
-using Yi.AspNetCore.Exceptions;
 using Yi.AspNetCore.Extensions;
 
 namespace Yi.AspNetCore.Core.Filters;

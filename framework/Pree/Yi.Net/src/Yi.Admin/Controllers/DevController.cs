@@ -4,7 +4,6 @@ using Microsoft.Extensions.Options;
 using MiniExcelLibs;
 using StackExchange.Profiling;
 using Volo.Abp.Authorization;
-using Volo.Abp.Localization;
 using Yi.AspNetCore.Core;
 using Yi.System.Domains;
 using Yi.System.Domains.Consts;
