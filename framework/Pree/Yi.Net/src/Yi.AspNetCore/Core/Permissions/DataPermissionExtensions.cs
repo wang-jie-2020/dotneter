@@ -1,4 +1,4 @@
-﻿using Volo.Abp.Data;
+﻿using Yi.AspNetCore.DataFilter;
 
 namespace Yi.AspNetCore.Core.Permissions;
 

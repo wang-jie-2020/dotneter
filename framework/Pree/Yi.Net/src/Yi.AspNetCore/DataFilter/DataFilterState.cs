@@ -1,4 +1,4 @@
-﻿namespace Volo.Abp.Data;
+﻿namespace Yi.AspNetCore.DataFilter;
 
 public class DataFilterState
 {

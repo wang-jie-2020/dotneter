@@ -10,6 +10,7 @@ using Volo.Abp.DependencyInjection;
 using Volo.Abp.Guids;
 using Volo.Abp.Users;
 using Yi.AspNetCore.Core.Entities;
+using Yi.AspNetCore.DataFilter;
 using Yi.AspNetCore.MultiTenancy;
 using Yi.AspNetCore.SqlSugarCore.Profilers;
 using Yitter.IdGenerator;

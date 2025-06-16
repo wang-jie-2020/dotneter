@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Volo.Abp.Data;
+namespace Yi.AspNetCore.DataFilter;
 
-public class AbpDataFilterOptions
+public class DataFilterOptions
 {
     public Dictionary<Type, DataFilterState> DefaultStates { get; }
 
-    public AbpDataFilterOptions()
+    public DataFilterOptions()
     {
         DefaultStates = new Dictionary<Type, DataFilterState>();
     }

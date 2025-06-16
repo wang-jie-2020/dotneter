@@ -4,13 +4,13 @@ using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 using Volo.Abp.Authorization;
-using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Linq;
 using Volo.Abp.Localization;
 using Volo.Abp.ObjectMapping;
 using Volo.Abp.Uow;
 using Volo.Abp.Users;
+using Yi.AspNetCore.DataFilter;
 using Yi.AspNetCore.MultiTenancy;
 
 namespace Yi.AspNetCore.Core;

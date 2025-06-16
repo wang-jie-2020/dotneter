@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Volo.Abp.DependencyInjection;
 
-namespace Volo.Abp.Data;
+namespace Yi.AspNetCore.DataFilter;
 
 //TODO: Create a Volo.Abp.Data.Filtering namespace?
 public class DataFilter : IDataFilter, ISingletonDependency
@@ -52,18 +52,20 @@ public class DataFilter : IDataFilter, ISingletonDependency
 public class DataFilter<TFilter> : IDataFilter<TFilter>
     where TFilter : class
 {
-    public bool IsEnabled {
-        get {
+    public bool IsEnabled
+    {
+        get
+        {
             EnsureInitialized();
             return _filter.Value!.IsEnabled;
         }
     }
 
-    private readonly AbpDataFilterOptions _options;
+    private readonly DataFilterOptions _options;
 
     private readonly AsyncLocal<DataFilterState> _filter;
 
-    public DataFilter(IOptions<AbpDataFilterOptions> options)
+    public DataFilter(IOptions<DataFilterOptions> options)
     {
         _options = options.Value;
         _filter = new AsyncLocal<DataFilterState>();

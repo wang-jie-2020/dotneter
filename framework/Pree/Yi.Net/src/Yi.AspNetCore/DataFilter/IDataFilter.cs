@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Volo.Abp.Data;
+namespace Yi.AspNetCore.DataFilter;
 
 public interface IDataFilter<TFilter>
     where TFilter : class
