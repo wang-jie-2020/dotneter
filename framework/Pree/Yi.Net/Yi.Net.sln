@@ -7,12 +7,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B782C78B-6C1
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6A5375C6-1D55-4E93-9B19-736F1C68CBC3}"
 	ProjectSection(SolutionItems) = preProject
+		.dockerignore = .dockerignore
 		common.props = common.props
 		logo.png = logo.png
+		README.md = README.md
 		usings.props = usings.props
 		version.props = version.props
-		.dockerignore = .dockerignore
-		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yi.Admin", "src\Yi.Admin\Yi.Admin.csproj", "{50E9998F-00AE-47CA-9BC6-CB65D7588031}"
@@ -22,6 +22,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yi.System", "src\Yi.System\Yi.System.csproj", "{6E0D7889-2DB4-477B-B953-04BF932BEF97}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils.Minio", "src\Utils.Minio\Utils.Minio.csproj", "{84ABEE43-6003-488B-A864-D4E8BFA1EDE3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yi.Framework", "src\Yi.Framework\Yi.Framework.csproj", "{4B74E0CA-23CB-470A-9FA4-809CC6F056A4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{84ABEE43-6003-488B-A864-D4E8BFA1EDE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84ABEE43-6003-488B-A864-D4E8BFA1EDE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84ABEE43-6003-488B-A864-D4E8BFA1EDE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B74E0CA-23CB-470A-9FA4-809CC6F056A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B74E0CA-23CB-470A-9FA4-809CC6F056A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B74E0CA-23CB-470A-9FA4-809CC6F056A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B74E0CA-23CB-470A-9FA4-809CC6F056A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -54,6 +60,7 @@ Global
 		{85082B72-9C6B-4611-B802-59067506EB45} = {B782C78B-6C17-49E6-A237-3383BA720766}
 		{6E0D7889-2DB4-477B-B953-04BF932BEF97} = {B782C78B-6C17-49E6-A237-3383BA720766}
 		{84ABEE43-6003-488B-A864-D4E8BFA1EDE3} = {B782C78B-6C17-49E6-A237-3383BA720766}
+		{4B74E0CA-23CB-470A-9FA4-809CC6F056A4} = {B782C78B-6C17-49E6-A237-3383BA720766}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {23D6FBC9-C970-4641-BC1E-2AEA59F51C18}
