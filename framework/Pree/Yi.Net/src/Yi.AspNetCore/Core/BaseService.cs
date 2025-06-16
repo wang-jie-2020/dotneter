@@ -5,7 +5,6 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 using Volo.Abp.Authorization;
 using Volo.Abp.DependencyInjection;
-using Volo.Abp.Linq;
 using Volo.Abp.Localization;
 using Volo.Abp.Uow;
 using Volo.Abp.Users;
@@ -19,8 +18,6 @@ public abstract class BaseService : ITransientDependency
     public IAbpLazyServiceProvider LazyServiceProvider { get; set; } = default!;
 
     protected IUnitOfWorkManager UnitOfWorkManager => LazyServiceProvider.LazyGetRequiredService<IUnitOfWorkManager>();
-
-    protected IAsyncQueryableExecuter AsyncExecuter => LazyServiceProvider.LazyGetRequiredService<IAsyncQueryableExecuter>();
 
     protected ILoggerFactory LoggerFactory => LazyServiceProvider.LazyGetRequiredService<ILoggerFactory>();
 

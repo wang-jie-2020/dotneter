@@ -37,8 +37,7 @@ namespace Yi.AspNetCore;
 [DependsOn(
     typeof(AbpAutofacModule),
     typeof(AbpUnitOfWorkModule),
-    typeof(AbpSecurityModule),
-    typeof(AbpThreadingModule)
+    typeof(AbpSecurityModule)
 )]
 public class AspNetCoreModule : AbpModule
 {
@@ -147,6 +146,8 @@ public class AspNetCoreModule : AbpModule
 
         context.Services.AddSingleton<ICurrentTenantAccessor>(AsyncLocalCurrentTenantAccessor.Instance);
         context.Services.AddSingleton(typeof(IDataFilter<>), typeof(DataFilter<>));
+
+        context.Services.AddSingleton(typeof(IAmbientScopeProvider<>), typeof(AmbientDataContextAmbientScopeProvider<>));
     }
 
     public override async Task OnPreApplicationInitializationAsync(ApplicationInitializationContext context)

@@ -1,6 +1,5 @@
 ﻿using System.Linq.Expressions;
 using SqlSugar;
-using Volo.Abp.Linq;
 using Yi.AspNetCore.Core.Entities;
 
 namespace Yi.AspNetCore.SqlSugarCore.Repositories;
@@ -18,8 +17,6 @@ public class SqlSugarRepository<TEntity> : ISqlSugarRepository<TEntity>
     public ISqlSugarClient Db => GetDbContextAsync().Result;
 
     public ISugarQueryable<TEntity> DbQueryable => GetDbContextAsync().Result.Queryable<TEntity>();
-    
-    public IAsyncQueryableExecuter AsyncExecuter { get; }
 
     public bool? IsChangeTrackingEnabled => false;
 

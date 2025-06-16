@@ -11,7 +11,6 @@ namespace Yi.AspNetCore.SqlSugarCore.Uow;
 public class UnitOfWorkSqlSugarDbContextProvider<TDbContext> : ISugarDbContextProvider<TDbContext> where TDbContext : ISqlSugarDbContext
 {
     private readonly ISqlSugarDbConnectionCreator _dbConnectionCreator;
-    protected readonly ICancellationTokenProvider CancellationTokenProvider;
     protected readonly IConnectionStringResolver ConnectionStringResolver;
     protected readonly ICurrentTenant CurrentTenant;
     protected readonly IUnitOfWorkManager UnitOfWorkManager;
@@ -19,14 +18,12 @@ public class UnitOfWorkSqlSugarDbContextProvider<TDbContext> : ISugarDbContextPr
     public UnitOfWorkSqlSugarDbContextProvider(
         IUnitOfWorkManager unitOfWorkManager,
         IConnectionStringResolver connectionStringResolver,
-        ICancellationTokenProvider cancellationTokenProvider,
         ICurrentTenant currentTenant,
         ISqlSugarDbConnectionCreator dbConnectionCreator
     )
     {
         UnitOfWorkManager = unitOfWorkManager;
         ConnectionStringResolver = connectionStringResolver;
-        CancellationTokenProvider = cancellationTokenProvider;
         CurrentTenant = currentTenant;
         Logger = NullLogger<UnitOfWorkSqlSugarDbContextProvider<TDbContext>>.Instance;
         _dbConnectionCreator = dbConnectionCreator;
