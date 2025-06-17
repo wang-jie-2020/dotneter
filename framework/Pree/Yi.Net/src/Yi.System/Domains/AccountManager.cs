@@ -267,11 +267,6 @@ public class AccountManager : BaseDomain, IAccountManager
         // {
         //     AddToClaim(claims, AbpClaimTypes.Email, dto.User.Email);
         // }
-        //
-        // if (dto.User.Phone is not null)
-        // {
-        //     AddToClaim(claims, AbpClaimTypes.PhoneNumber, dto.User.Phone.ToString());
-        // }
 
         if (dto.Roles.Count > 0)
         {
@@ -282,12 +277,10 @@ public class AccountManager : BaseDomain, IAccountManager
 
         if (AccountConst.Admin.Equals(dto.User.UserName))
         {
-            //AddToClaim(claims, TokenClaimConst.Permission, UserConst.AdminPermissionCode);
             AddToClaim(claims, TokenClaimConst.Roles, AccountConst.AdminRolesCode);
         }
         else
         {
-            //dto.PermissionCodes?.ForEach(per => AddToClaim(claims, TokenClaimConst.Permission, per));
             dto.RoleCodes?.ForEach(role => AddToClaim(claims, AbpClaimTypes.Role, role));
         }
 

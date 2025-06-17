@@ -2,17 +2,7 @@
 
 public class TokenClaimConst
 {
-    public const string Id = nameof(Id);
-
-    public const string UserName = nameof(UserName);
-
-    public const string TenantId = nameof(TenantId);
-
     public const string DeptId = nameof(DeptId);
-
-    public const string Email = nameof(Email);
-
-    public const string PhoneNumber = nameof(PhoneNumber);
 
     public const string Roles = nameof(Roles);
 
