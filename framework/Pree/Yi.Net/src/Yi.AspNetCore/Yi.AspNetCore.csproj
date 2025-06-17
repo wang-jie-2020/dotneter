@@ -29,8 +29,4 @@
         <PackageReference Include="Volo.Abp.Autofac" Version="$(AbpVersion)" />
 		<PackageReference Include="Volo.Abp.Uow" Version="$(AbpVersion)" />
     </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Mvc\" />
-    </ItemGroup>
 </Project>
