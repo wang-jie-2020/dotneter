@@ -32,6 +32,5 @@
 
     <ItemGroup>
       <Folder Include="Mvc\" />
-      <Folder Include="Data\" />
     </ItemGroup>
 </Project>

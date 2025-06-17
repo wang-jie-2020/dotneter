@@ -1,5 +1,5 @@
-﻿using Volo.Abp.Users;
-using Yi.AspNetCore.Core.Permissions;
+﻿using Yi.AspNetCore.Core.Permissions;
+using Yi.AspNetCore.Security;
 
 namespace Yi.System.Domains;
 

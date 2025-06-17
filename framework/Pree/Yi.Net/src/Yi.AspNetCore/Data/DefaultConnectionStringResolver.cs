@@ -1,8 +1,7 @@
 using Microsoft.Extensions.Options;
 using Volo.Abp.DependencyInjection;
-using Yi.AspNetCore.Data;
 
-namespace Volo.Abp.Data;
+namespace Yi.AspNetCore.Data;
 
 public class DefaultConnectionStringResolver : IConnectionStringResolver, ITransientDependency
 {

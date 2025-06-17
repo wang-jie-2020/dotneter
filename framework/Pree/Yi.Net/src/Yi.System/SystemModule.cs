@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using Volo.Abp.Data;
 using Yi.AspNetCore;
 using Yi.AspNetCore.Auditing;
 using Yi.AspNetCore.Core.Loggings;
 using Yi.AspNetCore.Core.Permissions;
+using Yi.AspNetCore.Data;
 using Yi.AspNetCore.MultiTenancy;
 using Yi.System.Domains;
 using Yi.System.Monitor;
@@ -13,7 +13,7 @@ using Yi.System.Options;
 
 namespace Yi.System;
 
-[DependsOn(typeof(YiAspNetCoreModule))]
+[DependsOn(typeof(YiAspNetCoreModule),typeof(YiFrameworkModule))]
 public class SystemModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)

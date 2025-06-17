@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Volo.Abp.DependencyInjection;
-using Volo.Abp.Users;
+using Yi.AspNetCore.Security;
 
 namespace Yi.AspNetCore.Core.Loggings;
 

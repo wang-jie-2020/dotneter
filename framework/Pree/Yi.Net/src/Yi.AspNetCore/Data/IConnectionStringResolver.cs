@@ -1,6 +1,6 @@
 ﻿using JetBrains.Annotations;
 
-namespace Volo.Abp.Data;
+namespace Yi.AspNetCore.Data;
 
 public interface IConnectionStringResolver
 {

@@ -1,9 +1,8 @@
 ﻿using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
 using Volo.Abp.DependencyInjection;
-using Volo.Abp.Security.Claims;
 
-namespace Volo.Abp.AspNetCore.Security.Claims;
+namespace Yi.AspNetCore.Security;
 
 public class HttpContextCurrentPrincipalAccessor : CurrentPrincipalAccessorBase, ISingletonDependency
 {

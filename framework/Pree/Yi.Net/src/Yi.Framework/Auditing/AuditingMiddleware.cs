@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Uow;
-using Volo.Abp.Users;
+using Yi.AspNetCore.Security;
 
 namespace Yi.AspNetCore.Auditing;
 

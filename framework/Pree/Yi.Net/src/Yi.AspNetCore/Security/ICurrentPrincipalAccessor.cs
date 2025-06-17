@@ -1,6 +1,6 @@
 ﻿using System.Security.Claims;
 
-namespace Volo.Abp.Security.Claims;
+namespace Yi.AspNetCore.Security;
 
 public interface ICurrentPrincipalAccessor
 {

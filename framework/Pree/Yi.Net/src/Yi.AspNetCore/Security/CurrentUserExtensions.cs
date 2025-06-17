@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using JetBrains.Annotations;
 using Volo.Abp.Security.Claims;
+using Yi.AspNetCore.Security;
 
 namespace Volo.Abp.Users;
 

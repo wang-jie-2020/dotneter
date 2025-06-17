@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Volo.Abp.DynamicProxy;
-using Volo.Abp.Users;
+using Yi.AspNetCore.Security;
 
 namespace Yi.AspNetCore.Core.Loggings;
 

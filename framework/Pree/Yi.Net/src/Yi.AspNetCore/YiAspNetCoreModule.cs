@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Volo.Abp.Autofac;
 using Volo.Abp.Uow;
+using Yi.AspNetCore.Data;
 
 namespace Yi.AspNetCore;
 
@@ -21,6 +22,8 @@ public class YiAspNetCoreModule : AbpModule
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
         var configuration = context.Services.GetConfiguration();
+
+        Configure<DbConnectionOptions>(configuration);
 
         // MemoryCache & Redis
         context.Services.AddMemoryCache();

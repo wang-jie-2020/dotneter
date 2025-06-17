@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using Volo.Abp.Data;
 using Yi.AspNetCore.Data;
 
 namespace Yi.AspNetCore.MultiTenancy;

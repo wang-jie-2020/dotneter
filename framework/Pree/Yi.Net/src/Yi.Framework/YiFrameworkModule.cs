@@ -29,6 +29,7 @@ using Yitter.IdGenerator;
 
 namespace Yi.AspNetCore;
 
+[DependsOn(typeof(YiAspNetCoreModule))]
 public class YiFrameworkModule : AbpModule
 {
     public override void PreConfigureServices(ServiceConfigurationContext context)

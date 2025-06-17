@@ -4,8 +4,8 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Volo.Abp.DependencyInjection;
-using Volo.Abp.Security.Claims;
 using Yi.AspNetCore.Core.Permissions;
+using Yi.AspNetCore.Security;
 using Yi.System.Domains;
 
 namespace Yi.System;

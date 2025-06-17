@@ -5,8 +5,8 @@ using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Tracing;
-using Volo.Abp.Users;
 using Yi.AspNetCore.MultiTenancy;
+using Yi.AspNetCore.Security;
 
 namespace Yi.AspNetCore.Auditing;
 
@@ -77,10 +77,10 @@ public class AuditingHelper : IAuditingHelper, ITransientDependency
             ClientId = "",
             CorrelationId = CorrelationIdProvider.Get(),
             ExecutionTime = DateTime.Now,
-            ImpersonatorUserId = CurrentUser.FindImpersonatorUserId(),
-            ImpersonatorUserName = CurrentUser.FindImpersonatorUserName(),
-            ImpersonatorTenantId = CurrentUser.FindImpersonatorTenantId(),
-            ImpersonatorTenantName = CurrentUser.FindImpersonatorTenantName(),
+            ImpersonatorUserId = null,  //CurrentUser.FindImpersonatorUserId(),
+            ImpersonatorUserName = null,//CurrentUser.FindImpersonatorUserName(),
+            ImpersonatorTenantId =  null,//CurrentUser.FindImpersonatorTenantId(),
+            ImpersonatorTenantName = null//CurrentUser.FindImpersonatorTenantName(),
         };
 
         ExecutePreContributors(auditInfo);

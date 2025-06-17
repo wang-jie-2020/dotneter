@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Volo.Abp.Users;
 using Yi.AspNetCore.Extensions;
+using Yi.AspNetCore.Security;
 
 namespace Yi.AspNetCore.Core.Permissions;
 
