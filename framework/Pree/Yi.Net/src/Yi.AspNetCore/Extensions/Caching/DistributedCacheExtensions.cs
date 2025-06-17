@@ -1,12 +1,12 @@
-﻿using Microsoft.Extensions.Caching.Distributed;
+﻿using System.Text;
+using Microsoft.Extensions.Caching.Distributed;
 using Newtonsoft.Json;
-using System.Text;
 
-namespace Yi.AspNetCore.Caching;
+namespace Yi.AspNetCore.Extensions.Caching;
 
 public static class DistributedCacheExtensions
 {
-    public static T Get<T>(this IDistributedCache cache, string key) where T : class
+    public static T? Get<T>(this IDistributedCache cache, string key) where T : class
     {
         byte[] bytes = cache.Get(key);
         if (bytes == null)
@@ -17,9 +17,9 @@ public static class DistributedCacheExtensions
         return JsonConvert.DeserializeObject<T>(Encoding.UTF8.GetString(bytes));
     }
 
-    public static async Task<T> GetAsync<T>(this IDistributedCache cache, string key, CancellationToken token = default(CancellationToken)) where T : class
+    public static async Task<T?> GetAsync<T>(this IDistributedCache cache, string key, CancellationToken token = default(CancellationToken)) where T : class
     {
-        byte[] bytes = await cache.GetAsync(key);
+        byte[] bytes = await cache.GetAsync(key, token);
         if (bytes == null)
         {
             return null;
