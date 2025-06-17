@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Volo.Abp.DependencyInjection;
 
-namespace Volo.Abp;
+namespace Yi.AspNetCore.Extensions.DependencyInjection;
 
 public static class ApplicationInitializationContextExtensions
 {

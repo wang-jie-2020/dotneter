@@ -31,10 +31,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Yi.Framework\Yi.Framework.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Extensions\DependencyInjection\" />
+      <Folder Include="Mvc\" />
+      <Folder Include="Data\" />
     </ItemGroup>
 </Project>

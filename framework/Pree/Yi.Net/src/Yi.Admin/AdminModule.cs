@@ -8,6 +8,7 @@ using Newtonsoft.Json.Converters;
 using Yi.AspNetCore;
 using Yi.AspNetCore.Core.Permissions;
 using Yi.AspNetCore.Extensions;
+using Yi.AspNetCore.Extensions.DependencyInjection;
 using Yi.AspNetCore.MultiTenancy;
 using Yi.Framework.Auditing;
 using Yi.System;
