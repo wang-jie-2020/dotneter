@@ -23,7 +23,7 @@ public class YiAspNetCoreModule : AbpModule
     {
         var configuration = context.Services.GetConfiguration();
 
-        //Cache
+        // MemoryCache & Redis
         context.Services.AddMemoryCache();
         context.Services.AddDistributedMemoryCache();
 

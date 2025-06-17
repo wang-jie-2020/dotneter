@@ -1,6 +1,7 @@
 using Serilog;
 using Serilog.Events;
 using Serilog.Sinks.SystemConsole.Themes;
+using Yi.AspNetCore.Extensions.Builder;
 using Yi.Web;
 
 //创建日志,可使用{SourceContext}记录

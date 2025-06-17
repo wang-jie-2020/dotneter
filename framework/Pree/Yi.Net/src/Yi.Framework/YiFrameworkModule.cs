@@ -60,20 +60,6 @@ public class YiFrameworkModule : AbpModule
     {
         var configuration = context.Services.GetConfiguration();
 
-        //Redis
-        context.Services.AddMemoryCache();
-        context.Services.AddDistributedMemoryCache();
-
-        var redisEnabled = configuration["Redis:IsEnabled"];
-        if (redisEnabled.IsNullOrEmpty() || bool.Parse(redisEnabled))
-        {
-            var redisConfiguration = configuration["Redis:Configuration"];
-            var redisClient = new RedisClient(redisConfiguration);
-
-            context.Services.AddSingleton<IRedisClient>(redisClient);
-            context.Services.Replace(ServiceDescriptor.Singleton<IDistributedCache>(new DistributedCache(redisClient)));
-        }
-
         //SqlSugar
         Configure<DbConnOptions>(configuration.GetSection("DbConnOptions"));
 

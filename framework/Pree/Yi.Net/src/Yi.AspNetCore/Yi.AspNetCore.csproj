@@ -33,4 +33,8 @@
     <ItemGroup>
       <ProjectReference Include="..\Yi.Framework\Yi.Framework.csproj" />
     </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Extensions\DependencyInjection\" />
+    </ItemGroup>
 </Project>

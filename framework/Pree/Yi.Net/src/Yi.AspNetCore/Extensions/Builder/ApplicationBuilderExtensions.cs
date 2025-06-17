@@ -1,15 +1,15 @@
 using JetBrains.Annotations;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Threading;
-using Yi.AspNetCore.Auditing;
 
-namespace Microsoft.AspNetCore.Builder;
+namespace Yi.AspNetCore.Extensions.Builder;
 
-public static class AbpApplicationBuilderExtensions
+public static class ApplicationBuilderExtensions
 {
-    public async static Task InitializeApplicationAsync([NotNull] this IApplicationBuilder app)
+    public static async Task InitializeApplicationAsync([NotNull] this IApplicationBuilder app)
     {
         Check.NotNull(app, nameof(app));
 
@@ -49,11 +49,5 @@ public static class AbpApplicationBuilderExtensions
         });
 
         application.Initialize(app.ApplicationServices);
-    }
-
-    public static IApplicationBuilder UseAuditing(this IApplicationBuilder app)
-    {
-        return app
-            .UseMiddleware<AuditingMiddleware>();
     }
 }
