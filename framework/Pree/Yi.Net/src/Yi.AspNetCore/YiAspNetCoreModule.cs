@@ -6,6 +6,7 @@ using Volo.Abp.Autofac;
 using Volo.Abp.Uow;
 using Yi.AspNetCore.Data;
 using Yi.AspNetCore.Data.Filtering;
+using Yi.AspNetCore.Data.Seeding;
 
 namespace Yi.AspNetCore;
 
@@ -17,9 +18,27 @@ public class YiAspNetCoreModule : AbpModule
 {
     public override void PreConfigureServices(ServiceConfigurationContext context)
     {
-
+        RegisterDataSeedContributors(context.Services);
     }
-    
+
+    private static void RegisterDataSeedContributors(IServiceCollection services)
+    {
+        var contributors = new List<Type>();
+
+        services.OnRegistered(context =>
+        {
+            if (typeof(IDataSeedContributor).IsAssignableFrom(context.ImplementationType))
+            {
+                contributors.Add(context.ImplementationType);
+            }
+        });
+
+        services.Configure<DataSeedOptions>(options =>
+        {
+            options.Contributors.AddIfNotContains(contributors);
+        });
+    }
+
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
         var configuration = context.Services.GetConfiguration();
@@ -42,8 +61,5 @@ public class YiAspNetCoreModule : AbpModule
             context.Services.AddSingleton<IRedisClient>(redisClient);
             context.Services.Replace(ServiceDescriptor.Singleton<IDistributedCache>(new DistributedCache(redisClient)));
         }
-
-
-
     }
 }

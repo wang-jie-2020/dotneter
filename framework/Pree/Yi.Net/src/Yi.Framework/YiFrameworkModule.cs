@@ -36,27 +36,9 @@ public class YiFrameworkModule : AbpModule
     {
         context.Services.OnRegistered(OperLogInterceptorRegistrar.RegisterIfNeeded);
 
-        AutoAddDataSeedContributors(context.Services);
+        
     }
-
-    private static void AutoAddDataSeedContributors(IServiceCollection services)
-    {
-        var contributors = new List<Type>();
-
-        services.OnRegistered(context =>
-        {
-            if (typeof(IDataSeedContributor).IsAssignableFrom(context.ImplementationType))
-            {
-                contributors.Add(context.ImplementationType);
-            }
-        });
-
-        services.Configure<DataSeedOptions>(options =>
-        {
-            options.Contributors.AddIfNotContains(contributors);
-        });
-    }
-
+    
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
         var configuration = context.Services.GetConfiguration();
