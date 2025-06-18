@@ -263,11 +263,6 @@ public class AccountManager : BaseDomain, IAccountManager
             AddToClaim(claims, TokenClaimConst.DeptId, dto.User.DeptId.ToString());
         }
 
-        // if (dto.User.Email is not null)
-        // {
-        //     AddToClaim(claims, AbpClaimTypes.Email, dto.User.Email);
-        // }
-
         if (dto.Roles.Count > 0)
         {
             AddToClaim(claims, TokenClaimConst.RoleInfo,

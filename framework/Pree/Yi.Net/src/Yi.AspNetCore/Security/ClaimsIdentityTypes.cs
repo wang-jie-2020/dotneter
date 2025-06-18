@@ -1,10 +1,12 @@
-﻿namespace Yi.AspNetCore.Security;
+﻿using System.Security.Claims;
+
+namespace Yi.AspNetCore.Security;
 
 public class ClaimsIdentityTypes
 {
-    public static string UserName { get; } = "name";
+    public static string UserName { get; } = ClaimTypes.Name;
 
-    public static string UserId { get; } = "sub";
+    public static string UserId { get; } = ClaimTypes.NameIdentifier;
 
-    public static string Role { get; } = "role";
+    public static string Role { get; } = ClaimTypes.Role;
 }
