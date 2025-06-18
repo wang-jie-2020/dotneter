@@ -33,8 +33,4 @@
     <ItemGroup>
       <ProjectReference Include="..\Yi.AspNetCore\Yi.AspNetCore.csproj" />
     </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Data\" />
-    </ItemGroup>
 </Project>

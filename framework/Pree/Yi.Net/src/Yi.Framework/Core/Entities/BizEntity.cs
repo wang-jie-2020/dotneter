@@ -1,4 +1,6 @@
-﻿namespace Yi.AspNetCore.Core.Entities;
+﻿using Yi.AspNetCore.Data;
+
+namespace Yi.AspNetCore.Core.Entities;
 
 public class BizEntity<T> : SimpleEntity<T>, ISoftDelete, IAuditedEntity
 {

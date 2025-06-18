@@ -1,11 +1,12 @@
 ﻿using System.Linq.Expressions;
 using SqlSugar;
 using Yi.AspNetCore.Core.Entities;
+using Yi.AspNetCore.Data;
 
 namespace Yi.AspNetCore.SqlSugarCore.Repositories;
 
 public class SqlSugarRepository<TEntity> : ISqlSugarRepository<TEntity>
-    where TEntity : class, IEntity, new()
+    where TEntity : class, new()
 {
     private readonly ISugarDbContextProvider<ISqlSugarDbContext> _sugarDbContextProvider;
 

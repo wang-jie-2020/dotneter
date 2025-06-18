@@ -1,4 +1,4 @@
-namespace Yi.AspNetCore.Core.Entities;
+namespace Yi.AspNetCore.Data;
 
 public interface IAuditedEntity
 {

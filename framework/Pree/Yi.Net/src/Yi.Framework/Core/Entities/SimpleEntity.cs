@@ -1,4 +1,5 @@
 ﻿using SqlSugar;
+using Yi.AspNetCore.Data;
 
 namespace Yi.AspNetCore.Core.Entities;
 

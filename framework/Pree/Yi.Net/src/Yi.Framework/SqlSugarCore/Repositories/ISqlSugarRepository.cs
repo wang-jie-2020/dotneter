@@ -1,10 +1,11 @@
 ﻿using System.Linq.Expressions;
 using SqlSugar;
 using Yi.AspNetCore.Core.Entities;
+using Yi.AspNetCore.Data;
 
 namespace Yi.AspNetCore.SqlSugarCore.Repositories;
 
-public interface ISqlSugarRepository<TEntity> where TEntity : class, IEntity, new()
+public interface ISqlSugarRepository<TEntity> where TEntity : class, new()
 {
     ISqlSugarClient Db { get; }
     ISugarQueryable<TEntity> DbQueryable { get; }
@@ -89,7 +90,7 @@ public interface ISqlSugarRepository<TEntity> where TEntity : class, IEntity, ne
 public interface ISqlSugarRepository<TEntity, TKey> : ISqlSugarRepository<TEntity>
     where TEntity : class, IEntity<TKey>, new()
 {
-   Task DeleteAsync(TKey id, bool autoSave = false, CancellationToken cancellationToken = default);
+    Task DeleteAsync(TKey id, bool autoSave = false, CancellationToken cancellationToken = default);
 
     Task DeleteManyAsync(IEnumerable<TKey> ids, bool autoSave = false,
         CancellationToken cancellationToken = default);
