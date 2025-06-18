@@ -106,7 +106,7 @@ public class AccountManager : BaseDomain, IAccountManager
         //添加用户id，及刷新token的标识
         var claims = new List<Claim>
         {
-            new(AbpClaimTypes.UserId, userId.ToString()),
+            new(ClaimsIdentityTypes.UserId, userId.ToString()),
             new(TokenClaimConst.Refresh, "true")
         };
 
@@ -255,8 +255,8 @@ public class AccountManager : BaseDomain, IAccountManager
     public List<KeyValuePair<string, string>> UserInfoToClaim(UserRoleMenuDto dto)
     {
         var claims = new List<KeyValuePair<string, string>>();
-        AddToClaim(claims, AbpClaimTypes.UserId, dto.User.Id.ToString());
-        AddToClaim(claims, AbpClaimTypes.UserName, dto.User.UserName);
+        AddToClaim(claims, ClaimsIdentityTypes.UserId, dto.User.Id.ToString());
+        AddToClaim(claims, ClaimsIdentityTypes.UserName, dto.User.UserName);
 
         if (dto.User.DeptId is not null)
         {
@@ -281,7 +281,7 @@ public class AccountManager : BaseDomain, IAccountManager
         }
         else
         {
-            dto.RoleCodes?.ForEach(role => AddToClaim(claims, AbpClaimTypes.Role, role));
+            dto.RoleCodes?.ForEach(role => AddToClaim(claims, ClaimsIdentityTypes.Role, role));
         }
 
         return claims;

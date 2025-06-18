@@ -2,13 +2,13 @@
 
 public class TokenClaimConst
 {
-    public const string DeptId = nameof(DeptId);
+    public static string DeptId { get; } = "dept";
 
-    public const string Roles = nameof(Roles);
+    public static string Roles { get; } = "roles";
 
-    public const string Permission = nameof(Permission);
+    public static string Permission { get; } = "permission";
 
-    public const string RoleInfo = nameof(RoleInfo);
+    public static string RoleInfo { get; } = "role_info";
 
-    public const string Refresh = nameof(Refresh);
+    public static string Refresh { get; } = "fresh";
 }

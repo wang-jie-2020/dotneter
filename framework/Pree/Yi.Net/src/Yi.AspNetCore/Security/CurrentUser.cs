@@ -9,9 +9,9 @@ public class CurrentUser : ICurrentUser, ITransientDependency
 
     public virtual Guid? Id => _principalAccessor.Principal?.FindUserId();
 
-    public virtual string? UserName => FindClaim(AbpClaimTypes.UserName)?.Value;
+    public virtual string? UserName => FindClaim(ClaimsIdentityTypes.UserName)?.Value;
 
-    public virtual string[] Roles => FindClaims(AbpClaimTypes.Role).Select(c => c.Value).Distinct().ToArray();
+    public virtual string[] Roles => FindClaims(ClaimsIdentityTypes.Role).Select(c => c.Value).Distinct().ToArray();
 
     private readonly ICurrentPrincipalAccessor _principalAccessor;
 

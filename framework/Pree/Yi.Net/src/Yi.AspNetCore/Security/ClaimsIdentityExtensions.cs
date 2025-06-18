@@ -10,7 +10,7 @@ public static class ClaimsIdentityExtensions
     {
         Check.NotNull(principal, nameof(principal));
 
-        var userIdOrNull = principal.Claims?.FirstOrDefault(c => c.Type == AbpClaimTypes.UserId);
+        var userIdOrNull = principal.Claims?.FirstOrDefault(c => c.Type == ClaimsIdentityTypes.UserId);
         if (userIdOrNull == null || userIdOrNull.Value.IsNullOrWhiteSpace())
         {
             return null;
