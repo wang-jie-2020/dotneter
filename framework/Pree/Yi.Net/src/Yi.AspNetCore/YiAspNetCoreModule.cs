@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Volo.Abp.Autofac;
 using Volo.Abp.Uow;
 using Yi.AspNetCore.Data;
+using Yi.AspNetCore.Data.Filtering;
 
 namespace Yi.AspNetCore;
 
@@ -25,6 +26,9 @@ public class YiAspNetCoreModule : AbpModule
 
         Configure<DbConnectionOptions>(configuration);
 
+        context.Services.AddSingleton(typeof(IDataFilter), typeof(DataFilter));
+        context.Services.AddSingleton(typeof(IDataFilter<>), typeof(DataFilter<>));
+
         // MemoryCache & Redis
         context.Services.AddMemoryCache();
         context.Services.AddDistributedMemoryCache();
@@ -38,5 +42,8 @@ public class YiAspNetCoreModule : AbpModule
             context.Services.AddSingleton<IRedisClient>(redisClient);
             context.Services.Replace(ServiceDescriptor.Singleton<IDistributedCache>(new DistributedCache(redisClient)));
         }
+
+
+
     }
 }

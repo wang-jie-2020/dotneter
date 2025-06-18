@@ -176,7 +176,7 @@ public class AccountController : BaseController
     /// </summary>
     /// <param name="refresh_token"></param>
     /// <returns></returns>
-    [Authorize(AuthenticationSchemes = TokenClaimConst.Refresh)]
+    //[Authorize(AuthenticationSchemes = TokenClaimConst.Refresh)]
     [HttpPost("refresh")]
     public async Task<object> PostRefreshAsync([FromQuery] string? refresh_token)
     {

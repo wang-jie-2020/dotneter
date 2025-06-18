@@ -56,6 +56,7 @@ ABP的结构太过,实践难度偏高,以其中必要依赖再参考RuoYi框架�
 
 - TODO
   - token claim 的 对照,,,有点乱
+  - 刷新Token??
  - EntityFrameworkCore的分支
  - 租户
    - 租户DB隔离,很多系统可能不够资源

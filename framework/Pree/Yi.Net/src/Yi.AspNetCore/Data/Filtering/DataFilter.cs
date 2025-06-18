@@ -5,7 +5,7 @@ using Volo.Abp.DependencyInjection;
 
 namespace Yi.AspNetCore.Data.Filtering;
 
-public class DataFilter : IDataFilter, ISingletonDependency
+public class DataFilter : IDataFilter
 {
     private readonly ConcurrentDictionary<Type, object> _filters;
 

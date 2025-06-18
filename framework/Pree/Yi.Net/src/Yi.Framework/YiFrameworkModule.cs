@@ -122,7 +122,7 @@ public class YiFrameworkModule : AbpModule
 
 
         context.Services.AddSingleton<ICurrentTenantAccessor>(AsyncLocalCurrentTenantAccessor.Instance);
-        context.Services.AddSingleton(typeof(IDataFilter<>), typeof(DataFilter<>));
+
 
         context.Services.AddSingleton(typeof(IAmbientScopeProvider<>), typeof(AmbientDataContextAmbientScopeProvider<>));
     }
