@@ -3,8 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using MiniExcelLibs;
 using StackExchange.Profiling;
-using Volo.Abp.Authorization;
+using Yi.AspNetCore.Authorization;
 using Yi.AspNetCore.Core;
+using Yi.AspNetCore.Security;
 using Yi.System.Domains;
 using Yi.System.Domains.Consts;
 using Yi.System.Services.Dtos;
@@ -64,7 +65,7 @@ public class DevController : BaseController
     [HttpGet("authorizationException")]
     public void MapAuthorizationException()
     {
-        throw new AbpAuthorizationException();
+        throw new UnauthorizedException();
     }
 
     [HttpGet("businessException")]

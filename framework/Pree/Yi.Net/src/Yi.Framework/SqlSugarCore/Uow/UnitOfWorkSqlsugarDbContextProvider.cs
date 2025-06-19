@@ -47,7 +47,7 @@ public class UnitOfWorkSqlSugarDbContextProvider<TDbContext> : ISugarDbContextPr
         {
             var dbContext = (TDbContext)ServiceProvider.GetRequiredService<ISqlSugarDbContext>();
             //提高体验，取消工作单元强制性
-            //throw new AbpException("A DbContext can only be created inside a unit of work!");
+            //throw new Exception("A DbContext can only be created inside a unit of work!");
             //如果不启用工作单元，创建一个新的db，不开启事务即可
             return dbContext;
         }

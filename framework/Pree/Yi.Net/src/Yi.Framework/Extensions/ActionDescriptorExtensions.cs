@@ -12,7 +12,7 @@ public static class ActionDescriptorExtensions
     {
         if (!actionDescriptor.IsControllerAction())
         {
-            throw new AbpException($"{nameof(actionDescriptor)} should be type of {typeof(ControllerActionDescriptor).AssemblyQualifiedName}");
+            throw new Exception($"{nameof(actionDescriptor)} should be type of {typeof(ControllerActionDescriptor).AssemblyQualifiedName}");
         }
 
         return (actionDescriptor as ControllerActionDescriptor)!;
@@ -61,7 +61,7 @@ public static class ActionDescriptorExtensions
     {
         if (!actionDescriptor.IsPageAction())
         {
-            throw new AbpException($"{nameof(actionDescriptor)} should be type of {typeof(PageActionDescriptor).AssemblyQualifiedName}");
+            throw new Exception($"{nameof(actionDescriptor)} should be type of {typeof(PageActionDescriptor).AssemblyQualifiedName}");
         }
 
         return (actionDescriptor as PageActionDescriptor)!;

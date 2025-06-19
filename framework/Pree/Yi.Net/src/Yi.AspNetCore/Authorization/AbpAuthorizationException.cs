@@ -2,7 +2,7 @@
 using Volo.Abp.ExceptionHandling;
 using Volo.Abp.Logging;
 
-namespace Volo.Abp.Authorization;
+namespace Yi.AspNetCore.Security;
 
 /// <summary>
 /// This exception is thrown on an unauthorized request.

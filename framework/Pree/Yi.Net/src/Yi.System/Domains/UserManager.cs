@@ -2,9 +2,10 @@
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using Volo.Abp.Authorization;
+using Yi.AspNetCore.Authorization;
 using Yi.AspNetCore.Core;
 using Yi.AspNetCore.Extensions.Caching;
+using Yi.AspNetCore.Security;
 using Yi.System.Domains.Consts;
 using Yi.System.Domains.Entities;
 using Yi.System.Domains.Repositories;
@@ -169,7 +170,7 @@ public class UserManager : BaseDomain
                 //系统用户数据被重置，老前端访问重新授权
                 if (data is null)
                 {
-                    throw new AbpAuthorizationException();
+                    throw new UnauthorizedException();
                 }
                 //data.Menus.Clear();
                 output = data;

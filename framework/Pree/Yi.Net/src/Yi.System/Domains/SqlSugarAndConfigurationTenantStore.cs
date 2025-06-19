@@ -68,7 +68,7 @@ public class SqlSugarAndConfigurationTenantStore : ITenantStore, ITransientDepen
             }
         }
 
-        throw new AbpException("Both id and name can't be invalid.");
+        throw new Exception("Both id and name can't be invalid.");
     }
 
     protected virtual async Task<TenantCacheItem> SetCacheAsync(string cacheKey, TenantEntity? tenant)

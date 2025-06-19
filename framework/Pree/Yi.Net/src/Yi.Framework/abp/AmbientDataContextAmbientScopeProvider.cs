@@ -39,7 +39,7 @@ public class AmbientDataContextAmbientScopeProvider<T> : IAmbientScopeProvider<T
 
         if (!ScopeDictionary.TryAdd(item.Id, item))
         {
-            throw new AbpException("Can not add item! ScopeDictionary.TryAdd returns false!");
+            throw new Exception("Can not add item! ScopeDictionary.TryAdd returns false!");
         }
 
         _dataContext.SetData(contextKey, item.Id);
