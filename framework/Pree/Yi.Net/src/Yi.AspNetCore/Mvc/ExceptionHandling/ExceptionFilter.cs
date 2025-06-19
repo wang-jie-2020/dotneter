@@ -1,8 +1,11 @@
 ﻿using System.Net;
+using Magicodes.ExporterAndImporter.Core.Extension;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using Volo.Abp.DependencyInjection;
+using Yi.AspNetCore.Authorization;
 using Yi.AspNetCore.Mvc.Core;
 
 namespace Yi.AspNetCore.Mvc.ExceptionHandling;
@@ -39,11 +42,24 @@ public class ExceptionFilter : IAsyncExceptionFilter, ITransientDependency
     protected async Task HandleAndWrapException(ExceptionContext context)
     {
         LogException(context, out var errorInfo);
-        
-        context.HttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-        context.Result = new ObjectResult(errorInfo);
 
-        context.ExceptionHandled = true; //Handled!
+        if (context.Exception is UnauthorizedException)
+        {
+            var L = context.GetRequiredService<IStringLocalizer>();
+            
+            context.HttpContext.Response.StatusCode = context.HttpContext.User.Identity!.IsAuthenticated
+                ? (int)HttpStatusCode.Forbidden
+                : (int)HttpStatusCode.Unauthorized;
+            
+            context.Result = new ObjectResult(new AjaxResult() { Message = L["UnauthorizedMessage"]});
+        }
+        else
+        {
+            context.HttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+            context.Result = new ObjectResult(errorInfo);
+        }
+
+        context.ExceptionHandled = true;
     }
 
     protected void LogException(ExceptionContext context, out AjaxResult errorInfo)

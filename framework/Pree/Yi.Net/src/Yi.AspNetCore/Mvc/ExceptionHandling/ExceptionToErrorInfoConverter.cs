@@ -7,17 +7,15 @@ namespace Yi.AspNetCore.Mvc.ExceptionHandling;
 
 public class ExceptionToErrorInfoConverter : ITransientDependency
 {
-    protected IStringLocalizerFactory StringLocalizerFactory { get; }
-
-    //protected IStringLocalizer<AbpExceptionHandlingResource> L { get; } //todo i18n
+    protected IStringLocalizer L { get; } 
     protected IServiceProvider ServiceProvider { get; }
 
     public ExceptionToErrorInfoConverter(
-        IStringLocalizerFactory stringLocalizerFactory,
+        IStringLocalizer stringLocalizer,
         IServiceProvider serviceProvider)
     {
+        L = stringLocalizer;
         ServiceProvider = serviceProvider;
-        StringLocalizerFactory = stringLocalizerFactory;
     }
 
     public AjaxResult Convert(Exception exception)
@@ -48,8 +46,7 @@ public class ExceptionToErrorInfoConverter : ITransientDependency
 
         if (errorInfo.Message.IsNullOrEmpty())
         {
-            //todo i18n
-            //errorInfo.Message = L["InternalServerErrorMessage"];
+            errorInfo.Message = L["InternalServerErrorMessage"];
         }
 
         errorInfo.Data = exception.Data;
@@ -63,17 +60,14 @@ public class ExceptionToErrorInfoConverter : ITransientDependency
         {
             return;
         }
+        
+        var localizedString = L[exceptionWithErrorCode.Code];
+        if (localizedString.ResourceNotFound)
+        {
+            return;
+        }
 
-        //todo i18n
-        //var stringLocalizer = StringLocalizerFactory.Create();
-        //var localizedString = stringLocalizer[exceptionWithErrorCode.Code];
-        // if (localizedString.ResourceNotFound)
-        // {
-        //     return;
-        // }
-
-        //var localizedValue = localizedString.Value;
-        var localizedValue = "TODO";
+        var localizedValue = localizedString.Value;
         if (exception.Data != null && exception.Data.Count > 0)
         {
             foreach (var key in exception.Data.Keys)

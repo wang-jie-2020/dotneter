@@ -5,7 +5,7 @@ public class AjaxResult
     /// <summary>
     /// 错误类型码 
     /// </summary>
-    public string Code { get; set; }
+    public string? Code { get; set; }
 
     /// <summary>
     /// 错误信息
