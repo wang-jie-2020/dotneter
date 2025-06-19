@@ -44,9 +44,11 @@ public class YiAspNetCoreModule : AbpModule
         var configuration = context.Services.GetConfiguration();
 
         Configure<DbConnectionOptions>(configuration);
-        
-        context.Services.AddSingleton(typeof(IDataFilter<>), typeof(DataFilter<>));
 
+        context.Services.AddSingleton(typeof(IDataFilter<>), typeof(DataFilter<>));
+        
+        context.Services.AddJsonLocalization(options => options.ResourcesPath = "Resources");
+        
         // MemoryCache & Redis
         context.Services.AddMemoryCache();
         context.Services.AddDistributedMemoryCache();

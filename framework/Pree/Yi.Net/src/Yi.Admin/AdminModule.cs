@@ -2,6 +2,7 @@
 using System.Text;
 using System.Threading.RateLimiting;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Converters;
@@ -31,13 +32,6 @@ public class AdminModule : AbpModule
 
         context.Services.AddYiDbContext<AdminDbContext>();
         context.Services.AddTransient(x => x.GetRequiredService<ISqlSugarDbContext>().SqlSugarClient);
-
-
-        //Configure<AbpLocalizationOptions>(options =>
-        //{
-        //    options.Resources.Get<DefaultResource>()
-        //        .AddVirtualJson("/Resources");
-        //});
 
         // Configure<AbpExceptionHandlingOptions>(options =>
         // {
@@ -238,24 +232,22 @@ public class AdminModule : AbpModule
         
         //静态资源
         app.UseStaticFiles();
+        
+        app.UseRequestLocalization(options =>
+        {
+            var defaultCulture = new CultureInfo("zh-CN");
+            defaultCulture.DateTimeFormat.SetAllDateTimePatterns(new[] { "H:mm:ss" }, 'T');
+            defaultCulture.DateTimeFormat.SetAllDateTimePatterns(new[] { "H:mm" }, 't');
 
-        //todo
-        //app.UseAbpRequestLocalization(options =>
-        //{
-        //    var defaultCulture = new CultureInfo("zh-CN");
-        //    defaultCulture.DateTimeFormat.SetAllDateTimePatterns(new[] { "H:mm:ss" }, 'T');
-        //    defaultCulture.DateTimeFormat.SetAllDateTimePatterns(new[] { "H:mm" }, 't');
-
-        //    options.DefaultRequestCulture = new RequestCulture(defaultCulture);
-
-        //    options.SupportedCultures = options.SupportedUICultures = new List<CultureInfo>
-        //    {
-        //        new("en"),
-        //        new("fr"),
-        //        new("zh-CN"),
-        //        new("zh-Hans")
-        //    };
-        //});
+            options.DefaultRequestCulture = new RequestCulture(defaultCulture);
+            options.SupportedCultures = options.SupportedUICultures = new List<CultureInfo>
+            {
+                new("en"),
+                new("fr"),
+                new("zh-CN"),
+                new("zh-Hans")
+            };
+        });
 
         //授权
         app.UseAuthorization();
@@ -271,21 +263,6 @@ public class AdminModule : AbpModule
                 pattern: "{controller=Home}/{action=Index}/{id?}");
             
             endpoints.MapRazorPages();
-
-            //using (var scope = app.ApplicationServices.CreateScope())
-            //{
-            //    var options = app.ApplicationServices
-            //        .GetRequiredService<IOptions<AbpEndpointRouterOptions>>()
-            //        .Value;
-            //    if (options.EndpointConfigureActions.Any())
-            //    {
-            //        var endpointRouteBuilderContext = new EndpointRouteBuilderContext(endpoints, scope.ServiceProvider);
-            //        foreach (var configureAction in options.EndpointConfigureActions)
-            //        {
-            //            configureAction(endpointRouteBuilderContext);
-            //        }
-            //    }
-            //}
         });
         
         return Task.CompletedTask;
