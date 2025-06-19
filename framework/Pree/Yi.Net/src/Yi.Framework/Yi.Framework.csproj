@@ -11,6 +11,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="abp-security\" />
+      <Folder Include="Exceptions\" />
     </ItemGroup>
 </Project>

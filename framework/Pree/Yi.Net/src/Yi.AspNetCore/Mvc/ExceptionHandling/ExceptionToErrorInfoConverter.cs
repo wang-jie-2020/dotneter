@@ -1,10 +1,9 @@
 ﻿using Microsoft.Extensions.Localization;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.ExceptionHandling;
-using Yi.AspNetCore.Core;
 using Yi.AspNetCore.Mvc.Core;
 
-namespace Yi.AspNetCore.Exceptions;
+namespace Yi.AspNetCore.Mvc.ExceptionHandling;
 
 public class ExceptionToErrorInfoConverter : ITransientDependency
 {

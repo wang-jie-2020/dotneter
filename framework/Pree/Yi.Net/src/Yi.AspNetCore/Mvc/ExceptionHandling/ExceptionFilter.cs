@@ -2,13 +2,12 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Logging;
-using Yi.AspNetCore.Core;
-using Yi.AspNetCore.Extensions;
+using Volo.Abp.DependencyInjection;
 using Yi.AspNetCore.Mvc.Core;
 
-namespace Yi.AspNetCore.Exceptions;
+namespace Yi.AspNetCore.Mvc.ExceptionHandling;
 
-public class ExceptionFilter : IAsyncExceptionFilter
+public class ExceptionFilter : IAsyncExceptionFilter, ITransientDependency
 {
     public async Task OnExceptionAsync(ExceptionContext context)
     {
@@ -43,7 +42,7 @@ public class ExceptionFilter : IAsyncExceptionFilter
         
         context.HttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
         context.Result = new ObjectResult(errorInfo);
-        
+
         context.ExceptionHandled = true; //Handled!
     }
 
@@ -51,7 +50,7 @@ public class ExceptionFilter : IAsyncExceptionFilter
     {
         var exceptionToErrorInfoConverter = context.GetRequiredService<ExceptionToErrorInfoConverter>();
         errorInfo = exceptionToErrorInfoConverter.Convert(context.Exception);
-        
+
         var logger = context.GetService<ILogger<ExceptionFilter>>();
         logger.LogException(context.Exception);
     }

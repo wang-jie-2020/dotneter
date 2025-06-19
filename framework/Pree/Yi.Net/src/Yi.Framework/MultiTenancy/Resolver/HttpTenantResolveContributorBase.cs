@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Yi.AspNetCore.Extensions;
+using Yi.AspNetCore.Extensions.DependencyInjection;
 
 namespace Yi.AspNetCore.MultiTenancy.Resolver;
 

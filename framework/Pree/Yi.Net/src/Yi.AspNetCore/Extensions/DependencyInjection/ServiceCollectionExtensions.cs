@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Yi.AspNetCore.Extensions;
+namespace Yi.AspNetCore.Extensions.DependencyInjection;
 
 public static class ServiceCollectionExtensions
 {

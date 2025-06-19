@@ -19,8 +19,8 @@ using Yi.AspNetCore.Core.Loggings;
 using Yi.AspNetCore.Core.Permissions;
 using Yi.AspNetCore.Data.Filtering;
 using Yi.AspNetCore.Data.Seeding;
-using Yi.AspNetCore.Exceptions;
 using Yi.AspNetCore.MultiTenancy;
+using Yi.AspNetCore.Mvc.ExceptionHandling;
 using Yi.AspNetCore.SqlSugarCore;
 using Yi.AspNetCore.SqlSugarCore.Profilers;
 using Yi.AspNetCore.SqlSugarCore.Repositories;
@@ -63,9 +63,6 @@ public class YiFrameworkModule : AbpModule
         context.Services.AddTransient<IPermissionHandler, DefaultPermissionHandler>();
         context.Services.AddTransient<PermissionFilter>();
         context.Services.AddSingleton<IOperLogStore, SimpleOperLogStore>();
-
-        context.Services.AddTransient<ExceptionFilter>();
-        context.Services.AddTransient<ExceptionToErrorInfoConverter>();
 
         context.Services.AddMvc()
             .AddDataAnnotationsLocalization().AddViewLocalization()

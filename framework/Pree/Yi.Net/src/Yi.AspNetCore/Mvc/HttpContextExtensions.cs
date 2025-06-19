@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 using System.Web;
 using Microsoft.AspNetCore.Http;
 
-namespace Yi.AspNetCore.Extensions;
+namespace Yi.AspNetCore.Mvc;
 
 public static class HttpContextExtensions
 {
@@ -40,17 +40,6 @@ public static class HttpContextExtensions
         var str = httpContext.Request.Headers["Accept-Language"].FirstOrDefault();
         if (str is not null) res = str.Split(",")[0];
         return res;
-    }
-
-    /// <summary>
-    ///     判断是否为异步请求
-    /// </summary>
-    /// <param name="request"></param>
-    /// <returns></returns>
-    public static bool IsAjaxRequest(this HttpRequest request)
-    {
-        string header = request.Headers["X-Requested-With"];
-        return "XMLHttpRequest".Equals(header);
     }
 
     /// <summary>
