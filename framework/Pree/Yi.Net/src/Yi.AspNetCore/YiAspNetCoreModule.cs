@@ -44,8 +44,7 @@ public class YiAspNetCoreModule : AbpModule
         var configuration = context.Services.GetConfiguration();
 
         Configure<DbConnectionOptions>(configuration);
-
-        context.Services.AddSingleton(typeof(IDataFilter), typeof(DataFilter));
+        
         context.Services.AddSingleton(typeof(IDataFilter<>), typeof(DataFilter<>));
 
         // MemoryCache & Redis
