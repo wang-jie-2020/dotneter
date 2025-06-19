@@ -2,6 +2,7 @@
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.ExceptionHandling;
 using Yi.AspNetCore.Core;
+using Yi.AspNetCore.Mvc.Core;
 
 namespace Yi.AspNetCore.Exceptions;
 

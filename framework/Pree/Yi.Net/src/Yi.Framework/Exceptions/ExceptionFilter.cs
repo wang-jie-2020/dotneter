@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Logging;
 using Yi.AspNetCore.Core;
 using Yi.AspNetCore.Extensions;
+using Yi.AspNetCore.Mvc.Core;
 
 namespace Yi.AspNetCore.Exceptions;
 

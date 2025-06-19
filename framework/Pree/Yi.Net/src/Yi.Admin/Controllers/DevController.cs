@@ -5,6 +5,7 @@ using MiniExcelLibs;
 using StackExchange.Profiling;
 using Yi.AspNetCore.Authorization;
 using Yi.AspNetCore.Core;
+using Yi.AspNetCore.Mvc.Core;
 using Yi.AspNetCore.Security;
 using Yi.System.Domains;
 using Yi.System.Domains.Consts;
