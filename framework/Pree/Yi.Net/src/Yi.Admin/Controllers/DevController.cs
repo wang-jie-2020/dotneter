@@ -51,12 +51,6 @@ public class DevController : BaseController
         return AjaxResult<LoginEventArgs>.Success(new LoginEventArgs());
     }
 
-    [HttpGet("error")]
-    public AjaxResult MapError()
-    {
-        return AjaxResult.Error("123");
-    }
-
     [HttpGet("exception")]
     public void MapException()
     {

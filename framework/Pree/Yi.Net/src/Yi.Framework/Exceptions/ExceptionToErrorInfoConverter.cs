@@ -27,7 +27,7 @@ public class ExceptionToErrorInfoConverter : ITransientDependency
 
         if (exception is IHasErrorCode hasErrorCodeException)
         {
-            errorInfo.Type = hasErrorCodeException.Code;
+            errorInfo.Code = hasErrorCodeException.Code;
         }
 
         return errorInfo;

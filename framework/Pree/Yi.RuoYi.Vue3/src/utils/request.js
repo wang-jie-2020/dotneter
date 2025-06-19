@@ -35,7 +35,7 @@ const service = axios.create({
 //       {
 //         return "id="+params.id;
 //       }
-    
+
 //     }
 // return request.param(params);
 return qs.stringify(params, {arrayFormat: 'repeat'});
@@ -134,11 +134,7 @@ service.interceptors.response.use(res => {
 
     const code = res.data.code || 200;
     const msg = `${res.data?.error?.message || res.data?.message}` ;
-
-    if(code === 1) {
-      handler(code, msg)
-      return Promise.reject('error')
-    }
+    
   return Promise.resolve(res);
 },
   error => {

@@ -41,8 +41,7 @@ internal class PermissionFilter : ActionFilterAttribute
         {
             var error = new AjaxResult()
             {
-                Code = 1,
-                Type = "403",
+                Code = "403",
                 Message = "您无权限访问,请联系管理员申请",
                 Details = $"您无权限访问该接口-{context.HttpContext.Request.Path.Value}"
             };
