@@ -27,7 +27,7 @@ public class MultiTenancyMiddleware : IMiddleware, ITransientDependency
         TenantConfiguration? tenant = null;
         try
         {
-            tenant = await _tenantConfigurationProvider.GetAsync(saveResolveResult: true);
+            tenant = await _tenantConfigurationProvider.GetAsync();
         }
         catch (Exception e)
         {

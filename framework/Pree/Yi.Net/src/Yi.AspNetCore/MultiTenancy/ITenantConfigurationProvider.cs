@@ -2,5 +2,5 @@
 
 public interface ITenantConfigurationProvider
 {
-    Task<TenantConfiguration?> GetAsync(bool saveResolveResult = false);
+    Task<TenantConfiguration?> GetAsync();
 }

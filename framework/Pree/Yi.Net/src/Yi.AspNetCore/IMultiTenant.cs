@@ -1,4 +1,4 @@
-﻿namespace Yi.AspNetCore.MultiTenancy;
+﻿namespace Yi.AspNetCore;
 
 public interface IMultiTenant
 {

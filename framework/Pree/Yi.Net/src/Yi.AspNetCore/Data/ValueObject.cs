@@ -1,7 +1,6 @@
-﻿namespace Yi.AspNetCore.Core;
+﻿namespace Yi.AspNetCore.Data;
 
 //Inspired from https://docs.microsoft.com/en-us/dotnet/standard/microservices-architecture/microservice-ddd-cqrs-patterns/implement-value-objects
-
 public abstract class ValueObject
 {
     protected abstract IEnumerable<object> GetAtomicValues();

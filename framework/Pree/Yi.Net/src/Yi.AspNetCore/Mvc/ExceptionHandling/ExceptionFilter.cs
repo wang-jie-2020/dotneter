@@ -6,6 +6,7 @@ using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using Volo.Abp.DependencyInjection;
 using Yi.AspNetCore.Authorization;
+using Yi.AspNetCore.Extensions.DependencyInjection;
 using Yi.AspNetCore.Mvc.Core;
 
 namespace Yi.AspNetCore.Mvc.ExceptionHandling;
@@ -51,7 +52,7 @@ public class ExceptionFilter : IAsyncExceptionFilter, ITransientDependency
                 ? (int)HttpStatusCode.Forbidden
                 : (int)HttpStatusCode.Unauthorized;
             
-            context.Result = new ObjectResult(new AjaxResult() { Message = L["UnauthorizedMessage"]});
+            context.Result = new ObjectResult(new AjaxResult() { Message = L["Unauthorized"]});
         }
         else
         {

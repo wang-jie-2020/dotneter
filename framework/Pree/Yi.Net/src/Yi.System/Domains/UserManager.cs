@@ -2,8 +2,10 @@
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using Yi.AspNetCore;
 using Yi.AspNetCore.Authorization;
 using Yi.AspNetCore.Core;
+using Yi.AspNetCore.Data;
 using Yi.AspNetCore.Extensions.Caching;
 using Yi.AspNetCore.Security;
 using Yi.System.Domains.Consts;

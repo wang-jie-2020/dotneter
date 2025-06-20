@@ -1,5 +1,7 @@
-﻿using Yi.AspNetCore.Auditing;
+﻿using Yi.AspNetCore;
+using Yi.AspNetCore.Auditing;
 using Yi.AspNetCore.Core.Entities;
+using Yi.AspNetCore.Data;
 using Yi.AspNetCore.MultiTenancy;
 using Yi.System.Monitor.Consts;
 

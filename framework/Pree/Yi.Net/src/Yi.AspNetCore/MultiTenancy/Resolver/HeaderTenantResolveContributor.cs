@@ -12,7 +12,7 @@ public class HeaderTenantResolveContributor : HttpTenantResolveContributorBase
     {
         if (httpContext.Request.Headers.IsNullOrEmpty())
         {
-            return Task.FromResult((string?)null);
+            return Task.FromResult<string?>(null);
         }
 
         var tenantIdKey = TenantResolverConsts.DefaultTenantKey;
@@ -20,7 +20,7 @@ public class HeaderTenantResolveContributor : HttpTenantResolveContributorBase
         var tenantIdHeader = httpContext.Request.Headers[tenantIdKey];
         if (tenantIdHeader == string.Empty || tenantIdHeader.Count < 1)
         {
-            return Task.FromResult((string?)null);
+            return Task.FromResult<string?>(null);
         }
         
         return Task.FromResult(tenantIdHeader.First());

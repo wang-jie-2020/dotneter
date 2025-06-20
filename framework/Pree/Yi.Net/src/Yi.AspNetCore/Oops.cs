@@ -1,4 +1,4 @@
-﻿namespace Yi.AspNetCore.Core;
+﻿namespace Yi.AspNetCore;
 
 public static class Oops
 {
