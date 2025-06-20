@@ -13,6 +13,7 @@ using Yi.AspNetCore.Security;
 using Yi.AspNetCore.SqlSugarCore.Profilers;
 using Yi.AspNetCore.Utils;
 using Yi.Framework.Abstractions;
+using Yi.Framework.Core;
 using Yitter.IdGenerator;
 using Check = Volo.Abp.Check;
 

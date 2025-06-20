@@ -7,6 +7,8 @@ using Yi.AspNetCore;
 using Yi.AspNetCore.Core;
 using Yi.AspNetCore.Data.Seeding;
 using Yi.Framework.Abstractions;
+using Yi.Framework.Core;
+using Yi.Framework.Core.Abstractions;
 using Yi.System.Domains.Consts;
 using Yi.System.Domains.Entities;
 using Yi.System.Services.Dtos;

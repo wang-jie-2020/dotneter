@@ -1,4 +1,4 @@
-namespace Yi.Framework.Abstractions;
+namespace Yi.Framework.Core;
 
 public interface IAuditedEntity
 {

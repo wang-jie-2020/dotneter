@@ -11,6 +11,7 @@ using Yi.AspNetCore.Core.Permissions;
 using Yi.AspNetCore.Security;
 using Yi.AspNetCore.Utils;
 using Yi.Framework.Abstractions;
+using Yi.Framework.Core.Abstractions;
 using Yi.System.Domains.Consts;
 using Yi.System.Domains.Entities;
 using Yi.System.Domains.Repositories;

@@ -1,4 +1,4 @@
-﻿namespace Yi.AspNetCore.Core;
+﻿namespace Yi.Framework.Core;
 
 [Serializable]
 public class PagedInput
@@ -9,13 +9,7 @@ public class PagedInput
     
     public string? Sorting { get; set; }
     
-    /// <summary>
-    ///     查询开始时间条件
-    /// </summary>
     public DateTime? StartTime { get; set; }
-
-    /// <summary>
-    ///     查询结束时间条件
-    /// </summary>
+    
     public DateTime? EndTime { get; set; }
 }

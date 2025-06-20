@@ -6,7 +6,7 @@ using Volo.Abp.DependencyInjection;
 using Yi.AspNetCore.MultiTenancy;
 using Yi.AspNetCore.Security;
 
-namespace Yi.Framework.Abstractions;
+namespace Yi.Framework.Core.Abstractions;
 
 public abstract class BaseController : Controller
 {

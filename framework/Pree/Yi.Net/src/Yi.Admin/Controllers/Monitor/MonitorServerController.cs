@@ -3,6 +3,7 @@ using System.Runtime.InteropServices;
 using Microsoft.AspNetCore.Mvc;
 using Yi.AspNetCore.Utils;
 using Yi.Framework.Abstractions;
+using Yi.Framework.Core.Abstractions;
 
 namespace Yi.Web.Controllers.Monitor;
 

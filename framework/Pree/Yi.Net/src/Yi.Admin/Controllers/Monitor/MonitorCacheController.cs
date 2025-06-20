@@ -1,6 +1,7 @@
 ﻿using FreeRedis;
 using Microsoft.AspNetCore.Mvc;
 using Yi.Framework.Abstractions;
+using Yi.Framework.Core.Abstractions;
 using Yi.System.Monitor.Dtos;
 
 namespace Yi.Web.Controllers.Monitor;

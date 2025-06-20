@@ -1,4 +1,6 @@
-﻿namespace Yi.Framework.Abstractions;
+﻿using Yi.Framework.Core;
+
+namespace Yi.Framework.Abstractions;
 
 public abstract class BizEntity<T> : SimpleEntity<T>, ISoftDelete, IAuditedEntity
 {

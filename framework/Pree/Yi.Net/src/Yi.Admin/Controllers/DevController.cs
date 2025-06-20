@@ -7,6 +7,7 @@ using Yi.AspNetCore;
 using Yi.AspNetCore.Authorization;
 using Yi.AspNetCore.Mvc;
 using Yi.Framework.Abstractions;
+using Yi.Framework.Core.Abstractions;
 using Yi.System.Domains;
 using Yi.System.Domains.Consts;
 using Yi.System.Services.Dtos;
