@@ -1,4 +1,6 @@
 {
+  "InternalServerErrorMessage": "Internal Server Error",
+  "UnauthorizedMessage": "Unauthorized",
   "Permission:Query": "Query",
   "Permission:Create": "Create",
   "Permission:Update": "Update",
@@ -17,7 +19,7 @@
   "User_No_Role": "",
   "User_No_Permission": "",
   "User_Name_Not_Allowed": "",
-  "User_Name_Length": "！",
+  "User_Name_Length": "",
   "User_Name_Invalid": "",
   "User_Password_NotMatched": "",
   "User_Password_Length": "",

@@ -1,4 +1,6 @@
 {
+  "InternalServerErrorMessage": "服务器内部错误",
+  "UnauthorizedMessage": "您无权访问",
   "Permission:Query": "查询",
   "Permission:Create": "创建",
   "Permission:Update": "编辑",
