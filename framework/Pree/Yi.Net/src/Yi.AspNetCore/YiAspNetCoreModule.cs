@@ -14,6 +14,8 @@ using Yi.AspNetCore.Data.Seeding;
 using Yi.AspNetCore.MultiTenancy;
 using Yi.AspNetCore.Mvc.ExceptionHandling;
 using Yi.AspNetCore.Threading;
+using Microsoft.Extensions.Localization;
+using My.Extensions.Localization.Json;
 
 namespace Yi.AspNetCore;
 
@@ -66,11 +68,14 @@ public class YiAspNetCoreModule : AbpModule
             context.Services.Replace(ServiceDescriptor.Singleton<IDistributedCache>(new DistributedCache(redisClient)));
         }
 
+        // Localization --> SEE Volo.Abp.Internal.InternalServiceCollectionExtensions.AddCoreServices
+        context.Services.AddJsonLocalization(options => options.ResourcesPath = "Resources");
+        context.Services.Replace(new ServiceDescriptor(typeof(IStringLocalizerFactory), typeof(JsonStringLocalizerFactory), ServiceLifetime.Singleton));
+
         // AspNetCore & Mvc
         context.Services.AddHttpContextAccessor();
         context.Services.AddObjectAccessor<IApplicationBuilder>();
         context.Services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
-        context.Services.AddJsonLocalization(options => options.ResourcesPath = "Resources");
         
         context.Services.AddMvc()
             .AddDataAnnotationsLocalization().AddViewLocalization()
