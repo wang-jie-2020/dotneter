@@ -21,38 +21,31 @@ public class MultiTenantConnectionStringResolver : DefaultConnectionStringResolv
 
     public override async Task<string> ResolveAsync(string? connectionStringName = null)
     {
-        //No current tenant, fallback to default logic
         if (_currentTenant.Id == null)
         {
             return await base.ResolveAsync(connectionStringName);
         }
 
         var tenant = await FindTenantConfigurationAsync(_currentTenant.Id.Value);
-
-        //Tenant has not defined any connection string, fallback to default logic
         if (tenant == null || tenant.ConnectionStrings.IsNullOrEmpty())
         {
             return await base.ResolveAsync(connectionStringName);
         }
 
         var tenantDefaultConnectionString = tenant.ConnectionStrings?.Default;
-
-        //Requesting default connection string...
         if (connectionStringName == null || connectionStringName == ConnectionStrings.DefaultConnectionStringName)
         {
             return !tenantDefaultConnectionString.IsNullOrWhiteSpace()
                 ? tenantDefaultConnectionString!
                 : Options.ConnectionStrings.Default!;
         }
-
-        //Requesting specific connection string...
+        
         var connString = tenant.ConnectionStrings?.FirstOrDefault().Value;
         if (!connString.IsNullOrWhiteSpace())
         {
             return connString!;
         }
-
-        //Fallback to tenant's default connection string if available
+        
         if (!tenantDefaultConnectionString.IsNullOrWhiteSpace())
         {
             return tenantDefaultConnectionString!;
