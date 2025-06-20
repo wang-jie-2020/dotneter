@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Yi.AspNetCore.Mvc;
 using Yi.AspNetCore.Security;
+using Yi.Framework.Utils;
 
-namespace Yi.AspNetCore.Core.Permissions;
+namespace Yi.Framework.Permissions;
 
 public class DefaultPermissionHandler : IPermissionHandler
 {

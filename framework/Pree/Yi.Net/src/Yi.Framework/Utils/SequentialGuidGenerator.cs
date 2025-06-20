@@ -1,6 +1,6 @@
 ﻿using System.Security.Cryptography;
 
-namespace Yi.AspNetCore.Utils;
+namespace Yi.Framework.Utils;
 
 /// <summary>
 /// 连续 GUID ID 生成器

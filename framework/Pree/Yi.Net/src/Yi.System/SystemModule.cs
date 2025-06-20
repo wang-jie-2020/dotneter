@@ -1,11 +1,12 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Yi.AspNetCore;
-using Yi.AspNetCore.Auditing;
-using Yi.AspNetCore.Core.Loggings;
-using Yi.AspNetCore.Core.Permissions;
 using Yi.AspNetCore.Data;
 using Yi.AspNetCore.MultiTenancy;
+using Yi.Framework;
+using Yi.Framework.Auditing;
+using Yi.Framework.Loggings;
+using Yi.Framework.Permissions;
 using Yi.System.Domains;
 using Yi.System.Monitor;
 using Yi.System.Monitor.Repositories;

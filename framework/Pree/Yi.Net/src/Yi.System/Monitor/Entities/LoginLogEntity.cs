@@ -2,7 +2,8 @@
 using Microsoft.AspNetCore.Http;
 using UAParser;
 using Yi.AspNetCore.Mvc;
-using Yi.Framework.Abstractions;
+using Yi.Framework.SqlSugarCore;
+using Yi.Framework.Utils;
 
 namespace Yi.System.Monitor.Entities;
 

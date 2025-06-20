@@ -4,10 +4,9 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Options;
 using Volo.Abp.Aspects;
 using Volo.Abp.DependencyInjection;
-using Yi.AspNetCore.Auditing;
 using Yi.AspNetCore.Extensions.DependencyInjection;
 
-namespace Yi.AspNetCore.Core.Filters;
+namespace Yi.Framework.Auditing;
 
 public class AuditActionFilter : IAsyncActionFilter, ITransientDependency
 {

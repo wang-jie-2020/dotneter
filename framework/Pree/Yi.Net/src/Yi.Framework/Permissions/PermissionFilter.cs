@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Yi.AspNetCore.Mvc;
 
-namespace Yi.AspNetCore.Core.Permissions;
+namespace Yi.Framework.Permissions;
 
 internal class PermissionFilter : ActionFilterAttribute
 {

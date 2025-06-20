@@ -1,4 +1,4 @@
-﻿using Yi.AspNetCore.Auditing;
+﻿using Yi.Framework.Auditing;
 using Yi.System.Monitor.Entities;
 
 namespace Yi.System.Monitor;

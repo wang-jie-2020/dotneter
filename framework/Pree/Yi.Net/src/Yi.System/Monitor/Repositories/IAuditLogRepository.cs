@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using Yi.Framework.SqlSugarCore.Repositories;
 using Yi.System.Monitor.Entities;
 
 namespace Yi.System.Monitor.Repositories;

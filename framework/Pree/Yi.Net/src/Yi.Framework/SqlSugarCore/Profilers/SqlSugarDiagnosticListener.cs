@@ -2,7 +2,7 @@
 using StackExchange.Profiling;
 using StackExchange.Profiling.Internal;
 
-namespace Yi.AspNetCore.SqlSugarCore.Profilers;
+namespace Yi.Framework.SqlSugarCore.Profilers;
 
 /// <summary>
 ///  MiniProfiler

@@ -6,7 +6,7 @@ using SkyApm.Diagnostics;
 using SkyApm.Tracing;
 using SkyApm.Tracing.Segments;
 
-namespace Yi.AspNetCore.SqlSugarCore.Profilers;
+namespace Yi.Framework.SqlSugarCore.Profilers;
 
 /// <summary>
 ///  SkyWalking

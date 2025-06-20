@@ -1,5 +1,6 @@
 ﻿using Volo.Abp.DependencyInjection;
-using Yi.AspNetCore.Core.Permissions;
+using Yi.Framework.Permissions;
+using Yi.Framework.SqlSugarCore;
 using Yi.System.Domains;
 using Yi.System.Domains.Consts;
 using Yi.System.Domains.Entities;

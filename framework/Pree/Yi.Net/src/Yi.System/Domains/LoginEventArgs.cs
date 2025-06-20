@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using UAParser;
 using Yi.AspNetCore.Mvc;
+using Yi.Framework.Utils;
 
 namespace Yi.System.Domains;
 

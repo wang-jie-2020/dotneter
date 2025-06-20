@@ -5,7 +5,7 @@ using Volo.Abp.Uow;
 using Yi.AspNetCore.Data;
 using Yi.AspNetCore.MultiTenancy;
 
-namespace Yi.AspNetCore.SqlSugarCore.Uow;
+namespace Yi.Framework.SqlSugarCore.Uow;
 
 public class UnitOfWorkSqlSugarDbContextProvider<TDbContext> : ISugarDbContextProvider<TDbContext> where TDbContext : ISqlSugarDbContext
 {

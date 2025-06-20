@@ -8,7 +8,7 @@ using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Swashbuckle.AspNetCore.SwaggerUI;
 
-namespace Yi.AspNetCore.Extensions;
+namespace Yi.Framework.Utils;
 
 public static class SwaggerGenExtensions
 {

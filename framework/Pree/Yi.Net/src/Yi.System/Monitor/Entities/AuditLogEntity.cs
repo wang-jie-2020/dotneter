@@ -1,5 +1,5 @@
 ﻿using Yi.AspNetCore;
-using Yi.Framework.Abstractions;
+using Yi.Framework.SqlSugarCore;
 using Yi.System.Monitor.Consts;
 
 namespace Yi.System.Monitor.Entities;

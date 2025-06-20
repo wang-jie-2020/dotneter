@@ -6,7 +6,7 @@ using Microsoft.Extensions.Options;
 using Volo.Abp.DependencyInjection;
 using Yi.AspNetCore.Threading;
 
-namespace Yi.AspNetCore.Auditing;
+namespace Yi.Framework.Auditing;
 
 public class AuditingManager : IAuditingManager, ITransientDependency
 {

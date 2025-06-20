@@ -6,18 +6,18 @@ using Microsoft.Extensions.Options;
 using SkyApm;
 using SqlSugar;
 using StackExchange.Profiling.Internal;
-using Yi.AspNetCore.Auditing;
-using Yi.AspNetCore.Core.Filters;
-using Yi.AspNetCore.Core.Loggings;
-using Yi.AspNetCore.Core.Permissions;
+using Yi.AspNetCore;
 using Yi.AspNetCore.Data.Seeding;
-using Yi.AspNetCore.SqlSugarCore;
-using Yi.AspNetCore.SqlSugarCore.Profilers;
-using Yi.AspNetCore.SqlSugarCore.Repositories;
-using Yi.AspNetCore.SqlSugarCore.Uow;
+using Yi.Framework.Auditing;
+using Yi.Framework.Loggings;
+using Yi.Framework.Permissions;
+using Yi.Framework.SqlSugarCore;
+using Yi.Framework.SqlSugarCore.Profilers;
+using Yi.Framework.SqlSugarCore.Repositories;
+using Yi.Framework.SqlSugarCore.Uow;
 using Yitter.IdGenerator;
 
-namespace Yi.AspNetCore;
+namespace Yi.Framework;
 
 [DependsOn(typeof(YiAspNetCoreModule))]
 public class YiFrameworkModule : AbpModule

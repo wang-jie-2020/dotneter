@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace Yi.AspNetCore.Auditing;
+namespace Yi.Framework.Auditing;
 
 [Serializable]
 public class AuditLogInfo

@@ -6,7 +6,7 @@ using System.Net.Sockets;
 using System.Runtime.InteropServices;
 using Newtonsoft.Json;
 
-namespace Yi.AspNetCore.Utils;
+namespace Yi.Framework.Utils;
 
 public class OsHelper
 {

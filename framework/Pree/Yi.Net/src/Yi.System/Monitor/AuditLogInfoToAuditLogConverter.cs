@@ -1,5 +1,5 @@
-﻿using Yi.AspNetCore.Auditing;
-using Yi.AspNetCore.Utils;
+﻿using Yi.Framework.Auditing;
+using Yi.Framework.Utils;
 using Yi.System.Monitor.Entities;
 
 namespace Yi.System.Monitor;

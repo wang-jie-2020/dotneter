@@ -1,5 +1,5 @@
-﻿using Yi.Framework.Abstractions;
-using Yi.Framework.Core.Abstractions;
+﻿using Yi.Framework.Core.Abstractions;
+using Yi.Framework.SqlSugarCore.Repositories;
 using Yi.System.Domains.Entities;
 
 namespace Yi.System.Domains;

@@ -1,6 +1,6 @@
 ﻿using Yi.AspNetCore;
-using Yi.AspNetCore.Core.Loggings;
-using Yi.Framework.Abstractions;
+using Yi.Framework.Loggings;
+using Yi.Framework.SqlSugarCore;
 
 namespace Yi.System.Monitor.Entities;
 

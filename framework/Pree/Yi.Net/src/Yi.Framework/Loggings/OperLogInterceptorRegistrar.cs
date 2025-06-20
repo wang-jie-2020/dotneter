@@ -2,7 +2,7 @@
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.DynamicProxy;
 
-namespace Yi.AspNetCore.Core.Loggings;
+namespace Yi.Framework.Loggings;
 
 public static class OperLogInterceptorRegistrar
 {

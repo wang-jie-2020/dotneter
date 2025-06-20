@@ -1,4 +1,4 @@
-﻿namespace Yi.AspNetCore.Core.Loggings;
+﻿namespace Yi.Framework.Loggings;
 
 public class OperLogInfo
 {

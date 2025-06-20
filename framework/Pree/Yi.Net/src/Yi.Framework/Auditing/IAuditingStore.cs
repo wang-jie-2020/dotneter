@@ -1,4 +1,4 @@
-﻿namespace Yi.AspNetCore.Auditing;
+﻿namespace Yi.Framework.Auditing;
 
 public interface IAuditingStore
 {

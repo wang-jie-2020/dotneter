@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using SqlSugar;
 
-namespace Yi.AspNetCore.SqlSugarCore;
+namespace Yi.Framework.SqlSugarCore;
 
 public interface ISqlSugarDbConnectionCreator
 {

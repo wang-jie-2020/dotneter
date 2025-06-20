@@ -1,4 +1,4 @@
-﻿namespace Yi.AspNetCore.SqlSugarCore.Profilers;
+﻿namespace Yi.Framework.SqlSugarCore.Profilers;
 
 public class LogExecutingEvent
 {

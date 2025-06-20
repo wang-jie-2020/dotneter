@@ -1,6 +1,6 @@
 ﻿using Yi.AspNetCore.Data.Filtering;
 
-namespace Yi.AspNetCore.Core.Permissions;
+namespace Yi.Framework.Permissions;
 
 public static class DataPermissionExtensions
 {

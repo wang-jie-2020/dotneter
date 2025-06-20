@@ -6,18 +6,18 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using SqlSugar;
 using Volo.Abp.DependencyInjection;
+using Yi.AspNetCore;
 using Yi.AspNetCore.Data;
 using Yi.AspNetCore.Data.Filtering;
 using Yi.AspNetCore.MultiTenancy;
 using Yi.AspNetCore.Security;
-using Yi.AspNetCore.SqlSugarCore.Profilers;
-using Yi.AspNetCore.Utils;
-using Yi.Framework.Abstractions;
 using Yi.Framework.Core;
+using Yi.Framework.SqlSugarCore.Profilers;
+using Yi.Framework.Utils;
 using Yitter.IdGenerator;
 using Check = Volo.Abp.Check;
 
-namespace Yi.AspNetCore.SqlSugarCore;
+namespace Yi.Framework.SqlSugarCore;
 
 public class SqlSugarDbContext : ISqlSugarDbContext
 {

@@ -1,5 +1,5 @@
-﻿using Yi.AspNetCore.Utils;
-using Yi.Framework.Abstractions;
+﻿using Yi.Framework.SqlSugarCore;
+using Yi.Framework.Utils;
 using Yi.System.Domains.Entities.ValueObjects;
 
 namespace Yi.System.Domains.Entities;

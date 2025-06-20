@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace Yi.AspNetCore.Utils;
+namespace Yi.Framework.Utils;
 
 public static class ExpressionHelper
 {

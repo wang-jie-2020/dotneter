@@ -1,6 +1,6 @@
 using System.Data.Common;
 
-namespace Yi.AspNetCore.SqlSugarCore;
+namespace Yi.Framework.SqlSugarCore;
 
 public class SqlSugarDbContextCreationContext
 {

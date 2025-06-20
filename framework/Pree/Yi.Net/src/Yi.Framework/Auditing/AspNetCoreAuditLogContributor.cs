@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 using Volo.Abp.DependencyInjection;
 
-namespace Yi.AspNetCore.Auditing;
+namespace Yi.Framework.Auditing;
 
 public class AspNetCoreAuditLogContributor : AuditLogContributor, ITransientDependency
 {

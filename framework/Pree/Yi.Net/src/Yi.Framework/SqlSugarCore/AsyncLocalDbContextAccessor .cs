@@ -1,4 +1,4 @@
-﻿namespace Yi.AspNetCore.SqlSugarCore;
+﻿namespace Yi.Framework.SqlSugarCore;
 
 public class AsyncLocalDbContextAccessor
 {

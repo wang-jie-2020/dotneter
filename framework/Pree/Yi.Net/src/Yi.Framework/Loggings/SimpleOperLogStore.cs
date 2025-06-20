@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 
-namespace Yi.AspNetCore.Core.Loggings;
+namespace Yi.Framework.Loggings;
 
 public class SimpleOperLogStore : IOperLogStore
 {

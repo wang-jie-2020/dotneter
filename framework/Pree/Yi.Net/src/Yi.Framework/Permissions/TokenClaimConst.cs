@@ -1,4 +1,4 @@
-﻿namespace Yi.AspNetCore.Core.Permissions;
+﻿namespace Yi.Framework.Permissions;
 
 public class TokenClaimConst
 {

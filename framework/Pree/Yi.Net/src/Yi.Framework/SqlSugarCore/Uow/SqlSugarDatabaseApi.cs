@@ -1,6 +1,6 @@
 ﻿using Volo.Abp.Uow;
 
-namespace Yi.AspNetCore.SqlSugarCore.Uow;
+namespace Yi.Framework.SqlSugarCore.Uow;
 
 public class SqlSugarDatabaseApi : IDatabaseApi
 {

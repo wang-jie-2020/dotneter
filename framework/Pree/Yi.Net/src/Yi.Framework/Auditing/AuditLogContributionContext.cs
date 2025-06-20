@@ -1,6 +1,6 @@
 ﻿using Volo.Abp.DependencyInjection;
 
-namespace Yi.AspNetCore.Auditing;
+namespace Yi.Framework.Auditing;
 
 public class AuditLogContributionContext : IServiceProviderAccessor
 {

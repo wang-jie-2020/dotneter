@@ -1,4 +1,4 @@
-using Yi.AspNetCore.Core.Loggings;
+using Yi.Framework.Loggings;
 
 namespace Yi.System.Monitor.Dtos;
 

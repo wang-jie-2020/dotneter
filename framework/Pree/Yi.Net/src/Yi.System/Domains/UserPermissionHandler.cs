@@ -1,5 +1,5 @@
-﻿using Yi.AspNetCore.Core.Permissions;
-using Yi.AspNetCore.Security;
+﻿using Yi.AspNetCore.Security;
+using Yi.Framework.Permissions;
 
 namespace Yi.System.Domains;
 

@@ -1,9 +1,8 @@
 ﻿using System.Linq.Expressions;
 using SqlSugar;
-using Yi.Framework.Abstractions;
 using Yi.Framework.Core;
 
-namespace Yi.AspNetCore.SqlSugarCore.Repositories;
+namespace Yi.Framework.SqlSugarCore.Repositories;
 
 public class SqlSugarRepository<TEntity> : ISqlSugarRepository<TEntity>
     where TEntity : class, new()

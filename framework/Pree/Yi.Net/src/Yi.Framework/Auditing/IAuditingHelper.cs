@@ -1,6 +1,6 @@
 using System.Reflection;
 
-namespace Yi.AspNetCore.Auditing;
+namespace Yi.Framework.Auditing;
 
 //TODO: Move ShouldSaveAudit & IsEntityHistoryEnabled and rename to IAuditingFactory
 public interface IAuditingHelper

@@ -1,7 +1,7 @@
 ﻿using SqlSugar;
 using Yi.Framework.Core;
 
-namespace Yi.Framework.Abstractions;
+namespace Yi.Framework.SqlSugarCore;
 
 public abstract class SimpleEntity<T> : IEntity<T>
 {

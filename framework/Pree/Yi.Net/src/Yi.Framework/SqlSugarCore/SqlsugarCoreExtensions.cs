@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
-namespace Yi.AspNetCore.SqlSugarCore;
+namespace Yi.Framework.SqlSugarCore;
 
 public static class SqlsugarCoreExtensions
 {
