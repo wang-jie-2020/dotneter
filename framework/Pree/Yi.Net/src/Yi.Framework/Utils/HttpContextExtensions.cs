@@ -75,13 +75,8 @@ public static class HttpContextExtensions
     /// </summary>
     /// <param name="context"></param>
     /// <returns></returns>
-    public static string GetUserAgent(this HttpContext context)
+    public static string? GetUserAgent(this HttpContext context)
     {
         return context.Request.Headers["User-Agent"];
-    }
-
-    public static string[]? GetUserPermissions(this HttpContext context, string permissionsName)
-    {
-        return context.User.Claims.Where(x => x.Type == permissionsName).Select(x => x.Value).ToArray();
     }
 }

@@ -48,7 +48,7 @@ public class YiFrameworkModule : AbpModule
             options.Contributors.Add(new AspNetCoreAuditLogContributor());
         });
 
-        context.Services.AddTransient<IPermissionHandler, DefaultPermissionHandler>();
+        context.Services.AddTransient<IPermissionHandler, NullPermissionHandler>();
         context.Services.AddTransient<PermissionFilter>();
         context.Services.AddSingleton<IOperLogStore, SimpleOperLogStore>();
 
