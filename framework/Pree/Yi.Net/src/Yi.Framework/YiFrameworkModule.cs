@@ -49,7 +49,6 @@ public class YiFrameworkModule : AbpModule
         });
 
         context.Services.AddTransient<IPermissionHandler, NullPermissionHandler>();
-        context.Services.AddTransient<PermissionFilter>();
         context.Services.AddSingleton<IOperLogStore, SimpleOperLogStore>();
 
 

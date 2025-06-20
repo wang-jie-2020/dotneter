@@ -1,11 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Volo.Abp.DependencyInjection;
+using Yi.AspNetCore.Authorization;
+using Yi.AspNetCore.Extensions.DependencyInjection;
 using Yi.AspNetCore.Mvc;
 
 namespace Yi.Framework.Permissions;
 
-internal class PermissionFilter : ActionFilterAttribute
+internal class PermissionFilter : IAsyncActionFilter, ITransientDependency
 {
     private readonly IPermissionHandler _permissionHandler;
 
@@ -13,45 +16,33 @@ internal class PermissionFilter : ActionFilterAttribute
     {
         _permissionHandler = permissionHandler;
     }
-
-    public override void OnActionExecuting(ActionExecutingContext context)
+    
+    public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
     {
-        if (context.ActionDescriptor is not ControllerActionDescriptor controllerActionDescriptor)
+        if (!context.ActionDescriptor.IsControllerAction())
         {
+            await next();
             return;
         }
         
-        List<PermissionAttribute>? attributes = controllerActionDescriptor.MethodInfo.GetCustomAttributes(true)
-            .Where(a => a.GetType() == typeof(PermissionAttribute))
-            .Select(x => x as PermissionAttribute)
-            .ToList()!;
+        var methodInfo = context.ActionDescriptor.GetMethodInfo();
         
-        //空对象直接返回
-        if (attributes.Count == 0) return;
+        var attributes = methodInfo.GetCustomAttributes(true)
+            .OfType<PermissionAttribute>()
+            .ToArray();
 
-        var result = false;
-        foreach (var attribute in attributes)
+        if (attributes.Length > 0)
         {
-            result = _permissionHandler.IsPass(attribute.Code);
-            //存在有一个不满，直接跳出
-            if (!result) break;
-        }
-        
-        if (!result)
-        {
-            var error = new AjaxResult()
+            foreach (var attribute in attributes)
             {
-                Code = "403",
-                Message = "您无权限访问,请联系管理员申请",
-                Details = $"您无权限访问该接口-{context.HttpContext.Request.Path.Value}"
-            };
+                if (!_permissionHandler.IsPass(attribute.Code))
+                {
+                    throw new UnauthorizedException()
+                        .WithData("Path", context.HttpContext.Request.Path);
+                }
+            }
+        }
 
-            var content = new ObjectResult(error)
-            {
-                StatusCode = 403
-            };
-            
-            context.Result = content;
-        }
+        await next();
     }
 }

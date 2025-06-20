@@ -6,8 +6,6 @@ public class TokenClaimConst
 
     public const string Roles = "roles";
 
-    public const string Permission = "permission";
-
     public const string RoleInfo = "role_info";
 
     public const string Refresh = "fresh";
