@@ -4,15 +4,15 @@ public class AsyncLocalCurrentTenantAccessor : ICurrentTenantAccessor
 {
     public static AsyncLocalCurrentTenantAccessor Instance { get; } = new();
 
-    public BasicTenantInfo? Current {
+    public TenantInfo? Current {
         get => _currentScope.Value;
         set => _currentScope.Value = value;
     }
 
-    private readonly AsyncLocal<BasicTenantInfo?> _currentScope;
+    private readonly AsyncLocal<TenantInfo?> _currentScope;
 
     private AsyncLocalCurrentTenantAccessor()
     {
-        _currentScope = new AsyncLocal<BasicTenantInfo?>();
+        _currentScope = new AsyncLocal<TenantInfo?>();
     }
 }

@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Builder;
+using Yi.AspNetCore.MultiTenancy;
 
-namespace Yi.AspNetCore.MultiTenancy;
+namespace Yi.AspNetCore.Extensions.Builder;
 
-public static class AspNetCoreMultiTenancyApplicationBuilderExtensions
+public static class MultiTenancyApplicationBuilderExtensions
 {
     public static IApplicationBuilder UseMultiTenancy(this IApplicationBuilder app)
     {

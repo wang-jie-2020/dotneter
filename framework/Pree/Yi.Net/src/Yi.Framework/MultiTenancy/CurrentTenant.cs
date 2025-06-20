@@ -23,9 +23,9 @@ public class CurrentTenant : ICurrentTenant, ITransientDependency
     private IDisposable SetCurrent(Guid? tenantId, string? name = null)
     {
         var parentScope = _currentTenantAccessor.Current;
-        _currentTenantAccessor.Current = new BasicTenantInfo(tenantId, name);
+        _currentTenantAccessor.Current = new TenantInfo(tenantId, name);
 
-        return new DisposeAction<ValueTuple<ICurrentTenantAccessor, BasicTenantInfo?>>(static (state) =>
+        return new DisposeAction<ValueTuple<ICurrentTenantAccessor, TenantInfo?>>(static (state) =>
         {
             var (currentTenantAccessor, parentScope) = state;
             currentTenantAccessor.Current = parentScope;
