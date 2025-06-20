@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.Localization;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.ExceptionHandling;
-using Yi.AspNetCore.Mvc.Core;
 
 namespace Yi.AspNetCore.Mvc.ExceptionHandling;
 

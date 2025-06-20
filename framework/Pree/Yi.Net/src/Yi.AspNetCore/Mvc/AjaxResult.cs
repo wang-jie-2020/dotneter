@@ -1,4 +1,4 @@
-﻿namespace Yi.AspNetCore.Mvc.Core;
+﻿namespace Yi.AspNetCore.Mvc;
 
 public class AjaxResult
 {

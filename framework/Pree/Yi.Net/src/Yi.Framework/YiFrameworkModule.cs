@@ -15,6 +15,7 @@ using Yi.AspNetCore.Core.Loggings;
 using Yi.AspNetCore.Core.Permissions;
 using Yi.AspNetCore.Data.Seeding;
 using Yi.AspNetCore.MultiTenancy;
+using Yi.AspNetCore.Mvc;
 using Yi.AspNetCore.Mvc.ExceptionHandling;
 using Yi.AspNetCore.SqlSugarCore;
 using Yi.AspNetCore.SqlSugarCore.Profilers;
@@ -67,7 +68,7 @@ public class YiFrameworkModule : AbpModule
             options.Filters.AddService<OperLogFilter>();
 
 
-            options.Filters.AddService<UowActionFilter>();
+
             options.Filters.AddService<AuditActionFilter>();
         });
 

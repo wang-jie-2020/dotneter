@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.Filters;
-using Yi.AspNetCore.Mvc.Core;
+using Yi.AspNetCore.Mvc;
 
 namespace Yi.AspNetCore.Core.Permissions;
 

@@ -6,7 +6,6 @@ using Microsoft.Extensions.Logging;
 using Volo.Abp.DependencyInjection;
 using Yi.AspNetCore.Authorization;
 using Yi.AspNetCore.Extensions.DependencyInjection;
-using Yi.AspNetCore.Mvc.Core;
 
 namespace Yi.AspNetCore.Mvc.ExceptionHandling;
 

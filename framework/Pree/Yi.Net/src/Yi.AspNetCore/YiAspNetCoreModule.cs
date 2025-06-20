@@ -16,6 +16,7 @@ using Yi.AspNetCore.Mvc.ExceptionHandling;
 using Yi.AspNetCore.Threading;
 using Microsoft.Extensions.Localization;
 using My.Extensions.Localization.Json;
+using Yi.AspNetCore.Mvc;
 
 namespace Yi.AspNetCore;
 
@@ -83,6 +84,7 @@ public class YiAspNetCoreModule : AbpModule
         
         context.Services.Configure<MvcOptions>(options =>
         {
+            options.Filters.AddService<UowActionFilter>();
             options.Filters.AddService<ExceptionFilter>();
         });
         
