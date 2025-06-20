@@ -30,8 +30,6 @@ public class YiFrameworkModule : AbpModule
     public override void PreConfigureServices(ServiceConfigurationContext context)
     {
         context.Services.OnRegistered(OperLogInterceptorRegistrar.RegisterIfNeeded);
-
-        
     }
     
     public override void ConfigureServices(ServiceConfigurationContext context)
@@ -48,8 +46,8 @@ public class YiFrameworkModule : AbpModule
         context.Services.AddTransient(typeof(ISqlSugarDbConnectionCreator), typeof(SqlSugarDbConnectionCreator));
 
         //AspNetCore
-        context.Services.AddObjectAccessor<IApplicationBuilder>();
-        context.Services.AddHttpContextAccessor();
+
+
         Configure<AuditingOptions>(options =>
         {
             options.Contributors.Add(new AspNetCoreAuditLogContributor());
@@ -59,10 +57,6 @@ public class YiFrameworkModule : AbpModule
         context.Services.AddTransient<PermissionFilter>();
         context.Services.AddSingleton<IOperLogStore, SimpleOperLogStore>();
 
-        context.Services.AddMvc()
-            .AddDataAnnotationsLocalization().AddViewLocalization()
-            .AddControllersAsServices().AddViewComponentsAsServices();
-        context.Services.TryAddSingleton<IActionContextAccessor, ActionContextAccessor>();
 
         context.Services.Configure<MvcOptions>(options =>
         {
@@ -72,13 +66,6 @@ public class YiFrameworkModule : AbpModule
             // 操作日志过滤器
             options.Filters.AddService<OperLogFilter>();
 
-            // 错误过滤器
-            //var abpExceptionFilter = options.Filters.FirstOrDefault(metadata => (metadata as ServiceFilterAttribute)?.ServiceType == typeof(AbpExceptionFilter));
-            //if (abpExceptionFilter != null)
-            //{
-            //    options.Filters.Remove(abpExceptionFilter);
-            //}
-            options.Filters.AddService<ExceptionFilter>();
 
             options.Filters.AddService<UowActionFilter>();
             options.Filters.AddService<AuditActionFilter>();
@@ -95,7 +82,7 @@ public class YiFrameworkModule : AbpModule
         context.Services.AddSingleton<ITracingDiagnosticProcessor, SqlSugarTracingDiagnosticProcessor>();
 
 
-        context.Services.AddSingleton<ICurrentTenantAccessor>(AsyncLocalCurrentTenantAccessor.Instance);
+
 
 
         context.Services.AddSingleton(typeof(IAmbientScopeProvider<>), typeof(AmbientDataContextAmbientScopeProvider<>));

@@ -1,4 +1,7 @@
 ﻿using FreeRedis;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -7,6 +10,8 @@ using Volo.Abp.Uow;
 using Yi.AspNetCore.Data;
 using Yi.AspNetCore.Data.Filtering;
 using Yi.AspNetCore.Data.Seeding;
+using Yi.AspNetCore.MultiTenancy;
+using Yi.AspNetCore.Mvc.ExceptionHandling;
 
 namespace Yi.AspNetCore;
 
@@ -45,10 +50,6 @@ public class YiAspNetCoreModule : AbpModule
 
         Configure<DbConnectionOptions>(configuration);
 
-        context.Services.AddSingleton(typeof(IDataFilter<>), typeof(DataFilter<>));
-        
-        context.Services.AddJsonLocalization(options => options.ResourcesPath = "Resources");
-        
         // MemoryCache & Redis
         context.Services.AddMemoryCache();
         context.Services.AddDistributedMemoryCache();
@@ -62,5 +63,24 @@ public class YiAspNetCoreModule : AbpModule
             context.Services.AddSingleton<IRedisClient>(redisClient);
             context.Services.Replace(ServiceDescriptor.Singleton<IDistributedCache>(new DistributedCache(redisClient)));
         }
+
+        // AspNetCore & Mvc
+        context.Services.AddHttpContextAccessor();
+        context.Services.AddObjectAccessor<IApplicationBuilder>();
+        context.Services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
+        context.Services.AddJsonLocalization(options => options.ResourcesPath = "Resources");
+        
+        context.Services.AddMvc()
+            .AddDataAnnotationsLocalization().AddViewLocalization()
+            .AddControllersAsServices().AddViewComponentsAsServices();
+        
+        context.Services.Configure<MvcOptions>(options =>
+        {
+            options.Filters.AddService<ExceptionFilter>();
+        });
+        
+        // Other
+        context.Services.AddSingleton(typeof(IDataFilter<>), typeof(DataFilter<>));
+        context.Services.AddSingleton<ICurrentTenantAccessor>(AsyncLocalCurrentTenantAccessor.Instance);
     }
 }
