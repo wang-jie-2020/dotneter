@@ -1,4 +1,5 @@
 using Yi.AspNetCore.Core;
+using Yi.Framework.Abstractions;
 using Yi.System.Domains.Entities;
 using Yi.System.Services.Dtos;
 

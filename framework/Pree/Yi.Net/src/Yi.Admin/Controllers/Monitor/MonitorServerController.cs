@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics;
 using System.Runtime.InteropServices;
 using Microsoft.AspNetCore.Mvc;
-using Yi.AspNetCore.Core;
 using Yi.AspNetCore.Utils;
+using Yi.Framework.Abstractions;
 
 namespace Yi.Web.Controllers.Monitor;
 

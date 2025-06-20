@@ -1,6 +1,6 @@
 ﻿using Yi.AspNetCore;
 using Yi.AspNetCore.Auditing;
-using Yi.AspNetCore.Core.Entities;
+using Yi.Framework.Abstractions;
 using Yi.System.Monitor.Consts;
 
 namespace Yi.System.Monitor.Entities;

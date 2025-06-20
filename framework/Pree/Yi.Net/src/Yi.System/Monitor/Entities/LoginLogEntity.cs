@@ -1,8 +1,8 @@
 ﻿using IPTools.Core;
 using Microsoft.AspNetCore.Http;
 using UAParser;
-using Yi.AspNetCore.Core.Entities;
 using Yi.AspNetCore.Mvc;
+using Yi.Framework.Abstractions;
 
 namespace Yi.System.Monitor.Entities;
 

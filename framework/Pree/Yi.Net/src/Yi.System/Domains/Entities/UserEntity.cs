@@ -1,5 +1,5 @@
-﻿using Yi.AspNetCore.Core.Entities;
-using Yi.AspNetCore.Utils;
+﻿using Yi.AspNetCore.Utils;
+using Yi.Framework.Abstractions;
 using Yi.System.Domains.Entities.ValueObjects;
 
 namespace Yi.System.Domains.Entities;

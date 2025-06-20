@@ -1,4 +1,4 @@
-﻿using Yi.AspNetCore.Core;
+﻿using Yi.Framework.Abstractions;
 using Yi.System.Domains.Entities;
 
 namespace Yi.System.Domains;

@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Yi.AspNetCore.Core;
 using Yi.AspNetCore.Core.Loggings;
 using Yi.AspNetCore.Core.Permissions;
+using Yi.Framework.Abstractions;
 using Yi.System.Services;
 using Yi.System.Services.Dtos;
 

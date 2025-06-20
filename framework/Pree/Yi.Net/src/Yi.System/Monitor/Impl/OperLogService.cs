@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Yi.AspNetCore.Core;
+using Yi.Framework.Abstractions;
 using Yi.System.Monitor.Dtos;
 using Yi.System.Monitor.Entities;
 
