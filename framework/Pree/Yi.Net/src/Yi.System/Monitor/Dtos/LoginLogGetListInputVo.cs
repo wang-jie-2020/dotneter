@@ -1,5 +1,4 @@
-﻿using Yi.AspNetCore.Core;
-using Yi.Framework.Core;
+﻿using Yi.Framework.Core;
 
 namespace Yi.System.Monitor.Dtos;
 

@@ -7,7 +7,6 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Converters;
 using Yi.AspNetCore;
-using Yi.AspNetCore.Extensions;
 using Yi.AspNetCore.Extensions.Builder;
 using Yi.AspNetCore.Extensions.DependencyInjection;
 using Yi.Framework.Auditing;

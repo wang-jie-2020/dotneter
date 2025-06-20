@@ -1,4 +1,3 @@
-using Yi.AspNetCore.Core;
 using Yi.Framework.Core;
 using Yi.System.Domains.Entities;
 

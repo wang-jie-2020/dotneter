@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using MiniExcelLibs;
 using Yi.AspNetCore;
-using Yi.AspNetCore.Core;
 using Yi.Framework.Core;
 using Yi.Framework.Core.Abstractions;
 using Yi.Framework.SqlSugarCore.Repositories;

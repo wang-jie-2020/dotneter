@@ -4,7 +4,6 @@ using Microsoft.Extensions.DependencyInjection;
 using MiniExcelLibs;
 using Volo.Abp.Uow;
 using Yi.AspNetCore;
-using Yi.AspNetCore.Core;
 using Yi.AspNetCore.Data.Seeding;
 using Yi.Framework.Core;
 using Yi.Framework.Core.Abstractions;

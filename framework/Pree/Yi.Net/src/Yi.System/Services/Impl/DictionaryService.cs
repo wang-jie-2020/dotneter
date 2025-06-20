@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using Yi.AspNetCore.Core;
 using Yi.Framework.Core;
 using Yi.Framework.Core.Abstractions;
 using Yi.Framework.SqlSugarCore.Repositories;

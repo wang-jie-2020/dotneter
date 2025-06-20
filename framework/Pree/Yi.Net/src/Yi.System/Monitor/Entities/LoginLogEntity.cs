@@ -1,7 +1,6 @@
 ﻿using IPTools.Core;
 using Microsoft.AspNetCore.Http;
 using UAParser;
-using Yi.AspNetCore.Mvc;
 using Yi.Framework.SqlSugarCore;
 using Yi.Framework.Utils;
 
