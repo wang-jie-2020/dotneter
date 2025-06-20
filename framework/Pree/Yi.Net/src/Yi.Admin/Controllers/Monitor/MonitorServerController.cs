@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 using Microsoft.AspNetCore.Mvc;
 using Yi.AspNetCore.Core;
-using Yi.AspNetCore.Helpers;
+using Yi.AspNetCore.Utils;
 
 namespace Yi.Web.Controllers.Monitor;
 

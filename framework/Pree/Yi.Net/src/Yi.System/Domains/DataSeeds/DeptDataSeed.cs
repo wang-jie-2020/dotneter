@@ -1,6 +1,6 @@
 ﻿using Volo.Abp.DependencyInjection;
 using Yi.AspNetCore.Data.Seeding;
-using Yi.AspNetCore.Helpers;
+using Yi.AspNetCore.Utils;
 using Yi.System.Domains.Entities;
 
 namespace Yi.System.Domains.DataSeeds;

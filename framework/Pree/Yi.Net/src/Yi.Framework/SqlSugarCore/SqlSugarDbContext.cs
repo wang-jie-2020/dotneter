@@ -9,10 +9,10 @@ using Volo.Abp.DependencyInjection;
 using Yi.AspNetCore.Core.Entities;
 using Yi.AspNetCore.Data;
 using Yi.AspNetCore.Data.Filtering;
-using Yi.AspNetCore.Helpers;
 using Yi.AspNetCore.MultiTenancy;
 using Yi.AspNetCore.Security;
 using Yi.AspNetCore.SqlSugarCore.Profilers;
+using Yi.AspNetCore.Utils;
 using Yitter.IdGenerator;
 using Check = Volo.Abp.Check;
 

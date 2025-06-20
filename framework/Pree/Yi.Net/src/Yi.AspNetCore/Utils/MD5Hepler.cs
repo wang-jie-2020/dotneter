@@ -1,7 +1,7 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 
-namespace Yi.AspNetCore.Helpers;
+namespace Yi.AspNetCore.Utils;
 
 public class MD5Helper
 {

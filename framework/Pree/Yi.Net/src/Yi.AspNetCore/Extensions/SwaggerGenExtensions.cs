@@ -12,7 +12,7 @@ namespace Yi.AspNetCore.Extensions;
 
 public static class SwaggerGenExtensions
 {
-    public static IServiceCollection AddYiSwaggerGen<Program>(this IServiceCollection services, Action<SwaggerGenOptions>? action = null)
+    public static IServiceCollection AddYiSwaggerGen<TModule>(this IServiceCollection services, Action<SwaggerGenOptions>? action = null)
     {
         services.AddSwaggerGen(
             options =>
@@ -35,7 +35,7 @@ public static class SwaggerGenExtensions
                 });
 
                 options.CustomSchemaIds(type => type.FullName);
-                var basePath = Path.GetDirectoryName(typeof(Program).Assembly.Location);
+                var basePath = Path.GetDirectoryName(typeof(TModule).Assembly.Location);
                 if (basePath is not null)
                     foreach (var item in Directory.GetFiles(basePath, "*.xml"))
                         options.IncludeXmlComments(item, true);

@@ -1,6 +1,6 @@
 using System.Collections;
 
-namespace Yi.AspNetCore.Helpers;
+namespace Yi.AspNetCore.Utils;
 
 public static class MimeHelper
 {
