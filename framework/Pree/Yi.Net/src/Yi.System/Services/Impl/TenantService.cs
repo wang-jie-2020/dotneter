@@ -5,7 +5,6 @@ using MiniExcelLibs;
 using Volo.Abp.Uow;
 using Yi.AspNetCore;
 using Yi.AspNetCore.Core;
-using Yi.AspNetCore.Data;
 using Yi.AspNetCore.Data.Seeding;
 using Yi.System.Domains.Consts;
 using Yi.System.Domains.Entities;

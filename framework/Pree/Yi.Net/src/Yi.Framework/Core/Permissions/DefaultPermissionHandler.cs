@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Yi.AspNetCore.Extensions;
 using Yi.AspNetCore.Mvc;
 using Yi.AspNetCore.Security;
 

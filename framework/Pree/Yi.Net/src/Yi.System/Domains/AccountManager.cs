@@ -9,7 +9,6 @@ using Yi.AspNetCore;
 using Yi.AspNetCore.Core;
 using Yi.AspNetCore.Core.Loggings;
 using Yi.AspNetCore.Core.Permissions;
-using Yi.AspNetCore.Data;
 using Yi.AspNetCore.Security;
 using Yi.AspNetCore.Utils;
 using Yi.System.Domains.Consts;

@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Http;
 using UAParser;
 using Yi.AspNetCore.Core.Entities;
-using Yi.AspNetCore.Extensions;
 using Yi.AspNetCore.Mvc;
 
 namespace Yi.System.Monitor.Entities;

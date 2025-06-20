@@ -2,9 +2,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Options;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Uow;
-using Yi.AspNetCore.Extensions;
 using Yi.AspNetCore.Extensions.DependencyInjection;
-using Yi.AspNetCore.Mvc;
 
 namespace Yi.AspNetCore.Core.Filters;
 

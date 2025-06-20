@@ -1,8 +1,6 @@
 ﻿using Yi.AspNetCore;
 using Yi.AspNetCore.Core.Entities;
 using Yi.AspNetCore.Core.Loggings;
-using Yi.AspNetCore.Data;
-using Yi.AspNetCore.MultiTenancy;
 
 namespace Yi.System.Monitor.Entities;
 

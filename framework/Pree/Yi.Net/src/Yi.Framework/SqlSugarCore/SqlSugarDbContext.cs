@@ -6,7 +6,6 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using SqlSugar;
 using Volo.Abp.DependencyInjection;
-using Yi.AspNetCore.Core.Entities;
 using Yi.AspNetCore.Data;
 using Yi.AspNetCore.Data.Filtering;
 using Yi.AspNetCore.MultiTenancy;

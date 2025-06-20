@@ -1,5 +1,4 @@
-﻿using Yi.AspNetCore.Core;
-using Yi.AspNetCore.Data;
+﻿using Yi.AspNetCore.Data;
 
 namespace Yi.System.Domains.Entities.ValueObjects;
 

@@ -1,6 +1,5 @@
 ﻿using System.Linq.Expressions;
 using SqlSugar;
-using Yi.AspNetCore.Core.Entities;
 using Yi.AspNetCore.Data;
 
 namespace Yi.AspNetCore.SqlSugarCore.Repositories;

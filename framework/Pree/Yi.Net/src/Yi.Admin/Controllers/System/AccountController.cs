@@ -8,7 +8,6 @@ using Volo.Abp.Uow;
 using Yi.AspNetCore;
 using Yi.AspNetCore.Core;
 using Yi.AspNetCore.Core.Permissions;
-using Yi.AspNetCore.Data;
 using Yi.AspNetCore.Extensions.Caching;
 using Yi.AspNetCore.Security;
 using Yi.AspNetCore.Utils;
