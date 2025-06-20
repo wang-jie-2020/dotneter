@@ -6,12 +6,14 @@ using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Volo.Abp.Autofac;
+using Volo.Abp.Threading;
 using Volo.Abp.Uow;
 using Yi.AspNetCore.Data;
 using Yi.AspNetCore.Data.Filtering;
 using Yi.AspNetCore.Data.Seeding;
 using Yi.AspNetCore.MultiTenancy;
 using Yi.AspNetCore.Mvc.ExceptionHandling;
+using Yi.AspNetCore.Threading;
 
 namespace Yi.AspNetCore;
 
@@ -82,5 +84,6 @@ public class YiAspNetCoreModule : AbpModule
         // Other
         context.Services.AddSingleton(typeof(IDataFilter<>), typeof(DataFilter<>));
         context.Services.AddSingleton<ICurrentTenantAccessor>(AsyncLocalCurrentTenantAccessor.Instance);
+        context.Services.AddSingleton(typeof(IAmbientScopeProvider<>), typeof(AmbientDataContextAmbientScopeProvider<>));
     }
 }

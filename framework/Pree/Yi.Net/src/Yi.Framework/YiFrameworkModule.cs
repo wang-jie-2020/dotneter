@@ -85,7 +85,7 @@ public class YiFrameworkModule : AbpModule
 
 
 
-        context.Services.AddSingleton(typeof(IAmbientScopeProvider<>), typeof(AmbientDataContextAmbientScopeProvider<>));
+
     }
 
     public override async Task OnPreApplicationInitializationAsync(ApplicationInitializationContext context)

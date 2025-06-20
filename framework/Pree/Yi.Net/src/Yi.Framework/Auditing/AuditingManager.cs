@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.Extensions.Options;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Threading;
+using Yi.AspNetCore.Threading;
 
 namespace Yi.AspNetCore.Auditing;
 
