@@ -6,7 +6,6 @@ using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Volo.Abp.Autofac;
-using Volo.Abp.Threading;
 using Volo.Abp.Uow;
 using Yi.AspNetCore.Data;
 using Yi.AspNetCore.Data.Filtering;
