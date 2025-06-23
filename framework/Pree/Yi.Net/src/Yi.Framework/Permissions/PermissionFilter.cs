@@ -1,10 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Controllers;
-using Microsoft.AspNetCore.Mvc.Filters;
+﻿using Microsoft.AspNetCore.Mvc.Filters;
 using Volo.Abp.DependencyInjection;
 using Yi.AspNetCore.Authorization;
 using Yi.AspNetCore.Extensions.DependencyInjection;
-using Yi.AspNetCore.Mvc;
 
 namespace Yi.Framework.Permissions;
 
@@ -16,7 +13,7 @@ internal class PermissionFilter : IAsyncActionFilter, ITransientDependency
     {
         _permissionHandler = permissionHandler;
     }
-    
+
     public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
     {
         if (!context.ActionDescriptor.IsControllerAction())
@@ -24,9 +21,9 @@ internal class PermissionFilter : IAsyncActionFilter, ITransientDependency
             await next();
             return;
         }
-        
+
         var methodInfo = context.ActionDescriptor.GetMethodInfo();
-        
+
         var attributes = methodInfo.GetCustomAttributes(true)
             .OfType<PermissionAttribute>()
             .ToArray();

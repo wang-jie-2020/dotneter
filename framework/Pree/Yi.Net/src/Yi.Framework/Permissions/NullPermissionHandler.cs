@@ -1,8 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Yi.AspNetCore.Security;
-using Yi.Framework.Utils;
-
-namespace Yi.Framework.Permissions;
+﻿namespace Yi.Framework.Permissions;
 
 public class NullPermissionHandler : IPermissionHandler
 {
