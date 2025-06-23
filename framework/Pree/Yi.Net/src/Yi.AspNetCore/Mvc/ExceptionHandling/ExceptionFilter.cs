@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 using Volo.Abp.DependencyInjection;
 using Yi.AspNetCore.Authorization;
 using Yi.AspNetCore.Extensions.DependencyInjection;
@@ -66,7 +67,7 @@ public class ExceptionFilter : IAsyncExceptionFilter, ITransientDependency
         var exceptionToErrorInfoConverter = context.GetRequiredService<ExceptionToErrorInfoConverter>();
         errorInfo = exceptionToErrorInfoConverter.Convert(context.Exception);
 
-        var logger = context.GetService<ILogger<ExceptionFilter>>();
+        var logger = context.GetService<ILogger<ExceptionFilter>>(NullLogger<ExceptionFilter>.Instance);
         logger.LogException(context.Exception);
     }
 }

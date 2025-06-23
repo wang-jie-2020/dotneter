@@ -56,6 +56,7 @@ ABP的结构太过,实践难度偏高,以其中必要依赖再参考RuoYi框架�
 
 - TODO
   - token claim 的 对照,,,有点乱
+  - 要不要支持Authorization?Permission简化到方法标注就足够了.其他的没必要...以及在service等其他地方标准我觉得也是没必要的
   - 刷新Token??
  - EntityFrameworkCore的分支
  - 租户
