@@ -9,7 +9,7 @@ using Newtonsoft.Json.Converters;
 using Yi.AspNetCore;
 using Yi.AspNetCore.Extensions.Builder;
 using Yi.AspNetCore.Extensions.DependencyInjection;
-using Yi.Framework.Auditing;
+using Yi.Framework.Extensions.Builder;
 using Yi.Framework.Permissions;
 using Yi.Framework.SqlSugarCore;
 using Yi.Framework.Utils;
