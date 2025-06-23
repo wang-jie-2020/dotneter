@@ -67,3 +67,6 @@ ABP的结构太过,实践难度偏高,以其中必要依赖再参考RuoYi框架�
     - aop是不是集中在web入口比较好?
     - 实体审计的SQLSugar实现?
     - 测试UowActionFilter,默认是有的?
+
+
+    模型验证的问题!!!!
