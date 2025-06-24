@@ -18,12 +18,6 @@ public class UnauthorizedException : Exception
     {
 
     }
-    
-    public UnauthorizedException(string? message = null, string? code = null, Exception? innerException = null)
-        : base(message, innerException)
-    {
-
-    }
 
     public UnauthorizedException WithData(string name, object value)
     {

@@ -33,7 +33,7 @@ public class ExceptionToErrorInfoConverter : ITransientDependency
     {
         exception = TryToGetActualException(exception);
 
-        var errorInfo = new AjaxResult();
+        var errorInfo = AjaxResult.Error();
 
         if (exception is IUserFriendlyException)
         {

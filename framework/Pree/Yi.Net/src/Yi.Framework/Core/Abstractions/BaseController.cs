@@ -8,7 +8,7 @@ using Yi.AspNetCore.Security;
 
 namespace Yi.Framework.Core.Abstractions;
 
-public abstract class BaseController : Controller
+public abstract class BaseController : ControllerBase
 {
     public IAbpLazyServiceProvider LazyServiceProvider { get; set; } = default!;
 

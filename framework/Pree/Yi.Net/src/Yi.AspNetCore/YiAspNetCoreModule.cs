@@ -79,8 +79,10 @@ public class YiAspNetCoreModule : AbpModule
         context.Services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
 
         context.Services.AddMvc()
-            .AddDataAnnotationsLocalization().AddViewLocalization()
-            .AddControllersAsServices().AddViewComponentsAsServices();
+            .AddDataAnnotationsLocalization()
+            .AddViewLocalization()
+            .AddControllersAsServices()
+            .AddViewComponentsAsServices();
 
         context.Services.Configure<MvcOptions>(options =>
         {
@@ -105,12 +107,7 @@ public class YiAspNetCoreModule : AbpModule
                     detailBuilder.AppendLine(error.Value.JoinAsString(","));
                 }
 
-                var response = new AjaxResult
-                {
-                    Message = L["ValidationErrorMessage"],
-                    Details = detailBuilder.ToString()
-
-                };
+                var response = AjaxResult.Error(L["ValidationErrorMessage"], detailBuilder.ToString());
 
                 return new BadRequestObjectResult(response);
             };

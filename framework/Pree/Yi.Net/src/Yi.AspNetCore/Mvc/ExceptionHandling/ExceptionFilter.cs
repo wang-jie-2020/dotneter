@@ -51,7 +51,7 @@ public class ExceptionFilter : IAsyncExceptionFilter, ITransientDependency
                 ? (int)HttpStatusCode.Forbidden
                 : (int)HttpStatusCode.Unauthorized;
             
-            context.Result = new ObjectResult(new AjaxResult() { Message = L["UnauthorizedMessage"]});
+            context.Result = new ObjectResult(AjaxResult.Error(L["UnauthorizedMessage"]));
         }
         else
         {

@@ -36,17 +36,7 @@ public class DevController : BaseController
         };
     }
 
-    [HttpGet("success")]
-    public AjaxResult MapSuccess()
-    {
-        return AjaxResult.Success(EventArgs.Empty);
-    }
-
-    [HttpGet("success2")]
-    public AjaxResult<LoginEventArgs> MapSuccess2()
-    {
-        return AjaxResult<LoginEventArgs>.Success(new LoginEventArgs());
-    }
+   
 
     [HttpGet("exception")]
     public void MapException()
