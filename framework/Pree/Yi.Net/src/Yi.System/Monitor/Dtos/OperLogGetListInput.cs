@@ -1,4 +1,4 @@
-using Yi.Framework.Core;
+using Yi.Framework;
 using Yi.Framework.Loggings;
 
 namespace Yi.System.Monitor.Dtos;

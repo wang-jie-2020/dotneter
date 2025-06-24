@@ -1,4 +1,4 @@
-﻿using Yi.Framework.Core;
+﻿using Yi.Framework;
 
 namespace Yi.System.Services.Dtos;
 

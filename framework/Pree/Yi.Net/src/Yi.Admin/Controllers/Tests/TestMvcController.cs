@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using MiniExcelLibs;
 using StackExchange.Profiling;
-using Yi.Framework.Core.Abstractions;
+using Yi.Framework.Abstractions;
 using Yi.System.Services.Dtos;
 
 namespace Yi.Web.Controllers.Tests;

@@ -7,7 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using Yi.AspNetCore;
 using Yi.AspNetCore.Security;
-using Yi.Framework.Core.Abstractions;
+using Yi.Framework.Abstractions;
 using Yi.Framework.Loggings;
 using Yi.Framework.Permissions;
 using Yi.Framework.SqlSugarCore.Repositories;

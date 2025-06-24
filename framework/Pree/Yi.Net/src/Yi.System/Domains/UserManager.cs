@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Yi.AspNetCore;
 using Yi.AspNetCore.Extensions.Caching;
-using Yi.Framework.Core.Abstractions;
+using Yi.Framework.Abstractions;
 using Yi.Framework.SqlSugarCore.Repositories;
 using Yi.System.Domains.Consts;
 using Yi.System.Domains.Entities;

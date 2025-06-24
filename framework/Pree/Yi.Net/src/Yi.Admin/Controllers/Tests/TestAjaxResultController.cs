@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Yi.AspNetCore.Mvc;
-using Yi.Framework.Core.Abstractions;
+using Yi.Framework.Abstractions;
 using Yi.System.Domains;
 
 namespace Yi.Web.Controllers.Tests;

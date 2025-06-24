@@ -1,4 +1,4 @@
-﻿namespace Yi.Framework.Core;
+﻿namespace Yi.Framework;
 
 [Serializable]
 public class PagedInput

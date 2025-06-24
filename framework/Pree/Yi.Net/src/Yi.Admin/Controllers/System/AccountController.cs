@@ -8,7 +8,7 @@ using Volo.Abp.Uow;
 using Yi.AspNetCore;
 using Yi.AspNetCore.Extensions.Caching;
 using Yi.AspNetCore.Security;
-using Yi.Framework.Core.Abstractions;
+using Yi.Framework.Abstractions;
 using Yi.Framework.Permissions;
 using Yi.Framework.SqlSugarCore.Repositories;
 using Yi.Framework.Utils;

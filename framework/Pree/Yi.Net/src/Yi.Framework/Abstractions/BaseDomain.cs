@@ -2,7 +2,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 using Volo.Abp.DependencyInjection;
 
-namespace Yi.Framework.Core.Abstractions;
+namespace Yi.Framework.Abstractions;
 
 public abstract class BaseDomain : ITransientDependency
 {

@@ -1,6 +1,4 @@
-﻿using Yi.Framework.Core;
-
-namespace Yi.Framework.SqlSugarCore;
+﻿namespace Yi.Framework.SqlSugarCore;
 
 public abstract class BizEntity<T> : SimpleEntity<T>, ISoftDelete, IAuditedEntity
 {

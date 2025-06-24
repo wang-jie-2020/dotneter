@@ -1,4 +1,4 @@
-﻿using Yi.Framework.Core.Abstractions;
+﻿using Yi.Framework.Abstractions;
 using Yi.Framework.SqlSugarCore.Repositories;
 using Yi.System.Domains.Entities;
 

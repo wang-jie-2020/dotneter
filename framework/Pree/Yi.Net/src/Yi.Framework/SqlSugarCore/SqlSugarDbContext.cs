@@ -11,7 +11,6 @@ using Yi.AspNetCore.Data;
 using Yi.AspNetCore.Data.Filtering;
 using Yi.AspNetCore.MultiTenancy;
 using Yi.AspNetCore.Security;
-using Yi.Framework.Core;
 using Yi.Framework.SqlSugarCore.Profilers;
 using Yi.Framework.Utils;
 using Yitter.IdGenerator;

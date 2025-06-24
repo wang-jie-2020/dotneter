@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using Yi.Framework.Core;
-using Yi.Framework.Core.Abstractions;
+using Yi.Framework;
+using Yi.Framework.Abstractions;
 using Yi.Framework.SqlSugarCore.Repositories;
 using Yi.System.Monitor.Dtos;
 using Yi.System.Monitor.Entities;

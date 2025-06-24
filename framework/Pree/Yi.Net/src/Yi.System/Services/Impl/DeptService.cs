@@ -1,5 +1,5 @@
-using Yi.Framework.Core;
-using Yi.Framework.Core.Abstractions;
+using Yi.Framework;
+using Yi.Framework.Abstractions;
 using Yi.System.Domains.Entities;
 using Yi.System.Domains.Repositories;
 using Yi.System.Services.Dtos;

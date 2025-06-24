@@ -7,7 +7,7 @@ using Yi.AspNetCore.Data.Filtering;
 using Yi.AspNetCore.MultiTenancy;
 using Yi.AspNetCore.Security;
 
-namespace Yi.Framework.Core.Abstractions;
+namespace Yi.Framework.Abstractions;
 
 public abstract class BaseService : ITransientDependency
 {
