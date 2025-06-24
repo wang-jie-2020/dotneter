@@ -239,14 +239,13 @@ public class AdminModule : AbpModule
             var defaultCulture = new CultureInfo("zh-CN");
             defaultCulture.DateTimeFormat.SetAllDateTimePatterns(new[] { "H:mm:ss" }, 'T');
             defaultCulture.DateTimeFormat.SetAllDateTimePatterns(new[] { "H:mm" }, 't');
-
+           
             options.DefaultRequestCulture = new RequestCulture(defaultCulture);
             options.SupportedCultures = options.SupportedUICultures = new List<CultureInfo>
             {
                 new("en"),
                 new("fr"),
                 new("zh-CN"),
-                new("zh-Hans")
             };
         });
 

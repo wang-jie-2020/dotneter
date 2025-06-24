@@ -16,6 +16,7 @@ using Yi.AspNetCore.Threading;
 using Microsoft.Extensions.Localization;
 using My.Extensions.Localization.Json;
 using Yi.AspNetCore.Mvc;
+using System.Text;
 
 namespace Yi.AspNetCore;
 
@@ -76,17 +77,45 @@ public class YiAspNetCoreModule : AbpModule
         context.Services.AddHttpContextAccessor();
         context.Services.AddObjectAccessor<IApplicationBuilder>();
         context.Services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
-        
+
         context.Services.AddMvc()
             .AddDataAnnotationsLocalization().AddViewLocalization()
             .AddControllersAsServices().AddViewComponentsAsServices();
-        
+
         context.Services.Configure<MvcOptions>(options =>
         {
             options.Filters.AddService<UowActionFilter>();
             options.Filters.AddService<ExceptionFilter>();
         });
-        
+
+        context.Services.Configure<ApiBehaviorOptions>(options =>
+        {
+            options.InvalidModelStateResponseFactory = context =>
+            {
+                var L = context.HttpContext.RequestServices.GetRequiredService<IStringLocalizer>();
+
+                var errors = context.ModelState
+                    .Where(e => e.Value.Errors.Count > 0)
+                    .ToDictionary(kvp => kvp.Key, kvp => kvp.Value.Errors.Select(e => e.ErrorMessage).ToArray());
+
+                var detailBuilder = new StringBuilder();
+                detailBuilder.Append(L["ValidationNarrativeErrorMessageTitle"] + ":");
+                foreach (var error in errors)
+                {
+                    detailBuilder.AppendLine(error.Value.JoinAsString(","));
+                }
+
+                var response = new AjaxResult
+                {
+                    Message = L["ValidationErrorMessage"],
+                    Details = detailBuilder.ToString()
+
+                };
+
+                return new BadRequestObjectResult(response);
+            };
+        });
+
         // Other
         context.Services.AddSingleton(typeof(IDataFilter<>), typeof(DataFilter<>));
         context.Services.AddSingleton<ICurrentTenantAccessor>(AsyncLocalCurrentTenantAccessor.Instance);

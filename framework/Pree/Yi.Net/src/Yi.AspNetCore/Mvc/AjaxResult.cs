@@ -7,8 +7,8 @@ public class AjaxResult
     public string Message { get; set; }
     
     public string Details { get; set; }
-    
-    public DateTime Time { get; set; }
+
+    public DateTime Time { get; set; } = DateTime.Now;
     
     public object? Data { get; set; }
 
