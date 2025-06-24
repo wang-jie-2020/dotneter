@@ -102,7 +102,7 @@ public class YiAspNetCoreModule : AbpModule
                     .ToDictionary(kvp => kvp.Key, kvp => kvp.Value.Errors.Select(e => e.ErrorMessage).ToArray());
 
                 var detailBuilder = new StringBuilder();
-                detailBuilder.Append(defaultLocalizer["ValidationNarrativeErrorMessageTitle"] + ":");
+                detailBuilder.Append(defaultLocalizer["ValidationNarrativeErrorMessageTitle"]);
                 foreach (var error in errors)
                 {
                     detailBuilder.AppendLine(error.Value.JoinAsString(","));
