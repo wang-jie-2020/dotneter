@@ -1,13 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using Microsoft.Extensions.Options;
 using SkyApm;
-using SqlSugar;
 using StackExchange.Profiling.Internal;
-using System.Reflection;
 using Yi.AspNetCore;
-using Yi.AspNetCore.Data.Seeding;
 using Yi.Framework.Auditing;
 using Yi.Framework.Loggings;
 using Yi.Framework.Permissions;
