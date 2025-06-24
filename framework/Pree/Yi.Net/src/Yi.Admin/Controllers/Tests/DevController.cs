@@ -5,13 +5,11 @@ using MiniExcelLibs;
 using StackExchange.Profiling;
 using Yi.AspNetCore;
 using Yi.AspNetCore.Authorization;
-using Yi.AspNetCore.Mvc;
 using Yi.Framework.Core.Abstractions;
-using Yi.System.Domains;
 using Yi.System.Domains.Consts;
 using Yi.System.Services.Dtos;
 
-namespace Yi.Web.Controllers;
+namespace Yi.Web.Controllers.Tests;
 
 [ApiController]
 [Route("dev-api")]
