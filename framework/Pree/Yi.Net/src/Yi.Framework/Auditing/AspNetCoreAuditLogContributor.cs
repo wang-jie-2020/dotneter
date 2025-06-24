@@ -38,6 +38,16 @@ public class AspNetCoreAuditLogContributor : AuditLogContributor, ITransientDepe
         {
             context.AuditInfo.Url = BuildUrl(httpContext);
         }
+
+        if (context.AuditInfo.BrowserInfo == null)
+        {
+            context.AuditInfo.BrowserInfo = GetBrowserInfo(httpContext);
+        }
+
+        if (context.AuditInfo.ClientIpAddress == null)
+        {
+            context.AuditInfo.ClientIpAddress = GetClientIpAddress(httpContext);
+        }
     }
 
     public override void PostContribute(AuditLogContributionContext context)
@@ -67,6 +77,24 @@ public class AspNetCoreAuditLogContributor : AuditLogContributor, ITransientDepe
         }
 
         context.AuditInfo.HttpStatusCode = httpContext.Response.StatusCode;
+    }
+
+    protected virtual string? GetBrowserInfo(HttpContext httpContext)
+    {
+        return httpContext?.Request?.Headers?["User-Agent"];
+    }
+
+    protected virtual string? GetClientIpAddress(HttpContext httpContext)
+    {
+        try
+        {
+            return httpContext?.Connection?.RemoteIpAddress?.ToString();
+        }
+        catch (Exception ex)
+        {
+            Logger.LogException(ex, LogLevel.Warning);
+            return null;
+        }
     }
 
     protected virtual string BuildUrl(HttpContext httpContext)
