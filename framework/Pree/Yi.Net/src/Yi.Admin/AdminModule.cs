@@ -41,14 +41,6 @@ public class AdminModule : AbpModule
         //     options.SendExceptionsDetailsToClients = host.IsDevelopment() || configuration["App:SendExceptions"] == "true";
         // });
 
-        //设置api格式
-        context.Services.AddControllers()
-            .AddNewtonsoftJson(options =>
-            {
-                options.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";
-                options.SerializerSettings.Converters.Add(new StringEnumConverter());
-            });
-
         //跨域
         context.Services.AddCors(options =>
         {

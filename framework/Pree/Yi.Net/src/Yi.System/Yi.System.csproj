@@ -5,12 +5,7 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
     <Import Project="..\..\common.props" />
-    
-    <ItemGroup>
-        <PackageReference Include="Lazy.Captcha.Core" Version="2.0.7" />
-        <PackageReference Include="SkiaSharp.NativeAssets.Linux.NoDependencies" Version="2.88.7" />
-    </ItemGroup>
-    
+
     <ItemGroup>
       <ProjectReference Include="..\Yi.Framework\Yi.Framework.csproj" />
     </ItemGroup>

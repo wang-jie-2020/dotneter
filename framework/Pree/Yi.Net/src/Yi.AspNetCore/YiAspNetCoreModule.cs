@@ -82,14 +82,20 @@ public class YiAspNetCoreModule : AbpModule
         context.Services.AddObjectAccessor<IApplicationBuilder>();
         context.Services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
 
-        context.Services.AddControllers()
+        context.Services
+            .AddControllers()
+            .AddNewtonsoftJson(options =>
+            {
+                options.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";
+                options.SerializerSettings.Converters.Add(new StringEnumConverter());
+            })
             .AddDataAnnotationsLocalization()
             .AddControllersAsServices();
 
         context.Services.Configure<MvcOptions>(options =>
         {
             options.Conventions.Add(new ControllerGroupNameConvention());
-            
+
             options.Filters.AddService<UowActionFilter>();
             options.Filters.AddService<ExceptionFilter>();
         });
