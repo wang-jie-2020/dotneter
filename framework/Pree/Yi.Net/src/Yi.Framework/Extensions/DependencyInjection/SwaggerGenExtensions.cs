@@ -7,7 +7,7 @@ using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Swashbuckle.AspNetCore.SwaggerUI;
 
-namespace Yi.Framework.Swagger;
+namespace Yi.Framework.Extensions.DependencyInjection;
 
 public static class SwaggerGenExtensions
 {

@@ -27,17 +27,7 @@ public class YiFrameworkModule : AbpModule
     {
         var configuration = context.Services.GetConfiguration();
 
-        // 雪花Id
-        YitIdHelper.SetIdGenerator(new IdGeneratorOptions(0));
-
-        // interceptor
-        context.Services.AddTransient<OperLogInterceptor>();
-
-        Configure<AuditingOptions>(options =>
-        {
-            options.Contributors.Add(new AspNetCoreAuditLogContributor());
-        });
-
+        // AspNetCore & Mvc
         context.Services.Configure<MvcOptions>(options =>
         {
             // 权限过滤器
@@ -47,7 +37,10 @@ public class YiFrameworkModule : AbpModule
             options.Filters.AddService<AuditActionFilter>();
         });
 
-        //SqlSugar
+        // Interceptors
+        context.Services.AddTransient<OperLogInterceptor>();
+
+        // SqlSugar
         Configure<DbConnOptions>(configuration.GetSection("DbConnOptions"));
 
         context.Services.TryAddScoped<ISqlSugarDbContext, SqlSugarDbContext>();
@@ -56,8 +49,14 @@ public class YiFrameworkModule : AbpModule
         context.Services.AddTransient(typeof(ISugarDbContextProvider<>), typeof(UnitOfWorkSqlSugarDbContextProvider<>));
         context.Services.AddTransient(typeof(ISqlSugarDbConnectionCreator), typeof(SqlSugarDbConnectionCreator));
 
-        // profiler
         context.Services.AddSingleton<IMiniProfilerDiagnosticListener, SqlSugarDiagnosticListener>();
         context.Services.AddSingleton<ITracingDiagnosticProcessor, SqlSugarTracingDiagnosticProcessor>();
+
+        // Other
+        YitIdHelper.SetIdGenerator(new IdGeneratorOptions(0));
+        Configure<AuditingOptions>(options =>
+        {
+            options.Contributors.Add(new AspNetCoreAuditLogContributor());
+        });
     }
 }

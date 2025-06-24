@@ -58,26 +58,6 @@ public class YiAspNetCoreModule : AbpModule
     {
         var configuration = context.Services.GetConfiguration();
 
-        Configure<DbConnectionOptions>(configuration);
-
-        // MemoryCache & Redis
-        context.Services.AddMemoryCache();
-        context.Services.AddDistributedMemoryCache();
-
-        var redisEnabled = configuration["Redis:IsEnabled"];
-        if (!redisEnabled.IsNullOrEmpty() && bool.Parse(redisEnabled))
-        {
-            var redisConfiguration = configuration["Redis:ConnectionString"];
-            var redisClient = new RedisClient(redisConfiguration);
-
-            context.Services.AddSingleton<IRedisClient>(redisClient);
-            context.Services.Replace(ServiceDescriptor.Singleton<IDistributedCache>(new DistributedCache(redisClient)));
-        }
-
-        // Localization   WTF --> SEE Volo.Abp.Internal.InternalServiceCollectionExtensions.AddCoreServices
-        context.Services.AddJsonLocalization(options => options.ResourcesPath = "Resources");
-        context.Services.Replace(new ServiceDescriptor(typeof(IStringLocalizerFactory), typeof(JsonStringLocalizerFactory), ServiceLifetime.Singleton));
-
         // AspNetCore & Mvc
         context.Services.AddHttpContextAccessor();
         context.Services.AddObjectAccessor<IApplicationBuilder>();
@@ -93,7 +73,7 @@ public class YiAspNetCoreModule : AbpModule
             .AddDataAnnotationsLocalization()
             .AddControllersAsServices();
 
-        context.Services.Configure<MvcOptions>(options =>
+        Configure<MvcOptions>(options =>
         {
             options.Conventions.Add(new ControllerGroupNameConvention());
 
@@ -101,7 +81,7 @@ public class YiAspNetCoreModule : AbpModule
             options.Filters.AddService<ExceptionFilter>();
         });
 
-        context.Services.Configure<ApiBehaviorOptions>(options =>
+        Configure<ApiBehaviorOptions>(options =>
         {
             options.InvalidModelStateResponseFactory = actionContext =>
             {
@@ -124,7 +104,27 @@ public class YiAspNetCoreModule : AbpModule
             };
         });
 
+        // Localization  
+        context.Services.AddJsonLocalization(options => options.ResourcesPath = "Resources");
+        context.Services.Replace(new ServiceDescriptor(typeof(IStringLocalizerFactory), typeof(JsonStringLocalizerFactory), ServiceLifetime.Singleton));    // WTF --> SEE Volo.Abp.Internal.InternalServiceCollectionExtensions.AddCoreServices
+
+        // MemoryCache & Redis
+        context.Services.AddMemoryCache();
+        context.Services.AddDistributedMemoryCache();
+
+        var redisEnabled = configuration["Redis:IsEnabled"];
+        if (!redisEnabled.IsNullOrEmpty() && bool.Parse(redisEnabled))
+        {
+            var redisConfiguration = configuration["Redis:ConnectionString"];
+            var redisClient = new RedisClient(redisConfiguration);
+
+            context.Services.AddSingleton<IRedisClient>(redisClient);
+            context.Services.Replace(ServiceDescriptor.Singleton<IDistributedCache>(new DistributedCache(redisClient)));
+        }
+
         // Other
+        Configure<DbConnectionOptions>(configuration);
+
         context.Services.AddSingleton(typeof(IDataFilter<>), typeof(DataFilter<>));
         context.Services.AddSingleton<ICurrentTenantAccessor>(AsyncLocalCurrentTenantAccessor.Instance);
         context.Services.AddSingleton(typeof(IAmbientScopeProvider<>), typeof(AmbientDataContextAmbientScopeProvider<>));
