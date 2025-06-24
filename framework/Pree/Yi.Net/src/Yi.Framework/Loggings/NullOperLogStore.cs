@@ -5,13 +5,13 @@ using Volo.Abp.DependencyInjection;
 namespace Yi.Framework.Loggings;
 
 [Dependency(TryRegister = true)]
-public class SimpleOperLogStore : IOperLogStore, ISingletonDependency
+public class NullOperLogStore : IOperLogStore, ISingletonDependency
 {
-    public ILogger<SimpleOperLogStore> Logger { get; set; }
+    public ILogger<NullOperLogStore> Logger { get; set; }
 
-    public SimpleOperLogStore()
+    public NullOperLogStore()
     {
-        Logger = NullLogger<SimpleOperLogStore>.Instance;
+        Logger = NullLogger<NullOperLogStore>.Instance;
     }
 
     public Task SaveAsync(OperLogInfo operLogInfo)

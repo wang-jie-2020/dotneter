@@ -37,5 +37,8 @@ public class OperLogInfo
     /// </summary>
     public string? Result { get; set; }
     
+    /// <summary>
+    ///     操作时间
+    /// </summary>
     public DateTime ExecutionTime { get; set; }
 }

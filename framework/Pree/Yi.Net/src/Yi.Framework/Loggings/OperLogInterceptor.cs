@@ -25,15 +25,13 @@ public class OperLogInterceptor : AbpInterceptor
     {
         await invocation.ProceedAsync();
 
-        var attrs = invocation.Method.GetCustomAttributes(true).OfType<OperLogAttribute>().ToArray();
+        var operLogAttribute = invocation.Method.GetCustomAttributes(true).OfType<OperLogAttribute>().FirstOrDefault();
 
-        if (attrs.IsNullOrEmpty())
+        if (operLogAttribute == null)
         {
             return;
         }
-
-        var operLogAttribute = attrs.FirstOrDefault();
-
+        
         var info = new OperLogInfo
         {
             Title = operLogAttribute.Title,

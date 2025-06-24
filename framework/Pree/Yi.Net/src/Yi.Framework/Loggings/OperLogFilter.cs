@@ -13,7 +13,7 @@ public class OperLogFilter : ActionFilterAttribute, ITransientDependency
     private readonly ILogger<OperLogFilter> _logger;
     private readonly IOperLogStore _operLogStore;
     private readonly ICurrentUser _currentUser;
-    
+
     public OperLogFilter(
         ILogger<OperLogFilter> logger,
         IOperLogStore operLogStore,
@@ -32,18 +32,17 @@ public class OperLogFilter : ActionFilterAttribute, ITransientDependency
         {
             return;
         }
-
-        //查找标签，获取标签对象
+        
         var operLogAttribute = controllerActionDescriptor
             .MethodInfo.GetCustomAttributes(true)
-            .FirstOrDefault(a => a.GetType().Equals(typeof(OperLogAttribute))) as OperLogAttribute;
-
-        //空对象直接返回
-        if (operLogAttribute is null)
+            .OfType<OperLogAttribute>()
+            .FirstOrDefault();
+        
+        if (operLogAttribute == null)
         {
             return;
         }
-        
+
         var info = new OperLogInfo
         {
             Title = operLogAttribute.Title,
@@ -53,22 +52,29 @@ public class OperLogFilter : ActionFilterAttribute, ITransientDependency
             RequestMethod = resultContext.HttpContext.Request.Method,
             ExecutionTime = DateTime.Now
         };
-        
+
         if (operLogAttribute.IsSaveResponseData)
         {
-            if (resultContext.Result is ContentResult result && result.ContentType == "application/json")
+            try
             {
-                info.Result = result.Content?.Replace("\r\n", "").Trim();
+                if (resultContext.Result is ContentResult result && result.ContentType == "application/json")
+                {
+                    info.Result = result.Content?.Replace("\r\n", "").Trim();
+                }
+            
+                if (resultContext.Result is JsonResult result2)
+                {
+                    info.Result = result2.Value?.ToString();
+                }
+            
+                if (resultContext.Result is ObjectResult result3)
+                {
+                    info.Result = JsonConvert.SerializeObject(result3.Value);
+                }
             }
-
-            if (resultContext.Result is JsonResult result2)
+            catch
             {
-                info.Result = result2.Value?.ToString();
-            }
-
-            if (resultContext.Result is ObjectResult result3)
-            {
-                info.Result = JsonConvert.SerializeObject(result3.Value);
+                // ignored
             }
         }
 
