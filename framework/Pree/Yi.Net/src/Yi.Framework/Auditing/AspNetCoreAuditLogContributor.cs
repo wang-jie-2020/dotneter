@@ -71,8 +71,6 @@ public class AspNetCoreAuditLogContributor : AuditLogContributor, ITransientDepe
 
     protected virtual string BuildUrl(HttpContext httpContext)
     {
-        //TODO: Add options to include/exclude query, schema and host
-
         var uriBuilder = new UriBuilder
         {
             Scheme = httpContext.Request.Scheme,

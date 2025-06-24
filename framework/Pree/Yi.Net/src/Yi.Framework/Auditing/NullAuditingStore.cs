@@ -5,13 +5,13 @@ using Volo.Abp.DependencyInjection;
 namespace Yi.Framework.Auditing;
 
 [Dependency(TryRegister = true)]
-public class SimpleLogAuditingStore : IAuditingStore, ISingletonDependency
+public class NullAuditingStore : IAuditingStore, ISingletonDependency
 {
-    public ILogger<SimpleLogAuditingStore> Logger { get; set; }
+    public ILogger<NullAuditingStore> Logger { get; set; }
 
-    public SimpleLogAuditingStore()
+    public NullAuditingStore()
     {
-        Logger = NullLogger<SimpleLogAuditingStore>.Instance;
+        Logger = NullLogger<NullAuditingStore>.Instance;
     }
 
     public Task SaveAsync(AuditLogInfo auditInfo)

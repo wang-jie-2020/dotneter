@@ -33,10 +33,6 @@ public class AuditLogEntity : Entity<Guid>, IMultiTenant
         string httpMethod,
         string url,
         int? httpStatusCode,
-        Guid? impersonatorUserId,
-        string impersonatorUserName,
-        Guid? impersonatorTenantId,
-        string impersonatorTenantName,
         List<AuditLogActionEntity> actions,
         string exceptions,
         string comments)
@@ -57,10 +53,6 @@ public class AuditLogEntity : Entity<Guid>, IMultiTenant
         HttpMethod = httpMethod.Truncate(AuditLogConsts.MaxHttpMethodLength);
         Url = url.Truncate(AuditLogConsts.MaxUrlLength);
         HttpStatusCode = httpStatusCode;
-        ImpersonatorUserId = impersonatorUserId;
-        ImpersonatorUserName = impersonatorUserName.Truncate(AuditLogConsts.MaxUserNameLength);
-        ImpersonatorTenantId = impersonatorTenantId;
-        ImpersonatorTenantName = impersonatorTenantName.Truncate(AuditLogConsts.MaxTenantNameLength);
         Actions = actions;
         Exceptions = exceptions;
         Comments = comments.Truncate(AuditLogConsts.MaxCommentsLength);
@@ -73,14 +65,6 @@ public class AuditLogEntity : Entity<Guid>, IMultiTenant
     public virtual string? UserName { get; protected set; }
 
     public virtual string? TenantName { get; protected set; }
-
-    public virtual Guid? ImpersonatorUserId { get; protected set; }
-
-    public virtual string? ImpersonatorUserName { get; protected set; }
-
-    public virtual Guid? ImpersonatorTenantId { get; protected set; }
-
-    public virtual string? ImpersonatorTenantName { get; protected set; }
 
     public virtual DateTime? ExecutionTime { get; protected set; }
 

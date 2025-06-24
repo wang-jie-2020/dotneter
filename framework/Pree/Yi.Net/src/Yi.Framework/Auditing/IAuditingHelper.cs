@@ -2,7 +2,6 @@ using System.Reflection;
 
 namespace Yi.Framework.Auditing;
 
-//TODO: Move ShouldSaveAudit & IsEntityHistoryEnabled and rename to IAuditingFactory
 public interface IAuditingHelper
 {
     bool ShouldSaveAudit(MethodInfo? methodInfo, bool defaultValue = false, bool ignoreIntegrationServiceAttribute = false);

@@ -36,18 +36,6 @@ public class OperLogEntity : Entity<long>, IMultiTenant
     public string? OperUser { get; set; }
 
     /// <summary>
-    ///     操作Ip
-    /// </summary>
-    [SugarColumn(ColumnName = "OperIp")]
-    public string? OperIp { get; set; }
-
-    /// <summary>
-    ///     操作地点
-    /// </summary>
-    [SugarColumn(ColumnName = "OperLocation")]
-    public string? OperLocation { get; set; }
-
-    /// <summary>
     ///     操作方法
     /// </summary>
     [SugarColumn(ColumnName = "Method")]

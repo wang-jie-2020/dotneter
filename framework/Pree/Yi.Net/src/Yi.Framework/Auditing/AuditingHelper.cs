@@ -13,12 +13,17 @@ namespace Yi.Framework.Auditing;
 public class AuditingHelper : IAuditingHelper, ITransientDependency
 {
     protected ILogger<AuditingHelper> Logger { get; }
+
     protected IAuditingStore AuditingStore { get; }
+
     protected ICurrentUser CurrentUser { get; }
+
     protected ICurrentTenant CurrentTenant { get; }
 
     protected AuditingOptions Options;
+
     protected IServiceProvider ServiceProvider;
+
     protected ICorrelationIdProvider CorrelationIdProvider { get; }
 
     public AuditingHelper(
@@ -76,11 +81,7 @@ public class AuditingHelper : IAuditingHelper, ITransientDependency
             UserName = CurrentUser.UserName,
             ClientId = "",
             CorrelationId = CorrelationIdProvider.Get(),
-            ExecutionTime = DateTime.Now,
-            ImpersonatorUserId = null,  //CurrentUser.FindImpersonatorUserId(),
-            ImpersonatorUserName = null,//CurrentUser.FindImpersonatorUserName(),
-            ImpersonatorTenantId =  null,//CurrentUser.FindImpersonatorTenantId(),
-            ImpersonatorTenantName = null//CurrentUser.FindImpersonatorTenantName(),
+            ExecutionTime = DateTime.Now
         };
 
         ExecutePreContributors(auditInfo);
@@ -112,8 +113,6 @@ public class AuditingHelper : IAuditingHelper, ITransientDependency
             Parameters = SerializeConvertArguments(arguments),
             ExecutionTime = DateTime.Now
         };
-
-        //TODO Execute contributors
 
         return actionInfo;
     }

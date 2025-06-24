@@ -40,10 +40,6 @@ public class AuditLogInfoToAuditLogConverter : IAuditLogInfoToAuditLogConverter
             auditLogInfo.HttpMethod,
             auditLogInfo.Url,
             auditLogInfo.HttpStatusCode,
-            auditLogInfo.ImpersonatorUserId,
-            auditLogInfo.ImpersonatorUserName,
-            auditLogInfo.ImpersonatorTenantId,
-            auditLogInfo.ImpersonatorTenantName,
             actions,
             string.Empty,
             comments

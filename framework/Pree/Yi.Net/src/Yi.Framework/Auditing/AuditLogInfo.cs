@@ -15,14 +15,6 @@ public class AuditLogInfo
 
     public string? TenantName { get; set; }
 
-    public Guid? ImpersonatorUserId { get; set; }
-
-    public Guid? ImpersonatorTenantId { get; set; }
-
-    public string? ImpersonatorUserName { get; set; }
-
-    public string? ImpersonatorTenantName { get; set; }
-
     public DateTime ExecutionTime { get; set; }
 
     public int ExecutionDuration { get; set; }
