@@ -9,7 +9,7 @@ namespace Yi.Web.Controllers.Tests;
 [Route("test-exception")]
 public class TestExceptionController : ControllerBase
 {
-    [HttpGet("exception")]
+    [HttpGet("runtimeException")]
     public void MapException()
     {
         throw new Exception();

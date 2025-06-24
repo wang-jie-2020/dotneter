@@ -46,7 +46,7 @@ public class AjaxResult
 
     public static AjaxResult Error(string message, string details = "")
     {
-        var ajaxResult = Success();
+        var ajaxResult = Error();
         ajaxResult.Message = message;
         ajaxResult.Details = details;
 

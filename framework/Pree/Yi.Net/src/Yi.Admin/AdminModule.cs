@@ -261,11 +261,7 @@ public class AdminModule : AbpModule
         //终节点
         app.UseEndpoints(endpoints =>
         {
-            endpoints.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
-
-            endpoints.MapRazorPages();
+            endpoints.MapControllers();
         });
 
         return Task.CompletedTask;

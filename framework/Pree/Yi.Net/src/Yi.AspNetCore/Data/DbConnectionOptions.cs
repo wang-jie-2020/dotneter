@@ -12,11 +12,6 @@ public class DbConnectionOptions
     public string? GetConnectionStringOrNull(string connectionStringName)
     {
         var connectionString = ConnectionStrings.GetOrDefault(connectionStringName);
-        if (!connectionString.IsNullOrEmpty())
-        {
-            return connectionString;
-        }
-
-        return null;
+        return connectionString;
     }
 }

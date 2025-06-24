@@ -26,12 +26,6 @@ public class DefaultConnectionStringResolver : IConnectionStringResolver, ITrans
         }
 
         var connectionString = Options.GetConnectionStringOrNull(connectionStringName);
-
-        if (!connectionString.IsNullOrEmpty())
-        {
-            return connectionString;
-        }
-
-        return null;
+        return connectionString;
     }
 }

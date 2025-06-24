@@ -70,9 +70,8 @@ public class YiAspNetCoreModule : AbpModule
             context.Services.Replace(ServiceDescriptor.Singleton<IDistributedCache>(new DistributedCache(redisClient)));
         }
 
-        // Localization 
+        // Localization   WTF --> SEE Volo.Abp.Internal.InternalServiceCollectionExtensions.AddCoreServices
         context.Services.AddJsonLocalization(options => options.ResourcesPath = "Resources");
-        // WTF --> SEE Volo.Abp.Internal.InternalServiceCollectionExtensions.AddCoreServices
         context.Services.Replace(new ServiceDescriptor(typeof(IStringLocalizerFactory), typeof(JsonStringLocalizerFactory), ServiceLifetime.Singleton));
 
         // AspNetCore & Mvc

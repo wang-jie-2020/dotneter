@@ -54,6 +54,33 @@ public class AccountController : BaseController
         _userManager = userManager;
     }
 
+#if DEBUG
+
+    /// <summary>
+    ///     登录
+    /// </summary>
+    /// <param name="input"></param>
+    /// <returns></returns>
+    [AllowAnonymous]
+    [HttpPost("debugging")]
+    public async Task<object> Debgging()
+    {
+        //校验
+        UserEntity user = new();
+        await _accountManager.LoginValidationAsync("cc", "123456", x => user = x);
+
+        //清缓存
+        await _cache.RemoveAsync(new UserInfoCacheKey(user.Id).ToString());
+
+        //获取token
+        var accessToken = await _accountManager.GetTokenByUserIdAsync(user.Id);
+        var refreshToken = _accountManager.CreateRefreshToken(user.Id);
+
+        return new { Token = accessToken, RefreshToken = refreshToken };
+    }
+
+#endif
+
     /// <summary>
     ///     登录
     /// </summary>
