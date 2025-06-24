@@ -1,4 +1,5 @@
 ﻿using Volo.Abp.DependencyInjection;
+using Yi.Framework;
 using Yi.Framework.Permissions;
 using Yi.Framework.SqlSugarCore;
 using Yi.System.Domains;

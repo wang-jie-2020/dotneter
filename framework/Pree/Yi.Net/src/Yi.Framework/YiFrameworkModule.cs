@@ -30,9 +30,7 @@ public class YiFrameworkModule : AbpModule
         // AspNetCore & Mvc
         context.Services.Configure<MvcOptions>(options =>
         {
-            // 权限过滤器
             options.Filters.AddService<PermissionFilter>();
-            // 操作日志过滤器
             options.Filters.AddService<OperLogFilter>();
             options.Filters.AddService<AuditActionFilter>();
         });

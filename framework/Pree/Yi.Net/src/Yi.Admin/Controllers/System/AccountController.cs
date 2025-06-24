@@ -12,6 +12,7 @@ using Yi.Framework.Core.Abstractions;
 using Yi.Framework.Permissions;
 using Yi.Framework.SqlSugarCore.Repositories;
 using Yi.Framework.Utils;
+using Yi.System;
 using Yi.System.Domains;
 using Yi.System.Domains.Consts;
 using Yi.System.Domains.Entities;

@@ -1,4 +1,4 @@
-﻿namespace Yi.Framework.Permissions;
+﻿namespace Yi.System;
 
 public class TokenClaimConst
 {
