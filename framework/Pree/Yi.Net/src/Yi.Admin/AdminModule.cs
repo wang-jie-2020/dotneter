@@ -20,10 +20,7 @@ using Yi.System.Options;
 
 namespace Yi.Web;
 
-[DependsOn(
-    typeof(YiAspNetCoreModule),
-    typeof(SystemModule)
-)]
+[DependsOn(typeof(SystemModule))]
 public class AdminModule : AbpModule
 {
     private const string DefaultCorsPolicyName = "Default";

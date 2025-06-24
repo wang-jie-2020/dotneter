@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using Yi.AspNetCore;
 using Yi.AspNetCore.Data;
 using Yi.AspNetCore.MultiTenancy;
 using Yi.Framework;
@@ -14,7 +13,7 @@ using Yi.System.Options;
 
 namespace Yi.System;
 
-[DependsOn(typeof(YiAspNetCoreModule),typeof(YiFrameworkModule))]
+[DependsOn(typeof(YiFrameworkModule))]
 public class SystemModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
