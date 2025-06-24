@@ -3,19 +3,16 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using MiniExcelLibs;
 using StackExchange.Profiling;
-using Yi.AspNetCore;
-using Yi.AspNetCore.Authorization;
 using Yi.Framework.Core.Abstractions;
-using Yi.System.Domains.Consts;
 using Yi.System.Services.Dtos;
 
 namespace Yi.Web.Controllers.Tests;
 
 [ApiController]
-[Route("dev-api")]
-public class DevController : BaseController
+[Route("test-mvc")]
+public class TestMvcController : BaseController
 {
-    public DevController()
+    public TestMvcController()
     {
     }
 
@@ -33,27 +30,7 @@ public class DevController : BaseController
             miniProfiler
         };
     }
-
-   
-
-    [HttpGet("exception")]
-    public void MapException()
-    {
-        throw new Exception();
-    }
-
-    [HttpGet("authorizationException")]
-    public void MapAuthorizationException()
-    {
-        throw new UnauthorizedException();
-    }
-
-    [HttpGet("businessException")]
-    public void MapBusinessException()
-    {
-        throw Oops.Oh(AccountConst.VerificationCode_Invalid);
-    }
-
+    
     [HttpGet("lang")]
     public object Lang()
     {
@@ -63,7 +40,7 @@ public class DevController : BaseController
     [HttpGet("lang2")]
     public object Lang2()
     {
-        var localizer = StringLocalizerFactory.Create(typeof(DevController));
+        var localizer = StringLocalizerFactory.Create(typeof(TestMvcController));
         return localizer.GetAllStrings(true);
     }
 
