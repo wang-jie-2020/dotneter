@@ -1,6 +1,9 @@
-﻿namespace Yi.Framework.Permissions;
+﻿using Volo.Abp.DependencyInjection;
 
-public class NullPermissionHandler : IPermissionHandler
+namespace Yi.Framework.Permissions;
+
+[Dependency(TryRegister = true)]
+public class NullPermissionHandler : IPermissionHandler, ITransientDependency
 {
     public bool IsPass(string permission)
     {
