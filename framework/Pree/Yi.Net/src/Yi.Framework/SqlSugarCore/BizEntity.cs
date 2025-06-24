@@ -1,6 +1,6 @@
 ﻿namespace Yi.Framework.SqlSugarCore;
 
-public abstract class BizEntity<T> : SimpleEntity<T>, ISoftDelete, IAuditedEntity
+public abstract class BizEntity<T> : Entity<T>, ISoftDelete, IBizEntity
 {
     public BizEntity()
     {

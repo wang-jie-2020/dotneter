@@ -6,7 +6,7 @@ namespace Yi.System.Domains.Entities;
 ///     角色部门关系表
 /// </summary>
 [SugarTable("Sys_RoleDept")]
-public class RoleDeptEntity : SimpleEntity<long>
+public class RoleDeptEntity : Entity<long>
 {
     /// <summary>
     ///     角色id

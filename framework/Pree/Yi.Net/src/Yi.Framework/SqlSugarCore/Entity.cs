@@ -2,7 +2,7 @@
 
 namespace Yi.Framework.SqlSugarCore;
 
-public abstract class SimpleEntity<T> : IEntity<T>
+public abstract class Entity<T> : IEntity<T>
 {
     [SugarColumn(ColumnName = "Id", IsPrimaryKey = true)]
     public T Id { get; set; }
@@ -12,12 +12,12 @@ public abstract class SimpleEntity<T> : IEntity<T>
         return new object?[] { Id };
     }
 
-    public SimpleEntity()
+    public Entity()
     {
 
     }
 
-    public SimpleEntity(T id)
+    public Entity(T id)
     {
         Id = id;
     }

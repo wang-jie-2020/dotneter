@@ -1,6 +1,6 @@
 namespace Yi.Framework;
 
-public interface IAuditedEntity
+public interface IBizEntity
 {
     Guid? LastModifierId { get; }
 

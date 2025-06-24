@@ -172,7 +172,7 @@ public class SqlSugarDbContext : ISqlSugarDbContext
         {
             case DataFilterType.UpdateByObject:
 
-                if (entityInfo.PropertyName.Equals(nameof(IAuditedEntity.LastModificationTime)))
+                if (entityInfo.PropertyName.Equals(nameof(IBizEntity.LastModificationTime)))
                 {
                     if (!DateTime.MinValue.Equals(oldValue))
                     {
@@ -180,7 +180,7 @@ public class SqlSugarDbContext : ISqlSugarDbContext
                     }
                 }
 
-                if (entityInfo.PropertyName.Equals(nameof(IAuditedEntity.LastModifierId)))
+                if (entityInfo.PropertyName.Equals(nameof(IBizEntity.LastModifierId)))
                 {
                     if (CurrentUser.Id != null)
                     {
@@ -209,7 +209,7 @@ public class SqlSugarDbContext : ISqlSugarDbContext
                     }
                 }
 
-                if (entityInfo.PropertyName.Equals(nameof(IAuditedEntity.CreationTime)))
+                if (entityInfo.PropertyName.Equals(nameof(IBizEntity.CreationTime)))
                 {
                     //为空或者为默认最小值
                     if (oldValue is null || DateTime.MinValue.Equals(oldValue))
@@ -218,7 +218,7 @@ public class SqlSugarDbContext : ISqlSugarDbContext
                     }
                 }
 
-                if (entityInfo.PropertyName.Equals(nameof(IAuditedEntity.CreatorId)))
+                if (entityInfo.PropertyName.Equals(nameof(IBizEntity.CreatorId)))
                 {
                     if (CurrentUser.Id != null)
                     {

@@ -6,7 +6,7 @@ namespace Yi.System.Domains.Entities;
 ///     用户岗位表
 /// </summary>
 [SugarTable("Sys_UserPost")]
-public class UserPostEntity : SimpleEntity<long>
+public class UserPostEntity : Entity<long>
 {
     /// <summary>
     ///     用户id
