@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel;
 using System.Text;
+using Autofac.Core;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Any;
@@ -8,7 +10,7 @@ using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Swashbuckle.AspNetCore.SwaggerUI;
 
-namespace Yi.Framework.Utils;
+namespace Yi.Framework.Swagger;
 
 public static class SwaggerGenExtensions
 {
@@ -18,21 +20,6 @@ public static class SwaggerGenExtensions
             options =>
             {
                 action?.Invoke(options);
-
-                options.DocInclusionPredicate((docName, apiDesc) =>
-                {
-                    if (docName == "default")
-                    {
-                        return true;
-                    }
-                    
-                    if (apiDesc.ActionDescriptor is ControllerActionDescriptor controllerActionDescriptor)
-                    {
-                        return docName == apiDesc.GroupName;
-                    }
-                
-                    return false;
-                });
 
                 options.CustomSchemaIds(type => type.FullName);
                 var basePath = Path.GetDirectoryName(typeof(TModule).Assembly.Location);
@@ -61,14 +48,13 @@ public static class SwaggerGenExtensions
                 options.SchemaFilter<EnumSchemaFilter>();
             }
         );
-        
+
         return services;
     }
-    
+
     public static IApplicationBuilder UseYiSwagger(this IApplicationBuilder app, Action<SwaggerUIOptions>? setupAction = null)
     {
-        app.UseSwagger();
-        app.UseSwaggerUI(c =>
+        app.UseSwagger().UseSwaggerUI(c =>
         {
             setupAction?.Invoke(c);
         });
@@ -94,7 +80,7 @@ public class EnumSchemaFilter : ISchemaFilter
             model.Enum.Clear();
             model.Type = "string";
             model.Format = null;
-            
+
             var stringBuilder = new StringBuilder();
             Enum.GetNames(context.Type)
                 .ToList()

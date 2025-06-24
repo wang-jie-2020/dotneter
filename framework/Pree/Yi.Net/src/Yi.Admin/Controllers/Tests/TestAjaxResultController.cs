@@ -7,6 +7,7 @@ namespace Yi.Web.Controllers.Tests;
 
 [ApiController]
 [Route("test-ajax-result")]
+[ApiExplorerSettings(GroupName = "test")]
 public class TestAjaxResultController : BaseController
 {
     [HttpGet("success")]

@@ -3,15 +3,20 @@ using System.Text;
 using System.Threading.RateLimiting;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Converters;
+using Swashbuckle.AspNetCore.SwaggerGen;
+using Swashbuckle.AspNetCore.SwaggerUI;
 using Yi.AspNetCore;
 using Yi.AspNetCore.Extensions.Builder;
 using Yi.AspNetCore.Extensions.DependencyInjection;
 using Yi.Framework.Extensions.Builder;
 using Yi.Framework.Permissions;
 using Yi.Framework.SqlSugarCore;
+using Yi.Framework.Swagger;
 using Yi.Framework.Utils;
 using Yi.System;
 using Yi.System.Options;
@@ -164,10 +169,9 @@ public class AdminModule : AbpModule
         context.Services.AddAuthorization();
 
         //Swagger
-        context.Services.AddYiSwaggerGen<AdminModule>(options =>
-        {
-            options.SwaggerDoc("default", new OpenApiInfo { Title = "Yi", Version = "v1", Description = "Yi" });
-        });
+        context.Services.AddTransient<IConfigureOptions<SwaggerGenOptions>, SwaggerConfigureOptions>();
+        context.Services.AddTransient<IConfigureOptions<SwaggerUIOptions>, SwaggerConfigureOptions>();
+        context.Services.AddYiSwaggerGen<AdminModule>();
 
         //miniProfiler
         context.Services.AddMiniProfiler(options =>
@@ -225,21 +229,20 @@ public class AdminModule : AbpModule
         app.UseYiSwagger(c =>
         {
             c.InjectJavascript("/swagger/ui/Customization.js");
-            c.SwaggerEndpoint("/swagger/default/swagger.json", "default");
         });
 
         //MiniProfiler
         app.UseMiniProfiler();
-        
+
         //静态资源
         app.UseStaticFiles();
-        
+
         app.UseRequestLocalization(options =>
         {
             var defaultCulture = new CultureInfo("zh-CN");
             defaultCulture.DateTimeFormat.SetAllDateTimePatterns(new[] { "H:mm:ss" }, 'T');
             defaultCulture.DateTimeFormat.SetAllDateTimePatterns(new[] { "H:mm" }, 't');
-           
+
             options.DefaultRequestCulture = new RequestCulture(defaultCulture);
             options.SupportedCultures = options.SupportedUICultures = new List<CultureInfo>
             {
@@ -261,10 +264,10 @@ public class AdminModule : AbpModule
             endpoints.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
-            
+
             endpoints.MapRazorPages();
         });
-        
+
         return Task.CompletedTask;
     }
 }
