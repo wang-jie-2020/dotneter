@@ -1,4 +1,5 @@
 ﻿using Yi.AspNetCore;
+using Yi.AspNetCore.MultiTenancy;
 using Yi.Framework.SqlSugarCore;
 using Yi.System.Monitor.Consts;
 

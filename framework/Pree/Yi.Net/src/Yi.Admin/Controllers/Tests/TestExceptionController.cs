@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Yi.AspNetCore;
-using Yi.AspNetCore.Authorization;
 using Yi.System.Domains.Consts;
 
 namespace Yi.Web.Controllers.Tests;

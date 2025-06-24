@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
 using Volo.Abp.DependencyInjection;
-using Yi.AspNetCore.Authorization;
+using Yi.AspNetCore;
 using Yi.AspNetCore.Extensions.DependencyInjection;
 
 namespace Yi.Framework.Permissions;

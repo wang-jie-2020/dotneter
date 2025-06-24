@@ -1,4 +1,4 @@
-﻿namespace Yi.AspNetCore.Authorization;
+﻿namespace Yi.AspNetCore;
 
 public class UnauthorizedException : Exception
 {
