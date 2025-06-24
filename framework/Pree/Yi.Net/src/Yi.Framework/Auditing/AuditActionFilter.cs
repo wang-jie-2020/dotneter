@@ -89,8 +89,7 @@ public class AuditActionFilter : IAsyncActionFilter, ITransientDependency
             context.ActionDescriptor.AsControllerActionDescriptor().MethodInfo,
             context.ActionArguments
         );
-
-
+        
         return true;
     }
 

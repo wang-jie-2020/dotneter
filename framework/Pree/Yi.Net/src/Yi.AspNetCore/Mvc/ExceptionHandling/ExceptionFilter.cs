@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Localization;
@@ -45,16 +46,17 @@ public class ExceptionFilter : IAsyncExceptionFilter, ITransientDependency
         if (context.Exception is UnauthorizedException)
         {
             var defaultLocalizer = context.GetRequiredService<IStringLocalizer>();
-            
+
             context.HttpContext.Response.StatusCode = context.HttpContext.User.Identity!.IsAuthenticated
-                ? (int)HttpStatusCode.Forbidden
-                : (int)HttpStatusCode.Unauthorized;
-            
+                ? StatusCodes.Status403Forbidden
+                : StatusCodes.Status401Unauthorized;
+
+
             context.Result = new ObjectResult(AjaxResult.Error(defaultLocalizer["UnauthorizedMessage"]));
         }
         else
         {
-            context.HttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+            context.HttpContext.Response.StatusCode = StatusCodes.Status500InternalServerError;
             context.Result = new ObjectResult(errorInfo);
         }
 

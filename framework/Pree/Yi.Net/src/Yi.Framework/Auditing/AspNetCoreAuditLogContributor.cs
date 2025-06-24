@@ -57,7 +57,7 @@ public class AspNetCoreAuditLogContributor : AuditLogContributor, ITransientDepe
         {
             foreach (var auditInfoException in context.AuditInfo.Exceptions)
             {
-                context.AuditInfo.HttpStatusCode = (int)HttpStatusCode.InternalServerError;
+                context.AuditInfo.HttpStatusCode = StatusCodes.Status500InternalServerError;
             }
 
             if (context.AuditInfo.HttpStatusCode != null)
