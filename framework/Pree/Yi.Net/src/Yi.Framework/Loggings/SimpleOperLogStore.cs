@@ -1,9 +1,11 @@
 ﻿using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
+using Volo.Abp.DependencyInjection;
 
 namespace Yi.Framework.Loggings;
 
-public class SimpleOperLogStore : IOperLogStore
+[Dependency(TryRegister = true)]
+public class SimpleOperLogStore : IOperLogStore, ISingletonDependency
 {
     public ILogger<SimpleOperLogStore> Logger { get; set; }
 

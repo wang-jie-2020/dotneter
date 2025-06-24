@@ -169,8 +169,6 @@ public class AdminModule : AbpModule
         context.Services.AddAuthorization();
 
         //Swagger
-        context.Services.AddTransient<IConfigureOptions<SwaggerGenOptions>, SwaggerConfigureOptions>();
-        context.Services.AddTransient<IConfigureOptions<SwaggerUIOptions>, SwaggerConfigureOptions>();
         context.Services.AddYiSwaggerGen<AdminModule>();
 
         //miniProfiler

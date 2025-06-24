@@ -7,7 +7,10 @@ using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Localization;
+using Microsoft.Extensions.Options;
 using My.Extensions.Localization.Json;
+using Swashbuckle.AspNetCore.SwaggerGen;
+using Swashbuckle.AspNetCore.SwaggerUI;
 using Volo.Abp.Autofac;
 using Volo.Abp.Uow;
 using Yi.AspNetCore.Data;
@@ -118,5 +121,8 @@ public class YiAspNetCoreModule : AbpModule
         context.Services.AddSingleton(typeof(IDataFilter<>), typeof(DataFilter<>));
         context.Services.AddSingleton<ICurrentTenantAccessor>(AsyncLocalCurrentTenantAccessor.Instance);
         context.Services.AddSingleton(typeof(IAmbientScopeProvider<>), typeof(AmbientDataContextAmbientScopeProvider<>));
+
+        context.Services.AddTransient<IConfigureOptions<SwaggerGenOptions>, SwaggerConfigureOptions>();
+        context.Services.AddTransient<IConfigureOptions<SwaggerUIOptions>, SwaggerConfigureOptions>();
     }
 }

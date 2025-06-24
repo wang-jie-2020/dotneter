@@ -1,11 +1,11 @@
-﻿using System.Reflection;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
 using SkyApm;
 using SqlSugar;
 using StackExchange.Profiling.Internal;
+using System.Reflection;
 using Yi.AspNetCore;
 using Yi.AspNetCore.Data.Seeding;
 using Yi.Framework.Auditing;
@@ -31,6 +31,26 @@ public class YiFrameworkModule : AbpModule
     {
         var configuration = context.Services.GetConfiguration();
 
+        // 雪花Id
+        YitIdHelper.SetIdGenerator(new IdGeneratorOptions(0));
+
+        // interceptor
+        context.Services.AddTransient<OperLogInterceptor>();
+
+        Configure<AuditingOptions>(options =>
+        {
+            options.Contributors.Add(new AspNetCoreAuditLogContributor());
+        });
+
+        context.Services.Configure<MvcOptions>(options =>
+        {
+            // 权限过滤器
+            options.Filters.AddService<PermissionFilter>();
+            // 操作日志过滤器
+            options.Filters.AddService<OperLogFilter>();
+            options.Filters.AddService<AuditActionFilter>();
+        });
+
         //SqlSugar
         Configure<DbConnOptions>(configuration.GetSection("DbConnOptions"));
 
@@ -40,45 +60,9 @@ public class YiFrameworkModule : AbpModule
         context.Services.AddTransient(typeof(ISugarDbContextProvider<>), typeof(UnitOfWorkSqlSugarDbContextProvider<>));
         context.Services.AddTransient(typeof(ISqlSugarDbConnectionCreator), typeof(SqlSugarDbConnectionCreator));
 
-        //AspNetCore
-
-
-        Configure<AuditingOptions>(options =>
-        {
-            options.Contributors.Add(new AspNetCoreAuditLogContributor());
-        });
-
-        context.Services.AddSingleton<IOperLogStore, SimpleOperLogStore>();
-
-
-        context.Services.Configure<MvcOptions>(options =>
-        {
-            // 权限过滤器
-            options.Filters.AddService<PermissionFilter>();
-
-            // 操作日志过滤器
-            options.Filters.AddService<OperLogFilter>();
-
-
-
-            options.Filters.AddService<AuditActionFilter>();
-        });
-
-        // 雪花Id
-        YitIdHelper.SetIdGenerator(new IdGeneratorOptions(0));
-
-        // interceptor
-        context.Services.AddTransient<OperLogInterceptor>();
-
         // profiler
         context.Services.AddSingleton<IMiniProfilerDiagnosticListener, SqlSugarDiagnosticListener>();
         context.Services.AddSingleton<ITracingDiagnosticProcessor, SqlSugarTracingDiagnosticProcessor>();
-
-
-
-
-
-
     }
 
     public override async Task OnPreApplicationInitializationAsync(ApplicationInitializationContext context)
