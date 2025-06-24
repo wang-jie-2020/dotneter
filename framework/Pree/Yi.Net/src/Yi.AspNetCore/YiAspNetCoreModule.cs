@@ -17,6 +17,7 @@ using Microsoft.Extensions.Localization;
 using My.Extensions.Localization.Json;
 using Yi.AspNetCore.Mvc;
 using System.Text;
+using Yi.AspNetCore.Mvc.Conventions;
 
 namespace Yi.AspNetCore;
 
@@ -86,6 +87,8 @@ public class YiAspNetCoreModule : AbpModule
 
         context.Services.Configure<MvcOptions>(options =>
         {
+            options.Conventions.Add(new ControllerGroupNameConvention());
+            
             options.Filters.AddService<UowActionFilter>();
             options.Filters.AddService<ExceptionFilter>();
         });
