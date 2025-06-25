@@ -56,7 +56,7 @@ public class DeptService : BaseService, IDeptService
 
     public async Task DeleteAsync(IEnumerable<Guid> id)
     {
-        await _repository.DeleteManyAsync(id);
+        await _repository.DeleteByIdsAsync(id.Select(x => (object)x).ToArray());
     }
     
     public async Task<List<Guid>> GetChildListAsync(Guid deptId)

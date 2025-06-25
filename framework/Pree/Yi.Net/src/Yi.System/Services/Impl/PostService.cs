@@ -52,6 +52,6 @@ public class PostService : BaseService, IPostService
 
     public async Task DeleteAsync(IEnumerable<Guid> id)
     {
-        await _repository.DeleteManyAsync(id);
+        await _repository.DeleteByIdsAsync(id.Select(x => (object)x).ToArray());
     }
 }

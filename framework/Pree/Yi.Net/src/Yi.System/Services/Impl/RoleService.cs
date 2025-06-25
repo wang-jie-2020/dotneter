@@ -76,7 +76,7 @@ public class RoleService : BaseService, IRoleService
 
     public async Task DeleteAsync(IEnumerable<Guid> id)
     {
-        await _repository.DeleteManyAsync(id);
+        await _repository.DeleteByIdsAsync(id.Select(x => (object)x).ToArray());
     }
     
     public async Task UpdateDataScopeAsync(UpdateDataScopeInput input)

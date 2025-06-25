@@ -137,10 +137,4 @@ public class SqlSugarRepository<TEntity, TKey> : SqlSugarRepository<TEntity>, IS
         sugarDbContextProvider)
     {
     }
-
-    public virtual async Task DeleteManyAsync(IEnumerable<TKey> ids, bool autoSave = false,
-        CancellationToken cancellationToken = default)
-    {
-        await DeleteByIdsAsync(ids.Select(x => (object)x).ToArray());
-    }
 }

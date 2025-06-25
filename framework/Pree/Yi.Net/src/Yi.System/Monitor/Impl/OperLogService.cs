@@ -38,6 +38,6 @@ public class OperLogService : BaseService, IOperLogService
 
     public async Task DeleteAsync([FromBody] IEnumerable<long> id)
     {
-        await _repository.DeleteManyAsync(id);
+        await _repository.DeleteByIdsAsync(id.Select(x => (object)x).ToArray());
     }
 }

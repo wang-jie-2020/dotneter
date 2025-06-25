@@ -1,3 +1,4 @@
+using SkyWalking.NetworkProtocol.V3;
 using Yi.Framework;
 using Yi.Framework.Abstractions;
 using Yi.Framework.SqlSugarCore.Repositories;
@@ -52,6 +53,6 @@ public class ConfigService : BaseService, IConfigService
 
     public async Task DeleteAsync(IEnumerable<Guid> id)
     {
-        await _repository.DeleteManyAsync(id);
+        await _repository.DeleteByIdsAsync(id.Select(x => (object)x).ToArray());
     }
 }

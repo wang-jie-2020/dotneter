@@ -52,6 +52,6 @@ public class NoticeService : BaseService, INoticeService
 
     public async Task DeleteAsync(IEnumerable<Guid> id)
     {
-        await _repository.DeleteManyAsync(id);
+        await _repository.DeleteByIdsAsync(id.Select(x => (object)x).ToArray());
     }
 }
