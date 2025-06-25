@@ -36,7 +36,7 @@ public class TenantService : BaseService, ITenantService
     {
         RefAsync<int> total = 0;
 
-        var entities = await _repository.DbQueryable
+        var entities = await _repository.AsQueryable()
             .WhereIF(!string.IsNullOrEmpty(input.Name), x => x.Name.Contains(input.Name!))
             .WhereIF(input.StartTime is not null && input.EndTime is not null, x => x.CreationTime >= input.StartTime && x.CreationTime <= input.EndTime)
             .ToPageListAsync(input.PageNum, input.PageSize, total);
@@ -96,7 +96,7 @@ public class TenantService : BaseService, ITenantService
 
     public async Task<List<TenantSelectDto>> GetSelectAsync()
     {
-        var entities = await _repository.DbQueryable.ToListAsync();
+        var entities = await _repository.AsQueryable().ToListAsync();
         return entities.Select(x => new TenantSelectDto { Id = x.Id, Name = x.Name }).ToList();
     }
 
@@ -117,9 +117,8 @@ public class TenantService : BaseService, ITenantService
         //没有数据库，不能创工作单元，创建库，先关闭
         using (var uow = UnitOfWorkManager.Begin(true, false))
         {
-            var db = await _repository.GetDbContextAsync();
             //尝试创建数据库
-            db.DbMaintenance.CreateDatabase();
+            _repository.Context.DbMaintenance.CreateDatabase();
 
             var types = new List<Type>();
             foreach (var module in moduleContainer.Modules)
@@ -129,7 +128,7 @@ public class TenantService : BaseService, ITenantService
                     .Where(x => x.GetCustomAttribute<DefaultTenantTableAttribute>() is null)
                     .Where(x => x.GetCustomAttribute<SplitTableAttribute>() is null));
 
-            if (types.Count > 0) db.CodeFirst.InitTables(types.ToArray());
+            if (types.Count > 0) _repository.Context.CodeFirst.InitTables(types.ToArray());
 
             await uow.CompleteAsync();
         }

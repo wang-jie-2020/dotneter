@@ -30,7 +30,7 @@ public class LoginLogController : BaseController
     {
         RefAsync<int> total = 0;
 
-        var entities = await _repository.DbQueryable
+        var entities = await _repository.AsQueryable()
             .WhereIF(!string.IsNullOrEmpty(input.LoginIp), x => x.LoginIp.Contains(input.LoginIp!))
             .WhereIF(!string.IsNullOrEmpty(input.LoginUser), x => x.LoginUser!.Contains(input.LoginUser!))
             .WhereIF(input.StartTime is not null && input.EndTime is not null,

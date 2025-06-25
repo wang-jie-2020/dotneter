@@ -25,7 +25,7 @@ public class ConfigService : BaseService, IConfigService
     {
         RefAsync<int> total = 0;
 
-        var entities = await _repository.DbQueryable.WhereIF(!string.IsNullOrEmpty(input.ConfigKey), x => x.ConfigKey.Contains(input.ConfigKey!))
+        var entities = await _repository.AsQueryable().WhereIF(!string.IsNullOrEmpty(input.ConfigKey), x => x.ConfigKey.Contains(input.ConfigKey!))
             .WhereIF(!string.IsNullOrEmpty(input.ConfigName), x => x.ConfigName!.Contains(input.ConfigName!))
             .WhereIF(input.StartTime is not null && input.EndTime is not null, x => x.CreationTime >= input.StartTime && x.CreationTime <= input.EndTime)
             .ToPageListAsync(input.PageNum, input.PageSize, total);

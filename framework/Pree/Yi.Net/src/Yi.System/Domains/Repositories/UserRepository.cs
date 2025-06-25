@@ -19,7 +19,7 @@ public class UserRepository : SqlSugarRepository<UserEntity>, IUserRepository, I
     /// <exception cref="ArgumentNullException"></exception>
     public async Task<List<UserEntity>> GetListUserAllInfoAsync(List<Guid> userIds)
     {
-        var users = await DbQueryable.Where(x => userIds.Contains(x.Id))
+        var users = await AsQueryable().Where(x => userIds.Contains(x.Id))
             .Includes(u => u.Roles.Where(r => r.IsDeleted == false).ToList(),
                 r => r.Menus.Where(m => m.IsDeleted == false).ToList()).ToListAsync();
         return users;
@@ -34,7 +34,7 @@ public class UserRepository : SqlSugarRepository<UserEntity>, IUserRepository, I
     public async Task<UserEntity> GetUserAllInfoAsync(Guid userId)
     {
         //得到用户
-        var user = await DbQueryable.Includes(u => u.Roles.Where(r => r.IsDeleted == false).ToList(),
+        var user = await AsQueryable().Includes(u => u.Roles.Where(r => r.IsDeleted == false).ToList(),
             r => r.Menus.Where(m => m.IsDeleted == false).ToList()).InSingleAsync(userId);
         return user;
     }

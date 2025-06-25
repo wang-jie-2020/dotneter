@@ -25,7 +25,7 @@ public class PostService : BaseService, IPostService
     {
         RefAsync<int> total = 0;
 
-        var entities = await _repository.DbQueryable
+        var entities = await _repository.AsQueryable()
             .WhereIF(!string.IsNullOrEmpty(input.PostName), x => x.PostName.Contains(input.PostName!))
             .WhereIF(!string.IsNullOrEmpty(input.PostCode), x => x.PostCode.Contains(input.PostCode!))
             .WhereIF(input.State is not null, x => x.State == input.State)

@@ -24,7 +24,7 @@ public class DeptService : BaseService, IDeptService
     public async Task<PagedResult<DeptGetListOutputDto>> GetListAsync(DeptGetListInput input)
     {
         RefAsync<int> total = 0;
-        var entities = await _repository.DbQueryable
+        var entities = await _repository.AsQueryable()
             .WhereIF(!string.IsNullOrEmpty(input.DeptName), u => u.DeptName.Contains(input.DeptName!))
             .WhereIF(input.State is not null, u => u.State == input.State)
             .OrderBy(u => u.OrderNum)

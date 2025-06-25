@@ -18,7 +18,7 @@ public class SqlSugarCoreAuditLogRepository : SqlSugarRepository<AuditLogEntity,
     /// <returns></returns>
     public override async Task<bool> InsertAsync(AuditLogEntity insertObj)
     {
-        return await Db.InsertNav(insertObj)
+        return await Context.InsertNav(insertObj)
             .Include(z1 => z1.Actions)
             //.Include(z1 => z1.EntityChanges).ThenInclude(z2 => z2.PropertyChanges)
             .ExecuteCommandAsync();
@@ -109,7 +109,7 @@ public class SqlSugarCoreAuditLogRepository : SqlSugarRepository<AuditLogEntity,
         DateTime endDate,
         CancellationToken cancellationToken = default)
     {
-        var result = await DbQueryable
+        var result = await AsQueryable()
             .Where(a => a.ExecutionTime < endDate.AddDays(1) && a.ExecutionTime > startDate)
             .OrderBy(t => t.ExecutionTime)
             .GroupBy(t => new { t.ExecutionTime.Value.Date })
@@ -140,7 +140,7 @@ public class SqlSugarCoreAuditLogRepository : SqlSugarRepository<AuditLogEntity,
         bool includeDetails = false)
     {
         var nHttpStatusCode = (int?)httpStatusCode;
-        return DbQueryable
+        return AsQueryable()
             .WhereIF(startTime.HasValue, auditLog => auditLog.ExecutionTime >= startTime)
             .WhereIF(endTime.HasValue, auditLog => auditLog.ExecutionTime <= endTime)
             .WhereIF(hasException.HasValue && hasException.Value,

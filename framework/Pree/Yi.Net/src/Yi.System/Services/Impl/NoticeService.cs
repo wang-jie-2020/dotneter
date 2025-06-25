@@ -25,7 +25,7 @@ public class NoticeService : BaseService, INoticeService
     {
         RefAsync<int> total = 0;
 
-        var entities = await _repository.DbQueryable.WhereIF(input.Type is not null, x => x.Type == input.Type)
+        var entities = await _repository.AsQueryable().WhereIF(input.Type is not null, x => x.Type == input.Type)
             .WhereIF(!string.IsNullOrEmpty(input.Title), x => x.Title!.Contains(input.Title!))
             .WhereIF(input.StartTime is not null && input.EndTime is not null, x => x.CreationTime >= input.StartTime && x.CreationTime <= input.EndTime)
             .ToPageListAsync(input.PageNum, input.PageSize, total);
