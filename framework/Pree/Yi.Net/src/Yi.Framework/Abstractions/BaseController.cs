@@ -3,6 +3,8 @@ using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 using Volo.Abp.DependencyInjection;
+using Volo.Abp.Uow;
+using Yi.AspNetCore.Data.Filtering;
 using Yi.AspNetCore.MultiTenancy;
 using Yi.AspNetCore.Security;
 
@@ -41,4 +43,10 @@ public abstract class BaseController : ControllerBase
         //var localizer = StringLocalizerFactory.Create("your-baseName", "your-location");
         return LazyServiceProvider.LazyGetRequiredService<IStringLocalizer>();
     }
+
+    protected IDataFilter DataFilter => LazyServiceProvider.LazyGetRequiredService<IDataFilter>();
+
+    protected IUnitOfWork? CurrentUnitOfWork => UnitOfWorkManager?.Current;
+
+    protected IUnitOfWorkManager UnitOfWorkManager => LazyServiceProvider.LazyGetRequiredService<IUnitOfWorkManager>();
 }
