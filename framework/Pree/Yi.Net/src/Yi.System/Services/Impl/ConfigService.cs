@@ -9,9 +9,9 @@ namespace Yi.System.Services.Impl;
 
 public class ConfigService : BaseService, IConfigService
 {
-    private readonly ISqlSugarRepository<ConfigEntity, Guid> _repository;
+    private readonly ISqlSugarRepository<ConfigEntity> _repository;
 
-    public ConfigService(ISqlSugarRepository<ConfigEntity, Guid> repository)
+    public ConfigService(ISqlSugarRepository<ConfigEntity> repository)
     {
         _repository = repository;
     }

@@ -11,14 +11,14 @@ public class RoleService : BaseService, IRoleService
 {
     private readonly RoleManager _roleManager;
 
-    private readonly ISqlSugarRepository<RoleEntity, Guid> _repository;
+    private readonly ISqlSugarRepository<RoleEntity> _repository;
     private readonly ISqlSugarRepository<RoleDeptEntity> _roleDeptRepository;
     private readonly ISqlSugarRepository<UserRoleEntity> _userRoleRepository;
 
     public RoleService(RoleManager roleManager,
         ISqlSugarRepository<RoleDeptEntity> roleDeptRepository,
         ISqlSugarRepository<UserRoleEntity> userRoleRepository,
-        ISqlSugarRepository<RoleEntity, Guid> repository)
+        ISqlSugarRepository<RoleEntity> repository)
     {
         (_roleManager, _roleDeptRepository, _userRoleRepository, _repository) =
             (roleManager, roleDeptRepository, userRoleRepository, repository);

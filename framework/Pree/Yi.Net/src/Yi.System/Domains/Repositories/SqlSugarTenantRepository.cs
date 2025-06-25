@@ -5,7 +5,7 @@ using Yi.System.Domains.Entities;
 
 namespace Yi.System.Domains.Repositories;
 
-public class SqlSugarTenantRepository : SqlSugarRepository<TenantEntity, Guid>, ISqlSugarTenantRepository, ITransientDependency
+public class SqlSugarTenantRepository : SqlSugarRepository<TenantEntity>, ISqlSugarTenantRepository, ITransientDependency
 {
     public SqlSugarTenantRepository(ISugarDbContextProvider<ISqlSugarDbContext> sugarDbContextProvider) : base(
         sugarDbContextProvider)

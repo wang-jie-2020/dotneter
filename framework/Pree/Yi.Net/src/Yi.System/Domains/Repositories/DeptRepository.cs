@@ -5,7 +5,7 @@ using Yi.System.Domains.Entities;
 
 namespace Yi.System.Domains.Repositories;
 
-public class DeptRepository : SqlSugarRepository<DeptEntity, Guid>, IDeptRepository, ITransientDependency
+public class DeptRepository : SqlSugarRepository<DeptEntity>, IDeptRepository, ITransientDependency
 {
     public DeptRepository(ISugarDbContextProvider<ISqlSugarDbContext> sugarDbContextProvider) : base(sugarDbContextProvider)
     {

@@ -9,9 +9,9 @@ namespace Yi.System.Monitor.Impl;
 
 public class OperLogService : BaseService, IOperLogService
 {
-    private readonly ISqlSugarRepository<OperLogEntity, long> _repository;
+    private readonly ISqlSugarRepository<OperLogEntity> _repository;
 
-    public OperLogService(ISqlSugarRepository<OperLogEntity, long> repository)
+    public OperLogService(ISqlSugarRepository<OperLogEntity> repository)
     {
         _repository = repository;
     }

@@ -3,7 +3,7 @@ using Yi.System.Domains.Entities;
 
 namespace Yi.System.Domains.Repositories;
 
-public interface ISqlSugarTenantRepository : ISqlSugarRepository<TenantEntity, Guid>
+public interface ISqlSugarTenantRepository : ISqlSugarRepository<TenantEntity>
 {
     Task<TenantEntity> FindByNameAsync(string name, bool includeDetails = true);
 

@@ -8,9 +8,9 @@ namespace Yi.System.Services.Impl;
 
 public class PostService : BaseService, IPostService
 {
-    private readonly ISqlSugarRepository<PostEntity, Guid> _repository;
+    private readonly ISqlSugarRepository<PostEntity> _repository;
 
-    public PostService(ISqlSugarRepository<PostEntity, Guid> repository)
+    public PostService(ISqlSugarRepository<PostEntity> repository)
     {
         _repository = repository;
     }

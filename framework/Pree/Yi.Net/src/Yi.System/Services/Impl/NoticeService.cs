@@ -8,9 +8,9 @@ namespace Yi.System.Services.Impl;
 
 public class NoticeService : BaseService, INoticeService
 {
-    private readonly ISqlSugarRepository<NoticeEntity, Guid> _repository;
+    private readonly ISqlSugarRepository<NoticeEntity> _repository;
 
-    public NoticeService(ISqlSugarRepository<NoticeEntity, Guid> repository)
+    public NoticeService(ISqlSugarRepository<NoticeEntity> repository)
     {
         _repository = repository;
     }

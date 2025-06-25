@@ -3,7 +3,7 @@ using Yi.System.Domains.Entities;
 
 namespace Yi.System.Domains.Repositories;
 
-public interface IDeptRepository : ISqlSugarRepository<DeptEntity, Guid>
+public interface IDeptRepository : ISqlSugarRepository<DeptEntity>
 {
     Task<List<Guid>> GetChildListAsync(Guid deptId);
     

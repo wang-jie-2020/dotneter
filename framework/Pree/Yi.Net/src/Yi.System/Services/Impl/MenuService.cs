@@ -8,9 +8,9 @@ namespace Yi.System.Services.Impl;
 
 public class MenuService : BaseService, IMenuService
 {
-    private readonly ISqlSugarRepository<MenuEntity, Guid> _repository;
+    private readonly ISqlSugarRepository<MenuEntity> _repository;
 
-    public MenuService(ISqlSugarRepository<MenuEntity, Guid> repository)
+    public MenuService(ISqlSugarRepository<MenuEntity> repository)
     {
         _repository = repository;
     }

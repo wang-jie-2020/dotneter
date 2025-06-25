@@ -4,7 +4,7 @@ using Yi.System.Monitor.Entities;
 
 namespace Yi.System.Monitor.Repositories;
 
-public interface IAuditLogRepository : ISqlSugarRepository<AuditLogEntity, Guid>
+public interface IAuditLogRepository : ISqlSugarRepository<AuditLogEntity>
 {
     Task<Dictionary<DateTime, double>> GetAverageExecutionDurationPerDayAsync(
         DateTime startDate, 

@@ -8,9 +8,3 @@ public interface ISqlSugarRepository<TEntity> : ISimpleClient<TEntity>, ISugarRe
 {
 
 }
-
-public interface ISqlSugarRepository<TEntity, TKey> : ISqlSugarRepository<TEntity>
-    where TEntity : class, IEntity<TKey>, new()
-{
-
-}

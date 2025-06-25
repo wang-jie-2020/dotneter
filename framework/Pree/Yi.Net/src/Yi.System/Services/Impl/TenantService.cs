@@ -18,9 +18,9 @@ namespace Yi.System.Services.Impl;
 public class TenantService : BaseService, ITenantService
 {
     private readonly IDataSeeder _dataSeeder;
-    private readonly ISqlSugarRepository<TenantEntity, Guid> _repository;
+    private readonly ISqlSugarRepository<TenantEntity> _repository;
 
-    public TenantService(ISqlSugarRepository<TenantEntity, Guid> repository, IDataSeeder dataSeeder)
+    public TenantService(ISqlSugarRepository<TenantEntity> repository, IDataSeeder dataSeeder)
     {
         _repository = repository;
         _dataSeeder = dataSeeder;

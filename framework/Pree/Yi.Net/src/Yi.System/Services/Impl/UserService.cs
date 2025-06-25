@@ -13,11 +13,11 @@ namespace Yi.System.Services.Impl;
 
 public class UserService : BaseService, IUserService
 {
-    private readonly ISqlSugarRepository<UserEntity, Guid> _repository;
+    private readonly ISqlSugarRepository<UserEntity> _repository;
     private readonly UserManager _userManager;
     private readonly IDeptService _deptService;
 
-    public UserService(ISqlSugarRepository<UserEntity, Guid> repository,
+    public UserService(ISqlSugarRepository<UserEntity> repository,
         UserManager userManager,
         IDeptService deptService)
     {

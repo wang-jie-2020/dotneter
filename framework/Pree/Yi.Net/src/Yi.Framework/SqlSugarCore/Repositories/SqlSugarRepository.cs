@@ -129,12 +129,3 @@ public class SqlSugarRepository<TEntity> : SimpleClient<TEntity>, ISqlSugarRepos
         return await base.DeleteByIdsAsync(ids);
     }
 }
-
-public class SqlSugarRepository<TEntity, TKey> : SqlSugarRepository<TEntity>, ISqlSugarRepository<TEntity, TKey>
-    where TEntity : class, IEntity<TKey>, new()
-{
-    public SqlSugarRepository(ISugarDbContextProvider<ISqlSugarDbContext> sugarDbContextProvider) : base(
-        sugarDbContextProvider)
-    {
-    }
-}

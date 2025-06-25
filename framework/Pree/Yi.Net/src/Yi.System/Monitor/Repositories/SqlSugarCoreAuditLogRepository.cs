@@ -5,7 +5,7 @@ using Yi.System.Monitor.Entities;
 
 namespace Yi.System.Monitor.Repositories;
 
-public class SqlSugarCoreAuditLogRepository : SqlSugarRepository<AuditLogEntity, Guid>, IAuditLogRepository
+public class SqlSugarCoreAuditLogRepository : SqlSugarRepository<AuditLogEntity>, IAuditLogRepository
 {
     public SqlSugarCoreAuditLogRepository(ISugarDbContextProvider<ISqlSugarDbContext> sugarDbContextProvider) : base(sugarDbContextProvider)
     {

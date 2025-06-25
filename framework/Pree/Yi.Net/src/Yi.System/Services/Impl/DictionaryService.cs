@@ -9,9 +9,9 @@ namespace Yi.System.Services.Impl;
 
 public class DictionaryService : BaseService, IDictionaryService
 {
-    private readonly ISqlSugarRepository<DictionaryEntity, Guid> _repository;
+    private readonly ISqlSugarRepository<DictionaryEntity> _repository;
 
-    public DictionaryService(ISqlSugarRepository<DictionaryEntity, Guid> repository)
+    public DictionaryService(ISqlSugarRepository<DictionaryEntity> repository)
     {
         _repository = repository;
     }
