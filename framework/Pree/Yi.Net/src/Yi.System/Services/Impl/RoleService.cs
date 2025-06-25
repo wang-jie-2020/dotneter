@@ -26,7 +26,7 @@ public class RoleService : BaseService, IRoleService
 
     public async Task<RoleDto> GetAsync(Guid id)
     {
-        var entity = await _repository.GetAsync(id);
+        var entity = await _repository.GetByIdAsync(id);
         return entity.Adapt<RoleDto>();
     }
 

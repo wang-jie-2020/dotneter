@@ -17,7 +17,7 @@ public class DictionaryTypeService : BaseService, IDictionaryTypeService
 
     public async Task<DictionaryTypeDto> GetAsync(Guid id)
     {
-        var entity = await _repository.GetAsync(id);
+        var entity = await _repository.GetByIdAsync(id);
         return entity.Adapt<DictionaryTypeDto>();
     }
 
@@ -48,7 +48,7 @@ public class DictionaryTypeService : BaseService, IDictionaryTypeService
 
     public async Task<DictionaryTypeDto> UpdateAsync(Guid id, DictionaryTypeUpdateInput input)
     {
-        var entity = await _repository.GetAsync(id);
+        var entity = await _repository.GetByIdAsync(id);
         input.Adapt(entity);
         await _repository.UpdateAsync(entity);
 

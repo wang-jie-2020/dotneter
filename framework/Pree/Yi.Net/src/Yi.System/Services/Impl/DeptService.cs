@@ -17,7 +17,7 @@ public class DeptService : BaseService, IDeptService
 
     public async Task<DeptGetOutputDto> GetAsync(Guid id)
     {
-        var entity = await _repository.GetAsync(id);
+        var entity = await _repository.GetByIdAsync(id);
         return entity.Adapt<DeptGetOutputDto>();
     }
 
@@ -47,7 +47,7 @@ public class DeptService : BaseService, IDeptService
 
     public async Task<DeptGetOutputDto> UpdateAsync(Guid id, DeptUpdateInput input)
     {
-        var entity = await _repository.GetAsync(id);
+        var entity = await _repository.GetByIdAsync(id);
         input.Adapt(entity);
         await _repository.UpdateAsync(entity);
 

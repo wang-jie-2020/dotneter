@@ -17,7 +17,7 @@ public class PostService : BaseService, IPostService
 
     public async Task<PostDto> GetAsync(Guid id)
     {
-        var entity = await _repository.GetAsync(id);
+        var entity = await _repository.GetByIdAsync(id);
         return entity.Adapt<PostDto>();
     }
 
@@ -43,7 +43,7 @@ public class PostService : BaseService, IPostService
 
     public async Task<PostDto> UpdateAsync(Guid id, PostUpdateInput input)
     {
-        var entity = await _repository.GetAsync(id);
+        var entity = await _repository.GetByIdAsync(id);
         input.Adapt(entity);
         await _repository.UpdateAsync(entity);
 

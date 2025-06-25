@@ -54,7 +54,7 @@ public class SqlSugarAndConfigurationTenantStore : ITenantStore, ITransientDepen
         {
             using (CurrentTenant.Change(null)) //TODO: No need this if we can implement to define host side (or tenant-independent) entities!
             {
-                var tenant = await TenantRepository.FindAsync(id.Value);
+                var tenant = await TenantRepository.GetByIdAsync(id.Value);
                 return await SetCacheAsync(cacheKey, tenant);
             }
         }

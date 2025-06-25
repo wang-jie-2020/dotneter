@@ -17,7 +17,7 @@ public class NoticeService : BaseService, INoticeService
 
     public async Task<NoticeDto> GetAsync(Guid id)
     {
-        var entity = await _repository.GetAsync(id);
+        var entity = await _repository.GetByIdAsync(id);
         return entity.Adapt<NoticeDto>();
     }
 
@@ -43,7 +43,7 @@ public class NoticeService : BaseService, INoticeService
 
     public async Task<NoticeDto> UpdateAsync(Guid id, NoticeUpdateInput input)
     {
-        var entity = await _repository.GetAsync(id);
+        var entity = await _repository.GetByIdAsync(id);
         input.Adapt(entity);
         await _repository.UpdateAsync(entity);
 

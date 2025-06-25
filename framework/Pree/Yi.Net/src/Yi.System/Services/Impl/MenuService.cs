@@ -17,7 +17,7 @@ public class MenuService : BaseService, IMenuService
 
     public async Task<MenuDto> GetAsync(Guid id)
     {
-        var entity = await _repository.GetAsync(id);
+        var entity = await _repository.GetByIdAsync(id);
         return entity.Adapt<MenuDto>();
     }
 
@@ -44,7 +44,7 @@ public class MenuService : BaseService, IMenuService
 
     public async Task<MenuDto> UpdateAsync(Guid id, MenuUpdateInput input)
     {
-        var entity = await _repository.GetAsync(id);
+        var entity = await _repository.GetByIdAsync(id);
         input.Adapt(entity);
         await _repository.UpdateAsync(entity);
 

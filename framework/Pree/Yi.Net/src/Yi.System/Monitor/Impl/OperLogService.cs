@@ -18,7 +18,7 @@ public class OperLogService : BaseService, IOperLogService
 
     public async Task<OperLogDto> GetAsync(long id)
     {
-        var entity = await _repository.GetAsync(id);
+        var entity = await _repository.GetByIdAsync(id);
         return entity.Adapt<OperLogDto>();
     }
 

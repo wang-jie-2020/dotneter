@@ -28,7 +28,7 @@ public class TenantService : BaseService, ITenantService
 
     public async Task<TenantDto> GetAsync(Guid id)
     {
-        var entity = await _repository.GetAsync(id);
+        var entity = await _repository.GetByIdAsync(id);
         return entity.Adapt<TenantDto>();
     }
 
@@ -62,7 +62,7 @@ public class TenantService : BaseService, ITenantService
         if (await _repository.IsAnyAsync(x => x.Name == input.Name && x.Id != id))
             throw Oops.Oh(AccountConst.Tenant_Repeat);
 
-        var entity = await _repository.GetAsync(id);
+        var entity = await _repository.GetByIdAsync(id);
         input.Adapt(entity);
         await _repository.UpdateAsync(entity);
 

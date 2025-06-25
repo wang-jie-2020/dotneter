@@ -21,7 +21,7 @@ public class LoginLogController : BaseController
     [HttpGet("{id}")]
     public async Task<LoginLogGetListOutputDto> GetAsync(long id)
     {
-        var entity = await _repository.GetAsync(id);
+        var entity = await _repository.GetByIdAsync(id);
         return entity.Adapt<LoginLogGetListOutputDto>();
     }
 
