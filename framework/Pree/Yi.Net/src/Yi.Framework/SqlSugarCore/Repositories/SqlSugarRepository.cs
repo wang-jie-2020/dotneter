@@ -7,12 +7,9 @@ namespace Yi.Framework.SqlSugarCore.Repositories;
 public class SqlSugarRepository<TEntity> : SimpleClient<TEntity>, ISqlSugarRepository<TEntity>
     where TEntity : class, new()
 {
-    private readonly ISugarDbContextProvider<ISqlSugarDbContext> _sugarDbContextProvider;
-
     public SqlSugarRepository(ISugarDbContextProvider<ISqlSugarDbContext> sugarDbContextProvider)
     {
-        _sugarDbContextProvider = sugarDbContextProvider;
-        Context = _sugarDbContextProvider.GetDbContextAsync().Result.SqlSugarClient;
+        Context = sugarDbContextProvider.GetDbContextAsync().Result.SqlSugarClient;
     }
 
     public override bool Delete(Expression<Func<TEntity, bool>> whereExpression)

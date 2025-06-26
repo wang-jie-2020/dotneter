@@ -27,8 +27,8 @@ public class AdminModule : AbpModule
         var configuration = context.Services.GetConfiguration();
         var host = context.Services.GetHostingEnvironment();
 
-        //context.Services.AddYiDbContext<AdminDbContext>();
-        //context.Services.AddTransient(x => x.GetRequiredService<ISqlSugarDbContext>().SqlSugarClient);
+        context.Services.AddTransient<ISqlSugarDbContext, AdminDbContext>();
+        context.Services.AddTransient(x => x.GetRequiredService<ISqlSugarDbContext>().SqlSugarClient);
 
         // Configure<AbpExceptionHandlingOptions>(options =>
         // {

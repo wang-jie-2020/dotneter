@@ -3,29 +3,23 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 using Volo.Abp.Uow;
 using Yi.AspNetCore.Data;
-using Yi.AspNetCore.MultiTenancy;
 
 namespace Yi.Framework.SqlSugarCore.Uow;
 
-public class UnitOfWorkSqlSugarDbContextProvider<TDbContext> : ISugarDbContextProvider<TDbContext> where TDbContext : ISqlSugarDbContext
+public class UnitOfWorkSqlSugarDbContextProvider<TDbContext> : ISugarDbContextProvider<TDbContext> 
+    where TDbContext : ISqlSugarDbContext
 {
-    private readonly ISqlSugarDbConnectionCreator _dbConnectionCreator;
-    protected readonly IConnectionStringResolver ConnectionStringResolver;
-    protected readonly ICurrentTenant CurrentTenant;
-    protected readonly IUnitOfWorkManager UnitOfWorkManager;
-
+    private readonly IUnitOfWorkManager _unitOfWorkManager;
+    private readonly IConnectionStringResolver _connectionStringResolver;
+    
     public UnitOfWorkSqlSugarDbContextProvider(
         IUnitOfWorkManager unitOfWorkManager,
-        IConnectionStringResolver connectionStringResolver,
-        ICurrentTenant currentTenant,
-        ISqlSugarDbConnectionCreator dbConnectionCreator
-    )
+        IConnectionStringResolver connectionStringResolver)
     {
-        UnitOfWorkManager = unitOfWorkManager;
-        ConnectionStringResolver = connectionStringResolver;
-        CurrentTenant = currentTenant;
+        _unitOfWorkManager = unitOfWorkManager;
+        _connectionStringResolver = connectionStringResolver;
+
         Logger = NullLogger<UnitOfWorkSqlSugarDbContextProvider<TDbContext>>.Instance;
-        _dbConnectionCreator = dbConnectionCreator;
     }
 
     public ILogger<UnitOfWorkSqlSugarDbContextProvider<TDbContext>> Logger { get; set; }
@@ -34,22 +28,24 @@ public class UnitOfWorkSqlSugarDbContextProvider<TDbContext> : ISugarDbContextPr
     
     public virtual async Task<TDbContext> GetDbContextAsync()
     {
+        var unitOfWork = _unitOfWorkManager.Current;
+        if (unitOfWork == null)
+        {
+            throw new Exception("A DbContext can only be created inside a unit of work!");
+        }
+        
+
+        
+        
+        
+        
+        
         var connectionStringName = ConnectionStrings.DefaultConnectionStringName;
 
         //获取当前连接字符串，未多租户时，默认为空
         var connectionString = await ResolveConnectionStringAsync(connectionStringName);
         var dbContextKey = $"{GetType().FullName}_{connectionString}";
-        
-        var unitOfWork = UnitOfWorkManager.Current;
-        if (unitOfWork == null /*|| unitOfWork.Options.IsTransactional == false*/)
-        {
-            var dbContext = (TDbContext)ServiceProvider.GetRequiredService<ISqlSugarDbContext>();
-            //提高体验，取消工作单元强制性
-            //throw new Exception("A DbContext can only be created inside a unit of work!");
-            //如果不启用工作单元，创建一个新的db，不开启事务即可
-            return dbContext;
-        }
-        
+
         //尝试当前工作单元获取db
         var databaseApi = unitOfWork.FindDatabaseApi(dbContextKey);
 
@@ -105,11 +101,11 @@ public class UnitOfWorkSqlSugarDbContextProvider<TDbContext> : ISugarDbContextPr
             return dbContext;
         }
 
-        return (TDbContext)activeTransaction.GetDbContext();
+        return (TDbContext)activeTransaction.DbContext;
     }
     
     protected virtual async Task<string> ResolveConnectionStringAsync(string connectionStringName)
     {
-        return await ConnectionStringResolver.ResolveAsync(connectionStringName);
+        return await _connectionStringResolver.ResolveAsync(connectionStringName);
     }
 }

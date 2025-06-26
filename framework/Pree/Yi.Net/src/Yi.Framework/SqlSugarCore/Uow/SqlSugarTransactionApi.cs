@@ -4,30 +4,25 @@ namespace Yi.Framework.SqlSugarCore.Uow;
 
 public class SqlSugarTransactionApi : ITransactionApi, ISupportsRollback
 {
-    private readonly ISqlSugarDbContext _sqlSugarDbContext;
+    public ISqlSugarDbContext DbContext { get; }
 
-    public SqlSugarTransactionApi(ISqlSugarDbContext sqlSugarDbContext)
+    public SqlSugarTransactionApi(ISqlSugarDbContext dbContext)
     {
-        _sqlSugarDbContext = sqlSugarDbContext;
+        DbContext = dbContext;
     }
 
     public async Task RollbackAsync(CancellationToken cancellationToken = default)
     {
-        await _sqlSugarDbContext.SqlSugarClient.Ado.RollbackTranAsync();
+        await DbContext.SqlSugarClient.Ado.RollbackTranAsync();
     }
 
     public async Task CommitAsync(CancellationToken cancellationToken = default)
     {
-        await _sqlSugarDbContext.SqlSugarClient.Ado.CommitTranAsync();
+        await DbContext.SqlSugarClient.Ado.CommitTranAsync();
     }
 
     public void Dispose()
     {
-        _sqlSugarDbContext.SqlSugarClient.Ado.Dispose();
-    }
-
-    public ISqlSugarDbContext GetDbContext()
-    {
-        return _sqlSugarDbContext;
+        DbContext.SqlSugarClient.Ado.Dispose();
     }
 }
