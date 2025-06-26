@@ -31,8 +31,6 @@ public class UnitOfWorkSqlSugarDbContextProvider<TDbContext> : ISugarDbContextPr
     public ILogger<UnitOfWorkSqlSugarDbContextProvider<TDbContext>> Logger { get; set; }
     
     public IServiceProvider ServiceProvider { get; set; }
-
-    private static AsyncLocalDbContextAccessor ContextInstance => AsyncLocalDbContextAccessor.Instance;
     
     public virtual async Task<TDbContext> GetDbContextAsync()
     {

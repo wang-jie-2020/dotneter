@@ -18,7 +18,7 @@ using Check = Volo.Abp.Check;
 
 namespace Yi.Framework.SqlSugarCore;
 
-public class SqlSugarDbContext : ISqlSugarDbContext
+public abstract class SqlSugarDbContext : ISqlSugarDbContext
 {
     protected static readonly DiagnosticListener s_diagnosticListener =
         new DiagnosticListener("SQLSugar");
@@ -66,11 +66,6 @@ public class SqlSugarDbContext : ISqlSugarDbContext
     public ISqlSugarClient SqlSugarClient { get; private set; }
 
     public DbConnOptions Options => LazyServiceProvider.LazyGetRequiredService<IOptions<DbConnOptions>>().Value;
-
-    public void SetSqlSugarClient(ISqlSugarClient sqlSugarClient)
-    {
-        SqlSugarClient = sqlSugarClient;
-    }
 
     /// <summary>
     ///     db切换多库支持
