@@ -17,10 +17,9 @@ using Check = Volo.Abp.Check;
 
 namespace Yi.Framework.SqlSugarCore;
 
-public class SqlSugarDbContext : ISqlSugarDbContext
+public abstract class SqlSugarDbContext : ISqlSugarDbContext
 {
-    protected static readonly DiagnosticListener s_diagnosticListener =
-        new DiagnosticListener("SQLSugar");
+    protected static readonly DiagnosticListener s_diagnosticListener = new DiagnosticListener("SQLSugar");
 
     private ISqlSugarDbConnectionCreator _dbConnectionCreator;
 

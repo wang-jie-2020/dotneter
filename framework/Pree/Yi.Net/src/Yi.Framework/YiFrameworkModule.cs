@@ -33,10 +33,7 @@ public class YiFrameworkModule : AbpModule
             options.Filters.AddService<OperLogFilter>();
             options.Filters.AddService<AuditActionFilter>();
         });
-
-        // Interceptors
-        context.Services.AddTransient<OperLogInterceptor>();
-
+        
         // SqlSugar
         Configure<DbConnOptions>(configuration.GetSection("DbConnOptions"));
 

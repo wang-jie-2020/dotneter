@@ -31,7 +31,7 @@ try
    
      """);
     Log.Information("Yi框架-Abp.vNext，启动！");
-
+    
     var builder = WebApplication.CreateBuilder(args);
     Log.Information($"当前主机启动环境-【{builder.Environment.EnvironmentName}】");
     Log.Information($"当前主机启动地址-【{builder.Configuration["App:SelfUrl"]}】");

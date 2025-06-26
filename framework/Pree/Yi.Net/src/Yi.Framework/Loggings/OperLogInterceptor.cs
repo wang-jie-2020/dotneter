@@ -1,11 +1,12 @@
 ﻿using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using Volo.Abp.DependencyInjection;
 using Volo.Abp.DynamicProxy;
 using Yi.AspNetCore.Security;
 
 namespace Yi.Framework.Loggings;
 
-public class OperLogInterceptor : AbpInterceptor
+public class OperLogInterceptor : AbpInterceptor, ITransientDependency
 {
     private readonly ILogger<OperLogInterceptor> _logger;
     private readonly IOperLogStore _operLogStore;
@@ -31,7 +32,7 @@ public class OperLogInterceptor : AbpInterceptor
         {
             return;
         }
-        
+
         var info = new OperLogInfo
         {
             Title = operLogAttribute.Title,

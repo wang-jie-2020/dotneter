@@ -34,30 +34,17 @@ public class UnitOfWorkSqlSugarDbContextProvider<TDbContext> : ISugarDbContextPr
             throw new Exception("A DbContext can only be created inside a unit of work!");
         }
         
-
-        
-        
-        
-        
-        
         var connectionStringName = ConnectionStrings.DefaultConnectionStringName;
-
-        //获取当前连接字符串，未多租户时，默认为空
         var connectionString = await ResolveConnectionStringAsync(connectionStringName);
+       
         var dbContextKey = $"{GetType().FullName}_{connectionString}";
-
-        //尝试当前工作单元获取db
         var databaseApi = unitOfWork.FindDatabaseApi(dbContextKey);
-
-        //当前没有db创建一个新的db
         if (databaseApi == null)
         {
-            //db根据连接字符串来创建
             databaseApi = new SqlSugarDatabaseApi(
                 await CreateDbContextAsync(unitOfWork, connectionStringName, connectionString)
             );
             
-            //创建的db加入到当前工作单元中
             unitOfWork.AddDatabaseApi(dbContextKey, databaseApi);
         }
 
@@ -92,12 +79,21 @@ public class UnitOfWorkSqlSugarDbContextProvider<TDbContext> : ISugarDbContextPr
         if (activeTransaction == null)
         {
             var dbContext = unitOfWork.ServiceProvider.GetRequiredService<TDbContext>();
+
+            if (unitOfWork.Options.IsolationLevel.HasValue)
+            {
+               await dbContext.SqlSugarClient.Ado.BeginTranAsync(unitOfWork.Options.IsolationLevel.Value);
+            }
+            else
+            {
+                await dbContext.SqlSugarClient.Ado.BeginTranAsync();
+            }
+            
             var transaction = new SqlSugarTransactionApi(
                 dbContext
             );
             unitOfWork.AddTransactionApi(transactionApiKey, transaction);
-
-            await dbContext.SqlSugarClient.Ado.BeginTranAsync();
+            
             return dbContext;
         }
 
