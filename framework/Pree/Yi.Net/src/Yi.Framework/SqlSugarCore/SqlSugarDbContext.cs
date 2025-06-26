@@ -6,7 +6,6 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using SqlSugar;
 using Volo.Abp.DependencyInjection;
-using Yi.AspNetCore;
 using Yi.AspNetCore.Data;
 using Yi.AspNetCore.Data.Filtering;
 using Yi.AspNetCore.MultiTenancy;
@@ -18,7 +17,7 @@ using Check = Volo.Abp.Check;
 
 namespace Yi.Framework.SqlSugarCore;
 
-public abstract class SqlSugarDbContext : ISqlSugarDbContext
+public class SqlSugarDbContext : ISqlSugarDbContext
 {
     protected static readonly DiagnosticListener s_diagnosticListener =
         new DiagnosticListener("SQLSugar");

@@ -6,14 +6,11 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using Newtonsoft.Json.Converters;
-using Yi.AspNetCore;
 using Yi.AspNetCore.Data.Seeding;
 using Yi.AspNetCore.Extensions.Builder;
 using Yi.AspNetCore.Extensions.DependencyInjection;
 using Yi.Framework.Extensions.Builder;
 using Yi.Framework.Extensions.DependencyInjection;
-using Yi.Framework.Permissions;
 using Yi.Framework.SqlSugarCore;
 using Yi.System;
 using Yi.System.Options;
@@ -30,8 +27,8 @@ public class AdminModule : AbpModule
         var configuration = context.Services.GetConfiguration();
         var host = context.Services.GetHostingEnvironment();
 
-        context.Services.AddYiDbContext<AdminDbContext>();
-        context.Services.AddTransient(x => x.GetRequiredService<ISqlSugarDbContext>().SqlSugarClient);
+        //context.Services.AddYiDbContext<AdminDbContext>();
+        //context.Services.AddTransient(x => x.GetRequiredService<ISqlSugarDbContext>().SqlSugarClient);
 
         // Configure<AbpExceptionHandlingOptions>(options =>
         // {

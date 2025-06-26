@@ -1,5 +1,4 @@
-﻿using Yi.AspNetCore;
-using Yi.AspNetCore.MultiTenancy;
+﻿using Yi.AspNetCore.MultiTenancy;
 using Yi.Framework.Loggings;
 using Yi.Framework.SqlSugarCore;
 

@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using Yi.AspNetCore.Security;
-using Yi.Framework.Permissions;
 using Yi.System.Domains;
 
 namespace Yi.System.Services.Impl;
