@@ -31,7 +31,8 @@ public class UnitOfWorkSqlSugarDbContextProvider<TDbContext> : ISugarDbContextPr
         var unitOfWork = _unitOfWorkManager.Current;
         if (unitOfWork == null)
         {
-            throw new Exception("A DbContext can only be created inside a unit of work!");
+            //throw new Exception("A DbContext can only be created inside a unit of work!");
+            return ServiceProvider.GetRequiredService<TDbContext>();
         }
         
         var connectionStringName = ConnectionStrings.DefaultConnectionStringName;

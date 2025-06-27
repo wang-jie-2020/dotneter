@@ -20,26 +20,26 @@ namespace Yi.Framework.SqlSugarCore;
 public abstract class SqlSugarDbContext : ISqlSugarDbContext
 {
     protected static readonly DiagnosticListener s_diagnosticListener = new DiagnosticListener("SQLSugar");
-
-    private ISqlSugarDbConnectionCreator _dbConnectionCreator;
-
+    
     public SqlSugarDbContext(IAbpLazyServiceProvider lazyServiceProvider)
     {
         LazyServiceProvider = lazyServiceProvider;
+        
         var connectionCreator = LazyServiceProvider.LazyGetRequiredService<ISqlSugarDbConnectionCreator>();
-        _dbConnectionCreator = connectionCreator;
         connectionCreator.OnSqlSugarClientConfig = OnSqlSugarClientConfig;
         connectionCreator.EntityService = EntityService;
         connectionCreator.DataExecuting = DataExecuting;
         connectionCreator.DataExecuted = DataExecuted;
         connectionCreator.OnLogExecuting = OnLogExecuting;
         connectionCreator.OnLogExecuted = OnLogExecuted;
+        
         SqlSugarClient = new SqlSugarClient(connectionCreator.Build(options =>
         {
             options.ConnectionString = GetCurrentConnectionString();
             options.DbType = GetCurrentDbType();
         }));
-        connectionCreator.SetDbAop(SqlSugarClient);
+        
+        //connectionCreator.SetDbAop(SqlSugarClient);
     }
 
     public ICurrentUser CurrentUser => LazyServiceProvider.GetRequiredService<ICurrentUser>();
@@ -57,10 +57,7 @@ public abstract class SqlSugarDbContext : ISqlSugarDbContext
     protected virtual bool IsSoftDeleteFilterEnabled => DataFilter?.IsEnabled<ISoftDelete>() ?? false;
 
     public DbConnectionOptions ConnectionOptions => LazyServiceProvider.LazyGetRequiredService<IOptions<DbConnectionOptions>>().Value;
-
-    /// <summary>
-    ///     SqlSugar 客户端
-    /// </summary>
+    
     public ISqlSugarClient SqlSugarClient { get; private set; }
 
     public DbConnOptions Options => LazyServiceProvider.LazyGetRequiredService<IOptions<DbConnOptions>>().Value;
@@ -244,19 +241,17 @@ public abstract class SqlSugarDbContext : ISqlSugarDbContext
             var sb = new StringBuilder();
             sb.AppendLine();
             sb.AppendLine("==========Yi-SQL执行:==========");
-            sb.AppendLine(UtilMethods.GetSqlString(_dbConnectionCreator.Options.DbType ?? DbType.Sqlite, sql, pars));
+            sb.AppendLine(UtilMethods.GetSqlString(SqlSugarClient.CurrentConnectionConfig.DbType, sql, pars));
             sb.AppendLine("===============================");
             Logger.CreateLogger<SqlSugarDbContext>().LogDebug(sb.ToString());
         }
-
-        //CustomTiming customTiming = MiniProfiler.Current?.CustomTiming("SqlSugar", UtilMethods.GetSqlString(_dbConnectionCreator.Options.DbType ?? DbType.Sqlite, sql, pars));
-
+        
         if (s_diagnosticListener.IsEnabled(LogExecutingEvent.EventName))
         {
             s_diagnosticListener.Write(LogExecutingEvent.EventName, new LogExecutingEvent(
                 Guid.NewGuid(),
                 Options.Url,
-                UtilMethods.GetSqlString(_dbConnectionCreator.Options.DbType ?? DbType.Sqlite, sql, pars)
+                UtilMethods.GetSqlString(SqlSugarClient.CurrentConnectionConfig.DbType, sql, pars)
             ));
         }
     }

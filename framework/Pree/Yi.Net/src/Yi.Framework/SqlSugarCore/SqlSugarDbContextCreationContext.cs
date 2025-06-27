@@ -4,22 +4,19 @@ namespace Yi.Framework.SqlSugarCore;
 
 public class SqlSugarDbContextCreationContext
 {
+    public static SqlSugarDbContextCreationContext Current => _current.Value;
     private static readonly AsyncLocal<SqlSugarDbContextCreationContext> _current = new();
 
+    public string ConnectionStringName { get; }
+    
+    public string ConnectionString { get; }
+    
     public SqlSugarDbContextCreationContext(string connectionStringName, string connectionString)
     {
         ConnectionStringName = connectionStringName;
         ConnectionString = connectionString;
     }
-
-    public static SqlSugarDbContextCreationContext Current => _current.Value;
     
-    public string ConnectionStringName { get; }
-
-    public string ConnectionString { get; }
-
-    public DbConnection ExistingConnection { get; internal set; }
-
     public static IDisposable Use(SqlSugarDbContextCreationContext context)
     {
         var previousValue = Current;

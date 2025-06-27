@@ -1,17 +1,22 @@
 ﻿using System.Linq.Expressions;
 using OfficeOpenXml.FormulaParsing.Excel.Functions.Text;
 using SqlSugar;
+using Volo.Abp.Uow;
 
 namespace Yi.Framework.SqlSugarCore.Repositories;
 
-public class SqlSugarRepository<TEntity> : SimpleClient<TEntity>, ISqlSugarRepository<TEntity>
+public class SqlSugarRepository<TEntity> : SimpleClient<TEntity>, ISqlSugarRepository<TEntity>, IUnitOfWorkEnabled
     where TEntity : class, new()
 {
+    private readonly ISugarDbContextProvider<ISqlSugarDbContext> _sugarDbContextProvider;
+
     public SqlSugarRepository(ISugarDbContextProvider<ISqlSugarDbContext> sugarDbContextProvider)
     {
+        _sugarDbContextProvider = sugarDbContextProvider;
+        
         Context = sugarDbContextProvider.GetDbContextAsync().Result.SqlSugarClient;
     }
-
+    
     public override bool Delete(Expression<Func<TEntity, bool>> whereExpression)
     {
         if (typeof(ISoftDelete).IsAssignableFrom(typeof(TEntity)))
@@ -100,7 +105,7 @@ public class SqlSugarRepository<TEntity> : SimpleClient<TEntity>, ISqlSugarRepos
 
         return await base.DeleteAsync(deleteObjs);
     }
-    
+
     public override async Task<bool> DeleteByIdAsync(dynamic id)
     {
         if (typeof(ISoftDelete).IsAssignableFrom(typeof(TEntity)))

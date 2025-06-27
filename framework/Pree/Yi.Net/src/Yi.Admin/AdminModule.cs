@@ -28,12 +28,6 @@ public class AdminModule : AbpModule
         var host = context.Services.GetHostingEnvironment();
 
         context.Services.AddTransient<ISqlSugarDbContext, AdminDbContext>();
-        context.Services.AddTransient(x => x.GetRequiredService<ISqlSugarDbContext>().SqlSugarClient);
-
-        // Configure<AbpExceptionHandlingOptions>(options =>
-        // {
-        //     options.SendExceptionsDetailsToClients = host.IsDevelopment() || configuration["App:SendExceptions"] == "true";
-        // });
 
         //跨域
         context.Services.AddCors(options =>
