@@ -20,11 +20,11 @@ namespace Yi.Framework.SqlSugarCore;
 public abstract class SqlSugarDbContext : ISqlSugarDbContext
 {
     protected static readonly DiagnosticListener s_diagnosticListener = new DiagnosticListener("SQLSugar");
-    
+
     public SqlSugarDbContext(IAbpLazyServiceProvider lazyServiceProvider)
     {
         LazyServiceProvider = lazyServiceProvider;
-        
+
         var connectionCreator = LazyServiceProvider.LazyGetRequiredService<ISqlSugarDbConnectionCreator>();
         connectionCreator.OnSqlSugarClientConfig = OnSqlSugarClientConfig;
         connectionCreator.EntityService = EntityService;
@@ -32,13 +32,13 @@ public abstract class SqlSugarDbContext : ISqlSugarDbContext
         connectionCreator.DataExecuted = DataExecuted;
         connectionCreator.OnLogExecuting = OnLogExecuting;
         connectionCreator.OnLogExecuted = OnLogExecuted;
-        
+
         SqlSugarClient = new SqlSugarClient(connectionCreator.Build(options =>
         {
             options.ConnectionString = GetCurrentConnectionString();
             options.DbType = GetCurrentDbType();
         }));
-        
+
         //connectionCreator.SetDbAop(SqlSugarClient);
     }
 
@@ -57,7 +57,7 @@ public abstract class SqlSugarDbContext : ISqlSugarDbContext
     protected virtual bool IsSoftDeleteFilterEnabled => DataFilter?.IsEnabled<ISoftDelete>() ?? false;
 
     public DbConnectionOptions ConnectionOptions => LazyServiceProvider.LazyGetRequiredService<IOptions<DbConnectionOptions>>().Value;
-    
+
     public ISqlSugarClient SqlSugarClient { get; private set; }
 
     public DbConnOptions Options => LazyServiceProvider.LazyGetRequiredService<IOptions<DbConnOptions>>().Value;
@@ -68,23 +68,12 @@ public abstract class SqlSugarDbContext : ISqlSugarDbContext
     /// <returns></returns>
     protected virtual string GetCurrentConnectionString()
     {
-        var defaultUrl = Options.Url ?? ConnectionOptions.GetConnectionStringOrNull(ConnectionStrings.DefaultConnectionStringName);
-
-        //如果未开启多租户，返回db url 或者 默认连接字符串
-        if (!Options.EnabledSaasMultiTenancy) return defaultUrl;
-
-        //开启了多租户
-        var connectionStringResolver = LazyServiceProvider.LazyGetRequiredService<IConnectionStringResolver>();
-        var connectionString = connectionStringResolver.ResolveAsync().GetAwaiter().GetResult();
-
-        //没有检测到使用多租户功能，默认使用默认库即可
-        if (string.IsNullOrWhiteSpace(connectionString))
+        if (SqlSugarDbContextCreationContext.Current == null || SqlSugarDbContextCreationContext.Current.ConnectionString == null)
         {
-            Check.NotNull(Options.Url, "租户默认库Default未找到");
-            connectionString = defaultUrl;
+            return Options.Url!;
         }
 
-        return connectionString!;
+        return SqlSugarDbContextCreationContext.Current.ConnectionString;
     }
 
     protected virtual DbType GetCurrentDbType()
@@ -245,7 +234,7 @@ public abstract class SqlSugarDbContext : ISqlSugarDbContext
             sb.AppendLine("===============================");
             Logger.CreateLogger<SqlSugarDbContext>().LogDebug(sb.ToString());
         }
-        
+
         if (s_diagnosticListener.IsEnabled(LogExecutingEvent.EventName))
         {
             s_diagnosticListener.Write(LogExecutingEvent.EventName, new LogExecutingEvent(
