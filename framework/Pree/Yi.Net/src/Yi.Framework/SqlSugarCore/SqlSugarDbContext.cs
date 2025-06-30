@@ -68,12 +68,23 @@ public abstract class SqlSugarDbContext : ISqlSugarDbContext
     /// <returns></returns>
     protected virtual string GetCurrentConnectionString()
     {
-        if (SqlSugarDbContextCreationContext.Current == null || SqlSugarDbContextCreationContext.Current.ConnectionString == null)
+        var defaultUrl = Options.Url ?? ConnectionOptions.GetConnectionStringOrNull(ConnectionStrings.DefaultConnectionStringName);
+
+        //如果未开启多租户，返回db url 或者 默认连接字符串
+        if (!Options.EnabledSaasMultiTenancy) return defaultUrl;
+
+        //开启了多租户
+        var connectionStringResolver = LazyServiceProvider.LazyGetRequiredService<IConnectionStringResolver>();
+        var connectionString = connectionStringResolver.ResolveAsync().GetAwaiter().GetResult();
+
+        //没有检测到使用多租户功能，默认使用默认库即可
+        if (string.IsNullOrWhiteSpace(connectionString))
         {
-            return Options.Url!;
+            Check.NotNull(Options.Url, "租户默认库Default未找到");
+            connectionString = defaultUrl;
         }
 
-        return SqlSugarDbContextCreationContext.Current.ConnectionString;
+        return connectionString!;
     }
 
     protected virtual DbType GetCurrentDbType()
