@@ -21,7 +21,7 @@
   "403MessageDetail": "您无权执行此操作！",
   "404MessageDetail": "抱歉，这个地址没有任何信息。",
   "UnauthorizedMessage": "您无权访问",
-
+  "TenantNotFound": "未找到租户{tenant}",
   "Permission:Query": "查询",
   "Permission:Create": "创建",
   "Permission:Update": "编辑",

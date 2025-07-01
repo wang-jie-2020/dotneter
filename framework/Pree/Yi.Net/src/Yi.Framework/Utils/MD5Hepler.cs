@@ -82,7 +82,7 @@ public class MD5Helper
         }
         catch
         {
-            throw new Exception($"错误的 password 字符串:【{password}】");
+            throw new Exception($"wrong password:【{password}】");
         }
 
         return pwd;
