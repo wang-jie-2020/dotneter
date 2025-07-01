@@ -45,7 +45,6 @@ public class YiFrameworkModule : AbpModule
         context.Services.AddSingleton<ITracingDiagnosticProcessor, SqlSugarTracingDiagnosticProcessor>();
 
         // Other
-        YitIdHelper.SetIdGenerator(new IdGeneratorOptions(0));
         Configure<AuditingOptions>(options =>
         {
             options.Contributors.Add(new AspNetCoreAuditLogContributor());

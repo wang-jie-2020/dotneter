@@ -22,5 +22,6 @@
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.8.0" />
 		<PackageReference Include="Volo.Abp.Autofac" Version="$(AbpVersion)" />
 		<PackageReference Include="Volo.Abp.Uow" Version="$(AbpVersion)" />
+		<PackageReference Include="Yitter.IdGenerator" Version="1.0.14" />
 	</ItemGroup>
 </Project>

@@ -12,7 +12,6 @@
 		<PackageReference Include="Magicodes.IE.Excel" Version="2.7.5.2" />
 		<PackageReference Include="MiniExcel" Version="1.31.3" />
 		<PackageReference Include="Cronos" Version="0.8.4" />
-		<PackageReference Include="Yitter.IdGenerator" Version="1.0.14" />
 		<PackageReference Include="Lazy.Captcha.Core" Version="2.0.7" />
 		<PackageReference Include="SkiaSharp.NativeAssets.Linux.NoDependencies" Version="2.88.7" />
 		<PackageReference Include="SqlSugarCore" Version="$(SqlSugarVersion)" />

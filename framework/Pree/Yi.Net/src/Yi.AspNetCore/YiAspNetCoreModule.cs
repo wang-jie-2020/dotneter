@@ -22,6 +22,7 @@ using Yi.AspNetCore.Mvc;
 using Yi.AspNetCore.Mvc.Conventions;
 using Yi.AspNetCore.Mvc.ExceptionHandling;
 using Yi.AspNetCore.Threading;
+using Yitter.IdGenerator;
 
 namespace Yi.AspNetCore;
 
@@ -131,5 +132,7 @@ public class YiAspNetCoreModule : AbpModule
 
         context.Services.AddTransient<IConfigureOptions<SwaggerGenOptions>, SwaggerConfigureOptions>();
         context.Services.AddTransient<IConfigureOptions<SwaggerUIOptions>, SwaggerConfigureOptions>();
+        
+        YitIdHelper.SetIdGenerator(new IdGeneratorOptions(0));
     }
 }

@@ -624,7 +624,6 @@ public class SqlSugarRepository<TEntity> : ISqlSugarRepository<TEntity>, IUnitOf
         }
 
         return Client.DeleteById(id);
-        //return Context.Deleteable<T>().In(id).ExecuteCommand() > 0;
     }
 
     public virtual bool DeleteByIds(dynamic[] ids)
@@ -682,7 +681,6 @@ public class SqlSugarRepository<TEntity> : ISqlSugarRepository<TEntity>, IUnitOf
         }
 
         return await Client.DeleteByIdAsync(id);
-        //return await Context.Deleteable<T>().In(id).ExecuteCommand() > 0;
     }
 
     public virtual async Task<bool> DeleteByIdsAsync(dynamic[] ids)
