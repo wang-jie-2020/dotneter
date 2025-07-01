@@ -56,11 +56,7 @@ public abstract class SqlSugarDbContext : ISqlSugarDbContext
 
     protected virtual bool IsSoftDeleteFilterEnabled => DataFilter?.IsEnabled<ISoftDelete>() ?? false;
 
-    public DbConnectionOptions ConnectionOptions => LazyServiceProvider.LazyGetRequiredService<IOptions<DbConnectionOptions>>().Value;
-
     public ISqlSugarClient SqlSugarClient { get; private set; }
-
-    public DbConnOptions Options => LazyServiceProvider.LazyGetRequiredService<IOptions<DbConnOptions>>().Value;
 
     /// <summary>
     ///     db切换多库支持
@@ -68,17 +64,12 @@ public abstract class SqlSugarDbContext : ISqlSugarDbContext
     /// <returns></returns>
     protected virtual string GetCurrentConnectionString()
     {
-        var defaultUrl = Options.Url ?? ConnectionOptions.GetConnectionStringOrNull(ConnectionStrings.DefaultConnectionStringName);
-
-        //开启了多租户
         var connectionStringResolver = LazyServiceProvider.LazyGetRequiredService<IConnectionStringResolver>();
-        var connectionString = connectionStringResolver.ResolveAsync().GetAwaiter().GetResult();
+        var connectionString = connectionStringResolver.ResolveAsync().Result;
 
-        //没有检测到使用多租户功能，默认使用默认库即可
-        if (string.IsNullOrWhiteSpace(connectionString))
+        if (connectionString.IsNullOrEmpty())
         {
-            Check.NotNull(Options.Url, "租户默认库Default未找到");
-            connectionString = defaultUrl;
+            throw new ArgumentNullException(nameof(connectionString));
         }
 
         return connectionString!;
@@ -86,36 +77,8 @@ public abstract class SqlSugarDbContext : ISqlSugarDbContext
 
     protected virtual DbType GetCurrentDbType()
     {
-        if (CurrentTenant.Name is not null)
-        {
-            var dbTypeFromTenantName = GetDbTypeFromTenantName(CurrentTenant.Name);
-            if (dbTypeFromTenantName is not null) return dbTypeFromTenantName.Value;
-        }
-
-        Check.NotNull(Options.DbType, "默认DbType未配置！");
-        return Options.DbType!.Value;
+        return DbType.Sqlite;
     }
-
-    //根据租户name进行匹配db类型:  Test_Sqlite，[来自AI]
-    private DbType? GetDbTypeFromTenantName(string name)
-    {
-        if (string.IsNullOrWhiteSpace(name)) return null;
-
-        // 查找下划线的位置
-        var underscoreIndex = name.LastIndexOf('_');
-
-        if (underscoreIndex == -1 || underscoreIndex == name.Length - 1) return null;
-
-        // 提取 枚举 部分
-        var enumString = name.Substring(underscoreIndex + 1);
-
-        // 尝试将 尾缀 转换为枚举
-        if (Enum.TryParse(enumString, out DbType result)) return result;
-
-        // 条件不满足时返回 null
-        return null;
-    }
-
 
     /// <summary>
     ///     上下文对象扩展
@@ -244,7 +207,7 @@ public abstract class SqlSugarDbContext : ISqlSugarDbContext
         {
             s_diagnosticListener.Write(LogExecutingEvent.EventName, new LogExecutingEvent(
                 Guid.NewGuid(),
-                Options.Url,
+                SqlSugarClient.CurrentConnectionConfig.ConnectionString,
                 UtilMethods.GetSqlString(SqlSugarClient.CurrentConnectionConfig.DbType, sql, pars)
             ));
         }
