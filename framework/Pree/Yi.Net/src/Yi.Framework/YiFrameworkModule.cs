@@ -24,7 +24,7 @@ public class YiFrameworkModule : AbpModule
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
         var configuration = context.Services.GetConfiguration();
-
+        
         // AspNetCore & Mvc
         context.Services.Configure<MvcOptions>(options =>
         {
@@ -42,11 +42,5 @@ public class YiFrameworkModule : AbpModule
 
         context.Services.AddSingleton<IMiniProfilerDiagnosticListener, SqlSugarDiagnosticListener>();
         context.Services.AddSingleton<ITracingDiagnosticProcessor, SqlSugarTracingDiagnosticProcessor>();
-
-        // Other
-        Configure<AuditingOptions>(options =>
-        {
-            options.Contributors.Add(new AspNetCoreAuditLogContributor());
-        });
     }
 }

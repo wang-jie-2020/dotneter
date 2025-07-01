@@ -28,6 +28,8 @@ public class AdminModule : AbpModule
 
         context.Services.AddTransient<ISqlSugarDbContext, AdminDbContext>();
 
+
+        
         //跨域
         context.Services.AddCors(options =>
         {

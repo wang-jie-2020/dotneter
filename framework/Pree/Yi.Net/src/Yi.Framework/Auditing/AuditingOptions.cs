@@ -18,6 +18,9 @@ public class AuditingOptions
     public AuditingOptions()
     {
         IsEnabled = true;
-        Contributors = new List<AuditLogContributor>();
+        Contributors = new List<AuditLogContributor>()
+        {
+            new AspNetCoreAuditLogContributor()
+        };
     }
 }
