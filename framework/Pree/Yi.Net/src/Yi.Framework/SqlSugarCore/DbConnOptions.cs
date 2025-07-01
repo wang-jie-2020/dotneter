@@ -43,9 +43,14 @@ public class DbConnOptions
     ///     读写分离
     /// </summary>
     public List<string>? ReadUrl { get; set; }
-
-    /// <summary>
-    ///     开启Saas多租户
-    /// </summary>
-    public bool EnabledSaasMultiTenancy { get; set; } = false;
 }
+
+//public sealed class SqlSugarConnectionOptions
+//{
+//    public List<DbConnectionConfig> ConnectionConfigs { get; set; }
+//}
+
+//public sealed class DbConnectionConfig : ConnectionConfig
+//{
+
+//}

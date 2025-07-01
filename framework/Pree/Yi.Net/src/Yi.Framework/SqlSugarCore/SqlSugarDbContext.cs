@@ -70,9 +70,6 @@ public abstract class SqlSugarDbContext : ISqlSugarDbContext
     {
         var defaultUrl = Options.Url ?? ConnectionOptions.GetConnectionStringOrNull(ConnectionStrings.DefaultConnectionStringName);
 
-        //如果未开启多租户，返回db url 或者 默认连接字符串
-        if (!Options.EnabledSaasMultiTenancy) return defaultUrl;
-
         //开启了多租户
         var connectionStringResolver = LazyServiceProvider.LazyGetRequiredService<IConnectionStringResolver>();
         var connectionString = connectionStringResolver.ResolveAsync().GetAwaiter().GetResult();

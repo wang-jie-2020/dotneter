@@ -10,7 +10,6 @@ using Yi.Framework.SqlSugarCore;
 using Yi.Framework.SqlSugarCore.Profilers;
 using Yi.Framework.SqlSugarCore.Repositories;
 using Yi.Framework.SqlSugarCore.Uow;
-using Yitter.IdGenerator;
 
 namespace Yi.Framework;
 
