@@ -3,7 +3,6 @@ using System.Reflection;
 using System.Text;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using SqlSugar;
 using Volo.Abp.DependencyInjection;
 using Yi.AspNetCore.Data;
@@ -13,7 +12,6 @@ using Yi.AspNetCore.Security;
 using Yi.Framework.SqlSugarCore.Profilers;
 using Yi.Framework.Utils;
 using Yitter.IdGenerator;
-using Check = Volo.Abp.Check;
 
 namespace Yi.Framework.SqlSugarCore;
 
