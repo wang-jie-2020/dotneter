@@ -181,17 +181,17 @@ public class AdminModule : AbpModule
         var service = context.ServiceProvider;
 
         //尝试创建数据库
-        var moduleContainer = service.GetRequiredService<IModuleContainer>();
-        var db = service.GetRequiredService<ISqlSugarDbContext>().SqlSugarClient;
-        db.DbMaintenance.CreateDatabase();
+        //var moduleContainer = service.GetRequiredService<IModuleContainer>();
+        //var db = service.GetRequiredService<ISqlSugarDbContext>().SqlSugarClient;
+        //db.DbMaintenance.CreateDatabase();
 
-        var types = new List<Type>();
-        foreach (var module in moduleContainer.Modules)
-            types.AddRange(module.Assembly.GetTypes()
-                .Where(x => x.GetCustomAttribute<IgnoreCodeFirstAttribute>() == null)
-                .Where(x => x.GetCustomAttribute<SugarTable>() != null)
-                .Where(x => x.GetCustomAttribute<SplitTableAttribute>() is null));
-        if (types.Count > 0) db.CopyNew().CodeFirst.InitTables(types.ToArray());
+        //var types = new List<Type>();
+        //foreach (var module in moduleContainer.Modules)
+        //    types.AddRange(module.Assembly.GetTypes()
+        //        .Where(x => x.GetCustomAttribute<IgnoreCodeFirstAttribute>() == null)
+        //        .Where(x => x.GetCustomAttribute<SugarTable>() != null)
+        //        .Where(x => x.GetCustomAttribute<SplitTableAttribute>() is null));
+        //if (types.Count > 0) db.CopyNew().CodeFirst.InitTables(types.ToArray());
 
         //尝试种子数据
         var dataSeeder = service.GetRequiredService<IDataSeeder>();
