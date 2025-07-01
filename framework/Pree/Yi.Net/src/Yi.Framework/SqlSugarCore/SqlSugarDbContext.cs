@@ -26,20 +26,23 @@ public abstract class SqlSugarDbContext : ISqlSugarDbContext
         LazyServiceProvider = lazyServiceProvider;
 
         var connectionCreator = LazyServiceProvider.LazyGetRequiredService<ISqlSugarDbConnectionCreator>();
-        connectionCreator.OnSqlSugarClientConfig = OnSqlSugarClientConfig;
-        connectionCreator.EntityService = EntityService;
-        connectionCreator.DataExecuting = DataExecuting;
-        connectionCreator.DataExecuted = DataExecuted;
-        connectionCreator.OnLogExecuting = OnLogExecuting;
-        connectionCreator.OnLogExecuted = OnLogExecuted;
-
         SqlSugarClient = new SqlSugarClient(connectionCreator.Build(options =>
         {
             options.ConnectionString = GetCurrentConnectionString();
             options.DbType = GetCurrentDbType();
-        }));
-
-        //connectionCreator.SetDbAop(SqlSugarClient);
+            options.ConfigureExternalServices = new ConfigureExternalServices
+            {
+                EntityService = EntityService
+            };
+        }),
+        db =>
+        {
+            db.Aop.OnLogExecuting = OnLogExecuting;
+            db.Aop.OnLogExecuted = OnLogExecuted;
+            db.Aop.DataExecuting = DataExecuting;
+            db.Aop.DataExecuted = DataExecuted;
+            CustomDataFilter(db);
+        });
     }
 
     public ICurrentUser CurrentUser => LazyServiceProvider.GetRequiredService<ICurrentUser>();
@@ -80,13 +83,8 @@ public abstract class SqlSugarDbContext : ISqlSugarDbContext
         return DbType.Sqlite;
     }
 
-    /// <summary>
-    ///     上下文对象扩展
-    /// </summary>
-    /// <param name="sqlSugarClient"></param>
-    protected virtual void OnSqlSugarClientConfig(ISqlSugarClient sqlSugarClient)
+    protected virtual void CustomDataFilter(ISqlSugarClient sqlSugarClient)
     {
-        //需自定义扩展
         if (IsSoftDeleteFilterEnabled)
         {
             sqlSugarClient.QueryFilter.AddTableFilter<ISoftDelete>(u => u.IsDeleted == false);
@@ -94,16 +92,9 @@ public abstract class SqlSugarDbContext : ISqlSugarDbContext
 
         if (IsMultiTenantFilterEnabled)
         {
-            //表达式不能放方法
             var tenantId = CurrentTenant?.Id;
             sqlSugarClient.QueryFilter.AddTableFilter<IMultiTenant>(u => u.TenantId == tenantId);
         }
-
-        CustomDataFilter(sqlSugarClient);
-    }
-
-    protected virtual void CustomDataFilter(ISqlSugarClient sqlSugarClient)
-    {
     }
 
     protected virtual void DataExecuted(object oldValue, DataAfterModel entityInfo)

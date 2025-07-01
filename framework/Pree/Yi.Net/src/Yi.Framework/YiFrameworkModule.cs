@@ -33,8 +33,8 @@ public class YiFrameworkModule : AbpModule
             options.Filters.AddService<AuditActionFilter>();
         });
         
-        // SqlSugar
-        Configure<DbConnOptions>(configuration.GetSection("DbConnOptions"));
+        // SqlSugar 
+        Configure<SqlSugarConnectionOptions>(configuration);
 
         context.Services.AddTransient(typeof(ISqlSugarRepository<>), typeof(SqlSugarRepository<>));
         context.Services.AddTransient(typeof(ISugarDbContextProvider<>), typeof(UnitOfWorkSqlSugarDbContextProvider<>));
