@@ -10,7 +10,6 @@ using Yi.AspNetCore.Data.Seeding;
 using Yi.AspNetCore.Extensions.Builder;
 using Yi.AspNetCore.Extensions.DependencyInjection;
 using Yi.Framework.Extensions.Builder;
-using Yi.Framework.Extensions.DependencyInjection;
 using Yi.Framework.SqlSugarCore;
 using Yi.System;
 using Yi.System.Options;
