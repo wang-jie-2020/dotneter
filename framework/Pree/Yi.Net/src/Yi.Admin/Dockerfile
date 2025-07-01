@@ -10,19 +10,20 @@ ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["src/Yi.Admin/Yi.Admin.csproj", "src/Yi.Admin/"]
 COPY ["src/Yi.AspNetCore/Yi.AspNetCore.csproj", "src/Yi.AspNetCore/"]
+COPY ["src/Yi.Framework/Yi.Framework.csproj", "src/Yi.Framework/"]
 COPY ["src/Yi.System/Yi.System.csproj", "src/Yi.System/"]
-COPY ["src/Yi.Web/Yi.Web.csproj", "src/Yi.Web/"]
 
-RUN dotnet restore "./src/Yi.Web/Yi.Web.csproj"
+
+RUN dotnet restore "./src/Yi.Admin/Yi.Admin.csproj"
 COPY . .
 
-RUN dotnet build "./src/Yi.Web/Yi.Web.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN dotnet build "./src/Yi.Admin/Yi.Admin.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./src/Yi.Web/Yi.Web.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./src/Yi.Admin/Yi.Admin.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "Yi.Web.dll"]
+ENTRYPOINT ["dotnet", "Yi.Admin.dll"]
