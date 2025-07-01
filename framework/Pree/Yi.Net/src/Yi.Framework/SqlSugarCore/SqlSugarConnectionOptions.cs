@@ -8,4 +8,9 @@ namespace Yi.Framework.SqlSugarCore;
 public class SqlSugarConnectionOptions
 {
     public List<ConnectionConfig> SqlSugarConnectionConfigs { get; set; }
+
+    public SqlSugarConnectionOptions()
+    {
+        SqlSugarConnectionConfigs = new List<ConnectionConfig>();
+    }
 }
