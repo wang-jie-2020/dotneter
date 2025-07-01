@@ -4,7 +4,6 @@ using Serilog.Sinks.SystemConsole.Themes;
 using Yi.AspNetCore.Extensions.Builder;
 using Yi.Web;
 
-//创建日志,可使用{SourceContext}记录
 Log.Logger = new LoggerConfiguration()
 #if DEBUG
     .MinimumLevel.Debug()
@@ -31,12 +30,8 @@ try
            |_|  |_| |_|  |_|  \__,_|_| |_| |_|\___| \_/\_/ \___/|_|  |_|\_\
    
      """);
-    Log.Information("Yi框架-Abp.vNext，启动！");
     
     var builder = WebApplication.CreateBuilder(args);
-    Log.Information($"当前主机启动环境-【{builder.Environment.EnvironmentName}】");
-    Log.Information($"当前主机启动地址-【{builder.Configuration["App:SelfUrl"]}】");
-    builder.WebHost.UseUrls(builder.Configuration["App:SelfUrl"]);
     builder.Host.UseAutofac();
     builder.Host.UseSerilog();
     await builder.Services.AddApplicationAsync<AdminModule>();
@@ -46,7 +41,7 @@ try
 }
 catch (Exception ex)
 {
-    Log.Fatal(ex, "Yi框架-Abp.vNext，爆炸！");
+    Log.Fatal(ex.Message);
 }
 finally
 {

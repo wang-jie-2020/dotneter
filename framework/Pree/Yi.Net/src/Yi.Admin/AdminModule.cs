@@ -25,10 +25,6 @@ public class AdminModule : AbpModule
     {
         var configuration = context.Services.GetConfiguration();
         var host = context.Services.GetHostingEnvironment();
-
-        context.Services.AddTransient<ISqlSugarDbContext, AdminDbContext>();
-
-
         
         //跨域
         context.Services.AddCors(options =>
@@ -49,8 +45,7 @@ public class AdminModule : AbpModule
             });
         });
 
-        //速率限制
-        //每60秒限制100个请求，滑块添加，分6段
+        //速率限制 每60秒限制100个请求，滑块添加，分6段
         context.Services.AddRateLimiter(_ =>
         {
             _.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
@@ -155,24 +150,8 @@ public class AdminModule : AbpModule
             options.RouteBasePath = "/profiler";
         });
 
-        //minio
-        //if (configuration["Minio:IsEnabled"].To<bool>())
-        //{
-        //    context.Services.UseMinio(options =>
-        //    {
-        //        options.Containers.ConfigureAll((containerName, containerConfiguration) =>
-        //        {
-        //            containerConfiguration.Bucket(bucket =>
-        //            {
-        //                bucket.EndPoint = configuration["Minio:Default:EndPoint"];
-        //                bucket.AccessKey = configuration["Minio:Default:User"];
-        //                bucket.SecretKey = configuration["Minio:Default:Pwd"];
-        //                bucket.BucketName = configuration["Minio:Default:BucketName"];
-        //                bucket.WithSSL = configuration["Minio:Default:WithSSL"].To<bool>();
-        //            });
-        //        });
-        //    });
-        //}
+        // Db
+        context.Services.AddTransient<ISqlSugarDbContext, AdminDbContext>();
 
         return Task.CompletedTask;
     }

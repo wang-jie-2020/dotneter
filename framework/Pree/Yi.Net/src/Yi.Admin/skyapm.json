@@ -1,6 +1,6 @@
 {
   "SkyWalking": {
-    "ServiceName": "Yi.Web",
+    "ServiceName": "Yi.Admin",
     "Namespace": "",
     "HeaderVersions": [
       "sw8"
