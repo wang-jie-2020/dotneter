@@ -233,15 +233,12 @@ public abstract class SqlSugarDbContext : ISqlSugarDbContext
     /// <param name="pars"></param>
     protected virtual void OnLogExecuting(string sql, SugarParameter[] pars)
     {
-        if (Options.EnabledSqlLog)
-        {
-            var sb = new StringBuilder();
-            sb.AppendLine();
-            sb.AppendLine("==========Yi-SQL执行:==========");
-            sb.AppendLine(UtilMethods.GetSqlString(SqlSugarClient.CurrentConnectionConfig.DbType, sql, pars));
-            sb.AppendLine("===============================");
-            Logger.CreateLogger<SqlSugarDbContext>().LogDebug(sb.ToString());
-        }
+        var sb = new StringBuilder();
+        sb.AppendLine();
+        sb.AppendLine("==========Yi-SQL执行:==========");
+        sb.AppendLine(UtilMethods.GetSqlString(SqlSugarClient.CurrentConnectionConfig.DbType, sql, pars));
+        sb.AppendLine("===============================");
+        Logger.CreateLogger<SqlSugarDbContext>().LogTrace(sb.ToString());
 
         if (s_diagnosticListener.IsEnabled(LogExecutingEvent.EventName))
         {
@@ -260,11 +257,8 @@ public abstract class SqlSugarDbContext : ISqlSugarDbContext
     /// <param name="pars"></param>
     protected virtual void OnLogExecuted(string sql, SugarParameter[] pars)
     {
-        if (Options.EnabledSqlLog)
-        {
-            var sqllog = $"=========Yi-SQL耗时{SqlSugarClient.Ado.SqlExecutionTime.TotalMilliseconds}毫秒=====";
-            Logger.CreateLogger<SqlSugarDbContext>().LogDebug(sqllog);
-        }
+        var sqllog = $"=========Yi-SQL耗时{SqlSugarClient.Ado.SqlExecutionTime.TotalMilliseconds}毫秒=====";
+        Logger.CreateLogger<SqlSugarDbContext>().LogTrace(sqllog);
     }
 
     /// <summary>

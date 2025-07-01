@@ -24,7 +24,6 @@ public class SqlSugarDbConnectionCreator : ISqlSugarDbConnectionCreator
         OnSqlSugarClientConfig(currentDb);
     }
 
-
     public ConnectionConfig Build(Action<ConnectionConfig>? action = null)
     {
         var dbConnOptions = Options;
@@ -33,18 +32,6 @@ public class SqlSugarDbConnectionCreator : ISqlSugarDbConnectionCreator
 
         if (dbConnOptions.DbType is null) throw new ArgumentException("DbType配置为空");
         var slavaConFig = new List<SlaveConnectionConfig>();
-        if (dbConnOptions.EnabledReadWrite)
-        {
-            if (dbConnOptions.ReadUrl is null) throw new ArgumentException("读写分离为空");
-
-            var readCon = dbConnOptions.ReadUrl;
-
-            readCon.ForEach(s =>
-            {
-                //如果是动态saas分库，这里的连接串都不能写死，需要动态添加，这里只配置共享库的连接
-                slavaConFig.Add(new SlaveConnectionConfig { ConnectionString = s });
-            });
-        }
 
         #endregion
 

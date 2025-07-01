@@ -6,10 +6,11 @@ using Yi.Web;
 
 //创建日志,可使用{SourceContext}记录
 Log.Logger = new LoggerConfiguration()
+#if DEBUG
     .MinimumLevel.Debug()
+#endif
     .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
     .MinimumLevel.Override("Microsoft.AspNetCore.Hosting.Diagnostics", LogEventLevel.Error)
-    .MinimumLevel.Override("Quartz", LogEventLevel.Warning)
     .Enrich.FromLogContext()
     .WriteTo.Async(c => c.File("logs/yi/debug-.log", rollingInterval: RollingInterval.Day, restrictedToMinimumLevel: LogEventLevel.Debug))
     .WriteTo.Async(c => c.File("logs/yi/info-.log", rollingInterval: RollingInterval.Day, restrictedToMinimumLevel: LogEventLevel.Information))
