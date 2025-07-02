@@ -1,4 +1,4 @@
-﻿namespace Yi.Framework.SqlSugarCore;
+﻿namespace Yi.Framework;
 
 /// <summary>
 ///     数据权限过滤接口

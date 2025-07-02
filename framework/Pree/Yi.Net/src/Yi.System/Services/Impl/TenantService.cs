@@ -9,7 +9,6 @@ using Yi.Framework;
 using Yi.Framework.Abstractions;
 using Yi.Framework.SqlSugarCore;
 using Yi.Framework.SqlSugarCore.Repositories;
-using Yi.System.Domains.Consts;
 using Yi.System.Domains.Entities;
 using Yi.System.Services.Dtos;
 
@@ -48,7 +47,7 @@ public class TenantService : BaseService, ITenantService
     {
         if (await _repository.IsAnyAsync(x => x.Name == input.Name))
         {
-            throw Oops.Oh(AccountConst.Tenant_Exist);
+            throw Oops.Oh(SystemErrorCodes.Tenant_Exist);
         }
 
         var entity = input.Adapt<TenantEntity>();
@@ -60,7 +59,7 @@ public class TenantService : BaseService, ITenantService
     public async Task<TenantDto> UpdateAsync(Guid id, TenantUpdateInput input)
     {
         if (await _repository.IsAnyAsync(x => x.Name == input.Name && x.Id != id))
-            throw Oops.Oh(AccountConst.Tenant_Repeat);
+            throw Oops.Oh(SystemErrorCodes.Tenant_Repeat);
 
         var entity = await _repository.GetByIdAsync(id);
         input.Adapt(entity);

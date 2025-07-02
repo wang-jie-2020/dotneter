@@ -5,7 +5,6 @@ using Yi.Framework;
 using Yi.Framework.Abstractions;
 using Yi.Framework.SqlSugarCore.Repositories;
 using Yi.System.Domains;
-using Yi.System.Domains.Consts;
 using Yi.System.Domains.Entities;
 using Yi.System.Services.Dtos;
 
@@ -89,7 +88,7 @@ public class UserService : BaseService, IUserService
     {
         if (input.UserName == AccountConst.Admin || input.UserName == AccountConst.TenantAdmin)
         {
-            throw Oops.Oh(AccountConst.User_Name_Not_Allowed);
+            throw Oops.Oh(SystemErrorCodes.User_Name_Not_Allowed);
         }
 
         if (await _repository.IsAnyAsync(u => input.UserName!.Equals(u.UserName) && !id.Equals(u.Id)))
@@ -184,7 +183,7 @@ public class UserService : BaseService, IUserService
         var entity = await _repository.GetByIdAsync(id);
         if (entity is null)
         {
-            throw Oops.Oh(AccountConst.User_Not_Exist);
+            throw Oops.Oh(SystemErrorCodes.User_Not_Exist);
         }
 
         entity.State = state;

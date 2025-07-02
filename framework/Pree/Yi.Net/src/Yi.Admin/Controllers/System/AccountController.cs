@@ -13,7 +13,6 @@ using Yi.Framework.SqlSugarCore.Repositories;
 using Yi.Framework.Utils;
 using Yi.System;
 using Yi.System.Domains;
-using Yi.System.Domains.Consts;
 using Yi.System.Domains.Entities;
 using Yi.System.Domains.Repositories;
 using Yi.System.Options;
@@ -135,7 +134,7 @@ public class AccountController : BaseController
         {
             if (!_captcha.Validate(input.Uuid, input.Code))
             {
-                throw Oops.Oh(AccountConst.VerificationCode_Invalid);
+                throw Oops.Oh(SystemErrorCodes.VerificationCode_Invalid);
             }
         }
     }
@@ -152,7 +151,7 @@ public class AccountController : BaseController
     {
         if (_rbacOptions.EnableRegister == false)
         {
-            throw Oops.Oh(AccountConst.Signup_Forbidden);
+            throw Oops.Oh(SystemErrorCodes.Signup_Forbidden);
         }
 
         if (_rbacOptions.EnableCaptcha)
@@ -222,10 +221,10 @@ public class AccountController : BaseController
     private async Task ValidationPhone(string str_handset)
     {
         var res = Regex.IsMatch(str_handset, @"^\d{11}$");
-        if (res == false) throw Oops.Oh(AccountConst.User_Phone_Invalid);
+        if (res == false) throw Oops.Oh(SystemErrorCodes.User_Phone_Invalid);
         if (await _userRepository.IsAnyAsync(x => x.Phone.ToString() == str_handset))
         {
-            throw Oops.Oh(AccountConst.User_Phone_Repeat);
+            throw Oops.Oh(SystemErrorCodes.User_Phone_Repeat);
         }
     }
 
@@ -243,7 +242,7 @@ public class AccountController : BaseController
         //防止暴刷
         if (value is not null)
         {
-            throw Oops.Oh(AccountConst.VerificationCode_TooMuch)
+            throw Oops.Oh(SystemErrorCodes.VerificationCode_TooMuch)
                 .WithData("Phone", input.Phone);
         }
 
@@ -278,7 +277,7 @@ public class AccountController : BaseController
             return;
         }
 
-        throw Oops.Oh(AccountConst.VerificationCode_NotMatched);
+        throw Oops.Oh(SystemErrorCodes.VerificationCode_NotMatched);
     }
 
     /// <summary>

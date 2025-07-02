@@ -1,4 +1,6 @@
-﻿namespace Yi.System.Domains;
+﻿using Yi.Framework;
+
+namespace Yi.System.Domains;
 
 public class RoleTokenInfo
 {

@@ -1,7 +1,7 @@
 ﻿using Volo.Abp.DependencyInjection;
+using Yi.Framework;
 using Yi.Framework.SqlSugarCore;
 using Yi.System.Domains;
-using Yi.System.Domains.Consts;
 using Yi.System.Domains.Entities;
 using Yi.System.Services.Impl;
 

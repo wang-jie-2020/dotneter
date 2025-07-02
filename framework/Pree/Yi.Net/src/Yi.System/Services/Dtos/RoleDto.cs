@@ -1,4 +1,5 @@
-﻿using Yi.System.Domains;
+﻿using Yi.Framework;
+using Yi.System.Domains;
 
 namespace Yi.System.Services.Dtos;
 

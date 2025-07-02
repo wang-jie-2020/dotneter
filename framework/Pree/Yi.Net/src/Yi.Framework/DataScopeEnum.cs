@@ -1,4 +1,4 @@
-﻿namespace Yi.System.Domains;
+﻿namespace Yi.Framework;
 
 public enum DataScopeEnum
 {
