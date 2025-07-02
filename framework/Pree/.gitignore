@@ -261,3 +261,4 @@ paket-files/
 
 yarn.lock
 *.db
+*.http
