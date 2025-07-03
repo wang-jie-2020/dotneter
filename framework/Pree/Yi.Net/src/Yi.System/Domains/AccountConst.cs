@@ -7,6 +7,5 @@ public class AccountConst
 {
     public const string Admin = "cc";
     public const string AdminRoleCode = "admin";
-    public const string AdminPermissionCode = "*:*:*";
     public const string DefaultRoleCode = "default";
 }

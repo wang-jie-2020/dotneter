@@ -215,7 +215,7 @@ public class UserManager : BaseDomain
         {
             userRoleMenu.User = user.Adapt<UserDto>();
             userRoleMenu.RoleCodes.Add(AccountConst.AdminRoleCode);
-            userRoleMenu.PermissionCodes.Add(AccountConst.AdminPermissionCode);
+            userRoleMenu.PermissionCodes.Add("*:*:*");
             return userRoleMenu;
         }
 
