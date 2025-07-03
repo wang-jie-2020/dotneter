@@ -1,4 +1,3 @@
-using Yi.Framework;
 using Yi.Framework.Abstractions;
 using Yi.System.Domains.Entities;
 using Yi.System.Domains.Repositories;

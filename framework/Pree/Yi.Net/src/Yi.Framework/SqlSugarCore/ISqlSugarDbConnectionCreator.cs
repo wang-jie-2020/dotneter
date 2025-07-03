@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using SqlSugar;
+﻿using SqlSugar;
 
 namespace Yi.Framework.SqlSugarCore;
 

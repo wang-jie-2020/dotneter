@@ -1,5 +1,3 @@
-using Yi.Framework;
-
 namespace Yi.System.Services.Dtos;
 
 public class DictionaryTypeGetListInput : PagedInput

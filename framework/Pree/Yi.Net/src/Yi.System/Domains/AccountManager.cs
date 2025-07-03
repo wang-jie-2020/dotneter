@@ -9,7 +9,6 @@ using Yi.AspNetCore;
 using Yi.AspNetCore.Security;
 using Yi.Framework.Abstractions;
 using Yi.Framework.Loggings;
-using Yi.Framework.SqlSugarCore.Repositories;
 using Yi.Framework.Utils;
 using Yi.System.Domains.Entities;
 using Yi.System.Domains.Repositories;

@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Yi.Framework;
 using Yi.System.Services.Dtos;
 
 namespace Yi.System.Services;

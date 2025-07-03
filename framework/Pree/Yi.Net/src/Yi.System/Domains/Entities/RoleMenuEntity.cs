@@ -1,6 +1,4 @@
-﻿using Yi.Framework.SqlSugarCore;
-
-namespace Yi.System.Domains.Entities;
+﻿namespace Yi.System.Domains.Entities;
 
 /// <summary>
 ///     角色菜单关系表

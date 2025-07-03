@@ -1,6 +1,4 @@
-﻿using Yi.Framework.SqlSugarCore;
-
-namespace Yi.System.Domains.Entities;
+﻿namespace Yi.System.Domains.Entities;
 
 [SugarTable("Sys_Notice")]
 public class NoticeEntity : BizEntity<Guid>

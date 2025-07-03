@@ -1,6 +1,4 @@
-﻿using Yi.Framework.SqlSugarCore;
-
-namespace Yi.System.Domains.Entities;
+﻿namespace Yi.System.Domains.Entities;
 
 [SugarTable("Sys_Dictionary")]
 public class DictionaryEntity : BizEntity<Guid>

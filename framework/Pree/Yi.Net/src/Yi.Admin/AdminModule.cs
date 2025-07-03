@@ -1,10 +1,8 @@
 ﻿using System.Globalization;
-using System.Reflection;
 using System.Text;
 using System.Threading.RateLimiting;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Localization;
-using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Yi.AspNetCore.Data.Seeding;
 using Yi.AspNetCore.Extensions.Builder;

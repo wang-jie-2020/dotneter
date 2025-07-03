@@ -1,6 +1,4 @@
-using Yi.Framework;
 using Yi.Framework.Abstractions;
-using Yi.Framework.SqlSugarCore.Repositories;
 using Yi.System.Domains.Entities;
 using Yi.System.Services.Dtos;
 

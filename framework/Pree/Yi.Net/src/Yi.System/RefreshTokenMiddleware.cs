@@ -3,7 +3,6 @@ using JetBrains.Annotations;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
-using Volo.Abp.DependencyInjection;
 using Yi.AspNetCore.Security;
 using Yi.System.Domains;
 

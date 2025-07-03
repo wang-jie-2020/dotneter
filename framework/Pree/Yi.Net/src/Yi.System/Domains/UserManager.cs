@@ -5,7 +5,6 @@ using Microsoft.Extensions.Options;
 using Yi.AspNetCore;
 using Yi.AspNetCore.Extensions.Caching;
 using Yi.Framework.Abstractions;
-using Yi.Framework.SqlSugarCore.Repositories;
 using Yi.System.Domains.Entities;
 using Yi.System.Domains.Repositories;
 using Yi.System.Options;

@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
-using Volo.Abp.DependencyInjection;
 using Yi.AspNetCore.Data;
 using Yi.AspNetCore.Extensions.Caching;
 using Yi.AspNetCore.MultiTenancy;

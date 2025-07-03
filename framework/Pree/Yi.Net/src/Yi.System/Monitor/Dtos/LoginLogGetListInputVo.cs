@@ -1,6 +1,4 @@
-﻿using Yi.Framework;
-
-namespace Yi.System.Monitor.Dtos;
+﻿namespace Yi.System.Monitor.Dtos;
 
 public class LoginLogGetListInputVo : PagedInput
 {

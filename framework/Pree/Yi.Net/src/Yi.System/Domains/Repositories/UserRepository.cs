@@ -1,7 +1,4 @@
-﻿using Volo.Abp.DependencyInjection;
-using Yi.Framework.SqlSugarCore;
-using Yi.Framework.SqlSugarCore.Repositories;
-using Yi.System.Domains.Entities;
+﻿using Yi.System.Domains.Entities;
 
 namespace Yi.System.Domains.Repositories;
 

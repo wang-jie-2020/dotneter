@@ -5,10 +5,7 @@ using MiniExcelLibs;
 using Volo.Abp.Uow;
 using Yi.AspNetCore;
 using Yi.AspNetCore.Data.Seeding;
-using Yi.Framework;
 using Yi.Framework.Abstractions;
-using Yi.Framework.SqlSugarCore;
-using Yi.Framework.SqlSugarCore.Repositories;
 using Yi.System.Domains.Entities;
 using Yi.System.Services.Dtos;
 

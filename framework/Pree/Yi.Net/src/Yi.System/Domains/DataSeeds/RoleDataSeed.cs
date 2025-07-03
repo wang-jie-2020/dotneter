@@ -1,7 +1,4 @@
-﻿using Volo.Abp.DependencyInjection;
-using Yi.AspNetCore.Data.Seeding;
-using Yi.Framework;
-using Yi.Framework.SqlSugarCore.Repositories;
+﻿using Yi.AspNetCore.Data.Seeding;
 using Yi.System.Domains.Entities;
 
 namespace Yi.System.Domains.DataSeeds;

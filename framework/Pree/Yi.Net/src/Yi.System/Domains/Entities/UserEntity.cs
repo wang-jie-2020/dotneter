@@ -1,5 +1,4 @@
-﻿using Yi.Framework.SqlSugarCore;
-using Yi.Framework.Utils;
+﻿using Yi.Framework.Utils;
 using Yi.System.Domains.Entities.ValueObjects;
 
 namespace Yi.System.Domains.Entities;

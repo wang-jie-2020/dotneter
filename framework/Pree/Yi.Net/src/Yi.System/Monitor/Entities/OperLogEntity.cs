@@ -1,6 +1,5 @@
 ﻿using Yi.AspNetCore.MultiTenancy;
 using Yi.Framework.Loggings;
-using Yi.Framework.SqlSugarCore;
 
 namespace Yi.System.Monitor.Entities;
 
