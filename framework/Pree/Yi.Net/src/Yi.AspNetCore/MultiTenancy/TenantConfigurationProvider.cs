@@ -1,4 +1,5 @@
-﻿using Volo.Abp.DependencyInjection;
+﻿using Microsoft.Extensions.Localization;
+using Volo.Abp.DependencyInjection;
 using Yi.AspNetCore.MultiTenancy.Resolver;
 
 namespace Yi.AspNetCore.MultiTenancy;
@@ -7,13 +8,17 @@ public class TenantConfigurationProvider : ITenantConfigurationProvider, ITransi
 {
     protected virtual ITenantResolver TenantResolver { get; }
     protected virtual ITenantStore TenantStore { get; }
+    
+    protected virtual IStringLocalizer StringLocalizer { get; }
 
     public TenantConfigurationProvider(
         ITenantResolver tenantResolver,
-        ITenantStore tenantStore)
+        ITenantStore tenantStore,
+        IStringLocalizer stringLocalizer)
     {
         TenantResolver = tenantResolver;
         TenantStore = tenantStore;
+        StringLocalizer = stringLocalizer;
     }
 
     public virtual async Task<TenantConfiguration?> GetAsync()
@@ -25,9 +30,22 @@ public class TenantConfigurationProvider : ITenantConfigurationProvider, ITransi
         {
             tenant = await FindTenantAsync(resolveResult.TenantIdOrName);
 
-            if (tenant == null || !tenant.IsActive)
+            if (tenant == null)
             {
-                throw new EntityNotFoundException(typeof(TenantConfiguration), resolveResult.TenantIdOrName);
+                throw new BusinessException(
+                    code: "MultiTenancy:010001",
+                    message: StringLocalizer["TenantNotFoundMessage"],
+                    details: StringLocalizer["TenantNotFoundDetails", resolveResult.TenantIdOrName]
+                );
+            }
+            
+            if (!tenant.IsActive)
+            {
+                throw new BusinessException(
+                    code: "MultiTenancy:010002",
+                    message: StringLocalizer["TenantNotActiveMessage"],
+                    details: StringLocalizer["TenantNotActiveDetails", resolveResult.TenantIdOrName]
+                );
             }
         }
 

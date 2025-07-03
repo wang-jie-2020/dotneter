@@ -5,7 +5,10 @@
   "EntityNotFoundErrorMessage": "不存在的实体！",
   "DbConcurrencyErrorMessage": "您提交的数据已被其他用户/客户更改。请放弃您所做的更改并从头开始尝试。",
   "UnauthorizedMessage": "您无权访问！",
-  
+  "TenantNotFoundMessage": "未找到租户！",
+  "TenantNotFoundDetails": "没有租户的 ID 或名称为：{0}的租户。",
+  "TenantNotActiveMessage": "租户未启用！",
+  "TenantNotActiveDetails": "租户未启用，租户 ID 或名称为：{0}。",
   
   "Signup_Forbidden": "暂未开放注册功能",
   "Login_Not_Exist": "用户名不存在",
