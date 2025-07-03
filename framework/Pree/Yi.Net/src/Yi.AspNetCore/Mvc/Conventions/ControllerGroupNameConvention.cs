@@ -14,7 +14,6 @@ public class ControllerGroupNameConvention: IControllerModelConvention
         var groupName = string.Empty;
         try
         {
-            //TODO: GroupingOptions?
             groupName = Regex.Match(controllerNamespace, regex)?.Groups[1].Value;
 
             if (groupName.IsNullOrEmpty())

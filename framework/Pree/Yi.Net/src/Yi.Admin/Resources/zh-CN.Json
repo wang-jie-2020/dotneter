@@ -4,6 +4,7 @@
   "ValidationNarrativeErrorMessageTitle": "验证过程中检测到以下错误。",
   "EntityNotFoundErrorMessage": "不存在的实体！",
   "DbConcurrencyErrorMessage": "您提交的数据已被其他用户/客户更改。请放弃您所做的更改并从头开始尝试。",
+  "NotImplementedMessage": "进行中,敬请期待",
   "UnauthorizedMessage": "您无权访问！",
   "TenantNotFoundMessage": "未找到租户！",
   "TenantNotFoundDetails": "没有租户的 ID 或名称为：{0}的租户。",

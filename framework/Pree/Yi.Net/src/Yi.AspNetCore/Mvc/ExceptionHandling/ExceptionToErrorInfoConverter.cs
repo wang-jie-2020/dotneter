@@ -45,10 +45,15 @@ public class ExceptionToErrorInfoConverter : ITransientDependency
             errorInfo.Message = L["EntityNotFoundErrorMessage"];
             //errorInfo.Message = string.Format(L["EntityNotFoundErrorMessage"], entityNotFoundException.EntityType.Name, entityNotFoundException.Id);
         }
-
+        
         if (exception is UnauthorizedException)
         {
             errorInfo.Message = L["UnauthorizedMessage"];
+        }
+
+        if (exception is NotImplementedException)
+        {
+            errorInfo.Message = L["NotImplementedMessage"];
         }
         
         if (exception is IUserFriendlyException)

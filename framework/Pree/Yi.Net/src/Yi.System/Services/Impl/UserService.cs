@@ -91,7 +91,7 @@ public class UserService : BaseService, IUserService
 
         if (await _repository.IsAnyAsync(u => input.UserName!.Equals(u.UserName) && !id.Equals(u.Id)))
         {
-            throw Oops.Oh("Name_Repeat");
+            throw Oops.Oh(SystemErrorCodes.UserNameRepeated);
         }
 
         var entity = await _repository.GetByIdAsync(id);
