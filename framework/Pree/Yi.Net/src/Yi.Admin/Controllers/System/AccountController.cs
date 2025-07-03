@@ -134,7 +134,7 @@ public class AccountController : BaseController
         {
             if (!_captcha.Validate(input.Uuid, input.Code))
             {
-                throw Oops.Oh(SystemErrorCodes.VerificationCode_Invalid);
+                throw Oops.Oh(SystemErrorCodes.VerificationCodeNotMatched);
             }
         }
     }
@@ -151,7 +151,7 @@ public class AccountController : BaseController
     {
         if (_rbacOptions.EnableRegister == false)
         {
-            throw Oops.Oh(SystemErrorCodes.Signup_Forbidden);
+            throw Oops.Oh(SystemErrorCodes.SignupForbidden);
         }
 
         if (_rbacOptions.EnableCaptcha)
@@ -242,7 +242,7 @@ public class AccountController : BaseController
         //防止暴刷
         if (value is not null)
         {
-            throw Oops.Oh(SystemErrorCodes.VerificationCode_TooMuch)
+            throw Oops.Oh(SystemErrorCodes.VerificationCodeTooMuch)
                 .WithData("Phone", input.Phone);
         }
 
@@ -277,7 +277,7 @@ public class AccountController : BaseController
             return;
         }
 
-        throw Oops.Oh(SystemErrorCodes.VerificationCode_NotMatched);
+        throw Oops.Oh(SystemErrorCodes.VerificationCodeNotMatched);
     }
 
     /// <summary>

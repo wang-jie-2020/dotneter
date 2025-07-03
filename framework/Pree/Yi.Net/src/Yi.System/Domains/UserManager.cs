@@ -109,7 +109,7 @@ public class UserManager : BaseDomain
         var isExist = await _repository.IsAnyAsync(x => x.UserName == userEntity.UserName);
         if (isExist)
         {
-            throw Oops.Oh(SystemErrorCodes.User_Exist);
+            throw Oops.Oh(SystemErrorCodes.UserNameRepeated);
         }
 
         var entity = await _repository.InsertReturnEntityAsync(userEntity);

@@ -148,7 +148,7 @@ public class UserService : BaseService, IUserService
             FileDownloadName = $"{L[nameof(UserEntity)]}_{DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss")}" + ".xlsx"
         };
     }
-    
+
     public async Task PostImportExcelAsync(Stream stream)
     {
         var rows = await MiniExcel.QueryAsync<UserCreateInput>(stream);

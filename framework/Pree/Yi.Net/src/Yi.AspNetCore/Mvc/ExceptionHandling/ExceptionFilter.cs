@@ -49,8 +49,7 @@ public class ExceptionFilter : IAsyncExceptionFilter, ITransientDependency
             context.HttpContext.Response.StatusCode = context.HttpContext.User.Identity!.IsAuthenticated
                 ? StatusCodes.Status403Forbidden
                 : StatusCodes.Status401Unauthorized;
-
-
+            
             context.Result = new ObjectResult(AjaxResult.Error(defaultLocalizer["UnauthorizedMessage"]));
         }
         else

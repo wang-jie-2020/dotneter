@@ -67,17 +67,17 @@ public class AccountManager : BaseDomain, IAccountManager
         //判断用户状态
         if (userInfo.User.State == false)
         {
-            throw Oops.Oh(SystemErrorCodes.User_State);
+            throw Oops.Oh(SystemErrorCodes.UserInactive);
         }
 
         if (userInfo.RoleCodes.Count == 0)
         {
-            throw Oops.Oh(SystemErrorCodes.User_No_Role);
+            throw Oops.Oh(SystemErrorCodes.UserNoRole);
         }
 
         if (userInfo.PermissionCodes.Count() == 0)
         {
-            throw Oops.Oh(SystemErrorCodes.User_No_Permission);
+            throw Oops.Oh(SystemErrorCodes.UserNoPermission);
         }
 
         //这里抛出一个登录的事件,也可以在全部流程走完，在应用层组装
@@ -146,10 +146,10 @@ public class AccountManager : BaseDomain, IAccountManager
                 return;
             }
 
-            throw Oops.Oh(SystemErrorCodes.Login_NotMatched);
+            throw Oops.Oh(SystemErrorCodes.GivenPasswordNotMatched);
         }
 
-        throw Oops.Oh(SystemErrorCodes.Login_Not_Exist);
+        throw Oops.Oh(SystemErrorCodes.GivenNameNotExist);
     }
 
     /// <summary>

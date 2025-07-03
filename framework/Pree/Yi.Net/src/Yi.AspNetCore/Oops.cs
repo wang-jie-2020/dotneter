@@ -10,7 +10,7 @@ public static class Oops
     {
         return new BusinessException(code, message, details, innerException);
     }
-
+    
     public static UserFriendlyException Friendly(
         string message,
         string? code = null,
