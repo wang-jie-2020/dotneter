@@ -60,7 +60,7 @@ export function resetUserPwd(id, password) {
 
 
   return request({
-    url: `/system/account/rest-password/${id}`,
+    url: `/system/account/reset-password/${id}`,
     method: 'put',
     data: data
   })
@@ -87,7 +87,7 @@ export function updateUserProfile(data) {
   return request({
     url: `/system/user/profile`,
     method: 'put',
-    data:  data 
+    data:  data
   })
 }
 // 只修改用户头像
@@ -95,7 +95,7 @@ export function updateUserIcon(data) {
   return request({
     url: `/system/account/icon`,
     method: 'put',
-    data:{icon:data}  
+    data:{icon:data}
   })
 }
 
