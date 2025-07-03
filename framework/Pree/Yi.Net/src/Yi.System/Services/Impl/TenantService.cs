@@ -47,7 +47,7 @@ public class TenantService : BaseService, ITenantService
     {
         if (await _repository.IsAnyAsync(x => x.Name == input.Name))
         {
-            throw Oops.Oh(SystemErrorCodes.Tenant_Exist);
+            throw Oops.Oh(SystemErrorCodes.TenantRepeated);
         }
 
         var entity = input.Adapt<TenantEntity>();
@@ -59,7 +59,7 @@ public class TenantService : BaseService, ITenantService
     public async Task<TenantDto> UpdateAsync(Guid id, TenantUpdateInput input)
     {
         if (await _repository.IsAnyAsync(x => x.Name == input.Name && x.Id != id))
-            throw Oops.Oh(SystemErrorCodes.Tenant_Repeat);
+            throw Oops.Oh(SystemErrorCodes.TenantRepeated);
 
         var entity = await _repository.GetByIdAsync(id);
         input.Adapt(entity);

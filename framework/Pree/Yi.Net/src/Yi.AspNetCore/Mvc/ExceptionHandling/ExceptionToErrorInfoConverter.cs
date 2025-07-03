@@ -40,9 +40,10 @@ public class ExceptionToErrorInfoConverter : ITransientDependency
             errorInfo.Message = L["DbConcurrencyErrorMessage"];
         }
 
-        if (exception is EntityNotFoundException)
+        if (exception is EntityNotFoundException entityNotFoundException)
         {
             errorInfo.Message = L["EntityNotFoundErrorMessage"];
+            //errorInfo.Message = string.Format(L["EntityNotFoundErrorMessage"], entityNotFoundException.EntityType.Name, entityNotFoundException.Id);
         }
 
         if (exception is UnauthorizedException)

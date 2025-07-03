@@ -165,7 +165,7 @@ public class AccountManager : BaseDomain, IAccountManager
         var user = await _repository.GetByIdAsync(userId);
         if (!user.JudgePassword(oldPassword))
         {
-            throw Oops.Oh(SystemErrorCodes.User_Password_NotMatched);
+            throw Oops.Oh(SystemErrorCodes.GivenPasswordNotMatched);
         }
 
         user.EncryPassword.Password = newPassword;

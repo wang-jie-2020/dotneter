@@ -88,7 +88,7 @@ public class UserService : BaseService, IUserService
     {
         if (input.UserName == AccountConst.Admin || input.UserName == AccountConst.TenantAdmin)
         {
-            throw Oops.Oh(SystemErrorCodes.User_Name_Not_Allowed);
+            throw Oops.Oh(SystemErrorCodes.UserNameForbidden);
         }
 
         if (await _repository.IsAnyAsync(u => input.UserName!.Equals(u.UserName) && !id.Equals(u.Id)))
@@ -183,7 +183,7 @@ public class UserService : BaseService, IUserService
         var entity = await _repository.GetByIdAsync(id);
         if (entity is null)
         {
-            throw Oops.Oh(SystemErrorCodes.User_Not_Exist);
+            throw new EntityNotFoundException(typeof(UserEntity), id);
         }
 
         entity.State = state;

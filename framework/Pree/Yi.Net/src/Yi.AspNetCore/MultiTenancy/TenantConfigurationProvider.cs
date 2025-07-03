@@ -32,7 +32,7 @@ public class TenantConfigurationProvider : ITenantConfigurationProvider, ITransi
 
             if (tenant == null)
             {
-                throw new BusinessException(
+                throw Oops.Oh(
                     code: "MultiTenancy:010001",
                     message: StringLocalizer["TenantNotFoundMessage"],
                     details: StringLocalizer["TenantNotFoundDetails", resolveResult.TenantIdOrName]
@@ -41,7 +41,7 @@ public class TenantConfigurationProvider : ITenantConfigurationProvider, ITransi
             
             if (!tenant.IsActive)
             {
-                throw new BusinessException(
+                throw Oops.Oh(
                     code: "MultiTenancy:010002",
                     message: StringLocalizer["TenantNotActiveMessage"],
                     details: StringLocalizer["TenantNotActiveDetails", resolveResult.TenantIdOrName]

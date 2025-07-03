@@ -221,10 +221,10 @@ public class AccountController : BaseController
     private async Task ValidationPhone(string str_handset)
     {
         var res = Regex.IsMatch(str_handset, @"^\d{11}$");
-        if (res == false) throw Oops.Oh(SystemErrorCodes.User_Phone_Invalid);
+        if (res == false) throw Oops.Oh(SystemErrorCodes.UserPhoneInvalid);
         if (await _userRepository.IsAnyAsync(x => x.Phone.ToString() == str_handset))
         {
-            throw Oops.Oh(SystemErrorCodes.User_Phone_Repeat);
+            throw Oops.Oh(SystemErrorCodes.UserPhoneRepeated);
         }
     }
 

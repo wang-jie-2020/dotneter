@@ -95,14 +95,14 @@ public class UserManager : BaseDomain
 
         if (userEntity.EncryPassword?.Password.Length < 6)
         {
-            throw Oops.Oh(SystemErrorCodes.User_Password_Length);
+            throw Oops.Oh(SystemErrorCodes.UserPasswordTooShort);
         }
 
         if (userEntity.Phone is not null)
         {
             if (await _repository.IsAnyAsync(x => x.Phone == userEntity.Phone))
             {
-                throw Oops.Oh(SystemErrorCodes.User_Phone_Repeat);
+                throw Oops.Oh(SystemErrorCodes.UserPhoneRepeated);
             }
         }
 
@@ -112,7 +112,7 @@ public class UserManager : BaseDomain
             throw Oops.Oh(SystemErrorCodes.UserNameRepeated);
         }
 
-        var entity = await _repository.InsertReturnEntityAsync(userEntity);
+        await _repository.InsertReturnEntityAsync(userEntity);
     }
 
     public async Task SetDefaultRoleAsync(Guid userId)
@@ -128,12 +128,12 @@ public class UserManager : BaseDomain
     {
         if (input.UserName == AccountConst.Admin || input.UserName == AccountConst.TenantAdmin)
         {
-            throw Oops.Oh(SystemErrorCodes.User_Name_Not_Allowed);
+            throw Oops.Oh(SystemErrorCodes.UserNameForbidden);
         }
 
         if (input.UserName.Length < 2)
         {
-            throw Oops.Oh(SystemErrorCodes.User_Name_Length);
+            throw Oops.Oh(SystemErrorCodes.UserNameTooShort);
         }
 
         // 正则表达式，匹配只包含数字和字母的字符串
@@ -142,7 +142,7 @@ public class UserManager : BaseDomain
         var isMatch = Regex.IsMatch(input.UserName, pattern);
         if (!isMatch)
         {
-            throw Oops.Oh(SystemErrorCodes.User_Name_Invalid);
+            throw Oops.Oh(SystemErrorCodes.UserNameInvalid);
         }
     }
 
