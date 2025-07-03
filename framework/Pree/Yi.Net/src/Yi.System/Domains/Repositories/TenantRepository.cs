@@ -2,9 +2,9 @@
 
 namespace Yi.System.Domains.Repositories;
 
-public class SqlSugarTenantRepository : SqlSugarRepository<TenantEntity>, ISqlSugarTenantRepository, ITransientDependency
+public class TenantRepository : SqlSugarRepository<TenantEntity>, ITenantRepository, ITransientDependency
 {
-    public SqlSugarTenantRepository(ISugarDbContextProvider<ISqlSugarDbContext> sugarDbContextProvider) : base(
+    public TenantRepository(ISugarDbContextProvider<ISqlSugarDbContext> sugarDbContextProvider) : base(
         sugarDbContextProvider)
     {
     }

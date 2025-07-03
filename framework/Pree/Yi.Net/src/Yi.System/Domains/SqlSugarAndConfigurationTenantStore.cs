@@ -9,7 +9,7 @@ namespace Yi.System.Domains;
 
 public class SqlSugarAndConfigurationTenantStore : ITenantStore, ITransientDependency
 {
-    public SqlSugarAndConfigurationTenantStore(ISqlSugarTenantRepository repository,
+    public SqlSugarAndConfigurationTenantStore(ITenantRepository repository,
         IDistributedCache cache,
         ICurrentTenant currentTenant)
     {
@@ -18,7 +18,7 @@ public class SqlSugarAndConfigurationTenantStore : ITenantStore, ITransientDepen
         CurrentTenant = currentTenant;
     }
 
-    private ISqlSugarTenantRepository TenantRepository { get; }
+    private ITenantRepository TenantRepository { get; }
     protected ICurrentTenant CurrentTenant { get; }
     protected IDistributedCache Cache { get; }
 

@@ -2,7 +2,7 @@
 
 namespace Yi.System.Domains.Repositories;
 
-public interface ISqlSugarTenantRepository : ISqlSugarRepository<TenantEntity>
+public interface ITenantRepository : ISqlSugarRepository<TenantEntity>
 {
     Task<TenantEntity> FindByNameAsync(string name, bool includeDetails = true);
 
