@@ -27,7 +27,7 @@ public class TenantConfigurationProvider : ITenantConfigurationProvider, ITransi
 
             if (tenant == null || !tenant.IsActive)
             {
-                throw Oops.Oh("TenantNotFound").WithData("tenant", resolveResult.TenantIdOrName);
+                throw new EntityNotFoundException(typeof(TenantConfiguration), resolveResult.TenantIdOrName);
             }
         }
 

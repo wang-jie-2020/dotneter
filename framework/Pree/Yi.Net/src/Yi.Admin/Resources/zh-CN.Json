@@ -7,8 +7,6 @@
   "UnauthorizedMessage": "您无权访问！",
   
   
-  
-  "TenantNotFound": "未找到租户",
   "Signup_Forbidden": "暂未开放注册功能",
   "Login_Not_Exist": "用户名不存在",
   "Login_NotMatched": "用户名或密码错误",
