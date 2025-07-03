@@ -35,6 +35,21 @@ public class ExceptionToErrorInfoConverter : ITransientDependency
 
         var errorInfo = AjaxResult.Error();
 
+        if (exception is DbConcurrencyException)
+        {
+            errorInfo.Message = L["DbConcurrencyErrorMessage"];
+        }
+
+        if (exception is EntityNotFoundException)
+        {
+            errorInfo.Message = L["EntityNotFoundErrorMessage"];
+        }
+
+        if (exception is UnauthorizedException)
+        {
+            errorInfo.Message = L["UnauthorizedMessage"];
+        }
+        
         if (exception is IUserFriendlyException)
         {
             errorInfo.Message = exception.Message;

@@ -44,20 +44,16 @@ public class ExceptionFilter : IAsyncExceptionFilter, ITransientDependency
 
         if (context.Exception is UnauthorizedException)
         {
-            var defaultLocalizer = context.GetRequiredService<IStringLocalizer>();
-
             context.HttpContext.Response.StatusCode = context.HttpContext.User.Identity!.IsAuthenticated
                 ? StatusCodes.Status403Forbidden
                 : StatusCodes.Status401Unauthorized;
-            
-            context.Result = new ObjectResult(AjaxResult.Error(defaultLocalizer["UnauthorizedMessage"]));
         }
         else
         {
             context.HttpContext.Response.StatusCode = StatusCodes.Status500InternalServerError;
-            context.Result = new ObjectResult(errorInfo);
         }
-
+        
+        context.Result = new ObjectResult(errorInfo);
         context.ExceptionHandled = true;
     }
 

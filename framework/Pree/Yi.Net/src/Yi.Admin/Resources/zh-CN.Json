@@ -2,9 +2,9 @@
   "InternalServerErrorMessage": "对不起，在处理您的请求期间产生了一个服务器内部错误！",
   "ValidationErrorMessage": "您的请求无效！",
   "ValidationNarrativeErrorMessageTitle": "验证过程中检测到以下错误。",
-  "EntityNotFoundErrorMessage": "不存在 id = {1} 的实体 {0}！",
+  "EntityNotFoundErrorMessage": "不存在的实体！",
   "DbConcurrencyErrorMessage": "您提交的数据已被其他用户/客户更改。请放弃您所做的更改并从头开始尝试。",
-  "UnauthorizedMessage": "您无权访问",
+  "UnauthorizedMessage": "您无权访问！",
   
   
   
