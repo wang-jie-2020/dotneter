@@ -51,7 +51,7 @@ public class AuditingStore : IAuditingStore
             DateTimeFormat = "yyyy-MM-dd HH:mm:ss"
         };
         
-        Logger.LogDebug("Yi-请求追踪:" + JsonConvert.SerializeObject(auditInfo, Formatting.Indented, timeConverter));
+        Logger.LogTrace("Yi-请求追踪:" + JsonConvert.SerializeObject(auditInfo, Formatting.Indented, timeConverter));
         using (var uow = UnitOfWorkManager.Begin(true))
         {
             await AuditLogRepository.InsertAsync(await Converter.ConvertAsync(auditInfo));

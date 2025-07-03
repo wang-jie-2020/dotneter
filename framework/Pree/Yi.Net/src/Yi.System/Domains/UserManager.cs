@@ -125,7 +125,7 @@ public class UserManager : BaseDomain
 
     private void ValidateUserName(UserEntity input)
     {
-        if (input.UserName == AccountConst.Admin || input.UserName == AccountConst.TenantAdmin)
+        if (input.UserName == AccountConst.Admin)
         {
             throw Oops.Oh(SystemErrorCodes.UserNameForbidden);
         }
@@ -214,7 +214,7 @@ public class UserManager : BaseDomain
         if (AccountConst.Admin.Equals(user.UserName))
         {
             userRoleMenu.User = user.Adapt<UserDto>();
-            userRoleMenu.RoleCodes.Add(AccountConst.AdminRolesCode);
+            userRoleMenu.RoleCodes.Add(AccountConst.AdminRoleCode);
             userRoleMenu.PermissionCodes.Add(AccountConst.AdminPermissionCode);
             return userRoleMenu;
         }

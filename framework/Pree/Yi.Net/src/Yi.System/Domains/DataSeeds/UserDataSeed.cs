@@ -27,7 +27,7 @@ public class UserDataSeed : IDataSeedContributor, ITransientDependency
                 Name = "大橙子",
                 UserName = "cc",
                 Nick = "橙子",
-                EncryPassword = new EncryptPasswordValueObject(_options.AdminPassword),
+                EncryPassword = new EncryptPasswordValueObject("123456"),
                 Email = "454313500@qq.com",
                 Phone = 13800000000,
                 Sex = SexEnum.Male,

@@ -271,7 +271,7 @@ public class AccountManager : BaseDomain, IAccountManager
 
         if (AccountConst.Admin.Equals(dto.User.UserName))
         {
-            AddToClaim(claims, TokenClaimConst.Roles, AccountConst.AdminRolesCode);
+            AddToClaim(claims, TokenClaimConst.Roles, AccountConst.AdminRoleCode);
         }
         else
         {

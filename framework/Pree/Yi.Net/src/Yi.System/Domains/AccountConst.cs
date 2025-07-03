@@ -5,13 +5,8 @@ namespace Yi.System.Domains;
 /// </summary>
 public class AccountConst
 {
-    //子租户管理员
     public const string Admin = "cc";
-    public const string AdminRolesCode = "admin";
+    public const string AdminRoleCode = "admin";
     public const string AdminPermissionCode = "*:*:*";
-
-    //租户管理员
-    public const string TenantAdmin = "ccadmin";
-    
     public const string DefaultRoleCode = "default";
 }

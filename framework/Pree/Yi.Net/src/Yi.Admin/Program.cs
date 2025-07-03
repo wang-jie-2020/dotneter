@@ -10,6 +10,7 @@ Log.Logger = new LoggerConfiguration()
 #endif
     .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
     .MinimumLevel.Override("Microsoft.AspNetCore.Hosting.Diagnostics", LogEventLevel.Error)
+    .MinimumLevel.Override("Volo.Abp", LogEventLevel.Error)
     .Enrich.FromLogContext()
     .WriteTo.Async(c => c.File("logs/yi/debug-.log", rollingInterval: RollingInterval.Day, restrictedToMinimumLevel: LogEventLevel.Debug))
     .WriteTo.Async(c => c.File("logs/yi/info-.log", rollingInterval: RollingInterval.Day, restrictedToMinimumLevel: LogEventLevel.Information))
