@@ -128,7 +128,9 @@ public class AccountManager : BaseDomain
             {
                 userAction.Invoke(user);
             }
-
+            
+            await _userManager.RemoveCacheAsync(user.Id);
+            
             if (user.EncryPassword.Password == MD5Helper.SHA2Encode(password, user.EncryPassword.Salt))
             {
                 return;

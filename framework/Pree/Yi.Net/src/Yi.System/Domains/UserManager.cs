@@ -127,17 +127,24 @@ public class UserManager : BaseDomain
             throw Oops.Oh(SystemErrorCodes.UserNameInvalid);
         }
     }
+
+    public async Task RemoveCacheAsync(Guid userId)
+    {
+        var cacheKay = UserInfoCacheItem.CalculateCacheKey(userId);
+        await _cache.RemoveAsync(cacheKay);
+    }
     
     public async Task<UserRoleMenuDto> GetInfoAsync(Guid userId)
     {
         var output = await GetInfoByCacheAsync(userId);
         return output;
     }
-
+    
     private async Task<UserRoleMenuDto> GetInfoByCacheAsync(Guid userId)
     {
+        var cacheKay = UserInfoCacheItem.CalculateCacheKey(userId);
         var tokenExpiresMinuteTime = LazyServiceProvider.GetRequiredService<IOptions<JwtOptions>>().Value.ExpiresMinuteTime;
-        var cacheData = await _cache.GetOrAddAsync(new UserInfoCacheKey(userId).ToString(),
+        var cacheData = await _cache.GetOrAddAsync(UserInfoCacheItem.CalculateCacheKey(userId),
             async () =>
             {
                 var user = await _userRepository.AsQueryable()
@@ -206,5 +213,25 @@ public class UserManager : BaseDomain
         userRoleMenu.User = user.Adapt<UserDto>();
         userRoleMenu.Menus = userRoleMenu.Menus.OrderByDescending(x => x.OrderNum).ToHashSet();
         return userRoleMenu;
+    }
+    
+    public class UserInfoCacheItem
+    {
+        public UserInfoCacheItem(UserRoleMenuDto info)
+        {
+            Info = info;
+        }
+
+        /// <summary>
+        ///     存储的用户信息
+        /// </summary>
+        public UserRoleMenuDto Info { get; set; }
+    
+        public static string CalculateCacheKey(Guid? id)
+        {
+            if (id == null) throw new Exception("id can't be invalid.");
+
+            return $"User:{id}";
+        }
     }
 }

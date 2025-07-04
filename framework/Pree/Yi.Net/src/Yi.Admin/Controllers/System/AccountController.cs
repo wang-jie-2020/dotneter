@@ -66,10 +66,7 @@ public class AccountController : BaseController
         //校验
         UserEntity user = new();
         await _accountManager.LoginValidationAsync("cc", "123456", x => user = x);
-
-        //清缓存
-        await _cache.RemoveAsync(new UserInfoCacheKey(user.Id).ToString());
-
+        
         //获取token
         var accessToken = await _accountManager.CreateTokenAsync(user.Id);
         var refreshToken = _accountManager.CreateRefreshToken(user.Id);
@@ -99,9 +96,6 @@ public class AccountController : BaseController
         //校验
         UserEntity user = new();
         await _accountManager.LoginValidationAsync(input.UserName, input.Password, x => user = x);
-
-        //清缓存
-        await _cache.RemoveAsync(new UserInfoCacheKey(user.Id).ToString());
 
         //获取token
         var accessToken = await _accountManager.CreateTokenAsync(user.Id);
@@ -313,14 +307,6 @@ public class AccountController : BaseController
     [HttpPost("logout")]
     public async Task<bool> PostLogout()
     {
-        //通过鉴权jwt获取到用户的id
-        var userId = _currentUser.Id;
-        if (userId is null)
-        {
-            return false;
-        }
-
-        await _cache.RemoveAsync(new UserInfoCacheKey(userId.Value).ToString());
         return true;
     }
 
