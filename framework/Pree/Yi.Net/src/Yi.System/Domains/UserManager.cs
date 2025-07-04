@@ -136,7 +136,6 @@ public class UserManager : BaseDomain
 
     private async Task<UserRoleMenuDto> GetInfoByCacheAsync(Guid userId)
     {
-        //此处优先从缓存中获取
         UserRoleMenuDto output = null;
         var tokenExpiresMinuteTime = LazyServiceProvider.GetRequiredService<IOptions<JwtOptions>>().Value.ExpiresMinuteTime;
         var cacheData = await _cache.GetOrAddAsync(new UserInfoCacheKey(userId).ToString(),

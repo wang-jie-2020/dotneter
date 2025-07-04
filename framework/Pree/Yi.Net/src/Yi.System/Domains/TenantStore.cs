@@ -2,10 +2,9 @@
 using Yi.AspNetCore.Data;
 using Yi.AspNetCore.Extensions.Caching;
 using Yi.AspNetCore.MultiTenancy;
-using Yi.System.Domains;
 using Yi.System.Entities;
 
-namespace Yi.System;
+namespace Yi.System.Domains;
 
 public class TenantStore : ITenantStore, ITransientDependency
 {
