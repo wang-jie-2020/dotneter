@@ -166,10 +166,7 @@ public class UserManager : BaseDomain
     private UserRoleMenuDto EntityMapToDto(UserEntity user)
     {
         var userRoleMenu = new UserRoleMenuDto();
-
-        user.EncryPassword.Password = string.Empty;
-        user.EncryPassword.Salt = string.Empty;
-
+        
         //超级管理员特殊处理
         if (user.Roles.Any(f => f.RoleCode.Equals(AccountConst.AdminRole)))
         {
