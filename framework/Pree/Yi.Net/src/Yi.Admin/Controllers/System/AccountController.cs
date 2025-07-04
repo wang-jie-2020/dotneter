@@ -27,7 +27,7 @@ public class AccountController : BaseController
 {
     private readonly ICaptcha _captcha;
     private readonly RbacOptions _rbacOptions;
-    private readonly IAccountManager _accountManager;
+    private readonly AccountManager _accountManager;
     private readonly ICurrentUser _currentUser;
     private readonly ISqlSugarRepository<MenuEntity> _menuRepository;
     private readonly IDistributedCache _cache;
@@ -36,7 +36,7 @@ public class AccountController : BaseController
 
     public AccountController(IUserRepository userRepository,
         ICurrentUser currentUser,
-        IAccountManager accountManager,
+        AccountManager accountManager,
         ISqlSugarRepository<MenuEntity> menuRepository,
         IDistributedCache cache,
         ICaptcha captcha,

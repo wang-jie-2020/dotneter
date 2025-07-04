@@ -21,34 +21,31 @@ namespace Yi.System.Domains;
 /// <summary>
 ///     用户领域服务
 /// </summary>
-public class AccountManager : BaseDomain, IAccountManager
+public class AccountManager : BaseDomain
 {
-    private readonly JwtOptions _jwtOptions;
-    private readonly RbacOptions _options;
     private readonly IUserRepository _repository;
     private readonly IHttpContextAccessor _httpContextAccessor;
+    private readonly JwtOptions _jwtOptions;
     private readonly RefreshJwtOptions _refreshJwtOptions;
-    private ISqlSugarRepository<RoleEntity> _roleRepository;
-    private readonly ISqlSugarRepository<LoginLogEntity> _loginLogRepository;
     private readonly UserManager _userManager;
-
+    private readonly ISqlSugarRepository<RoleEntity> _roleRepository;
+    private readonly ISqlSugarRepository<LoginLogEntity> _loginLogRepository;
+    
     public AccountManager(IUserRepository repository
         , IHttpContextAccessor httpContextAccessor
         , IOptions<JwtOptions> jwtOptions
-        , UserManager userManager
         , IOptions<RefreshJwtOptions> refreshJwtOptions
+        , UserManager userManager
         , ISqlSugarRepository<RoleEntity> roleRepository
-        , ISqlSugarRepository<LoginLogEntity> loginLogRepository
-        , IOptions<RbacOptions> options)
+        , ISqlSugarRepository<LoginLogEntity> loginLogRepository)
     {
         _repository = repository;
         _httpContextAccessor = httpContextAccessor;
         _jwtOptions = jwtOptions.Value;
+        _refreshJwtOptions = refreshJwtOptions.Value;
         _userManager = userManager;
         _roleRepository = roleRepository;
-        _refreshJwtOptions = refreshJwtOptions.Value;
         _loginLogRepository = loginLogRepository;
-        _options = options.Value;
     }
 
     /// <summary>
