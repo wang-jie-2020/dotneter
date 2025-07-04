@@ -22,6 +22,7 @@ public class RoleDataSeed : IDataSeedContributor, ITransientDependency
         var entities = new List<RoleEntity>();
         var role1 = new RoleEntity
         {
+            Id = Guid.Parse("BD4469C3-7EC7-4F72-ABBF-01B754532006"),
             RoleName = "管理员",
             RoleCode = "admin",
             DataScope = DataScopeEnum.ALL,

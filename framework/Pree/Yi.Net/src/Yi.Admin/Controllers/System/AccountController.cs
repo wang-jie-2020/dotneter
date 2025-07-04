@@ -296,8 +296,7 @@ public class AccountController : BaseController
 
         var data = await _userManager.GetInfoAsync(userId!.Value);
         var menus = data.Menus.ToList();
-
-        //为超级管理员直接给全部路由
+        
         if (AccountConst.Admin.Equals(data.User.UserName))
         {
             menus = (await _menuRepository.GetListAsync()).Adapt<List<MenuDto>>();
