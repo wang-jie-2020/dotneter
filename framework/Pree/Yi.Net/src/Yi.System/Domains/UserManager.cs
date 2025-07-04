@@ -136,7 +136,6 @@ public class UserManager : BaseDomain
 
     private async Task<UserRoleMenuDto> GetInfoByCacheAsync(Guid userId)
     {
-        UserRoleMenuDto output = null;
         var tokenExpiresMinuteTime = LazyServiceProvider.GetRequiredService<IOptions<JwtOptions>>().Value.ExpiresMinuteTime;
         var cacheData = await _cache.GetOrAddAsync(new UserInfoCacheKey(userId).ToString(),
             async () =>
@@ -148,28 +147,20 @@ public class UserManager : BaseDomain
                     )
                     .InSingleAsync(userId);
                 
-                var data = EntityMapToDto(user);
-                //系统用户数据被重置，老前端访问重新授权
-                if (data is null)
+                if (user is null)
                 {
                     throw new UnauthorizedException();
                 }
-
-                //data.Menus.Clear();
-                output = data;
+                
+                var data = EntityMapToDto(user);
                 return new UserInfoCacheItem(data);
             },
             () => new DistributedCacheEntryOptions
             {
                 AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(tokenExpiresMinuteTime)
             });
-
-        if (cacheData is not null)
-        {
-            output = cacheData.Info;
-        }
-
-        return output!;
+        
+        return cacheData.Info;
     }
 
     private UserRoleMenuDto EntityMapToDto(UserEntity user)
