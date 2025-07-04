@@ -14,7 +14,6 @@ using Yi.Framework.Utils;
 using Yi.System;
 using Yi.System.Domains;
 using Yi.System.Domains.Entities;
-using Yi.System.Domains.Repositories;
 using Yi.System.Options;
 using Yi.System.Services.Dtos;
 using Yi.System.Services.Impl;
@@ -32,9 +31,9 @@ public class AccountController : BaseController
     private readonly ISqlSugarRepository<MenuEntity> _menuRepository;
     private readonly IDistributedCache _cache;
     private readonly UserManager _userManager;
-    private readonly IUserRepository _userRepository;
+    private readonly ISqlSugarRepository<UserEntity> _userRepository;
 
-    public AccountController(IUserRepository userRepository,
+    public AccountController(ISqlSugarRepository<UserEntity> userRepository,
         ICurrentUser currentUser,
         AccountManager accountManager,
         ISqlSugarRepository<MenuEntity> menuRepository,

@@ -6,7 +6,6 @@ using Yi.AspNetCore;
 using Yi.AspNetCore.Extensions.Caching;
 using Yi.Framework.Abstractions;
 using Yi.System.Domains.Entities;
-using Yi.System.Domains.Repositories;
 using Yi.System.Options;
 using Yi.System.Services.Dtos;
 using Yi.System.Services.Impl;
@@ -15,81 +14,65 @@ namespace Yi.System.Domains;
 
 public class UserManager : BaseDomain
 {
-    private readonly ISqlSugarRepository<UserEntity> _repository;
-    private readonly ISqlSugarRepository<UserPostEntity> _repositoryUserPost;
-    private readonly ISqlSugarRepository<UserRoleEntity> _repositoryUserRole;
-    private readonly ISqlSugarRepository<RoleEntity> _roleRepository;
     private readonly IDistributedCache _cache;
-    private readonly IUserRepository _userRepository;
+    private readonly ISqlSugarRepository<UserEntity> _userRepository;
+    private readonly ISqlSugarRepository<UserPostEntity> _userPostRepository;
+    private readonly ISqlSugarRepository<UserRoleEntity> _userRoleRepository;
+    private readonly ISqlSugarRepository<RoleEntity> _roleRepository;
 
-    public UserManager(ISqlSugarRepository<UserEntity> repository,
-        ISqlSugarRepository<UserRoleEntity> repositoryUserRole, ISqlSugarRepository<UserPostEntity> repositoryUserPost,
+    public UserManager(
         IDistributedCache cache,
-        IUserRepository userRepository,
+        ISqlSugarRepository<UserEntity> userRepository,
+        ISqlSugarRepository<UserRoleEntity> userRoleRepository,
+        ISqlSugarRepository<UserPostEntity> userPostRepository,
         ISqlSugarRepository<RoleEntity> roleRepository)
     {
-        (_repository, _repositoryUserRole, _repositoryUserPost, _cache, _userRepository,
-                _roleRepository) =
-            (repository, repositoryUserRole, repositoryUserPost, cache, userRepository,
-                roleRepository);
+        _cache = cache;
+        _userRepository = userRepository;
+        _userRoleRepository = userRoleRepository;
+        _userPostRepository = userPostRepository;
+        _roleRepository = roleRepository;
     }
-
-    /// <summary>
-    ///     给用户设置角色
-    /// </summary>
-    /// <param name="userIds"></param>
-    /// <param name="roleIds"></param>
-    /// <returns></returns>
+    
     public async Task GiveUserSetRoleAsync(List<Guid> userIds, List<Guid> roleIds)
     {
-        //删除用户之前所有的用户角色关系（物理删除，没有恢复的必要）
-        await _repositoryUserRole.DeleteAsync(u => userIds.Contains(u.UserId));
+        await _userRoleRepository.DeleteAsync(u => userIds.Contains(u.UserId));
 
         if (roleIds is not null)
-            //遍历用户
+        {
             foreach (var userId in userIds)
             {
-                //添加新的关系
                 List<UserRoleEntity> userRoleEntities = new();
-
                 foreach (var roleId in roleIds)
+                {
                     userRoleEntities.Add(new UserRoleEntity { UserId = userId, RoleId = roleId });
-                //一次性批量添加
-                await _repositoryUserRole.InsertRangeAsync(userRoleEntities);
-            }
-    }
+                }
 
-    /// <summary>
-    ///     给用户设置岗位
-    /// </summary>
-    /// <param name="userIds"></param>
-    /// <param name="postIds"></param>
-    /// <returns></returns>
+                await _userRoleRepository.InsertRangeAsync(userRoleEntities);
+            }
+        }
+    }
+    
     public async Task GiveUserSetPostAsync(List<Guid> userIds, List<Guid> postIds)
     {
-        //删除用户之前所有的用户角色关系（物理删除，没有恢复的必要）
-        await _repositoryUserPost.DeleteAsync(u => userIds.Contains(u.UserId));
+        await _userPostRepository.DeleteAsync(u => userIds.Contains(u.UserId));
         if (postIds is not null)
-            //遍历用户
+        {
             foreach (var userId in userIds)
             {
-                //添加新的关系
                 List<UserPostEntity> userPostEntities = new();
                 foreach (var post in postIds)
+                {
                     userPostEntities.Add(new UserPostEntity { UserId = userId, PostId = post });
+                }
 
-                //一次性批量添加
-                await _repositoryUserPost.InsertRangeAsync(userPostEntities);
+                await _userPostRepository.InsertRangeAsync(userPostEntities);
             }
+        }
     }
-
-    /// <summary>
-    ///     创建用户
-    /// </summary>
-    /// <returns></returns>
+    
     public async Task CreateAsync(UserEntity userEntity)
     {
-        //校验用户名
         ValidateUserName(userEntity);
 
         if (userEntity.EncryPassword?.Password.Length < 6)
@@ -99,19 +82,19 @@ public class UserManager : BaseDomain
 
         if (userEntity.Phone is not null)
         {
-            if (await _repository.IsAnyAsync(x => x.Phone == userEntity.Phone))
+            if (await _userRepository.IsAnyAsync(x => x.Phone == userEntity.Phone))
             {
                 throw Oops.Oh(SystemErrorCodes.UserPhoneRepeated);
             }
         }
 
-        var isExist = await _repository.IsAnyAsync(x => x.UserName == userEntity.UserName);
+        var isExist = await _userRepository.IsAnyAsync(x => x.UserName == userEntity.UserName);
         if (isExist)
         {
             throw Oops.Oh(SystemErrorCodes.UserNameRepeated);
         }
 
-        await _repository.InsertReturnEntityAsync(userEntity);
+        await _userRepository.InsertReturnEntityAsync(userEntity);
     }
 
     public async Task SetDefaultRoleAsync(Guid userId)
@@ -144,11 +127,7 @@ public class UserManager : BaseDomain
             throw Oops.Oh(SystemErrorCodes.UserNameInvalid);
         }
     }
-
-    /// <summary>
-    ///     查询用户信息，已缓存
-    /// </summary>
-    /// <returns></returns>
+    
     public async Task<UserRoleMenuDto> GetInfoAsync(Guid userId)
     {
         var output = await GetInfoByCacheAsync(userId);
@@ -163,7 +142,13 @@ public class UserManager : BaseDomain
         var cacheData = await _cache.GetOrAddAsync(new UserInfoCacheKey(userId).ToString(),
             async () =>
             {
-                var user = await _userRepository.GetUserAllInfoAsync(userId);
+                var user = await _userRepository.AsQueryable()
+                    .Includes(
+                        u => u.Roles.Where(r => r.IsDeleted == false).ToList(),
+                        r => r.Menus.Where(m => m.IsDeleted == false).ToList()
+                    )
+                    .InSingleAsync(userId);
+                
                 var data = EntityMapToDto(user);
                 //系统用户数据被重置，老前端访问重新授权
                 if (data is null)

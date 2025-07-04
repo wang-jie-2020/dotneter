@@ -11,7 +11,6 @@ using Yi.Framework.Abstractions;
 using Yi.Framework.Loggings;
 using Yi.Framework.Utils;
 using Yi.System.Domains.Entities;
-using Yi.System.Domains.Repositories;
 using Yi.System.Monitor.Entities;
 using Yi.System.Options;
 using Yi.System.Services.Dtos;
@@ -20,25 +19,26 @@ namespace Yi.System.Domains;
 
 public class AccountManager : BaseDomain
 {
-    private readonly IUserRepository _repository;
     private readonly IHttpContextAccessor _httpContextAccessor;
     private readonly JwtOptions _jwtOptions;
     private readonly RefreshJwtOptions _refreshJwtOptions;
     private readonly UserManager _userManager;
+    private readonly ISqlSugarRepository<UserEntity> _userRepository;
     private readonly ISqlSugarRepository<LoginLogEntity> _loginLogRepository;
     
-    public AccountManager(IUserRepository repository
-        , IHttpContextAccessor httpContextAccessor
-        , IOptions<JwtOptions> jwtOptions
-        , IOptions<RefreshJwtOptions> refreshJwtOptions
-        , UserManager userManager
-        , ISqlSugarRepository<LoginLogEntity> loginLogRepository)
+    public AccountManager(
+        IHttpContextAccessor httpContextAccessor, 
+        IOptions<JwtOptions> jwtOptions, 
+        IOptions<RefreshJwtOptions> refreshJwtOptions, 
+        UserManager userManager, 
+        ISqlSugarRepository<UserEntity> userRepository,
+        ISqlSugarRepository<LoginLogEntity> loginLogRepository)
     {
-        _repository = repository;
         _httpContextAccessor = httpContextAccessor;
         _jwtOptions = jwtOptions.Value;
         _refreshJwtOptions = refreshJwtOptions.Value;
         _userManager = userManager;
+        _userRepository = userRepository;
         _loginLogRepository = loginLogRepository;
     }
 
@@ -150,7 +150,7 @@ public class AccountManager : BaseDomain
     /// <exception cref="UserFriendlyException"></exception>
     public async Task UpdatePasswordAsync(Guid userId, string newPassword, string oldPassword)
     {
-        var user = await _repository.GetByIdAsync(userId);
+        var user = await _userRepository.GetByIdAsync(userId);
         if (!user.JudgePassword(oldPassword))
         {
             throw Oops.Oh(SystemErrorCodes.GivenPasswordNotMatched);
@@ -158,7 +158,7 @@ public class AccountManager : BaseDomain
 
         user.EncryPassword.Password = newPassword;
         user.BuildPassword();
-        await _repository.UpdateAsync(user);
+        await _userRepository.UpdateAsync(user);
     }
 
     /// <summary>
@@ -169,11 +169,11 @@ public class AccountManager : BaseDomain
     /// <returns></returns>
     public async Task<bool> RestPasswordAsync(Guid userId, string password)
     {
-        var user = await _repository.GetByIdAsync(userId);
+        var user = await _userRepository.GetByIdAsync(userId);
         // EntityHelper.TrySetId(user, () => GuidGenerator.Create(), true);
         user.EncryPassword.Password = password;
         user.BuildPassword();
-        return await _repository.UpdateAsync(user);
+        return await _userRepository.UpdateAsync(user);
     }
 
     /// <summary>
@@ -220,7 +220,7 @@ public class AccountManager : BaseDomain
     /// <returns></returns>
     private async Task<bool> ExistAsync(string userName, Action<UserEntity> userAction = null)
     {
-        var user = await _repository.GetFirstAsync(u => u.UserName == userName && u.State == true);
+        var user = await _userRepository.GetFirstAsync(u => u.UserName == userName && u.State == true);
         if (userAction is not null)
         {
             userAction.Invoke(user);

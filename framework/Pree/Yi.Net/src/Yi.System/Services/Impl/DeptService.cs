@@ -1,15 +1,14 @@
 using Yi.Framework.Abstractions;
 using Yi.System.Domains.Entities;
-using Yi.System.Domains.Repositories;
 using Yi.System.Services.Dtos;
 
 namespace Yi.System.Services.Impl;
 
 public class DeptService : BaseService, IDeptService
 {
-    private readonly IDeptRepository _repository;
+    private readonly ISqlSugarRepository<DeptEntity> _repository;
 
-    public DeptService(IDeptRepository repository)
+    public DeptService(ISqlSugarRepository<DeptEntity> repository)
     {
         _repository = repository;
     }
@@ -60,12 +59,15 @@ public class DeptService : BaseService, IDeptService
     
     public async Task<List<Guid>> GetChildListAsync(Guid deptId)
     {
-        return await _repository.GetChildListAsync(deptId);
+        var entities = await _repository.AsQueryable().ToChildListAsync(x => x.ParentId, deptId);
+        return entities.Select(x => x.Id).ToList();
     }
     
     public async Task<List<DeptGetListOutputDto>> GetRoleIdAsync(Guid roleId)
     {
-        var entities = await _repository.GetListRoleIdAsync(roleId);
+        var entities = await _repository.AsQueryable().
+            Where(d => SqlFunc.Subqueryable<RoleDeptEntity>().Where(rd => rd.RoleId == roleId && d.Id == rd.DeptId).Any())
+            .ToListAsync();
         return entities.Adapt<List<DeptGetListOutputDto>>();
     }
 }
