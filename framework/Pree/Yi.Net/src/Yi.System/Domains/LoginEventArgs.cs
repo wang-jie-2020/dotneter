@@ -10,9 +10,7 @@ public class LoginEventArgs
     public Guid UserId { get; set; }
 
     public string UserName { get; set; }
-
-    public DateTime CreationTime { get; set; }
-
+    
     /// <summary>
     ///     登录地点
     /// </summary>

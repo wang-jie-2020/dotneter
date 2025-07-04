@@ -18,9 +18,6 @@ using Yi.System.Services.Dtos;
 
 namespace Yi.System.Domains;
 
-/// <summary>
-///     用户领域服务
-/// </summary>
 public class AccountManager : BaseDomain
 {
     private readonly IUserRepository _repository;
@@ -53,7 +50,6 @@ public class AccountManager : BaseDomain
     /// </summary>
     /// <param name="userId"></param>
     /// <returns></returns>
-    /// <exception cref="UserFriendlyException"></exception>
     [OperLog("生成token", OperLogEnum.Auth)]
     public async Task<string> GetTokenByUserIdAsync(Guid userId)
     {
@@ -91,7 +87,6 @@ public class AccountManager : BaseDomain
         }
 
         var accessToken = CreateToken(UserInfoToClaim(userInfo));
-        //将用户信息添加到缓存中，需要考虑的是更改了用户、角色、菜单等整个体系都需要将缓存进行刷新，看具体业务进行选择
         return accessToken;
     }
 
