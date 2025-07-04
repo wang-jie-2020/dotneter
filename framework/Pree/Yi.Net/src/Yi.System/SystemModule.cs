@@ -24,7 +24,7 @@ public class SystemModule : AbpModule
         Configure<RbacOptions>(configuration.GetSection(nameof(RbacOptions)));
         
         //Tenant
-        context.Services.Replace(new ServiceDescriptor(typeof(ITenantStore), typeof(SqlSugarAndConfigurationTenantStore), ServiceLifetime.Transient));
+        context.Services.Replace(new ServiceDescriptor(typeof(ITenantStore), typeof(TenantStore), ServiceLifetime.Transient));
         context.Services.Replace(new ServiceDescriptor(typeof(IConnectionStringResolver), typeof(MultiTenantConnectionStringResolver), ServiceLifetime.Transient));
         
         //System

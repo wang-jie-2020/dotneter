@@ -7,9 +7,10 @@ using Yi.System.Domains.Repositories;
 
 namespace Yi.System.Domains;
 
-public class SqlSugarAndConfigurationTenantStore : ITenantStore, ITransientDependency
+public class TenantStore : ITenantStore, ITransientDependency
 {
-    public SqlSugarAndConfigurationTenantStore(ITenantRepository repository,
+    public TenantStore(
+        ISqlSugarRepository<TenantEntity> repository,
         IDistributedCache cache,
         ICurrentTenant currentTenant)
     {
@@ -18,20 +19,10 @@ public class SqlSugarAndConfigurationTenantStore : ITenantStore, ITransientDepen
         CurrentTenant = currentTenant;
     }
 
-    private ITenantRepository TenantRepository { get; }
+    protected ISqlSugarRepository<TenantEntity> TenantRepository { get; }
     protected ICurrentTenant CurrentTenant { get; }
     protected IDistributedCache Cache { get; }
-
-    public TenantConfiguration? Find(string name)
-    {
-        throw new NotImplementedException("请使用异步方法");
-    }
-
-    public TenantConfiguration? Find(Guid id)
-    {
-        throw new NotImplementedException("请使用异步方法");
-    }
-
+    
     public async Task<TenantConfiguration?> FindAsync(string name)
     {
         return (await GetCacheItemAsync(null, name)).Value;
@@ -51,7 +42,7 @@ public class SqlSugarAndConfigurationTenantStore : ITenantStore, ITransientDepen
 
         if (id.HasValue)
         {
-            using (CurrentTenant.Change(null)) //TODO: No need this if we can implement to define host side (or tenant-independent) entities!
+            using (CurrentTenant.Change(null))
             {
                 var tenant = await TenantRepository.GetByIdAsync(id.Value);
                 return await SetCacheAsync(cacheKey, tenant);
@@ -60,9 +51,9 @@ public class SqlSugarAndConfigurationTenantStore : ITenantStore, ITransientDepen
 
         if (!name.IsNullOrWhiteSpace())
         {
-            using (CurrentTenant.Change(null)) //TODO: No need this if we can implement to define host side (or tenant-independent) entities!
+            using (CurrentTenant.Change(null))
             {
-                var tenant = await TenantRepository.FindByNameAsync(name);
+                var tenant = await TenantRepository.AsQueryable().FirstAsync(x => x.Name == name);
                 return await SetCacheAsync(cacheKey, tenant);
             }
         }
