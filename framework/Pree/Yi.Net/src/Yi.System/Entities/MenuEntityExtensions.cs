@@ -29,8 +29,7 @@ public static class MenuEntityExtensions
             r.Name = routerName?.First().ToString().ToUpper() + routerName?.Substring(1);
             r.Path = m.Router!;
             r.Hidden = !m.IsShow;
-
-
+            
             if (m.MenuType == MenuTypeEnum.Catalogue)
             {
                 r.Redirect = "noRedirect";
