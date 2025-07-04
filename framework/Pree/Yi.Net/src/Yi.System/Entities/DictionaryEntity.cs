@@ -1,4 +1,4 @@
-﻿namespace Yi.System.Domains.Entities;
+﻿namespace Yi.System.Entities;
 
 [SugarTable("Sys_Dictionary")]
 public class DictionaryEntity : BizEntity<Guid>

@@ -1,6 +1,6 @@
 using Yi.AspNetCore.Data.Seeding;
 using Yi.Framework.Utils;
-using Yi.System.Domains.Entities;
+using Yi.System.Entities;
 
 namespace Yi.System.DataSeeds;
 

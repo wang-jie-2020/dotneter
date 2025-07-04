@@ -1,7 +1,7 @@
 ﻿using Yi.Framework.Utils;
-using Yi.System.Domains.Entities.ValueObjects;
+using Yi.System.Entities.ValueObjects;
 
-namespace Yi.System.Domains.Entities;
+namespace Yi.System.Entities;
 
 /// <summary>
 ///     用户表

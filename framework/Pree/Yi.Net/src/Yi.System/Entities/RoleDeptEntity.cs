@@ -1,4 +1,4 @@
-﻿namespace Yi.System.Domains.Entities;
+﻿namespace Yi.System.Entities;
 
 /// <summary>
 ///     角色部门关系表

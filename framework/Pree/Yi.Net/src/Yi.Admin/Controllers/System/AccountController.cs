@@ -13,7 +13,7 @@ using Yi.Framework.SqlSugarCore.Repositories;
 using Yi.Framework.Utils;
 using Yi.System;
 using Yi.System.Domains;
-using Yi.System.Domains.Entities;
+using Yi.System.Entities;
 using Yi.System.Options;
 using Yi.System.Services.Dtos;
 using Yi.System.Services.Impl;

@@ -2,7 +2,7 @@
 using Yi.Framework;
 using Yi.Framework.SqlSugarCore;
 using Yi.System.Domains;
-using Yi.System.Domains.Entities;
+using Yi.System.Entities;
 using Yi.System.Services.Impl;
 
 namespace Yi.Web;

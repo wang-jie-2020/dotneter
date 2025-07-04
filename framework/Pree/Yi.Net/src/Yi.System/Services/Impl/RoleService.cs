@@ -1,6 +1,6 @@
 using Yi.Framework.Abstractions;
 using Yi.System.Domains;
-using Yi.System.Domains.Entities;
+using Yi.System.Entities;
 using Yi.System.Services.Dtos;
 
 namespace Yi.System.Services.Impl;

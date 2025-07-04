@@ -3,7 +3,7 @@ using Yi.AspNetCore.Data;
 using Yi.AspNetCore.Extensions.Caching;
 using Yi.AspNetCore.MultiTenancy;
 using Yi.System.Domains;
-using Yi.System.Domains.Entities;
+using Yi.System.Entities;
 
 namespace Yi.System;
 

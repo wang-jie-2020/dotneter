@@ -1,4 +1,4 @@
-﻿using Yi.System.Domains.Entities;
+﻿using Yi.System.Entities;
 
 namespace Yi.System.Services.Dtos;
 

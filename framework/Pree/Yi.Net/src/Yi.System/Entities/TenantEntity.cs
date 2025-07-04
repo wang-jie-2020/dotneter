@@ -1,7 +1,7 @@
 ﻿using JetBrains.Annotations;
 using Check = Volo.Abp.Check;
 
-namespace Yi.System.Domains.Entities;
+namespace Yi.System.Entities;
 
 [SugarTable("Sys_Tenant")]
 [DefaultTenantTable]

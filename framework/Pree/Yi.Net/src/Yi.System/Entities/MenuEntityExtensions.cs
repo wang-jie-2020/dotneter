@@ -1,7 +1,7 @@
 ﻿using Yi.Framework.Utils;
 using Yi.System.Services.Dtos;
 
-namespace Yi.System.Domains.Entities;
+namespace Yi.System.Entities;
 
 /// <summary>
 ///     实体扩展

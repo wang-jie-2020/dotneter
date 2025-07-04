@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Options;
 using Yi.AspNetCore.Data.Seeding;
-using Yi.System.Domains.Entities;
-using Yi.System.Domains.Entities.ValueObjects;
+using Yi.System.Entities;
+using Yi.System.Entities.ValueObjects;
 using Yi.System.Options;
 
 namespace Yi.System.DataSeeds;

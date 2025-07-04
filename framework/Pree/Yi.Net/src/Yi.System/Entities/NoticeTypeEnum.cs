@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Yi.System.Domains.Entities;
+namespace Yi.System.Entities;
 
 public enum NoticeTypeEnum
 {
