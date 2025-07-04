@@ -125,7 +125,7 @@ public class UserManager : BaseDomain
 
     private void ValidateUserName(UserEntity input)
     {
-        if (input.UserName == AccountConst.Admin)
+        if (input.UserName == AccountConst.AdminName)
         {
             throw Oops.Oh(SystemErrorCodes.UserNameForbidden);
         }
@@ -211,10 +211,10 @@ public class UserManager : BaseDomain
         user.EncryPassword.Salt = string.Empty;
 
         //超级管理员特殊处理
-        if (AccountConst.Admin.Equals(user.UserName))
+        if (AccountConst.AdminName.Equals(user.UserName))
         {
             userRoleMenu.User = user.Adapt<UserDto>();
-            userRoleMenu.RoleCodes.Add(AccountConst.AdminRoleCode);
+            userRoleMenu.RoleCodes.Add(AccountConst.AdminRole);
             userRoleMenu.PermissionCodes.Add("*:*:*");
             return userRoleMenu;
         }

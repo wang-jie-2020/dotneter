@@ -269,9 +269,9 @@ public class AccountManager : BaseDomain, IAccountManager
                 { Id = x.Id, DataScope = x.DataScope })));
         }
 
-        if (AccountConst.Admin.Equals(dto.User.UserName))
+        if (AccountConst.AdminName.Equals(dto.User.UserName))
         {
-            AddToClaim(claims, TokenClaimConst.Roles, AccountConst.AdminRoleCode);
+            AddToClaim(claims, TokenClaimConst.Roles, AccountConst.AdminRole);
         }
         else
         {

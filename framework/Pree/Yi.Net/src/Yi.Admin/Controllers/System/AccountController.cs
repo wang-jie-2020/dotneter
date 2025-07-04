@@ -297,7 +297,7 @@ public class AccountController : BaseController
         var data = await _userManager.GetInfoAsync(userId!.Value);
         var menus = data.Menus.ToList();
         
-        if (AccountConst.Admin.Equals(data.User.UserName))
+        if (AccountConst.AdminName.Equals(data.User.UserName))
         {
             menus = (await _menuRepository.GetListAsync()).Adapt<List<MenuDto>>();
         }
