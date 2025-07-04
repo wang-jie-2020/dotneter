@@ -4,7 +4,7 @@ using Yi.System.Domains.Entities;
 using Yi.System.Domains.Entities.ValueObjects;
 using Yi.System.Options;
 
-namespace Yi.System.Domains.DataSeeds;
+namespace Yi.System.DataSeeds;
 
 public class UserDataSeed : IDataSeedContributor, ITransientDependency
 {

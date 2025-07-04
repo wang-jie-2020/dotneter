@@ -1,7 +1,7 @@
 ﻿using Yi.AspNetCore.Data.Seeding;
 using Yi.System.Domains.Entities;
 
-namespace Yi.System.Domains.DataSeeds;
+namespace Yi.System.DataSeeds;
 
 public class UserRoleDataSeed: IDataSeedContributor, ITransientDependency
 {
