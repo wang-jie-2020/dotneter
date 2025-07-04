@@ -188,22 +188,6 @@ public class UserManager : BaseDomain
         return output!;
     }
 
-    /// <summary>
-    ///     批量查询用户信息
-    /// </summary>
-    /// <param name="userIds"></param>
-    /// <returns></returns>
-    public async Task<List<UserRoleMenuDto>> GetInfoListAsync(List<Guid> userIds)
-    {
-        var output = new List<UserRoleMenuDto>();
-        foreach (var userId in userIds)
-        {
-            output.Add(await GetInfoByCacheAsync(userId));
-        }
-
-        return output;
-    }
-
     private UserRoleMenuDto EntityMapToDto(UserEntity user)
     {
         var userRoleMenu = new UserRoleMenuDto();

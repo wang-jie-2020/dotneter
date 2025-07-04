@@ -2,13 +2,17 @@
 using Yi.AspNetCore.Data;
 using Yi.AspNetCore.Extensions.Caching;
 using Yi.AspNetCore.MultiTenancy;
+using Yi.System.Domains;
 using Yi.System.Domains.Entities;
-using Yi.System.Domains.Repositories;
 
-namespace Yi.System.Domains;
+namespace Yi.System;
 
 public class TenantStore : ITenantStore, ITransientDependency
 {
+    protected ISqlSugarRepository<TenantEntity> TenantRepository { get; }
+    protected IDistributedCache Cache { get; }
+    protected ICurrentTenant CurrentTenant { get; }
+    
     public TenantStore(
         ISqlSugarRepository<TenantEntity> repository,
         IDistributedCache cache,
@@ -18,10 +22,6 @@ public class TenantStore : ITenantStore, ITransientDependency
         Cache = cache;
         CurrentTenant = currentTenant;
     }
-
-    protected ISqlSugarRepository<TenantEntity> TenantRepository { get; }
-    protected ICurrentTenant CurrentTenant { get; }
-    protected IDistributedCache Cache { get; }
     
     public async Task<TenantConfiguration?> FindAsync(string name)
     {
@@ -93,5 +93,31 @@ public class TenantStore : ITenantStore, ITransientDependency
     protected virtual string CalculateCacheKey(Guid? id, string name)
     {
         return TenantCacheItem.CalculateCacheKey(id, name);
+    }
+    
+    [Serializable]
+    public class TenantCacheItem
+    {
+        private const string CacheKeyFormat = "i:{0},n:{1}";
+
+        public TenantCacheItem()
+        {
+        }
+
+        public TenantCacheItem(TenantConfiguration value)
+        {
+            Value = value;
+        }
+
+        public TenantConfiguration Value { get; set; }
+
+        public static string CalculateCacheKey(Guid? id, string name)
+        {
+            if (id == null && name.IsNullOrWhiteSpace()) throw new Exception("Both id and name can't be invalid.");
+
+            return string.Format(CacheKeyFormat,
+                id?.ToString() ?? "null",
+                name.IsNullOrWhiteSpace() ? "null" : name);
+        }
     }
 }

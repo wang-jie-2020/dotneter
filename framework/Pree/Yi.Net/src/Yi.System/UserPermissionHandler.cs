@@ -1,7 +1,8 @@
 ﻿using Yi.AspNetCore.Security;
 using Yi.Framework.Permissions;
+using Yi.System.Domains;
 
-namespace Yi.System.Domains;
+namespace Yi.System;
 
 public class UserPermissionHandler : IPermissionHandler
 {
@@ -24,16 +25,13 @@ public class UserPermissionHandler : IPermissionHandler
         var userInfo = _userManager.GetInfoAsync(_currentUser.Id.Value).Result;
         
         var permissions = userInfo.PermissionCodes;
-        if (permissions is not null)
+        if (permissions is null) return false;
+        if (permissions.Contains("*:*:*"))
         {
-            if (permissions.Contains("*:*:*"))
-            {
-                return true;
-            }
-
-            return permissions.Contains(permission);
+            return true;
         }
 
-        return false;
+        return permissions.Contains(permission);
+
     }
 }
