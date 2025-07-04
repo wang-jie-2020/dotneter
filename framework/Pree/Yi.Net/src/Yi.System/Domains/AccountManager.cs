@@ -266,10 +266,10 @@ public class AccountManager : BaseDomain, IAccountManager
         {
             AddToClaim(claims, TokenClaimConst.RoleInfo,
                 JsonConvert.SerializeObject(dto.Roles.Select(x => new RoleTokenInfo
-                { Id = x.Id, DataScope = x.DataScope })));
+                    { Id = x.Id, DataScope = x.DataScope })));
         }
 
-        if (AccountConst.AdminName.Equals(dto.User.UserName))
+        if (dto.Roles.Any(f => f.Equals(AccountConst.AdminRole)))
         {
             AddToClaim(claims, TokenClaimConst.Roles, AccountConst.AdminRole);
         }

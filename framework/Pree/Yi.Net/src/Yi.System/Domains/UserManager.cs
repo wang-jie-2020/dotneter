@@ -29,9 +29,9 @@ public class UserManager : BaseDomain
         ISqlSugarRepository<RoleEntity> roleRepository)
     {
         (_repository, _repositoryUserRole, _repositoryUserPost, _cache, _userRepository,
-                 _roleRepository) =
+                _roleRepository) =
             (repository, repositoryUserRole, repositoryUserPost, cache, userRepository,
-                 roleRepository);
+                roleRepository);
     }
 
     /// <summary>
@@ -170,6 +170,7 @@ public class UserManager : BaseDomain
                 {
                     throw new UnauthorizedException();
                 }
+
                 //data.Menus.Clear();
                 output = data;
                 return new UserInfoCacheItem(data);
@@ -211,7 +212,7 @@ public class UserManager : BaseDomain
         user.EncryPassword.Salt = string.Empty;
 
         //超级管理员特殊处理
-        if (AccountConst.AdminName.Equals(user.UserName))
+        if (user.Roles.Any(f => f.RoleCode.Equals(AccountConst.AdminRole)))
         {
             userRoleMenu.User = user.Adapt<UserDto>();
             userRoleMenu.RoleCodes.Add(AccountConst.AdminRole);
