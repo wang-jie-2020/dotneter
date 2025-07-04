@@ -89,9 +89,6 @@ public class MenuEntity : BizEntity<Guid>
     /// </summary>
     [SugarColumn(ColumnName = "Query")]
     public string? Query { get; set; }
-
-    [SugarColumn(IsIgnore = true)] 
-    public List<MenuEntity>? Children { get; set; }
     
     /// <summary>
     ///     排序

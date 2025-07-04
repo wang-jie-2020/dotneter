@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-
-namespace Yi.System.Services.Dtos;
+﻿namespace Yi.System.Services.Dtos;
 
 public class UserRoleMenuDto
 {

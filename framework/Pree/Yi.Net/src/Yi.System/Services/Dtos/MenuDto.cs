@@ -2,6 +2,10 @@
 
 namespace Yi.System.Services.Dtos;
 
+/// <summary>
+/// TODO
+/// 和Entity一致,待清理
+/// </summary>
 public class MenuDto 
 {
     public Guid Id { get; set; }
