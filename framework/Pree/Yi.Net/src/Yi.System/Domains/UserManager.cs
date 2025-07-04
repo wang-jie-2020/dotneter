@@ -116,7 +116,7 @@ public class UserManager : BaseDomain
 
     public async Task SetDefaultRoleAsync(Guid userId)
     {
-        var role = await _roleRepository.GetFirstAsync(x => x.RoleCode == AccountConst.DefaultRoleCode);
+        var role = await _roleRepository.GetFirstAsync(x => x.RoleCode == AccountConst.DefaultRole);
         if (role is not null)
         {
             await GiveUserSetRoleAsync(new List<Guid> { userId }, new List<Guid> { role.Id });
