@@ -9,8 +9,4 @@
     <ItemGroup>
       <ProjectReference Include="..\Yi.Framework\Yi.Framework.csproj" />
     </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Domains\Repositories\" />
-    </ItemGroup>
 </Project>
