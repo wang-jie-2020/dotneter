@@ -25,7 +25,6 @@ public class AccountManager : BaseDomain
     private readonly JwtOptions _jwtOptions;
     private readonly RefreshJwtOptions _refreshJwtOptions;
     private readonly UserManager _userManager;
-    private readonly ISqlSugarRepository<RoleEntity> _roleRepository;
     private readonly ISqlSugarRepository<LoginLogEntity> _loginLogRepository;
     
     public AccountManager(IUserRepository repository
@@ -33,7 +32,6 @@ public class AccountManager : BaseDomain
         , IOptions<JwtOptions> jwtOptions
         , IOptions<RefreshJwtOptions> refreshJwtOptions
         , UserManager userManager
-        , ISqlSugarRepository<RoleEntity> roleRepository
         , ISqlSugarRepository<LoginLogEntity> loginLogRepository)
     {
         _repository = repository;
@@ -41,7 +39,6 @@ public class AccountManager : BaseDomain
         _jwtOptions = jwtOptions.Value;
         _refreshJwtOptions = refreshJwtOptions.Value;
         _userManager = userManager;
-        _roleRepository = roleRepository;
         _loginLogRepository = loginLogRepository;
     }
 
@@ -51,7 +48,7 @@ public class AccountManager : BaseDomain
     /// <param name="userId"></param>
     /// <returns></returns>
     [OperLog("生成token", OperLogEnum.Auth)]
-    public async Task<string> GetTokenByUserIdAsync(Guid userId)
+    public async Task<string> CreateTokenAsync(Guid userId)
     {
         //获取用户信息
         var userInfo = await _userManager.GetInfoAsync(userId);
@@ -221,7 +218,7 @@ public class AccountManager : BaseDomain
     /// <param name="userName"></param>
     /// <param name="userAction"></param>
     /// <returns></returns>
-    public async Task<bool> ExistAsync(string userName, Action<UserEntity> userAction = null)
+    private async Task<bool> ExistAsync(string userName, Action<UserEntity> userAction = null)
     {
         var user = await _repository.GetFirstAsync(u => u.UserName == userName && u.State == true);
         if (userAction is not null)
@@ -243,7 +240,7 @@ public class AccountManager : BaseDomain
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    public List<KeyValuePair<string, string>> UserInfoToClaim(UserRoleMenuDto dto)
+    private List<KeyValuePair<string, string>> UserInfoToClaim(UserRoleMenuDto dto)
     {
         var claims = new List<KeyValuePair<string, string>>();
         AddToClaim(claims, ClaimsIdentityTypes.UserId, dto.User.Id.ToString());

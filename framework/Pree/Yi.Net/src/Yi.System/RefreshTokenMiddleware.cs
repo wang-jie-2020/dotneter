@@ -29,7 +29,7 @@ public class RefreshTokenMiddleware : IMiddleware, ITransientDependency
             if (authResult.Succeeded)
             {
                 var userId = Guid.Parse(authResult.Principal.FindFirst(ClaimsIdentityTypes.UserId).Value);
-                var access_Token = await _accountManager.GetTokenByUserIdAsync(userId);
+                var access_Token = await _accountManager.CreateTokenAsync(userId);
                 var refresh_Token = _accountManager.CreateRefreshToken(userId);
                 context.Response.Headers["access_token"] = access_Token;
                 context.Response.Headers["refresh_token"] = refresh_Token;

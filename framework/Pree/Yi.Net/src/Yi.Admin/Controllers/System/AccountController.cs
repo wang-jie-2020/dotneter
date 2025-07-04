@@ -72,7 +72,7 @@ public class AccountController : BaseController
         await _cache.RemoveAsync(new UserInfoCacheKey(user.Id).ToString());
 
         //获取token
-        var accessToken = await _accountManager.GetTokenByUserIdAsync(user.Id);
+        var accessToken = await _accountManager.CreateTokenAsync(user.Id);
         var refreshToken = _accountManager.CreateRefreshToken(user.Id);
 
         return new { Token = accessToken, RefreshToken = refreshToken };
@@ -105,7 +105,7 @@ public class AccountController : BaseController
         await _cache.RemoveAsync(new UserInfoCacheKey(user.Id).ToString());
 
         //获取token
-        var accessToken = await _accountManager.GetTokenByUserIdAsync(user.Id);
+        var accessToken = await _accountManager.CreateTokenAsync(user.Id);
         var refreshToken = _accountManager.CreateRefreshToken(user.Id);
 
         return new { Token = accessToken, RefreshToken = refreshToken };
@@ -209,7 +209,7 @@ public class AccountController : BaseController
     public async Task<object> PostRefreshAsync([FromQuery] string? refresh_token)
     {
         var userId = CurrentUser.Id.Value;
-        var accessToken = await _accountManager.GetTokenByUserIdAsync(userId);
+        var accessToken = await _accountManager.CreateTokenAsync(userId);
         var refreshToken = _accountManager.CreateRefreshToken(userId);
         return new { Token = accessToken, RefreshToken = refreshToken };
     }

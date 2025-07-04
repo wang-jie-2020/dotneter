@@ -18,7 +18,6 @@ public class AmbientDataContextAmbientScopeProvider<T> : IAmbientScopeProvider<T
         Check.NotNull(dataContext, nameof(dataContext));
 
         _dataContext = dataContext;
-
         Logger = NullLogger<AmbientDataContextAmbientScopeProvider<T>>.Instance;
     }
 

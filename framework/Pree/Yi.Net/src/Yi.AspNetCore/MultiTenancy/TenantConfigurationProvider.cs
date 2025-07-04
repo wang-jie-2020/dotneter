@@ -8,7 +8,6 @@ public class TenantConfigurationProvider : ITenantConfigurationProvider, ITransi
 {
     protected virtual ITenantResolver TenantResolver { get; }
     protected virtual ITenantStore TenantStore { get; }
-    
     protected virtual IStringLocalizer StringLocalizer { get; }
 
     public TenantConfigurationProvider(

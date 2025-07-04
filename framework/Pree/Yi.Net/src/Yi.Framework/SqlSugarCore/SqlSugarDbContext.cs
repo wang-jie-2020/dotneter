@@ -17,8 +17,8 @@ namespace Yi.Framework.SqlSugarCore;
 
 public abstract class SqlSugarDbContext : ISqlSugarDbContext
 {
-    protected static readonly DiagnosticListener s_diagnosticListener = new DiagnosticListener("SQLSugar");
-
+    public ISqlSugarClient SqlSugarClient { get; private set; }
+    
     public SqlSugarDbContext(IAbpLazyServiceProvider lazyServiceProvider)
     {
         LazyServiceProvider = lazyServiceProvider;
@@ -56,9 +56,9 @@ public abstract class SqlSugarDbContext : ISqlSugarDbContext
     protected virtual bool IsMultiTenantFilterEnabled => DataFilter?.IsEnabled<IMultiTenant>() ?? false;
 
     protected virtual bool IsSoftDeleteFilterEnabled => DataFilter?.IsEnabled<ISoftDelete>() ?? false;
-
-    public ISqlSugarClient SqlSugarClient { get; private set; }
-
+    
+    protected readonly DiagnosticListener s_diagnosticListener = new DiagnosticListener("SQLSugar");
+    
     /// <summary>
     ///     db切换多库支持
     /// </summary>
