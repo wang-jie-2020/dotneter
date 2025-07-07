@@ -66,7 +66,7 @@ public class AccountController : BaseController
         //校验
         UserEntity user = new();
         await _accountManager.LoginValidationAsync("cc", "123456", x => user = x);
-        
+
         //获取token
         var accessToken = await _accountManager.CreateTokenAsync(user.Id);
         var refreshToken = _accountManager.CreateRefreshToken(user.Id);
@@ -174,10 +174,10 @@ public class AccountController : BaseController
         var info = new UserInfo()
         {
             User = user.User.Adapt<UserDto>(),
-            Permissions = user.PermissionCodes,
-            Roles = user.RoleCodes
+            Permissions = user.Permissions,
+            Roles = user.Roles.Select(p => p.RoleCode).ToList()
         };
-        
+
         return info;
     }
 
@@ -203,7 +203,7 @@ public class AccountController : BaseController
     /// </summary>
     /// <param name="refresh_token"></param>
     /// <returns></returns>
-    [Authorize(AuthenticationSchemes = TokenClaimConst.Refresh)]
+    [Authorize(AuthenticationSchemes = "refresh")]
     [HttpPost("refresh")]
     public async Task<object> PostRefreshAsync([FromQuery] string? refresh_token)
     {
@@ -296,13 +296,8 @@ public class AccountController : BaseController
         var data = await _userManager.GetInfoAsync(userId!.Value);
         var menus = data.Menus.ToList();
 
-        if (data.RoleCodes.Any(f => f.Equals(AccountConst.AdminRole)))
-        {
-            menus = (await _menuRepository.GetListAsync()).Adapt<List<MenuDto>>();
-        }
-
         //将后端菜单转换成前端路由，组件级别需要过滤
-        var routers = menus.Adapt<List<MenuEntity>>().Vue3RouterBuild();
+        var routers = menus.Vue3RouterBuild();
         return routers;
     }
 

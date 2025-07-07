@@ -49,7 +49,7 @@ const useUserStore = defineStore(
               this.roles = res.roles
               this.permissions = res.permissions
             } else {
-              this.roles = ['Unknown']
+              this.roles = ['unknown']
             }
 
             this.name = user.userName

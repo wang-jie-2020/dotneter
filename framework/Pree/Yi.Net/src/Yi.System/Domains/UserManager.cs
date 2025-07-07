@@ -8,7 +8,6 @@ using Yi.Framework.Abstractions;
 using Yi.System.Entities;
 using Yi.System.Options;
 using Yi.System.Services.Dtos;
-using Yi.System.Services.Impl;
 
 namespace Yi.System.Domains;
 
@@ -19,21 +18,24 @@ public class UserManager : BaseDomain
     private readonly ISqlSugarRepository<UserPostEntity> _userPostRepository;
     private readonly ISqlSugarRepository<UserRoleEntity> _userRoleRepository;
     private readonly ISqlSugarRepository<RoleEntity> _roleRepository;
+    private readonly ISqlSugarRepository<MenuEntity> _menuRepository;
 
     public UserManager(
         IDistributedCache cache,
         ISqlSugarRepository<UserEntity> userRepository,
         ISqlSugarRepository<UserRoleEntity> userRoleRepository,
         ISqlSugarRepository<UserPostEntity> userPostRepository,
-        ISqlSugarRepository<RoleEntity> roleRepository)
+        ISqlSugarRepository<RoleEntity> roleRepository,
+        ISqlSugarRepository<MenuEntity> menuRepository)
     {
         _cache = cache;
         _userRepository = userRepository;
         _userRoleRepository = userRoleRepository;
         _userPostRepository = userPostRepository;
         _roleRepository = roleRepository;
+        _menuRepository = menuRepository;
     }
-    
+
     public async Task GiveUserSetRoleAsync(List<Guid> userIds, List<Guid> roleIds)
     {
         await _userRoleRepository.DeleteAsync(u => userIds.Contains(u.UserId));
@@ -52,7 +54,7 @@ public class UserManager : BaseDomain
             }
         }
     }
-    
+
     public async Task GiveUserSetPostAsync(List<Guid> userIds, List<Guid> postIds)
     {
         await _userPostRepository.DeleteAsync(u => userIds.Contains(u.UserId));
@@ -70,7 +72,7 @@ public class UserManager : BaseDomain
             }
         }
     }
-    
+
     public async Task CreateAsync(UserEntity userEntity)
     {
         ValidateUserName(userEntity);
@@ -108,7 +110,7 @@ public class UserManager : BaseDomain
 
     private void ValidateUserName(UserEntity input)
     {
-        if (input.UserName == AccountConst.AdminName)
+        if (AccountConst.ForbiddenNames.Contains(input.UserName))
         {
             throw Oops.Oh(SystemErrorCodes.UserNameForbidden);
         }
@@ -133,16 +135,15 @@ public class UserManager : BaseDomain
         var cacheKay = UserInfoCacheItem.CalculateCacheKey(userId);
         await _cache.RemoveAsync(cacheKay);
     }
-    
-    public async Task<UserRoleMenuDto> GetInfoAsync(Guid userId)
+
+    public async Task<UserAuthorities> GetInfoAsync(Guid userId)
     {
         var output = await GetInfoByCacheAsync(userId);
         return output;
     }
-    
-    private async Task<UserRoleMenuDto> GetInfoByCacheAsync(Guid userId)
+
+    private async Task<UserAuthorities> GetInfoByCacheAsync(Guid userId)
     {
-        var cacheKay = UserInfoCacheItem.CalculateCacheKey(userId);
         var tokenExpiresMinuteTime = LazyServiceProvider.GetRequiredService<IOptions<JwtOptions>>().Value.ExpiresMinuteTime;
         var cacheData = await _cache.GetOrAddAsync(UserInfoCacheItem.CalculateCacheKey(userId),
             async () =>
@@ -153,71 +154,60 @@ public class UserManager : BaseDomain
                         r => r.Menus.Where(m => m.IsDeleted == false).ToList()
                     )
                     .InSingleAsync(userId);
-                
+
                 if (user is null)
                 {
                     throw new UnauthorizedException();
                 }
-                
-                var data = EntityMapToDto(user);
+
+                var data = UserEntityMapping(user);
                 return new UserInfoCacheItem(data);
             },
             () => new DistributedCacheEntryOptions
             {
                 AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(tokenExpiresMinuteTime)
             });
-        
+
         return cacheData.Info;
     }
 
-    private UserRoleMenuDto EntityMapToDto(UserEntity user)
+    private UserAuthorities UserEntityMapping(UserEntity user)
     {
-        var userRoleMenu = new UserRoleMenuDto();
-        
-        //超级管理员特殊处理
-        if (user.Roles.Any(f => f.RoleCode.Equals(AccountConst.AdminRole)))
+        var authorities = new UserAuthorities();
+
+        authorities.User = user;
+        foreach (var role in user.Roles)
         {
-            userRoleMenu.User = user.Adapt<UserDto>();
-            userRoleMenu.RoleCodes.Add(AccountConst.AdminRole);
-            userRoleMenu.PermissionCodes.Add("*:*:*");
-            return userRoleMenu;
-        }
-
-        //得到角色集合
-        var roleList = user.Roles;
-
-        //得到菜单集合
-        foreach (var role in roleList)
-        {
-            userRoleMenu.RoleCodes.Add(role.RoleCode);
-
-            if (role.Menus is not null)
+            authorities.Roles.Add(role);
+            foreach (var menu in role.Menus)
             {
-                foreach (var menu in role.Menus)
+                if (!authorities.Menus.Any(t => t.Id == menu.Id))
                 {
-                    if (!string.IsNullOrEmpty(menu.PermissionCode))
-                    {
-                        userRoleMenu.PermissionCodes.Add(menu.PermissionCode);
-                    }
+                    authorities.Menus.Add(menu);
 
-                    userRoleMenu.Menus.Add(menu.Adapt<MenuDto>());
+                    if (!menu.PermissionCode.IsNullOrEmpty())
+                    {
+                        authorities.Permissions.Add(menu.PermissionCode);
+                    }
                 }
             }
-
-            //刚好可以去除一下多余的导航属性
-            role.Menus = new List<MenuEntity>();
-            userRoleMenu.Roles.Add(role.Adapt<RoleDto>());
         }
 
-        user.Roles = new List<RoleEntity>();
-        userRoleMenu.User = user.Adapt<UserDto>();
-        userRoleMenu.Menus = userRoleMenu.Menus.OrderByDescending(x => x.OrderNum).ToHashSet();
-        return userRoleMenu;
+        authorities.Menus = authorities.Menus.OrderBy(x => x.OrderNum).ToList();
+
+        //管理员特殊处理
+        if (authorities.IsAdmin)
+        {
+            authorities.Menus = _menuRepository.GetList();
+            authorities.Permissions = ["*:*:*"];
+        }
+
+        return authorities;
     }
-    
+
     public class UserInfoCacheItem
     {
-        public UserInfoCacheItem(UserRoleMenuDto info)
+        public UserInfoCacheItem(UserAuthorities info)
         {
             Info = info;
         }
@@ -225,8 +215,8 @@ public class UserManager : BaseDomain
         /// <summary>
         ///     存储的用户信息
         /// </summary>
-        public UserRoleMenuDto Info { get; set; }
-    
+        public UserAuthorities Info { get; set; }
+
         public static string CalculateCacheKey(Guid? id)
         {
             if (id == null) throw new Exception("id can't be invalid.");

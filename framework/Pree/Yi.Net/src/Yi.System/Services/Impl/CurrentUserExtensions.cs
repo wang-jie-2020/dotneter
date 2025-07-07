@@ -23,19 +23,19 @@ public static class CurrentUserExtensions
     /// <returns></returns>
     public static Guid? GetDeptId(this ICurrentUser currentUser)
     {
-        var deptIdOrNull = currentUser.FindClaims(TokenClaimConst.DeptId).Select(x => x.Value).FirstOrDefault();
+        var deptIdOrNull = currentUser.FindClaims(ClaimsIdentityTypes.Dept).Select(x => x.Value).FirstOrDefault();
         return deptIdOrNull is null ? null : Guid.Parse(deptIdOrNull);
     }
 
     public static List<RoleTokenInfo>? GetRoleInfo(this ICurrentUser currentUser)
     {
-        var roleOrNull = currentUser.FindClaims(TokenClaimConst.RoleInfo).Select(x => x.Value).FirstOrDefault();
+        var roleOrNull = currentUser.FindClaims(ClaimsIdentityTypes.RoleScope).Select(x => x.Value).FirstOrDefault();
         return roleOrNull is null ? null : JsonConvert.DeserializeObject<List<RoleTokenInfo>>(roleOrNull);
     }
-
+    
     public static bool IsRefreshToken(this ICurrentUser currentUser)
     {
-        var refreshOrNull = currentUser.FindClaims(TokenClaimConst.Refresh).Select(x => x.Value).FirstOrDefault();
+        var refreshOrNull = currentUser.FindClaims(ClaimsIdentityTypes.Refresh).Select(x => x.Value).FirstOrDefault();
         return refreshOrNull is null ? false : bool.Parse(refreshOrNull);
     }
 }

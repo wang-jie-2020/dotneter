@@ -2,7 +2,7 @@ namespace Yi.System.Domains;
 
 public class AccountConst
 {
-    public const string AdminName = "cc";
-    public const string AdminRole = "admin";
+    public static string[] ForbiddenNames = ["admin","cc"];
+    public const string Admin = "admin";
     public const string DefaultRole = "default";
 }

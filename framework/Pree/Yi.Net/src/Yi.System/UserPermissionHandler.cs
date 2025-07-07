@@ -24,7 +24,7 @@ public class UserPermissionHandler : IPermissionHandler
 
         var userInfo = _userManager.GetInfoAsync(_currentUser.Id.Value).Result;
         
-        var permissions = userInfo.PermissionCodes;
+        var permissions = userInfo.Permissions;
         if (permissions is null) return false;
         if (permissions.Contains("*:*:*"))
         {

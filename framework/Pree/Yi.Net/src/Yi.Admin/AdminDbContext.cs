@@ -32,7 +32,7 @@ public class AdminDbContext: SqlSugarDbContext
         }
         
         //管理员不过滤
-        if (CurrentUser.Roles.Any(f => f.Equals(AccountConst.AdminRole)))
+        if (CurrentUser.Roles.Any(f => f.Equals(AccountConst.Admin)))
         {
             return;
         }

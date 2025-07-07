@@ -84,7 +84,7 @@ public class UserService : BaseService, IUserService
 
     public async Task<UserGetOutputDto> UpdateAsync(Guid id, UserUpdateInput input)
     {
-        if (input.UserName == AccountConst.AdminName)
+        if (AccountConst.ForbiddenNames.Contains(input.UserName))
         {
             throw Oops.Oh(SystemErrorCodes.UserNameForbidden);
         }

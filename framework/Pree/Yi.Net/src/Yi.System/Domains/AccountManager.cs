@@ -13,7 +13,6 @@ using Yi.Framework.Utils;
 using Yi.System.Entities;
 using Yi.System.Monitor.Entities;
 using Yi.System.Options;
-using Yi.System.Services.Dtos;
 
 namespace Yi.System.Domains;
 
@@ -59,12 +58,12 @@ public class AccountManager : BaseDomain
             throw Oops.Oh(SystemErrorCodes.UserInactive);
         }
 
-        if (userInfo.RoleCodes.Count == 0)
+        if (userInfo.Roles.Count == 0)
         {
             throw Oops.Oh(SystemErrorCodes.UserNoRole);
         }
 
-        if (userInfo.PermissionCodes.Count() == 0)
+        if (userInfo.Permissions.Count() == 0)
         {
             throw Oops.Oh(SystemErrorCodes.UserNoPermission);
         }
@@ -72,14 +71,14 @@ public class AccountManager : BaseDomain
         //这里抛出一个登录的事件,也可以在全部流程走完，在应用层组装
         if (_httpContextAccessor.HttpContext is not null)
         {
-            var loginEto = new LoginEventArgs().GetInfoByHttpContext(_httpContextAccessor.HttpContext);
-            loginEto.UserName = userInfo.User.UserName;
-            loginEto.UserId = userInfo.User.Id;
+            var loginEvent = new LoginEventArgs().GetInfoByHttpContext(_httpContextAccessor.HttpContext);
+            loginEvent.UserName = userInfo.User.UserName;
+            loginEvent.UserId = userInfo.User.Id;
 
-            var loginLogEntity = loginEto.Adapt<LoginLogEntity>();
-            loginLogEntity.LogMsg = loginEto.UserName + "登录系统";
-            loginLogEntity.LoginUser = loginEto.UserName;
-            loginLogEntity.CreatorId = loginEto.UserId;
+            var loginLogEntity = loginEvent.Adapt<LoginLogEntity>();
+            loginLogEntity.LogMsg = loginEvent.UserName + "登录系统";
+            loginLogEntity.LoginUser = loginEvent.UserName;
+            loginLogEntity.CreatorId = loginEvent.UserId;
             await _loginLogRepository.InsertAsync(loginLogEntity);
         }
 
@@ -95,7 +94,7 @@ public class AccountManager : BaseDomain
         var claims = new List<Claim>
         {
             new(ClaimsIdentityTypes.UserId, userId.ToString()),
-            new(TokenClaimConst.Refresh, "true")
+            new(ClaimsIdentityTypes.Refresh, "true")
         };
 
         var token = new JwtSecurityToken(
@@ -129,6 +128,7 @@ public class AccountManager : BaseDomain
                 userAction.Invoke(user);
             }
             
+            // 防止有权限修改,放在登出只能cover部分场景
             await _userManager.RemoveCacheAsync(user.Id);
             
             if (user.EncryPassword.Password == MD5Helper.SHA2Encode(password, user.EncryPassword.Salt))
@@ -240,33 +240,33 @@ public class AccountManager : BaseDomain
     /// <summary>
     ///     令牌转换
     /// </summary>
-    /// <param name="dto"></param>
+    /// <param name="authorities"></param>
     /// <returns></returns>
-    private List<KeyValuePair<string, string>> UserInfoToClaim(UserRoleMenuDto dto)
+    private List<KeyValuePair<string, string>> UserInfoToClaim(UserAuthorities authorities)
     {
         var claims = new List<KeyValuePair<string, string>>();
-        AddToClaim(claims, ClaimsIdentityTypes.UserId, dto.User.Id.ToString());
-        AddToClaim(claims, ClaimsIdentityTypes.UserName, dto.User.UserName);
+        AddToClaim(claims, ClaimsIdentityTypes.UserId, authorities.User.Id.ToString());
+        AddToClaim(claims, ClaimsIdentityTypes.UserName, authorities.User.UserName);
 
-        if (dto.User.DeptId is not null)
+        if (authorities.User.DeptId is not null)
         {
-            AddToClaim(claims, TokenClaimConst.DeptId, dto.User.DeptId.ToString());
+            AddToClaim(claims, ClaimsIdentityTypes.Dept, authorities.User.DeptId.ToString());
         }
 
-        if (dto.Roles.Count > 0)
+        if (authorities.Roles.Count > 0)
         {
-            AddToClaim(claims, TokenClaimConst.RoleInfo,
-                JsonConvert.SerializeObject(dto.Roles.Select(x => new RoleTokenInfo
+            AddToClaim(claims, ClaimsIdentityTypes.RoleScope,
+                JsonConvert.SerializeObject(authorities.Roles.Select(x => new RoleTokenInfo
                     { Id = x.Id, DataScope = x.DataScope })));
         }
 
-        if (dto.Roles.Any(f => f.Equals(AccountConst.AdminRole)))
+        if (authorities.Roles.Any(f => f.RoleCode.Equals(AccountConst.Admin)))
         {
-            AddToClaim(claims, TokenClaimConst.Roles, AccountConst.AdminRole);
+            AddToClaim(claims, ClaimsIdentityTypes.Role, AccountConst.Admin);
         }
         else
         {
-            dto.RoleCodes?.ForEach(role => AddToClaim(claims, ClaimsIdentityTypes.Role, role));
+            authorities.Roles?.ForEach(role => AddToClaim(claims, ClaimsIdentityTypes.Role, role.RoleCode));
         }
 
         return claims;
