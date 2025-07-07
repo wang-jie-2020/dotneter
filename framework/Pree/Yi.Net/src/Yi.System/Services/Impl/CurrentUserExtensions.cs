@@ -16,6 +16,11 @@ public static class CurrentUserExtensions
     //     return currentUser.FindClaims(TokenClaimConst.Permission).Select(x => x.Value).ToList();
     // }
 
+    public static bool IsAdmin(this ICurrentUser currentUser)
+    {
+        return currentUser.Roles.Any(role => role.Equals(AccountConst.Admin));
+    }
+    
     /// <summary>
     ///     获取用户权限岗位id
     /// </summary>
@@ -27,7 +32,7 @@ public static class CurrentUserExtensions
         return deptIdOrNull is null ? null : Guid.Parse(deptIdOrNull);
     }
 
-    public static List<RoleTokenInfo>? GetRoleInfo(this ICurrentUser currentUser)
+    public static List<RoleTokenInfo>? GetRoleScope(this ICurrentUser currentUser)
     {
         var roleOrNull = currentUser.FindClaims(ClaimsIdentityTypes.RoleScope).Select(x => x.Value).FirstOrDefault();
         return roleOrNull is null ? null : JsonConvert.DeserializeObject<List<RoleTokenInfo>>(roleOrNull);

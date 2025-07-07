@@ -32,7 +32,7 @@ public class AdminDbContext: SqlSugarDbContext
         }
         
         //管理员不过滤
-        if (CurrentUser.Roles.Any(f => f.Equals(AccountConst.Admin)))
+        if (CurrentUser.IsAdmin())
         {
             return;
         }
@@ -40,7 +40,7 @@ public class AdminDbContext: SqlSugarDbContext
         var expUser = Expressionable.Create<UserEntity>();
         var expRole = Expressionable.Create<RoleEntity>();
 
-        var roleInfo = CurrentUser.GetRoleInfo();
+        var roleInfo = CurrentUser.GetRoleScope();
 
         //如果无岗位，或者无角色，只能看自己的数据
         if ( /*CurrentUser.GetDeptId() is null ||*/ roleInfo is null)

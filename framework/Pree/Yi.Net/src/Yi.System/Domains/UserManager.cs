@@ -196,7 +196,7 @@ public class UserManager : BaseDomain
         authorities.Menus = authorities.Menus.OrderBy(x => x.OrderNum).ToList();
 
         //管理员特殊处理
-        if (authorities.IsAdmin)
+        if (authorities.IsAdmin())
         {
             authorities.Menus = _menuRepository.GetList();
             authorities.Permissions = ["*:*:*"];
