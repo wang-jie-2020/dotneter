@@ -1,8 +1,7 @@
 ﻿using Yi.AspNetCore.Security;
 using Yi.Framework.Permissions;
-using Yi.System.Domains;
 
-namespace Yi.System;
+namespace Yi.System.Domains;
 
 public class UserPermissionHandler : IPermissionHandler
 {
