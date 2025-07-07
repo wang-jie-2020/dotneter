@@ -161,7 +161,7 @@ public class AccountController : BaseController
     /// <returns></returns>
     [HttpGet]
     [Authorize]
-    public async Task<UserRoleMenuDto> GetAsync()
+    public async Task<UserInfo> GetAsync()
     {
         //通过鉴权jwt获取到用户的id
         var userId = _currentUser.Id;
@@ -170,9 +170,15 @@ public class AccountController : BaseController
             throw new ArgumentNullException(nameof(CurrentUser));
         }
 
-        //此处优先从缓存中获取
-        var output = await _userManager.GetInfoAsync(userId.Value);
-        return output;
+        var user = await _userManager.GetInfoAsync(userId.Value);
+        var info = new UserInfo()
+        {
+            User = user.User.Adapt<UserDto>(),
+            Permissions = user.PermissionCodes,
+            Roles = user.RoleCodes
+        };
+        
+        return info;
     }
 
     /// <summary>
