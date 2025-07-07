@@ -1,6 +1,6 @@
 ﻿namespace Yi.System.Domains;
 
-public class RoleTokenInfo
+public class RoleScope
 {
     public Guid Id { get; set; }
     

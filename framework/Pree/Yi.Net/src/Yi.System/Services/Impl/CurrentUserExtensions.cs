@@ -32,10 +32,10 @@ public static class CurrentUserExtensions
         return deptIdOrNull is null ? null : Guid.Parse(deptIdOrNull);
     }
 
-    public static List<RoleTokenInfo>? GetRoleScope(this ICurrentUser currentUser)
+    public static List<RoleScope>? GetRoleScope(this ICurrentUser currentUser)
     {
         var roleOrNull = currentUser.FindClaims(ClaimsIdentityTypes.RoleScope).Select(x => x.Value).FirstOrDefault();
-        return roleOrNull is null ? null : JsonConvert.DeserializeObject<List<RoleTokenInfo>>(roleOrNull);
+        return roleOrNull is null ? null : JsonConvert.DeserializeObject<List<RoleScope>>(roleOrNull);
     }
     
     public static bool IsRefreshToken(this ICurrentUser currentUser)

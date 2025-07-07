@@ -259,7 +259,7 @@ public class AccountManager : BaseDomain
                 JsonConvert.SerializeObject(authorities.Roles.Select(x => x.RoleCode)));
 
             AddToClaim(claims, ClaimsIdentityTypes.RoleScope,
-                JsonConvert.SerializeObject(authorities.Roles.Select(x => new RoleTokenInfo
+                JsonConvert.SerializeObject(authorities.Roles.Select(x => new RoleScope
                     { Id = x.Id, DataScope = x.DataScope })));
         }
 
