@@ -24,12 +24,12 @@ public class AccountManager : BaseDomain
     private readonly UserManager _userManager;
     private readonly ISqlSugarRepository<UserEntity> _userRepository;
     private readonly ISqlSugarRepository<LoginLogEntity> _loginLogRepository;
-    
+
     public AccountManager(
-        IHttpContextAccessor httpContextAccessor, 
-        IOptions<JwtOptions> jwtOptions, 
-        IOptions<RefreshJwtOptions> refreshJwtOptions, 
-        UserManager userManager, 
+        IHttpContextAccessor httpContextAccessor,
+        IOptions<JwtOptions> jwtOptions,
+        IOptions<RefreshJwtOptions> refreshJwtOptions,
+        UserManager userManager,
         ISqlSugarRepository<UserEntity> userRepository,
         ISqlSugarRepository<LoginLogEntity> loginLogRepository)
     {
@@ -127,10 +127,10 @@ public class AccountManager : BaseDomain
             {
                 userAction.Invoke(user);
             }
-            
+
             // 防止有权限修改,放在登出只能cover部分场景
             await _userManager.RemoveCacheAsync(user.Id);
-            
+
             if (user.EncryPassword.Password == MD5Helper.SHA2Encode(password, user.EncryPassword.Salt))
             {
                 return;
@@ -255,18 +255,12 @@ public class AccountManager : BaseDomain
 
         if (authorities.Roles.Count > 0)
         {
+            AddToClaim(claims, ClaimsIdentityTypes.Role,
+                JsonConvert.SerializeObject(authorities.Roles.Select(x => x.RoleCode)));
+
             AddToClaim(claims, ClaimsIdentityTypes.RoleScope,
                 JsonConvert.SerializeObject(authorities.Roles.Select(x => new RoleTokenInfo
                     { Id = x.Id, DataScope = x.DataScope })));
-        }
-
-        if (authorities.Roles.Any(f => f.RoleCode.Equals(AccountConst.Admin)))
-        {
-            AddToClaim(claims, ClaimsIdentityTypes.Role, AccountConst.Admin);
-        }
-        else
-        {
-            authorities.Roles?.ForEach(role => AddToClaim(claims, ClaimsIdentityTypes.Role, role.RoleCode));
         }
 
         return claims;
