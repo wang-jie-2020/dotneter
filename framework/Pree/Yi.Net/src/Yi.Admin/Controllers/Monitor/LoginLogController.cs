@@ -19,14 +19,14 @@ public class LoginLogController : BaseController
     }
 
     [HttpGet("{id}")]
-    public async Task<LoginLogGetListOutputDto> GetAsync(long id)
+    public async Task<LoginLogDto> GetAsync(long id)
     {
         var entity = await _repository.GetByIdAsync(id);
-        return entity.Adapt<LoginLogGetListOutputDto>();
+        return entity.Adapt<LoginLogDto>();
     }
 
     [HttpGet]
-    public async Task<PagedResult<LoginLogGetListOutputDto>> GetListAsync([FromQuery] LoginLogGetListQueryVo query)
+    public async Task<PagedResult<LoginLogDto>> GetListAsync([FromQuery] LoginLogQuery query)
     {
         RefAsync<int> total = 0;
 
@@ -37,6 +37,6 @@ public class LoginLogController : BaseController
                 x => x.CreationTime >= query.StartTime && x.CreationTime <= query.EndTime)
             .ToPageListAsync(query.PageNum, query.PageSize, total);
         
-        return new PagedResult<LoginLogGetListOutputDto>(total, entities.Adapt<List<LoginLogGetListOutputDto>>());
+        return new PagedResult<LoginLogDto>(total, entities.Adapt<List<LoginLogDto>>());
     }
 }

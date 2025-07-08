@@ -3,7 +3,7 @@ using Yi.Framework.Abstractions;
 using Yi.System.Monitor.Dtos;
 using Yi.System.Monitor.Entities;
 
-namespace Yi.System.Monitor.Impl;
+namespace Yi.System.Monitor;
 
 public class OperLogService : BaseService, IOperLogService
 {
@@ -20,7 +20,7 @@ public class OperLogService : BaseService, IOperLogService
         return entity.Adapt<OperLogDto>();
     }
 
-    public async Task<PagedResult<OperLogDto>> GetListAsync(OperLogGetListQuery query)
+    public async Task<PagedResult<OperLogDto>> GetListAsync(OperLogQuery query)
     {
         RefAsync<int> total = 0;
 

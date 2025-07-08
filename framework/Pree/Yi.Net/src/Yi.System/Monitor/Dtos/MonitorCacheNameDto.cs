@@ -1,6 +1,6 @@
 ﻿namespace Yi.System.Monitor.Dtos;
 
-public class MonitorCacheNameGetListOutputDto
+public class MonitorCacheNameDto
 {
     public string CacheName { get; set; }
     

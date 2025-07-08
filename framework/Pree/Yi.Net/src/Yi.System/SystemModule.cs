@@ -6,7 +6,6 @@ using Yi.Framework.Loggings;
 using Yi.Framework.Permissions;
 using Yi.System.Domains;
 using Yi.System.Monitor;
-using Yi.System.Monitor.Repositories;
 using Yi.System.Options;
 
 namespace Yi.System;
@@ -26,8 +25,6 @@ public class SystemModule : AbpModule
         context.Services.Replace(new ServiceDescriptor(typeof(IAuditingStore), typeof(AuditingStore), ServiceLifetime.Singleton));
         context.Services.Replace(new ServiceDescriptor(typeof(IOperLogStore), typeof(OperLogStore), ServiceLifetime.Singleton));
         context.Services.Replace(new ServiceDescriptor(typeof(IPermissionHandler), typeof(UserPermissionHandler), ServiceLifetime.Transient));
-        context.Services.AddTransient<IAuditLogRepository, SqlSugarCoreAuditLogRepository>();
-        context.Services.AddTransient<IAuditLogInfoToAuditLogConverter, AuditLogInfoToAuditLogConverter>();
         
         context.Services.AddCaptcha();
     }

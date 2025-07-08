@@ -28,12 +28,12 @@ public class MonitorCacheController : BaseController
     /// </summary>
     /// <returns></returns>
     [HttpGet("name")]
-    public List<MonitorCacheNameGetListOutputDto> GetName()
+    public List<MonitorCacheNameDto> GetName()
     {
         VerifyRedisCacheEnable();
         var keys = RedisClient.Keys("*");
         var result = GroupedKeys(keys.ToList());
-        var output = result.Select(x => new MonitorCacheNameGetListOutputDto { CacheName = x }).ToList();
+        var output = result.Select(x => new MonitorCacheNameDto { CacheName = x }).ToList();
         return output;
     }
 
@@ -76,10 +76,10 @@ public class MonitorCacheController : BaseController
 
     //全部不为空
     [HttpGet("value/{cacheName}/{cacheKey}")]
-    public MonitorCacheGetListOutputDto GetValue(string cacheName, string cacheKey)
+    public MonitorCacheDto GetValue(string cacheName, string cacheKey)
     {
         var value = RedisClient.HGet($"{cacheName}:{cacheKey}", "data");
-        return new MonitorCacheGetListOutputDto { CacheKey = cacheKey, CacheName = cacheName, CacheValue = value };
+        return new MonitorCacheDto { CacheKey = cacheKey, CacheName = cacheName, CacheValue = value };
     }
 
 

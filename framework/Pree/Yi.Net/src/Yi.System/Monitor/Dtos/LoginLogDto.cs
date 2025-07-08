@@ -1,6 +1,6 @@
 ﻿namespace Yi.System.Monitor.Dtos;
 
-public class LoginLogGetListOutputDto
+public class LoginLogDto
 {
     public long Id { get; set; }
 
