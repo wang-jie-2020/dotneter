@@ -8,13 +8,11 @@ namespace Yi.System.DataSeeds;
 
 public class UserDataSeed : IDataSeedContributor, ITransientDependency
 {
-    private readonly RbacOptions _options;
     private readonly ISqlSugarRepository<UserEntity> _repository;
 
-    public UserDataSeed(ISqlSugarRepository<UserEntity> repository, IOptions<RbacOptions> options)
+    public UserDataSeed(ISqlSugarRepository<UserEntity> repository)
     {
         _repository = repository;
-        _options = options.Value;
     }
 
     public async Task SeedAsync()
