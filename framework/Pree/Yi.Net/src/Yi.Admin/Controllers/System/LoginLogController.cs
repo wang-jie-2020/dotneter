@@ -5,7 +5,7 @@ using Yi.Framework.SqlSugarCore.Repositories;
 using Yi.System.Entities;
 using Yi.System.Services.Dtos;
 
-namespace Yi.Web.Controllers.Monitor;
+namespace Yi.Web.Controllers.System;
 
 [ApiController]
 [Route("api/monitor/login-log")]
