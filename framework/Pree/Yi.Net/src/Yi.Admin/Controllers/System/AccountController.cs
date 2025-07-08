@@ -83,7 +83,7 @@ public class AccountController : BaseController
     /// <returns></returns>
     [AllowAnonymous]
     [HttpPost("login")]
-    public async Task<object> PostLoginAsync([FromBody] LoginInputVo input)
+    public async Task<object> PostLoginAsync([FromBody] LoginInput input)
     {
         if (string.IsNullOrEmpty(input.Password) || string.IsNullOrEmpty(input.UserName))
         {
@@ -120,7 +120,7 @@ public class AccountController : BaseController
     /// <summary>
     ///     校验图片登录验证码,无需和账号绑定
     /// </summary>
-    private void ValidationImageCaptcha(LoginInputVo input)
+    private void ValidationImageCaptcha(LoginInput input)
     {
         //登录不想要验证码 ，可不校验
         if (_rbacOptions.EnableCaptcha)

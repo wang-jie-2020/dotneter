@@ -1,6 +1,6 @@
 namespace Yi.System.Services.Dtos;
 
-public class MenuGetListQuery : PagedQuery
+public class MenuQuery : PagedQuery
 {
     public bool? State { get; set; }
     

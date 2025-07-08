@@ -24,7 +24,7 @@ public class MenuController : BaseController
     }
 
     [HttpGet]
-    public async Task<PagedResult<MenuDto>> GetListAsync([FromQuery] MenuGetListQuery query)
+    public async Task<PagedResult<MenuDto>> GetListAsync([FromQuery] MenuQuery query)
     {
         return await _menuService.GetListAsync(query);
     }

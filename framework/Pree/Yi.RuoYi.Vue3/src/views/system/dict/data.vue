@@ -139,8 +139,8 @@
             <el-form-item label="样式属性" prop="cssClass">
                <el-input v-model="form.cssClass" placeholder="请输入样式属性" />
             </el-form-item>
-            <el-form-item label="显示排序" prop="dictSort">
-               <el-input-number v-model="form.dictSort" controls-position="right" :min="0" />
+            <el-form-item label="字典排序" prop="orderNum">
+               <el-input-number v-model="form.orderNum" controls-position="right" :min="0" />
             </el-form-item>
             <el-form-item label="回显样式" prop="listClass">
                <el-select v-model="form.listClass">
@@ -193,8 +193,8 @@ const typeOptions = ref([]);
 const route = useRoute();
 // 数据标签回显样式
 const listClassOptions = ref([
-  { value: "default", label: "默认" }, 
-  { value: "primary", label: "主要" }, 
+  { value: "default", label: "默认" },
+  { value: "primary", label: "主要" },
   { value: "success", label: "成功" },
   { value: "info", label: "信息" },
   { value: "warning", label: "警告" },

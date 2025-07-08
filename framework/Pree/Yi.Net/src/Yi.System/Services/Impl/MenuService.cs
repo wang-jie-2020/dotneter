@@ -19,7 +19,7 @@ public class MenuService : BaseService, IMenuService
         return entity.Adapt<MenuDto>();
     }
 
-    public async Task<PagedResult<MenuDto>> GetListAsync(MenuGetListQuery query)
+    public async Task<PagedResult<MenuDto>> GetListAsync(MenuQuery query)
     {
         RefAsync<int> total = 0;
 

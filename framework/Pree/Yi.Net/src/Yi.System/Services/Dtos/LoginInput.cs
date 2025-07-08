@@ -1,6 +1,6 @@
 ﻿namespace Yi.System.Services.Dtos;
 
-public class LoginInputVo
+public class LoginInput
 {
     public string UserName { get; set; } = string.Empty;
     
