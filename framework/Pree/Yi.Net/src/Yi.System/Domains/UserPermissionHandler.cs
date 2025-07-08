@@ -21,6 +21,7 @@ public class UserPermissionHandler : IPermissionHandler
             return false;
         }
 
+        // 也许缓存形式更好
         var userInfo = _userManager.GetInfoAsync(_currentUser.Id.Value).Result;
         
         var permissions = userInfo.Permissions;

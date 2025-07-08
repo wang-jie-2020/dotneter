@@ -18,8 +18,7 @@ public class AdminDbContext: SqlSugarDbContext
         if (DataFilter.IsEnabled<IDataScope>()) DataPermissionFilter(sqlSugarClient);
         base.CustomDataFilter(sqlSugarClient);
     }
-
-
+    
     /// <summary>
     ///     数据权限过滤
     /// </summary>
