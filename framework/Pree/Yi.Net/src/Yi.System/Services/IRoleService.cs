@@ -7,11 +7,11 @@ public interface IRoleService
 {
     Task<RoleDto> GetAsync(Guid id);
 
-    Task<PagedResult<RoleDto>> GetListAsync(RoleGetListQuery query);
+    Task<PagedResult<RoleDto>> GetListAsync(RoleQuery query);
 
-    Task<RoleDto> CreateAsync(RoleCreateInput input);
+    Task<RoleDto> CreateAsync(RoleInput input);
 
-    Task<RoleDto> UpdateAsync(Guid id, RoleUpdateInput input);
+    Task<RoleDto> UpdateAsync(Guid id, RoleInput input);
 
     Task DeleteAsync(IEnumerable<Guid> id);
     
@@ -27,19 +27,19 @@ public interface IRoleService
     /// <param name="isAllocated">是否在该角色下</param>
     /// <returns></returns>
     Task<PagedResult<UserGetListOutputDto>> GetAuthUserByRoleIdAsync([FromRoute] Guid roleId,
-        [FromRoute] bool isAllocated, [FromQuery] RoleAuthUserGetListQuery query);
+        [FromRoute] bool isAllocated, [FromQuery] RoleAuthUserQuery query);
 
     /// <summary>
     ///     批量给用户授权
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
-    Task CreateAuthUserAsync(RoleAuthUserCreateOrDeleteInput input);
+    Task CreateAuthUserAsync(RoleAuthUserInput input);
 
     /// <summary>
     ///     批量取消授权
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
-    Task DeleteAuthUserAsync(RoleAuthUserCreateOrDeleteInput input);
+    Task DeleteAuthUserAsync(RoleAuthUserInput input);
 }

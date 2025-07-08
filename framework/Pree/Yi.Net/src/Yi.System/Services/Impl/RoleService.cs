@@ -28,7 +28,7 @@ public class RoleService : BaseService, IRoleService
         return entity.Adapt<RoleDto>();
     }
 
-    public async Task<PagedResult<RoleDto>> GetListAsync(RoleGetListQuery query)
+    public async Task<PagedResult<RoleDto>> GetListAsync(RoleQuery query)
     {
         RefAsync<int> total = 0;
 
@@ -45,7 +45,7 @@ public class RoleService : BaseService, IRoleService
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
-    public async Task<RoleDto> CreateAsync(RoleCreateInput input)
+    public async Task<RoleDto> CreateAsync(RoleInput input)
     {
         var entity = input.Adapt<RoleEntity>();
         await _repository.InsertAsync(entity);
@@ -61,7 +61,7 @@ public class RoleService : BaseService, IRoleService
     /// <param name="id"></param>
     /// <param name="input"></param>
     /// <returns></returns>
-    public async Task<RoleDto> UpdateAsync(Guid id, RoleUpdateInput input)
+    public async Task<RoleDto> UpdateAsync(Guid id, RoleInput input)
     {
         var entity = await _repository.GetByIdAsync(id);
         input.Adapt(entity);
@@ -117,7 +117,7 @@ public class RoleService : BaseService, IRoleService
     /// <param name="query"></param>
     /// <param name="isAllocated">是否在该角色下</param>
     /// <returns></returns>
-    public async Task<PagedResult<UserGetListOutputDto>> GetAuthUserByRoleIdAsync(Guid roleId, bool isAllocated, RoleAuthUserGetListQuery query)
+    public async Task<PagedResult<UserGetListOutputDto>> GetAuthUserByRoleIdAsync(Guid roleId, bool isAllocated, RoleAuthUserQuery query)
     {
         PagedResult<UserGetListOutputDto> output;
         //角色下已授权用户
@@ -134,7 +134,7 @@ public class RoleService : BaseService, IRoleService
         return output;
     }
 
-    private async Task<PagedResult<UserGetListOutputDto>> GetAllocatedAuthUserByRoleIdAsync(Guid roleId, RoleAuthUserGetListQuery query)
+    private async Task<PagedResult<UserGetListOutputDto>> GetAllocatedAuthUserByRoleIdAsync(Guid roleId, RoleAuthUserQuery query)
     {
         RefAsync<int> total = 0;
 
@@ -149,7 +149,7 @@ public class RoleService : BaseService, IRoleService
         return new PagedResult<UserGetListOutputDto>(total, output);
     }
 
-    private async Task<PagedResult<UserGetListOutputDto>> GetNotAllocatedAuthUserByRoleIdAsync(Guid roleId, RoleAuthUserGetListQuery query)
+    private async Task<PagedResult<UserGetListOutputDto>> GetNotAllocatedAuthUserByRoleIdAsync(Guid roleId, RoleAuthUserQuery query)
     {
         RefAsync<int> total = 0;
 
@@ -169,7 +169,7 @@ public class RoleService : BaseService, IRoleService
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
-    public async Task CreateAuthUserAsync(RoleAuthUserCreateOrDeleteInput input)
+    public async Task CreateAuthUserAsync(RoleAuthUserInput input)
     {
         var userRoleEntities = input.UserIds.Select(u => new UserRoleEntity { RoleId = input.RoleId, UserId = u })
             .ToList();
@@ -181,7 +181,7 @@ public class RoleService : BaseService, IRoleService
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
-    public async Task DeleteAuthUserAsync(RoleAuthUserCreateOrDeleteInput input)
+    public async Task DeleteAuthUserAsync(RoleAuthUserInput input)
     {
         await _userRoleRepository.Context.Deleteable<UserRoleEntity>().Where(x => x.RoleId == input.RoleId)
             .Where(x => input.UserIds.Contains(x.UserId))

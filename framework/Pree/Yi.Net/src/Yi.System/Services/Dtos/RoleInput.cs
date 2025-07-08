@@ -1,6 +1,9 @@
 namespace Yi.System.Services.Dtos;
 
-public class RoleUpdateInput
+/// <summary>
+///     Role输入创建对象
+/// </summary>
+public class RoleInput
 {
     public string? RoleName { get; set; }
     
@@ -10,11 +13,9 @@ public class RoleUpdateInput
     
     public DataScopeEnum DataScope { get; set; } = DataScopeEnum.ALL;
     
-    public bool State { get; set; }
+    public bool State { get; set; } = true;
 
     public int OrderNum { get; set; }
 
-    public List<Guid>? DeptIds { get; set; }
-
-    public List<Guid>? MenuIds { get; set; }
+    public List<Guid> MenuIds { get; set; }
 }

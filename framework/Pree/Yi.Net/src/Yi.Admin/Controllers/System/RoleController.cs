@@ -24,19 +24,19 @@ public class RoleController : BaseController
     }
 
     [HttpGet]
-    public async Task<PagedResult<RoleDto>> GetListAsync([FromQuery] RoleGetListQuery query)
+    public async Task<PagedResult<RoleDto>> GetListAsync([FromQuery] RoleQuery query)
     {
         return await _roleService.GetListAsync(query);
     }
 
     [HttpPost]
-    public async Task<RoleDto> CreateAsync([FromBody] RoleCreateInput input)
+    public async Task<RoleDto> CreateAsync([FromBody] RoleInput input)
     {
         return await _roleService.CreateAsync(input);
     }
 
     [HttpPut("{id}")]
-    public async Task<RoleDto> UpdateAsync(Guid id, [FromBody] RoleUpdateInput input)
+    public async Task<RoleDto> UpdateAsync(Guid id, [FromBody] RoleInput input)
     {
         return await _roleService.UpdateAsync(id, input);
     }
@@ -73,7 +73,7 @@ public class RoleController : BaseController
     /// <param name="isAllocated">是否在该角色下</param>
     /// <returns></returns>
     [HttpGet("auth-user/{roleId}/{isAllocated}")]
-    public async Task<PagedResult<UserGetListOutputDto>> GetAuthUserByRoleIdAsync([FromRoute] Guid roleId, [FromRoute] bool isAllocated, [FromQuery] RoleAuthUserGetListQuery query)
+    public async Task<PagedResult<UserGetListOutputDto>> GetAuthUserByRoleIdAsync([FromRoute] Guid roleId, [FromRoute] bool isAllocated, [FromQuery] RoleAuthUserQuery query)
     {
         return await _roleService.GetAuthUserByRoleIdAsync(roleId, isAllocated, query);
     }
@@ -84,7 +84,7 @@ public class RoleController : BaseController
     /// <param name="input"></param>
     /// <returns></returns>
     [HttpPost("auth-user")]
-    public async Task CreateAuthUserAsync([FromBody] RoleAuthUserCreateOrDeleteInput input)
+    public async Task CreateAuthUserAsync([FromBody] RoleAuthUserInput input)
     {
         await _roleService.CreateAuthUserAsync(input);
     }
@@ -95,7 +95,7 @@ public class RoleController : BaseController
     /// <param name="input"></param>
     /// <returns></returns>
     [HttpDelete("auth-user")]
-    public async Task DeleteAuthUserAsync([FromBody] RoleAuthUserCreateOrDeleteInput input)
+    public async Task DeleteAuthUserAsync([FromBody] RoleAuthUserInput input)
     {
         await _roleService.DeleteAuthUserAsync(input);
     }

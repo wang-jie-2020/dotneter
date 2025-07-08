@@ -2,7 +2,7 @@
 
 namespace Yi.System.Services.Dtos;
 
-public class RoleAuthUserCreateOrDeleteInput
+public class RoleAuthUserInput
 {
     [Required] public Guid RoleId { get; set; }
 
