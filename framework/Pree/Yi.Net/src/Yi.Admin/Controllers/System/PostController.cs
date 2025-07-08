@@ -24,19 +24,19 @@ public class PostController : BaseController
     }
 
     [HttpGet]
-    public async Task<PagedResult<PostDto>> GetListAsync([FromQuery] PostGetListQuery query)
+    public async Task<PagedResult<PostDto>> GetListAsync([FromQuery] PostQuery query)
     {
         return await _postService.GetListAsync(query);
     }
 
     [HttpPost]
-    public async Task<PostDto> CreateAsync([FromBody] PostCreateInput input)
+    public async Task<PostDto> CreateAsync([FromBody] PostInput input)
     {
         return await _postService.CreateAsync(input);
     }
 
     [HttpPut("{id}")]
-    public async Task<PostDto> UpdateAsync(Guid id, [FromBody] PostUpdateInput input)
+    public async Task<PostDto> UpdateAsync(Guid id, [FromBody] PostInput input)
     {
         return await _postService.UpdateAsync(id, input);
     }

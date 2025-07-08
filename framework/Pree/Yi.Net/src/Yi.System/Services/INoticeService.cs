@@ -6,11 +6,11 @@ public interface INoticeService
 {
     Task<NoticeDto> GetAsync(Guid id);
 
-    Task<PagedResult<NoticeDto>> GetListAsync(NoticeGetListQuery query);
+    Task<PagedResult<NoticeDto>> GetListAsync(NoticeQuery query);
 
-    Task<NoticeDto> CreateAsync(NoticeCreateInput input);
+    Task<NoticeDto> CreateAsync(NoticeInput input);
 
-    Task<NoticeDto> UpdateAsync(Guid id, NoticeUpdateInput input);
+    Task<NoticeDto> UpdateAsync(Guid id, NoticeInput input);
 
     Task DeleteAsync(IEnumerable<Guid> id);
 }

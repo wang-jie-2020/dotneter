@@ -1,6 +1,6 @@
 namespace Yi.System.Services.Dtos;
 
-public class PostGetListQuery : PagedQuery
+public class PostQuery : PagedQuery
 {
     public bool? State { get; set; }
 

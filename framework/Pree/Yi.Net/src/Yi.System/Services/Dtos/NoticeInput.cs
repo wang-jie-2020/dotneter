@@ -2,7 +2,7 @@ using Yi.System.Entities;
 
 namespace Yi.System.Services.Dtos;
 
-public class NoticeCreateInput
+public class NoticeInput
 {
     public string Title { get; set; }
     

@@ -19,7 +19,7 @@ public class NoticeService : BaseService, INoticeService
         return entity.Adapt<NoticeDto>();
     }
 
-    public async Task<PagedResult<NoticeDto>> GetListAsync(NoticeGetListQuery query)
+    public async Task<PagedResult<NoticeDto>> GetListAsync(NoticeQuery query)
     {
         RefAsync<int> total = 0;
 
@@ -31,7 +31,7 @@ public class NoticeService : BaseService, INoticeService
         return new PagedResult<NoticeDto>(total, entities.Adapt<List<NoticeDto>>());
     }
 
-    public async Task<NoticeDto> CreateAsync(NoticeCreateInput input)
+    public async Task<NoticeDto> CreateAsync(NoticeInput input)
     {
         var entity = input.Adapt<NoticeEntity>();
         await _repository.InsertAsync(entity);
@@ -39,7 +39,7 @@ public class NoticeService : BaseService, INoticeService
         return entity.Adapt<NoticeDto>();
     }
 
-    public async Task<NoticeDto> UpdateAsync(Guid id, NoticeUpdateInput input)
+    public async Task<NoticeDto> UpdateAsync(Guid id, NoticeInput input)
     {
         var entity = await _repository.GetByIdAsync(id);
         input.Adapt(entity);

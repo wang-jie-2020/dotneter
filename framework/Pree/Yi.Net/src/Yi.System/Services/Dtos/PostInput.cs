@@ -1,11 +1,10 @@
 namespace Yi.System.Services.Dtos;
 
-public class PostUpdateInput
+/// <summary>
+///     Post输入创建对象
+/// </summary>
+public class PostInput
 {
-    public DateTime CreationTime { get; set; } = DateTime.Now;
-    
-    public Guid? CreatorId { get; set; }
-    
     public bool? State { get; set; }
     
     public int OrderNum { get; set; }

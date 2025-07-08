@@ -24,19 +24,19 @@ public class NoticeController : BaseController
     }
 
     [HttpGet]
-    public async Task<PagedResult<NoticeDto>> GetListAsync([FromQuery] NoticeGetListQuery query)
+    public async Task<PagedResult<NoticeDto>> GetListAsync([FromQuery] NoticeQuery query)
     {
         return await _noticeService.GetListAsync(query);
     }
 
     [HttpPost]
-    public async Task<NoticeDto> CreateAsync([FromBody] NoticeCreateInput input)
+    public async Task<NoticeDto> CreateAsync([FromBody] NoticeInput input)
     {
         return await _noticeService.CreateAsync(input);
     }
 
     [HttpPut("{id}")]
-    public async Task<NoticeDto> UpdateAsync(Guid id, [FromBody] NoticeUpdateInput input)
+    public async Task<NoticeDto> UpdateAsync(Guid id, [FromBody] NoticeInput input)
     {
         return await _noticeService.UpdateAsync(id, input);
     }

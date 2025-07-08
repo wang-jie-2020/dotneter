@@ -19,7 +19,7 @@ public class PostService : BaseService, IPostService
         return entity.Adapt<PostDto>();
     }
 
-    public async Task<PagedResult<PostDto>> GetListAsync(PostGetListQuery query)
+    public async Task<PagedResult<PostDto>> GetListAsync(PostQuery query)
     {
         RefAsync<int> total = 0;
 
@@ -31,7 +31,7 @@ public class PostService : BaseService, IPostService
         return new PagedResult<PostDto>(total, entities.Adapt<List<PostDto>>());
     }
 
-    public async Task<PostDto> CreateAsync(PostCreateInput input)
+    public async Task<PostDto> CreateAsync(PostInput input)
     {
         var entity = input.Adapt<PostEntity>();
         await _repository.InsertAsync(entity);
@@ -39,7 +39,7 @@ public class PostService : BaseService, IPostService
         return entity.Adapt<PostDto>();
     }
 
-    public async Task<PostDto> UpdateAsync(Guid id, PostUpdateInput input)
+    public async Task<PostDto> UpdateAsync(Guid id, PostInput input)
     {
         var entity = await _repository.GetByIdAsync(id);
         input.Adapt(entity);

@@ -6,11 +6,11 @@ public interface IPostService
 {
     Task<PostDto> GetAsync(Guid id);
 
-    Task<PagedResult<PostDto>> GetListAsync(PostGetListQuery query);
+    Task<PagedResult<PostDto>> GetListAsync(PostQuery query);
 
-    Task<PostDto> CreateAsync(PostCreateInput input);
+    Task<PostDto> CreateAsync(PostInput input);
 
-    Task<PostDto> UpdateAsync(Guid id, PostUpdateInput input);
+    Task<PostDto> UpdateAsync(Guid id, PostInput input);
 
     Task DeleteAsync(IEnumerable<Guid> id);
 }
