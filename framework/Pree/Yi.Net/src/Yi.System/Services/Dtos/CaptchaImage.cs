@@ -1,6 +1,6 @@
 ﻿namespace Yi.System.Services.Dtos;
 
-public class CaptchaImageDto
+public class CaptchaImage
 {
     public Guid Uuid { get; set; } = Guid.Empty;
     

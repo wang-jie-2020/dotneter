@@ -110,11 +110,11 @@ public class AccountController : BaseController
     /// <returns></returns>
     [AllowAnonymous]
     [HttpGet("captcha-image")]
-    public async Task<CaptchaImageDto> GetCaptchaImageAsync()
+    public async Task<CaptchaImage> GetCaptchaImageAsync()
     {
         var uuid = SequentialGuidGenerator.Create();
         var captcha = _captcha.Generate(uuid.ToString());
-        return new CaptchaImageDto { Img = captcha.Bytes, Uuid = uuid };
+        return new CaptchaImage { Img = captcha.Bytes, Uuid = uuid };
     }
 
     /// <summary>
@@ -233,7 +233,7 @@ public class AccountController : BaseController
     /// <returns></returns>
     [AllowAnonymous]
     [HttpPost("captcha-phone")]
-    public async Task<object> PostCaptchaPhone([FromBody] PhoneCaptchaImageDto input)
+    public async Task<object> PostCaptchaPhone([FromBody] CaptchaPhone input)
     {
         await ValidationPhone(input.Phone);
         var value = await _cache.GetAsync<CaptchaPhoneCacheItem>(CaptchaPhoneCacheItem.CalculateCacheKey(input.Phone));
