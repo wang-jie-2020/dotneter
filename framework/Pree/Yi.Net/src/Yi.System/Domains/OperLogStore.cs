@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
 using Yi.Framework.Loggings;
-using Yi.System.Monitor.Entities;
+using Yi.System.Entities;
 
-namespace Yi.System.Monitor;
+namespace Yi.System.Domains;
 
 public class OperLogStore : IOperLogStore
 {

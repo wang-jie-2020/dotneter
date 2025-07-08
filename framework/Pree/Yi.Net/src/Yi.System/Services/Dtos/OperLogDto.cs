@@ -1,6 +1,6 @@
 using Yi.Framework.Loggings;
 
-namespace Yi.System.Monitor.Dtos;
+namespace Yi.System.Services.Dtos;
 
 public class OperLogDto
 {

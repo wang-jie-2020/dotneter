@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http;
 using UAParser;
 using Yi.Framework.Utils;
 
-namespace Yi.System.Monitor.Entities;
+namespace Yi.System.Entities;
 
 [SugarTable("Sys_LoginLog")]
 [SugarIndex($"index_{nameof(LoginUser)}", nameof(LoginUser), OrderByType.Asc)]

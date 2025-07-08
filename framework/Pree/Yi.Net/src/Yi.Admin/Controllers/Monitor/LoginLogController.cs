@@ -2,8 +2,8 @@
 using Yi.Framework;
 using Yi.Framework.Abstractions;
 using Yi.Framework.SqlSugarCore.Repositories;
-using Yi.System.Monitor.Dtos;
-using Yi.System.Monitor.Entities;
+using Yi.System.Entities;
+using Yi.System.Services.Dtos;
 
 namespace Yi.Web.Controllers.Monitor;
 

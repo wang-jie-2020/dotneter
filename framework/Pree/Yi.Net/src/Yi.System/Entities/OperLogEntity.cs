@@ -1,7 +1,7 @@
 ﻿using Yi.AspNetCore.MultiTenancy;
 using Yi.Framework.Loggings;
 
-namespace Yi.System.Monitor.Entities;
+namespace Yi.System.Entities;
 
 /// <summary>
 ///     操作日志表
