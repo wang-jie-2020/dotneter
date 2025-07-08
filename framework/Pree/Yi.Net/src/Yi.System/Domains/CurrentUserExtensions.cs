@@ -1,8 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Yi.AspNetCore.Security;
-using Yi.System.Domains;
 
-namespace Yi.System.Services.Impl;
+namespace Yi.System.Domains;
 
 public static class CurrentUserExtensions
 {
@@ -15,7 +14,12 @@ public static class CurrentUserExtensions
     // {
     //     return currentUser.FindClaims(TokenClaimConst.Permission).Select(x => x.Value).ToList();
     // }
-
+    
+    /// <summary>
+    ///     是否管理员
+    /// </summary>
+    /// <param name="currentUser"></param>
+    /// <returns></returns>
     public static bool IsAdmin(this ICurrentUser currentUser)
     {
         return currentUser.Roles.Any(role => role.Equals(AccountConst.Admin));

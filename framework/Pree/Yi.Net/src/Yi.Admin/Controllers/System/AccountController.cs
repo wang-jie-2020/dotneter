@@ -236,7 +236,7 @@ public class AccountController : BaseController
     public async Task<object> PostCaptchaPhone([FromBody] PhoneCaptchaImageDto input)
     {
         await ValidationPhone(input.Phone);
-        var value = await _cache.GetAsync<CaptchaPhoneCacheItem>(new CaptchaPhoneCacheKey(input.Phone).ToString());
+        var value = await _cache.GetAsync<CaptchaPhoneCacheItem>(CaptchaPhoneCacheItem.CalculateCacheKey(input.Phone));
 
         //防止暴刷
         if (value is not null)
@@ -253,7 +253,7 @@ public class AccountController : BaseController
         // await _aliyunManger.SendSmsAsync(input.Phone, code);
 
         await _cache.SetAsync(
-            new CaptchaPhoneCacheKey(input.Phone).ToString(),
+            CaptchaPhoneCacheItem.CalculateCacheKey(input.Phone),
             new CaptchaPhoneCacheItem(code),
             new DistributedCacheEntryOptions { SlidingExpiration = TimeSpan.FromMinutes(10) });
 
@@ -268,11 +268,11 @@ public class AccountController : BaseController
     /// </summary>
     private async Task ValidationPhoneCaptchaAsync(RegisterDto input)
     {
-        var item = await _cache.GetAsync<CaptchaPhoneCacheItem>(new CaptchaPhoneCacheKey(input.Phone.ToString()).ToString());
+        var item = await _cache.GetAsync<CaptchaPhoneCacheItem>(CaptchaPhoneCacheItem.CalculateCacheKey(input.Phone.ToString()));
         if (item is not null && item.Code.Equals($"{input.Code}"))
         {
             //成功，需要清空
-            await _cache.RemoveAsync(new CaptchaPhoneCacheKey(input.Phone.ToString()).ToString());
+            await _cache.RemoveAsync(CaptchaPhoneCacheItem.CalculateCacheKey(input.Phone.ToString()));
             return;
         }
 
@@ -341,5 +341,20 @@ public class AccountController : BaseController
         await _userRepository.UpdateAsync(entity);
 
         return true;
+    }
+}
+
+public class CaptchaPhoneCacheItem
+{
+    public CaptchaPhoneCacheItem(string code)
+    {
+        Code = code;
+    }
+
+    public string Code { get; set; }
+    
+    public static string CalculateCacheKey(string phone)
+    {
+        return $"Phone:{phone}";
     }
 }
