@@ -8,9 +8,9 @@ public interface IMenuService
 
     Task<PagedResult<MenuDto>> GetListAsync(MenuQuery query);
 
-    Task<MenuDto> CreateAsync(MenuCreateInput input);
+    Task<MenuDto> CreateAsync(MenuInput input);
 
-    Task<MenuDto> UpdateAsync(Guid id, MenuUpdateInput input);
+    Task<MenuDto> UpdateAsync(Guid id, MenuInput input);
 
     Task DeleteAsync(IEnumerable<Guid> id);
     

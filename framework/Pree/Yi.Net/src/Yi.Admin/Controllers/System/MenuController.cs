@@ -30,13 +30,13 @@ public class MenuController : BaseController
     }
 
     [HttpPost]
-    public async Task<MenuDto> CreateAsync([FromBody] MenuCreateInput input)
+    public async Task<MenuDto> CreateAsync([FromBody] MenuInput input)
     {
         return await _menuService.CreateAsync(input);
     }
 
     [HttpPut("{id}")]
-    public async Task<MenuDto> UpdateAsync(Guid id, [FromBody] MenuUpdateInput input)
+    public async Task<MenuDto> UpdateAsync(Guid id, [FromBody] MenuInput input)
     {
         return await _menuService.UpdateAsync(id, input);
     }

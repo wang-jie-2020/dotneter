@@ -2,12 +2,11 @@ using Yi.System.Entities;
 
 namespace Yi.System.Services.Dtos;
 
-public class MenuUpdateInput
+/// <summary>
+///     Menu输入创建对象
+/// </summary>
+public class MenuInput
 {
-    public Guid Id { get; set; }
-    
-    public Guid? CreatorId { get; set; }
-    
     public bool State { get; set; }
     
     public string MenuName { get; set; } = string.Empty;
@@ -35,6 +34,4 @@ public class MenuUpdateInput
     public string? Query { get; set; }
     
     public int OrderNum { get; set; }
-
-    //public List<MenuEntity>? Children { get; set; }
 }

@@ -32,7 +32,7 @@ public class MenuService : BaseService, IMenuService
         return new PagedResult<MenuDto>(total, entities.Adapt<List<MenuDto>>());
     }
 
-    public async Task<MenuDto> CreateAsync(MenuCreateInput input)
+    public async Task<MenuDto> CreateAsync(MenuInput input)
     {
         var entity = input.Adapt<MenuEntity>();
         await _repository.InsertAsync(entity);
@@ -40,7 +40,7 @@ public class MenuService : BaseService, IMenuService
         return entity.Adapt<MenuDto>();
     }
 
-    public async Task<MenuDto> UpdateAsync(Guid id, MenuUpdateInput input)
+    public async Task<MenuDto> UpdateAsync(Guid id, MenuInput input)
     {
         var entity = await _repository.GetByIdAsync(id);
         input.Adapt(entity);
