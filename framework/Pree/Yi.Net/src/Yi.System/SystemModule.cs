@@ -22,10 +22,7 @@ public class SystemModule : AbpModule
         Configure<RefreshJwtOptions>(configuration.GetSection(nameof(RefreshJwtOptions)));
         Configure<RbacOptions>(configuration.GetSection(nameof(RbacOptions)));
         
-        //Tenant
         context.Services.Replace(new ServiceDescriptor(typeof(ITenantStore), typeof(TenantStore), ServiceLifetime.Transient));
-        
-        //System
         context.Services.Replace(new ServiceDescriptor(typeof(IAuditingStore), typeof(AuditingStore), ServiceLifetime.Singleton));
         context.Services.Replace(new ServiceDescriptor(typeof(IOperLogStore), typeof(OperLogStore), ServiceLifetime.Singleton));
         context.Services.Replace(new ServiceDescriptor(typeof(IPermissionHandler), typeof(UserPermissionHandler), ServiceLifetime.Transient));
