@@ -23,4 +23,6 @@ public class DictionaryDto
     public bool IsDefault { get; set; }
 
     public bool State { get; set; }
+    
+    public int OrderNum { get; set; } = 0;
 }

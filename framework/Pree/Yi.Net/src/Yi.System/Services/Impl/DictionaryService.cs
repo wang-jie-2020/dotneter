@@ -20,7 +20,7 @@ public class DictionaryService : BaseService, IDictionaryService
         return entity.Adapt<DictionaryDto>();
     }
 
-    public async Task<PagedResult<DictionaryDto>> GetListAsync(DictionaryGetListQuery query)
+    public async Task<PagedResult<DictionaryDto>> GetListAsync(DictionaryQuery query)
     {
         RefAsync<int> total = 0;
         var entities = await _repository.AsQueryable()
@@ -35,7 +35,7 @@ public class DictionaryService : BaseService, IDictionaryService
         };
     }
 
-    public async Task<DictionaryDto> CreateAsync(DictionaryCreateInput input)
+    public async Task<DictionaryDto> CreateAsync(DictionaryInput input)
     {
         var entity = input.Adapt<DictionaryEntity>();
         await _repository.InsertAsync(entity);
@@ -43,7 +43,7 @@ public class DictionaryService : BaseService, IDictionaryService
         return entity.Adapt<DictionaryDto>();
     }
 
-    public async Task<DictionaryDto> UpdateAsync(Guid id, DictionaryUpdateInput input)
+    public async Task<DictionaryDto> UpdateAsync(Guid id, DictionaryInput input)
     {
         var entity = await _repository.GetByIdAsync(id);
         input.Adapt(entity);

@@ -19,7 +19,7 @@ public class DictionaryTypeService : BaseService, IDictionaryTypeService
         return entity.Adapt<DictionaryTypeDto>();
     }
 
-    public async Task<PagedResult<DictionaryTypeDto>> GetListAsync(DictionaryTypeGetListQuery query)
+    public async Task<PagedResult<DictionaryTypeDto>> GetListAsync(DictionaryTypeQuery query)
     {
         RefAsync<int> total = 0;
         var entities = await _repository.AsQueryable()
@@ -36,7 +36,7 @@ public class DictionaryTypeService : BaseService, IDictionaryTypeService
         };
     }
 
-    public async Task<DictionaryTypeDto> CreateAsync(DictionaryTypeCreateInput input)
+    public async Task<DictionaryTypeDto> CreateAsync(DictionaryTypeInput input)
     {
         var entity = input.Adapt<DictionaryTypeEntity>();
         await _repository.InsertAsync(entity);
@@ -44,7 +44,7 @@ public class DictionaryTypeService : BaseService, IDictionaryTypeService
         return entity.Adapt<DictionaryTypeDto>();
     }
 
-    public async Task<DictionaryTypeDto> UpdateAsync(Guid id, DictionaryTypeUpdateInput input)
+    public async Task<DictionaryTypeDto> UpdateAsync(Guid id, DictionaryTypeInput input)
     {
         var entity = await _repository.GetByIdAsync(id);
         input.Adapt(entity);

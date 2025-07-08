@@ -25,19 +25,19 @@ public class DictionaryController : BaseController
     }
 
     [HttpGet]
-    public async Task<PagedResult<DictionaryDto>> GetListAsync([FromQuery] DictionaryGetListQuery query)
+    public async Task<PagedResult<DictionaryDto>> GetListAsync([FromQuery] DictionaryQuery query)
     {
         return await _dictionaryService.GetListAsync(query);
     }
 
     [HttpPost]
-    public async Task<DictionaryDto> CreateAsync([FromBody] DictionaryCreateInput input)
+    public async Task<DictionaryDto> CreateAsync([FromBody] DictionaryInput input)
     {
         return await _dictionaryService.CreateAsync(input);
     }
 
     [HttpPut("{id}")]
-    public async Task<DictionaryDto> UpdateAsync(Guid id, [FromBody] DictionaryUpdateInput input)
+    public async Task<DictionaryDto> UpdateAsync(Guid id, [FromBody] DictionaryInput input)
     {
         return await _dictionaryService.UpdateAsync(id, input);
     }

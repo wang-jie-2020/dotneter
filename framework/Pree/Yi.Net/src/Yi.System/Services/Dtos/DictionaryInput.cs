@@ -1,6 +1,9 @@
 namespace Yi.System.Services.Dtos;
 
-public class DictionaryUpdateInput
+/// <summary>
+///     Dictionary输入创建对象
+/// </summary>
+public class DictionaryInput
 {
     public string? Remark { get; set; }
     
@@ -17,4 +20,6 @@ public class DictionaryUpdateInput
     public bool IsDefault { get; set; }
 
     public bool State { get; set; }
+    
+    public int OrderNum { get; set; } = 0;
 }

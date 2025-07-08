@@ -6,11 +6,11 @@ public interface IDictionaryService
 {
     Task<DictionaryDto> GetAsync(Guid id);
 
-    Task<PagedResult<DictionaryDto>> GetListAsync(DictionaryGetListQuery query);
+    Task<PagedResult<DictionaryDto>> GetListAsync(DictionaryQuery query);
 
-    Task<DictionaryDto> CreateAsync(DictionaryCreateInput input);
+    Task<DictionaryDto> CreateAsync(DictionaryInput input);
 
-    Task<DictionaryDto> UpdateAsync(Guid id, DictionaryUpdateInput input);
+    Task<DictionaryDto> UpdateAsync(Guid id, DictionaryInput input);
 
     Task DeleteAsync(IEnumerable<Guid> id);
 
