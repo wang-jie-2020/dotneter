@@ -18,25 +18,25 @@ public class DeptController : BaseController
     }
 
     [HttpGet("{id}")]
-    public async Task<DeptGetOutputDto> GetAsync(Guid id)
+    public async Task<DeptDto> GetAsync(Guid id)
     {
         return await _deptService.GetAsync(id);
     }
 
     [HttpGet]
-    public async Task<PagedResult<DeptGetListOutputDto>> GetListAsync([FromQuery] DeptGetListQuery query)
+    public async Task<PagedResult<DeptDto>> GetListAsync([FromQuery] DeptQuery query)
     {
         return await _deptService.GetListAsync(query);
     }
 
     [HttpPost]
-    public async Task<DeptGetOutputDto> CreateAsync([FromBody] DeptCreateInput input)
+    public async Task<DeptDto> CreateAsync([FromBody] DeptInput input)
     {
         return await _deptService.CreateAsync(input);
     }
 
     [HttpPut("{id}")]
-    public async Task<DeptGetOutputDto> UpdateAsync(Guid id, [FromBody] DeptUpdateInput input)
+    public async Task<DeptDto> UpdateAsync(Guid id, [FromBody] DeptInput input)
     {
         return await _deptService.UpdateAsync(id, input);
     }
@@ -52,7 +52,7 @@ public class DeptController : BaseController
     /// </summary>
     /// <returns></returns>
     [HttpGet("role-id/{roleId}")]
-    public async Task<List<DeptGetListOutputDto>> GetRoleIdAsync(Guid roleId)
+    public async Task<List<DeptDto>> GetRoleIdAsync(Guid roleId)
     {
         return await _deptService.GetRoleIdAsync(roleId);
     }

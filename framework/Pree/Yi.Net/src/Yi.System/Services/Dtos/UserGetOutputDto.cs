@@ -36,7 +36,7 @@ public class UserGetOutputDto
 
     public Guid? DeptId { get; set; }
 
-    public DeptGetOutputDto? Dept { get; set; }
+    public DeptDto? Dept { get; set; }
 
     public List<PostDto>? Posts { get; set; }
 

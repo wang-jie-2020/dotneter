@@ -13,13 +13,13 @@ public class DeptService : BaseService, IDeptService
         _repository = repository;
     }
 
-    public async Task<DeptGetOutputDto> GetAsync(Guid id)
+    public async Task<DeptDto> GetAsync(Guid id)
     {
         var entity = await _repository.GetByIdAsync(id);
-        return entity.Adapt<DeptGetOutputDto>();
+        return entity.Adapt<DeptDto>();
     }
 
-    public async Task<PagedResult<DeptGetListOutputDto>> GetListAsync(DeptGetListQuery query)
+    public async Task<PagedResult<DeptDto>> GetListAsync(DeptQuery query)
     {
         RefAsync<int> total = 0;
         var entities = await _repository.AsQueryable()
@@ -28,28 +28,28 @@ public class DeptService : BaseService, IDeptService
             .OrderBy(u => u.OrderNum)
             .ToPageListAsync(query.PageNum, query.PageSize, total);
 
-        return new PagedResult<DeptGetListOutputDto>
+        return new PagedResult<DeptDto>
         {
             TotalCount = total,
-            Items = entities.Adapt<List<DeptGetListOutputDto>>()
+            Items = entities.Adapt<List<DeptDto>>()
         };
     }
 
-    public async Task<DeptGetOutputDto> CreateAsync(DeptCreateInput input)
+    public async Task<DeptDto> CreateAsync(DeptInput input)
     {
         var entity = input.Adapt<DeptEntity>();
         await _repository.InsertAsync(entity);
 
-        return entity.Adapt<DeptGetOutputDto>();
+        return entity.Adapt<DeptDto>();
     }
 
-    public async Task<DeptGetOutputDto> UpdateAsync(Guid id, DeptUpdateInput input)
+    public async Task<DeptDto> UpdateAsync(Guid id, DeptInput input)
     {
         var entity = await _repository.GetByIdAsync(id);
         input.Adapt(entity);
         await _repository.UpdateAsync(entity);
 
-        return entity.Adapt<DeptGetOutputDto>();
+        return entity.Adapt<DeptDto>();
     }
 
     public async Task DeleteAsync(IEnumerable<Guid> id)
@@ -63,11 +63,11 @@ public class DeptService : BaseService, IDeptService
         return entities.Select(x => x.Id).ToList();
     }
     
-    public async Task<List<DeptGetListOutputDto>> GetRoleIdAsync(Guid roleId)
+    public async Task<List<DeptDto>> GetRoleIdAsync(Guid roleId)
     {
         var entities = await _repository.AsQueryable().
             Where(d => SqlFunc.Subqueryable<RoleDeptEntity>().Where(rd => rd.RoleId == roleId && d.Id == rd.DeptId).Any())
             .ToListAsync();
-        return entities.Adapt<List<DeptGetListOutputDto>>();
+        return entities.Adapt<List<DeptDto>>();
     }
 }

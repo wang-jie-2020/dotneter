@@ -1,9 +1,7 @@
 namespace Yi.System.Services.Dtos;
 
-public class DeptGetOutputDto 
+public class DeptInput
 {
-    public Guid Id { get; set; }
-    
     public bool State { get; set; }
     
     public string DeptName { get; set; } = string.Empty;
@@ -12,11 +10,9 @@ public class DeptGetOutputDto
     
     public string? Leader { get; set; }
     
-    public string? Remark { get; set; }
-
-    public Guid? deptId { get; set; }
-
-    public int OrderNum { get; set; }
-
     public Guid ParentId { get; set; }
+    
+    public string? Remark { get; set; }
+    
+    public int OrderNum { get; set; }
 }
