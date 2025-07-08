@@ -2,7 +2,7 @@
 
 namespace Yi.System.Services.Dtos;
 
-public class ProfileUpdateInput
+public class ProfileInput
 {
     public string? Name { get; set; }
 

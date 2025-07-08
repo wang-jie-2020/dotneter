@@ -83,7 +83,7 @@ public class UserController : BaseController
     /// <returns></returns>
     [HttpPut("profile")]
     [OperLog("更新个人信息", OperLogEnum.Update)]
-    public async Task<UserGetOutputDto> UpdateProfileAsync(ProfileUpdateInput input)
+    public async Task<UserGetOutputDto> UpdateProfileAsync(ProfileInput input)
     {
         return await _userService.UpdateProfileAsync(input);
     }

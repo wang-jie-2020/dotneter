@@ -140,7 +140,7 @@ public class AccountController : BaseController
     [AllowAnonymous]
     [UnitOfWork]
     [HttpPost("register")]
-    public async Task PostRegisterAsync([FromBody] RegisterDto input)
+    public async Task PostRegisterAsync([FromBody] RegisterInput input)
     {
         if (_rbacOptions.EnableRegister == false)
         {
@@ -188,7 +188,7 @@ public class AccountController : BaseController
     /// <param name="input"></param>
     /// <returns></returns>
     [HttpPut("reset-password/{userId}")]
-    public async Task<bool> RestPasswordAsync([FromRoute] Guid userId, [FromBody] RestPasswordDto input)
+    public async Task<bool> RestPasswordAsync([FromRoute] Guid userId, [FromBody] ResetPasswordInput input)
     {
         if (string.IsNullOrEmpty(input.Password))
         {
@@ -266,7 +266,7 @@ public class AccountController : BaseController
     /// <summary>
     ///     校验电话验证码，需要与电话号码绑定
     /// </summary>
-    private async Task ValidationPhoneCaptchaAsync(RegisterDto input)
+    private async Task ValidationPhoneCaptchaAsync(RegisterInput input)
     {
         var item = await _cache.GetAsync<CaptchaPhoneCacheItem>(CaptchaPhoneCacheItem.CalculateCacheKey(input.Phone.ToString()));
         if (item is not null && item.Code.Equals($"{input.Code}"))

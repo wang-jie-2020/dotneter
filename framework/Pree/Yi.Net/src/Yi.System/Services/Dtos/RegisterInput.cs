@@ -1,9 +1,7 @@
 ﻿namespace Yi.System.Services.Dtos;
 
-public class RegisterDto
+public class RegisterInput
 {
-    //电话号码，根据code的表示来获取
-
     /// <summary>
     ///     账号
     /// </summary>

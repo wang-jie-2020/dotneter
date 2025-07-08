@@ -161,7 +161,7 @@ public class UserService : BaseService, IUserService
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
-    public async Task<UserGetOutputDto> UpdateProfileAsync(ProfileUpdateInput input)
+    public async Task<UserGetOutputDto> UpdateProfileAsync(ProfileInput input)
     {
         var entity = await _repository.GetByIdAsync(CurrentUser.Id);
         input.Adapt(entity);

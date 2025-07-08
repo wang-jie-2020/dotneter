@@ -26,7 +26,7 @@ public interface IUserService
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
-    Task<UserGetOutputDto> UpdateProfileAsync(ProfileUpdateInput input);
+    Task<UserGetOutputDto> UpdateProfileAsync(ProfileInput input);
 
     /// <summary>
     ///     更新状态
