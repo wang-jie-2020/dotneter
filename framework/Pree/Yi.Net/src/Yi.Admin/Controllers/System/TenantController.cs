@@ -24,19 +24,19 @@ public class TenantController : BaseController
     }
 
     [HttpGet]
-    public async Task<PagedResult<TenantDto>> GetListAsync([FromQuery] TenantGetListQuery query)
+    public async Task<PagedResult<TenantDto>> GetListAsync([FromQuery] TenantQuery query)
     {
         return await _tenantService.GetListAsync(query);
     }
 
     [HttpPost]
-    public async Task<TenantDto> CreateAsync([FromBody] TenantCreateInput input)
+    public async Task<TenantDto> CreateAsync([FromBody] TenantInput input)
     {
         return await _tenantService.CreateAsync(input);
     }
 
     [HttpPut("{id}")]
-    public async Task<TenantDto> UpdateAsync(Guid id, [FromBody] TenantUpdateInput input)
+    public async Task<TenantDto> UpdateAsync(Guid id, [FromBody] TenantInput input)
     {
         return await _tenantService.UpdateAsync(id, input);
     }
@@ -48,7 +48,7 @@ public class TenantController : BaseController
     }
 
     [HttpGet("export")]
-    public async Task<IActionResult> GetExportExcelAsync([FromQuery] TenantGetListQuery query)
+    public async Task<IActionResult> GetExportExcelAsync([FromQuery] TenantQuery query)
     {
         return await _tenantService.GetExportExcelAsync(query);
     }

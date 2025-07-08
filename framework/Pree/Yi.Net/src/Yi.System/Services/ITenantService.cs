@@ -7,15 +7,15 @@ public interface ITenantService
 {
     Task<TenantDto> GetAsync(Guid id);
 
-    Task<PagedResult<TenantDto>> GetListAsync(TenantGetListQuery query);
+    Task<PagedResult<TenantDto>> GetListAsync(TenantQuery query);
 
-    Task<TenantDto> CreateAsync(TenantCreateInput input);
+    Task<TenantDto> CreateAsync(TenantInput input);
 
-    Task<TenantDto> UpdateAsync(Guid id, TenantUpdateInput input);
+    Task<TenantDto> UpdateAsync(Guid id, TenantInput input);
 
     Task DeleteAsync(IEnumerable<Guid> id);
 
-    Task<IActionResult> GetExportExcelAsync(TenantGetListQuery query);
+    Task<IActionResult> GetExportExcelAsync(TenantQuery query);
     
     Task<List<TenantSelectDto>> GetSelectAsync();
 

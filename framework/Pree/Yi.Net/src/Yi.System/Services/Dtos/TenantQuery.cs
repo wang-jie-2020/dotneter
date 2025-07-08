@@ -1,6 +1,6 @@
 ﻿namespace Yi.System.Services.Dtos;
 
-public class TenantGetListQuery : PagedQuery
+public class TenantQuery : PagedQuery
 {
     public string? Name { get; set; }
 }

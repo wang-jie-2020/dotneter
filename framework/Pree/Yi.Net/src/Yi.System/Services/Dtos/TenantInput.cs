@@ -1,6 +1,6 @@
 ﻿namespace Yi.System.Services.Dtos;
 
-public class TenantCreateInput
+public class TenantInput
 {
     public string Name { get; set; }
     

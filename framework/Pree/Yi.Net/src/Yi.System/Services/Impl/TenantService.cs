@@ -28,7 +28,7 @@ public class TenantService : BaseService, ITenantService
         return entity.Adapt<TenantDto>();
     }
 
-    public async Task<PagedResult<TenantDto>> GetListAsync(TenantGetListQuery query)
+    public async Task<PagedResult<TenantDto>> GetListAsync(TenantQuery query)
     {
         RefAsync<int> total = 0;
 
@@ -40,7 +40,7 @@ public class TenantService : BaseService, ITenantService
         return new PagedResult<TenantDto>(total, entities.Adapt<List<TenantDto>>());
     }
 
-    public async Task<TenantDto> CreateAsync(TenantCreateInput input)
+    public async Task<TenantDto> CreateAsync(TenantInput input)
     {
         if (await _repository.IsAnyAsync(x => x.Name == input.Name))
         {
@@ -53,7 +53,7 @@ public class TenantService : BaseService, ITenantService
         return entity.Adapt<TenantDto>();
     }
 
-    public async Task<TenantDto> UpdateAsync(Guid id, TenantUpdateInput input)
+    public async Task<TenantDto> UpdateAsync(Guid id, TenantInput input)
     {
         if (await _repository.IsAnyAsync(x => x.Name == input.Name && x.Id != id))
             throw Oops.Oh(SystemErrorCodes.TenantRepeated);
@@ -70,7 +70,7 @@ public class TenantService : BaseService, ITenantService
         await _repository.DeleteByIdsAsync(id.Select(x => (object)x).ToArray());
     }
 
-    public async Task<IActionResult> GetExportExcelAsync(TenantGetListQuery query)
+    public async Task<IActionResult> GetExportExcelAsync(TenantQuery query)
     {
         if (query is PagedQuery paged)
         {
