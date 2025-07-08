@@ -1,6 +1,6 @@
 ﻿namespace Yi.System.Services.Dtos;
 
-public class UpdatePasswordDto
+public class ProfilePasswordInput
 {
     public string NewPassword { get; set; } = string.Empty;
     

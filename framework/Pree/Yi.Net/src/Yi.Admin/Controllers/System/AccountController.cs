@@ -317,7 +317,7 @@ public class AccountController : BaseController
     /// <param name="input"></param>
     /// <returns></returns>
     [HttpPut("password")]
-    public async Task<bool> UpdatePasswordAsync([FromBody] UpdatePasswordDto input)
+    public async Task<bool> UpdatePasswordAsync([FromBody] ProfilePasswordInput input)
     {
         if (_currentUser.Id is null)
         {
@@ -334,7 +334,7 @@ public class AccountController : BaseController
     /// <param name="input"></param>
     /// <returns></returns>
     [HttpPut("icon")]
-    public async Task<bool> UpdateIconAsync([FromBody] UpdateIconDto input)
+    public async Task<bool> UpdateIconAsync([FromBody] ProfileIconInput input)
     {
         var entity = await _userRepository.GetByIdAsync(_currentUser.Id);
         entity.Icon = input.Icon;

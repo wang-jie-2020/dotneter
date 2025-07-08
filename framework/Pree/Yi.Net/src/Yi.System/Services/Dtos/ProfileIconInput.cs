@@ -1,6 +1,6 @@
 ﻿namespace Yi.System.Services.Dtos;
 
-public class UpdateIconDto
+public class ProfileIconInput
 {
     public string? Icon { get; set; }
 }
