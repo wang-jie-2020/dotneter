@@ -26,7 +26,7 @@ public interface IRoleService
     /// <param name="query"></param>
     /// <param name="isAllocated">是否在该角色下</param>
     /// <returns></returns>
-    Task<PagedResult<UserGetListOutputDto>> GetAuthUserByRoleIdAsync([FromRoute] Guid roleId,
+    Task<PagedResult<UserDto>> GetAuthUserByRoleIdAsync([FromRoute] Guid roleId,
         [FromRoute] bool isAllocated, [FromQuery] RoleAuthUserQuery query);
 
     /// <summary>

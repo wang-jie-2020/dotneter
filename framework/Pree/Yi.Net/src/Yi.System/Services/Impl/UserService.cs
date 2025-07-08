@@ -23,7 +23,7 @@ public class UserService : BaseService, IUserService
         _deptService = deptService;
     }
 
-    public async Task<UserGetOutputDto> GetAsync(Guid id)
+    public async Task<UserDetailDto> GetAsync(Guid id)
     {
         //使用导航树形查询
         var entity = await _repository.AsQueryable()
@@ -32,10 +32,10 @@ public class UserService : BaseService, IUserService
             .Includes(u => u.Dept)
             .InSingleAsync(id);
 
-        return entity.Adapt<UserGetOutputDto>();
+        return entity.Adapt<UserDetailDto>();
     }
 
-    public async Task<PagedResult<UserGetListOutputDto>> GetListAsync(UserGetListQuery query)
+    public async Task<PagedResult<UserDto>> GetListAsync(UserQuery query)
     {
         RefAsync<int> total = 0;
 
@@ -59,10 +59,10 @@ public class UserService : BaseService, IUserService
             .WhereIF(ids is not null, x => ids.Contains(x.Id))
             .LeftJoin<DeptEntity>((user, dept) => user.DeptId == dept.Id)
             .OrderByDescending(user => user.CreationTime)
-            .Select((user, dept) => new UserGetListOutputDto(), true)
+            .Select((user, dept) => new UserDto(), true)
             .ToPageListAsync(query.PageNum, query.PageSize, total);
 
-        var result = new PagedResult<UserGetListOutputDto>
+        var result = new PagedResult<UserDto>
         {
             Items = outPut,
             TotalCount = total
@@ -70,19 +70,19 @@ public class UserService : BaseService, IUserService
         return result;
     }
 
-    public async Task<UserGetOutputDto> CreateAsync(UserCreateInput input)
+    public async Task<UserDto> CreateAsync(UserInput input)
     {
         var entity = input.Adapt<UserEntity>();
-        entity.BuildPassword(input.Password);
+        //entity.BuildPassword(input.Password);
 
         await _userManager.CreateAsync(entity);
         await _userManager.GiveUserSetRoleAsync(new List<Guid> { entity.Id }, input.RoleIds);
         await _userManager.GiveUserSetPostAsync(new List<Guid> { entity.Id }, input.PostIds);
 
-        return entity.Adapt<UserGetOutputDto>();
+        return entity.Adapt<UserDto>();
     }
 
-    public async Task<UserGetOutputDto> UpdateAsync(Guid id, UserUpdateInput input)
+    public async Task<UserDto> UpdateAsync(Guid id, UserInput input)
     {
         if (AccountConst.ForbiddenNames.Contains(input.UserName))
         {
@@ -95,19 +95,12 @@ public class UserService : BaseService, IUserService
         }
 
         var entity = await _repository.GetByIdAsync(id);
-        //更新密码，特殊处理
-        if (input.Password is not null)
-        {
-            entity.EncryPassword.Password = input.Password;
-            entity.BuildPassword();
-        }
-
         input.Adapt(entity);
         await _repository.UpdateAsync(entity);
         await _userManager.GiveUserSetRoleAsync(new List<Guid> { id }, input.RoleIds);
         await _userManager.GiveUserSetPostAsync(new List<Guid> { id }, input.PostIds);
 
-        return entity.Adapt<UserGetOutputDto>();
+        return entity.Adapt<UserDto>();
     }
 
     public async Task DeleteAsync(IEnumerable<Guid> id)
@@ -115,7 +108,7 @@ public class UserService : BaseService, IUserService
         await _repository.DeleteByIdsAsync(id.Select(x => (object)x).ToArray());
     }
 
-    public async Task<IActionResult> GetExportExcelAsync(UserGetListQuery query)
+    public async Task<IActionResult> GetExportExcelAsync(UserQuery query)
     {
         if (query is PagedQuery paged)
         {
@@ -138,7 +131,7 @@ public class UserService : BaseService, IUserService
     public async Task<IActionResult> GetImportTemplateAsync()
     {
         var stream = new MemoryStream();
-        await MiniExcel.SaveAsAsync(stream, new List<UserCreateInput>());
+        await MiniExcel.SaveAsAsync(stream, new List<UserInput>());
         stream.Seek(0, SeekOrigin.Begin);
 
         return new FileStreamResult(stream, "application/vnd.ms-excel")
@@ -149,7 +142,7 @@ public class UserService : BaseService, IUserService
 
     public async Task PostImportExcelAsync(Stream stream)
     {
-        var rows = await MiniExcel.QueryAsync<UserCreateInput>(stream);
+        var rows = await MiniExcel.QueryAsync<UserInput>(stream);
         foreach (var row in rows)
         {
             Console.WriteLine(row.ToString());
@@ -161,13 +154,13 @@ public class UserService : BaseService, IUserService
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
-    public async Task<UserGetOutputDto> UpdateProfileAsync(ProfileInput input)
+    public async Task<UserDto> UpdateProfileAsync(ProfileInput input)
     {
         var entity = await _repository.GetByIdAsync(CurrentUser.Id);
         input.Adapt(entity);
 
         await _repository.UpdateAsync(entity);
-        return entity.Adapt<UserGetOutputDto>();
+        return entity.Adapt<UserDto>();
     }
 
     /// <summary>
@@ -176,7 +169,7 @@ public class UserService : BaseService, IUserService
     /// <param name="id"></param>
     /// <param name="state"></param>
     /// <returns></returns>
-    public async Task<UserGetOutputDto> UpdateStateAsync(Guid id, bool state)
+    public async Task<UserDto> UpdateStateAsync(Guid id, bool state)
     {
         var entity = await _repository.GetByIdAsync(id);
         if (entity is null)
@@ -186,6 +179,6 @@ public class UserService : BaseService, IUserService
 
         entity.State = state;
         await _repository.UpdateAsync(entity);
-        return entity.Adapt<UserGetOutputDto>();
+        return entity.Adapt<UserDto>();
     }
 }

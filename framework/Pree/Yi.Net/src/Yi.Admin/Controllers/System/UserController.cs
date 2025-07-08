@@ -20,14 +20,14 @@ public class UserController : BaseController
     }
 
     [HttpGet("{id}")]
-    public async Task<UserGetOutputDto> GetAsync(Guid id)
+    public async Task<UserDetailDto> GetAsync(Guid id)
     {
         return await _userService.GetAsync(id);
     }
 
     [HttpGet]
     [Permission("system:user:list")]
-    public async Task<PagedResult<UserGetListOutputDto>> GetListAsync([FromQuery] UserGetListQuery query)
+    public async Task<PagedResult<UserDto>> GetListAsync([FromQuery] UserQuery query)
     {
         return await _userService.GetListAsync(query);
     }
@@ -35,7 +35,7 @@ public class UserController : BaseController
     [HttpPost]
     [OperLog("添加用户", OperLogEnum.Insert)]
     [Permission("system:user:add")]
-    public async Task<UserGetOutputDto> CreateAsync([FromBody] UserCreateInput input)
+    public async Task<UserDto> CreateAsync([FromBody] UserInput input)
     {
         return await _userService.CreateAsync(input);
     }
@@ -43,7 +43,7 @@ public class UserController : BaseController
     [HttpPut("{id}")]
     [OperLog("更新用户", OperLogEnum.Update)]
     [Permission("system:user:edit")]
-    public async Task<UserGetOutputDto> UpdateAsync(Guid id, [FromBody] UserUpdateInput input)
+    public async Task<UserDto> UpdateAsync(Guid id, [FromBody] UserInput input)
     {
         return await _userService.UpdateAsync(id, input);
     }
@@ -58,7 +58,7 @@ public class UserController : BaseController
 
     [HttpGet("export")]
     [Permission("system:user:export")]
-    public async Task<IActionResult> GetExportExcelAsync([FromQuery] UserGetListQuery query)
+    public async Task<IActionResult> GetExportExcelAsync([FromQuery] UserQuery query)
     {
         return await _userService.GetExportExcelAsync(query);
     }
@@ -83,7 +83,7 @@ public class UserController : BaseController
     /// <returns></returns>
     [HttpPut("profile")]
     [OperLog("更新个人信息", OperLogEnum.Update)]
-    public async Task<UserGetOutputDto> UpdateProfileAsync(ProfileInput input)
+    public async Task<UserDto> UpdateProfileAsync(ProfileInput input)
     {
         return await _userService.UpdateProfileAsync(input);
     }
@@ -97,7 +97,7 @@ public class UserController : BaseController
     [HttpPut("{id}/{state}")]
     [OperLog("更新用户状态", OperLogEnum.Update)]
     [Permission("system:user:update")]
-    public async Task<UserGetOutputDto> UpdateStateAsync([FromRoute] Guid id, [FromRoute] bool state)
+    public async Task<UserDto> UpdateStateAsync([FromRoute] Guid id, [FromRoute] bool state)
     {
         return await _userService.UpdateStateAsync(id, state);
     }

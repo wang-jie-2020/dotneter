@@ -13,13 +13,13 @@ public static class MenuEntityExtensions
     /// </summary>
     /// <param name="menus"></param>
     /// <returns></returns>
-    public static List<Vue3RouterDto> Vue3RouterBuild(this List<MenuEntity> menus)
+    public static List<Vue3Router> Vue3RouterBuild(this List<MenuEntity> menus)
     {
         menus = menus.Where(m => m.MenuType != MenuTypeEnum.Component).ToList();
-        List<Vue3RouterDto> routers = new();
+        List<Vue3Router> routers = new();
         foreach (var m in menus)
         {
-            var r = new Vue3RouterDto();
+            var r = new Vue3Router();
             r.OrderNum = m.OrderNum;
             var routerName = m.Router?.Split("/").LastOrDefault();
             r.Id = m.Id;

@@ -285,7 +285,7 @@ public class AccountController : BaseController
     /// <returns></returns>
     [Authorize]
     [HttpGet("Vue3Router")]
-    public async Task<List<Vue3RouterDto>> GetVue3Router()
+    public async Task<List<Vue3Router>> GetVue3Router()
     {
         var userId = _currentUser.Id;
         if (_currentUser.Id is null)

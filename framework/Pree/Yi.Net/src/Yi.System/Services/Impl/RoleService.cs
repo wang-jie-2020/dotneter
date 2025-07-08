@@ -117,9 +117,9 @@ public class RoleService : BaseService, IRoleService
     /// <param name="query"></param>
     /// <param name="isAllocated">是否在该角色下</param>
     /// <returns></returns>
-    public async Task<PagedResult<UserGetListOutputDto>> GetAuthUserByRoleIdAsync(Guid roleId, bool isAllocated, RoleAuthUserQuery query)
+    public async Task<PagedResult<UserDto>> GetAuthUserByRoleIdAsync(Guid roleId, bool isAllocated, RoleAuthUserQuery query)
     {
-        PagedResult<UserGetListOutputDto> output;
+        PagedResult<UserDto> output;
         //角色下已授权用户
         if (isAllocated)
         {
@@ -134,7 +134,7 @@ public class RoleService : BaseService, IRoleService
         return output;
     }
 
-    private async Task<PagedResult<UserGetListOutputDto>> GetAllocatedAuthUserByRoleIdAsync(Guid roleId, RoleAuthUserQuery query)
+    private async Task<PagedResult<UserDto>> GetAllocatedAuthUserByRoleIdAsync(Guid roleId, RoleAuthUserQuery query)
     {
         RefAsync<int> total = 0;
 
@@ -143,13 +143,13 @@ public class RoleService : BaseService, IRoleService
             .Where((ur, u) => ur.RoleId == roleId)
             .WhereIF(!string.IsNullOrEmpty(query.UserName), (ur, u) => u.UserName.Contains(query.UserName))
             .WhereIF(query.Phone is not null, (ur, u) => u.Phone.ToString().Contains(query.Phone.ToString()))
-            .Select((ur, u) => new UserGetListOutputDto { Id = u.Id }, true)
+            .Select((ur, u) => new UserDto { Id = u.Id }, true)
             .ToPageListAsync(query.PageSize, query.PageNum, total);
 
-        return new PagedResult<UserGetListOutputDto>(total, output);
+        return new PagedResult<UserDto>(total, output);
     }
 
-    private async Task<PagedResult<UserGetListOutputDto>> GetNotAllocatedAuthUserByRoleIdAsync(Guid roleId, RoleAuthUserQuery query)
+    private async Task<PagedResult<UserDto>> GetNotAllocatedAuthUserByRoleIdAsync(Guid roleId, RoleAuthUserQuery query)
     {
         RefAsync<int> total = 0;
 
@@ -160,8 +160,8 @@ public class RoleService : BaseService, IRoleService
             .WhereIF(query.Phone is not null, u => u.Phone.ToString().Contains(query.Phone.ToString()))
             .ToPageListAsync(query.PageSize, query.PageNum, total);
 
-        var output = entities.Adapt<List<UserGetListOutputDto>>();
-        return new PagedResult<UserGetListOutputDto>(total, output);
+        var output = entities.Adapt<List<UserDto>>();
+        return new PagedResult<UserDto>(total, output);
     }
 
     /// <summary>

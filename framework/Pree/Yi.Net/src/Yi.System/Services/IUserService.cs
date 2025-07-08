@@ -5,17 +5,17 @@ namespace Yi.System.Services;
 
 public interface IUserService
 {
-    Task<UserGetOutputDto> GetAsync(Guid id);
+    Task<UserDetailDto> GetAsync(Guid id);
 
-    Task<PagedResult<UserGetListOutputDto>> GetListAsync(UserGetListQuery query);
+    Task<PagedResult<UserDto>> GetListAsync(UserQuery query);
 
-    Task<UserGetOutputDto> CreateAsync(UserCreateInput input);
+    Task<UserDto> CreateAsync(UserInput input);
 
-    Task<UserGetOutputDto> UpdateAsync(Guid id, UserUpdateInput input);
+    Task<UserDto> UpdateAsync(Guid id, UserInput input);
 
     Task DeleteAsync(IEnumerable<Guid> id);
 
-    Task<IActionResult> GetExportExcelAsync(UserGetListQuery query);
+    Task<IActionResult> GetExportExcelAsync(UserQuery query);
 
     Task<IActionResult> GetImportTemplateAsync();
     
@@ -26,7 +26,7 @@ public interface IUserService
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
-    Task<UserGetOutputDto> UpdateProfileAsync(ProfileInput input);
+    Task<UserDto> UpdateProfileAsync(ProfileInput input);
 
     /// <summary>
     ///     更新状态
@@ -34,5 +34,5 @@ public interface IUserService
     /// <param name="id"></param>
     /// <param name="state"></param>
     /// <returns></returns>
-    Task<UserGetOutputDto> UpdateStateAsync(Guid id, bool state);
+    Task<UserDto> UpdateStateAsync(Guid id, bool state);
 }

@@ -2,16 +2,14 @@ using Yi.System.Entities;
 
 namespace Yi.System.Services.Dtos;
 
-public class UserGetOutputDto 
+public class UserInput
 {
-    public Guid Id { get; set; }
-    
     public string? Name { get; set; }
     
     public int? Age { get; set; }
     
-    public string UserName { get; set; } = string.Empty;
-    
+    public string? UserName { get; set; }
+
     public string? Icon { get; set; }
     
     public string? Nick { get; set; }
@@ -28,17 +26,13 @@ public class UserGetOutputDto
     
     public string? Remark { get; set; }
     
-    public SexEnum Sex { get; set; } = SexEnum.Unknown;
+    public SexEnum? Sex { get; set; }
     
-    public bool State { get; set; }
-    
-    public DateTime CreationTime { get; set; }
-
     public Guid? DeptId { get; set; }
+    
+    public List<Guid>? PostIds { get; set; }
 
-    public DeptDto? Dept { get; set; }
-
-    public List<PostDto>? Posts { get; set; }
-
-    public List<RoleDto>? Roles { get; set; }
+    public List<Guid>? RoleIds { get; set; }
+    
+    public bool? State { get; set; }
 }

@@ -30,16 +30,6 @@ public class UserDto
     public string UserName { get; set; } = string.Empty;
 
     /// <summary>
-    ///     密码
-    /// </summary>
-    public string Password { get; set; } = string.Empty;
-
-    /// <summary>
-    ///     加密盐值
-    /// </summary>
-    public string Salt { get; set; } = string.Empty;
-
-    /// <summary>
     ///     头像
     /// </summary>
     public string? Icon { get; set; }

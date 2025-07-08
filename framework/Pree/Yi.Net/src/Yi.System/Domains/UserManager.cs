@@ -76,10 +76,10 @@ public class UserManager : BaseDomain
     {
         ValidateUserName(userEntity);
 
-        if (userEntity.EncryPassword?.Password.Length < 6)
-        {
-            throw Oops.Oh(SystemErrorCodes.UserPasswordTooShort);
-        }
+        // if (userEntity.EncryPassword?.Password.Length < 6)
+        // {
+        //     throw Oops.Oh(SystemErrorCodes.UserPasswordTooShort);
+        // }
 
         if (userEntity.Phone is not null)
         {

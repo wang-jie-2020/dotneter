@@ -147,12 +147,12 @@
                      <el-input v-model="form.userName" placeholder="请输入用户账号" maxlength="30" />
                   </el-form-item>
                </el-col>
-               <el-col :span="12">
-                  <el-form-item v-if="form.id == undefined" label="用户密码" prop="password">
-                     <el-input v-model="form.password" placeholder="请输入用户密码" type="password" maxlength="20"
-                        show-password />
-                  </el-form-item>
-               </el-col>
+<!--               <el-col :span="12">-->
+<!--                  <el-form-item v-if="form.id == undefined" label="用户密码" prop="password">-->
+<!--                     <el-input v-model="form.password" placeholder="请输入用户密码" type="password" maxlength="20"-->
+<!--                        show-password />-->
+<!--                  </el-form-item>-->
+<!--               </el-col>-->
             </el-row>
             <el-row>
                <el-col :span="12">
@@ -502,7 +502,7 @@ function handleUpdate(row) {
    reset();
    const userId = row.id || ids.value;
    getUser(userId).then(response => {
-     
+
 
       form.value = response.data;
       form.value.postIds=[];

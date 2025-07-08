@@ -2,7 +2,7 @@
 
 namespace Yi.System.Services.Dtos;
 
-public class Vue3RouterDto : TreeHelper.ITreeModel<Vue3RouterDto>
+public class Vue3Router : TreeHelper.ITreeModel<Vue3Router>
 {
     public string Name { get; set; } = string.Empty;
 
@@ -24,7 +24,7 @@ public class Vue3RouterDto : TreeHelper.ITreeModel<Vue3RouterDto>
 
     public int OrderNum { get; set; }
 
-    public List<Vue3RouterDto> Children { get; set; }
+    public List<Vue3Router> Children { get; set; }
 }
 
 public class Meta

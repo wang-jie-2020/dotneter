@@ -73,7 +73,7 @@ public class RoleController : BaseController
     /// <param name="isAllocated">是否在该角色下</param>
     /// <returns></returns>
     [HttpGet("auth-user/{roleId}/{isAllocated}")]
-    public async Task<PagedResult<UserGetListOutputDto>> GetAuthUserByRoleIdAsync([FromRoute] Guid roleId, [FromRoute] bool isAllocated, [FromQuery] RoleAuthUserQuery query)
+    public async Task<PagedResult<UserDto>> GetAuthUserByRoleIdAsync([FromRoute] Guid roleId, [FromRoute] bool isAllocated, [FromQuery] RoleAuthUserQuery query)
     {
         return await _roleService.GetAuthUserByRoleIdAsync(roleId, isAllocated, query);
     }
