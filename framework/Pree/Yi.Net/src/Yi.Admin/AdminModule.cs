@@ -93,16 +93,16 @@ public class AdminModule : AbpModule
                     ValidAudience = jwtOptions.Audience,
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtOptions.SecurityKey))
                 };
-                options.Events = new JwtBearerEvents
-                {
-                    OnMessageReceived = context =>
-                    {
-                        var accessToken = context.Request.Query["access_token"];
-                        if (!string.IsNullOrEmpty(accessToken)) context.Token = accessToken;
-
-                        return Task.CompletedTask;
-                    }
-                };
+                // options.Events = new JwtBearerEvents
+                // {
+                //     OnMessageReceived = context =>
+                //     {
+                //         var accessToken = context.Request.Query["access_token"];
+                //         if (!string.IsNullOrEmpty(accessToken)) context.Token = accessToken;
+                //
+                //         return Task.CompletedTask;
+                //     }
+                // };
             })
             .AddJwtBearer(ClaimsIdentityTypes.Refresh, options =>
             {
@@ -126,11 +126,11 @@ public class AdminModule : AbpModule
                             return Task.CompletedTask;
                         }
 
-                        var refreshToken = context.Request.Query["refresh_token"];
-                        if (!string.IsNullOrEmpty(refreshToken))
-                        {
-                            context.Token = refreshToken;
-                        }
+                        // var refreshToken = context.Request.Query["refresh_token"];
+                        // if (!string.IsNullOrEmpty(refreshToken))
+                        // {
+                        //     context.Token = refreshToken;
+                        // }
 
                         return Task.CompletedTask;
                     }
