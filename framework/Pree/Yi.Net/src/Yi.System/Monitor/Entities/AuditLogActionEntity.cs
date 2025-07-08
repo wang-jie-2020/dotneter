@@ -1,6 +1,5 @@
 ﻿using Yi.AspNetCore.MultiTenancy;
 using Yi.Framework.Auditing;
-using Yi.System.Monitor.Consts;
 
 namespace Yi.System.Monitor.Entities;
 
@@ -22,9 +21,9 @@ public class AuditLogActionEntity : Entity<Guid>, IMultiTenant
         ExecutionTime = actionInfo.ExecutionTime;
         ExecutionDuration = actionInfo.ExecutionDuration;
 
-        ServiceName = actionInfo.ServiceName.TruncateFromBeginning(AuditLogActionConsts.MaxServiceNameLength);
-        MethodName = actionInfo.MethodName.TruncateFromBeginning(AuditLogActionConsts.MaxMethodNameLength);
-        Parameters = actionInfo.Parameters.Length > AuditLogActionConsts.MaxParametersLength
+        ServiceName = actionInfo.ServiceName;
+        MethodName = actionInfo.MethodName;
+        Parameters = actionInfo.Parameters.Length > 2000
             ? ""
             : actionInfo.Parameters;
     }

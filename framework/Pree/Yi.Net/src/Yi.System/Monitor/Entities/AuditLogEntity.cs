@@ -1,5 +1,4 @@
 ﻿using Yi.AspNetCore.MultiTenancy;
-using Yi.System.Monitor.Consts;
 
 namespace Yi.System.Monitor.Entities;
 
@@ -36,24 +35,24 @@ public class AuditLogEntity : Entity<Guid>, IMultiTenant
         string comments)
     {
         Id = id;
-        ApplicationName = applicationName.Truncate(AuditLogConsts.MaxApplicationNameLength);
+        ApplicationName = applicationName;
         TenantId = tenantId;
-        TenantName = tenantName.Truncate(AuditLogConsts.MaxTenantNameLength);
+        TenantName = tenantName;
         UserId = userId;
-        UserName = userName.Truncate(AuditLogConsts.MaxUserNameLength);
+        UserName = userName;
         ExecutionTime = executionTime;
         ExecutionDuration = executionDuration;
-        ClientIpAddress = clientIpAddress.Truncate(AuditLogConsts.MaxClientIpAddressLength);
-        ClientName = clientName.Truncate(AuditLogConsts.MaxClientNameLength);
-        ClientId = clientId.Truncate(AuditLogConsts.MaxClientIdLength);
-        CorrelationId = correlationId.Truncate(AuditLogConsts.MaxCorrelationIdLength);
-        BrowserInfo = browserInfo.Truncate(AuditLogConsts.MaxBrowserInfoLength);
-        HttpMethod = httpMethod.Truncate(AuditLogConsts.MaxHttpMethodLength);
-        Url = url.Truncate(AuditLogConsts.MaxUrlLength);
+        ClientIpAddress = clientIpAddress;
+        ClientName = clientName;
+        ClientId = clientId;
+        CorrelationId = correlationId;
+        BrowserInfo = browserInfo;
+        HttpMethod = httpMethod;
+        Url = url;
         HttpStatusCode = httpStatusCode;
         Actions = actions;
         Exceptions = exceptions;
-        Comments = comments.Truncate(AuditLogConsts.MaxCommentsLength);
+        Comments = comments;
     }
     
     public virtual string? ApplicationName { get; set; }
