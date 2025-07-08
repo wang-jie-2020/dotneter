@@ -1,6 +1,6 @@
 ﻿namespace Yi.System.Monitor.Dtos;
 
-public class LoginLogGetListInputVo : PagedInput
+public class LoginLogGetListQueryVo : PagedQuery
 {
     public string? LoginUser { get; set; }
 

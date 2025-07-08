@@ -3,6 +3,7 @@ using Yi.Framework;
 using Yi.Framework.Abstractions;
 using Yi.System.Services;
 using Yi.System.Services.Dtos;
+using ConfigQuery = Yi.System.Services.Dtos.ConfigQuery;
 
 namespace Yi.Web.Controllers.System;
 
@@ -18,25 +19,25 @@ public class ConfigController : BaseController
     }
 
     [HttpGet("{id}")]
-    public async Task<ConfigGetOutputDto> GetAsync(Guid id)
+    public async Task<ConfigDto> GetAsync(Guid id)
     {
         return await _configService.GetAsync(id);
     }
 
     [HttpGet]
-    public async Task<PagedResult<ConfigGetListOutputDto>> GetListAsync([FromQuery] ConfigGetListInputVo input)
+    public async Task<PagedResult<ConfigDto>> GetListAsync([FromQuery] ConfigQuery query)
     {
-        return await _configService.GetListAsync(input);
+        return await _configService.GetListAsync(query);
     }
 
     [HttpPost]
-    public async Task<ConfigGetOutputDto> CreateAsync([FromBody] ConfigCreateInputVo input)
+    public async Task<ConfigDto> CreateAsync([FromBody] ConfigInput input)
     {
         return await _configService.CreateAsync(input);
     }
 
     [HttpPut("{id}")]
-    public async Task<ConfigGetOutputDto> UpdateAsync(Guid id, [FromBody] ConfigUpdateInput input)
+    public async Task<ConfigDto> UpdateAsync(Guid id, [FromBody] ConfigInput input)
     {
         return await _configService.UpdateAsync(id, input);
     }

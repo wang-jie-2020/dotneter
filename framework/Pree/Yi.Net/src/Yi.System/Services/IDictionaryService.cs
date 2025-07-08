@@ -6,7 +6,7 @@ public interface IDictionaryService
 {
     Task<DictionaryDto> GetAsync(Guid id);
 
-    Task<PagedResult<DictionaryDto>> GetListAsync(DictionaryGetListInput input);
+    Task<PagedResult<DictionaryDto>> GetListAsync(DictionaryGetListQuery query);
 
     Task<DictionaryDto> CreateAsync(DictionaryCreateInput input);
 

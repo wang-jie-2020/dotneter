@@ -28,14 +28,14 @@ public class TenantService : BaseService, ITenantService
         return entity.Adapt<TenantDto>();
     }
 
-    public async Task<PagedResult<TenantDto>> GetListAsync(TenantGetListInput input)
+    public async Task<PagedResult<TenantDto>> GetListAsync(TenantGetListQuery query)
     {
         RefAsync<int> total = 0;
 
         var entities = await _repository.AsQueryable()
-            .WhereIF(!string.IsNullOrEmpty(input.Name), x => x.Name.Contains(input.Name!))
-            .WhereIF(input.StartTime is not null && input.EndTime is not null, x => x.CreationTime >= input.StartTime && x.CreationTime <= input.EndTime)
-            .ToPageListAsync(input.PageNum, input.PageSize, total);
+            .WhereIF(!string.IsNullOrEmpty(query.Name), x => x.Name.Contains(query.Name!))
+            .WhereIF(query.StartTime is not null && query.EndTime is not null, x => x.CreationTime >= query.StartTime && x.CreationTime <= query.EndTime)
+            .ToPageListAsync(query.PageNum, query.PageSize, total);
 
         return new PagedResult<TenantDto>(total, entities.Adapt<List<TenantDto>>());
     }
@@ -70,15 +70,15 @@ public class TenantService : BaseService, ITenantService
         await _repository.DeleteByIdsAsync(id.Select(x => (object)x).ToArray());
     }
 
-    public async Task<IActionResult> GetExportExcelAsync(TenantGetListInput input)
+    public async Task<IActionResult> GetExportExcelAsync(TenantGetListQuery query)
     {
-        if (input is PagedInput paged)
+        if (query is PagedQuery paged)
         {
             paged.PageNum = 0;
             paged.PageSize = int.MaxValue;
         }
 
-        var output = await GetListAsync(input);
+        var output = await GetListAsync(query);
 
         var stream = new MemoryStream();
         await MiniExcel.SaveAsAsync(stream, output.Items);

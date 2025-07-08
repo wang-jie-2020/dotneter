@@ -25,9 +25,9 @@ public class DictionaryTypeController : BaseController
     }
 
     [HttpGet]
-    public async Task<PagedResult<DictionaryTypeDto>> GetListAsync([FromQuery] DictionaryTypeGetListInput input)
+    public async Task<PagedResult<DictionaryTypeDto>> GetListAsync([FromQuery] DictionaryTypeGetListQuery query)
     {
-        return await _dictionaryTypeService.GetListAsync(input);
+        return await _dictionaryTypeService.GetListAsync(query);
     }
 
     [HttpPost]

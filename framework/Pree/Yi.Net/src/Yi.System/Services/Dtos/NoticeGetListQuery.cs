@@ -2,7 +2,7 @@ using Yi.System.Entities;
 
 namespace Yi.System.Services.Dtos;
 
-public class NoticeGetListInput : PagedInput
+public class NoticeGetListQuery : PagedQuery
 {
     public string? Title { get; set; }
     

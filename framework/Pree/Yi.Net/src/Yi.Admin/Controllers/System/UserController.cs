@@ -27,9 +27,9 @@ public class UserController : BaseController
 
     [HttpGet]
     [Permission("system:user:list")]
-    public async Task<PagedResult<UserGetListOutputDto>> GetListAsync([FromQuery] UserGetListInput input)
+    public async Task<PagedResult<UserGetListOutputDto>> GetListAsync([FromQuery] UserGetListQuery query)
     {
-        return await _userService.GetListAsync(input);
+        return await _userService.GetListAsync(query);
     }
 
     [HttpPost]
@@ -58,9 +58,9 @@ public class UserController : BaseController
 
     [HttpGet("export")]
     [Permission("system:user:export")]
-    public async Task<IActionResult> GetExportExcelAsync([FromQuery] UserGetListInput input)
+    public async Task<IActionResult> GetExportExcelAsync([FromQuery] UserGetListQuery query)
     {
-        return await _userService.GetExportExcelAsync(input);
+        return await _userService.GetExportExcelAsync(query);
     }
 
     [HttpGet("template")]

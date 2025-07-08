@@ -24,9 +24,9 @@ public class OperLogController : BaseController
     }
 
     [HttpGet]
-    public async Task<PagedResult<OperLogDto>> GetListAsync([FromQuery] OperLogGetListInput input)
+    public async Task<PagedResult<OperLogDto>> GetListAsync([FromQuery] OperLogGetListQuery query)
     {
-        return await _operLogService.GetListAsync(input);
+        return await _operLogService.GetListAsync(query);
     }
 
     [HttpDelete]

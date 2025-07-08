@@ -20,16 +20,16 @@ public class OperLogService : BaseService, IOperLogService
         return entity.Adapt<OperLogDto>();
     }
 
-    public async Task<PagedResult<OperLogDto>> GetListAsync(OperLogGetListInput input)
+    public async Task<PagedResult<OperLogDto>> GetListAsync(OperLogGetListQuery query)
     {
         RefAsync<int> total = 0;
 
-        var entities = await _repository.AsQueryable().WhereIF(!string.IsNullOrEmpty(input.OperUser),
-                x => x.OperUser.Contains(input.OperUser!))
-            .WhereIF(input.OperType is not null, x => x.OperType == input.OperType)
-            .WhereIF(input.StartTime is not null && input.EndTime is not null,
-                x => x.ExecutionTime >= input.StartTime && x.ExecutionTime <= input.EndTime)
-            .ToPageListAsync(input.PageNum, input.PageSize, total);
+        var entities = await _repository.AsQueryable().WhereIF(!string.IsNullOrEmpty(query.OperUser),
+                x => x.OperUser.Contains(query.OperUser!))
+            .WhereIF(query.OperType is not null, x => x.OperType == query.OperType)
+            .WhereIF(query.StartTime is not null && query.EndTime is not null,
+                x => x.ExecutionTime >= query.StartTime && x.ExecutionTime <= query.EndTime)
+            .ToPageListAsync(query.PageNum, query.PageSize, total);
 
         return new PagedResult<OperLogDto>(total, entities.Adapt<List<OperLogDto>>());
     }

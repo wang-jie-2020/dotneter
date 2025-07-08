@@ -6,7 +6,7 @@ public interface IOperLogService
 {
     Task<OperLogDto> GetAsync(long id);
 
-    Task<PagedResult<OperLogDto>> GetListAsync(OperLogGetListInput input);
+    Task<PagedResult<OperLogDto>> GetListAsync(OperLogGetListQuery query);
 
     Task DeleteAsync(IEnumerable<long> id);
 }

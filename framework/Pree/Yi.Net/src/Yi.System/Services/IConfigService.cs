@@ -1,16 +1,17 @@
 using Yi.System.Services.Dtos;
+using ConfigQuery = Yi.System.Services.Dtos.ConfigQuery;
 
 namespace Yi.System.Services;
 
 public interface IConfigService
 {
-    Task<ConfigGetOutputDto> GetAsync(Guid id);
+    Task<ConfigDto> GetAsync(Guid id);
 
-    Task<PagedResult<ConfigGetListOutputDto>> GetListAsync(ConfigGetListInputVo input);
+    Task<PagedResult<ConfigDto>> GetListAsync(ConfigQuery query);
 
-    Task<ConfigGetOutputDto> CreateAsync(ConfigCreateInputVo input);
+    Task<ConfigDto> CreateAsync(ConfigInput input);
 
-    Task<ConfigGetOutputDto> UpdateAsync(Guid id, ConfigUpdateInput input);
+    Task<ConfigDto> UpdateAsync(Guid id, ConfigInput input);
 
     Task DeleteAsync(IEnumerable<Guid> id);
 }

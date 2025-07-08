@@ -28,15 +28,15 @@ public class RoleService : BaseService, IRoleService
         return entity.Adapt<RoleDto>();
     }
 
-    public async Task<PagedResult<RoleDto>> GetListAsync(RoleGetListInput input)
+    public async Task<PagedResult<RoleDto>> GetListAsync(RoleGetListQuery query)
     {
         RefAsync<int> total = 0;
 
-        var entities = await _repository.AsQueryable().WhereIF(!string.IsNullOrEmpty(input.RoleCode),
-                x => x.RoleCode.Contains(input.RoleCode!))
-            .WhereIF(!string.IsNullOrEmpty(input.RoleName), x => x.RoleName.Contains(input.RoleName!))
-            .WhereIF(input.State is not null, x => x.State == input.State)
-            .ToPageListAsync(input.PageNum, input.PageSize, total);
+        var entities = await _repository.AsQueryable().WhereIF(!string.IsNullOrEmpty(query.RoleCode),
+                x => x.RoleCode.Contains(query.RoleCode!))
+            .WhereIF(!string.IsNullOrEmpty(query.RoleName), x => x.RoleName.Contains(query.RoleName!))
+            .WhereIF(query.State is not null, x => x.State == query.State)
+            .ToPageListAsync(query.PageNum, query.PageSize, total);
         return new PagedResult<RoleDto>(total, entities.Adapt<List<RoleDto>>());
     }
 
@@ -114,51 +114,51 @@ public class RoleService : BaseService, IRoleService
     ///     获取角色下的用户
     /// </summary>
     /// <param name="roleId"></param>
-    /// <param name="input"></param>
+    /// <param name="query"></param>
     /// <param name="isAllocated">是否在该角色下</param>
     /// <returns></returns>
-    public async Task<PagedResult<UserGetListOutputDto>> GetAuthUserByRoleIdAsync(Guid roleId, bool isAllocated, RoleAuthUserGetListInput input)
+    public async Task<PagedResult<UserGetListOutputDto>> GetAuthUserByRoleIdAsync(Guid roleId, bool isAllocated, RoleAuthUserGetListQuery query)
     {
         PagedResult<UserGetListOutputDto> output;
         //角色下已授权用户
         if (isAllocated)
         {
-            output = await GetAllocatedAuthUserByRoleIdAsync(roleId, input);
+            output = await GetAllocatedAuthUserByRoleIdAsync(roleId, query);
         }
         //角色下未授权用户
         else
         {
-            output = await GetNotAllocatedAuthUserByRoleIdAsync(roleId, input);
+            output = await GetNotAllocatedAuthUserByRoleIdAsync(roleId, query);
         }
 
         return output;
     }
 
-    private async Task<PagedResult<UserGetListOutputDto>> GetAllocatedAuthUserByRoleIdAsync(Guid roleId, RoleAuthUserGetListInput input)
+    private async Task<PagedResult<UserGetListOutputDto>> GetAllocatedAuthUserByRoleIdAsync(Guid roleId, RoleAuthUserGetListQuery query)
     {
         RefAsync<int> total = 0;
 
         var output = await _userRoleRepository.AsQueryable()
             .LeftJoin<UserEntity>((ur, u) => ur.UserId == u.Id && ur.RoleId == roleId)
             .Where((ur, u) => ur.RoleId == roleId)
-            .WhereIF(!string.IsNullOrEmpty(input.UserName), (ur, u) => u.UserName.Contains(input.UserName))
-            .WhereIF(input.Phone is not null, (ur, u) => u.Phone.ToString().Contains(input.Phone.ToString()))
+            .WhereIF(!string.IsNullOrEmpty(query.UserName), (ur, u) => u.UserName.Contains(query.UserName))
+            .WhereIF(query.Phone is not null, (ur, u) => u.Phone.ToString().Contains(query.Phone.ToString()))
             .Select((ur, u) => new UserGetListOutputDto { Id = u.Id }, true)
-            .ToPageListAsync(input.PageSize, input.PageNum, total);
+            .ToPageListAsync(query.PageSize, query.PageNum, total);
 
         return new PagedResult<UserGetListOutputDto>(total, output);
     }
 
-    private async Task<PagedResult<UserGetListOutputDto>> GetNotAllocatedAuthUserByRoleIdAsync(Guid roleId, RoleAuthUserGetListInput input)
+    private async Task<PagedResult<UserGetListOutputDto>> GetNotAllocatedAuthUserByRoleIdAsync(Guid roleId, RoleAuthUserGetListQuery query)
     {
         RefAsync<int> total = 0;
 
         var entities = await _userRoleRepository.Context.Queryable<UserEntity>()
             .Where(u => SqlFunc.Subqueryable<UserRoleEntity>().Where(x => x.RoleId == roleId)
                 .Where(x => x.UserId == u.Id).NotAny())
-            .WhereIF(!string.IsNullOrEmpty(input.UserName), u => u.UserName.Contains(input.UserName))
-            .WhereIF(input.Phone is not null, u => u.Phone.ToString().Contains(input.Phone.ToString()))
-            .ToPageListAsync(input.PageSize, input.PageNum, total);
+            .WhereIF(!string.IsNullOrEmpty(query.UserName), u => u.UserName.Contains(query.UserName))
+            .WhereIF(query.Phone is not null, u => u.Phone.ToString().Contains(query.Phone.ToString()))
+            .ToPageListAsync(query.PageSize, query.PageNum, total);
 
         var output = entities.Adapt<List<UserGetListOutputDto>>();
         return new PagedResult<UserGetListOutputDto>(total, output);

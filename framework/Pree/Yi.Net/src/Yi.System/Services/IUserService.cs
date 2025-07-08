@@ -7,7 +7,7 @@ public interface IUserService
 {
     Task<UserGetOutputDto> GetAsync(Guid id);
 
-    Task<PagedResult<UserGetListOutputDto>> GetListAsync(UserGetListInput input);
+    Task<PagedResult<UserGetListOutputDto>> GetListAsync(UserGetListQuery query);
 
     Task<UserGetOutputDto> CreateAsync(UserCreateInput input);
 
@@ -15,7 +15,7 @@ public interface IUserService
 
     Task DeleteAsync(IEnumerable<Guid> id);
 
-    Task<IActionResult> GetExportExcelAsync(UserGetListInput input);
+    Task<IActionResult> GetExportExcelAsync(UserGetListQuery query);
 
     Task<IActionResult> GetImportTemplateAsync();
     

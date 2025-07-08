@@ -20,14 +20,14 @@ public class DictionaryService : BaseService, IDictionaryService
         return entity.Adapt<DictionaryDto>();
     }
 
-    public async Task<PagedResult<DictionaryDto>> GetListAsync(DictionaryGetListInput input)
+    public async Task<PagedResult<DictionaryDto>> GetListAsync(DictionaryGetListQuery query)
     {
         RefAsync<int> total = 0;
         var entities = await _repository.AsQueryable()
-            .WhereIF(input.DictType is not null, x => x.DictType == input.DictType)
-            .WhereIF(input.DictLabel is not null, x => x.DictLabel!.Contains(input.DictLabel!))
-            .WhereIF(input.State is not null, x => x.State == input.State)
-            .ToPageListAsync(input.PageNum, input.PageSize, total);
+            .WhereIF(query.DictType is not null, x => x.DictType == query.DictType)
+            .WhereIF(query.DictLabel is not null, x => x.DictLabel!.Contains(query.DictLabel!))
+            .WhereIF(query.State is not null, x => x.State == query.State)
+            .ToPageListAsync(query.PageNum, query.PageSize, total);
         return new PagedResult<DictionaryDto>
         {
             TotalCount = total,

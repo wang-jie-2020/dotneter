@@ -19,14 +19,14 @@ public class NoticeService : BaseService, INoticeService
         return entity.Adapt<NoticeDto>();
     }
 
-    public async Task<PagedResult<NoticeDto>> GetListAsync(NoticeGetListInput input)
+    public async Task<PagedResult<NoticeDto>> GetListAsync(NoticeGetListQuery query)
     {
         RefAsync<int> total = 0;
 
-        var entities = await _repository.AsQueryable().WhereIF(input.Type is not null, x => x.Type == input.Type)
-            .WhereIF(!string.IsNullOrEmpty(input.Title), x => x.Title!.Contains(input.Title!))
-            .WhereIF(input.StartTime is not null && input.EndTime is not null, x => x.CreationTime >= input.StartTime && x.CreationTime <= input.EndTime)
-            .ToPageListAsync(input.PageNum, input.PageSize, total);
+        var entities = await _repository.AsQueryable().WhereIF(query.Type is not null, x => x.Type == query.Type)
+            .WhereIF(!string.IsNullOrEmpty(query.Title), x => x.Title!.Contains(query.Title!))
+            .WhereIF(query.StartTime is not null && query.EndTime is not null, x => x.CreationTime >= query.StartTime && x.CreationTime <= query.EndTime)
+            .ToPageListAsync(query.PageNum, query.PageSize, total);
 
         return new PagedResult<NoticeDto>(total, entities.Adapt<List<NoticeDto>>());
     }

@@ -24,9 +24,9 @@ public class DeptController : BaseController
     }
 
     [HttpGet]
-    public async Task<PagedResult<DeptGetListOutputDto>> GetListAsync([FromQuery] DeptGetListInput input)
+    public async Task<PagedResult<DeptGetListOutputDto>> GetListAsync([FromQuery] DeptGetListQuery query)
     {
-        return await _deptService.GetListAsync(input);
+        return await _deptService.GetListAsync(query);
     }
 
     [HttpPost]

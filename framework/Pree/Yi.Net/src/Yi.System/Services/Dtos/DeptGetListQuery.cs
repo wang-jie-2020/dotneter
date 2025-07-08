@@ -1,6 +1,6 @@
 namespace Yi.System.Services.Dtos;
 
-public class DeptGetListInput : PagedInput
+public class DeptGetListQuery : PagedQuery
 {
     public Guid Id { get; set; }
     

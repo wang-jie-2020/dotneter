@@ -1,6 +1,6 @@
 namespace Yi.System.Services.Dtos;
 
-public class DictionaryGetListInput : PagedInput
+public class DictionaryGetListQuery : PagedQuery
 {
     public string? DictType { get; set; }
     

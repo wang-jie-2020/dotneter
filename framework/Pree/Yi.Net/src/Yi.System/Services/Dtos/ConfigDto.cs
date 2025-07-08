@@ -1,6 +1,6 @@
 namespace Yi.System.Services.Dtos;
 
-public class ConfigGetListOutputDto 
+public class ConfigDto 
 {
     public Guid Id { get; set; }
 

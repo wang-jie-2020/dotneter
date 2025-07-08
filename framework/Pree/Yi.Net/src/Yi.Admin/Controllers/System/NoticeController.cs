@@ -24,9 +24,9 @@ public class NoticeController : BaseController
     }
 
     [HttpGet]
-    public async Task<PagedResult<NoticeDto>> GetListAsync([FromQuery] NoticeGetListInput input)
+    public async Task<PagedResult<NoticeDto>> GetListAsync([FromQuery] NoticeGetListQuery query)
     {
-        return await _noticeService.GetListAsync(input);
+        return await _noticeService.GetListAsync(query);
     }
 
     [HttpPost]

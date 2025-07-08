@@ -6,7 +6,7 @@ public interface IMenuService
 {
     Task<MenuDto> GetAsync(Guid id);
 
-    Task<PagedResult<MenuDto>> GetListAsync(MenuGetListInput input);
+    Task<PagedResult<MenuDto>> GetListAsync(MenuGetListQuery query);
 
     Task<MenuDto> CreateAsync(MenuCreateInput input);
 

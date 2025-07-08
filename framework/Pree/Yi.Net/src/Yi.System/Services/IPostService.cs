@@ -6,7 +6,7 @@ public interface IPostService
 {
     Task<PostDto> GetAsync(Guid id);
 
-    Task<PagedResult<PostDto>> GetListAsync(PostGetListInput input);
+    Task<PagedResult<PostDto>> GetListAsync(PostGetListQuery query);
 
     Task<PostDto> CreateAsync(PostCreateInput input);
 

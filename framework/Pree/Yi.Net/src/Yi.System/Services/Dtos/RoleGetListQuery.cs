@@ -1,6 +1,6 @@
 namespace Yi.System.Services.Dtos;
 
-public class RoleGetListInput : PagedInput
+public class RoleGetListQuery : PagedQuery
 {
     public string? RoleName { get; set; }
     

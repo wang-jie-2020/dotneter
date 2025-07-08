@@ -6,7 +6,7 @@ public interface INoticeService
 {
     Task<NoticeDto> GetAsync(Guid id);
 
-    Task<PagedResult<NoticeDto>> GetListAsync(NoticeGetListInput input);
+    Task<PagedResult<NoticeDto>> GetListAsync(NoticeGetListQuery query);
 
     Task<NoticeDto> CreateAsync(NoticeCreateInput input);
 

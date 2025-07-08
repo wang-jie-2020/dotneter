@@ -24,9 +24,9 @@ public class PostController : BaseController
     }
 
     [HttpGet]
-    public async Task<PagedResult<PostDto>> GetListAsync([FromQuery] PostGetListInput input)
+    public async Task<PagedResult<PostDto>> GetListAsync([FromQuery] PostGetListQuery query)
     {
-        return await _postService.GetListAsync(input);
+        return await _postService.GetListAsync(query);
     }
 
     [HttpPost]

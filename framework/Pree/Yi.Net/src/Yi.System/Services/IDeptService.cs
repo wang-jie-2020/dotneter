@@ -6,7 +6,7 @@ public interface IDeptService
 {
     Task<DeptGetOutputDto> GetAsync(Guid id);
 
-    Task<PagedResult<DeptGetListOutputDto>> GetListAsync(DeptGetListInput input);
+    Task<PagedResult<DeptGetListOutputDto>> GetListAsync(DeptGetListQuery query);
 
     Task<DeptGetOutputDto> CreateAsync(DeptCreateInput input);
 

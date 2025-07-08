@@ -19,14 +19,14 @@ public class DeptService : BaseService, IDeptService
         return entity.Adapt<DeptGetOutputDto>();
     }
 
-    public async Task<PagedResult<DeptGetListOutputDto>> GetListAsync(DeptGetListInput input)
+    public async Task<PagedResult<DeptGetListOutputDto>> GetListAsync(DeptGetListQuery query)
     {
         RefAsync<int> total = 0;
         var entities = await _repository.AsQueryable()
-            .WhereIF(!string.IsNullOrEmpty(input.DeptName), u => u.DeptName.Contains(input.DeptName!))
-            .WhereIF(input.State is not null, u => u.State == input.State)
+            .WhereIF(!string.IsNullOrEmpty(query.DeptName), u => u.DeptName.Contains(query.DeptName!))
+            .WhereIF(query.State is not null, u => u.State == query.State)
             .OrderBy(u => u.OrderNum)
-            .ToPageListAsync(input.PageNum, input.PageSize, total);
+            .ToPageListAsync(query.PageNum, query.PageSize, total);
 
         return new PagedResult<DeptGetListOutputDto>
         {

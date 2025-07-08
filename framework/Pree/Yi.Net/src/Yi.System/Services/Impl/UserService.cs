@@ -35,32 +35,32 @@ public class UserService : BaseService, IUserService
         return entity.Adapt<UserGetOutputDto>();
     }
 
-    public async Task<PagedResult<UserGetListOutputDto>> GetListAsync(UserGetListInput input)
+    public async Task<PagedResult<UserGetListOutputDto>> GetListAsync(UserGetListQuery query)
     {
         RefAsync<int> total = 0;
 
         List<Guid> deptIds = null;
-        if (input.DeptId is not null)
+        if (query.DeptId is not null)
         {
-            deptIds = await _deptService.GetChildListAsync(input.DeptId ?? Guid.Empty);
+            deptIds = await _deptService.GetChildListAsync(query.DeptId ?? Guid.Empty);
         }
 
         ;
 
-        var ids = input.Ids?.Split(",").Select(x => Guid.Parse(x)).ToList();
+        var ids = query.Ids?.Split(",").Select(x => Guid.Parse(x)).ToList();
 
         var outPut = await _repository.AsQueryable()
-            .WhereIF(!string.IsNullOrEmpty(input.UserName), x => x.UserName.Contains(input.UserName!))
-            .WhereIF(input.Phone is not null, x => x.Phone.ToString()!.Contains(input.Phone.ToString()!))
-            .WhereIF(!string.IsNullOrEmpty(input.Name), x => x.Name!.Contains(input.Name!))
-            .WhereIF(input.State is not null, x => x.State == input.State)
-            .WhereIF(input.StartTime is not null && input.EndTime is not null, x => x.CreationTime >= input.StartTime && x.CreationTime <= input.EndTime)
-            .WhereIF(input.DeptId is not null, x => deptIds.Contains(x.DeptId ?? Guid.Empty))
+            .WhereIF(!string.IsNullOrEmpty(query.UserName), x => x.UserName.Contains(query.UserName!))
+            .WhereIF(query.Phone is not null, x => x.Phone.ToString()!.Contains(query.Phone.ToString()!))
+            .WhereIF(!string.IsNullOrEmpty(query.Name), x => x.Name!.Contains(query.Name!))
+            .WhereIF(query.State is not null, x => x.State == query.State)
+            .WhereIF(query.StartTime is not null && query.EndTime is not null, x => x.CreationTime >= query.StartTime && x.CreationTime <= query.EndTime)
+            .WhereIF(query.DeptId is not null, x => deptIds.Contains(x.DeptId ?? Guid.Empty))
             .WhereIF(ids is not null, x => ids.Contains(x.Id))
             .LeftJoin<DeptEntity>((user, dept) => user.DeptId == dept.Id)
             .OrderByDescending(user => user.CreationTime)
             .Select((user, dept) => new UserGetListOutputDto(), true)
-            .ToPageListAsync(input.PageNum, input.PageSize, total);
+            .ToPageListAsync(query.PageNum, query.PageSize, total);
 
         var result = new PagedResult<UserGetListOutputDto>
         {
@@ -115,15 +115,15 @@ public class UserService : BaseService, IUserService
         await _repository.DeleteByIdsAsync(id.Select(x => (object)x).ToArray());
     }
 
-    public async Task<IActionResult> GetExportExcelAsync(UserGetListInput input)
+    public async Task<IActionResult> GetExportExcelAsync(UserGetListQuery query)
     {
-        if (input is PagedInput paged)
+        if (query is PagedQuery paged)
         {
             paged.PageNum = 0;
             paged.PageSize = int.MaxValue;
         }
 
-        var output = await GetListAsync(input);
+        var output = await GetListAsync(query);
 
         var stream = new MemoryStream();
         await MiniExcel.SaveAsAsync(stream, output.Items);

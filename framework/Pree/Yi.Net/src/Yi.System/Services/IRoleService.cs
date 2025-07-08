@@ -7,7 +7,7 @@ public interface IRoleService
 {
     Task<RoleDto> GetAsync(Guid id);
 
-    Task<PagedResult<RoleDto>> GetListAsync(RoleGetListInput input);
+    Task<PagedResult<RoleDto>> GetListAsync(RoleGetListQuery query);
 
     Task<RoleDto> CreateAsync(RoleCreateInput input);
 
@@ -23,11 +23,11 @@ public interface IRoleService
     ///     获取角色下的用户
     /// </summary>
     /// <param name="roleId"></param>
-    /// <param name="input"></param>
+    /// <param name="query"></param>
     /// <param name="isAllocated">是否在该角色下</param>
     /// <returns></returns>
     Task<PagedResult<UserGetListOutputDto>> GetAuthUserByRoleIdAsync([FromRoute] Guid roleId,
-        [FromRoute] bool isAllocated, [FromQuery] RoleAuthUserGetListInput input);
+        [FromRoute] bool isAllocated, [FromQuery] RoleAuthUserGetListQuery query);
 
     /// <summary>
     ///     批量给用户授权

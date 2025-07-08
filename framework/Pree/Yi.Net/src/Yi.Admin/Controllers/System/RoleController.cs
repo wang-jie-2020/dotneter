@@ -24,9 +24,9 @@ public class RoleController : BaseController
     }
 
     [HttpGet]
-    public async Task<PagedResult<RoleDto>> GetListAsync([FromQuery] RoleGetListInput input)
+    public async Task<PagedResult<RoleDto>> GetListAsync([FromQuery] RoleGetListQuery query)
     {
-        return await _roleService.GetListAsync(input);
+        return await _roleService.GetListAsync(query);
     }
 
     [HttpPost]
@@ -69,13 +69,13 @@ public class RoleController : BaseController
     ///     获取角色下的用户
     /// </summary>
     /// <param name="roleId"></param>
-    /// <param name="input"></param>
+    /// <param name="query"></param>
     /// <param name="isAllocated">是否在该角色下</param>
     /// <returns></returns>
     [HttpGet("auth-user/{roleId}/{isAllocated}")]
-    public async Task<PagedResult<UserGetListOutputDto>> GetAuthUserByRoleIdAsync([FromRoute] Guid roleId, [FromRoute] bool isAllocated, [FromQuery] RoleAuthUserGetListInput input)
+    public async Task<PagedResult<UserGetListOutputDto>> GetAuthUserByRoleIdAsync([FromRoute] Guid roleId, [FromRoute] bool isAllocated, [FromQuery] RoleAuthUserGetListQuery query)
     {
-        return await _roleService.GetAuthUserByRoleIdAsync(roleId, isAllocated, input);
+        return await _roleService.GetAuthUserByRoleIdAsync(roleId, isAllocated, query);
     }
 
     /// <summary>

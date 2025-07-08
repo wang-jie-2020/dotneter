@@ -26,16 +26,16 @@ public class LoginLogController : BaseController
     }
 
     [HttpGet]
-    public async Task<PagedResult<LoginLogGetListOutputDto>> GetListAsync([FromQuery] LoginLogGetListInputVo input)
+    public async Task<PagedResult<LoginLogGetListOutputDto>> GetListAsync([FromQuery] LoginLogGetListQueryVo query)
     {
         RefAsync<int> total = 0;
 
         var entities = await _repository.AsQueryable()
-            .WhereIF(!string.IsNullOrEmpty(input.LoginIp), x => x.LoginIp.Contains(input.LoginIp!))
-            .WhereIF(!string.IsNullOrEmpty(input.LoginUser), x => x.LoginUser!.Contains(input.LoginUser!))
-            .WhereIF(input.StartTime is not null && input.EndTime is not null,
-                x => x.CreationTime >= input.StartTime && x.CreationTime <= input.EndTime)
-            .ToPageListAsync(input.PageNum, input.PageSize, total);
+            .WhereIF(!string.IsNullOrEmpty(query.LoginIp), x => x.LoginIp.Contains(query.LoginIp!))
+            .WhereIF(!string.IsNullOrEmpty(query.LoginUser), x => x.LoginUser!.Contains(query.LoginUser!))
+            .WhereIF(query.StartTime is not null && query.EndTime is not null,
+                x => x.CreationTime >= query.StartTime && x.CreationTime <= query.EndTime)
+            .ToPageListAsync(query.PageNum, query.PageSize, total);
         
         return new PagedResult<LoginLogGetListOutputDto>(total, entities.Adapt<List<LoginLogGetListOutputDto>>());
     }

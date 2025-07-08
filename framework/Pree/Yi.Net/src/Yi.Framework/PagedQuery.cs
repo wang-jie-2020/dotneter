@@ -1,7 +1,7 @@
 ﻿namespace Yi.Framework;
 
 [Serializable]
-public class PagedInput
+public class PagedQuery
 {
     public int PageNum { get; set; }
     

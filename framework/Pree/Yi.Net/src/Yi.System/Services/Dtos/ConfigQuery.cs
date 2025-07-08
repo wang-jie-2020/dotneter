@@ -3,7 +3,7 @@ namespace Yi.System.Services.Dtos;
 /// <summary>
 ///     配置查询参数
 /// </summary>
-public class ConfigGetListInputVo : PagedInput
+public class ConfigQuery : PagedQuery
 {
     /// <summary>
     ///     配置名称

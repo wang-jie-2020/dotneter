@@ -19,13 +19,13 @@ public class MenuService : BaseService, IMenuService
         return entity.Adapt<MenuDto>();
     }
 
-    public async Task<PagedResult<MenuDto>> GetListAsync(MenuGetListInput input)
+    public async Task<PagedResult<MenuDto>> GetListAsync(MenuGetListQuery query)
     {
         RefAsync<int> total = 0;
 
-        var entities = await _repository.AsQueryable().WhereIF(!string.IsNullOrEmpty(input.MenuName),
-                x => x.MenuName.Contains(input.MenuName!))
-            .WhereIF(input.State is not null, x => x.State == input.State)
+        var entities = await _repository.AsQueryable().WhereIF(!string.IsNullOrEmpty(query.MenuName),
+                x => x.MenuName.Contains(query.MenuName!))
+            .WhereIF(query.State is not null, x => x.State == query.State)
             .OrderByDescending(x => x.OrderNum)
             .ToListAsync();
 

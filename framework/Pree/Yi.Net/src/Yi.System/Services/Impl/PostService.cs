@@ -19,15 +19,15 @@ public class PostService : BaseService, IPostService
         return entity.Adapt<PostDto>();
     }
 
-    public async Task<PagedResult<PostDto>> GetListAsync(PostGetListInput input)
+    public async Task<PagedResult<PostDto>> GetListAsync(PostGetListQuery query)
     {
         RefAsync<int> total = 0;
 
         var entities = await _repository.AsQueryable()
-            .WhereIF(!string.IsNullOrEmpty(input.PostName), x => x.PostName.Contains(input.PostName!))
-            .WhereIF(!string.IsNullOrEmpty(input.PostCode), x => x.PostCode.Contains(input.PostCode!))
-            .WhereIF(input.State is not null, x => x.State == input.State)
-            .ToPageListAsync(input.PageNum, input.PageSize, total);
+            .WhereIF(!string.IsNullOrEmpty(query.PostName), x => x.PostName.Contains(query.PostName!))
+            .WhereIF(!string.IsNullOrEmpty(query.PostCode), x => x.PostCode.Contains(query.PostCode!))
+            .WhereIF(query.State is not null, x => x.State == query.State)
+            .ToPageListAsync(query.PageNum, query.PageSize, total);
         return new PagedResult<PostDto>(total, entities.Adapt<List<PostDto>>());
     }
 

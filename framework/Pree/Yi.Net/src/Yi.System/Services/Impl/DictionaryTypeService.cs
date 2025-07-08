@@ -19,15 +19,15 @@ public class DictionaryTypeService : BaseService, IDictionaryTypeService
         return entity.Adapt<DictionaryTypeDto>();
     }
 
-    public async Task<PagedResult<DictionaryTypeDto>> GetListAsync(DictionaryTypeGetListInput input)
+    public async Task<PagedResult<DictionaryTypeDto>> GetListAsync(DictionaryTypeGetListQuery query)
     {
         RefAsync<int> total = 0;
         var entities = await _repository.AsQueryable()
-            .WhereIF(input.DictName is not null, x => x.DictName.Contains(input.DictName!))
-            .WhereIF(input.DictType is not null, x => x.DictType!.Contains(input.DictType!))
-            .WhereIF(input.State is not null, x => x.State == input.State)
-            .WhereIF(input.StartTime is not null && input.EndTime is not null, x => x.CreationTime >= input.StartTime && x.CreationTime <= input.EndTime)
-            .ToPageListAsync(input.PageNum, input.PageSize, total);
+            .WhereIF(query.DictName is not null, x => x.DictName.Contains(query.DictName!))
+            .WhereIF(query.DictType is not null, x => x.DictType!.Contains(query.DictType!))
+            .WhereIF(query.State is not null, x => x.State == query.State)
+            .WhereIF(query.StartTime is not null && query.EndTime is not null, x => x.CreationTime >= query.StartTime && x.CreationTime <= query.EndTime)
+            .ToPageListAsync(query.PageNum, query.PageSize, total);
 
         return new PagedResult<DictionaryTypeDto>
         {
