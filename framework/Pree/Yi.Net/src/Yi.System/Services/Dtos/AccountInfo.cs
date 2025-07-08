@@ -1,6 +1,6 @@
 ﻿namespace Yi.System.Services.Dtos;
 
-public class UserInfo
+public class AccountInfo
 {
     public UserDto User { get; set; } = new();
     

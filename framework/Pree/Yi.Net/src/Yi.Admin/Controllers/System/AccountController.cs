@@ -161,7 +161,7 @@ public class AccountController : BaseController
     /// <returns></returns>
     [HttpGet]
     [Authorize]
-    public async Task<UserInfo> GetAsync()
+    public async Task<AccountInfo> GetAsync()
     {
         //通过鉴权jwt获取到用户的id
         var userId = _currentUser.Id;
@@ -171,7 +171,7 @@ public class AccountController : BaseController
         }
 
         var user = await _userManager.GetInfoAsync(userId.Value);
-        var info = new UserInfo()
+        var info = new AccountInfo()
         {
             User = user.User.Adapt<UserDto>(),
             Permissions = user.Permissions,
