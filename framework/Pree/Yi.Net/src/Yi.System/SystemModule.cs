@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using Yi.AspNetCore.Data;
 using Yi.AspNetCore.MultiTenancy;
 using Yi.Framework.Auditing;
 using Yi.Framework.Loggings;
@@ -25,7 +24,6 @@ public class SystemModule : AbpModule
         
         //Tenant
         context.Services.Replace(new ServiceDescriptor(typeof(ITenantStore), typeof(TenantStore), ServiceLifetime.Transient));
-        context.Services.Replace(new ServiceDescriptor(typeof(IConnectionStringResolver), typeof(MultiTenantConnectionStringResolver), ServiceLifetime.Transient));
         
         //System
         context.Services.Replace(new ServiceDescriptor(typeof(IAuditingStore), typeof(AuditingStore), ServiceLifetime.Singleton));

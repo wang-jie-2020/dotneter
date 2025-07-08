@@ -125,7 +125,8 @@ public class YiAspNetCoreModule : AbpModule
 
         // Other
         Configure<DbConnectionOptions>(configuration);
-
+        context.Services.Replace(new ServiceDescriptor(typeof(IConnectionStringResolver), typeof(MultiTenantConnectionStringResolver), ServiceLifetime.Transient));
+        
         context.Services.AddSingleton(typeof(IDataFilter<>), typeof(DataFilter<>));
         context.Services.AddSingleton<ICurrentTenantAccessor>(AsyncLocalCurrentTenantAccessor.Instance);
         context.Services.AddSingleton(typeof(IAmbientScopeProvider<>), typeof(AmbientDataContextAmbientScopeProvider<>));
