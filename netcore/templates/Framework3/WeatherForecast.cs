@@ -1,6 +1,6 @@
 using System;
 
-namespace web3
+namespace Framework3
 {
     public class WeatherForecast
     {
