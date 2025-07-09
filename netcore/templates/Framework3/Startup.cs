@@ -18,6 +18,7 @@ namespace web3
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddSwaggerGen();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -26,6 +27,8 @@ namespace web3
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSwagger().UseSwaggerUI();
 
             app.UseRouting();
 
