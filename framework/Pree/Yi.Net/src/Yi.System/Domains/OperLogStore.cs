@@ -4,7 +4,7 @@ using Yi.System.Entities;
 
 namespace Yi.System.Domains;
 
-public class OperLogStore : IOperLogStore
+public class OperLogStore : IOperLogStore, ISingletonDependency
 {
     private readonly ILogger<OperLogStore> _logger;
     private readonly ISqlSugarRepository<OperLogEntity> _repository;

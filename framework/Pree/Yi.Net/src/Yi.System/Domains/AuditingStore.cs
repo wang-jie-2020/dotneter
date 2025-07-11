@@ -10,13 +10,13 @@ using Yi.System.Entities;
 
 namespace Yi.System.Domains;
 
-public class AuditingStore : IAuditingStore
+public class AuditingStore : IAuditingStore, ISingletonDependency
 {
     public ILogger<AuditingStore> Logger { get; set; }
     protected ISqlSugarRepository<AuditLogEntity> AuditLogRepository { get; }
     protected IUnitOfWorkManager UnitOfWorkManager { get; }
     protected AuditingOptions Options { get; }
-    
+
     public AuditingStore(
         ISqlSugarRepository<AuditLogEntity> auditLogRepository,
         IUnitOfWorkManager unitOfWorkManager,
@@ -48,7 +48,7 @@ public class AuditingStore : IAuditingStore
         {
             DateTimeFormat = "yyyy-MM-dd HH:mm:ss"
         };
-        
+
         Logger.LogTrace("Yi-请求追踪:" + JsonConvert.SerializeObject(auditInfo, Formatting.Indented, timeConverter));
         using (var uow = UnitOfWorkManager.Begin(true))
         {
@@ -84,12 +84,12 @@ public class AuditingStore : IAuditingStore
                 string.Empty,
                 comments
             );
-            
+
             await AuditLogRepository.Context.InsertNav(auditLog)
                 .Include(z1 => z1.Actions)
                 //.Include(z1 => z1.EntityChanges).ThenInclude(z2 => z2.PropertyChanges)
                 .ExecuteCommandAsync();
-            
+
             await uow.CompleteAsync();
         }
     }
