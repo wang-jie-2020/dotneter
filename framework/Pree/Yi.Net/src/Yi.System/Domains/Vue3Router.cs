@@ -1,6 +1,6 @@
 ﻿using Yi.Framework.Utils;
 
-namespace Yi.System.Services.Dtos;
+namespace Yi.System.Domains;
 
 public class Vue3Router : TreeHelper.ITreeModel<Vue3Router>
 {

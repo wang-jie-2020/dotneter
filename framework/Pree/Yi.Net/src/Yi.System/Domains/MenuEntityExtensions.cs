@@ -2,7 +2,7 @@
 using Yi.Framework.Utils;
 using Yi.System.Services.Dtos;
 
-namespace Yi.System;
+namespace Yi.System.Domains;
 
 /// <summary>
 ///     实体扩展
