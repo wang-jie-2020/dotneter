@@ -1,6 +1,5 @@
 ﻿using System.Linq.Expressions;
 using SqlSugar;
-using Volo.Abp.Uow;
 
 namespace Yi.Framework.SqlSugarCore.Repositories;
 

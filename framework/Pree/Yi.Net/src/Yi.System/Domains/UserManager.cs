@@ -5,8 +5,8 @@ using Microsoft.Extensions.Options;
 using Yi.AspNetCore;
 using Yi.AspNetCore.Extensions.Caching;
 using Yi.Framework.Abstractions;
+using Yi.Framework.Options;
 using Yi.System.Entities;
-using Yi.System.Options;
 
 namespace Yi.System.Domains;
 

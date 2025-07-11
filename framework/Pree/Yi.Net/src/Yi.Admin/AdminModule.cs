@@ -9,8 +9,8 @@ using Yi.AspNetCore.Extensions.Builder;
 using Yi.AspNetCore.Extensions.DependencyInjection;
 using Yi.AspNetCore.Security;
 using Yi.Framework.Extensions.Builder;
+using Yi.Framework.Options;
 using Yi.System;
-using Yi.System.Options;
 
 namespace Yi.Admin;
 

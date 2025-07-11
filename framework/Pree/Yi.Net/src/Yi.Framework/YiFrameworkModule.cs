@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using SkyApm;
 using StackExchange.Profiling.Internal;
 using Yi.AspNetCore;
+using Yi.Framework.Options;
 using Yi.Framework.SqlSugarCore;
 using Yi.Framework.SqlSugarCore.Profilers;
 using Yi.Framework.SqlSugarCore.Repositories;
@@ -16,6 +16,10 @@ public class YiFrameworkModule : AbpModule
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
         var configuration = context.Services.GetConfiguration();
+        
+        Configure<JwtOptions>(configuration.GetSection(nameof(JwtOptions)));
+        Configure<RefreshJwtOptions>(configuration.GetSection(nameof(RefreshJwtOptions)));
+        Configure<RbacOptions>(configuration.GetSection(nameof(RbacOptions)));
         
         // SqlSugar 
         Configure<SqlSugarConnectionOptions>(configuration);

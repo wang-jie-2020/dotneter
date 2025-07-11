@@ -1,10 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
-using Yi.AspNetCore.Auditing;
 using Yi.AspNetCore.Authorization;
-using Yi.AspNetCore.MultiTenancy;
 using Yi.System.Domains;
-using Yi.System.Options;
 
 namespace Yi.System;
 
@@ -15,10 +11,6 @@ public class SystemModule : AbpModule
     {
         var configuration = context.Services.GetConfiguration();
         
-        Configure<JwtOptions>(configuration.GetSection(nameof(JwtOptions)));
-        Configure<RefreshJwtOptions>(configuration.GetSection(nameof(RefreshJwtOptions)));
-        Configure<RbacOptions>(configuration.GetSection(nameof(RbacOptions)));
-
         Configure<PermissionOptions>(options =>
         {
             options.CheckHandlers.Add<UserPermissionHandler>();
