@@ -3,6 +3,7 @@ using System.Text;
 using System.Threading.RateLimiting;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Yi.AspNetCore.Data.Seeding;
 using Yi.AspNetCore.Extensions.Builder;
@@ -24,7 +25,7 @@ public class AdminModule : AbpModule
     {
         var configuration = context.Services.GetConfiguration();
         var host = context.Services.GetHostingEnvironment();
-        
+
         //跨域
         context.Services.AddCors(options =>
         {
@@ -93,16 +94,20 @@ public class AdminModule : AbpModule
                     ValidAudience = jwtOptions.Audience,
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtOptions.SecurityKey))
                 };
-                // options.Events = new JwtBearerEvents
-                // {
-                //     OnMessageReceived = context =>
-                //     {
-                //         var accessToken = context.Request.Query["access_token"];
-                //         if (!string.IsNullOrEmpty(accessToken)) context.Token = accessToken;
-                //
-                //         return Task.CompletedTask;
-                //     }
-                // };
+                options.Events = new JwtBearerEvents
+                {
+                    // OnMessageReceived = context =>
+                    // {
+                    //     var accessToken = context.Request.Query["access_token"];
+                    //     if (!string.IsNullOrEmpty(accessToken)) context.Token = accessToken;
+                    //
+                    //     return Task.CompletedTask;
+                    // }
+                    // OnForbidden = async context =>
+                    // {
+                    //     await context.HttpContext.Response.WriteAsync("forbidden");
+                    // }
+                };
             })
             .AddJwtBearer(ClaimsIdentityTypes.Refresh, options =>
             {

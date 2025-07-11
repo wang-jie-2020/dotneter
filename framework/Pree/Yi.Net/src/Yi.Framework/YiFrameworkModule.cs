@@ -3,9 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using SkyApm;
 using StackExchange.Profiling.Internal;
 using Yi.AspNetCore;
-using Yi.AspNetCore.Auditing;
 using Yi.Framework.Loggings;
-using Yi.Framework.Permissions;
 using Yi.Framework.SqlSugarCore;
 using Yi.Framework.SqlSugarCore.Profilers;
 using Yi.Framework.SqlSugarCore.Repositories;
@@ -28,7 +26,6 @@ public class YiFrameworkModule : AbpModule
         // AspNetCore & Mvc
         context.Services.Configure<MvcOptions>(options =>
         {
-            options.Filters.AddService<PermissionFilter>();
             options.Filters.AddService<OperLogFilter>();
         });
         

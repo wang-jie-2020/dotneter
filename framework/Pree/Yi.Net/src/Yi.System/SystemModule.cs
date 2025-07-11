@@ -4,7 +4,6 @@ using Yi.AspNetCore.Auditing;
 using Yi.AspNetCore.Authorization;
 using Yi.AspNetCore.MultiTenancy;
 using Yi.Framework.Loggings;
-using Yi.Framework.Permissions;
 using Yi.System.Domains;
 using Yi.System.Options;
 
@@ -29,7 +28,6 @@ public class SystemModule : AbpModule
         context.Services.Replace(new ServiceDescriptor(typeof(ITenantStore), typeof(TenantStore), ServiceLifetime.Transient));
         context.Services.Replace(new ServiceDescriptor(typeof(IAuditingStore), typeof(AuditingStore), ServiceLifetime.Singleton));
         context.Services.Replace(new ServiceDescriptor(typeof(IOperLogStore), typeof(OperLogStore), ServiceLifetime.Singleton));
-        context.Services.Replace(new ServiceDescriptor(typeof(IPermissionHandler), typeof(UserPermissionHandler), ServiceLifetime.Transient));
         
         context.Services.AddCaptcha();
     }

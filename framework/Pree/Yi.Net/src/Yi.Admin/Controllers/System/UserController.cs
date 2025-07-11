@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Yi.Framework;
 using Yi.Framework.Abstractions;
 using Yi.Framework.Loggings;
-using Yi.Framework.Permissions;
 using Yi.System.Services;
 using Yi.System.Services.Dtos;
 
@@ -27,7 +26,6 @@ public class UserController : BaseController
     }
 
     [HttpGet]
-    [Permission("system:user:list")]
     [Authorize("system:user:list")]
     public async Task<PagedResult<UserDto>> GetListAsync([FromQuery] UserQuery query)
     {
@@ -36,7 +34,7 @@ public class UserController : BaseController
 
     [HttpPost]
     [OperLog("添加用户", OperLogEnum.Insert)]
-    [Permission("system:user:add")]
+    [Authorize("system:user:add")]
     public async Task<UserDto> CreateAsync([FromBody] UserInput input)
     {
         return await _userService.CreateAsync(input);
@@ -44,7 +42,7 @@ public class UserController : BaseController
 
     [HttpPut("{id}")]
     [OperLog("更新用户", OperLogEnum.Update)]
-    [Permission("system:user:edit")]
+    [Authorize("system:user:edit")]
     public async Task<UserDto> UpdateAsync(Guid id, [FromBody] UserInput input)
     {
         return await _userService.UpdateAsync(id, input);
@@ -52,14 +50,14 @@ public class UserController : BaseController
 
     [HttpDelete]
     [OperLog("删除用户", OperLogEnum.Delete)]
-    [Permission("system:user:delete")]
+    [Authorize("system:user:delete")]
     public async Task DeleteAsync([FromQuery] IEnumerable<Guid> id)
     {
         await _userService.DeleteAsync(id);
     }
 
     [HttpGet("export")]
-    [Permission("system:user:export")]
+    [Authorize("system:user:export")]
     public async Task<IActionResult> GetExportExcelAsync([FromQuery] UserQuery query)
     {
         return await _userService.GetExportExcelAsync(query);
@@ -72,7 +70,7 @@ public class UserController : BaseController
     }
     
     [HttpPost("import")]
-    [Permission("system:user:import")]
+    [Authorize("system:user:import")]
     public Task PostImportExcelAsync(IFormFile file)
     {
         return _userService.PostImportExcelAsync(file.OpenReadStream());
@@ -98,7 +96,7 @@ public class UserController : BaseController
     /// <returns></returns>
     [HttpPut("{id}/{state}")]
     [OperLog("更新用户状态", OperLogEnum.Update)]
-    [Permission("system:user:update")]
+    [Authorize("system:user:update")]
     public async Task<UserDto> UpdateStateAsync([FromRoute] Guid id, [FromRoute] bool state)
     {
         return await _userService.UpdateStateAsync(id, state);
