@@ -4,7 +4,7 @@ using Volo.Abp.Uow;
 
 namespace Yi.Framework.SqlSugarCore.Repositories;
 
-public class SqlSugarRepository<TEntity> : ISqlSugarRepository<TEntity>, IUnitOfWorkEnabled
+public class SqlSugarRepository<TEntity> : ISqlSugarRepository<TEntity>
     where TEntity : class, new()
 {
     private readonly ISugarDbContextProvider<ISqlSugarDbContext> _sugarDbContextProvider;

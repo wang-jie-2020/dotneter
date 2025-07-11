@@ -12,14 +12,16 @@ public class UnitOfWorkSqlSugarDbContextProvider<TDbContext> : ISugarDbContextPr
     {
         _unitOfWorkManager = unitOfWorkManager;
     }
+    
+    public IServiceProvider ServiceProvider { get; set; }
 
     public virtual async Task<TDbContext> GetDbContextAsync()
     {
         var unitOfWork = _unitOfWorkManager.Current;
         if (unitOfWork == null)
         {
-            throw new Exception("A DbContext can only be created inside a unit of work!");
-            //return ServiceProvider.GetRequiredService<TDbContext>();
+            //throw new Exception("A DbContext can only be created inside a unit of work!");
+            return ServiceProvider.GetRequiredService<TDbContext>();
         }
 
         var dbContextKey = $"{typeof(TDbContext).Name}";

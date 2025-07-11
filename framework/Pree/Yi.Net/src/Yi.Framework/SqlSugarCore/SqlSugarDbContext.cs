@@ -3,6 +3,7 @@ using System.Reflection;
 using System.Text;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 using SqlSugar;
 using Volo.Abp.DependencyInjection;
 using Yi.AspNetCore.Data;
@@ -45,11 +46,13 @@ public abstract class SqlSugarDbContext : ISqlSugarDbContext
 
     public ICurrentUser CurrentUser => LazyServiceProvider.GetRequiredService<ICurrentUser>();
 
-    private IAbpLazyServiceProvider LazyServiceProvider { get; }
+    protected IAbpLazyServiceProvider LazyServiceProvider { get; }
 
-    protected ILoggerFactory Logger => LazyServiceProvider.LazyGetRequiredService<ILoggerFactory>();
+    protected ILoggerFactory LoggerFactory => LazyServiceProvider.LazyGetRequiredService<ILoggerFactory>();
 
-    private ICurrentTenant CurrentTenant => LazyServiceProvider.LazyGetRequiredService<ICurrentTenant>();
+    protected ILogger Logger => LazyServiceProvider.LazyGetService<ILogger>(provider => LoggerFactory?.CreateLogger(GetType().FullName!) ?? NullLogger.Instance);
+    
+    protected ICurrentTenant CurrentTenant => LazyServiceProvider.LazyGetRequiredService<ICurrentTenant>();
 
     public IDataFilter DataFilter => LazyServiceProvider.LazyGetRequiredService<IDataFilter>();
 
@@ -190,7 +193,7 @@ public abstract class SqlSugarDbContext : ISqlSugarDbContext
         sb.AppendLine("==========Yi-SQL执行:==========");
         sb.AppendLine(UtilMethods.GetSqlString(SqlSugarClient.CurrentConnectionConfig.DbType, sql, pars));
         sb.AppendLine("===============================");
-        Logger.CreateLogger<SqlSugarDbContext>().LogTrace(sb.ToString());
+        Logger.LogTrace(sb.ToString());
 
         if (s_diagnosticListener.IsEnabled(LogExecutingEvent.EventName))
         {
@@ -210,7 +213,7 @@ public abstract class SqlSugarDbContext : ISqlSugarDbContext
     protected virtual void OnLogExecuted(string sql, SugarParameter[] pars)
     {
         var sqllog = $"=========Yi-SQL耗时{SqlSugarClient.Ado.SqlExecutionTime.TotalMilliseconds}毫秒=====";
-        Logger.CreateLogger<SqlSugarDbContext>().LogTrace(sqllog);
+        Logger.LogTrace(sqllog);
     }
 
     /// <summary>
