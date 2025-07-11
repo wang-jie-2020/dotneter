@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using FreeRedis;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
@@ -14,6 +15,7 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using Volo.Abp.Autofac;
 using Volo.Abp.Uow;
+using Yi.AspNetCore.Authorization;
 using Yi.AspNetCore.Data;
 using Yi.AspNetCore.Data.Filtering;
 using Yi.AspNetCore.Data.Seeding;
@@ -105,6 +107,8 @@ public class YiAspNetCoreModule : AbpModule
             };
         });
 
+        context.Services.AddSingleton<IAuthorizationHandler, PermissionRequirementHandler>();
+        
         // Localization  
         context.Services.AddJsonLocalization(options => options.ResourcesPath = "Resources");
         context.Services.Replace(new ServiceDescriptor(typeof(IStringLocalizerFactory), typeof(JsonStringLocalizerFactory), ServiceLifetime.Singleton));    // WTF --> SEE Volo.Abp.Internal.InternalServiceCollectionExtensions.AddCoreServices

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Yi.Framework;
 using Yi.Framework.Abstractions;
@@ -27,6 +28,7 @@ public class UserController : BaseController
 
     [HttpGet]
     [Permission("system:user:list")]
+    [Authorize("system:user:list")]
     public async Task<PagedResult<UserDto>> GetListAsync([FromQuery] UserQuery query)
     {
         return await _userService.GetListAsync(query);
