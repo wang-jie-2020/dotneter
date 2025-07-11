@@ -3,12 +3,14 @@ using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Volo.Abp.DependencyInjection;
 using Volo.Abp.Uow;
 using Yi.AspNetCore.Auditing;
+using Yi.Framework.Core.Entities;
+using Yi.Framework.SqlSugarCore.Repositories;
 using Yi.Framework.Utils;
-using Yi.System.Entities;
 
-namespace Yi.System.Domains;
+namespace Yi.Framework.Core;
 
 public class AuditingStore : IAuditingStore, ISingletonDependency
 {

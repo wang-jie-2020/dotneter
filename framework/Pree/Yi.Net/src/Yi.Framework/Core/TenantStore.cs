@@ -1,10 +1,12 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
+using Volo.Abp.DependencyInjection;
 using Yi.AspNetCore.Data;
 using Yi.AspNetCore.Extensions.Caching;
 using Yi.AspNetCore.MultiTenancy;
-using Yi.System.Entities;
+using Yi.Framework.Core.Entities;
+using Yi.Framework.SqlSugarCore.Repositories;
 
-namespace Yi.System.Domains;
+namespace Yi.Framework.Core;
 
 public class TenantStore : ITenantStore, ITransientDependency
 {

@@ -1,7 +1,9 @@
-﻿using Yi.AspNetCore.Auditing;
+﻿using SqlSugar;
+using Yi.AspNetCore.Auditing;
 using Yi.AspNetCore.MultiTenancy;
+using Yi.Framework.SqlSugarCore;
 
-namespace Yi.System.Entities;
+namespace Yi.Framework.Core.Entities;
 
 [SugarTable("Sys_AuditLogAction")]
 [SugarIndex($"index_{nameof(AuditLogId)}", nameof(AuditLogId), OrderByType.Asc)]

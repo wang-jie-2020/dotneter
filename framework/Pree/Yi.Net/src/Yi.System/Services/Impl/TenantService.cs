@@ -6,6 +6,7 @@ using Volo.Abp.Uow;
 using Yi.AspNetCore;
 using Yi.AspNetCore.Data.Seeding;
 using Yi.Framework.Abstractions;
+using Yi.Framework.Core.Entities;
 using Yi.System.Entities;
 using Yi.System.Services.Dtos;
 

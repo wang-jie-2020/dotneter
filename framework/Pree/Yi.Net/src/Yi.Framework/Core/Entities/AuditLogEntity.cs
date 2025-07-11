@@ -1,6 +1,8 @@
-﻿using Yi.AspNetCore.MultiTenancy;
+﻿using SqlSugar;
+using Yi.AspNetCore.MultiTenancy;
+using Yi.Framework.SqlSugarCore;
 
-namespace Yi.System.Entities;
+namespace Yi.Framework.Core.Entities;
 
 [SugarTable("Sys_AuditLog")]
 [SugarIndex($"index_{nameof(ExecutionTime)}", nameof(TenantId), OrderByType.Asc, nameof(ExecutionTime),

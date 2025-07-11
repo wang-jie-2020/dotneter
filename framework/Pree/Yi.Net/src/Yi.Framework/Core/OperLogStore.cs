@@ -1,8 +1,10 @@
 ﻿using Microsoft.Extensions.Logging;
+using Volo.Abp.DependencyInjection;
 using Yi.AspNetCore.Mvc.OperLogging;
-using Yi.System.Entities;
+using Yi.Framework.Core.Entities;
+using Yi.Framework.SqlSugarCore.Repositories;
 
-namespace Yi.System.Domains;
+namespace Yi.Framework.Core;
 
 public class OperLogStore : IOperLogStore, ISingletonDependency
 {

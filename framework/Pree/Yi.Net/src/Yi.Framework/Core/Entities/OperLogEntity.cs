@@ -1,7 +1,9 @@
-﻿using Yi.AspNetCore.MultiTenancy;
+﻿using SqlSugar;
+using Yi.AspNetCore.MultiTenancy;
 using Yi.AspNetCore.Mvc.OperLogging;
+using Yi.Framework.SqlSugarCore;
 
-namespace Yi.System.Entities;
+namespace Yi.Framework.Core.Entities;
 
 /// <summary>
 ///     操作日志表
