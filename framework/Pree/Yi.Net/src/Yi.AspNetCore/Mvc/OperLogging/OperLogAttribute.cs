@@ -1,4 +1,4 @@
-﻿namespace Yi.Framework.Loggings;
+﻿namespace Yi.AspNetCore.Mvc.OperLogging;
 
 [AttributeUsage(AttributeTargets.Method)]
 public class OperLogAttribute : Attribute

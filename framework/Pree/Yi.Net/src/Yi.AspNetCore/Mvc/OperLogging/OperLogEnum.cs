@@ -1,4 +1,4 @@
-﻿namespace Yi.Framework.Loggings;
+﻿namespace Yi.AspNetCore.Mvc.OperLogging;
 
 public enum OperLogEnum
 {

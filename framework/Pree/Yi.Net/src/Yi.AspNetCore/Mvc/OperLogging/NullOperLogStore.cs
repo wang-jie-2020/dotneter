@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Logging.Abstractions;
 using Volo.Abp.DependencyInjection;
 
-namespace Yi.Framework.Loggings;
+namespace Yi.AspNetCore.Mvc.OperLogging;
 
 [Dependency(TryRegister = true)]
 public class NullOperLogStore : IOperLogStore, ISingletonDependency

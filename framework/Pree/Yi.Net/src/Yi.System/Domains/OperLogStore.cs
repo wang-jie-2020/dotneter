@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
-using Yi.Framework.Loggings;
+using Yi.AspNetCore.Mvc.OperLogging;
 using Yi.System.Entities;
 
 namespace Yi.System.Domains;

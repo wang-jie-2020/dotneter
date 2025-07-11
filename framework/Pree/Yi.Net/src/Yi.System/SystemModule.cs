@@ -3,7 +3,6 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Yi.AspNetCore.Auditing;
 using Yi.AspNetCore.Authorization;
 using Yi.AspNetCore.MultiTenancy;
-using Yi.Framework.Loggings;
 using Yi.System.Domains;
 using Yi.System.Options;
 

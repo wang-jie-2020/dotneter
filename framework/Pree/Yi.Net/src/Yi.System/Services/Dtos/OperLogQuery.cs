@@ -1,4 +1,4 @@
-using Yi.Framework.Loggings;
+using Yi.AspNetCore.Mvc.OperLogging;
 
 namespace Yi.System.Services.Dtos;
 

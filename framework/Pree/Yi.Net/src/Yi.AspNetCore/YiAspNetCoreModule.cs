@@ -24,6 +24,7 @@ using Yi.AspNetCore.MultiTenancy;
 using Yi.AspNetCore.Mvc;
 using Yi.AspNetCore.Mvc.Conventions;
 using Yi.AspNetCore.Mvc.ExceptionHandling;
+using Yi.AspNetCore.Mvc.OperLogging;
 using Yi.AspNetCore.Threading;
 using Yitter.IdGenerator;
 
@@ -37,6 +38,7 @@ public class YiAspNetCoreModule : AbpModule
 {
     public override void PreConfigureServices(ServiceConfigurationContext context)
     {
+        context.Services.OnRegistered(OperLogInterceptorRegistrar.RegisterIfNeeded);
         RegisterDataSeedContributors(context.Services);
     }
 
@@ -84,6 +86,7 @@ public class YiAspNetCoreModule : AbpModule
             options.Filters.AddService<UowActionFilter>();
             options.Filters.AddService<ExceptionFilter>();
             options.Filters.AddService<AuditActionFilter>();
+            options.Filters.AddService<OperLogFilter>();
         });
 
         Configure<ApiBehaviorOptions>(options =>

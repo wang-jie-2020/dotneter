@@ -3,7 +3,6 @@ using Microsoft.Extensions.DependencyInjection;
 using SkyApm;
 using StackExchange.Profiling.Internal;
 using Yi.AspNetCore;
-using Yi.Framework.Loggings;
 using Yi.Framework.SqlSugarCore;
 using Yi.Framework.SqlSugarCore.Profilers;
 using Yi.Framework.SqlSugarCore.Repositories;
@@ -14,20 +13,9 @@ namespace Yi.Framework;
 [DependsOn(typeof(YiAspNetCoreModule))]
 public class YiFrameworkModule : AbpModule
 {
-    public override void PreConfigureServices(ServiceConfigurationContext context)
-    {
-        context.Services.OnRegistered(OperLogInterceptorRegistrar.RegisterIfNeeded);
-    }
-    
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
         var configuration = context.Services.GetConfiguration();
-        
-        // AspNetCore & Mvc
-        context.Services.Configure<MvcOptions>(options =>
-        {
-            options.Filters.AddService<OperLogFilter>();
-        });
         
         // SqlSugar 
         Configure<SqlSugarConnectionOptions>(configuration);

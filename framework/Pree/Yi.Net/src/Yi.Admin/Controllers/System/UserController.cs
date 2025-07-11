@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Yi.AspNetCore.Mvc.OperLogging;
 using Yi.Framework;
 using Yi.Framework.Abstractions;
-using Yi.Framework.Loggings;
 using Yi.System.Services;
 using Yi.System.Services.Dtos;
 

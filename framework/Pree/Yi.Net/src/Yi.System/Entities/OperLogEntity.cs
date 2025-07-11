@@ -1,5 +1,5 @@
 ﻿using Yi.AspNetCore.MultiTenancy;
-using Yi.Framework.Loggings;
+using Yi.AspNetCore.Mvc.OperLogging;
 
 namespace Yi.System.Entities;
 
