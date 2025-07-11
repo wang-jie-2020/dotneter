@@ -1,10 +1,8 @@
-﻿using Microsoft.Extensions.Options;
-using Yi.AspNetCore.Data.Seeding;
+﻿using Yi.AspNetCore.Data.Seeding;
 using Yi.System.Entities;
 using Yi.System.Entities.ValueObjects;
-using Yi.System.Options;
 
-namespace Yi.System.DataSeeds;
+namespace Yi.Admin.DataSeeds;
 
 public class UserDataSeed : IDataSeedContributor, ITransientDependency
 {

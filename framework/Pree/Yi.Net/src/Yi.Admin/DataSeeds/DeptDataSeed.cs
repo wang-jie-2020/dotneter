@@ -2,7 +2,7 @@
 using Yi.Framework.Utils;
 using Yi.System.Entities;
 
-namespace Yi.System.DataSeeds;
+namespace Yi.Admin.DataSeeds;
 
 public class DeptDataSeed : IDataSeedContributor, ITransientDependency
 {

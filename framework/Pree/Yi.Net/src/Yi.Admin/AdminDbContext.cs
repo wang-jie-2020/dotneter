@@ -1,11 +1,7 @@
-﻿using Volo.Abp.DependencyInjection;
-using Yi.Framework;
-using Yi.Framework.SqlSugarCore;
-using Yi.System.Domains;
+﻿using Yi.System.Domains;
 using Yi.System.Entities;
-using Yi.System.Services.Impl;
 
-namespace Yi.Web;
+namespace Yi.Admin;
 
 public class AdminDbContext: SqlSugarDbContext
 {

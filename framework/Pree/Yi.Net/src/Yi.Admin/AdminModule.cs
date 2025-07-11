@@ -3,18 +3,16 @@ using System.Text;
 using System.Threading.RateLimiting;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Localization;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Yi.AspNetCore.Data.Seeding;
 using Yi.AspNetCore.Extensions.Builder;
 using Yi.AspNetCore.Extensions.DependencyInjection;
 using Yi.AspNetCore.Security;
 using Yi.Framework.Extensions.Builder;
-using Yi.Framework.SqlSugarCore;
 using Yi.System;
 using Yi.System.Options;
 
-namespace Yi.Web;
+namespace Yi.Admin;
 
 [DependsOn(typeof(SystemModule))]
 public class AdminModule : AbpModule

@@ -1,11 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Yi.Framework;
 using Yi.Framework.Abstractions;
-using Yi.Framework.SqlSugarCore.Repositories;
 using Yi.System.Entities;
 using Yi.System.Services.Dtos;
 
-namespace Yi.Web.Controllers.System;
+namespace Yi.Admin.Controllers.System;
 
 [ApiController]
 [Route("api/monitor/oper-log")]

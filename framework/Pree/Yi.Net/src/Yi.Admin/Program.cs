@@ -1,8 +1,8 @@
 using Serilog;
 using Serilog.Events;
 using Serilog.Sinks.SystemConsole.Themes;
+using Yi.Admin;
 using Yi.AspNetCore.Extensions.Builder;
-using Yi.Web;
 
 Log.Logger = new LoggerConfiguration()
 #if DEBUG

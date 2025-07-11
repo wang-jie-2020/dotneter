@@ -2,7 +2,7 @@ using Yi.AspNetCore.Data.Seeding;
 using Yi.Framework.Utils;
 using Yi.System.Entities;
 
-namespace Yi.System.DataSeeds;
+namespace Yi.Admin.DataSeeds;
 
 public class MenuDataSeed : IDataSeedContributor, ITransientDependency
 {

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Yi.Framework.Abstractions;
 using Yi.System.Services.Dtos;
 
-namespace Yi.Web.Controllers.System;
+namespace Yi.Admin.Controllers.System;
 
 [ApiController]
 [Route("api/monitor/cache")]

@@ -1,11 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Yi.Framework;
 using Yi.Framework.Abstractions;
 using Yi.System.Services;
 using Yi.System.Services.Dtos;
 using ConfigQuery = Yi.System.Services.Dtos.ConfigQuery;
 
-namespace Yi.Web.Controllers.System;
+namespace Yi.Admin.Controllers.System;
 
 [ApiController]
 [Route("api/system/config")]

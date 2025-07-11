@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Yi.Framework.Abstractions;
 using Yi.Framework.Utils;
 
-namespace Yi.Web.Controllers.System;
+namespace Yi.Admin.Controllers.System;
 
 [ApiController]
 [Route("api/monitor/server")]

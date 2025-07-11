@@ -1,12 +1,11 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Yi.AspNetCore.Mvc.OperLogging;
-using Yi.Framework;
 using Yi.Framework.Abstractions;
 using Yi.System.Services;
 using Yi.System.Services.Dtos;
 
-namespace Yi.Web.Controllers.System;
+namespace Yi.Admin.Controllers.System;
 
 [ApiController]
 [Route("api/system/user")]

@@ -9,16 +9,14 @@ using Yi.AspNetCore;
 using Yi.AspNetCore.Extensions.Caching;
 using Yi.AspNetCore.Security;
 using Yi.Framework.Abstractions;
-using Yi.Framework.SqlSugarCore.Repositories;
 using Yi.Framework.Utils;
 using Yi.System;
 using Yi.System.Domains;
 using Yi.System.Entities;
 using Yi.System.Options;
 using Yi.System.Services.Dtos;
-using Yi.System.Services.Impl;
 
-namespace Yi.Web.Controllers.System;
+namespace Yi.Admin.Controllers.System;
 
 [ApiController]
 [Route("api/system/account")]
