@@ -180,7 +180,7 @@ const handler = (code, msg) => {
     //业务异常
     case 403:
       ElNotification.error({
-        title: msg
+        title: '您无权访问'
       })
       break;
     //接口异常
