@@ -4,7 +4,6 @@ using Yi.AspNetCore;
 using Yi.Framework.Abstractions;
 using Yi.Framework.Core.Entities;
 using Yi.System.Domains;
-using Yi.System.Entities;
 using Yi.System.Services.Dtos;
 
 namespace Yi.System.Services.Impl;

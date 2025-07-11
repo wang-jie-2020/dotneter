@@ -1,6 +1,5 @@
 ﻿using Yi.Framework.Core.Entities;
 using Yi.System.Domains;
-using Yi.System.Entities;
 
 namespace Yi.Admin;
 

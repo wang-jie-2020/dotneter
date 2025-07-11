@@ -7,7 +7,6 @@ using Yi.AspNetCore.Extensions.Caching;
 using Yi.Framework.Abstractions;
 using Yi.Framework.Core.Entities;
 using Yi.Framework.Options;
-using Yi.System.Entities;
 
 namespace Yi.System.Domains;
 

@@ -14,7 +14,6 @@ using Yi.Framework.Options;
 using Yi.Framework.Utils;
 using Yi.System;
 using Yi.System.Domains;
-using Yi.System.Entities;
 using Yi.System.Services.Dtos;
 
 namespace Yi.Admin.Controllers.System;

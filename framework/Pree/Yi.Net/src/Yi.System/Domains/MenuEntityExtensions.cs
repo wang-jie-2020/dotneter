@@ -1,6 +1,5 @@
 ﻿using Yi.Framework.Core.Entities;
 using Yi.Framework.Utils;
-using Yi.System.Services.Dtos;
 
 namespace Yi.System.Domains;
 
