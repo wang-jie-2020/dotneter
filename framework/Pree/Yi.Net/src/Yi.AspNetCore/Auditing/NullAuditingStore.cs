@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Logging.Abstractions;
 using Volo.Abp.DependencyInjection;
 
-namespace Yi.Framework.Auditing;
+namespace Yi.AspNetCore.Auditing;
 
 [Dependency(TryRegister = true)]
 public class NullAuditingStore : IAuditingStore, ISingletonDependency

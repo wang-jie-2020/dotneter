@@ -1,6 +1,6 @@
 using System.Reflection;
 
-namespace Yi.Framework.Auditing;
+namespace Yi.AspNetCore.Auditing;
 
 public interface IAuditingHelper
 {

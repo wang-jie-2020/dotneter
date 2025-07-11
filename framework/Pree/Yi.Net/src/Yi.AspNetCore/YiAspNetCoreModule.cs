@@ -15,6 +15,7 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using Volo.Abp.Autofac;
 using Volo.Abp.Uow;
+using Yi.AspNetCore.Auditing;
 using Yi.AspNetCore.Authorization;
 using Yi.AspNetCore.Data;
 using Yi.AspNetCore.Data.Filtering;
@@ -82,6 +83,7 @@ public class YiAspNetCoreModule : AbpModule
 
             options.Filters.AddService<UowActionFilter>();
             options.Filters.AddService<ExceptionFilter>();
+            options.Filters.AddService<AuditActionFilter>();
         });
 
         Configure<ApiBehaviorOptions>(options =>

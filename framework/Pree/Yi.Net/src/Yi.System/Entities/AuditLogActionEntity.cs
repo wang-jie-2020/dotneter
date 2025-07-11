@@ -1,5 +1,5 @@
-﻿using Yi.AspNetCore.MultiTenancy;
-using Yi.Framework.Auditing;
+﻿using Yi.AspNetCore.Auditing;
+using Yi.AspNetCore.MultiTenancy;
 
 namespace Yi.System.Entities;
 

@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Builder;
-using Yi.Framework.Auditing;
+using Yi.AspNetCore.Auditing;
 
 namespace Yi.Framework.Extensions.Builder
 {

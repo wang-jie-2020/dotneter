@@ -1,4 +1,4 @@
-﻿namespace Yi.Framework.Auditing;
+﻿namespace Yi.AspNetCore.Auditing;
 
 [Serializable]
 public class AuditLogActionInfo

@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using SkyApm;
 using StackExchange.Profiling.Internal;
 using Yi.AspNetCore;
-using Yi.Framework.Auditing;
+using Yi.AspNetCore.Auditing;
 using Yi.Framework.Loggings;
 using Yi.Framework.Permissions;
 using Yi.Framework.SqlSugarCore;
@@ -30,7 +30,6 @@ public class YiFrameworkModule : AbpModule
         {
             options.Filters.AddService<PermissionFilter>();
             options.Filters.AddService<OperLogFilter>();
-            options.Filters.AddService<AuditActionFilter>();
         });
         
         // SqlSugar 

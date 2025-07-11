@@ -4,7 +4,7 @@ using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Volo.Abp.Uow;
-using Yi.Framework.Auditing;
+using Yi.AspNetCore.Auditing;
 using Yi.Framework.Utils;
 using Yi.System.Entities;
 

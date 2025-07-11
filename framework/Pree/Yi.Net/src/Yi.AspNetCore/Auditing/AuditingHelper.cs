@@ -8,7 +8,7 @@ using Volo.Abp.Tracing;
 using Yi.AspNetCore.MultiTenancy;
 using Yi.AspNetCore.Security;
 
-namespace Yi.Framework.Auditing;
+namespace Yi.AspNetCore.Auditing;
 
 public class AuditingHelper : IAuditingHelper, ITransientDependency
 {

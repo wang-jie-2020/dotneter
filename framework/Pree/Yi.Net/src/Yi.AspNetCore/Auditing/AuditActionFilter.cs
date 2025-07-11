@@ -6,7 +6,7 @@ using Volo.Abp.Aspects;
 using Volo.Abp.DependencyInjection;
 using Yi.AspNetCore.Extensions.DependencyInjection;
 
-namespace Yi.Framework.Auditing;
+namespace Yi.AspNetCore.Auditing;
 
 public class AuditActionFilter : IAsyncActionFilter, ITransientDependency
 {

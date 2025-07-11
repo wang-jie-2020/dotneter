@@ -5,7 +5,7 @@ using Volo.Abp.DependencyInjection;
 using Volo.Abp.Uow;
 using Yi.AspNetCore.Security;
 
-namespace Yi.Framework.Auditing;
+namespace Yi.AspNetCore.Auditing;
 
 public class AuditingMiddleware : IMiddleware, ITransientDependency
 {
