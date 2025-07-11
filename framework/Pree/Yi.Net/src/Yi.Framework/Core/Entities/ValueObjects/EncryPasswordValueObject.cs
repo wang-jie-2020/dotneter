@@ -1,6 +1,6 @@
 ﻿using Yi.AspNetCore.Data;
 
-namespace Yi.System.Entities.ValueObjects;
+namespace Yi.Framework.Core.Entities.ValueObjects;
 
 public class EncryptPasswordValueObject : ValueObject
 {

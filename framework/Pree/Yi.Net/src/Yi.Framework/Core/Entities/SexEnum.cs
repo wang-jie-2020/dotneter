@@ -1,4 +1,4 @@
-﻿namespace Yi.System.Entities;
+﻿namespace Yi.Framework.Core.Entities;
 
 /// <summary>
 ///     性别

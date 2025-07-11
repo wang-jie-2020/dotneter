@@ -1,4 +1,5 @@
 using Yi.AspNetCore.Data.Seeding;
+using Yi.Framework.Core.Entities;
 using Yi.Framework.Utils;
 using Yi.System.Entities;
 

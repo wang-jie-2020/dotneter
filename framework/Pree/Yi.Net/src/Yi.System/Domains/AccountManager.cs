@@ -9,6 +9,7 @@ using Yi.AspNetCore;
 using Yi.AspNetCore.Mvc.OperLogging;
 using Yi.AspNetCore.Security;
 using Yi.Framework.Abstractions;
+using Yi.Framework.Core.Entities;
 using Yi.Framework.Options;
 using Yi.Framework.Utils;
 using Yi.System.Entities;

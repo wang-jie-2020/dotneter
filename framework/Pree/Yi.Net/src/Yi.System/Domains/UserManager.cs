@@ -5,6 +5,7 @@ using Microsoft.Extensions.Options;
 using Yi.AspNetCore;
 using Yi.AspNetCore.Extensions.Caching;
 using Yi.Framework.Abstractions;
+using Yi.Framework.Core.Entities;
 using Yi.Framework.Options;
 using Yi.System.Entities;
 

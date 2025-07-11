@@ -1,4 +1,7 @@
-﻿namespace Yi.System.Entities;
+﻿using SqlSugar;
+using Yi.Framework.SqlSugarCore;
+
+namespace Yi.Framework.Core.Entities;
 
 /// <summary>
 ///     角色表

@@ -1,7 +1,9 @@
-﻿using Yi.Framework.Utils;
-using Yi.System.Entities.ValueObjects;
+﻿using SqlSugar;
+using Yi.Framework.Core.Entities.ValueObjects;
+using Yi.Framework.SqlSugarCore;
+using Yi.Framework.Utils;
 
-namespace Yi.System.Entities;
+namespace Yi.Framework.Core.Entities;
 
 /// <summary>
 ///     用户表

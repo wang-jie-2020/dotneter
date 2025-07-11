@@ -1,7 +1,8 @@
-﻿using Yi.Framework.Utils;
+﻿using Yi.Framework.Core.Entities;
+using Yi.Framework.Utils;
 using Yi.System.Services.Dtos;
 
-namespace Yi.System.Entities;
+namespace Yi.System;
 
 /// <summary>
 ///     实体扩展

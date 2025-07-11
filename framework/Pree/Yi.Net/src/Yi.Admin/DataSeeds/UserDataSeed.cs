@@ -1,6 +1,7 @@
 ﻿using Yi.AspNetCore.Data.Seeding;
+using Yi.Framework.Core.Entities;
+using Yi.Framework.Core.Entities.ValueObjects;
 using Yi.System.Entities;
-using Yi.System.Entities.ValueObjects;
 
 namespace Yi.Admin.DataSeeds;
 
