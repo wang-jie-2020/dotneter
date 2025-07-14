@@ -50,7 +50,7 @@ public class AccountManager : BaseDomain
     public async Task<string> CreateTokenAsync(Guid userId)
     {
         //获取用户信息
-        var userInfo = await _userManager.GetInfoAsync(userId);
+        var userInfo = await _userManager.GetInfoAsync(userId, true);
 
         //判断用户状态
         if (userInfo.User.State == false)
@@ -127,9 +127,6 @@ public class AccountManager : BaseDomain
             {
                 userAction.Invoke(user);
             }
-
-            // 防止有权限修改,放在登出只能cover部分场景
-            await _userManager.RemoveCacheAsync(user.Id);
 
             if (user.EncryPassword.Password == MD5Helper.SHA2Encode(password, user.EncryPassword.Salt))
             {

@@ -115,10 +115,10 @@ public class UserManager : BaseDomain
         {
             throw Oops.Oh(SystemErrorCodes.UserNameRepeated);
         }
-        
+
         await _userRepository.UpdateAsync(userEntity);
     }
-    
+
     public async Task SetDefaultRoleAsync(Guid userId)
     {
         var role = await _roleRepository.GetFirstAsync(x => x.RoleCode == "default");
@@ -149,15 +149,15 @@ public class UserManager : BaseDomain
             throw Oops.Oh(SystemErrorCodes.UserNameInvalid);
         }
     }
-
-    public async Task RemoveCacheAsync(Guid userId)
+    
+    public async Task<UserAuthorities> GetInfoAsync(Guid userId, bool refreshCache = false)
     {
-        var cacheKay = UserInfoCacheItem.CalculateCacheKey(userId);
-        await _cache.RemoveAsync(cacheKay);
-    }
-
-    public async Task<UserAuthorities> GetInfoAsync(Guid userId)
-    {
+        if (refreshCache)
+        {
+            var cacheKay = UserInfoCacheItem.CalculateCacheKey(userId);
+            await _cache.RemoveAsync(cacheKay);
+        }
+        
         var output = await GetInfoByCacheAsync(userId);
         return output;
     }
