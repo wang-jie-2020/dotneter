@@ -22,7 +22,7 @@ public static class CurrentUserExtensions
     /// <returns></returns>
     public static bool IsAdmin(this ICurrentUser currentUser)
     {
-        return currentUser.Roles.Any(role => role.Equals(AccountConst.Admin));
+        return currentUser.Roles.Any(role => role.Equals("admin"));
     }
     
     /// <summary>
@@ -45,6 +45,6 @@ public static class CurrentUserExtensions
     public static bool IsRefreshToken(this ICurrentUser currentUser)
     {
         var refreshOrNull = currentUser.FindClaims(ClaimsIdentityTypes.Refresh).Select(x => x.Value).FirstOrDefault();
-        return refreshOrNull is null ? false : bool.Parse(refreshOrNull);
+        return refreshOrNull is not null && bool.Parse(refreshOrNull);
     }
 }

@@ -12,7 +12,7 @@ public class UserAuthorities
 
     public List<string> Permissions { get; set; } = new();
 
-    public bool IsAdmin() => Roles.Any(r => r.RoleCode == AccountConst.Admin);
+    public bool IsAdmin() => Roles.Any(r => r.RoleCode == "admin");
     
     public bool HasPermission(string permission) => Permissions.Any(p => p == permission);
 }
