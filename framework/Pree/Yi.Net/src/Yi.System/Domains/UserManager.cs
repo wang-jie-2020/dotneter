@@ -19,7 +19,7 @@ public class UserManager : BaseDomain
     private readonly ISqlSugarRepository<RoleEntity> _roleRepository;
     private readonly ISqlSugarRepository<MenuEntity> _menuRepository;
 
-    private static string[] _forbiddenNames = ["admin", "cc"];
+    private static readonly string[] ForbiddenNames = ["admin", "cc"];
 
     public UserManager(
         IDistributedCache cache,
@@ -130,7 +130,7 @@ public class UserManager : BaseDomain
 
     private void ValidateUserName(UserEntity input)
     {
-        if (_forbiddenNames.Contains(input.UserName))
+        if (ForbiddenNames.Contains(input.UserName))
         {
             throw Oops.Oh(SystemErrorCodes.UserNameForbidden);
         }
