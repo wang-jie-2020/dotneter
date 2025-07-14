@@ -9,6 +9,7 @@ using Yi.AspNetCore;
 using Yi.AspNetCore.Extensions.Caching;
 using Yi.AspNetCore.Security;
 using Yi.Framework.Abstractions;
+using Yi.Framework.Core;
 using Yi.Framework.Core.Entities;
 using Yi.Framework.Options;
 using Yi.Framework.Utils;
@@ -29,6 +30,7 @@ public class AccountController : BaseController
     private readonly ISqlSugarRepository<MenuEntity> _menuRepository;
     private readonly IDistributedCache _cache;
     private readonly UserManager _userManager;
+    private readonly IUserStore _userStore;
     private readonly ISqlSugarRepository<UserEntity> _userRepository;
 
     public AccountController(ISqlSugarRepository<UserEntity> userRepository,
@@ -38,7 +40,8 @@ public class AccountController : BaseController
         IDistributedCache cache,
         ICaptcha captcha,
         IOptions<RbacOptions> options,
-        UserManager userManager)
+        UserManager userManager, 
+        IUserStore userStore)
     {
         _userRepository = userRepository;
         _currentUser = currentUser;
@@ -48,6 +51,7 @@ public class AccountController : BaseController
         _captcha = captcha;
         _rbacOptions = options.Value;
         _userManager = userManager;
+        _userStore = userStore;
     }
 
 #if DEBUG
@@ -168,7 +172,7 @@ public class AccountController : BaseController
             throw new ArgumentNullException(nameof(CurrentUser));
         }
 
-        var user = await _userManager.GetInfoAsync(userId.Value);
+        var user = await _userStore.GetInfoAsync(userId.Value);
         var info = new AccountInfo()
         {
             User = user.User.Adapt<UserDto>(),
@@ -291,7 +295,7 @@ public class AccountController : BaseController
             throw new ArgumentNullException(nameof(CurrentUser));
         }
 
-        var data = await _userManager.GetInfoAsync(userId!.Value);
+        var data = await _userStore.GetInfoAsync(userId!.Value);
         var menus = data.Menus.ToList();
 
         //将后端菜单转换成前端路由，组件级别需要过滤

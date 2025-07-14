@@ -1,15 +1,16 @@
-﻿using Yi.AspNetCore.Authorization;
+﻿using Volo.Abp.DependencyInjection;
+using Yi.AspNetCore.Authorization;
 using Yi.AspNetCore.Security;
 
-namespace Yi.System.Domains;
+namespace Yi.Framework.Core;
 
 public class UserPermissionHandler : IPermissionCheckHandler, ITransientDependency
 {
-    private readonly UserManager _userManager;
+    private readonly IUserStore _userStore;
 
-    public UserPermissionHandler(UserManager userManager)
+    public UserPermissionHandler(IUserStore userStore)
     {
-        _userManager = userManager;
+        _userStore = userStore;
     }
     
     public async Task<bool> CheckAsync(PermissionCheckContext context)
@@ -21,7 +22,7 @@ public class UserPermissionHandler : IPermissionCheckHandler, ITransientDependen
             return false;
         }
 
-        var userInfo = await _userManager.GetInfoAsync(userId.Value);
+        var userInfo = await _userStore.GetInfoAsync(userId.Value);
 
         var permissions = userInfo.Permissions;
         if (permissions is null) return false;

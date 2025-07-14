@@ -2,6 +2,8 @@
 using SkyApm;
 using StackExchange.Profiling.Internal;
 using Yi.AspNetCore;
+using Yi.AspNetCore.Authorization;
+using Yi.Framework.Core;
 using Yi.Framework.Options;
 using Yi.Framework.SqlSugarCore;
 using Yi.Framework.SqlSugarCore.Profilers;
@@ -20,6 +22,13 @@ public class YiFrameworkModule : AbpModule
         Configure<JwtOptions>(configuration.GetSection(nameof(JwtOptions)));
         Configure<RefreshJwtOptions>(configuration.GetSection(nameof(RefreshJwtOptions)));
         Configure<RbacOptions>(configuration.GetSection(nameof(RbacOptions)));
+        
+        Configure<PermissionOptions>(options =>
+        {
+            options.CheckHandlers.Add<UserPermissionHandler>();
+        });
+        
+        context.Services.AddCaptcha();
         
         // SqlSugar 
         Configure<SqlSugarConnectionOptions>(configuration);

@@ -1,40 +1,29 @@
 ﻿using System.Text.RegularExpressions;
-using Microsoft.Extensions.Caching.Distributed;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 using Yi.AspNetCore;
-using Yi.AspNetCore.Extensions.Caching;
 using Yi.Framework.Abstractions;
 using Yi.Framework.Core.Entities;
-using Yi.Framework.Options;
 
 namespace Yi.System.Domains;
 
 public class UserManager : BaseDomain
 {
-    private readonly IDistributedCache _cache;
     private readonly ISqlSugarRepository<UserEntity> _userRepository;
     private readonly ISqlSugarRepository<UserPostEntity> _userPostRepository;
     private readonly ISqlSugarRepository<UserRoleEntity> _userRoleRepository;
     private readonly ISqlSugarRepository<RoleEntity> _roleRepository;
-    private readonly ISqlSugarRepository<MenuEntity> _menuRepository;
 
     private static readonly string[] ForbiddenNames = ["admin", "cc"];
 
     public UserManager(
-        IDistributedCache cache,
         ISqlSugarRepository<UserEntity> userRepository,
         ISqlSugarRepository<UserRoleEntity> userRoleRepository,
         ISqlSugarRepository<UserPostEntity> userPostRepository,
-        ISqlSugarRepository<RoleEntity> roleRepository,
-        ISqlSugarRepository<MenuEntity> menuRepository)
+        ISqlSugarRepository<RoleEntity> roleRepository)
     {
-        _cache = cache;
         _userRepository = userRepository;
         _userRoleRepository = userRoleRepository;
         _userPostRepository = userPostRepository;
         _roleRepository = roleRepository;
-        _menuRepository = menuRepository;
     }
 
     public async Task GiveUserSetRoleAsync(List<Guid> userIds, List<Guid> roleIds)
@@ -147,101 +136,6 @@ public class UserManager : BaseDomain
         if (!isMatch)
         {
             throw Oops.Oh(SystemErrorCodes.UserNameInvalid);
-        }
-    }
-    
-    public async Task<UserAuthorities> GetInfoAsync(Guid userId, bool refreshCache = false)
-    {
-        if (refreshCache)
-        {
-            var cacheKay = UserInfoCacheItem.CalculateCacheKey(userId);
-            await _cache.RemoveAsync(cacheKay);
-        }
-        
-        var output = await GetInfoByCacheAsync(userId);
-        return output;
-    }
-
-    private async Task<UserAuthorities> GetInfoByCacheAsync(Guid userId)
-    {
-        var tokenExpiresMinuteTime = LazyServiceProvider.GetRequiredService<IOptions<JwtOptions>>().Value.ExpiresMinuteTime;
-        var cacheData = await _cache.GetOrAddAsync(UserInfoCacheItem.CalculateCacheKey(userId),
-            async () =>
-            {
-                var user = await _userRepository.AsQueryable()
-                    .Includes(
-                        u => u.Roles.Where(r => r.IsDeleted == false).ToList(),
-                        r => r.Menus.Where(m => m.IsDeleted == false).ToList()
-                    )
-                    .InSingleAsync(userId);
-
-                if (user is null)
-                {
-                    throw new UnauthorizedException();
-                }
-
-                var data = UserEntityMapping(user);
-                return new UserInfoCacheItem(data);
-            },
-            () => new DistributedCacheEntryOptions
-            {
-                AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(tokenExpiresMinuteTime)
-            });
-
-        return cacheData.Info;
-    }
-
-    private UserAuthorities UserEntityMapping(UserEntity user)
-    {
-        var authorities = new UserAuthorities();
-
-        authorities.User = user;
-        foreach (var role in user.Roles)
-        {
-            authorities.Roles.Add(role);
-            foreach (var menu in role.Menus)
-            {
-                if (!authorities.Menus.Any(t => t.Id == menu.Id))
-                {
-                    authorities.Menus.Add(menu);
-
-                    if (!menu.PermissionCode.IsNullOrEmpty())
-                    {
-                        authorities.Permissions.Add(menu.PermissionCode);
-                    }
-                }
-            }
-        }
-
-        authorities.Menus = authorities.Menus.OrderBy(x => x.OrderNum).ToList();
-
-        //管理员特殊处理
-        if (authorities.IsAdmin())
-        {
-            authorities.Menus = _menuRepository.GetList();
-            authorities.Permissions = ["*:*:*"];
-        }
-
-        return authorities;
-    }
-
-    public class UserInfoCacheItem
-    {
-        public UserInfoCacheItem(UserAuthorities info)
-        {
-            Info = info;
-        }
-
-        /// <summary>
-        ///     存储的用户信息
-        /// </summary>
-        public UserAuthorities Info { get; set; }
-
-        public static string CalculateCacheKey(Guid? id)
-        {
-            if (id == null) throw new Exception("id can't be invalid.");
-
-            return $"User:{id}";
         }
     }
 }

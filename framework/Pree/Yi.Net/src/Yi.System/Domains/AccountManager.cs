@@ -9,6 +9,7 @@ using Yi.AspNetCore;
 using Yi.AspNetCore.Mvc.OperLogging;
 using Yi.AspNetCore.Security;
 using Yi.Framework.Abstractions;
+using Yi.Framework.Core;
 using Yi.Framework.Core.Entities;
 using Yi.Framework.Options;
 using Yi.Framework.Utils;
@@ -22,6 +23,7 @@ public class AccountManager : BaseDomain
     private readonly JwtOptions _jwtOptions;
     private readonly RefreshJwtOptions _refreshJwtOptions;
     private readonly UserManager _userManager;
+    private readonly IUserStore _userStore;
     private readonly ISqlSugarRepository<UserEntity> _userRepository;
     private readonly ISqlSugarRepository<LoginLogEntity> _loginLogRepository;
 
@@ -30,6 +32,7 @@ public class AccountManager : BaseDomain
         IOptions<JwtOptions> jwtOptions,
         IOptions<RefreshJwtOptions> refreshJwtOptions,
         UserManager userManager,
+        IUserStore userStore,
         ISqlSugarRepository<UserEntity> userRepository,
         ISqlSugarRepository<LoginLogEntity> loginLogRepository)
     {
@@ -37,6 +40,7 @@ public class AccountManager : BaseDomain
         _jwtOptions = jwtOptions.Value;
         _refreshJwtOptions = refreshJwtOptions.Value;
         _userManager = userManager;
+        _userStore = userStore;
         _userRepository = userRepository;
         _loginLogRepository = loginLogRepository;
     }
@@ -50,7 +54,7 @@ public class AccountManager : BaseDomain
     public async Task<string> CreateTokenAsync(Guid userId)
     {
         //获取用户信息
-        var userInfo = await _userManager.GetInfoAsync(userId, true);
+        var userInfo = await _userStore.GetInfoAsync(userId, true);
 
         //判断用户状态
         if (userInfo.User.State == false)
@@ -239,7 +243,7 @@ public class AccountManager : BaseDomain
     /// </summary>
     /// <param name="authorities"></param>
     /// <returns></returns>
-    private List<KeyValuePair<string, string>> UserInfoToClaim(UserAuthorities authorities)
+    private List<KeyValuePair<string, string>> UserInfoToClaim(UserConfiguration authorities)
     {
         var claims = new List<KeyValuePair<string, string>>();
         AddToClaim(claims, ClaimsIdentityTypes.UserId, authorities.User.Id.ToString());

@@ -1,8 +1,8 @@
 ﻿using Yi.Framework.Core.Entities;
 
-namespace Yi.System.Domains;
+namespace Yi.Framework.Core;
 
-public class UserAuthorities
+public class UserConfiguration
 {
     public UserEntity User { get; set; } = new();
 
