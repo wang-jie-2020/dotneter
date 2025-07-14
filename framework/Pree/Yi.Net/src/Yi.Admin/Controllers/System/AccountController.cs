@@ -24,34 +24,35 @@ namespace Yi.Admin.Controllers.System;
 public class AccountController : BaseController
 {
     private readonly ICaptcha _captcha;
+    private readonly ICurrentUser _currentUser;
+    private readonly IDistributedCache _cache;
     private readonly RbacOptions _rbacOptions;
     private readonly AccountManager _accountManager;
-    private readonly ICurrentUser _currentUser;
-    private readonly ISqlSugarRepository<MenuEntity> _menuRepository;
-    private readonly IDistributedCache _cache;
     private readonly UserManager _userManager;
     private readonly IUserStore _userStore;
     private readonly ISqlSugarRepository<UserEntity> _userRepository;
+    private readonly ISqlSugarRepository<MenuEntity> _menuRepository;
 
-    public AccountController(ISqlSugarRepository<UserEntity> userRepository,
-        ICurrentUser currentUser,
-        AccountManager accountManager,
-        ISqlSugarRepository<MenuEntity> menuRepository,
-        IDistributedCache cache,
+    public AccountController(
         ICaptcha captcha,
+        ICurrentUser currentUser,
+        IDistributedCache cache,
         IOptions<RbacOptions> options,
+        AccountManager accountManager,
         UserManager userManager, 
-        IUserStore userStore)
+        IUserStore userStore,
+        ISqlSugarRepository<UserEntity> userRepository,
+        ISqlSugarRepository<MenuEntity> menuRepository)
     {
-        _userRepository = userRepository;
-        _currentUser = currentUser;
-        _accountManager = accountManager;
-        _menuRepository = menuRepository;
-        _cache = cache;
         _captcha = captcha;
+        _currentUser = currentUser;
+        _cache = cache;
         _rbacOptions = options.Value;
+        _accountManager = accountManager;
         _userManager = userManager;
         _userStore = userStore;
+        _userRepository = userRepository;
+        _menuRepository = menuRepository;
     }
 
 #if DEBUG

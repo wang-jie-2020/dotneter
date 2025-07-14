@@ -176,8 +176,8 @@ public class AdminModule : AbpModule
         //if (types.Count > 0) db.CopyNew().CodeFirst.InitTables(types.ToArray());
 
         //尝试种子数据
-        var dataSeeder = service.GetRequiredService<IDataSeeder>();
-        await dataSeeder.SeedAsync();
+        //var dataSeeder = service.GetRequiredService<IDataSeeder>();
+        //await dataSeeder.SeedAsync();
     }
 
     public override Task OnApplicationInitializationAsync(ApplicationInitializationContext context)

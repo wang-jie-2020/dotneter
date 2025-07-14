@@ -11,7 +11,11 @@ public class AdminDbContext: SqlSugarDbContext
     
     protected override void CustomDataFilter(ISqlSugarClient sqlSugarClient)
     {
-        if (DataFilter.IsEnabled<IDataScope>()) DataPermissionFilter(sqlSugarClient);
+        if (DataFilter.IsEnabled<IDataScope>())
+        {
+            DataPermissionFilter(sqlSugarClient);
+        }
+        
         base.CustomDataFilter(sqlSugarClient);
     }
     

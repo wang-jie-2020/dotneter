@@ -10,8 +10,7 @@ namespace Yi.Admin.Controllers.System;
 public class DictionaryTypeController : BaseController
 {
     private readonly IDictionaryTypeService _dictionaryTypeService;
-
-
+    
     public DictionaryTypeController(IDictionaryTypeService dictionaryTypeService)
     {
         _dictionaryTypeService = dictionaryTypeService;
