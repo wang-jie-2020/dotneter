@@ -84,19 +84,9 @@ public class UserService : BaseService, IUserService
 
     public async Task<UserDto> UpdateAsync(Guid id, UserInput input)
     {
-        if (AccountConst.ForbiddenNames.Contains(input.UserName))
-        {
-            throw Oops.Oh(SystemErrorCodes.UserNameForbidden);
-        }
-
-        if (await _repository.IsAnyAsync(u => input.UserName!.Equals(u.UserName) && !id.Equals(u.Id)))
-        {
-            throw Oops.Oh(SystemErrorCodes.UserNameRepeated);
-        }
-
         var entity = await _repository.GetByIdAsync(id);
         input.Adapt(entity);
-        await _repository.UpdateAsync(entity);
+        await _userManager.UpdateAsync(entity);
         await _userManager.GiveUserSetRoleAsync(new List<Guid> { id }, input.RoleIds);
         await _userManager.GiveUserSetPostAsync(new List<Guid> { id }, input.PostIds);
 

@@ -19,6 +19,8 @@ public class UserManager : BaseDomain
     private readonly ISqlSugarRepository<RoleEntity> _roleRepository;
     private readonly ISqlSugarRepository<MenuEntity> _menuRepository;
 
+    private static string[] _forbiddenNames = ["admin", "cc"];
+
     public UserManager(
         IDistributedCache cache,
         ISqlSugarRepository<UserEntity> userRepository,
@@ -89,8 +91,7 @@ public class UserManager : BaseDomain
             }
         }
 
-        var isExist = await _userRepository.IsAnyAsync(x => x.UserName == userEntity.UserName);
-        if (isExist)
+        if (await _userRepository.IsAnyAsync(x => x.UserName == userEntity.UserName))
         {
             throw Oops.Oh(SystemErrorCodes.UserNameRepeated);
         }
@@ -98,9 +99,29 @@ public class UserManager : BaseDomain
         await _userRepository.InsertReturnEntityAsync(userEntity);
     }
 
+    public async Task UpdateAsync(UserEntity userEntity)
+    {
+        ValidateUserName(userEntity);
+
+        if (userEntity.Phone is not null)
+        {
+            if (await _userRepository.IsAnyAsync(x => x.Phone == userEntity.Phone && !x.Id.Equals(userEntity.Id)))
+            {
+                throw Oops.Oh(SystemErrorCodes.UserPhoneRepeated);
+            }
+        }
+
+        if (await _userRepository.IsAnyAsync(x => x.UserName!.Equals(userEntity.UserName) && !x.Id.Equals(userEntity.Id)))
+        {
+            throw Oops.Oh(SystemErrorCodes.UserNameRepeated);
+        }
+        
+        await _userRepository.UpdateAsync(userEntity);
+    }
+    
     public async Task SetDefaultRoleAsync(Guid userId)
     {
-        var role = await _roleRepository.GetFirstAsync(x => x.RoleCode == AccountConst.DefaultRole);
+        var role = await _roleRepository.GetFirstAsync(x => x.RoleCode == "default");
         if (role is not null)
         {
             await GiveUserSetRoleAsync(new List<Guid> { userId }, new List<Guid> { role.Id });
@@ -109,7 +130,7 @@ public class UserManager : BaseDomain
 
     private void ValidateUserName(UserEntity input)
     {
-        if (AccountConst.ForbiddenNames.Contains(input.UserName))
+        if (_forbiddenNames.Contains(input.UserName))
         {
             throw Oops.Oh(SystemErrorCodes.UserNameForbidden);
         }
