@@ -1,17 +1,17 @@
 <template>
-  <router-view />
-  <MiniProfiler v-if="profiler" />
+  <router-view/>
+  <MiniProfiler v-if="profiler"/>
 </template>
 
 <script setup>
 import useSettingsStore from '@/store/modules/settings'
-import { handleThemeStyle } from '@/utils/theme'
+import {handleThemeStyle} from '@/utils/theme'
 import useUserStore from '@/store/modules/user'
-import { storeToRefs } from 'pinia';
+import {storeToRefs} from 'pinia';
 // import signalR from '@/utils/signalR'
 import MiniProfiler from '@/components/MiniProfiler'
 
-const {token}=storeToRefs(useUserStore());
+const {token} = storeToRefs(useUserStore());
 
 const profiler = ref(useSettingsStore().profiler);
 console.log('profiler', profiler)

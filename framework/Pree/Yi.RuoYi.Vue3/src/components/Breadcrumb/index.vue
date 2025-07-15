@@ -6,7 +6,8 @@
           ? item.name : item.meta.title }}</span>
         <a v-else @click.prevent="handleLink(item)">{{ lang == "en" ? item.name : item.meta.title }}</a> -->
 
-        <span v-if="item.redirect === 'noRedirect' || index == levelList.length - 1" class="no-redirect">{{ item.meta.title }}</span>
+        <span v-if="item.redirect === 'noRedirect' || index == levelList.length - 1"
+              class="no-redirect">{{ item.meta.title }}</span>
         <a v-else @click.prevent="handleLink(item)">{{ item.meta.title }}</a>
 
       </el-breadcrumb-item>
@@ -30,11 +31,12 @@ function getBreadcrumb() {
   const first = matched[0]
   // 判断是否为首页
   if (!isDashboard(first)) {
-    matched = [{ path: "/index", meta: { title: "首页" }, name: "Home" }].concat(matched);
+    matched = [{path: "/index", meta: {title: "首页"}, name: "Home"}].concat(matched);
   }
 
   levelList.value = matched.filter(item => item.meta && item.meta.title && item.meta.breadcrumb !== false)
 }
+
 function isDashboard(route) {
   const name = route && route.name
   if (!name) {
@@ -42,8 +44,9 @@ function isDashboard(route) {
   }
   return name.trim() === 'Index'
 }
+
 function handleLink(item) {
-  const { redirect, path } = item
+  const {redirect, path} = item
   if (redirect) {
     router.push(redirect)
     return

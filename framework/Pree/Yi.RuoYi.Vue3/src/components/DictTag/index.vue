@@ -3,19 +3,20 @@
     <template v-for="(item, index) in options">
       <template v-if="values.includes(item.value)">
         <span
-          v-if="item.elTagType == 'default' || item.elTagType == ''|| item.elTagType == null"
-          :key="item.value"
-          :index="index"
-          :class="item.elTagClass"
+            v-if="item.elTagType == 'default' || item.elTagType == ''|| item.elTagType == null"
+            :key="item.value"
+            :index="index"
+            :class="item.elTagClass"
         >{{ item.label }}</span>
         <el-tag
-          v-else
-          :disable-transitions="true"
-          :key="item.value + ''"
-          :index="index"
-          :type="item.elTagType"
-          :class="item.elTagClass"
-        >{{ item.label }}</el-tag>
+            v-else
+            :disable-transitions="true"
+            :key="item.value + ''"
+            :index="index"
+            :type="item.elTagType"
+            :class="item.elTagClass"
+        >{{ item.label }}
+        </el-tag>
       </template>
     </template>
   </div>
@@ -29,7 +30,7 @@ const props = defineProps({
     default: null,
   },
   // 当前的值
-  value: [Number, String, Array,Boolean],
+  value: [Number, String, Array, Boolean],
 })
 
 const values = computed(() => {

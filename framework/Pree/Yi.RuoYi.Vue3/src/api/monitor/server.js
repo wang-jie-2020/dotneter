@@ -2,8 +2,8 @@ import request from '@/utils/request'
 
 // 获取服务信息
 export function getServer() {
-  return request({
-    url: '/monitor/server/info',
-    method: 'get'
-  })
+    return request({
+        url: '/monitor/server/info',
+        method: 'get'
+    })
 }

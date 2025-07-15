@@ -6,11 +6,11 @@
 
 <script setup name="Index">
 import useSocketStore from '@/store/modules/socket'
-import { ref } from 'vue';
-import { storeToRefs } from 'pinia';
+import {ref} from 'vue';
+import {storeToRefs} from 'pinia';
 
-const socketStore=useSocketStore();
-const {onlineNum}=storeToRefs(socketStore);
+const socketStore = useSocketStore();
+const {onlineNum} = storeToRefs(socketStore);
 const version = ref('3.8.3')
 
 
@@ -27,12 +27,14 @@ function goTarget(url) {
     font-size: 17.5px;
     border-left: 5px solid #eee;
   }
+
   hr {
     margin-top: 20px;
     margin-bottom: 20px;
     border: 0;
     border-top: 1px solid #eee;
   }
+
   .col-item {
     margin-bottom: 20px;
   }

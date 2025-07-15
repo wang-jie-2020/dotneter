@@ -3,29 +3,38 @@
     <el-form ref="loginRef" :model="loginForm" :rules="loginRules" class="login-form">
       <h3 class="title">意框架-Ruoyi管理系统</h3>
       <el-form-item prop="username">
-        <el-input v-model="loginForm.username" type="text" size="large" auto-complete="off" :placeholder="$t('account')">
-          <template #prefix><svg-icon icon-class="user" class="el-input__icon input-icon" /></template>
+        <el-input v-model="loginForm.username" type="text" size="large" auto-complete="off"
+                  :placeholder="$t('account')">
+          <template #prefix>
+            <svg-icon icon-class="user" class="el-input__icon input-icon"/>
+          </template>
         </el-input>
       </el-form-item>
       <el-form-item prop="password">
-        <el-input v-model="loginForm.password" type="password" size="large" auto-complete="off" :placeholder="$t('password')"
-          @keyup.enter="handleLogin">
-          <template #prefix><svg-icon icon-class="password" class="el-input__icon input-icon" /></template>
+        <el-input v-model="loginForm.password" type="password" size="large" auto-complete="off"
+                  :placeholder="$t('password')"
+                  @keyup.enter="handleLogin">
+          <template #prefix>
+            <svg-icon icon-class="password" class="el-input__icon input-icon"/>
+          </template>
         </el-input>
       </el-form-item>
       <el-form-item prop="code" v-if="captchaEnabled">
-        <el-input v-model="loginForm.code" size="large" auto-complete="off" :placeholder="$t('verification code')" style="width: 63%"
-          @keyup.enter="handleLogin">
-          <template #prefix><svg-icon icon-class="validCode" class="el-input__icon input-icon" /></template>
+        <el-input v-model="loginForm.code" size="large" auto-complete="off" :placeholder="$t('verification code')"
+                  style="width: 63%"
+                  @keyup.enter="handleLogin">
+          <template #prefix>
+            <svg-icon icon-class="validCode" class="el-input__icon input-icon"/>
+          </template>
         </el-input>
         <div class="login-code">
-          <img :src="codeUrl" @click="getCode" class="login-code-img" />
+          <img :src="codeUrl" @click="getCode" class="login-code-img"/>
         </div>
       </el-form-item>
       <el-form-item>
         <span>当前租户：</span>
         <el-select v-model="tenantSelected" class="m-2" placeholder="租户选择" style="width: 80%">
-          <el-option v-for="item in tenantList" :key="item.id" :label="item.name" :value="item.name" />
+          <el-option v-for="item in tenantList" :key="item.id" :label="item.name" :value="item.name"/>
         </el-select>
       </el-form-item>
 
@@ -34,7 +43,7 @@
         <div class="lang" style="flex: 1">
           <el-dropdown @command="handleLang">
             <span class="el-dropdown-link">
-              <img src="@/assets/icons/svg/language.svg" alt="" />
+              <img src="@/assets/icons/svg/language.svg" alt=""/>
             </span>
             <template #dropdown>
               <el-dropdown-menu>
@@ -44,7 +53,8 @@
             </template>
           </el-dropdown>
         </div>
-        <el-button :loading="loading" size="large" type="primary" style="width: 100%; flex: 9; margin-right: 5px" @click.prevent="handleLogin">
+        <el-button :loading="loading" size="large" type="primary" style="width: 100%; flex: 9; margin-right: 5px"
+                   @click.prevent="handleLogin">
           <span v-if="!loading">登 录</span>
           <span v-else>登 录 中...</span>
         </el-button>
@@ -61,20 +71,20 @@
 </template>
 
 <script setup>
-import { getCodeImg } from "@/api/login";
+import {getCodeImg} from "@/api/login";
 import Cookies from "js-cookie";
-import { encrypt, decrypt } from "@/utils/jsencrypt";
+import {encrypt, decrypt} from "@/utils/jsencrypt";
 import useUserStore from '@/store/modules/user'
-import { SelectData as getTenantList } from '@/api/system/tenant'
-import { ref } from "vue";
+import {SelectData as getTenantList} from '@/api/system/tenant'
+import {ref} from "vue";
 import useAppStore from "@/store/modules/app";
-import { useI18n } from "vue-i18n";
+import {useI18n} from "vue-i18n";
 
 const userStore = useUserStore()
 const router = useRouter();
-const { proxy } = getCurrentInstance();
+const {proxy} = getCurrentInstance();
 
-const { locale } = useI18n();
+const {locale} = useI18n();
 const app = useAppStore();
 const lang = computed(() => useAppStore().lang);
 
@@ -88,9 +98,9 @@ const loginForm = ref({
 });
 
 const loginRules = {
-  username: [{ required: true, trigger: "blur", message: "请输入您的账号" }],
-  password: [{ required: true, trigger: "blur", message: "请输入您的密码" }],
-  code: [{ required: true, trigger: "change", message: "请输入验证码" }]
+  username: [{required: true, trigger: "blur", message: "请输入您的账号"}],
+  password: [{required: true, trigger: "blur", message: "请输入您的密码"}],
+  code: [{required: true, trigger: "change", message: "请输入验证码"}]
 };
 
 const codeUrl = ref("");
@@ -115,9 +125,9 @@ function handleLogin() {
       loading.value = true;
       // 勾选了需要记住密码设置在 cookie 中设置记住用户名和密码
       if (loginForm.value.rememberMe) {
-        Cookies.set("username", loginForm.value.username, { expires: 30 });
-        Cookies.set("password", encrypt(loginForm.value.password), { expires: 30 });
-        Cookies.set("rememberMe", loginForm.value.rememberMe, { expires: 30 });
+        Cookies.set("username", loginForm.value.username, {expires: 30});
+        Cookies.set("password", encrypt(loginForm.value.password), {expires: 30});
+        Cookies.set("rememberMe", loginForm.value.rememberMe, {expires: 30});
       } else {
         // 否则移除
         Cookies.remove("username");
@@ -129,7 +139,7 @@ function handleLogin() {
 
       console.log(currentTenantId, 'currentTenantId')
       userStore.login(loginForm.value, currentTenantId).then(() => {
-        router.push({ path: redirect.value || "/" });
+        router.push({path: redirect.value || "/"});
       }).catch(() => {
         loading.value = false;
 
@@ -165,9 +175,10 @@ function getCookie() {
 }
 
 async function getTenant() {
-  const { data } = await getTenantList();
-  tenantList.value = [{ name: "defalut" }, ...data];
+  const {data} = await getTenantList();
+  tenantList.value = [{name: "defalut"}, ...data];
 }
+
 getCode();
 getCookie();
 getTenant();
@@ -252,6 +263,7 @@ getTenant();
 .lang {
   padding-top: 12px;
   margin-right: 5px;
+
   img {
     width: 22px;
     height: 22px;
