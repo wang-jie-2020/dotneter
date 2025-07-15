@@ -1,8 +1,8 @@
 {
   "name": "ruoyi",
   "version": "3.0.0",
-  "description": "意框架管理系统",
-  "author": "意框架",
+  "description": "Yi系统",
+  "author": "",
   "license": "MIT",
   "scripts": {
     "dev": "vite",
