@@ -7,7 +7,7 @@ namespace Grammar
     {
         static void Main(string[] args)
         {
-            Run(typeof(UriEn));
+            Run(typeof(SMB2));
         }
 
         static void Run(Type type)
