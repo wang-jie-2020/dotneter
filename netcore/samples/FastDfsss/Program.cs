@@ -1,15 +1,15 @@
-using System.Reflection;
-using System.Text;
+﻿using System.Reflection;
+using LimsLib;
 
-namespace Grammar
+namespace FastDfsss
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Run(typeof(FileAccessModes));
+            Run(typeof(MultiConnections));
         }
-
+        
         static void Run(Type type)
         {
             while (true)

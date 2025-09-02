@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net6</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="FastDFSNetCore" Version="1.2.7" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="EnovaApi">
+        <HintPath>C:\Users\jie.wang21\Desktop\LimsLib - V1.5.0\EnovaExtInterface\EnovaApi.dll</HintPath>
+      </Reference>
+      <Reference Include="EnovaExtInterface">
+        <HintPath>C:\Users\jie.wang21\Desktop\LimsLib - V1.5.0\EnovaExtInterface\EnovaExtInterface.dll</HintPath>
+      </Reference>
+      <Reference Include="LimsLib">
+        <HintPath>C:\Users\jie.wang21\Desktop\LimsLib - V1.5.0\LimsLib.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+</Project>
