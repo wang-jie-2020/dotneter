@@ -7,7 +7,7 @@ namespace Grammar
     {
         static void Main(string[] args)
         {
-            Run(typeof(FileAccessModes));
+            Run(typeof(Coroutine));
         }
 
         static void Run(Type type)
