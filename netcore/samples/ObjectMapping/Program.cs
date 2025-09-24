@@ -1,14 +1,14 @@
-﻿using System.Reflection;
+using System.Reflection;
 
-namespace FastDfsss
+namespace ObjectMapping
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Run(typeof(MultiConnections));
+            Run(typeof(MapperSample));
         }
-        
+
         static void Run(Type type)
         {
             while (true)
