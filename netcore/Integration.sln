@@ -51,6 +51,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastDfsss", "samples\FastDf
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObjectMapping", "samples\ObjectMapping\ObjectMapping.csproj", "{083CE5B1-0A37-45C6-B157-6FF377A51BBF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoMath", "samples\DoMath\DoMath.csproj", "{D3DC4CFD-A9A8-4C1A-936C-DFCD0735B4CD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -141,6 +143,10 @@ Global
 		{083CE5B1-0A37-45C6-B157-6FF377A51BBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{083CE5B1-0A37-45C6-B157-6FF377A51BBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{083CE5B1-0A37-45C6-B157-6FF377A51BBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3DC4CFD-A9A8-4C1A-936C-DFCD0735B4CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3DC4CFD-A9A8-4C1A-936C-DFCD0735B4CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3DC4CFD-A9A8-4C1A-936C-DFCD0735B4CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3DC4CFD-A9A8-4C1A-936C-DFCD0735B4CD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -167,6 +173,7 @@ Global
 		{7B317160-C9E5-4B46-A1BD-97FFE55CA784} = {D8F0B07B-1D86-4D52-9471-AAF2761CB610}
 		{343FA24D-E4A7-4545-902C-1AD61D1F9105} = {D8F0B07B-1D86-4D52-9471-AAF2761CB610}
 		{083CE5B1-0A37-45C6-B157-6FF377A51BBF} = {D8F0B07B-1D86-4D52-9471-AAF2761CB610}
+		{D3DC4CFD-A9A8-4C1A-936C-DFCD0735B4CD} = {D8F0B07B-1D86-4D52-9471-AAF2761CB610}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {95A0A211-6F5A-45ED-8389-98B4E03AC030}
