@@ -7,7 +7,7 @@ namespace Grammar
     {
         static void Main(string[] args)
         {
-            Run(typeof(Coroutine));
+            Run(typeof(CsharpMigration));
         }
 
         static void Run(Type type)
