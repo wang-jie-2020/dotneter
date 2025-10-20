@@ -45,6 +45,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CastleDynamicProxy", "sampl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlSugars", "samples\SqlSugars\SqlSugars.csproj", "{7B317160-C9E5-4B46-A1BD-97FFE55CA784}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Observability", "samples\Observability\Observability.csproj", "{F22E1DB8-1F48-4CB3-8460-DE090E32BA21}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -123,6 +125,10 @@ Global
 		{7B317160-C9E5-4B46-A1BD-97FFE55CA784}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B317160-C9E5-4B46-A1BD-97FFE55CA784}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B317160-C9E5-4B46-A1BD-97FFE55CA784}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F22E1DB8-1F48-4CB3-8460-DE090E32BA21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F22E1DB8-1F48-4CB3-8460-DE090E32BA21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F22E1DB8-1F48-4CB3-8460-DE090E32BA21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F22E1DB8-1F48-4CB3-8460-DE090E32BA21}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -146,6 +152,7 @@ Global
 		{74EB29A8-F4CB-4B15-9485-4E84C963AF47} = {877F0037-93FF-4E52-B59A-12819A2DEDCE}
 		{B3D8C8D4-8117-412C-AB0D-EB80E4A2500A} = {D8F0B07B-1D86-4D52-9471-AAF2761CB610}
 		{7B317160-C9E5-4B46-A1BD-97FFE55CA784} = {D8F0B07B-1D86-4D52-9471-AAF2761CB610}
+		{F22E1DB8-1F48-4CB3-8460-DE090E32BA21} = {D8F0B07B-1D86-4D52-9471-AAF2761CB610}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {95A0A211-6F5A-45ED-8389-98B4E03AC030}
