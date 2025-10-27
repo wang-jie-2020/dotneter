@@ -8,104 +8,79 @@ namespace Grammar
 {
     /// <summary>
     ///     泛型类型参数的类型兼容性 引入了逆变in 协变out
-    ///         
-    /// 
-    /// 
-    /// 
     /// </summary>
     internal class GenericType
     {
-
-        void GetN1(List<M> m)
-        {
-
-        }
-
-        void GetN2<K>(List<K> m) where K : M
-        {
-
-        }
-
-        void GetN3(IEnumerable<M> m)
-        {
-
-        }
-
+        /// <summary>
+        ///     Dog -> Animal , List Dog -/> List Animal
+        /// </summary>
         void Method1()
         {
-            List<M> ms = new List<M>();
-            List<M1> m1s = new List<M1>();
+            List<Animal> animals = new List<Animal>();
+            List<Dog> dogs = new List<Dog>();
 
-            GetN1(ms);
-            //GetN1(m1s); //语法错误
-            GetN1(m1s.Select(a => a as M).ToList());
+            Get1(animals);
+            //Get1(dogs); //语法错误
+            Get1(dogs.Select(a => a as Animal).ToList());
 
-            GetN2(ms);
-            GetN2(m1s); //可行,隐藏了in,逆变
+            Get2(animals);
+            Get2(dogs); //可行,隐藏了in
 
-            GetN3(ms);
-            GetN3(m1s); //可行,IEnumerable默认了in T,逆变
+            Get3(animals);
+            Get3(dogs); //可行,IEnumerable默认了in T
+            
+            void Get1(List<Animal> _)
+            {
+
+            }
+
+            void Get2<T>(List<T> _) where T : Animal
+            {
+
+            }
+
+            void Get3(IEnumerable<Animal> _)
+            {
+
+            }
         }
 
+        /// <summary>
+        ///  使用(消费)时, 子参类型 -> 父参类型, 
+        /// </summary>
         void Method2()
         {
-            Action<M> mm = (_m) => { Console.WriteLine("mm"); };
-            Action<M1> mm1 = (_m) => { Console.WriteLine("mm1"); };
+            Action<Animal> animalAction = (_) => { Console.WriteLine("animal"); };
+            Action<Dog> dogAction = (_) => { Console.WriteLine("dog"); };
 
-            //mm = mm1;   //语法错误
-            mm1 = mm;
+            //animalAction = dogAction;   //语法错误
+            dogAction = animalAction;
 
-            mm1(new M1());  //mm
+            dogAction(new Dog());   // animal
         }
 
+        /// <summary>
+        /// 返回(生产)时, 子参返回 -> 父参返回,
+        /// </summary>
         void Method3()
         {
-            Func<M> mm = () => { Console.WriteLine("mm");  return null; };
-            Func<M1> mm1 = () => { Console.WriteLine("mm1"); return null; };
+            Func<Animal> animalFunction = () => { Console.WriteLine("animal");  return null; };
+            Func<Dog> dogFunction = () => { Console.WriteLine("dog"); return null; };
 
-            mm = mm1;
-            //mm1 = mm; // 语法错误
-            mm();
+            animalFunction = dogFunction;
+            //dogFunction = animalFunction; // 语法错误
+            
+            animalFunction();   // dog
         }
-
-        //interface IA<K, V> where K : M where V : N
-        //{
-        //    V Get(K key);
-
-        //    List<V> Get(List<K> keys);
-        //}
-
-        //class A<K, V> : IA<K, V> where K : M where V : N
-        //{
-        //    public V Get(K key)
-        //    {
-        //        return default(V);
-        //    }
-
-        //    public List<V> Get(List<K> keys)
-        //    {
-        //        return new List<V>();
-        //    }
-        //}
-
-        class M
+        
+        class Animal
         {
 
         }
 
-        class M1 : M
+        class Dog : Animal
         {
 
         }
-
-        //class N
-        //{
-
-        //}
-
-        //class N1 : N
-        //{
-
-        //}
     }
 }
