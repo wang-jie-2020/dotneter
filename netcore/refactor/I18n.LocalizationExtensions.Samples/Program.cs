@@ -58,6 +58,7 @@ app.MapGet("/demo", async (context) =>
 
 app.Run();
 
+public partial class Program { }
 
 namespace I18n.LocalizationExtensions.Samples
 {
