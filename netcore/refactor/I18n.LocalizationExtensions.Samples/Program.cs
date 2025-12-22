@@ -11,8 +11,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddLocalization();
-
+// builder.Services.AddLocalization();
 builder.Services.AddJsonLocalization(options => options.ResourcesPath = "Resources");
 
 var app = builder.Build();
@@ -60,10 +59,3 @@ app.Run();
 
 public partial class Program { }
 
-namespace I18n.LocalizationExtensions.Samples
-{
-    public class InnerSource
-    {
-
-    }
-}
