@@ -49,13 +49,15 @@ app.MapGet("/demo", async (context) =>
     context.Response.ContentType = "text/plain;charset=utf-8";
 
     IStringLocalizer localizer1 = context.RequestServices.GetRequiredService<IStringLocalizer>();
-    await context.Response.WriteAsync($"{localizer1["HI"]}!!");
+    await context.Response.WriteAsync($"{localizer1["HI"]}");
 
-    IStringLocalizer<InnerSource> localizer2 = context.RequestServices.GetRequiredService<IStringLocalizer<InnerSource>>();
-    await context.Response.WriteAsync($"{localizer2["HI"]}!!");
+    // IStringLocalizer<InnerSource> localizer2 = context.RequestServices.GetRequiredService<IStringLocalizer<InnerSource>>();
+    // await context.Response.WriteAsync($"{localizer2["HI"]}!!");
 });
 
 app.Run();
 
 public partial class Program { }
+
+public class InnerSource { }
 
