@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
+using Volo.Abp.DependencyInjection;
 using Yi.AspNetCore;
 using Yi.AspNetCore.Extensions.Caching;
 using Yi.Framework.Core.Entities;
@@ -6,7 +7,7 @@ using Yi.Framework.SqlSugarCore.Repositories;
 
 namespace Yi.Framework.Core;
 
-public class UserStore : IUserStore
+public class UserStore : IUserStore, ITransientDependency
 {
     private readonly IDistributedCache _cache;
     private readonly ISqlSugarRepository<UserEntity> _userRepository;

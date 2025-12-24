@@ -46,5 +46,8 @@
     "vite-plugin-style-import": "^2.0.0",
     "vite-plugin-svg-icons": "^2.0.1",
     "vite-plugin-vue-setup-extend": "^0.4.0"
+  },
+  "volta": {
+    "node": "16.20.2"
   }
 }
