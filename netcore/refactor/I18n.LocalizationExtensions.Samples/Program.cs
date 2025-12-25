@@ -3,10 +3,18 @@ using I18n.LocalizationExtensions;
 using I18n.LocalizationExtensions.Samples;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Localization;
+using Newtonsoft.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddNewtonsoftJson(options =>
+    {
+        options.SerializerSettings.Converters = new List<JsonConverter>()
+        {
+            new DateTimeConverter()
+        };
+    });
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -43,6 +51,12 @@ app.UseRequestLocalization(options);
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapGet("/culture", async (context) =>
+{
+    context.Response.ContentType = "text/plain;charset=utf-8";
+    await context.Response.WriteAsync($"{CultureInfo.CurrentCulture.Name}");
+});
 
 app.MapGet("/demo", async (context) =>
 {

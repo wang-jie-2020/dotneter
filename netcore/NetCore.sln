@@ -65,6 +65,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "I18n.LocalizationExtensions
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "I18n.LocalizationExtensions.Samples", "refactor\I18n.LocalizationExtensions.Samples\I18n.LocalizationExtensions.Samples.csproj", "{BACA9DB0-85BC-4317-BD51-D88E56A910C4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "I18n.LocaleExtensions", "refactor\I18n.LocaleExtensions\I18n.LocaleExtensions.csproj", "{524FB404-FEDF-4B11-BEE3-97D47ADEF2A0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -179,6 +181,10 @@ Global
 		{BACA9DB0-85BC-4317-BD51-D88E56A910C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BACA9DB0-85BC-4317-BD51-D88E56A910C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BACA9DB0-85BC-4317-BD51-D88E56A910C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{524FB404-FEDF-4B11-BEE3-97D47ADEF2A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{524FB404-FEDF-4B11-BEE3-97D47ADEF2A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{524FB404-FEDF-4B11-BEE3-97D47ADEF2A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{524FB404-FEDF-4B11-BEE3-97D47ADEF2A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -211,5 +217,6 @@ Global
 		{E4BEB2D1-AD95-4924-8270-8AB6789C386D} = {786A5FD3-D985-40ED-85D4-9327508AA8E0}
 		{C4FC4948-7A0D-437F-B391-7A06507E5B7D} = {786A5FD3-D985-40ED-85D4-9327508AA8E0}
 		{BACA9DB0-85BC-4317-BD51-D88E56A910C4} = {786A5FD3-D985-40ED-85D4-9327508AA8E0}
+		{524FB404-FEDF-4B11-BEE3-97D47ADEF2A0} = {786A5FD3-D985-40ED-85D4-9327508AA8E0}
 	EndGlobalSection
 EndGlobal

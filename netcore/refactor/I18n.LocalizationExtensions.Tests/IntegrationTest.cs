@@ -2,16 +2,19 @@
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace I18n.LocalizationExtensions.Tests;
 
 public class IntegrationTest : IClassFixture<WebApplicationFactory<Program>>
 {
     public WebApplicationFactory<Program> _factory;
+    private readonly ITestOutputHelper _testOutputHelper;
 
-    public IntegrationTest(WebApplicationFactory<Program> factory)
+    public IntegrationTest(WebApplicationFactory<Program> factory, ITestOutputHelper testOutputHelper)
     {
         _factory = factory;
+        _testOutputHelper = testOutputHelper;
 
         _factory = factory.WithWebHostBuilder(builder =>
         {
@@ -30,7 +33,7 @@ public class IntegrationTest : IClassFixture<WebApplicationFactory<Program>>
     }
 
     [Fact]
-    public async Task GetDemo_ReturnsOk()
+    public async Task GetDefault()
     {
         var client = _factory.CreateClient();
         var response = await client.GetAsync("/demo");
@@ -39,7 +42,7 @@ public class IntegrationTest : IClassFixture<WebApplicationFactory<Program>>
     }
 
     [Fact]
-    public async Task GetDemo_ZH()
+    public async Task GetZhCn()
     {
         var client = _factory.CreateClient();
         client.DefaultRequestHeaders.Add("Accept-Language", "zh-cn");
@@ -50,7 +53,7 @@ public class IntegrationTest : IClassFixture<WebApplicationFactory<Program>>
     }
     
     [Fact]
-    public async Task GetDemo_EN()
+    public async Task GetEnUs()
     {
         var client = _factory.CreateClient();
         client.DefaultRequestHeaders.Add("Accept-Language", "en-us");
@@ -61,7 +64,7 @@ public class IntegrationTest : IClassFixture<WebApplicationFactory<Program>>
     }
     
     [Fact]
-    public async Task GetDemo_FR()
+    public async Task GetFr()
     {
         var client = _factory.CreateClient();
         client.DefaultRequestHeaders.Add("Accept-Language", "fr");
