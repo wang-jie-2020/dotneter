@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Reflection;
 using System.Text;
 
@@ -7,7 +8,7 @@ namespace Grammar
     {
         static void Main(string[] args)
         {
-            Run(typeof(GenericType));
+            Run(typeof(Mem));
         }
 
         static void Run(Type type)

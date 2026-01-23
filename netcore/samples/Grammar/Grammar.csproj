@@ -6,6 +6,7 @@
         <OutputType>Exe</OutputType>
         <LangVersion>13</LangVersion>
         <TargetFramework>net9.0</TargetFramework>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
 
     <ItemGroup>
