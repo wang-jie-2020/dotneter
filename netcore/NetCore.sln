@@ -67,6 +67,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "I18n.LocalizationExtensions
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "I18n.LocaleExtensions", "refactor\I18n.LocaleExtensions\I18n.LocaleExtensions.csproj", "{524FB404-FEDF-4B11-BEE3-97D47ADEF2A0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "abp.api.entry", "templates\abp.api.entry\abp.api.entry.csproj", "{90E7B2CF-AF9C-42E1-A470-26C715E17D91}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "abp.worker.entry", "templates\abp.worker.entry\abp.worker.entry.csproj", "{639FCB5B-B54F-492B-83A5-92DF56F9B1FC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -185,6 +189,14 @@ Global
 		{524FB404-FEDF-4B11-BEE3-97D47ADEF2A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{524FB404-FEDF-4B11-BEE3-97D47ADEF2A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{524FB404-FEDF-4B11-BEE3-97D47ADEF2A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90E7B2CF-AF9C-42E1-A470-26C715E17D91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90E7B2CF-AF9C-42E1-A470-26C715E17D91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90E7B2CF-AF9C-42E1-A470-26C715E17D91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90E7B2CF-AF9C-42E1-A470-26C715E17D91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{639FCB5B-B54F-492B-83A5-92DF56F9B1FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{639FCB5B-B54F-492B-83A5-92DF56F9B1FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{639FCB5B-B54F-492B-83A5-92DF56F9B1FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{639FCB5B-B54F-492B-83A5-92DF56F9B1FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -218,5 +230,7 @@ Global
 		{C4FC4948-7A0D-437F-B391-7A06507E5B7D} = {786A5FD3-D985-40ED-85D4-9327508AA8E0}
 		{BACA9DB0-85BC-4317-BD51-D88E56A910C4} = {786A5FD3-D985-40ED-85D4-9327508AA8E0}
 		{524FB404-FEDF-4B11-BEE3-97D47ADEF2A0} = {786A5FD3-D985-40ED-85D4-9327508AA8E0}
+		{90E7B2CF-AF9C-42E1-A470-26C715E17D91} = {1B3C4C18-7D55-464C-9EBE-795C0F5E948F}
+		{639FCB5B-B54F-492B-83A5-92DF56F9B1FC} = {1B3C4C18-7D55-464C-9EBE-795C0F5E948F}
 	EndGlobalSection
 EndGlobal
