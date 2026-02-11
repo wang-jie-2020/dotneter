@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Content Include="Properties\launchSettings.json" />
+    </ItemGroup>
+
+	<ItemGroup>
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.1" />
+        <PackageReference Include="Serilog.AspNetCore" Version="8.0.1" />
+        <PackageReference Include="Serilog.Sinks.Async" Version="1.5.0" />
+    </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="main_failure">
+      <HintPath>C:\Users\jie.wang21\Desktop\matlab\main_failure(1)\main_failure\for_testing\main_failure.dll</HintPath>
+    </Reference>
+    <Reference Include="main_failureNative">
+      <HintPath>C:\Users\jie.wang21\Desktop\matlab\main_failure(1)\main_failure\for_testing\main_failureNative.dll</HintPath>
+    </Reference>
+    <Reference Include="MWArray">
+      <HintPath>C:\Program Files\MATLAB\MATLAB Runtime\R2024a\toolbox\dotnetbuilder\bin\win64\netstandard2.0\MWArray.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
