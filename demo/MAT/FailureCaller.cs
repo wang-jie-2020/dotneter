@@ -1,5 +1,4 @@
-﻿using main_failure;
-using MathWorks.MATLAB.NET.Arrays;
+﻿using MathWorks.MATLAB.NET.Arrays;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,7 +45,7 @@ namespace MAT
             //double[] failure_time_up = { 3, 5, 7, 8, 9, 10, 15, 16, 17, 19, 22, 23, 26, 29, 32 };
             //double[] failure_num = { 1, 9, 2, 3, 6, 8, 3, 1, 1, 1, 1, 1, 4, 2, 2 };
 
-            MainFailure mainFailure = new MainFailure();
+            faliure_pre.faliure_pre faliure = new faliure_pre.faliure_pre();
 
             MWNumericArray input1 = new MWNumericArray(normal_time);
             MWNumericArray input2 = new MWNumericArray(normal_num);
@@ -54,7 +53,7 @@ namespace MAT
             MWNumericArray input4 = new MWNumericArray(failure_time_up);
             MWNumericArray input5 = new MWNumericArray(failure_num);
 
-            MWArray[] results = mainFailure.main_failure(4, input1, input2, input3, input4, input5);
+            MWArray[] results = faliure.main_failure(4, input1, input2, input3, input4, input5);
 
             var F = results[0];
             var F_up = results[1];
