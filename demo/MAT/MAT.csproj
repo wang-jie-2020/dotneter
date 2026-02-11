@@ -18,10 +18,7 @@
 
   <ItemGroup>
     <Reference Include="main_failure">
-      <HintPath>C:\Users\jie.wang21\Desktop\matlab\main_failure(1)\main_failure\for_testing\main_failure.dll</HintPath>
-    </Reference>
-    <Reference Include="main_failureNative">
-      <HintPath>C:\Users\jie.wang21\Desktop\matlab\main_failure(1)\main_failure\for_testing\main_failureNative.dll</HintPath>
+      <HintPath>C:\Users\jie.wang21\Desktop\CSharp\main_failure\for_redistribution_files_only\main_failure.dll</HintPath>
     </Reference>
     <Reference Include="MWArray">
       <HintPath>C:\Program Files\MATLAB\MATLAB Runtime\R2024a\toolbox\dotnetbuilder\bin\win64\netstandard2.0\MWArray.dll</HintPath>

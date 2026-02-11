@@ -35,20 +35,18 @@ namespace MAT
             double[,] normal_num = { { 915 }, { 3902 }, { 6067 }, { 6197 }, { 3873 }, { 4650 }, { 3399 }, { 4743 }, { 2847 }, { 3756 }, { 3856 }, { 3731 }, { 5949 }, { 5650 }, { 2737 }, { 8674 }, { 1387 }, { 7045 }, { 220 }, { 12 } };
 
 
-            //double[,] failure_time_low = { { 2 }, { 4 }, { 6 }, { 7 }, { 8 }, { 9 }, { 14 }, { 15 }, { 16 }, { 18 }, { 21 }, { 22 }, { 25 }, { 28 }, { 31 } };
-            //double[,] failure_time_up = { { 3 }, { 5 }, { 7 }, { 8 }, { 9 }, { 10 }, { 15 }, { 16 }, { 17 }, { 19 }, { 22 }, { 23 }, { 26 }, { 29 }, { 32 } };
-            //double[,] failure_num = { { 1 }, { 9 }, { 2 }, { 3 }, { 6 }, { 8 }, { 3 }, { 1 }, { 1 }, { 1 }, { 1 }, { 1 }, { 4 }, { 2 }, { 2 } };
+            double[,] failure_time_low = { { 2 }, { 4 }, { 6 }, { 7 }, { 8 }, { 9 }, { 14 }, { 15 }, { 16 }, { 18 }, { 21 }, { 22 }, { 25 }, { 28 }, { 31 } };
+            double[,] failure_time_up = { { 3 }, { 5 }, { 7 }, { 8 }, { 9 }, { 10 }, { 15 }, { 16 }, { 17 }, { 19 }, { 22 }, { 23 }, { 26 }, { 29 }, { 32 } };
+            double[,] failure_num = { { 1 }, { 9 }, { 2 }, { 3 }, { 6 }, { 8 }, { 3 }, { 1 }, { 1 }, { 1 }, { 1 }, { 1 }, { 4 }, { 2 }, { 2 } };
 
             //double[] normal_time = { 34, 33, 32, 31, 30, 29, 28, 27, 26, 25, 24, 23, 22, 21, 20, 19, 16, 15, 14, 7 };
             //double[] normal_num = { 915, 3902, 6067, 6197, 3873, 4650, 3399, 4743, 2847, 3756, 3856, 3731, 5949, 5650, 2737, 8674, 1387, 7045, 220, 12 };
 
-            double[] failure_time_low = { 2, 4, 6, 7, 8, 9, 14, 15, 16, 18, 21, 22, 25, 28, 31 };
-            double[] failure_time_up = { 3, 5, 7, 8, 9, 10, 15, 16, 17, 19, 22, 23, 26, 29, 32 };
-            double[] failure_num = { 1, 9, 2, 3, 6, 8, 3, 1, 1, 1, 1, 1, 4, 2, 2 };
+            //double[] failure_time_low = { 2, 4, 6, 7, 8, 9, 14, 15, 16, 18, 21, 22, 25, 28, 31 };
+            //double[] failure_time_up = { 3, 5, 7, 8, 9, 10, 15, 16, 17, 19, 22, 23, 26, 29, 32 };
+            //double[] failure_num = { 1, 9, 2, 3, 6, 8, 3, 1, 1, 1, 1, 1, 4, 2, 2 };
 
-            //MainFailure mainFailure = new MainFailure();
-
-            failure_pre mainFailure = new failure_pre();
+            MainFailure mainFailure = new MainFailure();
 
             MWNumericArray input1 = new MWNumericArray(normal_time);
             MWNumericArray input2 = new MWNumericArray(normal_num);
@@ -57,6 +55,11 @@ namespace MAT
             MWNumericArray input5 = new MWNumericArray(failure_num);
 
             MWArray[] results = mainFailure.main_failure(4, input1, input2, input3, input4, input5);
+
+            var F = results[0];
+            var F_up = results[1];
+            var annual_F = results[2];
+            var annual_F_up = results[3];
 
             Array array = results.ToArray();
 
