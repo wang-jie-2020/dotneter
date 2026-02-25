@@ -8,7 +8,7 @@ namespace Grammar
     {
         static void Main(string[] args)
         {
-            Run(typeof(Mem));
+            Run(typeof(Zips));
         }
 
         static void Run(Type type)
