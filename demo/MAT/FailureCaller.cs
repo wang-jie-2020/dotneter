@@ -1,4 +1,5 @@
 ﻿using MathWorks.MATLAB.NET.Arrays;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,13 @@ namespace MAT
 {
     public class FailureCaller
     {
+        private readonly ILogger<FailureCaller> logger;
+
+        public FailureCaller(ILogger<FailureCaller> logger)
+        {
+            this.logger = logger;
+        }
+
         public Task ExecuteAsync(CancellationToken stoppingToken)
         {
             //%% 输入数据 - 请根据实际情况修改这些数据
@@ -61,6 +69,11 @@ namespace MAT
                 var annual_F_up = results[3];
 
                 Array array = results.ToArray();
+
+                logger.LogInformation(F.ToString());
+                logger.LogInformation(F_up.ToString());
+                logger.LogInformation(annual_F.ToString());
+                logger.LogInformation(annual_F_up.ToString());
 
                 return Task.CompletedTask;
             }

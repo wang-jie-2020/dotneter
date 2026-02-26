@@ -24,7 +24,7 @@
       <HintPath>lib\faliure_pre.dll</HintPath>
     </Reference>
     <Reference Include="MWArray">
-      <HintPath>C:\Program Files\MATLAB\MATLAB Runtime\R2024a\toolbox\dotnetbuilder\bin\win64\netstandard2.0\MWArray.dll</HintPath>
+      <HintPath>lib\MWArray.dll</HintPath>
     </Reference>
   </ItemGroup>
 

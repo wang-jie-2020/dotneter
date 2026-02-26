@@ -19,10 +19,10 @@ namespace MAT
 
         protected override Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            //Task.Run(() =>
-            //{
-            //    failureCaller.ExecuteAsync(stoppingToken);
-            //});
+            Task.Run(() =>
+            {
+                failureCaller.ExecuteAsync(stoppingToken);
+            });
 
             Task.Run(() =>
             {
