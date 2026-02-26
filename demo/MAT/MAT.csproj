@@ -17,6 +17,9 @@
     </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="energy_pre">
+      <HintPath>lib\energy_pre.dll</HintPath>
+    </Reference>
     <Reference Include="faliure_pre">
       <HintPath>lib\faliure_pre.dll</HintPath>
     </Reference>

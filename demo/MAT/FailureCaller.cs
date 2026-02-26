@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace MAT
 {
-    public class FailureCaller : BackgroundService
+    public class FailureCaller
     {
-        protected override Task ExecuteAsync(CancellationToken stoppingToken)
+        public Task ExecuteAsync(CancellationToken stoppingToken)
         {
             //%% 输入数据 - 请根据实际情况修改这些数据
             //% 正常Pack数据（右删失数据）
@@ -45,24 +45,25 @@ namespace MAT
             //double[] failure_time_up = { 3, 5, 7, 8, 9, 10, 15, 16, 17, 19, 22, 23, 26, 29, 32 };
             //double[] failure_num = { 1, 9, 2, 3, 6, 8, 3, 1, 1, 1, 1, 1, 4, 2, 2 };
 
-            faliure_pre.faliure_pre faliure = new faliure_pre.faliure_pre();
+            using (faliure_pre.faliure_pre faliure = new faliure_pre.faliure_pre())
+            {
+                MWNumericArray input1 = new MWNumericArray(normal_time);
+                MWNumericArray input2 = new MWNumericArray(normal_num);
+                MWNumericArray input3 = new MWNumericArray(failure_time_low);
+                MWNumericArray input4 = new MWNumericArray(failure_time_up);
+                MWNumericArray input5 = new MWNumericArray(failure_num);
 
-            MWNumericArray input1 = new MWNumericArray(normal_time);
-            MWNumericArray input2 = new MWNumericArray(normal_num);
-            MWNumericArray input3 = new MWNumericArray(failure_time_low);
-            MWNumericArray input4 = new MWNumericArray(failure_time_up);
-            MWNumericArray input5 = new MWNumericArray(failure_num);
+                MWArray[] results = faliure.main_failure(4, input1, input2, input3, input4, input5);
 
-            MWArray[] results = faliure.main_failure(4, input1, input2, input3, input4, input5);
+                var F = results[0];
+                var F_up = results[1];
+                var annual_F = results[2];
+                var annual_F_up = results[3];
 
-            var F = results[0];
-            var F_up = results[1];
-            var annual_F = results[2];
-            var annual_F_up = results[3];
+                Array array = results.ToArray();
 
-            Array array = results.ToArray();
-
-            return Task.CompletedTask;
+                return Task.CompletedTask;
+            }
         }
     }
 }
