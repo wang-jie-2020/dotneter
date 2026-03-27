@@ -7,7 +7,7 @@ namespace Yi.System.Domains;
 
 public class LoginEventArgs
 {
-    public Guid UserId { get; set; }
+    public long UserId { get; set; }
 
     public string UserName { get; set; }
     

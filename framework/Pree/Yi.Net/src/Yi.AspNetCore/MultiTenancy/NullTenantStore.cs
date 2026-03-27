@@ -11,7 +11,7 @@ public class NullTenantStore: ITenantStore, ITransientDependency
         return Task.FromResult<TenantConfiguration?>(null);
     }
 
-    public Task<TenantConfiguration?> FindAsync(Guid id)
+    public Task<TenantConfiguration?> FindAsync(long id)
     {
         return Task.FromResult<TenantConfiguration?>(null);
     }

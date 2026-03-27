@@ -7,7 +7,7 @@ namespace Yi.Framework.Core.Entities;
 ///     配置表
 /// </summary>
 [SugarTable("Sys_Config")]
-public class ConfigEntity : BizEntity<Guid>
+public class ConfigEntity : BizEntity<long>
 {
     /// <summary>
     ///     配置名称

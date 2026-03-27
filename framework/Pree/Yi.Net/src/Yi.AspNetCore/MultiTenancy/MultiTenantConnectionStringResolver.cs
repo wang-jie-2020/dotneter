@@ -54,7 +54,7 @@ public class MultiTenantConnectionStringResolver : DefaultConnectionStringResolv
         return await base.ResolveAsync(connectionStringName);
     }
 
-    protected virtual async Task<TenantConfiguration?> FindTenantConfigurationAsync(Guid tenantId)
+    protected virtual async Task<TenantConfiguration?> FindTenantConfigurationAsync(long tenantId)
     {
         using (var serviceScope = _serviceProvider.CreateScope())
         {

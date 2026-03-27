@@ -7,7 +7,7 @@ namespace Yi.Framework.Core.Entities;
 ///     岗位表
 /// </summary>
 [SugarTable("Sys_Post")]
-public class PostEntity : BizEntity<Guid>
+public class PostEntity : BizEntity<long>
 {
     /// <summary>
     ///     岗位编码

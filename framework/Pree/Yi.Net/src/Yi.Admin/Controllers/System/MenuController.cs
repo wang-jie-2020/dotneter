@@ -17,7 +17,7 @@ public class MenuController : BaseController
     }
 
     [HttpGet("{id}")]
-    public async Task<MenuDto> GetAsync(Guid id)
+    public async Task<MenuDto> GetAsync(long id)
     {
         return await _menuService.GetAsync(id);
     }
@@ -35,13 +35,13 @@ public class MenuController : BaseController
     }
 
     [HttpPut("{id}")]
-    public async Task<MenuDto> UpdateAsync(Guid id, [FromBody] MenuInput input)
+    public async Task<MenuDto> UpdateAsync(long id, [FromBody] MenuInput input)
     {
         return await _menuService.UpdateAsync(id, input);
     }
 
     [HttpDelete]
-    public async Task DeleteAsync([FromQuery] IEnumerable<Guid> id)
+    public async Task DeleteAsync([FromQuery] IEnumerable<long> id)
     {
         await _menuService.DeleteAsync(id);
     }
@@ -52,7 +52,7 @@ public class MenuController : BaseController
     /// <param name="roleId"></param>
     /// <returns></returns>
     [HttpGet("role-id/{roleId}")]
-    public async Task<List<MenuDto>> GetListRoleIdAsync([FromRoute] Guid roleId)
+    public async Task<List<MenuDto>> GetListRoleIdAsync([FromRoute] long roleId)
     {
         return await _menuService.GetListRoleIdAsync(roleId);
     }

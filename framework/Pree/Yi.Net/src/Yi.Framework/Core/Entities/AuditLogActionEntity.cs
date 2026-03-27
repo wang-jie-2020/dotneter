@@ -15,7 +15,7 @@ public class AuditLogActionEntity : Entity<Guid>, IMultiTenant
     {
     }
 
-    public AuditLogActionEntity(Guid id, Guid auditLogId, AuditLogActionInfo actionInfo, Guid? tenantId = null)
+    public AuditLogActionEntity(Guid id, Guid auditLogId, AuditLogActionInfo actionInfo, long? tenantId = null)
     {
         Id = id;
         TenantId = tenantId;
@@ -42,5 +42,5 @@ public class AuditLogActionEntity : Entity<Guid>, IMultiTenant
 
     public virtual int? ExecutionDuration { get; protected set; }
     
-    public virtual Guid? TenantId { get; protected set; }
+    public virtual long? TenantId { get; protected set; }
 }

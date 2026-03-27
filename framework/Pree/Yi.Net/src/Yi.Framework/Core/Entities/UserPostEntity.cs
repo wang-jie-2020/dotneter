@@ -13,11 +13,11 @@ public class UserPostEntity : Entity<long>
     ///     用户id
     /// </summary>
     [SugarColumn(ColumnName = "UserId")]
-    public Guid UserId { get; set; }
+    public long UserId { get; set; }
 
     /// <summary>
     ///     岗位id
     /// </summary>
     [SugarColumn(ColumnName = "PostId")]
-    public Guid PostId { get; set; }
+    public long PostId { get; set; }
 }

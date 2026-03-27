@@ -10,7 +10,7 @@ namespace Yi.Framework.Core.Entities;
 /// </summary>
 [SugarTable("Sys_User")]
 [SugarIndex($"index_{nameof(UserName)}", nameof(UserName), OrderByType.Asc)]
-public class UserEntity : BizEntity<Guid>
+public class UserEntity : BizEntity<long>
 {
     public UserEntity()
     {
@@ -105,7 +105,7 @@ public class UserEntity : BizEntity<Guid>
     /// <summary>
     ///     部门id
     /// </summary>
-    public Guid? DeptId { get; set; }
+    public long? DeptId { get; set; }
     
     /// <summary>
     ///     角色

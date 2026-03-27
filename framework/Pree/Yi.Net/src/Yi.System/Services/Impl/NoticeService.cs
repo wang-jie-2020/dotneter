@@ -13,7 +13,7 @@ public class NoticeService : BaseService, INoticeService
         _repository = repository;
     }
 
-    public async Task<NoticeDto> GetAsync(Guid id)
+    public async Task<NoticeDto> GetAsync(long id)
     {
         var entity = await _repository.GetByIdAsync(id);
         return entity.Adapt<NoticeDto>();
@@ -39,7 +39,7 @@ public class NoticeService : BaseService, INoticeService
         return entity.Adapt<NoticeDto>();
     }
 
-    public async Task<NoticeDto> UpdateAsync(Guid id, NoticeInput input)
+    public async Task<NoticeDto> UpdateAsync(long id, NoticeInput input)
     {
         var entity = await _repository.GetByIdAsync(id);
         input.Adapt(entity);
@@ -48,8 +48,8 @@ public class NoticeService : BaseService, INoticeService
         return entity.Adapt<NoticeDto>();
     }
 
-    public async Task DeleteAsync(IEnumerable<Guid> id)
+    public async Task DeleteAsync(IEnumerable<long> id)
     {
-        await _repository.DeleteByIdsAsync(id.Select(x => (object)x).ToArray());
+        await _repository.DeleteByIdsAsync(id.Cast<object>().ToArray());
     }
 }

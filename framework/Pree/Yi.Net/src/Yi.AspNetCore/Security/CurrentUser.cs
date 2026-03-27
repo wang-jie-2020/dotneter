@@ -7,7 +7,7 @@ public class CurrentUser : ICurrentUser, ITransientDependency
 {
     private static readonly Claim[] EmptyClaimsArray = [];
 
-    public virtual Guid? Id => _principalAccessor.Principal?.FindUserId();
+    public virtual long? Id => _principalAccessor.Principal?.FindUserId();
 
     public virtual string? UserName => FindClaim(ClaimsIdentityTypes.UserName)?.Value;
 

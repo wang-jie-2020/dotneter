@@ -7,7 +7,7 @@ public class UserDto
     /// <summary>
     ///     主键
     /// </summary>
-    public Guid Id { get; set; }
+    public long Id { get; set; }
 
     /// <summary>
     ///     逻辑删除
@@ -78,7 +78,7 @@ public class UserDto
     /// <summary>
     ///     部门id
     /// </summary>
-    public Guid? DeptId { get; set; }
+    public long? DeptId { get; set; }
 
     /// <summary>
     ///     创建时间

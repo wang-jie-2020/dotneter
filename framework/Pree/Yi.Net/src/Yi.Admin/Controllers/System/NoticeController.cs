@@ -17,7 +17,7 @@ public class NoticeController : BaseController
     }
 
     [HttpGet("{id}")]
-    public async Task<NoticeDto> GetAsync(Guid id)
+    public async Task<NoticeDto> GetAsync(long id)
     {
         return await _noticeService.GetAsync(id);
     }
@@ -35,13 +35,13 @@ public class NoticeController : BaseController
     }
 
     [HttpPut("{id}")]
-    public async Task<NoticeDto> UpdateAsync(Guid id, [FromBody] NoticeInput input)
+    public async Task<NoticeDto> UpdateAsync(long id, [FromBody] NoticeInput input)
     {
         return await _noticeService.UpdateAsync(id, input);
     }
 
     [HttpDelete]
-    public async Task DeleteAsync([FromQuery] IEnumerable<Guid> id)
+    public async Task DeleteAsync([FromQuery] IEnumerable<long> id)
     {
         await _noticeService.DeleteAsync(id);
     }
@@ -51,7 +51,7 @@ public class NoticeController : BaseController
     /// </summary>
     /// <returns></returns>
     [HttpPost("online/{id}")]
-    public async Task SendOnlineAsync([FromRoute] Guid id)
+    public async Task SendOnlineAsync([FromRoute] long id)
     {
         throw new NotImplementedException();
 
@@ -64,7 +64,7 @@ public class NoticeController : BaseController
     /// </summary>
     /// <returns></returns>
     [HttpPost("offline/{id}")]
-    public async Task SendOfflineAsync([FromRoute] Guid id)
+    public async Task SendOfflineAsync([FromRoute] long id)
     {
         throw new NotImplementedException();
     }

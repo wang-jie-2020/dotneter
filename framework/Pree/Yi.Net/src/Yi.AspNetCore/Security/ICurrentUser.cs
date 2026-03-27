@@ -4,7 +4,7 @@ namespace Yi.AspNetCore.Security;
 
 public interface ICurrentUser
 {
-    Guid? Id { get; }
+    long? Id { get; }
 
     string? UserName { get; }
     

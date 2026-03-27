@@ -1,7 +1,7 @@
 ﻿namespace Yi.System.Entities;
 
 [SugarTable("Sys_Notice")]
-public class NoticeEntity : BizEntity<Guid>
+public class NoticeEntity : BizEntity<long>
 {
     /// <summary>
     ///     公告标题

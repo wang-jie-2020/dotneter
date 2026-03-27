@@ -7,13 +7,13 @@ namespace Yi.Framework.Core.Entities;
 
 [SugarTable("Sys_Tenant")]
 [DefaultTenantTable]
-public class TenantEntity : BizEntity<Guid>
+public class TenantEntity : BizEntity<long>
 {
     public TenantEntity()
     {
     }
 
-    protected internal TenantEntity(Guid id, [NotNull] string name) : base(id)
+    protected internal TenantEntity(long id, [NotNull] string name) : base(id)
     {
         SetName(name);
     }

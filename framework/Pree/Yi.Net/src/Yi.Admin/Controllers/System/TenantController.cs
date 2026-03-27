@@ -17,7 +17,7 @@ public class TenantController : BaseController
     }
 
     [HttpGet("{id}")]
-    public async Task<TenantDto> GetAsync(Guid id)
+    public async Task<TenantDto> GetAsync(long id)
     {
         return await _tenantService.GetAsync(id);
     }
@@ -35,13 +35,13 @@ public class TenantController : BaseController
     }
 
     [HttpPut("{id}")]
-    public async Task<TenantDto> UpdateAsync(Guid id, [FromBody] TenantInput input)
+    public async Task<TenantDto> UpdateAsync(long id, [FromBody] TenantInput input)
     {
         return await _tenantService.UpdateAsync(id, input);
     }
 
     [HttpDelete]
-    public async Task DeleteAsync([FromQuery] IEnumerable<Guid> id)
+    public async Task DeleteAsync([FromQuery] IEnumerable<long> id)
     {
         await _tenantService.DeleteAsync(id);
     }
@@ -59,7 +59,7 @@ public class TenantController : BaseController
     }
 
     [HttpPut("init/{id}")]
-    public async Task InitAsync(Guid id)
+    public async Task InitAsync(long id)
     {
         await _tenantService.InitAsync(id);
     }

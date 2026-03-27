@@ -53,7 +53,7 @@ public class TenantConfigurationProvider : ITenantConfigurationProvider, ITransi
 
     protected virtual async Task<TenantConfiguration?> FindTenantAsync(string tenantIdOrName)
     {
-        if (Guid.TryParse(tenantIdOrName, out var parsedTenantId))
+        if (long.TryParse(tenantIdOrName, out var parsedTenantId))
         {
             return await TenantStore.FindAsync(parsedTenantId);
         }

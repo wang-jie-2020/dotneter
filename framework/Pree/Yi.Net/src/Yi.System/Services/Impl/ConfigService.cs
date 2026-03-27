@@ -14,7 +14,7 @@ public class ConfigService : BaseService, IConfigService
         _repository = repository;
     }
 
-    public async Task<ConfigDto> GetAsync(Guid id)
+    public async Task<ConfigDto> GetAsync(long id)
     {
         var entity = await _repository.GetByIdAsync(id);
         return entity.Adapt<ConfigDto>();
@@ -40,7 +40,7 @@ public class ConfigService : BaseService, IConfigService
         return entity.Adapt<ConfigDto>();
     }
 
-    public async Task<ConfigDto> UpdateAsync(Guid id, ConfigInput input)
+    public async Task<ConfigDto> UpdateAsync(long id, ConfigInput input)
     {
         var entity = await _repository.GetByIdAsync(id);
         input.Adapt(entity);
@@ -49,8 +49,8 @@ public class ConfigService : BaseService, IConfigService
         return entity.Adapt<ConfigDto>();
     }
 
-    public async Task DeleteAsync(IEnumerable<Guid> id)
+    public async Task DeleteAsync(IEnumerable<long> id)
     {
-        await _repository.DeleteByIdsAsync(id.Select(x => (object)x).ToArray());
+        await _repository.DeleteByIdsAsync(id.Cast<object>().ToArray());
     }
 }

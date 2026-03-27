@@ -2,7 +2,7 @@ namespace Yi.System.Services.Dtos;
 
 public class DictionaryTypeDto 
 {
-    public Guid Id { get; set; }
+    public long Id { get; set; }
     
     public DateTime CreationTime { get; set; } = DateTime.Now;
     

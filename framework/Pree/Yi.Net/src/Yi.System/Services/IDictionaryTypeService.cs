@@ -4,13 +4,13 @@ namespace Yi.System.Services;
 
 public interface IDictionaryTypeService
 {
-    Task<DictionaryTypeDto> GetAsync(Guid id);
+    Task<DictionaryTypeDto> GetAsync(long id);
 
     Task<PagedResult<DictionaryTypeDto>> GetListAsync(DictionaryTypeQuery query);
 
     Task<DictionaryTypeDto> CreateAsync(DictionaryTypeInput input);
 
-    Task<DictionaryTypeDto> UpdateAsync(Guid id, DictionaryTypeInput input);
+    Task<DictionaryTypeDto> UpdateAsync(long id, DictionaryTypeInput input);
 
-    Task DeleteAsync(IEnumerable<Guid> id);
+    Task DeleteAsync(IEnumerable<long> id);
 }

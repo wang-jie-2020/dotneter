@@ -13,7 +13,7 @@ public class DeptService : BaseService, IDeptService
         _repository = repository;
     }
 
-    public async Task<DeptDto> GetAsync(Guid id)
+    public async Task<DeptDto> GetAsync(long id)
     {
         var entity = await _repository.GetByIdAsync(id);
         return entity.Adapt<DeptDto>();
@@ -43,7 +43,7 @@ public class DeptService : BaseService, IDeptService
         return entity.Adapt<DeptDto>();
     }
 
-    public async Task<DeptDto> UpdateAsync(Guid id, DeptInput input)
+    public async Task<DeptDto> UpdateAsync(long id, DeptInput input)
     {
         var entity = await _repository.GetByIdAsync(id);
         input.Adapt(entity);
@@ -52,21 +52,21 @@ public class DeptService : BaseService, IDeptService
         return entity.Adapt<DeptDto>();
     }
 
-    public async Task DeleteAsync(IEnumerable<Guid> id)
+    public async Task DeleteAsync(IEnumerable<long> id)
     {
-        await _repository.DeleteByIdsAsync(id.Select(x => (object)x).ToArray());
+        await _repository.DeleteByIdsAsync(id.Cast<object>().ToArray());
     }
     
-    public async Task<List<Guid>> GetChildListAsync(Guid deptId)
+    public async Task<List<long>> GetChildListAsync(long deptId)
     {
         var entities = await _repository.AsQueryable().ToChildListAsync(x => x.ParentId, deptId);
         return entities.Select(x => x.Id).ToList();
     }
     
-    public async Task<List<DeptDto>> GetRoleIdAsync(Guid roleId)
+    public async Task<List<DeptDto>> GetRoleIdAsync(long roleId)
     {
-        var entities = await _repository.AsQueryable().
-            Where(d => SqlFunc.Subqueryable<RoleDeptEntity>().Where(rd => rd.RoleId == roleId && d.Id == rd.DeptId).Any())
+        var entities = await _repository.AsQueryable()
+            .Where(d => SqlFunc.Subqueryable<RoleDeptEntity>().Where(rd => rd.RoleId == roleId && d.Id == rd.DeptId).Any())
             .ToListAsync();
         return entities.Adapt<List<DeptDto>>();
     }

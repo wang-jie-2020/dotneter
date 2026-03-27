@@ -20,7 +20,7 @@ public class UserDataSeed : IDataSeedContributor, ITransientDependency
             var entities = new List<UserEntity>();
             var user1 = new UserEntity
             {
-                Id = Guid.Parse("661DBEB5-79F6-42C6-A295-A13ADA6D505D"),
+                Id = 1,
                 Name = "大橙子",
                 UserName = "cc",
                 Nick = "橙子",

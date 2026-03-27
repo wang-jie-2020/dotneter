@@ -18,7 +18,7 @@ public class ConfigController : BaseController
     }
 
     [HttpGet("{id}")]
-    public async Task<ConfigDto> GetAsync(Guid id)
+    public async Task<ConfigDto> GetAsync(long id)
     {
         return await _configService.GetAsync(id);
     }
@@ -36,13 +36,13 @@ public class ConfigController : BaseController
     }
 
     [HttpPut("{id}")]
-    public async Task<ConfigDto> UpdateAsync(Guid id, [FromBody] ConfigInput input)
+    public async Task<ConfigDto> UpdateAsync(long id, [FromBody] ConfigInput input)
     {
         return await _configService.UpdateAsync(id, input);
     }
 
     [HttpDelete]
-    public async Task DeleteAsync([FromQuery] IEnumerable<Guid> id)
+    public async Task DeleteAsync([FromQuery] IEnumerable<long> id)
     {
         await _configService.DeleteAsync(id);
     }

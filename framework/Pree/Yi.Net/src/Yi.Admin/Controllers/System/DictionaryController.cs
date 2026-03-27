@@ -18,7 +18,7 @@ public class DictionaryController : BaseController
     }
 
     [HttpGet("{id}")]
-    public async Task<DictionaryDto> GetAsync(Guid id)
+    public async Task<DictionaryDto> GetAsync(long id)
     {
         return await _dictionaryService.GetAsync(id);
     }
@@ -36,13 +36,13 @@ public class DictionaryController : BaseController
     }
 
     [HttpPut("{id}")]
-    public async Task<DictionaryDto> UpdateAsync(Guid id, [FromBody] DictionaryInput input)
+    public async Task<DictionaryDto> UpdateAsync(long id, [FromBody] DictionaryInput input)
     {
         return await _dictionaryService.UpdateAsync(id, input);
     }
 
     [HttpDelete]
-    public async Task DeleteAsync([FromQuery] IEnumerable<Guid> id)
+    public async Task DeleteAsync([FromQuery] IEnumerable<long> id)
     {
         await _dictionaryService.DeleteAsync(id);
     }

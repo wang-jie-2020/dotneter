@@ -22,8 +22,8 @@ public class UserRoleDataSeed: IDataSeedContributor, ITransientDependency
         var entities = new List<UserRoleEntity>();
         var role1 = new UserRoleEntity
         {
-           UserId = Guid.Parse("661DBEB5-79F6-42C6-A295-A13ADA6D505D"),
-           RoleId = Guid.Parse("BD4469C3-7EC7-4F72-ABBF-01B754532006")
+           UserId = 1,
+           RoleId = 1
         };
         entities.Add(role1);
 

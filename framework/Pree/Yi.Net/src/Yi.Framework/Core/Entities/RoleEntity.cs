@@ -7,7 +7,7 @@ namespace Yi.Framework.Core.Entities;
 ///     角色表
 /// </summary>
 [SugarTable("Sys_Role")]
-public class RoleEntity : BizEntity<Guid>
+public class RoleEntity : BizEntity<long>
 {
     /// <summary>
     ///     角色名

@@ -2,5 +2,5 @@
 
 public interface IUserStore
 {
-    Task<UserConfiguration> GetInfoAsync(Guid userId, bool refreshCache = false);
+    Task<UserConfiguration> GetInfoAsync(long userId, bool refreshCache = false);
 }

@@ -15,7 +15,7 @@ public class MenuInput
     
     public string? PermissionCode { get; set; }
     
-    public Guid ParentId { get; set; }
+    public long ParentId { get; set; }
     
     public string? MenuIcon { get; set; }
     

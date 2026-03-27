@@ -7,19 +7,19 @@ namespace Yi.Framework.Core.Entities;
 ///     部门表
 /// </summary>
 [SugarTable("Sys_Dept")]
-public class DeptEntity : BizEntity<Guid>
+public class DeptEntity : BizEntity<long>
 {
     public DeptEntity()
     {
     }
 
-    public DeptEntity(Guid id)
+    public DeptEntity(long id)
     {
         this.Id = id;
-        ParentId = Guid.Empty;
+        ParentId = 0;
     }
 
-    public DeptEntity(Guid id, Guid parentId)
+    public DeptEntity(long id, long parentId)
     {
         this.Id = id;
         ParentId = parentId;
@@ -46,7 +46,7 @@ public class DeptEntity : BizEntity<Guid>
     ///     父级id
     /// </summary>
     [SugarColumn(ColumnName = "ParentId")]
-    public Guid ParentId { get; set; }
+    public long ParentId { get; set; }
 
     /// <summary>
     ///     描述

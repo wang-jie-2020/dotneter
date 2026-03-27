@@ -26,7 +26,7 @@ public class UserManager : BaseDomain
         _roleRepository = roleRepository;
     }
 
-    public async Task GiveUserSetRoleAsync(List<Guid> userIds, List<Guid> roleIds)
+    public async Task GiveUserSetRoleAsync(List<long> userIds, List<long> roleIds)
     {
         await _userRoleRepository.DeleteAsync(u => userIds.Contains(u.UserId));
 
@@ -45,7 +45,7 @@ public class UserManager : BaseDomain
         }
     }
 
-    public async Task GiveUserSetPostAsync(List<Guid> userIds, List<Guid> postIds)
+    public async Task GiveUserSetPostAsync(List<long> userIds, List<long> postIds)
     {
         await _userPostRepository.DeleteAsync(u => userIds.Contains(u.UserId));
         if (postIds is not null)
@@ -108,12 +108,12 @@ public class UserManager : BaseDomain
         await _userRepository.UpdateAsync(userEntity);
     }
 
-    public async Task SetDefaultRoleAsync(Guid userId)
+    public async Task SetDefaultRoleAsync(long userId)
     {
         var role = await _roleRepository.GetFirstAsync(x => x.RoleCode == "default");
         if (role is not null)
         {
-            await GiveUserSetRoleAsync(new List<Guid> { userId }, new List<Guid> { role.Id });
+            await GiveUserSetRoleAsync(new List<long> { userId }, new List<long> { role.Id });
         }
     }
 

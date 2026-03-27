@@ -21,8 +21,10 @@ public class DeptDataSeed : IDataSeedContributor, ITransientDependency
     public List<DeptEntity> GetSeedData()
     {
         var entities = new List<DeptEntity>();
+        long nextId = 1;
+        long NextId() => nextId++;
 
-        var chengziDept = new DeptEntity(SequentialGuidGenerator.Create())
+        var chengziDept = new DeptEntity(NextId())
         {
             DeptName = "橙子科技",
             DeptCode = "Yi",
@@ -33,7 +35,7 @@ public class DeptDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(chengziDept);
         
-        var shenzhenDept = new DeptEntity(SequentialGuidGenerator.Create())
+        var shenzhenDept = new DeptEntity(NextId())
         {
             DeptName = "深圳总公司",
             OrderNum = 100,
@@ -42,7 +44,7 @@ public class DeptDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(shenzhenDept);
         
-        var jiangxiDept = new DeptEntity(SequentialGuidGenerator.Create())
+        var jiangxiDept = new DeptEntity(NextId())
         {
             DeptName = "江西总公司",
             OrderNum = 100,
@@ -51,7 +53,7 @@ public class DeptDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(jiangxiDept);
         
-        var szDept1 = new DeptEntity(SequentialGuidGenerator.Create())
+        var szDept1 = new DeptEntity(NextId())
         {
             DeptName = "研发部门",
             OrderNum = 100,
@@ -60,7 +62,7 @@ public class DeptDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(szDept1);
 
-        var szDept2 = new DeptEntity(SequentialGuidGenerator.Create())
+        var szDept2 = new DeptEntity(NextId())
         {
             DeptName = "市场部门",
             OrderNum = 100,
@@ -69,7 +71,7 @@ public class DeptDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(szDept2);
 
-        var szDept3 = new DeptEntity(SequentialGuidGenerator.Create())
+        var szDept3 = new DeptEntity(NextId())
         {
             DeptName = "测试部门",
             OrderNum = 100,
@@ -78,7 +80,7 @@ public class DeptDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(szDept3);
 
-        var szDept4 = new DeptEntity(SequentialGuidGenerator.Create())
+        var szDept4 = new DeptEntity(NextId())
         {
             DeptName = "财务部门",
             OrderNum = 100,
@@ -87,7 +89,7 @@ public class DeptDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(szDept4);
 
-        var szDept5 = new DeptEntity(SequentialGuidGenerator.Create())
+        var szDept5 = new DeptEntity(NextId())
         {
             DeptName = "运维部门",
             OrderNum = 100,
@@ -97,7 +99,7 @@ public class DeptDataSeed : IDataSeedContributor, ITransientDependency
         entities.Add(szDept5);
 
 
-        var jxDept1 = new DeptEntity(SequentialGuidGenerator.Create())
+        var jxDept1 = new DeptEntity(NextId())
         {
             DeptName = "市场部门",
             OrderNum = 100,
@@ -107,7 +109,7 @@ public class DeptDataSeed : IDataSeedContributor, ITransientDependency
         entities.Add(jxDept1);
 
 
-        var jxDept2 = new DeptEntity(SequentialGuidGenerator.Create())
+        var jxDept2 = new DeptEntity(NextId())
         {
             DeptName = "财务部门",
             OrderNum = 100,

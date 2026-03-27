@@ -6,7 +6,7 @@ namespace Yi.AspNetCore.MultiTenancy;
 [Serializable]
 public class TenantConfiguration
 {
-    public Guid Id { get; set; }
+    public long Id { get; set; }
 
     public string Name { get; set; } = default!;
 
@@ -21,7 +21,7 @@ public class TenantConfiguration
         IsActive = true;
     }
 
-    public TenantConfiguration(Guid id, [NotNull] string name)
+    public TenantConfiguration(long id, [NotNull] string name)
         : this()
     {
         Check.NotNull(name, nameof(name));
@@ -32,7 +32,7 @@ public class TenantConfiguration
         ConnectionStrings = new ConnectionStrings();
     }
 
-    public TenantConfiguration(Guid id, [NotNull] string name, [NotNull] string normalizedName)
+    public TenantConfiguration(long id, [NotNull] string name, [NotNull] string normalizedName)
         : this(id, name)
     {
         Check.NotNull(normalizedName, nameof(normalizedName));

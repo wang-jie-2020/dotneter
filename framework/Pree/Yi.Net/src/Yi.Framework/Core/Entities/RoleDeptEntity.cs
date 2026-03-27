@@ -13,11 +13,11 @@ public class RoleDeptEntity : Entity<long>
     ///     角色id
     /// </summary>
     [SugarColumn(ColumnName = "RoleId")]
-    public Guid RoleId { get; set; }
+    public long RoleId { get; set; }
 
     /// <summary>
     ///     部门id
     /// </summary>
     [SugarColumn(ColumnName = "DeptId")]
-    public Guid DeptId { get; set; }
+    public long DeptId { get; set; }
 }

@@ -22,7 +22,7 @@ public class RoleService : BaseService, IRoleService
             (roleManager, roleDeptRepository, userRoleRepository, repository);
     }
 
-    public async Task<RoleDto> GetAsync(Guid id)
+    public async Task<RoleDto> GetAsync(long id)
     {
         var entity = await _repository.GetByIdAsync(id);
         return entity.Adapt<RoleDto>();
@@ -49,10 +49,9 @@ public class RoleService : BaseService, IRoleService
     {
         var entity = input.Adapt<RoleEntity>();
         await _repository.InsertAsync(entity);
-        await _roleManager.GiveRoleSetMenuAsync(new List<Guid> { entity.Id }, input.MenuIds);
+        await _roleManager.GiveRoleSetMenuAsync(new List<long> { entity.Id }, input.MenuIds);
 
         return entity.Adapt<RoleDto>();
-        ;
     }
 
     /// <summary>
@@ -61,20 +60,20 @@ public class RoleService : BaseService, IRoleService
     /// <param name="id"></param>
     /// <param name="input"></param>
     /// <returns></returns>
-    public async Task<RoleDto> UpdateAsync(Guid id, RoleInput input)
+    public async Task<RoleDto> UpdateAsync(long id, RoleInput input)
     {
         var entity = await _repository.GetByIdAsync(id);
         input.Adapt(entity);
 
         await _repository.UpdateAsync(entity);
-        await _roleManager.GiveRoleSetMenuAsync(new List<Guid> { id }, input.MenuIds);
+        await _roleManager.GiveRoleSetMenuAsync(new List<long> { id }, input.MenuIds);
 
         return entity.Adapt<RoleDto>();
     }
 
-    public async Task DeleteAsync(IEnumerable<Guid> id)
+    public async Task DeleteAsync(IEnumerable<long> id)
     {
-        await _repository.DeleteByIdsAsync(id.Select(x => (object)x).ToArray());
+        await _repository.DeleteByIdsAsync(id.Cast<object>().ToArray());
     }
     
     public async Task UpdateDataScopeAsync(UpdateDataScopeInput input)
@@ -100,7 +99,7 @@ public class RoleService : BaseService, IRoleService
     /// <param name="id"></param>
     /// <param name="state"></param>
     /// <returns></returns>
-    public async Task<RoleDto> UpdateStateAsync(Guid id, bool state)
+    public async Task<RoleDto> UpdateStateAsync(long id, bool state)
     {
         var entity = await _repository.GetByIdAsync(id);
         if (entity is null) throw new ArgumentOutOfRangeException();
@@ -117,7 +116,7 @@ public class RoleService : BaseService, IRoleService
     /// <param name="query"></param>
     /// <param name="isAllocated">是否在该角色下</param>
     /// <returns></returns>
-    public async Task<PagedResult<UserDto>> GetAuthUserByRoleIdAsync(Guid roleId, bool isAllocated, RoleAuthUserQuery query)
+    public async Task<PagedResult<UserDto>> GetAuthUserByRoleIdAsync(long roleId, bool isAllocated, RoleAuthUserQuery query)
     {
         PagedResult<UserDto> output;
         //角色下已授权用户
@@ -134,7 +133,7 @@ public class RoleService : BaseService, IRoleService
         return output;
     }
 
-    private async Task<PagedResult<UserDto>> GetAllocatedAuthUserByRoleIdAsync(Guid roleId, RoleAuthUserQuery query)
+    private async Task<PagedResult<UserDto>> GetAllocatedAuthUserByRoleIdAsync(long roleId, RoleAuthUserQuery query)
     {
         RefAsync<int> total = 0;
 
@@ -149,7 +148,7 @@ public class RoleService : BaseService, IRoleService
         return new PagedResult<UserDto>(total, output);
     }
 
-    private async Task<PagedResult<UserDto>> GetNotAllocatedAuthUserByRoleIdAsync(Guid roleId, RoleAuthUserQuery query)
+    private async Task<PagedResult<UserDto>> GetNotAllocatedAuthUserByRoleIdAsync(long roleId, RoleAuthUserQuery query)
     {
         RefAsync<int> total = 0;
 

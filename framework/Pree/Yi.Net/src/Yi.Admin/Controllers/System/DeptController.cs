@@ -17,7 +17,7 @@ public class DeptController : BaseController
     }
 
     [HttpGet("{id}")]
-    public async Task<DeptDto> GetAsync(Guid id)
+    public async Task<DeptDto> GetAsync(long id)
     {
         return await _deptService.GetAsync(id);
     }
@@ -35,13 +35,13 @@ public class DeptController : BaseController
     }
 
     [HttpPut("{id}")]
-    public async Task<DeptDto> UpdateAsync(Guid id, [FromBody] DeptInput input)
+    public async Task<DeptDto> UpdateAsync(long id, [FromBody] DeptInput input)
     {
         return await _deptService.UpdateAsync(id, input);
     }
 
     [HttpDelete]
-    public async Task DeleteAsync([FromQuery] IEnumerable<Guid> id)
+    public async Task DeleteAsync([FromQuery] IEnumerable<long> id)
     {
         await _deptService.DeleteAsync(id);
     }
@@ -51,7 +51,7 @@ public class DeptController : BaseController
     /// </summary>
     /// <returns></returns>
     [HttpGet("role-id/{roleId}")]
-    public async Task<List<DeptDto>> GetRoleIdAsync(Guid roleId)
+    public async Task<List<DeptDto>> GetRoleIdAsync(long roleId)
     {
         return await _deptService.GetRoleIdAsync(roleId);
     }

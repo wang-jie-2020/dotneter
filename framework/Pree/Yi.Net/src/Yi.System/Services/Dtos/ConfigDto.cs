@@ -2,7 +2,7 @@ namespace Yi.System.Services.Dtos;
 
 public class ConfigDto 
 {
-    public Guid Id { get; set; }
+    public long Id { get; set; }
 
     /// <summary>
     ///     配置名称

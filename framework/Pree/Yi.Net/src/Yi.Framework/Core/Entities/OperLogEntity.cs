@@ -58,5 +58,5 @@ public class OperLogEntity : Entity<long>, IMultiTenant
     /// </summary>
     public DateTime ExecutionTime { get; set; }
 
-    public Guid? TenantId { get; set; }
+    public long? TenantId { get; set; }
 }

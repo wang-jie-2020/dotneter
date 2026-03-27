@@ -44,8 +44,7 @@ public class AdminDbContext: SqlSugarDbContext
         //如果无岗位，或者无角色，只能看自己的数据
         if ( /*CurrentUser.GetDeptId() is null ||*/ roleInfo is null)
         {
-            expUser.Or(it => it.Id == CurrentUser.Id);
-            expRole.Or(it => roleInfo.Select(x => x.Id).Contains(it.Id));
+            expUser.Or(it => it.Id == CurrentUser.Id!.Value);
         }
         else
         {
@@ -75,11 +74,11 @@ public class AdminDbContext: SqlSugarDbContext
                     var allChildDepts = sqlSugarClient.Queryable<DeptEntity>()
                         .ToChildList(it => it.ParentId, CurrentUser.GetDeptId());
 
-                    expUser.Or(it => allChildDepts.Select(f => f.Id).ToList().Contains(it.DeptId ?? Guid.Empty));
+                    expUser.Or(it => allChildDepts.Select(f => f.Id).ToList().Contains(it.DeptId ?? 0));
                 }
                 else if (DataScopeEnum.USER.Equals(dataScope)) //仅本人数据
                 {
-                    expUser.Or(it => it.Id == CurrentUser.Id);
+                    expUser.Or(it => it.Id == CurrentUser.Id!.Value);
                     expRole.Or(it => roleInfo.Select(x => x.Id).Contains(it.Id));
                 }
             }

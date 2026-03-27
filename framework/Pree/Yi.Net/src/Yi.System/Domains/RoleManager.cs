@@ -22,7 +22,7 @@ public class RoleManager : BaseDomain
     /// <param name="roleIds"></param>
     /// <param name="menuIds"></param>
     /// <returns></returns>
-    public async Task GiveRoleSetMenuAsync(List<Guid> roleIds, List<Guid> menuIds)
+    public async Task GiveRoleSetMenuAsync(List<long> roleIds, List<long> menuIds)
     {
         await _roleMenuRepository.DeleteAsync(u => roleIds.Contains(u.RoleId));
         foreach (var roleId in roleIds)

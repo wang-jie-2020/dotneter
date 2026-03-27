@@ -17,7 +17,7 @@ public class RoleController : BaseController
     }
 
     [HttpGet("{id}")]
-    public async Task<RoleDto> GetAsync(Guid id)
+    public async Task<RoleDto> GetAsync(long id)
     {
         return await _roleService.GetAsync(id);
     }
@@ -35,13 +35,13 @@ public class RoleController : BaseController
     }
 
     [HttpPut("{id}")]
-    public async Task<RoleDto> UpdateAsync(Guid id, [FromBody] RoleInput input)
+    public async Task<RoleDto> UpdateAsync(long id, [FromBody] RoleInput input)
     {
         return await _roleService.UpdateAsync(id, input);
     }
 
     [HttpDelete]
-    public async Task DeleteAsync([FromQuery] IEnumerable<Guid> id)
+    public async Task DeleteAsync([FromQuery] IEnumerable<long> id)
     {
         await _roleService.DeleteAsync(id);
     }
@@ -59,7 +59,7 @@ public class RoleController : BaseController
     /// <param name="state"></param>
     /// <returns></returns>
     [HttpPut("{id}/{state}")]
-    public async Task<RoleDto> UpdateStateAsync([FromRoute] Guid id, [FromRoute] bool state)
+    public async Task<RoleDto> UpdateStateAsync([FromRoute] long id, [FromRoute] bool state)
     {
         return await _roleService.UpdateStateAsync(id, state);
     }
@@ -72,7 +72,7 @@ public class RoleController : BaseController
     /// <param name="isAllocated">是否在该角色下</param>
     /// <returns></returns>
     [HttpGet("auth-user/{roleId}/{isAllocated}")]
-    public async Task<PagedResult<UserDto>> GetAuthUserByRoleIdAsync([FromRoute] Guid roleId, [FromRoute] bool isAllocated, [FromQuery] RoleAuthUserQuery query)
+    public async Task<PagedResult<UserDto>> GetAuthUserByRoleIdAsync([FromRoute] long roleId, [FromRoute] bool isAllocated, [FromQuery] RoleAuthUserQuery query)
     {
         return await _roleService.GetAuthUserByRoleIdAsync(roleId, isAllocated, query);
     }

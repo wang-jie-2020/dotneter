@@ -4,7 +4,7 @@ namespace Yi.System.Services.Dtos;
 
 public class RoleAuthUserInput
 {
-    [Required] public Guid RoleId { get; set; }
+    [Required] public long RoleId { get; set; }
 
-    [Required] public List<Guid> UserIds { get; set; }
+    [Required] public List<long> UserIds { get; set; }
 }

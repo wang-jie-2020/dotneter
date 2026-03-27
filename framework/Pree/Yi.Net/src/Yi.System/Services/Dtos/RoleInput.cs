@@ -17,5 +17,5 @@ public class RoleInput
 
     public int OrderNum { get; set; }
 
-    public List<Guid> MenuIds { get; set; }
+    public List<long> MenuIds { get; set; }
 }

@@ -23,7 +23,7 @@ public class UserStore : IUserStore, ITransientDependency
         _menuRepository = menuRepository;
     }
     
-    public async Task<UserConfiguration> GetInfoAsync(Guid userId, bool refreshCache = false)
+    public async Task<UserConfiguration> GetInfoAsync(long userId, bool refreshCache = false)
     {
         if (refreshCache)
         {
@@ -35,7 +35,7 @@ public class UserStore : IUserStore, ITransientDependency
         return output;
     }
     
-    private async Task<UserConfiguration> GetInfoByCacheAsync(Guid userId)
+    private async Task<UserConfiguration> GetInfoByCacheAsync(long userId)
     {
         var cacheData = await _cache.GetOrAddAsync(UserCacheItem.CalculateCacheKey(userId),
             async () =>
@@ -109,7 +109,7 @@ public class UserStore : IUserStore, ITransientDependency
         /// </summary>
         public UserConfiguration Info { get; set; }
 
-        public static string CalculateCacheKey(Guid? id)
+        public static string CalculateCacheKey(long? id)
         {
             if (id == null) throw new Exception("id can't be invalid.");
 

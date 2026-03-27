@@ -4,17 +4,17 @@ namespace Yi.System.Services;
 
 public interface IDeptService 
 {
-    Task<DeptDto> GetAsync(Guid id);
+    Task<DeptDto> GetAsync(long id);
 
     Task<PagedResult<DeptDto>> GetListAsync(DeptQuery query);
 
     Task<DeptDto> CreateAsync(DeptInput input);
 
-    Task<DeptDto> UpdateAsync(Guid id, DeptInput input);
+    Task<DeptDto> UpdateAsync(long id, DeptInput input);
 
-    Task DeleteAsync(IEnumerable<Guid> id);
+    Task DeleteAsync(IEnumerable<long> id);
     
-    Task<List<Guid>> GetChildListAsync(Guid deptId);
+    Task<List<long>> GetChildListAsync(long deptId);
 
-    Task<List<DeptDto>> GetRoleIdAsync(Guid roleId);
+    Task<List<DeptDto>> GetRoleIdAsync(long roleId);
 }

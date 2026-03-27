@@ -191,7 +191,7 @@ public class AccountController : BaseController
     /// <param name="input"></param>
     /// <returns></returns>
     [HttpPut("reset-password/{userId}")]
-    public async Task<bool> RestPasswordAsync([FromRoute] Guid userId, [FromBody] ResetPasswordInput input)
+    public async Task<bool> RestPasswordAsync([FromRoute] long userId, [FromBody] ResetPasswordInput input)
     {
         if (string.IsNullOrEmpty(input.Password))
         {
@@ -327,7 +327,7 @@ public class AccountController : BaseController
             throw new ArgumentNullException(nameof(CurrentUser));
         }
 
-        await _accountManager.UpdatePasswordAsync(_currentUser.Id ?? Guid.Empty, input.NewPassword, input.OldPassword);
+        await _accountManager.UpdatePasswordAsync(_currentUser.Id ?? 0, input.NewPassword, input.OldPassword);
         return true;
     }
 

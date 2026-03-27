@@ -18,9 +18,9 @@ public class AuditLogEntity : Entity<Guid>, IMultiTenant
     public AuditLogEntity(
         Guid id,
         string applicationName,
-        Guid? tenantId,
+        long? tenantId,
         string tenantName,
-        Guid? userId,
+        long? userId,
         string userName,
         DateTime executionTime,
         int executionDuration,
@@ -59,7 +59,7 @@ public class AuditLogEntity : Entity<Guid>, IMultiTenant
     
     public virtual string? ApplicationName { get; set; }
 
-    public virtual Guid? UserId { get; protected set; }
+    public virtual long? UserId { get; protected set; }
 
     public virtual string? UserName { get; protected set; }
 
@@ -93,5 +93,5 @@ public class AuditLogEntity : Entity<Guid>, IMultiTenant
     [Navigate(NavigateType.OneToMany, nameof(AuditLogActionEntity.AuditLogId))]
     public virtual List<AuditLogActionEntity> Actions { get; protected set; }
     
-    public virtual Guid? TenantId { get; protected set; }
+    public virtual long? TenantId { get; protected set; }
 }

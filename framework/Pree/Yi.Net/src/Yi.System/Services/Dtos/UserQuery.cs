@@ -10,7 +10,7 @@ public class UserQuery : PagedQuery
 
     public bool? State { get; set; }
 
-    public Guid? DeptId { get; set; }
+    public long? DeptId { get; set; }
 
     public string? Ids { get; set; }
 }

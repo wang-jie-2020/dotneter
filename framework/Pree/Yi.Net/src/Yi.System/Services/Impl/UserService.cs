@@ -23,7 +23,7 @@ public class UserService : BaseService, IUserService
         _deptService = deptService;
     }
 
-    public async Task<UserDetailDto> GetAsync(Guid id)
+    public async Task<UserDetailDto> GetAsync(long id)
     {
         //使用导航树形查询
         var entity = await _repository.AsQueryable()
@@ -39,15 +39,13 @@ public class UserService : BaseService, IUserService
     {
         RefAsync<int> total = 0;
 
-        List<Guid> deptIds = null;
+        List<long>? deptIds = null;
         if (query.DeptId is not null)
         {
-            deptIds = await _deptService.GetChildListAsync(query.DeptId ?? Guid.Empty);
+            deptIds = await _deptService.GetChildListAsync(query.DeptId ?? 0);
         }
 
-        ;
-
-        var ids = query.Ids?.Split(",").Select(x => Guid.Parse(x)).ToList();
+        var ids = query.Ids?.Split(",", StringSplitOptions.RemoveEmptyEntries).Select(long.Parse).ToList();
 
         var outPut = await _repository.AsQueryable()
             .WhereIF(!string.IsNullOrEmpty(query.UserName), x => x.UserName.Contains(query.UserName!))
@@ -55,7 +53,7 @@ public class UserService : BaseService, IUserService
             .WhereIF(!string.IsNullOrEmpty(query.Name), x => x.Name!.Contains(query.Name!))
             .WhereIF(query.State is not null, x => x.State == query.State)
             .WhereIF(query.StartTime is not null && query.EndTime is not null, x => x.CreationTime >= query.StartTime && x.CreationTime <= query.EndTime)
-            .WhereIF(query.DeptId is not null, x => deptIds.Contains(x.DeptId ?? Guid.Empty))
+            .WhereIF(query.DeptId is not null, x => deptIds!.Contains(x.DeptId ?? 0))
             .WhereIF(ids is not null, x => ids.Contains(x.Id))
             .LeftJoin<DeptEntity>((user, dept) => user.DeptId == dept.Id)
             .OrderByDescending(user => user.CreationTime)
@@ -76,26 +74,26 @@ public class UserService : BaseService, IUserService
         //entity.BuildPassword(input.Password);
 
         await _userManager.CreateAsync(entity);
-        await _userManager.GiveUserSetRoleAsync(new List<Guid> { entity.Id }, input.RoleIds);
-        await _userManager.GiveUserSetPostAsync(new List<Guid> { entity.Id }, input.PostIds);
+        await _userManager.GiveUserSetRoleAsync(new List<long> { entity.Id }, input.RoleIds);
+        await _userManager.GiveUserSetPostAsync(new List<long> { entity.Id }, input.PostIds);
 
         return entity.Adapt<UserDto>();
     }
 
-    public async Task<UserDto> UpdateAsync(Guid id, UserInput input)
+    public async Task<UserDto> UpdateAsync(long id, UserInput input)
     {
         var entity = await _repository.GetByIdAsync(id);
         input.Adapt(entity);
         await _userManager.UpdateAsync(entity);
-        await _userManager.GiveUserSetRoleAsync(new List<Guid> { id }, input.RoleIds);
-        await _userManager.GiveUserSetPostAsync(new List<Guid> { id }, input.PostIds);
+        await _userManager.GiveUserSetRoleAsync(new List<long> { id }, input.RoleIds);
+        await _userManager.GiveUserSetPostAsync(new List<long> { id }, input.PostIds);
 
         return entity.Adapt<UserDto>();
     }
 
-    public async Task DeleteAsync(IEnumerable<Guid> id)
+    public async Task DeleteAsync(IEnumerable<long> id)
     {
-        await _repository.DeleteByIdsAsync(id.Select(x => (object)x).ToArray());
+        await _repository.DeleteByIdsAsync(id.Cast<object>().ToArray());
     }
 
     public async Task<IActionResult> GetExportExcelAsync(UserQuery query)
@@ -159,7 +157,7 @@ public class UserService : BaseService, IUserService
     /// <param name="id"></param>
     /// <param name="state"></param>
     /// <returns></returns>
-    public async Task<UserDto> UpdateStateAsync(Guid id, bool state)
+    public async Task<UserDto> UpdateStateAsync(long id, bool state)
     {
         var entity = await _repository.GetByIdAsync(id);
         if (entity is null)

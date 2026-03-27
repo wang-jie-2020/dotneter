@@ -7,19 +7,19 @@ namespace Yi.Framework.Core.Entities;
 ///     菜单表
 /// </summary>
 [SugarTable("Sys_Menu")]
-public class MenuEntity : BizEntity<Guid>
+public class MenuEntity : BizEntity<long>
 {
     public MenuEntity()
     {
     }
 
-    public MenuEntity(Guid id)
+    public MenuEntity(long id)
     {
         Id = id;
-        ParentId = Guid.Empty;
+        ParentId = 0;
     }
 
-    public MenuEntity(Guid id, Guid parentId)
+    public MenuEntity(long id, long parentId)
     {
         Id = id;
         ParentId = parentId;
@@ -43,7 +43,7 @@ public class MenuEntity : BizEntity<Guid>
     /// <summary>
     /// </summary>
     [SugarColumn(ColumnName = "ParentId")]
-    public Guid ParentId { get; set; }
+    public long ParentId { get; set; }
 
     /// <summary>
     ///     菜单图标

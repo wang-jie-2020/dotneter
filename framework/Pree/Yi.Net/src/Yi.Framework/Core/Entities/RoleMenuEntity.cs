@@ -12,10 +12,10 @@ public class RoleMenuEntity : Entity<long>
     /// <summary>
     /// </summary>
     [SugarColumn(ColumnName = "RoleId")]
-    public Guid RoleId { get; set; }
+    public long RoleId { get; set; }
 
     /// <summary>
     /// </summary>
     [SugarColumn(ColumnName = "MenuId")]
-    public Guid MenuId { get; set; }
+    public long MenuId { get; set; }
 }

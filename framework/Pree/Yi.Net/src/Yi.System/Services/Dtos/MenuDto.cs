@@ -8,7 +8,7 @@ namespace Yi.System.Services.Dtos;
 /// </summary>
 public class MenuDto 
 {
-    public Guid Id { get; set; }
+    public long Id { get; set; }
 
     /// <summary>
     ///     逻辑删除
@@ -61,7 +61,7 @@ public class MenuDto
     /// <summary>
     /// </summary>
 
-    public Guid ParentId { get; set; }
+    public long ParentId { get; set; }
 
     /// <summary>
     ///     菜单图标

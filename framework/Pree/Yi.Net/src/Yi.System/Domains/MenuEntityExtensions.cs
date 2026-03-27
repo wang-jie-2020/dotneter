@@ -36,7 +36,7 @@ public static class MenuEntityExtensions
                 r.AlwaysShow = true;
 
                 //判断是否为最顶层的路由
-                if (Guid.Empty == m.ParentId)
+                if (m.ParentId == 0)
                     r.Component = "Layout";
                 else
                     r.Component = "ParentView";

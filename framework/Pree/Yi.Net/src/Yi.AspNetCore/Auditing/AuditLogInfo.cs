@@ -7,11 +7,11 @@ public class AuditLogInfo
 {
     public string? ApplicationName { get; set; }
 
-    public Guid? UserId { get; set; }
+    public long? UserId { get; set; }
 
     public string? UserName { get; set; }
 
-    public Guid? TenantId { get; set; }
+    public long? TenantId { get; set; }
 
     public string? TenantName { get; set; }
 

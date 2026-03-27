@@ -1,4 +1,4 @@
-using Yi.AspNetCore.Data.Seeding;
+﻿using Yi.AspNetCore.Data.Seeding;
 using Yi.Framework.Core.Entities;
 using Yi.Framework.Utils;
 
@@ -21,9 +21,11 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
     public List<MenuEntity> GetSeedData()
     {
         var entities = new List<MenuEntity>();
+        long nextId = 1;
+        long NextId() => nextId++;
         
         //系统监控
-        var monitoring = new MenuEntity(SequentialGuidGenerator.Create())
+        var monitoring = new MenuEntity(NextId())
         {
             MenuName = "系统监控",
             MenuType = MenuTypeEnum.Catalogue,
@@ -37,7 +39,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         entities.Add(monitoring);
 
         //在线用户
-        var online = new MenuEntity(SequentialGuidGenerator.Create(), monitoring.Id)
+        var online = new MenuEntity(NextId(), monitoring.Id)
         {
             MenuName = "在线用户",
             PermissionCode = "monitor:online:list",
@@ -54,7 +56,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         entities.Add(online);
 
         //缓存列表
-        var cache = new MenuEntity(SequentialGuidGenerator.Create(), monitoring.Id)
+        var cache = new MenuEntity(NextId(), monitoring.Id)
         {
             MenuName = "缓存列表",
             PermissionCode = "monitor:cache:list",
@@ -71,7 +73,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         entities.Add(cache);
 
         //服务监控
-        var server = new MenuEntity(SequentialGuidGenerator.Create(), monitoring.Id)
+        var server = new MenuEntity(NextId(), monitoring.Id)
         {
             MenuName = "服务监控",
             PermissionCode = "monitor:server:list",
@@ -88,7 +90,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         entities.Add(server);
 
         //定时任务
-        var task = new MenuEntity(SequentialGuidGenerator.Create(), monitoring.Id)
+        var task = new MenuEntity(NextId(), monitoring.Id)
         {
             MenuName = "定时任务",
             PermissionCode = "monitor:job:list",
@@ -105,7 +107,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         entities.Add(task);
         
         //系统工具
-        var tool = new MenuEntity(SequentialGuidGenerator.Create())
+        var tool = new MenuEntity(NextId())
         {
             MenuName = "系统工具",
             MenuType = MenuTypeEnum.Catalogue,
@@ -119,7 +121,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         entities.Add(tool);
         
         //swagger文档
-        var swagger = new MenuEntity(SequentialGuidGenerator.Create(), tool.Id)
+        var swagger = new MenuEntity(NextId(), tool.Id)
         {
             MenuName = "接口文档",
             MenuType = MenuTypeEnum.Menu,
@@ -133,7 +135,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         entities.Add(swagger);
 
         //系统管理
-        var system = new MenuEntity(SequentialGuidGenerator.Create(), Guid.Empty)
+        var system = new MenuEntity(NextId(), 0)
         {
             MenuName = "系统管理",
             MenuType = MenuTypeEnum.Catalogue,
@@ -147,7 +149,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         entities.Add(system);
         
         //租户管理
-        var tenant = new MenuEntity(SequentialGuidGenerator.Create())
+        var tenant = new MenuEntity(NextId())
         {
             MenuName = "租户管理",
             PermissionCode = "system:tenant:list",
@@ -164,7 +166,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(tenant);
 
-        var tenantQuery = new MenuEntity(SequentialGuidGenerator.Create())
+        var tenantQuery = new MenuEntity(NextId())
         {
             MenuName = "租户查询",
             PermissionCode = "system:tenant:query",
@@ -175,7 +177,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(tenantQuery);
 
-        var tenantAdd = new MenuEntity(SequentialGuidGenerator.Create())
+        var tenantAdd = new MenuEntity(NextId())
         {
             MenuName = "租户新增",
             PermissionCode = "system:tenant:add",
@@ -186,7 +188,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(tenantAdd);
 
-        var tenantEdit = new MenuEntity(SequentialGuidGenerator.Create())
+        var tenantEdit = new MenuEntity(NextId())
         {
             MenuName = "租户修改",
             PermissionCode = "system:tenant:edit",
@@ -197,7 +199,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(tenantEdit);
 
-        var tenantRemove = new MenuEntity(SequentialGuidGenerator.Create())
+        var tenantRemove = new MenuEntity(NextId())
         {
             MenuName = "租户删除",
             PermissionCode = "system:tenant:remove",
@@ -209,7 +211,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         entities.Add(tenantRemove);
 
         //用户管理
-        var user = new MenuEntity(SequentialGuidGenerator.Create())
+        var user = new MenuEntity(NextId())
         {
             MenuName = "用户管理",
             PermissionCode = "system:user:list",
@@ -226,7 +228,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(user);
 
-        var userQuery = new MenuEntity(SequentialGuidGenerator.Create())
+        var userQuery = new MenuEntity(NextId())
         {
             MenuName = "用户查询",
             PermissionCode = "system:user:query",
@@ -237,7 +239,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(userQuery);
 
-        var userAdd = new MenuEntity(SequentialGuidGenerator.Create())
+        var userAdd = new MenuEntity(NextId())
         {
             MenuName = "用户新增",
             PermissionCode = "system:user:add",
@@ -248,7 +250,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(userAdd);
 
-        var userEdit = new MenuEntity(SequentialGuidGenerator.Create())
+        var userEdit = new MenuEntity(NextId())
         {
             MenuName = "用户修改",
             PermissionCode = "system:user:edit",
@@ -259,7 +261,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(userEdit);
 
-        var userRemove = new MenuEntity(SequentialGuidGenerator.Create())
+        var userRemove = new MenuEntity(NextId())
         {
             MenuName = "用户删除",
             PermissionCode = "system:user:remove",
@@ -270,7 +272,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(userRemove);
         
-        var userResetPwd = new MenuEntity(SequentialGuidGenerator.Create())
+        var userResetPwd = new MenuEntity(NextId())
         {
             MenuName = "重置密码",
             PermissionCode = "system:user:resetPwd",
@@ -282,7 +284,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         entities.Add(userResetPwd);
         
         //角色管理
-        var role = new MenuEntity(SequentialGuidGenerator.Create())
+        var role = new MenuEntity(NextId())
         {
             MenuName = "角色管理",
             PermissionCode = "system:role:list",
@@ -299,7 +301,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(role);
 
-        var roleQuery = new MenuEntity(SequentialGuidGenerator.Create())
+        var roleQuery = new MenuEntity(NextId())
         {
             MenuName = "角色查询",
             PermissionCode = "system:role:query",
@@ -310,7 +312,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(roleQuery);
 
-        var roleAdd = new MenuEntity(SequentialGuidGenerator.Create())
+        var roleAdd = new MenuEntity(NextId())
         {
             MenuName = "角色新增",
             PermissionCode = "system:role:add",
@@ -321,7 +323,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(roleAdd);
 
-        var roleEdit = new MenuEntity(SequentialGuidGenerator.Create())
+        var roleEdit = new MenuEntity(NextId())
         {
             MenuName = "角色修改",
             PermissionCode = "system:role:edit",
@@ -332,7 +334,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(roleEdit);
 
-        var roleRemove = new MenuEntity(SequentialGuidGenerator.Create())
+        var roleRemove = new MenuEntity(NextId())
         {
             MenuName = "角色删除",
             PermissionCode = "system:role:remove",
@@ -344,7 +346,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         entities.Add(roleRemove);
         
         //菜单管理
-        var menu = new MenuEntity(SequentialGuidGenerator.Create())
+        var menu = new MenuEntity(NextId())
         {
             MenuName = "菜单管理",
             PermissionCode = "system:menu:list",
@@ -361,7 +363,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(menu);
 
-        var menuQuery = new MenuEntity(SequentialGuidGenerator.Create())
+        var menuQuery = new MenuEntity(NextId())
         {
             MenuName = "菜单查询",
             PermissionCode = "system:menu:query",
@@ -372,7 +374,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(menuQuery);
 
-        var menuAdd = new MenuEntity(SequentialGuidGenerator.Create())
+        var menuAdd = new MenuEntity(NextId())
         {
             MenuName = "菜单新增",
             PermissionCode = "system:menu:add",
@@ -383,7 +385,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(menuAdd);
 
-        var menuEdit = new MenuEntity(SequentialGuidGenerator.Create())
+        var menuEdit = new MenuEntity(NextId())
         {
             MenuName = "菜单修改",
             PermissionCode = "system:menu:edit",
@@ -394,7 +396,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(menuEdit);
 
-        var menuRemove = new MenuEntity(SequentialGuidGenerator.Create())
+        var menuRemove = new MenuEntity(NextId())
         {
             MenuName = "菜单删除",
             PermissionCode = "system:menu:remove",
@@ -406,7 +408,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         entities.Add(menuRemove);
 
         //部门管理
-        var dept = new MenuEntity(SequentialGuidGenerator.Create())
+        var dept = new MenuEntity(NextId())
         {
             MenuName = "部门管理",
             PermissionCode = "system:dept:list",
@@ -423,7 +425,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(dept);
 
-        var deptQuery = new MenuEntity(SequentialGuidGenerator.Create())
+        var deptQuery = new MenuEntity(NextId())
         {
             MenuName = "部门查询",
             PermissionCode = "system:dept:query",
@@ -434,7 +436,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(deptQuery);
 
-        var deptAdd = new MenuEntity(SequentialGuidGenerator.Create())
+        var deptAdd = new MenuEntity(NextId())
         {
             MenuName = "部门新增",
             PermissionCode = "system:dept:add",
@@ -445,7 +447,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(deptAdd);
 
-        var deptEdit = new MenuEntity(SequentialGuidGenerator.Create())
+        var deptEdit = new MenuEntity(NextId())
         {
             MenuName = "部门修改",
             PermissionCode = "system:dept:edit",
@@ -456,7 +458,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(deptEdit);
 
-        var deptRemove = new MenuEntity(SequentialGuidGenerator.Create())
+        var deptRemove = new MenuEntity(NextId())
         {
             MenuName = "部门删除",
             PermissionCode = "system:dept:remove",
@@ -469,7 +471,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
 
 
         //岗位管理
-        var post = new MenuEntity(SequentialGuidGenerator.Create())
+        var post = new MenuEntity(NextId())
         {
             MenuName = "岗位管理",
             PermissionCode = "system:post:list",
@@ -486,7 +488,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(post);
 
-        var postQuery = new MenuEntity(SequentialGuidGenerator.Create())
+        var postQuery = new MenuEntity(NextId())
         {
             MenuName = "岗位查询",
             PermissionCode = "system:post:query",
@@ -497,7 +499,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(postQuery);
 
-        var postAdd = new MenuEntity(SequentialGuidGenerator.Create())
+        var postAdd = new MenuEntity(NextId())
         {
             MenuName = "岗位新增",
             PermissionCode = "system:post:add",
@@ -508,7 +510,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(postAdd);
 
-        var postEdit = new MenuEntity(SequentialGuidGenerator.Create())
+        var postEdit = new MenuEntity(NextId())
         {
             MenuName = "岗位修改",
             PermissionCode = "system:post:edit",
@@ -519,7 +521,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(postEdit);
 
-        var postRemove = new MenuEntity(SequentialGuidGenerator.Create())
+        var postRemove = new MenuEntity(NextId())
         {
             MenuName = "岗位删除",
             PermissionCode = "system:post:remove",
@@ -531,7 +533,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         entities.Add(postRemove);
 
         //字典管理
-        var dict = new MenuEntity(SequentialGuidGenerator.Create())
+        var dict = new MenuEntity(NextId())
         {
             MenuName = "字典管理",
             PermissionCode = "system:dict:list",
@@ -548,7 +550,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(dict);
 
-        var dictQuery = new MenuEntity(SequentialGuidGenerator.Create())
+        var dictQuery = new MenuEntity(NextId())
         {
             MenuName = "字典查询",
             PermissionCode = "system:dict:query",
@@ -559,7 +561,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(dictQuery);
 
-        var dictAdd = new MenuEntity(SequentialGuidGenerator.Create())
+        var dictAdd = new MenuEntity(NextId())
         {
             MenuName = "字典新增",
             PermissionCode = "system:dict:add",
@@ -570,7 +572,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(dictAdd);
 
-        var dictEdit = new MenuEntity(SequentialGuidGenerator.Create())
+        var dictEdit = new MenuEntity(NextId())
         {
             MenuName = "字典修改",
             PermissionCode = "system:dict:edit",
@@ -581,7 +583,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(dictEdit);
 
-        var dictRemove = new MenuEntity(SequentialGuidGenerator.Create())
+        var dictRemove = new MenuEntity(NextId())
         {
             MenuName = "字典删除",
             PermissionCode = "system:dict:remove",
@@ -593,7 +595,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         entities.Add(dictRemove);
         
         //参数设置
-        var config = new MenuEntity(SequentialGuidGenerator.Create())
+        var config = new MenuEntity(NextId())
         {
             MenuName = "参数设置",
             PermissionCode = "system:config:list",
@@ -610,7 +612,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(config);
 
-        var configQuery = new MenuEntity(SequentialGuidGenerator.Create())
+        var configQuery = new MenuEntity(NextId())
         {
             MenuName = "参数查询",
             PermissionCode = "system:config:query",
@@ -621,7 +623,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(configQuery);
 
-        var configAdd = new MenuEntity(SequentialGuidGenerator.Create())
+        var configAdd = new MenuEntity(NextId())
         {
             MenuName = "参数新增",
             PermissionCode = "system:config:add",
@@ -632,7 +634,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(configAdd);
 
-        var configEdit = new MenuEntity(SequentialGuidGenerator.Create())
+        var configEdit = new MenuEntity(NextId())
         {
             MenuName = "参数修改",
             PermissionCode = "system:config:edit",
@@ -643,7 +645,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(configEdit);
 
-        var configRemove = new MenuEntity(SequentialGuidGenerator.Create())
+        var configRemove = new MenuEntity(NextId())
         {
             MenuName = "参数删除",
             PermissionCode = "system:config:remove",
@@ -655,7 +657,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         entities.Add(configRemove);
 
         //通知公告
-        var notice = new MenuEntity(SequentialGuidGenerator.Create())
+        var notice = new MenuEntity(NextId())
         {
             MenuName = "通知公告",
             PermissionCode = "system:notice:list",
@@ -672,7 +674,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(notice);
 
-        var noticeQuery = new MenuEntity(SequentialGuidGenerator.Create())
+        var noticeQuery = new MenuEntity(NextId())
         {
             MenuName = "通知查询",
             PermissionCode = "system:notice:query",
@@ -683,7 +685,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(noticeQuery);
 
-        var noticeAdd = new MenuEntity(SequentialGuidGenerator.Create())
+        var noticeAdd = new MenuEntity(NextId())
         {
             MenuName = "通知新增",
             PermissionCode = "system:notice:add",
@@ -694,7 +696,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(noticeAdd);
 
-        var noticeEdit = new MenuEntity(SequentialGuidGenerator.Create())
+        var noticeEdit = new MenuEntity(NextId())
         {
             MenuName = "通知修改",
             PermissionCode = "system:notice:edit",
@@ -705,7 +707,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(noticeEdit);
 
-        var noticeRemove = new MenuEntity(SequentialGuidGenerator.Create())
+        var noticeRemove = new MenuEntity(NextId())
         {
             MenuName = "通知删除",
             PermissionCode = "system:notice:remove",
@@ -717,7 +719,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         entities.Add(noticeRemove);
         
         //日志管理
-        var log = new MenuEntity(SequentialGuidGenerator.Create())
+        var log = new MenuEntity(NextId())
         {
             MenuName = "日志管理",
             MenuType = MenuTypeEnum.Catalogue,
@@ -732,7 +734,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         entities.Add(log);
 
         //操作日志
-        var operationLog = new MenuEntity(SequentialGuidGenerator.Create())
+        var operationLog = new MenuEntity(NextId())
         {
             MenuName = "操作日志",
             PermissionCode = "monitor:operlog:list",
@@ -749,7 +751,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(operationLog);
 
-        var operationLogQuery = new MenuEntity(SequentialGuidGenerator.Create())
+        var operationLogQuery = new MenuEntity(NextId())
         {
             MenuName = "操作查询",
             PermissionCode = "monitor:operlog:query",
@@ -760,7 +762,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(operationLogQuery);
 
-        var operationLogRemove = new MenuEntity(SequentialGuidGenerator.Create())
+        var operationLogRemove = new MenuEntity(NextId())
         {
             MenuName = "操作删除",
             PermissionCode = "monitor:operlog:remove",
@@ -772,7 +774,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         entities.Add(operationLogRemove);
         
         //登录日志
-        var loginLog = new MenuEntity(SequentialGuidGenerator.Create())
+        var loginLog = new MenuEntity(NextId())
         {
             MenuName = "登录日志",
             PermissionCode = "monitor:logininfor:list",
@@ -789,7 +791,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(loginLog);
 
-        var loginLogQuery = new MenuEntity(SequentialGuidGenerator.Create())
+        var loginLogQuery = new MenuEntity(NextId())
         {
             MenuName = "登录查询",
             PermissionCode = "monitor:logininfor:query",
@@ -800,7 +802,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(loginLogQuery);
 
-        var loginLogRemove = new MenuEntity(SequentialGuidGenerator.Create())
+        var loginLogRemove = new MenuEntity(NextId())
         {
             MenuName = "登录删除",
             PermissionCode = "monitor:logininfor:remove",
@@ -811,7 +813,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(loginLogRemove);
 
-        var language = new MenuEntity(SequentialGuidGenerator.Create())
+        var language = new MenuEntity(NextId())
         {
             MenuName = "多语言管理",
             PermissionCode = "system:language:list",
@@ -829,6 +831,7 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         entities.Add(language);
         
         //默认值
+
         entities.ForEach(m =>
         {
             m.IsDeleted = false;

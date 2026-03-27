@@ -2,7 +2,7 @@
 
 public class RoleDto 
 {
-    public Guid Id { get; set; }
+    public long Id { get; set; }
 
     /// <summary>
     ///     逻辑删除

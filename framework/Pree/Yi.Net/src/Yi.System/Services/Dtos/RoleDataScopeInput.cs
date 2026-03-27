@@ -2,9 +2,9 @@
 
 public class UpdateDataScopeInput
 {
-    public Guid RoleId { get; set; }
+    public long RoleId { get; set; }
 
-    public List<Guid>? DeptIds { get; set; }
+    public List<long>? DeptIds { get; set; }
 
     public DataScopeEnum DataScope { get; set; }
 }

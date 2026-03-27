@@ -18,9 +18,9 @@ public class Vue3Router : TreeHelper.ITreeModel<Vue3Router>
 
     public Meta Meta { get; set; } = new();
 
-    public Guid Id { get; set; }
+    public long Id { get; set; }
 
-    public Guid ParentId { get; set; }
+    public long ParentId { get; set; }
 
     public int OrderNum { get; set; }
 

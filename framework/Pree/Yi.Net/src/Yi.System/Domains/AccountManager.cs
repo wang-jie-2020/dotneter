@@ -51,7 +51,7 @@ public class AccountManager : BaseDomain
     /// <param name="userId"></param>
     /// <returns></returns>
     [OperLog("生成token", OperLogEnum.Auth)]
-    public async Task<string> CreateTokenAsync(Guid userId)
+    public async Task<string> CreateTokenAsync(long userId)
     {
         //获取用户信息
         var userInfo = await _userStore.GetInfoAsync(userId, true);
@@ -90,7 +90,7 @@ public class AccountManager : BaseDomain
         return accessToken;
     }
 
-    public string CreateRefreshToken(Guid userId)
+    public string CreateRefreshToken(long userId)
     {
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_refreshJwtOptions.SecurityKey));
         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
@@ -151,7 +151,7 @@ public class AccountManager : BaseDomain
     /// <param name="oldPassword"></param>
     /// <returns></returns>
     /// <exception cref="UserFriendlyException"></exception>
-    public async Task UpdatePasswordAsync(Guid userId, string newPassword, string oldPassword)
+    public async Task UpdatePasswordAsync(long userId, string newPassword, string oldPassword)
     {
         var user = await _userRepository.GetByIdAsync(userId);
         if (!user.JudgePassword(oldPassword))
@@ -170,7 +170,7 @@ public class AccountManager : BaseDomain
     /// <param name="userId"></param>
     /// <param name="password"></param>
     /// <returns></returns>
-    public async Task<bool> RestPasswordAsync(Guid userId, string password)
+    public async Task<bool> RestPasswordAsync(long userId, string password)
     {
         var user = await _userRepository.GetByIdAsync(userId);
         // EntityHelper.TrySetId(user, () => GuidGenerator.Create(), true);

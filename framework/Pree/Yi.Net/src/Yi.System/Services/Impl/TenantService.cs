@@ -22,7 +22,7 @@ public class TenantService : BaseService, ITenantService
         _dataSeeder = dataSeeder;
     }
 
-    public async Task<TenantDto> GetAsync(Guid id)
+    public async Task<TenantDto> GetAsync(long id)
     {
         var entity = await _repository.GetByIdAsync(id);
         return entity.Adapt<TenantDto>();
@@ -53,7 +53,7 @@ public class TenantService : BaseService, ITenantService
         return entity.Adapt<TenantDto>();
     }
 
-    public async Task<TenantDto> UpdateAsync(Guid id, TenantInput input)
+    public async Task<TenantDto> UpdateAsync(long id, TenantInput input)
     {
         if (await _repository.IsAnyAsync(x => x.Name == input.Name && x.Id != id))
             throw Oops.Oh(SystemErrorCodes.TenantRepeated);
@@ -65,9 +65,9 @@ public class TenantService : BaseService, ITenantService
         return entity.Adapt<TenantDto>();
     }
 
-    public async Task DeleteAsync(IEnumerable<Guid> id)
+    public async Task DeleteAsync(IEnumerable<long> id)
     {
-        await _repository.DeleteByIdsAsync(id.Select(x => (object)x).ToArray());
+        await _repository.DeleteByIdsAsync(id.Cast<object>().ToArray());
     }
 
     public async Task<IActionResult> GetExportExcelAsync(TenantQuery query)
@@ -101,7 +101,7 @@ public class TenantService : BaseService, ITenantService
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-    public async Task InitAsync(Guid id)
+    public async Task InitAsync(long id)
     {
         throw new NotImplementedException();
     }

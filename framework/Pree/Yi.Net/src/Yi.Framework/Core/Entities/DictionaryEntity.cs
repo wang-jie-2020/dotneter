@@ -4,7 +4,7 @@ using Yi.Framework.SqlSugarCore;
 namespace Yi.Framework.Core.Entities;
 
 [SugarTable("Sys_Dictionary")]
-public class DictionaryEntity : BizEntity<Guid>
+public class DictionaryEntity : BizEntity<long>
 {
 
     /// <summary>

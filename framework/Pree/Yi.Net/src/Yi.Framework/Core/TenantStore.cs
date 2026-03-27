@@ -29,12 +29,12 @@ public class TenantStore : ITenantStore, ITransientDependency
         return (await GetCacheItemAsync(null, name)).Value;
     }
 
-    public async Task<TenantConfiguration?> FindAsync(Guid id)
+    public async Task<TenantConfiguration?> FindAsync(long id)
     {
         return (await GetCacheItemAsync(id, null)).Value;
     }
 
-    protected virtual async Task<TenantCacheItem> GetCacheItemAsync(Guid? id, string? name)
+    protected virtual async Task<TenantCacheItem> GetCacheItemAsync(long? id, string? name)
     {
         var cacheKey = CalculateCacheKey(id, name);
 
@@ -91,7 +91,7 @@ public class TenantStore : ITenantStore, ITransientDependency
         return connectionStrings;
     }
 
-    protected virtual string CalculateCacheKey(Guid? id, string name)
+    protected virtual string CalculateCacheKey(long? id, string name)
     {
         return TenantCacheItem.CalculateCacheKey(id, name);
     }
@@ -112,7 +112,7 @@ public class TenantStore : ITenantStore, ITransientDependency
 
         public TenantConfiguration Value { get; set; }
 
-        public static string CalculateCacheKey(Guid? id, string name)
+        public static string CalculateCacheKey(long? id, string name)
         {
             if (id == null && name.IsNullOrWhiteSpace()) throw new Exception("Both id and name can't be invalid.");
 

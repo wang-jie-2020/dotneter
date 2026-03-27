@@ -10,7 +10,7 @@ public class DeptInput
     
     public string? Leader { get; set; }
     
-    public Guid ParentId { get; set; }
+    public long ParentId { get; set; }
     
     public string? Remark { get; set; }
     

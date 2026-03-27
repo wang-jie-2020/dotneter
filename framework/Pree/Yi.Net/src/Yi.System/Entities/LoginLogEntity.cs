@@ -47,7 +47,7 @@ public class LoginLogEntity : Entity<long>
 
     public DateTime CreationTime { get; set; }
 
-    public Guid? CreatorId { get; set; }
+    public long? CreatorId { get; set; }
     
     public LoginLogEntity GetInfoByHttpContext(HttpContext context)
     {

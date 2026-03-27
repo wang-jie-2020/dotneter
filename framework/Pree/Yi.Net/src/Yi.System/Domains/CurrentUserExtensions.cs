@@ -30,10 +30,10 @@ public static class CurrentUserExtensions
     /// </summary>
     /// <param name="currentUser"></param>
     /// <returns></returns>
-    public static Guid? GetDeptId(this ICurrentUser currentUser)
+    public static long? GetDeptId(this ICurrentUser currentUser)
     {
         var deptIdOrNull = currentUser.FindClaims(ClaimsIdentityTypes.Dept).Select(x => x.Value).FirstOrDefault();
-        return deptIdOrNull is null ? null : Guid.Parse(deptIdOrNull);
+        return deptIdOrNull is null ? null : long.Parse(deptIdOrNull);
     }
 
     public static List<RoleScope>? GetRoleScope(this ICurrentUser currentUser)

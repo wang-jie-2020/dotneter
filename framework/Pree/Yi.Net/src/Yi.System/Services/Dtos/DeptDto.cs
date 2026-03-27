@@ -2,7 +2,7 @@ namespace Yi.System.Services.Dtos;
 
 public class DeptDto
 {
-    public Guid Id { get; set; }
+    public long Id { get; set; }
     
     public DateTime CreationTime { get; set; } = DateTime.Now;
 
@@ -16,7 +16,7 @@ public class DeptDto
 
     public string? Leader { get; set; }
 
-    public Guid ParentId { get; set; }
+    public long ParentId { get; set; }
 
     public string? Remark { get; set; }
 

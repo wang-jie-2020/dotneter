@@ -13,7 +13,7 @@ public class MenuService : BaseService, IMenuService
         _repository = repository;
     }
 
-    public async Task<MenuDto> GetAsync(Guid id)
+    public async Task<MenuDto> GetAsync(long id)
     {
         var entity = await _repository.GetByIdAsync(id);
         return entity.Adapt<MenuDto>();
@@ -40,7 +40,7 @@ public class MenuService : BaseService, IMenuService
         return entity.Adapt<MenuDto>();
     }
 
-    public async Task<MenuDto> UpdateAsync(Guid id, MenuInput input)
+    public async Task<MenuDto> UpdateAsync(long id, MenuInput input)
     {
         var entity = await _repository.GetByIdAsync(id);
         input.Adapt(entity);
@@ -49,9 +49,9 @@ public class MenuService : BaseService, IMenuService
         return entity.Adapt<MenuDto>();
     }
 
-    public async Task DeleteAsync(IEnumerable<Guid> id)
+    public async Task DeleteAsync(IEnumerable<long> id)
     {
-        await _repository.DeleteByIdsAsync(id.Select(x => (object)x).ToArray());
+        await _repository.DeleteByIdsAsync(id.Cast<object>().ToArray());
     }
     
     /// <summary>
@@ -59,7 +59,7 @@ public class MenuService : BaseService, IMenuService
     /// </summary>
     /// <param name="roleId"></param>
     /// <returns></returns>
-    public async Task<List<MenuDto>> GetListRoleIdAsync(Guid roleId)
+    public async Task<List<MenuDto>> GetListRoleIdAsync(long roleId)
     {
         var entities = await _repository.AsQueryable().Where(m =>
                 SqlFunc.Subqueryable<RoleMenuEntity>().Where(rm => rm.RoleId == roleId && rm.MenuId == m.Id).Any())

@@ -13,7 +13,7 @@ public class DictionaryTypeService : BaseService, IDictionaryTypeService
         _repository = repository;
     }
 
-    public async Task<DictionaryTypeDto> GetAsync(Guid id)
+    public async Task<DictionaryTypeDto> GetAsync(long id)
     {
         var entity = await _repository.GetByIdAsync(id);
         return entity.Adapt<DictionaryTypeDto>();
@@ -44,7 +44,7 @@ public class DictionaryTypeService : BaseService, IDictionaryTypeService
         return entity.Adapt<DictionaryTypeDto>();
     }
 
-    public async Task<DictionaryTypeDto> UpdateAsync(Guid id, DictionaryTypeInput input)
+    public async Task<DictionaryTypeDto> UpdateAsync(long id, DictionaryTypeInput input)
     {
         var entity = await _repository.GetByIdAsync(id);
         input.Adapt(entity);
@@ -53,8 +53,8 @@ public class DictionaryTypeService : BaseService, IDictionaryTypeService
         return entity.Adapt<DictionaryTypeDto>();
     }
 
-    public async Task DeleteAsync(IEnumerable<Guid> id)
+    public async Task DeleteAsync(IEnumerable<long> id)
     {
-        await _repository.DeleteByIdsAsync(id.Select(x => (object)x).ToArray());
+        await _repository.DeleteByIdsAsync(id.Cast<object>().ToArray());
     }
 }

@@ -4,5 +4,5 @@ public interface ITenantStore
 {
     Task<TenantConfiguration?> FindAsync(string normalizedName);
 
-    Task<TenantConfiguration?> FindAsync(Guid id);
+    Task<TenantConfiguration?> FindAsync(long id);
 }

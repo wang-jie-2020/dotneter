@@ -12,10 +12,10 @@ public class UserRoleEntity : Entity<long>
     /// <summary>
     ///     角色id
     /// </summary>
-    public Guid RoleId { get; set; }
+    public long RoleId { get; set; }
 
     /// <summary>
     ///     用户id
     /// </summary>
-    public Guid UserId { get; set; }
+    public long UserId { get; set; }
 }

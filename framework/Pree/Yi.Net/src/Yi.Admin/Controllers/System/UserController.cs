@@ -19,7 +19,7 @@ public class UserController : BaseController
     }
 
     [HttpGet("{id}")]
-    public async Task<UserDetailDto> GetAsync(Guid id)
+    public async Task<UserDetailDto> GetAsync(long id)
     {
         return await _userService.GetAsync(id);
     }
@@ -42,7 +42,7 @@ public class UserController : BaseController
     [HttpPut("{id}")]
     [OperLog("更新用户", OperLogEnum.Update)]
     [Authorize("system:user:edit")]
-    public async Task<UserDto> UpdateAsync(Guid id, [FromBody] UserInput input)
+    public async Task<UserDto> UpdateAsync(long id, [FromBody] UserInput input)
     {
         return await _userService.UpdateAsync(id, input);
     }
@@ -50,7 +50,7 @@ public class UserController : BaseController
     [HttpDelete]
     [OperLog("删除用户", OperLogEnum.Delete)]
     [Authorize("system:user:delete")]
-    public async Task DeleteAsync([FromQuery] IEnumerable<Guid> id)
+    public async Task DeleteAsync([FromQuery] IEnumerable<long> id)
     {
         await _userService.DeleteAsync(id);
     }
@@ -96,7 +96,7 @@ public class UserController : BaseController
     [HttpPut("{id}/{state}")]
     [OperLog("更新用户状态", OperLogEnum.Update)]
     [Authorize("system:user:update")]
-    public async Task<UserDto> UpdateStateAsync([FromRoute] Guid id, [FromRoute] bool state)
+    public async Task<UserDto> UpdateStateAsync([FromRoute] long id, [FromRoute] bool state)
     {
         return await _userService.UpdateStateAsync(id, state);
     }

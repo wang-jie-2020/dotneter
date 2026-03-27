@@ -42,8 +42,8 @@ public static class TreeHelper
     
     public interface ITreeModel<T>
     {
-        public Guid Id { get; set; }
-        public Guid ParentId { get; set; }
+        public long Id { get; set; }
+        public long ParentId { get; set; }
         public int OrderNum { get; set; }
         public List<T>? Children { get; set; }
     }

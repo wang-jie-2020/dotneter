@@ -28,11 +28,11 @@ public class UserInput
     
     public SexEnum? Sex { get; set; }
     
-    public Guid? DeptId { get; set; }
+    public long? DeptId { get; set; }
     
-    public List<Guid>? PostIds { get; set; }
+    public List<long>? PostIds { get; set; }
 
-    public List<Guid>? RoleIds { get; set; }
+    public List<long>? RoleIds { get; set; }
     
     public bool? State { get; set; }
 }

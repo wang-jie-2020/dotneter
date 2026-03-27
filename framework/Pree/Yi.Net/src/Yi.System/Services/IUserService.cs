@@ -5,15 +5,15 @@ namespace Yi.System.Services;
 
 public interface IUserService
 {
-    Task<UserDetailDto> GetAsync(Guid id);
+    Task<UserDetailDto> GetAsync(long id);
 
     Task<PagedResult<UserDto>> GetListAsync(UserQuery query);
 
     Task<UserDto> CreateAsync(UserInput input);
 
-    Task<UserDto> UpdateAsync(Guid id, UserInput input);
+    Task<UserDto> UpdateAsync(long id, UserInput input);
 
-    Task DeleteAsync(IEnumerable<Guid> id);
+    Task DeleteAsync(IEnumerable<long> id);
 
     Task<IActionResult> GetExportExcelAsync(UserQuery query);
 
@@ -34,5 +34,5 @@ public interface IUserService
     /// <param name="id"></param>
     /// <param name="state"></param>
     /// <returns></returns>
-    Task<UserDto> UpdateStateAsync(Guid id, bool state);
+    Task<UserDto> UpdateStateAsync(long id, bool state);
 }

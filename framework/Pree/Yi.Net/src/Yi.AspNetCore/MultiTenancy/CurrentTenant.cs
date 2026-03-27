@@ -4,7 +4,7 @@ namespace Yi.AspNetCore.MultiTenancy;
 
 public class CurrentTenant : ICurrentTenant, ITransientDependency
 {
-    public virtual Guid? Id => _currentTenantAccessor.Current?.TenantId;
+    public virtual long? Id => _currentTenantAccessor.Current?.TenantId;
 
     public string? Name => _currentTenantAccessor.Current?.Name;
 
@@ -15,12 +15,12 @@ public class CurrentTenant : ICurrentTenant, ITransientDependency
         _currentTenantAccessor = currentTenantAccessor;
     }
 
-    public IDisposable Change(Guid? id, string? name = null)
+    public IDisposable Change(long? id, string? name = null)
     {
         return SetCurrent(id, name);
     }
 
-    private IDisposable SetCurrent(Guid? tenantId, string? name = null)
+    private IDisposable SetCurrent(long? tenantId, string? name = null)
     {
         var parentScope = _currentTenantAccessor.Current;
         _currentTenantAccessor.Current = new TenantInfo(tenantId, name);

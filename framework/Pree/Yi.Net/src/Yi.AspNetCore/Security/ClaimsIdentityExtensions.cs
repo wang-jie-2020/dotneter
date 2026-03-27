@@ -5,7 +5,7 @@ namespace Yi.AspNetCore.Security;
 
 public static class ClaimsIdentityExtensions
 {
-    public static Guid? FindUserId([NotNull] this ClaimsPrincipal principal)
+    public static long? FindUserId([NotNull] this ClaimsPrincipal principal)
     {
         Check.NotNull(principal, nameof(principal));
 
@@ -15,9 +15,9 @@ public static class ClaimsIdentityExtensions
             return null;
         }
 
-        if (Guid.TryParse(userIdOrNull.Value, out Guid guid))
+        if (long.TryParse(userIdOrNull.Value, out var id))
         {
-            return guid;
+            return id;
         }
 
         return null;
