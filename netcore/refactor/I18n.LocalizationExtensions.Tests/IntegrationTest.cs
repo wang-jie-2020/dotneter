@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using I18n.LocalizationExtensions.Database;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Xunit;

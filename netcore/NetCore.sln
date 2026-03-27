@@ -71,6 +71,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "abp.api.entry", "templates\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "abp.worker.entry", "templates\abp.worker.entry\abp.worker.entry.csproj", "{639FCB5B-B54F-492B-83A5-92DF56F9B1FC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "I18n.LocalizationExtensions.Database", "refactor\I18n.LocalizationExtensions.Database\I18n.LocalizationExtensions.Database.csproj", "{E0BC7B4B-13A5-4B6F-8063-724DD795F97A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -197,6 +199,10 @@ Global
 		{639FCB5B-B54F-492B-83A5-92DF56F9B1FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{639FCB5B-B54F-492B-83A5-92DF56F9B1FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{639FCB5B-B54F-492B-83A5-92DF56F9B1FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0BC7B4B-13A5-4B6F-8063-724DD795F97A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0BC7B4B-13A5-4B6F-8063-724DD795F97A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0BC7B4B-13A5-4B6F-8063-724DD795F97A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0BC7B4B-13A5-4B6F-8063-724DD795F97A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -232,5 +238,6 @@ Global
 		{524FB404-FEDF-4B11-BEE3-97D47ADEF2A0} = {786A5FD3-D985-40ED-85D4-9327508AA8E0}
 		{90E7B2CF-AF9C-42E1-A470-26C715E17D91} = {1B3C4C18-7D55-464C-9EBE-795C0F5E948F}
 		{639FCB5B-B54F-492B-83A5-92DF56F9B1FC} = {1B3C4C18-7D55-464C-9EBE-795C0F5E948F}
+		{E0BC7B4B-13A5-4B6F-8063-724DD795F97A} = {786A5FD3-D985-40ED-85D4-9327508AA8E0}
 	EndGlobalSection
 EndGlobal

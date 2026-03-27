@@ -30,8 +30,9 @@
     </ItemGroup>    
 
     <ItemGroup>
-      <ProjectReference Include="..\I18n.LocalizationExtensions.Samples\I18n.LocalizationExtensions.Samples.csproj" />
-      <ProjectReference Include="..\I18n.LocalizationExtensions\I18n.LocalizationExtensions.csproj" />
+<!--        <ProjectReference Include="..\I18n.LocalizationExtensions.Samples\I18n.LocalizationExtensions.Samples.csproj" />-->
+        <ProjectReference Include="..\I18n.LocalizationExtensions.Database\I18n.LocalizationExtensions.Database.csproj" />
+<!--      <ProjectReference Include="..\I18n.LocalizationExtensions\I18n.LocalizationExtensions.csproj" />-->
     </ItemGroup>
 
 </Project>
