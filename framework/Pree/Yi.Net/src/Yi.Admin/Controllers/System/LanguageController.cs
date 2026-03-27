@@ -1,3 +1,4 @@
+using System.Globalization;
 using Microsoft.AspNetCore.Mvc;
 using Yi.Framework.Abstractions;
 using Yi.System.Services;
@@ -19,6 +20,13 @@ public class LanguageController(ILanguageService languageService) : BaseControll
     public async Task<PagedResult<LanguageDto>> GetListAsync([FromQuery] LanguageQuery query)
     {
         return await languageService.GetListAsync(query);
+    }
+
+    [HttpGet("messages")]
+    public async Task<Dictionary<string, string>> GetMessagesAsync([FromQuery] string? culture)
+    {
+        culture ??= CultureInfo.CurrentUICulture.Name ?? "zh";
+        return await languageService.GetMessagesAsync(culture);
     }
 
     [HttpPost]

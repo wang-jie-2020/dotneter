@@ -1,21 +1,31 @@
+using Yi.AspNetCore.I18n;
 using Yi.Framework.Abstractions;
 using Yi.Framework.Core.Entities;
 using Yi.System.Services.Dtos;
 
 namespace Yi.System.Services.Impl;
 
-public class LanguageService(ISqlSugarRepository<LanguageEntity> repository) : BaseService, ILanguageService
+public class LanguageService : BaseService, ILanguageService
 {
+    private readonly ISqlSugarRepository<LanguageEntity> _repository;
+    private readonly IDatabaseStringProvider _databaseStringProvider;
+
+    public LanguageService(ISqlSugarRepository<LanguageEntity> repository, IDatabaseStringProvider databaseStringProvider)
+    {
+        _repository = repository;
+        _databaseStringProvider = databaseStringProvider;
+    }
+    
     public async Task<LanguageDto> GetAsync(long id)
     {
-        var entity = await repository.GetByIdAsync(id);
+        var entity = await _repository.GetByIdAsync(id);
         return entity.Adapt<LanguageDto>();
     }
 
     public async Task<PagedResult<LanguageDto>> GetListAsync(LanguageQuery query)
     {
         RefAsync<int> total = 0;
-        var entities = await repository.AsQueryable()
+        var entities = await _repository.AsQueryable()
             .WhereIF(query.Name is not null, x => x.Name.Contains(query.Name!))
             .WhereIF(query.Value is not null, x => x.Value.Contains(query.Value!))
             .WhereIF(query.Culture is not null, x => x.Culture.Contains(query.Culture!))
@@ -32,22 +42,27 @@ public class LanguageService(ISqlSugarRepository<LanguageEntity> repository) : B
     public async Task<LanguageDto> CreateAsync(LanguageInput input)
     {
         var entity = input.Adapt<LanguageEntity>();
-        await repository.InsertAsync(entity);
+        await _repository.InsertAsync(entity);
 
         return entity.Adapt<LanguageDto>();
     }
 
     public async Task<LanguageDto> UpdateAsync(long id, LanguageInput input)
     {
-        var entity = await repository.GetByIdAsync(id);
+        var entity = await _repository.GetByIdAsync(id);
         input.Adapt(entity);
-        await repository.UpdateAsync(entity);
+        await _repository.UpdateAsync(entity);
 
         return entity.Adapt<LanguageDto>();
     }
 
     public async Task DeleteAsync(IEnumerable<long> id)
     {
-        await repository.DeleteByIdsAsync(id.Select(x => (object)x).ToArray());
+        await _repository.DeleteByIdsAsync(id.Select(x => (object)x).ToArray());
+    }
+
+    public async Task<Dictionary<string, string>> GetMessagesAsync(string culture)
+    {
+        return _databaseStringProvider.GetStrings(culture);
     }
 }

@@ -9,6 +9,15 @@ export function listLanguage(query) {
     })
 }
 
+// 查询语言资源
+export function getLanguageMessages(locale) {
+    return request({
+        url: '/system/language/messages',
+        method: 'get',
+        params: {culture: locale}
+    })
+}
+
 // 查询语言详细
 export function getLanguage(id) {
     return request({

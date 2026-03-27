@@ -54,8 +54,8 @@ const service = axios.create({
 })
 
 function getLanguage() {
-    let lang = useAppStore().lang || 'zh';
-    return lang == 'zh' ? 'zh-CN' : 'en'
+    const lang = useAppStore().lang || localStorage.getItem('lang') || 'zh';
+    return lang
 }
 
 

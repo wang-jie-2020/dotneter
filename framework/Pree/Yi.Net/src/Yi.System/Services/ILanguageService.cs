@@ -13,4 +13,6 @@ public interface ILanguageService
     Task<LanguageDto> UpdateAsync(long id, LanguageInput input);
 
     Task DeleteAsync(IEnumerable<long> id);
+    
+    Task<Dictionary<string, string>> GetMessagesAsync(string culture);
 }
