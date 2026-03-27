@@ -9,7 +9,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Options;
-using My.Extensions.Localization.Json;
 using Newtonsoft.Json.Converters;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Swashbuckle.AspNetCore.SwaggerUI;
@@ -20,6 +19,7 @@ using Yi.AspNetCore.Authorization;
 using Yi.AspNetCore.Data;
 using Yi.AspNetCore.Data.Filtering;
 using Yi.AspNetCore.Data.Seeding;
+using Yi.AspNetCore.I18n;
 using Yi.AspNetCore.MultiTenancy;
 using Yi.AspNetCore.Mvc;
 using Yi.AspNetCore.Mvc.Conventions;
@@ -115,9 +115,12 @@ public class YiAspNetCoreModule : AbpModule
         context.Services.AddSingleton<IAuthorizationHandler, PermissionRequirementHandler>();
         
         // Localization  
-        context.Services.AddJsonLocalization(options => options.ResourcesPath = "Resources");
-        context.Services.Replace(new ServiceDescriptor(typeof(IStringLocalizerFactory), typeof(JsonStringLocalizerFactory), ServiceLifetime.Singleton));    // WTF --> SEE Volo.Abp.Internal.InternalServiceCollectionExtensions.AddCoreServices
-
+        // context.Services.AddJsonLocalization(options => options.ResourcesPath = "Resources");
+        context.Services.TryAddSingleton<IStringLocalizerFactory, DatabaseStringLocalizerFactory>();
+        context.Services.TryAddTransient(typeof(IStringLocalizer<>), typeof(StringLocalizer<>));
+        context.Services.TryAddTransient(typeof(IStringLocalizer), typeof(StringLocalizer));
+        context.Services.Replace(new ServiceDescriptor(typeof(IStringLocalizerFactory), typeof(DatabaseStringLocalizerFactory), ServiceLifetime.Singleton));    // WTF --> SEE Volo.Abp.Internal.InternalServiceCollectionExtensions.AddCoreServices
+        
         // MemoryCache & Redis
         context.Services.AddMemoryCache();
         context.Services.AddDistributedMemoryCache();

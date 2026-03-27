@@ -232,5 +232,15 @@ public abstract class SqlSugarDbContext : ISqlSugarDbContext
         {
             column.IsPrimarykey = true;
         }
+        
+        if (property.PropertyType.IsGenericType && property.PropertyType.GetGenericTypeDefinition() == typeof(Nullable<>))
+        {
+            column.IsNullable = true;
+        }
+        
+        if(new NullabilityInfoContext().Create(property).WriteState is NullabilityState.Nullable)
+        {
+            column.IsNullable = true;
+        } 
     }
 }

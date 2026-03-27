@@ -14,7 +14,7 @@
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.3" />
 		<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.3" />
 		<PackageReference Include="MiniProfiler.AspNetCore.Mvc" Version="4.3.8" />
-		<PackageReference Include="My.Extensions.Localization.Json" Version="3.3.0" />
+<!--		<PackageReference Include="My.Extensions.Localization.Json" Version="3.3.0" />-->
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageReference Include="Serilog.AspNetCore" Version="8.0.1" />
 		<PackageReference Include="Serilog.Sinks.Async" Version="1.5.0" />
