@@ -811,6 +811,23 @@ public class MenuDataSeed : IDataSeedContributor, ITransientDependency
         };
         entities.Add(loginLogRemove);
 
+        var language = new MenuEntity(SequentialGuidGenerator.Create())
+        {
+            MenuName = "多语言管理",
+            PermissionCode = "system:language:list",
+            MenuType = MenuTypeEnum.Menu,
+            Router = "language",
+            IsShow = true,
+            IsLink = false,
+            IsCache = true,
+            Component = "system/language/index",
+            MenuIcon = "message",
+            OrderNum = 93,
+            ParentId = system.Id,
+            IsDeleted = false
+        };
+        entities.Add(language);
+        
         //默认值
         entities.ForEach(m =>
         {
