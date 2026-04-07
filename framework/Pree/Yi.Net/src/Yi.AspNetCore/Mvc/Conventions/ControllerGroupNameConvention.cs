@@ -26,6 +26,6 @@ public class ControllerGroupNameConvention: IControllerModelConvention
             // ignored
         }
         
-        controller.ApiExplorer.GroupName = groupName;
+        controller.ApiExplorer.GroupName = groupName.ToLower();
     }
 }
