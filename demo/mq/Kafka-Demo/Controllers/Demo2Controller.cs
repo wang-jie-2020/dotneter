@@ -8,9 +8,6 @@ namespace MQ.Controllers;
 [Route("[controller]")]
 public class Demo2Controller : ControllerBase
 {
-    private const string SERVERS =
-        "127.0.0.1:9093,127.0.0.1:19093,127.0.0.1:29093,127.0.0.1:39093,127.0.0.1:49093";
-
     private const string TOPIC1 = "demo2.1";
     private const string TOPIC2 = "demo2.2";
 
@@ -41,7 +38,7 @@ public class Demo2Controller : ControllerBase
         {
             var config = new ConsumerConfig
             {
-                BootstrapServers = SERVERS,
+                BootstrapServers = Global.SERVERS,
                 GroupId = group,
                 AutoOffsetReset = AutoOffsetReset.Earliest,
                 EnableAutoCommit = false,
@@ -66,7 +63,7 @@ public class Demo2Controller : ControllerBase
         {
             var config = new ConsumerConfig
             {
-                BootstrapServers = SERVERS,
+                BootstrapServers = Global.SERVERS,
                 GroupId = group,
                 AutoOffsetReset = AutoOffsetReset.Earliest,
                 EnableAutoCommit = false,
@@ -92,7 +89,7 @@ public class Demo2Controller : ControllerBase
             var index = 0;
             var config = new ProducerConfig
             {
-                BootstrapServers = SERVERS
+                BootstrapServers = Global.SERVERS
             };
 
             var builder = new ProducerBuilder<string, object>(config);
@@ -149,7 +146,7 @@ public class Demo2Controller : ControllerBase
         {
             var config = new ConsumerConfig
             {
-                BootstrapServers = SERVERS,
+                BootstrapServers = Global.SERVERS,
                 GroupId = group1,
                 AutoOffsetReset = AutoOffsetReset.Earliest,
                 EnableAutoCommit = false,
@@ -174,7 +171,7 @@ public class Demo2Controller : ControllerBase
         {
             var config = new ConsumerConfig
             {
-                BootstrapServers = SERVERS,
+                BootstrapServers = Global.SERVERS,
                 GroupId = group2,
                 AutoOffsetReset = AutoOffsetReset.Earliest,
                 EnableAutoCommit = false,
@@ -200,7 +197,7 @@ public class Demo2Controller : ControllerBase
             var index = 0;
             var config = new ProducerConfig
             {
-                BootstrapServers = SERVERS
+                BootstrapServers = Global.SERVERS
             };
 
             var builder = new ProducerBuilder<string, object>(config);
@@ -239,7 +236,7 @@ public class Demo2Controller : ControllerBase
         {
             var config = new ConsumerConfig
             {
-                BootstrapServers = SERVERS,
+                BootstrapServers = Global.SERVERS,
                 GroupId = group,
                 AutoOffsetReset = AutoOffsetReset.Earliest,
                 EnableAutoCommit = false,
@@ -263,7 +260,7 @@ public class Demo2Controller : ControllerBase
         {
             var config = new ConsumerConfig
             {
-                BootstrapServers = SERVERS,
+                BootstrapServers = Global.SERVERS,
                 GroupId = group,
                 AutoOffsetReset = AutoOffsetReset.Earliest,
                 EnableAutoCommit = false,
@@ -288,7 +285,7 @@ public class Demo2Controller : ControllerBase
             var index = 0;
             var config = new ProducerConfig
             {
-                BootstrapServers = SERVERS
+                BootstrapServers = Global.SERVERS
             };
 
             var builder = new ProducerBuilder<string, object>(config);

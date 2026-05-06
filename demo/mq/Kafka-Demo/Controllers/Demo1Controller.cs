@@ -7,9 +7,6 @@ namespace MQ.Controllers;
 [Route("[Controller]")]
 public class Demo1Controller : ControllerBase
 {
-    private const string SERVERS =
-        "127.0.0.1:9093,127.0.0.1:19093,127.0.0.1:29093,127.0.0.1:39093,127.0.0.1:49093";
-
     private const string TOPIC = "demo1";
 
     [HttpGet]
@@ -20,7 +17,7 @@ public class Demo1Controller : ControllerBase
         //2、ProducerBuilder<string, object>在实例化时需要一个配置参数，这个配置参数是一个集合（IEnumerable<KeyValuePair<string, string>>），ProducerConfig其实是实现了这个集合接口的一个类型，在旧版本的Confluent.Kafka中，是没有这个ProducerConfig类型的，之前都是使用Dictionary<string,string>来构建ProducerBuilder<string, object>
         var config = new ProducerConfig
         {
-            BootstrapServers = SERVERS
+            BootstrapServers = Global.SERVERS
         };
 
         // 3、Confluent.Kafka还要求提供一个实现了ISerializer<TValue>或者IAsyncSerializer<TValue>接口的序列化类型，比如上面的Demo中的KafkaConverter：　　
@@ -45,7 +42,7 @@ public class Demo1Controller : ControllerBase
         //1、和消息发布一样，消费者的构建是通过ConsumerBuilder<, >对象来完成的，同样也有一个ConsumerConfig配置对象，它在旧版本中也是不存在的，旧版本中也是使用Dictionary<string,string>来实现的
         var config = new ConsumerConfig
         {
-            BootstrapServers = SERVERS,
+            BootstrapServers = Global.SERVERS,
             GroupId = "group.1", //消费者的Group，注意了，Kafka以Group的形式消费消息，一个消息只会被同一Group中的一个消费者消费，另外，一般的，同一Group中的消费者应该实现相同的逻辑
             AutoOffsetReset =
                 AutoOffsetReset
